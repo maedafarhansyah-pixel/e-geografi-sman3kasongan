@@ -1,0 +1,1840 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes" />
+    <title>Penelitian Geografi – Kelas X (Kurikulum Merdeka)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+    <style>
+        /* ===== VARIABEL & RESET ===== */
+        :root {
+            --primary: #3498db;
+            --primary-light: #5dade2;
+            --primary-dark: #2980b9;
+            --primary-glow: rgba(52,152,219,0.4);
+            --bg-card: #1e1e1e;
+            --bg-card-hover: #2a2a2a;
+            --text-light: #f0f0f0;
+            --text-muted: #aaa;
+            --border-color: #333;
+            --shadow: 0 8px 32px rgba(0,0,0,0.6);
+            --radius: 18px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+            background: #121212;
+            color: #e8e8e8;
+            line-height: 1.7;
+            scroll-behavior: smooth;
+            padding-top: 56px;
+        }
+        /* ===== LOADING ===== */
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: #0a0a0a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            transition: opacity 0.6s ease;
+        }
+        #loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        #loader .loader-text {
+            color: var(--primary);
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            z-index: 10;
+            animation: pulse 1.8s infinite;
+        }
+        @keyframes pulse {
+            0%,100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.95); }
+        }
+        .star {
+            position: absolute;
+            font-size: 1.4rem;
+            user-select: none;
+            pointer-events: none;
+            opacity: 0;
+            animation: flyStar 4.5s ease-in-out infinite;
+        }
+        @keyframes flyStar {
+            0% { opacity: 0; transform: translate(0,0) scale(0.2) rotate(0deg); }
+            15% { opacity: 1; transform: translate(var(--tx1), var(--ty1)) scale(1.3) rotate(20deg); }
+            50% { opacity: 1; transform: translate(var(--tx2), var(--ty2)) scale(0.9) rotate(-15deg); }
+            85% { opacity: 1; transform: translate(var(--tx3), var(--ty3)) scale(1.1) rotate(10deg); }
+            100% { opacity: 0; transform: translate(var(--tx4), var(--ty4)) scale(0.3) rotate(30deg); }
+        }
+        /* ===== HEADER MOBILE ===== */
+        .mobile-header {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            height: 56px;
+            background: rgba(13,13,13,0.92);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            z-index: 1001;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.7);
+        }
+        .mobile-header .brand {
+            color: var(--primary);
+            font-weight: 900;
+            font-size: 1.6rem;
+            letter-spacing: 1.5px;
+        }
+        .hamburger {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 4px 8px;
+            transition: var(--transition);
+        }
+        .hamburger:hover { color: var(--primary); }
+        .hamburger.active { color: var(--primary); }
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            position: fixed;
+            top: 0; left: 0;
+            width: 64px;
+            height: 100vh;
+            background: rgba(13,13,13,0.95);
+            backdrop-filter: blur(8px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            box-shadow: 2px 0 20px rgba(0,0,0,0.8);
+            transition: transform 0.35s ease, width 0.35s ease;
+            overflow: hidden;
+            transform: translateX(-100%);
+        }
+        .sidebar.open {
+            transform: translateX(0);
+            width: 220px;
+        }
+        .sidebar .logo {
+            color: var(--primary);
+            font-size: 1.2rem;
+            font-weight: 700;
+            padding: 16px 0 8px;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            opacity: 0.9;
+            transition: var(--transition);
+        }
+        .sidebar.open .logo {
+            writing-mode: horizontal-tb;
+            font-size: 1.1rem;
+            padding: 12px 0;
+        }
+        .sidebar nav {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 8px 0;
+            flex: 1;
+            justify-content: center;
+            width: 100%;
+        }
+        .sidebar nav a {
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 8px 18px;
+            border-radius: 10px;
+            transition: var(--transition);
+            white-space: nowrap;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+        .sidebar nav a i {
+            font-size: 1.1rem;
+            width: 24px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .sidebar nav a span {
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .sidebar.open nav a span { opacity: 1; }
+        .sidebar nav a:hover,
+        .sidebar nav a.active {
+            color: #fff;
+            background: rgba(52,152,219,0.2);
+        }
+        .sidebar nav a.active {
+            color: var(--primary);
+            background: rgba(52,152,219,0.15);
+            box-shadow: inset 4px 0 0 var(--primary);
+        }
+        .sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease;
+        }
+        .sidebar-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        /* ===== MAIN ===== */
+        .main-content {
+            padding: 16px 16px 60px;
+            max-width: 1100px;
+            margin: 0 auto;
+            transition: margin-left 0.35s ease;
+        }
+        /* ===== SECTION ===== */
+        .section {
+            display: none;
+            animation: fadeUp 0.6s ease;
+            padding: 20px 0 12px;
+        }
+        .section.active { display: block; }
+        @keyframes fadeUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .section-wrapper {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 24px;
+            padding-bottom: 14px;
+            border-bottom: 4px solid transparent;
+            border-image: linear-gradient(90deg, var(--primary), var(--primary-light)) 1;
+        }
+        .section-header .num {
+            background: linear-gradient(145deg, var(--primary), var(--primary-light));
+            color: #121212;
+            font-weight: 700;
+            font-size: 1.2rem;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 4px 14px var(--primary-glow);
+        }
+        .section-header h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-light);
+            letter-spacing: -0.3px;
+        }
+        .section-header h2 small {
+            font-weight: 400;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: block;
+            margin-top: 2px;
+        }
+        /* ===== CARDS ===== */
+        .card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 20px 18px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.8);
+            border-color: var(--primary);
+        }
+        .card .icon { font-size: 2rem; color: var(--primary); margin-bottom: 8px; }
+        .card h3 { font-size: 1.1rem; font-weight: 700; color: var(--text-light); margin-bottom: 4px; }
+        .card p, .card li { font-size: 0.92rem; color: #ccc; line-height: 1.7; }
+        .card ul { padding-left: 18px; margin: 6px 0; }
+        .card ul li { list-style-type: disc; }
+        .card.highlight { background: #252525; border-color: var(--primary); }
+        .card.merdeka-badge { border-left: 6px solid var(--primary); background: var(--bg-card); }
+        .card-enhanced {
+            border-radius: var(--radius);
+            background: linear-gradient(145deg, #1e1e1e, #252525);
+            border: 1px solid #2a2a2a;
+            transition: var(--transition);
+        }
+        .card-enhanced:hover {
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.8);
+            border-color: var(--primary);
+        }
+        /* ===== GRID ===== */
+        .grid-2 { display: grid; grid-template-columns: 1fr; gap: 20px; margin: 14px 0; }
+        .grid-3 { display: grid; grid-template-columns: 1fr; gap: 20px; margin: 14px 0; }
+        .grid-4 { display: grid; grid-template-columns: 1fr; gap: 20px; margin: 14px 0; }
+        .grid-ahli { display: grid; grid-template-columns: 1fr; gap: 20px; margin: 14px 0; }
+        @media (min-width: 600px) {
+            .grid-2 { grid-template-columns: repeat(2,1fr); }
+            .grid-3 { grid-template-columns: repeat(2,1fr); }
+            .grid-4 { grid-template-columns: repeat(2,1fr); }
+            .grid-ahli { grid-template-columns: repeat(2,1fr); }
+        }
+        @media (min-width: 900px) {
+            .grid-3 { grid-template-columns: repeat(3,1fr); }
+            .grid-4 { grid-template-columns: repeat(4,1fr); }
+            .grid-ahli { grid-template-columns: repeat(3,1fr); }
+        }
+        /* ===== INTERACTIVE CARDS ===== */
+        .interactive-card {
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .interactive-card.dark-card {
+            background: linear-gradient(145deg, #2a2a2a, #222);
+            border: 1px solid #3a3a3a;
+        }
+        .interactive-card.dark-card:hover { border-color: var(--primary); transform: translateY(-3px); }
+        .interactive-card.dark-card.open {
+            background: #f5f0e8;
+            border-color: var(--primary);
+            color: #1e2a36;
+        }
+        .interactive-card.dark-card.open h3 { color: #1a2a3a; }
+        .interactive-card.dark-card.open p { color: #2a3a4a; }
+        .interactive-card.dark-card.open .toggle-hint { color: #6a7a8a; }
+        .interactive-card.dark-card.open ul li { color: #2a3a4a; }
+        .interactive-card.dark-card.open strong { color: #1a2a3a; }
+        .interactive-card .back {
+            display: none;
+            padding-top: 12px;
+            border-top: 2px dashed rgba(52,152,219,0.4);
+            margin-top: 12px;
+            font-size: 0.92rem;
+        }
+        .interactive-card.open .back { display: block; }
+        .interactive-card .toggle-hint {
+            font-size: 0.7rem;
+            margin-top: 8px;
+            display: block;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            opacity: 0.7;
+        }
+        .pillar-icon { font-size: 3rem; color: var(--primary); display: block; margin-bottom: 4px; }
+        .guna-icon { font-size: 2.8rem; color: var(--primary); display: block; margin-bottom: 6px; }
+        /* ===== AHLI CARDS ===== */
+        .ahli-card {
+            border-radius: var(--radius);
+            padding: 18px 16px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            background: linear-gradient(145deg, #1e1e1e, #252525);
+        }
+        .ahli-card:hover { border-color: var(--primary); transform: translateY(-3px); }
+        .ahli-card .ahli-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 4px;
+            flex-wrap: wrap;
+        }
+        .ahli-card .ahli-header .icon-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            width: 36px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .ahli-card .ahli-header h3 { font-size: 1.05rem; font-weight: 700; margin: 0; color: var(--text-light); }
+        .ahli-card .ahli-header .sub { font-size: 0.8rem; font-weight: 400; color: #aaa; }
+        .ahli-card ul { padding-left: 18px; margin: 4px 0; }
+        .ahli-card ul li { font-size: 0.9rem; line-height: 1.7; }
+        .ahli-card .keterangan {
+            font-size: 0.85rem;
+            margin-top: 6px;
+            padding-top: 6px;
+            border-top: 1px solid #444;
+        }
+        .ahli-card .keterangan i { color: var(--primary); margin-right: 4px; }
+        /* ===== KOMPONEN GRID ===== */
+        .komponen-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin: 10px 0; }
+        @media (min-width: 600px) { .komponen-grid { grid-template-columns: repeat(2,1fr); } }
+        .komponen-card {
+            background: linear-gradient(145deg, #1e1e1e, #252525);
+            border-radius: 12px;
+            padding: 14px 16px;
+            border-left: 5px solid var(--primary);
+            transition: var(--transition);
+        }
+        .komponen-card:hover { border-color: var(--primary-light); transform: translateX(4px); }
+        .komponen-card h4 { color: var(--primary); font-size: 1rem; margin-bottom: 2px; }
+        .komponen-card p { font-size: 0.9rem; color: #ccc; }
+        /* ===== OTHER ===== */
+        .def-block {
+            background: linear-gradient(145deg, #1e1e1e, #252525);
+            border-radius: var(--radius);
+            padding: 16px 18px;
+            border-left: 6px solid var(--primary);
+            box-shadow: var(--shadow);
+            margin: 12px 0;
+        }
+        .def-block .source { font-weight: 600; color: var(--text-light); }
+        .def-block .source i { color: var(--primary); margin-right: 6px; }
+        .cp-atp-box {
+            background: linear-gradient(145deg, #1a241e, #1e2a24);
+            border-radius: var(--radius);
+            padding: 16px 18px;
+            border-left: 6px solid var(--primary-light);
+            margin: 10px 0;
+            color: #ddd;
+        }
+        .cp-atp-box strong { color: #8cc4d0; }
+        .quote-block {
+            background: linear-gradient(145deg, #1a241e, #1e2a24);
+            border-left: 6px solid var(--primary);
+            padding: 16px 20px;
+            border-radius: 10px;
+            margin: 12px 0;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: #ddd;
+        }
+        .quote-block .author {
+            display: block;
+            margin-top: 8px;
+            font-style: normal;
+            font-weight: 600;
+            color: var(--primary);
+            text-align: right;
+        }
+        .celebration-box {
+            background: linear-gradient(145deg, #1a2a2a, #0d1a1a);
+            border: 2px solid var(--primary);
+            border-radius: 16px;
+            padding: 24px 20px;
+            text-align: center;
+            margin-top: 12px;
+        }
+        .celebration-box h3 { font-size: 1.6rem; color: var(--primary); margin-bottom: 10px; }
+        .celebration-box p { font-size: 1.05rem; color: #ccc; }
+        .next-step-btn {
+            display: inline-block;
+            background: var(--primary);
+            color: #121212;
+            padding: 12px 32px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: var(--transition);
+            margin-top: 14px;
+            border: none;
+            cursor: default;
+        }
+        .next-step-btn:hover { background: var(--primary-light); transform: scale(1.03); }
+        .activity-box {
+            background: linear-gradient(145deg, #1a241e, #1e2a24);
+            border-radius: var(--radius);
+            padding: 20px 18px;
+            border: 2px dashed var(--primary);
+            margin: 14px 0;
+        }
+        .activity-box h3 { color: var(--text-light); font-size: 1.2rem; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .activity-box h3 i { color: var(--primary); }
+        /* ===== TABEL ===== */
+        .worksheet-table {
+            display: grid;
+            grid-template-columns: 60px 1fr 1.2fr 2fr;
+            gap: 6px;
+            margin-top: 12px;
+            font-size: 0.9rem;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #444;
+        }
+        .worksheet-table .header {
+            background: var(--primary);
+            color: #121212;
+            font-weight: 700;
+            padding: 10px 8px;
+            text-align: center;
+        }
+        .worksheet-table .cell { background: #1e1e1e; padding: 10px 8px; color: #ccc; border-bottom: 1px solid #333; min-height: 50px; }
+        .worksheet-table .cell-empty { background: #1a1a1a; color: #555; font-style: italic; padding: 10px 8px; border-bottom: 1px solid #333; min-height: 50px; }
+        /* ===== REFLEKSI ===== */
+        .refleksi-list { list-style: none; padding: 0; margin: 8px 0; }
+        .refleksi-list li { display: flex; align-items: flex-start; gap: 12px; padding: 8px 0; font-size: 1rem; color: #ddd; border-bottom: 1px solid #333; }
+        .refleksi-list li:last-child { border-bottom: none; }
+        .refleksi-list li .check { font-size: 1.4rem; color: #6bcb77; flex-shrink: 0; margin-top: 2px; }
+        /* ===== ASESMEN ===== */
+        .assessment-question {
+            margin-bottom: 16px;
+            padding: 12px 16px;
+            background: linear-gradient(145deg, #1e1e1e, #252525);
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+        }
+        .assessment-question .q-text { font-weight: 600; color: var(--text-light); margin-bottom: 4px; }
+        .assessment-question .q-options { padding-left: 20px; color: #ccc; line-height: 1.8; }
+        .assessment-question .q-options span { display: block; }
+        .essay-question {
+            background: linear-gradient(145deg, #1a1a1a, #222);
+            padding: 16px;
+            border-radius: 10px;
+            border: 1px solid #444;
+            margin-bottom: 16px;
+        }
+        .essay-question .q-text { font-weight: 600; color: var(--text-light); margin-bottom: 4px; }
+        .essay-question .q-note { font-size: 0.85rem; color: #aaa; font-style: italic; }
+        /* ===== REFERENSI ===== */
+        .ref-list { list-style: none; padding: 0; }
+        .ref-list li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.88rem; display: flex; align-items: baseline; gap: 10px; color: #ddd; }
+        .ref-list li i { color: var(--primary); font-size: 0.8rem; width: 20px; flex-shrink: 0; }
+        /* ===== PROGRESS & NAV ===== */
+        .progress-wrap {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            height: 4px;
+            background: #2a2a2a;
+            z-index: 999;
+        }
+        .progress-wrap .bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            transition: width 0.4s ease;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 32px;
+            padding-top: 14px;
+            border-top: 2px solid #333;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .nav-buttons.hidden { display: none; }
+        .nav-buttons button {
+            background: #2a2a2a;
+            color: #fff;
+            border: 1px solid #3a3a3a;
+            padding: 8px 22px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .nav-buttons button:hover:not(:disabled) {
+            background: var(--primary);
+            color: #121212;
+            border-color: var(--primary);
+            transform: scale(1.02);
+        }
+        .nav-buttons button:disabled { opacity: 0.3; cursor: not-allowed; }
+        .nav-buttons .counter { font-weight: 500; color: #aaa; font-size: 0.85rem; }
+        /* ===== START BUTTON ===== */
+        .start-btn-wrapper { display: flex; justify-content: center; margin: 28px 0 12px; }
+        .start-btn {
+            background: var(--primary);
+            color: #121212;
+            border: none;
+            padding: 14px 44px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 6px 24px var(--primary-glow);
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .start-btn:hover { background: var(--primary-light); transform: scale(1.04); box-shadow: 0 8px 32px var(--primary-glow); }
+        /* ===== BADGE ===== */
+        .tag {
+            display: inline-block;
+            background: var(--primary);
+            color: #121212;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 2px 16px;
+            border-radius: 40px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .deep-learning-badge {
+            display: inline-block;
+            background: #2a6b8c;
+            color: #fff;
+            padding: 3px 14px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .school-info {
+            background: rgba(13,13,13,0.8);
+            backdrop-filter: blur(4px);
+            color: #e0e0e0;
+            padding: 10px 24px;
+            border-radius: 40px;
+            display: inline-block;
+            font-weight: 500;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+            margin-top: 6px;
+        }
+        .school-info i { color: var(--primary); margin-right: 8px; }
+        .footer-credit {
+            text-align: center;
+            margin-top: 16px;
+            padding-top: 12px;
+            border-top: 1px solid #333;
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+        .footer-credit strong { color: #eee; }
+        .cover-title {
+            font-size: 2.6rem;
+            font-weight: 800;
+            color: var(--text-light);
+            margin: 10px 0 4px;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+        /* ===== TOOLTIP ===== */
+        .hover-trigger { position: relative; cursor: help; display: inline-block; }
+        .hover-trigger .hover-tooltip {
+            display: none;
+            position: absolute;
+            background: #2a2a2a;
+            color: #f0ece4;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            width: 240px;
+            bottom: calc(100% + 12px);
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.9);
+            z-index: 20;
+            text-align: left;
+            line-height: 1.5;
+            border: 1px solid var(--primary);
+        }
+        .hover-trigger .hover-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 8px solid transparent;
+            border-top-color: #2a2a2a;
+        }
+        .hover-trigger:hover .hover-tooltip { display: block; }
+        /* ===== RESPONSIVE ===== */
+        @media (min-width: 600px) {
+            .cover-title { font-size: 3rem; }
+            .section-header h2 { font-size: 1.7rem; }
+            .main-content { padding: 24px 28px 60px; }
+            .start-btn { padding: 16px 56px; font-size: 1.3rem; }
+        }
+        @media (min-width: 900px) {
+            body { padding-top: 0; }
+            .mobile-header { display: none; }
+            .sidebar {
+                transform: translateX(0);
+                width: 64px;
+            }
+            .sidebar:hover { width: 200px; }
+            .sidebar .logo {
+                writing-mode: vertical-rl;
+                text-orientation: mixed;
+                font-size: 1.2rem;
+                padding: 16px 0 8px;
+            }
+            .sidebar:hover .logo {
+                writing-mode: horizontal-tb;
+                font-size: 1.1rem;
+                padding: 12px 0;
+            }
+            .sidebar nav a span { opacity: 0; transition: opacity 0.25s; }
+            .sidebar:hover nav a span { opacity: 1; }
+            .sidebar-overlay { display: none; }
+            .main-content { margin-left: 64px; padding: 28px 40px 60px; max-width: 1100px; }
+            .progress-wrap { left: 64px; }
+            .cover-title { font-size: 3.4rem; }
+            .section-header .num { width: 48px; height: 48px; font-size: 1.3rem; }
+        }
+        @media (max-width: 400px) {
+            .section-header h2 { font-size: 1.1rem; }
+            .cover-title { font-size: 1.8rem; }
+            .card { padding: 14px 12px; }
+            .start-btn { padding: 10px 28px; font-size: 1rem; }
+            .mobile-header .brand { font-size: 1.3rem; }
+            .worksheet-table { grid-template-columns: 1fr; gap: 2px; }
+            .worksheet-table .header { text-align: left; }
+        }
+        .sidebar-overlay { display: block; }
+        @media (min-width: 900px) { .sidebar-overlay { display: none; } }
+        /* ===== EFEK DEKORATIF ===== */
+        .glow-text { text-shadow: 0 0 30px var(--primary-glow); }
+        .divider-gradient {
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+            margin: 20px 0 10px;
+        }
+        .badge-soft {
+            display: inline-block;
+            background: rgba(52,152,219,0.15);
+            color: var(--primary-light);
+            padding: 2px 14px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            border: 1px solid rgba(52,152,219,0.2);
+        }
+        .penelitian-badge {
+            display: inline-block;
+            background: #1a4a6a;
+            color: #fff;
+            padding: 2px 12px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== LOADING SCREEN ===== -->
+    <div id="loader">
+        <div class="loader-text">Memuat Materi Penelitian Geografi...</div>
+    </div>
+
+    <!-- ===== MOBILE HEADER ===== -->
+    <header class="mobile-header">
+        <div class="brand">🔬 Penelitian Geografi</div>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+
+    <!-- ===== SIDEBAR OVERLAY ===== -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar" id="sidebar">
+        <div class="logo">🔬 Penelitian Geografi</div>
+        <nav id="navLinks">
+            <a href="#" data-section="section1" class="active"><i class="fas fa-home"></i><span>Beranda</span></a>
+            <a href="#" data-section="section2"><i class="fas fa-bullseye"></i><span>CP & ATP</span></a>
+            <a href="#" data-section="section3"><i class="fas fa-list-check"></i><span>Indikator</span></a>
+            <a href="#" data-section="section4"><i class="fas fa-cubes"></i><span>Kerangka Deep Learning</span></a>
+            <a href="#" data-section="section5"><i class="fas fa-book-open"></i><span>Pengertian</span></a>
+            <a href="#" data-section="section6"><i class="fas fa-users"></i><span>Definisi Ahli</span></a>
+            <a href="#" data-section="section7"><i class="fas fa-layer-group"></i><span>Jenis Penelitian</span></a>
+            <a href="#" data-section="section8"><i class="fas fa-lightbulb"></i><span>Langkah-langkah</span></a>
+            <a href="#" data-section="section9"><i class="fas fa-tools"></i><span>Teknik & Instrumen</span></a>
+            <a href="#" data-section="section10"><i class="fas fa-clipboard-check"></i><span>Asesmen</span></a>
+            <a href="#" data-section="section11"><i class="fas fa-star"></i><span>Refleksi</span></a>
+            <a href="#" data-section="section12"><i class="fas fa-bookmark"></i><span>Referensi</span></a>
+        </nav>
+    </aside>
+
+    <!-- ===== PROGRESS BAR ===== -->
+    <div class="progress-wrap"><div class="bar" id="progressBar"></div></div>
+
+    <!-- ===== MAIN ===== -->
+    <main class="main-content">
+
+        <!-- ========== SECTION 1 : COVER ========== -->
+        <section id="section1" class="section active">
+            <div style="text-align:center; padding: 10px 0 8px 0;">
+                <span class="tag" style="font-size:0.8rem; padding:4px 20px;">KELAS X / FASE E</span>
+                <span class="deep-learning-badge" style="margin-left:6px;"><i class="fas fa-brain"></i> Deep Learning</span>
+                <h1 class="cover-title">
+                    PENELITIAN<br/>GEOGRAFI
+                </h1>
+                <p style="font-size:1rem; color:#aaa; max-width:600px; margin:0 auto; padding:0 10px;">
+                    Pengertian, jenis, langkah-langkah, teknik, dan instrumen<br/>penelitian geografi dalam kehidupan sehari-hari
+                </p>
+                <div style="margin-top:16px;">
+                    <div class="school-info">
+                        <i class="fas fa-school"></i> SMAN 3 KASONGAN
+                    </div>
+                    <div style="margin-top:6px; font-size:0.9rem; color:#aaa;">
+                        <i class="fas fa-chalkboard-teacher" style="color:#3498db;"></i> Guru Pengampu: <strong style="color:#fff;">SYAHRANI, S.Pd</strong> &nbsp;|&nbsp; NIP. 197512172005011016
+                    </div>
+                </div>
+                <div class="start-btn-wrapper">
+                    <button class="start-btn" onclick="navigateTo('section2')">
+                        <i class="fas fa-play-circle"></i> Mulai Belajar
+                    </button>
+                </div>
+                <div style="margin-top:8px; font-size:0.85rem; color:#666;">
+                    <i class="fas fa-chevron-down"></i> Gunakan navigasi di samping atau tombol di atas
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTION 2 : CP & ATP ========== -->
+        <section id="section2" class="section">
+            <div class="section-wrapper">
+                <div class="section-header">
+                    <div class="num">02</div>
+                    <h2>Capaian & Alur Tujuan Pembelajaran <small>Kurikulum Merdeka Fase E</small></h2>
+                </div>
+
+                <div style="background:linear-gradient(145deg, #1a241e, #1e2a24); border-radius:14px; padding:16px 18px; border-left:6px solid #5aadf0; margin:10px 0;">
+                    <p><strong><i class="fas fa-puzzle-piece" style="color:#8cc4d0;"></i> Rasional Mata Pelajaran Geografi</strong><br/>
+                    Mata pelajaran Geografi membekali peserta didik dengan pengetahuan, keterampilan, dan sikap untuk memahami dan menganalisis fenomena geosfer serta interaksi antara manusia dan lingkungannya. Pembelajaran Geografi mendorong peserta didik untuk berpikir secara keruangan, kelingkungan, dan kewilayahan dalam menghadapi berbagai tantangan global, seperti perubahan iklim, bencana alam, dan pembangunan berkelanjutan.</p>
+                    <p style="margin-top:8px;"><strong><i class="fas fa-star" style="color:#8cc4d0;"></i> Karakteristik Mata Pelajaran Geografi</strong><br/>
+                    Geografi memiliki karakteristik sebagai ilmu yang mengkaji persamaan dan perbedaan fenomena geosfer (fisik dan sosial) dengan sudut pandang kelingkungan, kewilayahan, dan keruangan. Ilmu ini bersifat interdisipliner, menghubungkan ilmu alam dan ilmu sosial, serta berorientasi pada pemecahan masalah nyata di masyarakat.</p>
+                </div>
+
+                <div class="cp-atp-box">
+                    <p><strong><i class="fas fa-flag-checkered" style="color:#8cc4d0;"></i> Capaian Pembelajaran (CP) – Fase E</strong><br/>
+                    Pada akhir Fase E, peserta didik memahami konsep dasar Geografi, peta, pengindraan jauh, Sistem Informasi Geografis (SIG), penelitian Geografi, dan fenomena geosfer fisik yaitu litosfer, atmosfer, dan hidrosfer sebagai ruang kehidupan.</p>
+                </div>
+                <div class="grid-2" style="margin-top:6px;">
+                    <div class="card card-enhanced merdeka-badge">
+                        <div class="icon"><i class="fas fa-route"></i></div>
+                        <h3>
+                            <span class="hover-trigger">
+                                Alur Tujuan Pembelajaran (ATP)
+                                <span class="hover-tooltip">
+                                    ATP adalah rangkaian tujuan pembelajaran yang disusun secara sistematis dan logis, menjadi panduan guru untuk mencapai Capaian Pembelajaran (CP).
+                                </span>
+                            </span>
+                        </h3>
+                        <p>ATP merupakan rangkaian tujuan pembelajaran yang disusun secara sistematis dan logis, menjadi panduan guru untuk mencapai CP.</p>
+                        <ul style="margin-top:6px;">
+                            <li><strong>TP 1:</strong> Menganalisis pengertian dan ruang lingkup penelitian geografi serta jenis-jenisnya.</li>
+                            <li><strong>TP 2:</strong> Mengidentifikasi langkah-langkah penelitian geografi secara sistematis.</li>
+                            <li><strong>TP 3:</strong> Menerapkan teknik dan instrumen pengumpulan data dalam penelitian geografi.</li>
+                            <li><strong>TP 4:</strong> Mengevaluasi hasil penelitian geografi dan manfaatnya dalam pemecahan masalah.</li>
+                        </ul>
+                    </div>
+                    <div class="card card-enhanced merdeka-badge">
+                        <div class="icon"><i class="fas fa-user-graduate"></i></div>
+                        <h3>Dimensi Profil Lulusan (DPL)</h3>
+                        <ul style="margin-top:6px; list-style-type: none; padding-left: 0;">
+                            <li><strong>Penalaran Kritis:</strong> Mampu menganalisis informasi geografis secara objektif dan membuat kesimpulan yang rasional berdasarkan data.</li>
+                            <li><strong>Komunikasi:</strong> Mampu menyajikan hasil analisis fenomena geografis secara lisan maupun tertulis dengan istilah yang tepat.</li>
+                            <li><strong>Kolaborasi:</strong> Mampu bekerja sama dalam kelompok untuk mengidentifikasi dan memecahkan masalah geografis di lingkungan sekitar.</li>
+                            <li><strong>Kreativitas:</strong> Mampu menghasilkan ide atau produk (peta konsep, infografis) untuk menyajikan pemahaman tentang fenomena geografis.</li>
+                            <li><strong>Kemandirian:</strong> Mampu mencari dan mengolah informasi geografis dari berbagai sumber secara bertanggung jawab.</li>
+                            <li><strong>Kewargaan:</strong> Menunjukkan sikap menghargai lingkungan dan memahami peran manusia dalam menjaga kelestarian bumi.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- ===== TAMBAHAN 1: INDIKATOR PENCAPAIAN YANG LEBIH TERUKUR ===== -->
+                <div style="margin-top:20px; background:linear-gradient(145deg, #1a241e, #1e2a24); border-radius:14px; padding:16px 18px; border-left:6px solid #5aadf0;">
+                    <h4 style="color:#8cc4d0; font-size:1.1rem; display:flex; align-items:center; gap:10px;">
+                        <i class="fas fa-bullseye"></i> Indikator Pencapaian (Terukur)
+                    </h4>
+                    <p style="color:#ccc; font-size:0.95rem; margin-bottom:8px;">Berikut adalah indikator yang lebih terperinci untuk setiap Tujuan Pembelajaran:</p>
+                    <ul style="color:#ddd; padding-left:20px; line-height:2;">
+                        <li><strong>TP 1:</strong> Menganalisis pengertian penelitian geografi melalui studi literatur dari 3 sumber yang berbeda dan menyajikannya dalam bentuk peta konsep.</li>
+                        <li><strong>TP 2:</strong> Mengidentifikasi minimal 5 langkah penelitian geografi dan menjelaskan setiap langkahnya.</li>
+                        <li><strong>TP 3:</strong> Menerapkan minimal 2 teknik pengumpulan data (observasi, wawancara, atau kuesioner) dalam penelitian sederhana.</li>
+                        <li><strong>TP 4:</strong> Mengevaluasi hasil penelitian geografi dan menyajikan kesimpulan serta rekomendasi dalam bentuk laporan.</li>
+                    </ul>
+                </div>
+
+                <!-- ===== TAMBAHAN 2: ELEMEN KETERAMPILAN PROSES ===== -->
+                <div style="margin-top:16px; background:linear-gradient(145deg, #1a241e, #1e2a24); border-radius:14px; padding:16px 18px; border-left:6px solid #5aadf0;">
+                    <h4 style="color:#8cc4d0; font-size:1.1rem; display:flex; align-items:center; gap:10px;">
+                        <i class="fas fa-cogs"></i> Elemen Keterampilan Proses
+                    </h4>
+                    <p style="color:#ccc; font-size:0.95rem; margin-bottom:8px;">Dalam pembelajaran Penelitian Geografi, peserta didik juga akan mengembangkan keterampilan proses berikut:</p>
+                    <ul style="color:#ddd; padding-left:20px; line-height:2;">
+                        <li><strong>Mengamati:</strong> Mengamati fenomena geografis di lingkungan sekitar sebagai bahan penelitian.</li>
+                        <li><strong>Menanya:</strong> Merumuskan pertanyaan penelitian berdasarkan fenomena yang diamati.</li>
+                        <li><strong>Mengumpulkan Informasi:</strong> Mengumpulkan data melalui observasi, wawancara, kuesioner, atau studi literatur.</li>
+                        <li><strong>Menalar/Mengasosiasi:</strong> Menganalisis data dan menarik kesimpulan dari hasil penelitian.</li>
+                        <li><strong>Mengomunikasikan:</strong> Menyajikan hasil penelitian dalam bentuk laporan, presentasi, atau infografis.</li>
+                    </ul>
+                </div>
+                <!-- ===== AKHIR TAMBAHAN ===== -->
+
+            </div>
+        </section>
+
+        <!-- ========== SECTION 3 : INDIKATOR ========== -->
+        <section id="section3" class="section">
+            <div class="section-wrapper">
+                <div class="section-header">
+                    <div class="num">03</div>
+                    <h2>Indikator Pencapaian <small>Tujuan Pembelajaran</small></h2>
+                </div>
+                <div class="grid-4">
+                    <div class="card card-enhanced"><i class="fas fa-check-circle" style="color:#3498db; font-size:1.8rem;"></i><h3>Indikator 1</h3><p>Menganalisis pengertian dan ruang lingkup penelitian geografi serta jenis-jenisnya.</p></div>
+                    <div class="card card-enhanced"><i class="fas fa-check-circle" style="color:#3498db; font-size:1.8rem;"></i><h3>Indikator 2</h3><p>Mengidentifikasi langkah-langkah penelitian geografi secara sistematis.</p></div>
+                    <div class="card card-enhanced"><i class="fas fa-check-circle" style="color:#3498db; font-size:1.8rem;"></i><h3>Indikator 3</h3><p>Menerapkan teknik dan instrumen pengumpulan data dalam penelitian geografi.</p></div>
+                    <div class="card card-enhanced"><i class="fas fa-check-circle" style="color:#3498db; font-size:1.8rem;"></i><h3>Indikator 4</h3><p>Mengevaluasi hasil penelitian geografi dan manfaatnya dalam pemecahan masalah.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTION 4 : KERANGKA PEMBELAJARAN MENDALAM ========== -->
+        <section id="section4" class="section">
+            <div class="section-wrapper">
+                <div class="section-header">
+                    <div class="num">04</div>
+                    <h2>Kerangka Pembelajaran Mendalam <small>Pendekatan Deep Learning</small></h2>
+                </div>
+                <div class="card card-enhanced" style="background:linear-gradient(145deg, #1a241e, #1e2a24); border:1px solid #3498db; padding:18px 16px;">
+                    <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 12px; align-items: start;">
+                        <div style="font-weight: 700; color: #3498db; padding: 8px 12px; font-size: 0.95rem;">Komponen Kerangka Pembelajaran Mendalam</div>
+                        <div style="font-weight: 700; color: #3498db; padding: 8px 12px; font-size: 0.95rem;">Implementasi</div>
+                        <div style="background: #252525; padding: 12px; border-radius: 8px; font-weight: 600; color: #f0f0f0;">Praktik Pedagogis</div>
+                        <div style="background: #1e1e1e; padding: 12px; border-radius: 8px; color: #ccc;">Problem Based Learning (PBL) berbasis inkuiri, Project Based Learning (PjBL).</div>
+                        <div style="background: #252525; padding: 12px; border-radius: 8px; font-weight: 600; color: #f0f0f0;">Lingkungan Pembelajaran</div>
+                        <div style="background: #1e1e1e; padding: 12px; border-radius: 8px; color: #ccc;">Kelas, ruang virtual, perpustakaan, dan lingkungan sekitar sekolah sebagai laboratorium penelitian.</div>
+                        <div style="background: #252525; padding: 12px; border-radius: 8px; font-weight: 600; color: #f0f0f0;">Kemitraan Pembelajaran</div>
+                        <div style="background: #1e1e1e; padding: 12px; border-radius: 8px; color: #ccc;">Orang tua, tokoh masyarakat, BMKG, BPBD, Dinas Lingkungan Hidup, komunitas peduli lingkungan, lembaga penelitian.</div>
+                        <div style="background: #252525; padding: 12px; border-radius: 8px; font-weight: 600; color: #f0f0f0;">Pemanfaatan Digital</div>
+                        <div style="background: #1e1e1e; padding: 12px; border-radius: 8px; color: #ccc;">Google Earth, Google Maps, Canva, Quizizz/Kahoot, video pembelajaran, dan AI secara bertanggung jawab.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTION 5 : PENGERTIAN PENELITIAN GEOGRAFI ========== -->
+        <section id="section5" class="section">
+            <div class="section-wrapper">
+                <div class="section-header">
+                    <div class="num">05</div>
+                    <h2>Pengertian Penelitian Geografi <small>Metode Ilmiah dalam Geografi</small></h2>
+                </div>
+                <p style="font-size:1rem; margin-bottom:6px; color:#ccc;">
+                    <i class="fas fa-flask" style="color:#3498db;"></i> 
+                    Penelitian geografi adalah <strong>kegiatan ilmiah yang dilakukan untuk memahami fenomena geosfer dan interaksi manusia dengan lingkungan</strong> melalui pengumpulan, pengolahan, analisis, dan interpretasi data secara sistematis.
+                </p>
+
+                <div style="margin-top:16px;">
+                    <h3 style="font-size:1.1rem; color:#f0f0f0; border-left:4px solid #3498db; padding-left:12px; margin-bottom:6px;">
+                        <i class="fas fa-book" style="color:#3498db;"></i> Definisi Penelitian Geografi dari Beberapa Ahli
+                    </h3>
+                    <div class="grid-2" style="margin-top:4px;">
+                        <div class="card card-enhanced highlight" style="padding:16px;">
+                            <h4 style="color:#3498db; font-size:1rem;">Suharyono & Amien</h4>
+                            <p style="font-size:0.9rem;">Penelitian geografi adalah <strong>proses penemuan pengetahuan tentang fenomena geosfer melalui pendekatan ilmiah</strong> yang melibatkan pengamatan, pengukuran, dan analisis data spasial.</p>
+                        </div>
+                        <div class="card card-enhanced highlight" style="padding:16px;">
+                            <h4 style="color:#3498db; font-size:1rem;">Bintarto</h4>
+                            <p style="font-size:0.9rem;">Penelitian geografi adalah <strong>usaha untuk memahami persamaan dan perbedaan fenomena geosfer dengan pendekatan kelingkungan dan kewilayahan</strong> secara sistematis dan objektif.</p>
+                        </div>
+                        <div class="card card-enhanced highlight" style="padding:16px;">
+                            <h4 style="color:#3498db; font-size:1rem;">Kartono & Sutedjo</h4>
+                            <p style="font-size:0.9rem;">Penelitian geografi adalah <strong>kegiatan ilmiah yang bertujuan untuk memecahkan masalah geografis</strong> melalui pengumpulan data lapangan, analisis spasial, dan interpretasi hasil.</p>
+                        </div>
+                        <div class="card card-enhanced highlight" style="padding:16px;">
+                            <h4 style="color:#3498db; font-size:1rem;">Muta'ali</h4>
+                            <p style="font-size:0.9rem;">Penelitian geografi adalah <strong>proses investigasi sistematis tentang hubungan antara manusia dan lingkungan</strong> dalam konteks keruangan, dengan menggunakan metode ilmiah yang terstruktur.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top:14px;">
+                    <div class="def-block">
+                        <div class="source"><i class="fas fa-lightbulb"></i> Karakteristik Penelitian Geografi</div>
+                        <p style="color:#ccc; margin-top:4px;">
+                            Penelitian geografi memiliki beberapa karakteristik khusus yang membedakannya dari penelitian lain:
+                        </p>
+                        <ul style="margin-top:6px; padding-left:18px; color:#ccc;">
+                            <li><strong>Spasial (Keruangan):</strong> Memperhatikan aspek lokasi, pola, dan persebaran fenomena.</li>
+                            <li><strong>Kelingkungan:</strong> Menganalisis interaksi antara manusia dan lingkungan.</li>
+                            <li><strong>Kewilayahan:</strong> Melihat fenomena dalam konteks wilayah tertentu.</li>
+                            <li><strong>Interdisipliner:</strong> Menggabungkan ilmu alam dan ilmu sosial.</li>
+                            <li><strong>Terapan:</strong> Hasil penelitian dapat digunakan untuk pemecahan masalah nyata.</li>
+                        </ul>
+                        <p style="margin-top:6px; font-size:0.9rem; color:#aaa; border-top:1px solid #444; padding-top:6px;">
+                            <i class="fas fa-quote-right" style="color:#3498db;"></i> 
+                            <em>"Penelitian geografi adalah jembatan antara teori dan praktik dalam memahami dinamika bumi."</em>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTION 6 : DEFINISI AHLI ========== -->
+        <section id="section6" class="section">
+            <div class="section-wrapper">
+                <div class="section-header">
+                    <div class="num">06</div>
+                    <h2>Definisi Penelitian Geografi Menurut Para Ahli <small>Pendapat Tokoh Metodologi</small></h2>
+                </div>
+                <p style="font-size:1rem; margin-bottom:10px; color:#ccc;">
+                    <i class="fas fa-quote-left" style="color:#3498db;"></i> 
+                    Berikut adalah definisi penelitian geografi dari berbagai ahli terkemuka. <strong>Klik pada kartu</strong> untuk melihat penjelasan lengkapnya.
+                </p>
+                <div class="grid-ahli">
+                    <!-- 1. Suharyono & Amien -->
+                    <div class="ahli-card interactive-card dark-card" onclick="this.classList.toggle('open')">
+                        <div class="ahli-header">
+                            <span class="icon-number">1</span>
+                            <div>
+                                <h3>Suharyono & Amien</h3>
+                                <span class="sub">Ahli Geografi Indonesia</span>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <p style="font-weight:500; color:#1a2a3a; font-size:0.9rem;">Definisi dari buku <em>Pengantar Filsafat Geografi</em>:</p>
+                            <ul>
+                                <li>Penelitian geografi adalah <strong>proses penemuan pengetahuan tentang fenomena geosfer melalui pendekatan ilmiah</strong>.</li>
+                                <li>Melibatkan <strong>pengamatan, pengukuran, dan analisis data spasial</strong>.</li>
+                                <li>Bertujuan untuk <strong>menemukan pola, hubungan, dan makna</strong> dari fenomena geografis.</li>
+                            </ul>
+                            <div class="keterangan">
+                                <i class="fas fa-info-circle"></i> 
+                                Suharyono dan Amien menekankan bahwa penelitian geografi harus menggunakan pendekatan ilmiah yang sistematis dan objektif, dengan fokus pada analisis spasial.
+                            </div>
+                        </div>
+                        <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk lihat definisi</span>
+                    </div>
+
+                    <!-- 2. Bintarto -->
+                    <div class="ahli-card interactive-card dark-card" onclick="this.classList.toggle('open')">
+                        <div class="ahli-header">
+                            <span class="icon-number">2</span>
+                            <div>
+                                <h3>Bintarto</h3>
+                                <span class="sub">Ahli Geografi Indonesia</span>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <p style="font-weight:500; color:#1a2a3a; font-size:0.9rem;">Definisi penelitian geografi:</p>
+                            <ul>
+                                <li>Penelitian geografi adalah <strong>usaha untuk memahami persamaan dan perbedaan fenomena geosfer</strong>.</li>
+                                <li>Menggunakan <strong>pendekatan kelingkungan dan kewilayahan</strong> secara sistematis dan objektif.</li>
+                                <li>Bertujuan untuk <strong>menemukan keteraturan</strong> dalam fenomena geosfer.</li>
+                            </ul>
+                            <div class="keterangan">
+                                <i class="fas fa-info-circle"></i> 
+                                Bintarto menekankan pada pendekatan kelingkungan dan kewilayahan sebagai ciri khas penelitian geografi yang membedakannya dari disiplin ilmu lain.
+                            </div>
+                        </div>
+                        <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk lihat definisi</span>
+                    </div>
+
+                    <!-- 3. Kartono & Sutedjo -->
+                    <div class="ahli-card interactive-card dark-card" onclick="this.classList.toggle('open')">
+                        <div class="ahli-header">
+                            <span class="icon-number">3</span>
+                            <div>
+                                <h3>Kartono & Sutedjo</h3>
+                                <span class="sub">Ahli Metodologi Penelitian Indonesia</span>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <p style="font-weight:500; color:#1a2a3a; font-size:0.9rem;">Definisi penelitian geografi:</p>
+                            <ul>
+                                <li>Penelitian geografi adalah <strong>kegiatan ilmiah yang bertujuan untuk memecahkan masalah geografis</strong>.</li>
+                                <li>Melalui <strong>pengumpulan data lapangan, analisis spasial, dan interpretasi hasil</strong>.</li>
+                                <li>Hasil penelitian dapat <strong>diaplikasikan untuk perencanaan dan pembangunan</strong>.</li>
+                            </ul>
+                            <div class="keterangan">
+                                <i class="fas fa-info-circle"></i> 
+                                Kartono dan Sutedjo menekankan pada aspek pemecahan masalah (problem solving) dan aplikasi hasil penelitian dalam pembangunan.
+                            </div>
+                        </div>
+                        <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk lihat definisi</span>
+                    </div>
+
+                    <!-- 4. Muta'ali -->
+                    <div class="ahli-card interactive-card dark-card" onclick="this.classList.toggle('open')">
+                        <div class="ahli-header">
+                            <span class="icon-number">4</span>
+                            <div>
+                                <h3>Muta'ali</h3>
+                                <span class="sub">Ahli Geografi Pemukiman Indonesia</span>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <p style="font-weight:500; color:#1a2a3a; font-size:0.9rem;">Definisi penelitian geografi:</p>
+                            <ul>
+                                <li>Penelitian geografi adalah <strong>proses investigasi sistematis tentang hubungan antara manusia dan lingkungan</strong>.</li>
+                                <li>Dalam <strong>konteks keruangan</strong> dengan menggunakan metode ilmiah yang terstruktur.</li>
+                                <li>Bertujuan untuk <strong>memahami dinamika interaksi manusia-lingkungan</strong>.</li>
+                            </ul>
+                            <div class="keterangan">
+                                <i class="fas fa-info-circle"></i> 
+                                Muta'ali menekankan pada aspek interaksi manusia-lingkungan dan konteks keruangan sebagai inti dari penelitian geografi.
+                            </div>
+                        </div>
+                        <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk lihat definisi</span>
+                    </div>
+
+                    <!-- 5. Haggett (Peter Haggett) -->
+                    <div class="ahli-card interactive-card dark-card" onclick="this.classList.toggle('open')">
+                        <div class="ahli-header">
+                            <span class="icon-number">5</span>
+                            <div>
+                                <h3>Peter Haggett</h3>
+                                <span class="sub">Ahli Geografi Inggris</span>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <p style="font-weight:500; color:#1a2a3a; font-size:0.9rem;">Definisi dari buku <em>Geography: A Modern Synthesis</em>:</p>
+                            <ul>
+                                <li>Penelitian geografi adalah <strong>studi tentang organisasi ruang di permukaan bumi</strong>.</li>
+                                <li>Melibatkan <strong>analisis pola, aliran, dan interaksi spasial</strong>.</li>
+                                <li>Menggunakan <strong>model dan teori</strong> untuk memahami fenomena geografis.</li>
+                            </ul>
+                            <div class="keterangan">
+                                <i class="fas fa-info-circle"></i> 
+                                Haggett menekankan pada pendekatan kuantitatif dan model dalam penelitian geografi, yang menjadi ciri geografi modern.
+                            </div>
+                        </div>
+                        <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk lihat definisi</span>
+                    </div>
+
+                    <!-- 6. Sartono Kartodirdjo -->
+                    <div class="ahli-card interactive-card dark-card" onclick="this.classList.toggle('open')">
+                        <div class="ahli-header">
+                            <span class="icon-number">6</span>
+                            <div>
+                                <h3>Sartono Kartodirdjo</h3>
+                                <span class="sub">Ahli Sejarah & Metodologi Indonesia</span>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <p style="font-weight:500; color:#1a2a3a; font-size:0.9rem;">Definisi penelitian geografi dari perspektif metodologi:</p>
+                            <ul>
+                                <li>Penelitian geografi adalah <strong>kajian ilmiah tentang fenomena keruangan dengan pendekatan interdisipliner</strong>.</li>
+                                <li>Menggabungkan <strong>metode sejarah, sosial, dan alam</strong> untuk memahami dinamika wilayah.</li>
+                                <li>Bertujuan untuk <strong>menemukan makna dan keterkaitan</strong> antar fenomena geosfer.</li>
+                            </ul>
+                            <div class="keterangan">
+                                <i class="fas fa-info-circle"></i> 
+                                Sartono Kartodirdjo menekankan pada pendekatan interdisipliner dalam penelitian geografi, yang menggabungkan berbagai disiplin ilmu untuk memahami fenomena secara holistik.
+                            </div>
+                        </div>
+                        <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk lihat definisi</span>
+                    </div>
+                </div>
+
+                <div style="background:linear-gradient(145deg, #1e1e1e, #252525); border-radius:14px; padding:14px 18px; border:1px solid #333; margin-top:14px;">
+                    <p style="display:flex; align-items:flex-start; gap:10px; color:#ddd;">
+                        <i class="fas fa-lightbulb" style="color:#3498db; font-size:1.4rem; margin-top:2px;"></i>
+                        <span>
+                            <strong style="color:#fff;">Kesimpulan:</strong> Dari berbagai definisi di atas, dapat disimpulkan bahwa penelitian geografi memiliki beberapa karakteristik penting:
+                        </span>
+                    </p>
+                    <ul style="padding-left:40px; margin-top:4px; list-style-type:disc; color:#ccc;">
+                        <li><strong>Ilmiah:</strong> Menggunakan metode ilmiah yang sistematis dan objektif.</li>
+                        <li><strong>Spasial:</strong> Memperhatikan aspek lokasi, pola, dan persebaran.</li>
+                        <li><strong>Interdisipliner:</strong> Menggabungkan ilmu alam dan ilmu sosial.</li>
+                        <li><strong>Terapan:</strong> Hasil penelitian dapat digunakan untuk pemecahan masalah.</li>
+                        <li><strong>Kontekstual:</strong> Memperhatikan kondisi lingkungan dan masyarakat setempat.</li>
+                    </ul>
+                    <p style="margin-top:6px; font-size:0.9rem; color:#aaa; border-top:1px solid #444; padding-top:6px;">
+                        <i class="fas fa-quote-right" style="color:#3498db;"></i> 
+                        <em>"Penelitian geografi adalah kunci untuk memahami dunia dan merencanakan masa depan yang lebih baik."</em>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTION 7 : JENIS PENELITIAN GEOGRAFI ========== -->
+        <section id="section7" class="section">
+            <div class="section-wrapper">
+                <div class="section-header">
+                    <div class="num">07</div>
+                    <h2>Jenis Penelitian Geografi <small>Klasifikasi Berdasarkan Pendekatan</small></h2>
+                </div>
+
+                <h3 style="font-size:1.1rem; color:#f0f0f0; border-left:4px solid #3498db; padding-left:12px; margin-bottom:6px;">
+                    <i class="fas fa-tags" style="color:#3498db;"></i> Jenis Penelitian Geografi
+                </h3>
+                <p style="font-size:0.95rem; color:#ccc; margin-bottom:8px;">
+                    Penelitian geografi dapat diklasifikasikan berdasarkan pendekatan, tujuan, dan metode yang digunakan. Berikut adalah jenis-jenis utama penelitian geografi:
+                </p>
+                <div class="grid-3">
+                    <div class="card card-enhanced interactive-card dark-card" onclick="this.classList.toggle('open')">
+                        <span class="pillar-icon" style="font-size:2.2rem;">🌍</span>
+                        <h3>Penelitian Lapangan</h3>
+                        <p>Penelitian yang dilakukan langsung di lokasi fenomena.</p>
+                        <div class="back">
+                            <p style="color:#2a3a4a;">Penelitian lapangan (<em>field research</em>) adalah penelitian yang dilakukan <strong>secara langsung di lokasi fenomena geografis</strong>. Peneliti mengamati, mengukur, dan mengumpulkan data secara langsung.</p>
+                            <strong style="color:#1a2a3a;">Contoh:</strong> Penelitian tentang banjir di Jakarta, observasi kondisi pantai di selatan Jawa, atau survei kepadatan penduduk di suatu desa.
+                        </div>
+                        <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span>
+                    </div>
+
+                    <div class="card card-enhanced interactive-card dark-card" onclick="this.classList.toggle('open')">
+                        <span class="pillar-icon" style="font-size:2.2rem;">📚</span>
+                        <h3>Penelitian Kepustakaan</h3>
+                        <p>Penelitian berdasarkan data dan literatur yang sudah ada.</p>
+                        <div class="back">
+                            <p style="color:#2a3a4a;">Penelitian kepustakaan (<em>library research</em>) adalah penelitian yang <strong>menggunakan data sekunder</strong> dari buku, jurnal, laporan, dan sumber tertulis lainnya. Tidak melakukan observasi langsung di lapangan.</p>
+                            <strong style="color:#1a2a3a;">Contoh:</strong> Studi tentang perubahan iklim global berdasarkan data BMKG, atau analisis pola migrasi berdasarkan data BPS.
+                        </div>
+                        <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span>
+                    </div>
+
+                    <div class="card card-enhanced interactive-card dark-card" onclick="this.classList.toggle('open')">
+                        <span class="pillar-icon" style="font-size:2.2rem;">📊</span>
+                        <h3>Penelitian Eksperimen</h3>
+                        <p>Penelitian dengan perlakuan terkontrol.</p>
+                        <div class="back">
+                            <p style="color:#2a3a4a;">Penelitian eksperimen adalah penelitian yang <strong>melibatkan perlakuan atau intervensi</strong> untuk melihat pengaruhnya terhadap fenomena geografis. Biasanya dilakukan di laboratorium atau dengan simulasi.</p>
+                            <strong style="color:#1a2a3a;">Contoh:</strong> Uji erosi tanah pada berbagai jenis vegetasi, atau simulasi dampak pembangunan terhadap aliran sungai.
+                        </div>
+                        <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span>
+                    </div>
+                </div>
+
+                <div style="margin-top:16px;">
+                    <h3 style="font-size:1.1rem; color:#f0f0f0; border-left:4px solid #3498db; padding-left:12px; margin-bottom:6px;">
+                        <i class="fas fa-list-ul" style="color:#3498db;"></i> Klasifikasi Berdasarkan Tujuan
+                    </h3>
+                    <div class="grid-2" style="margin-top:4px;">
+                        <div class="card card-enhanced" style="border-left:5px solid #3498db;">
+                            <h4 style="color:#3498db;">Penelitian Dasar (Fundamental)</h4>
+                            <p style="font-size:0.9rem;">Bertujuan untuk <strong>mengembangkan teori atau pengetahuan ilmiah</strong> tanpa tekanan praktis tertentu. Contoh: Penelitian tentang pola arus laut atau teori pembentukan gunung.</p>
+                        </div>
+                        <div class="card card-enhanced" style="border-left:5px solid #5aadf0;">
+                            <h4 style="color:#5aadf0;">Penelitian Terapan (Aplikatif)</h4>
+                            <p style="font-size:0.9rem;">Bertujuan untuk <strong>memecahkan masalah praktis</strong> di masyarakat. Contoh: Penelitian tentang lokasi pembuangan sampah yang tepat atau perencanaan tata ruang kota.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background:linear-gradient(145deg, #1a241e, #1e2a24); border-radius:14px; padding:14px 18px; margin-top:12px; border-left:6px solid #3498db;">
+                    <p style="color:#ccc; font-size:0.95rem;">
+                        <i class="fas fa-info-circle" style="color:#3498db;"></i> 
+                        <strong>Ingat:</strong> Pemilihan jenis penelitian tergantung pada tujuan, ketersediaan data, dan sumber daya yang dimiliki peneliti. Penelitian lapangan memberikan data primer yang akurat, sedangkan penelitian kepustakaan lebih efisien untuk analisis skala besar.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTION 8 : LANGKAH-LANGKAH PENELITIAN ========== -->
+        <section id="section8" class="section">
+            <div class="section-wrapper">
+                <div class="section-header">
+                    <div class="num">08</div>
+                    <h2>Langkah-langkah Penelitian <small>Metode Ilmiah dalam Geografi</small></h2>
+                </div>
+
+                <h3 style="font-size:1.1rem; color:#f0f0f0; border-left:4px solid #3498db; padding-left:12px; margin-bottom:6px;">
+                    <i class="fas fa-route" style="color:#3498db;"></i> Tahapan Penelitian Geografi
+                </h3>
+                <p style="font-size:0.95rem; color:#ccc; margin-bottom:8px;">
+                    Penelitian geografi mengikuti langkah-langkah metode ilmiah yang sistematis. Berikut adalah 6 langkah utama dalam penelitian geografi:
+                </p>
+                <div class="komponen-grid">
+                    <div class="komponen-card interactive-card dark-card" onclick="this.classList.toggle('open')">
+                        <h4>1. Identifikasi Masalah</h4>
+                        <p>Menentukan fenomena atau isu geografis yang akan diteliti.</p>
+                        <div class="back">
+                            <p style="color:#2a3a4a;">Langkah awal adalah <strong>mengidentifikasi masalah atau fenomena</strong> yang menarik untuk diteliti. Masalah dapat berasal dari pengamatan langsung, literatur, atau isu-isu aktual di masyarakat.</p>
+                            <strong style="color:#1a2a3a;">Contoh:</strong> "Mengapa sering terjadi banjir di daerah X?" atau "Bagaimana pola persebaran permukiman di Y?"
+                        </div>
+                        <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span>
+                    </div>
+
+                    <div class="komponen-card interactive-card dark-card" onclick="this.classList.toggle('open')">
+                        <h4>2. Rumusan Masalah & Hipotesis</h4>
+                        <p>Menyusun pertanyaan penelitian dan dugaan sementara.</p>
+                        <div class="back">
+                            <p style="color:#2a3a4a;">Setelah masalah diidentifikasi, peneliti <strong>merumuskan pertanyaan penelitian</strong> yang spesifik dan membuat <strong>hipotesis</strong> (dugaan sementara) yang akan diuji.</p>
+                            <strong style="color:#1a2a3a;">Contoh:</strong> "Apakah tutupan lahan mempengaruhi intensitas banjir?" Hipotesis: "Semakin luas tutupan lahan, semakin rendah intensitas banjir."
+                        </div>
+                        <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span>
+                    </div>
+
+                    <div class="komponen-card interactive-card dark-card" onclick="this.classList.toggle('open')">
+                        <h4>3. Pengumpulan Data</h4>
+                        <p>Mengumpulkan data melalui observasi, wawancara, atau studi literatur.</p>
+                        <div class="back">
+                            <p style="color:#2a3a4a;">Peneliti <strong>mengumpulkan data</strong> yang relevan dengan masalah penelitian. Data dapat berupa data primer (observasi, wawancara) atau data sekunder (BPS, BMKG, literatur).</p>
+                            <strong style="color:#1a2a3a;">Contoh:</strong> Mengukur curah hujan, mengambil sampel tanah, atau mewawancarai warga setempat.
+                        </div>
+                        <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span>
+                    </div>
+
+                    <div class="komponen-card interactive-card dark-card" onclick="this.classList.toggle('open')">
+                        <h4>4. Pengolahan & Analisis Data</h4>
+                        <p>Mengolah dan menganalisis data untuk menguji hipotesis.</p>
+                        <div class="back">
+                            <p style="color:#2a3a4a;">Data yang terkumpul <strong>diolah dan dianalisis</strong> menggunakan metode statistik, spasial, atau kualitatif. Tujuannya adalah untuk menguji kebenaran hipotesis.</p>
+                            <strong style="color:#1a2a3a;">Contoh:</strong> Membuat peta persebaran banjir, menghitung korelasi antara curah hujan dan kejadian banjir.
+                        </div>
+                        <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span>
+                    </div>
+
+                    <div class="komponen-card interactive-card dark-card" onclick="this.classList.toggle('open')">
+                        <h4>5. Interpretasi & Kesimpulan</h4>
+                        <p>Menarik kesimpulan berdasarkan hasil analisis.</p>
+                        <div class="back">
+                            <p style="color:#2a3a4a;">Peneliti <strong>menginterpretasikan hasil analisis</strong> dan menarik kesimpulan. Kesimpulan harus menjawab rumusan masalah dan menguji hipotesis yang diajukan.</p>
+                            <strong style="color:#1a2a3a;">Contoh:</strong> "Tutupan lahan yang berkurang meningkatkan risiko banjir, sehingga perlu dilakukan reboisasi."
+                        </div>
+                        <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span>
+                    </div>
+
+                    <div class="komponen-card interactive-card dark-card" onclick="this.classList.toggle('open')">
+                        <h4>6. Pelaporan & Publikasi</h4>
+                        <p>Menyusun laporan penelitian dan menyebarluaskan hasilnya.</p>
+                        <div class="back">
+                            <p style="color:#2a3a4a;">Hasil penelitian <strong>disusun dalam bentuk laporan ilmiah</strong> dan dipublikasikan agar dapat dimanfaatkan oleh pihak lain. Laporan dapat berupa artikel, jurnal, atau presentasi.</p>
+                            <strong style="color:#1a2a3a;">Contoh:</strong> Menulis artikel di jurnal geografi, mempresentasikan di seminar, atau menyusun laporan untuk pemerintah daerah.
+                        </div>
+                        <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span>
+                    </div>
+                </div>
+
+                <div style="background:linear-gradient(145deg, #1a241e, #1e2a24); border-radius:14px; padding:14px 18px; margin-top:12px; border-left:6px solid #3498db;">
+                    <p style="color:#ccc; font-size:0.95rem;">
+                        <i class="fas fa-info-circle" style="color:#3498db;"></i> 
+                        <strong>Ingat:</strong> Langkah-langkah ini bersifat siklus dan dapat berulang. Jika hasil tidak sesuai dengan hipotesis, peneliti dapat kembali ke langkah sebelumnya untuk memperbaiki metode.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTION 9 : TEKNIK & INSTRUMEN PENELITIAN ========== -->
+        <section id="section9" class="section">
+            <div class="section-wrapper">
+                <div class="section-header">
+                    <div class="num">09</div>
+                    <h2>Teknik & Instrumen Penelitian <small>Praktik Metodologi Geografi</small></h2>
+                </div>
+
+                <h3 style="font-size:1.1rem; color:#f0f0f0; border-left:4px solid #3498db; padding-left:12px; margin-bottom:6px;">
+                    <i class="fas fa-tools" style="color:#3498db;"></i> Teknik Pengumpulan Data
+                </h3>
+                <div class="grid-3" style="margin-bottom:16px;">
+                    <div class="card card-enhanced" style="border-left:4px solid #3498db;">
+                        <div style="font-size:2rem; color:#3498db; margin-bottom:4px;"><i class="fas fa-eye"></i></div>
+                        <h4 style="color:#f0f0f0;">Observasi</h4>
+                        <p style="font-size:0.9rem;">Pengamatan langsung di lapangan terhadap fenomena geografis. Meliputi pengukuran, pencatatan, dan dokumentasi kondisi fisik dan sosial.</p>
+                    </div>
+                    <div class="card card-enhanced" style="border-left:4px solid #5aadf0;">
+                        <div style="font-size:2rem; color:#5aadf0; margin-bottom:4px;"><i class="fas fa-comments"></i></div>
+                        <h4 style="color:#f0f0f0;">Wawancara</h4>
+                        <p style="font-size:0.9rem;">Pengumpulan data melalui tanya jawab dengan narasumber (penduduk, tokoh masyarakat, pejabat). Dapat dilakukan secara terstruktur atau tidak terstruktur.</p>
+                    </div>
+                    <div class="card card-enhanced" style="border-left:4px solid #2980b9;">
+                        <div style="font-size:2rem; color:#2980b9; margin-bottom:4px;"><i class="fas fa-poll"></i></div>
+                        <h4 style="color:#f0f0f0;">Kuesioner (Angket)</h4>
+                        <p style="font-size:0.9rem;">Pengumpulan data menggunakan daftar pertanyaan tertulis yang diisi oleh responden. Efisien untuk menjangkau banyak responden.</p>
+                    </div>
+                </div>
+
+                <div style="margin-top:16px;">
+                    <h3 style="font-size:1.1rem; color:#f0f0f0; border-left:4px solid #3498db; padding-left:12px; margin-bottom:6px;">
+                        <i class="fas fa-clipboard-list" style="color:#3498db;"></i> Instrumen Penelitian
+                    </h3>
+                    <p style="font-size:0.95rem; color:#ccc; margin-bottom:8px;">
+                        Instrumen penelitian adalah alat yang digunakan untuk mengumpulkan data. Berikut adalah beberapa instrumen yang umum digunakan dalam penelitian geografi:
+                    </p>
+                    <div class="grid-3">
+                        <div class="card card-enhanced">
+                            <div style="font-size:2rem; color:#3498db; margin-bottom:4px;"><i class="fas fa-map"></i></div>
+                            <h4 style="color:#f0f0f0;">Peta & Citra</h4>
+                            <p style="font-size:0.9rem;">Peta topografi, peta tematik, dan citra satelit untuk analisis spasial. Membantu memahami pola persebaran dan kondisi wilayah.</p>
+                        </div>
+                        <div class="card card-enhanced">
+                            <div style="font-size:2rem; color:#3498db; margin-bottom:4px;"><i class="fas fa-ruler"></i></div>
+                            <h4 style="color:#f0f0f0;">Alat Ukur Lapangan</h4>
+                            <p style="font-size:0.9rem;">GPS, kompas, meteran, termometer, dan alat ukur lainnya untuk pengamatan langsung di lapangan.</p>
+                        </div>
+                        <div class="card card-enhanced">
+                            <div style="font-size:2rem; color:#3498db; margin-bottom:4px;"><i class="fas fa-file-alt"></i></div>
+                            <h4 style="color:#f0f0f0;">Lembar Observasi & Kuesioner</h4>
+                            <p style="font-size:0.9rem;">Format baku untuk mencatat data observasi dan pertanyaan untuk responden. Memastikan konsistensi dan keakuratan data.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== AKTIVITAS MERANCANG PENELITIAN SEDERHANA ===== -->
+                <div style="margin-top:20px; background:linear-gradient(145deg, #1a241e, #1e2a24); border-radius: 14px; padding: 18px 16px; border: 2px dashed #3498db;">
+                    <h3 style="color:#f0f0f0; font-size:1.1rem; display:flex; align-items:center; gap:10px;">
+                        <i class="fas fa-flask" style="color:#3498db;"></i> Aktivitas: Merancang Penelitian Sederhana
+                    </h3>
+                    <p style="color:#ccc; font-size:0.95rem; margin:6px 0 10px 0;">
+                        Ayo kita praktikkan langkah-langkah penelitian geografi dengan merancang penelitian sederhana tentang fenomena di sekitarmu!
+                    </p>
+                    <ol style="color:#ccc; padding-left:20px; font-size:0.95rem; line-height:2;">
+                        <li><strong>Pilih satu fenomena</strong> geografis di sekitarmu (misalnya: sampah di lingkungan sekolah, kepadatan lalu lintas, atau kondisi sanitasi).</li>
+                        <li><strong>Rumuskan masalah</strong> dan buat hipotesis sederhana.</li>
+                        <li><strong>Tentukan teknik</strong> pengumpulan data yang akan digunakan (observasi, wawancara, atau kuesioner).</li>
+                        <li><strong>Buat instrumen</strong> sederhana (lembar observasi atau daftar pertanyaan).</li>
+                        <li><strong>Kumpulkan data</strong> minimal dari 5 sumber atau responden.</li>
+                        <li><strong>Analisis</strong> data dan tarik kesimpulan.</li>
+                    </ol>
+
+                    <div style="background:linear-gradient(145deg, #1e1e1e, #252525); border-radius:10px; padding:12px 16px; margin:12px 0; border:1px solid #444;">
+                        <h4 style="color:#f0f0f0; font-size:1rem; display:flex; align-items:center; gap:8px;">
+                            <i class="fas fa-pencil-alt" style="color:#3498db;"></i> Contoh Kerangka Penelitian Sederhana
+                        </h4>
+                        <div style="background:#1a1a1a; padding:10px; border-radius:8px; color:#ccc; font-size:0.9rem; line-height:1.8;">
+                            <p><strong>Fenomena:</strong> Sampah plastik di lingkungan sekolah</p>
+                            <p><strong>Masalah:</strong> Mengapa sampah plastik masih banyak ditemukan di area sekolah?</p>
+                            <p><strong>Hipotesis:</strong> Kurangnya kesadaran siswa dan kurangnya tempat sampah menyebabkan sampah plastik berserakan.</p>
+                            <p><strong>Teknik:</strong> Observasi dan wawancara singkat</p>
+                            <p><strong>Instrumen:</strong> Lembar observasi lokasi sampah dan daftar pertanyaan untuk siswa</p>
+                            <p><strong>Kesimpulan:</strong> Diperlukan penambahan tempat sampah dan kampanye kebersihan.</p>
+                        </div>
+                        <p style="font-size:0.8rem; color:#888; margin-top:6px;">
+                            <i class="fas fa-info-circle"></i> Kamu bisa mengembangkan penelitian ini lebih lanjut dengan data yang lebih lengkap!
+                        </p>
+                    </div>
+                    <p style="font-size:0.9rem; color:#aaa; margin-top:4px;">
+                        <i class="fas fa-lightbulb" style="color:#3498db;"></i> 
+                        <strong>Refleksi:</strong> Bagaimana pengalaman merancang penelitian ini membantu kamu memahami metode ilmiah dalam geografi?
+                    </p>
+                </div>
+                <!-- ===== AKHIR AKTIVITAS ===== -->
+
+                <div style="background:linear-gradient(145deg, #1a241e, #1e2a24); border-radius:14px; padding:14px 18px; margin-top:12px; border-left:6px solid #3498db;">
+                    <p style="color:#ccc; font-size:0.95rem;">
+                        <i class="fas fa-quote-left" style="color:#3498db;"></i> 
+                        <em>"Penelitian geografi yang baik dimulai dari pertanyaan yang baik dan berakhir dengan solusi yang bermanfaat bagi masyarakat."</em>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTION 10 : ASESMEN ========== -->
+        <section id="section10" class="section">
+            <div class="section-wrapper">
+                <div class="section-header">
+                    <div class="num">10</div>
+                    <h2>Asesmen Pembelajaran <small>Evaluasi Pemahaman Penelitian Geografi</small></h2>
+                </div>
+                <p style="font-size:1rem; margin-bottom:16px; color:#ccc;">
+                    <i class="fas fa-clipboard-list" style="color:#3498db;"></i> 
+                    Setelah mempelajari materi pengertian, jenis, langkah-langkah, teknik, dan instrumen penelitian geografi, kerjakan asesmen berikut untuk mengukur pemahamanmu.
+                    <strong>Selamat mengerjakan!</strong>
+                </p>
+
+                <!-- Bagian A: Pilihan Ganda (10 soal) -->
+                <div class="card card-enhanced" style="margin-bottom: 20px;">
+                    <h3 style="color: #3498db; display: flex; align-items: center; gap: 10px;">
+                        <span style="background: #3498db; color: #121212; padding: 4px 12px; border-radius: 30px; font-size: 0.9rem;">A</span>
+                        Pilihan Ganda
+                    </h3>
+                    <p style="color: #aaa; font-size: 0.9rem; margin-bottom: 12px;">Pilihlah satu jawaban yang paling tepat!</p>
+
+                    <div class="assessment-question">
+                        <div class="q-text">1. Menurut Suharyono & Amien, penelitian geografi adalah proses penemuan pengetahuan tentang fenomena geosfer melalui pendekatan ...</div>
+                        <div class="q-options">
+                            <span>A. Filosofis</span>
+                            <span>B. Ilmiah</span>
+                            <span>C. Historis</span>
+                            <span>D. Artistik</span>
+                            <span>E. Spekulatif</span>
+                        </div>
+                    </div>
+
+                    <div class="assessment-question">
+                        <div class="q-text">2. Penelitian yang dilakukan langsung di lokasi fenomena geografis disebut penelitian ...</div>
+                        <div class="q-options">
+                            <span>A. Kepustakaan</span>
+                            <span>B. Eksperimen</span>
+                            <span>C. Lapangan</span>
+                            <span>D. Laboratorium</span>
+                            <span>E. Kuantitatif</span>
+                        </div>
+                    </div>
+
+                    <div class="assessment-question">
+                        <div class="q-text">3. Langkah pertama dalam penelitian geografi adalah ...</div>
+                        <div class="q-options">
+                            <span>A. Pengumpulan data</span>
+                            <span>B. Analisis data</span>
+                            <span>C. Identifikasi masalah</span>
+                            <span>D. Pelaporan</span>
+                            <span>E. Interpretasi</span>
+                        </div>
+                    </div>
+
+                    <div class="assessment-question">
+                        <div class="q-text">4. Teknik pengumpulan data melalui tanya jawab dengan narasumber disebut ...</div>
+                        <div class="q-options">
+                            <span>A. Observasi</span>
+                            <span>B. Wawancara</span>
+                            <span>C. Kuesioner</span>
+                            <span>D. Studi literatur</span>
+                            <span>E. Eksperimen</span>
+                        </div>
+                    </div>
+
+                    <div class="assessment-question">
+                        <div class="q-text">5. Instrumen penelitian yang digunakan untuk analisis spasial adalah ...</div>
+                        <div class="q-options">
+                            <span>A. Kuesioner</span>
+                            <span>B. Lembar observasi</span>
+                            <span>C. Peta dan citra</span>
+                            <span>D. Alat ukur</span>
+                            <span>E. Kamera</span>
+                        </div>
+                    </div>
+
+                    <div class="assessment-question">
+                        <div class="q-text">6. Penelitian yang bertujuan untuk mengembangkan teori atau pengetahuan ilmiah disebut penelitian ...</div>
+                        <div class="q-options">
+                            <span>A. Terapan</span>
+                            <span>B. Dasar</span>
+                            <span>C. Eksperimen</span>
+                            <span>D. Lapangan</span>
+                            <span>E. Kualitatif</span>
+                        </div>
+                    </div>
+
+                    <div class="assessment-question">
+                        <div class="q-text">7. Menurut Bintarto, penelitian geografi menggunakan pendekatan ...</div>
+                        <div class="q-options">
+                            <span>A. Kelingkungan dan kewilayahan</span>
+                            <span>B. Historis dan filosofis</span>
+                            <span>C. Ekonomi dan politik</span>
+                            <span>D. Sosiologi dan antropologi</span>
+                            <span>E. Fisika dan kimia</span>
+                        </div>
+                    </div>
+
+                    <div class="assessment-question">
+                        <div class="q-text">8. Fungsi hipotesis dalam penelitian adalah ...</div>
+                        <div class="q-options">
+                            <span>A. Sebagai kesimpulan akhir</span>
+                            <span>B. Sebagai dugaan sementara yang akan diuji</span>
+                            <span>C. Sebagai instrumen penelitian</span>
+                            <span>D. Sebagai data penelitian</span>
+                            <span>E. Sebagai metode penelitian</span>
+                        </div>
+                    </div>
+
+                    <div class="assessment-question">
+                        <div class="q-text">9. Contoh penelitian terapan dalam geografi adalah ...</div>
+                        <div class="q-options">
+                            <span>A. Studi tentang teori pembentukan gunung</span>
+                            <span>B. Penelitian tentang pola arus laut</span>
+                            <span>C. Perencanaan tata ruang kota</span>
+                            <span>D. Analisis teori lempeng tektonik</span>
+                            <span>E. Studi tentang sejarah geologi</span>
+                        </div>
+                    </div>
+
+                    <div class="assessment-question">
+                        <div class="q-text">10. Langkah terakhir dalam penelitian geografi adalah ...</div>
+                        <div class="q-options">
+                            <span>A. Identifikasi masalah</span>
+                            <span>B. Rumusan masalah</span>
+                            <span>C. Pengumpulan data</span>
+                            <span>D. Pelaporan dan publikasi</span>
+                            <span>E. Analisis data</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bagian B: Analisis dan Refleksi -->
+                <div class="card card-enhanced" style="margin-bottom: 20px;">
+                    <h3 style="color: #3498db; display: flex; align-items: center; gap: 10px;">
+                        <span style="background: #3498db; color: #121212; padding: 4px 12px; border-radius: 30px; font-size: 0.9rem;">B</span>
+                        Analisis & Refleksi
+                    </h3>
+                    <p style="color: #aaa; font-size: 0.9rem; margin-bottom: 12px;">Jawablah pertanyaan berikut dengan uraian yang jelas dan sistematis!</p>
+
+                    <div class="essay-question">
+                        <div class="q-text">1. Jelaskan perbedaan antara penelitian lapangan dan penelitian kepustakaan dalam geografi! Berikan contoh masing-masing!</div>
+                        <div class="q-note">(Petunjuk: Penelitian lapangan dilakukan langsung di lokasi, penelitian kepustakaan menggunakan data sekunder).</div>
+                    </div>
+
+                    <div class="essay-question">
+                        <div class="q-text">2. Pilihlah satu masalah geografis di daerahmu (misalnya: sampah, banjir, atau kepadatan lalu lintas). Rancanglah kerangka penelitian sederhana dengan langkah-langkah yang telah dipelajari (identifikasi masalah, rumusan masalah, hipotesis, teknik & instrumen)!</div>
+                        <div class="q-note">(Petunjuk: Gunakan langkah-langkah penelitian geografi yang telah dipelajari).</div>
+                    </div>
+
+                    <div class="essay-question">
+                        <div class="q-text">3. Refleksikan bagaimana pemahaman tentang penelitian geografi dapat membantumu dalam memecahkan masalah di lingkungan sekitarmu!</div>
+                        <div class="q-note">(Petunjuk: Hubungkan dengan manfaat penelitian geografi seperti pemecahan masalah dan perencanaan pembangunan).</div>
+                    </div>
+                </div>
+
+                <div style="background:linear-gradient(145deg, #1a241e, #1e2a24); border-radius: 14px; padding: 14px 18px; border-left: 6px solid #3498db; margin-top: 10px;">
+                    <p style="display: flex; align-items: center; gap: 10px; color: #ccc; font-size: 0.9rem;">
+                        <i class="fas fa-info-circle" style="color: #3498db; font-size: 1.2rem;"></i>
+                        <span><strong style="color: #fff;">Catatan:</strong> Kerjakan dengan jujur dan mandiri. Gunakan pemahamanmu dari seluruh materi yang telah dipelajari. Selamat berlatih!</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTION 11 : REFLEKSI ========== -->
+        <section id="section11" class="section">
+            <div class="section-wrapper">
+                <div class="section-header">
+                    <div class="num">11</div>
+                    <h2>Refleksi Pembelajaran <small>Menyimpulkan Materi</small></h2>
+                </div>
+                <div class="card card-enhanced" style="background:linear-gradient(145deg, #1a2a2a, #1e2e2e); border: 1px solid #3498db;">
+                    <h3 style="display: flex; align-items: center; gap: 10px; color: #f0f0f0;">
+                        <span style="font-size: 1.8rem;">🌟</span> Apa yang Kamu Dapatkan Hari Ini?
+                    </h3>
+                    <ul class="refleksi-list">
+                        <li><span class="check">✅</span><span>Memahami pengertian dan ruang lingkup penelitian geografi.</span></li>
+                        <li><span class="check">✅</span><span>Mengenal jenis-jenis penelitian geografi (lapangan, kepustakaan, eksperimen).</span></li>
+                        <li><span class="check">✅</span><span>Memahami langkah-langkah penelitian geografi secara sistematis.</span></li>
+                        <li><span class="check">✅</span><span>Mengenal teknik dan instrumen pengumpulan data dalam penelitian geografi.</span></li>
+                        <li><span class="check">✅</span><span>Menyadari bahwa penelitian geografi penting untuk pemecahan masalah lingkungan.</span></li>
+                    </ul>
+                </div>
+
+                <div class="card card-enhanced" style="background:linear-gradient(145deg, #1e1e1e, #252525); margin-top: 16px; border-left: 6px solid #3498db;">
+                    <h3 style="display: flex; align-items: center; gap: 10px; color: #f0f0f0;">
+                        <i class="fas fa-pen-fancy" style="color: #3498db; font-size: 1.4rem;"></i> Renungkan
+                    </h3>
+                    <p style="font-size: 1.05rem; color: #ddd; font-style: italic; margin-top: 4px;">
+                        "Bagaimana penelitian geografi dapat membantu kita memahami dan mengatasi masalah lingkungan di sekitar kita?"
+                    </p>
+                    <p style="margin-top: 8px; font-size: 0.9rem; color: #aaa;">
+                        <i class="fas fa-arrow-right" style="color: #3498db;"></i> 
+                        Coba tuliskan jawabanmu di buku catatan sebagai bentuk refleksi pribadi.
+                    </p>
+                </div>
+
+                <div class="quote-block">
+                    <i class="fas fa-flask" style="color: #3498db; margin-right: 10px;"></i>
+                    🔬 Pesan Hari Ini
+                    <blockquote style="margin: 8px 0 0 0; padding: 0; border: none; background: transparent; color: #ddd;">
+                        "Penelitian adalah jembatan antara rasa ingin tahu dan pengetahuan. Dengan penelitian, kita dapat memahami dunia dan membuatnya menjadi tempat yang lebih baik."
+                        <span class="author">— Sartono Kartodirdjo</span>
+                    </blockquote>
+                </div>
+
+                <div class="celebration-box">
+                    <h3>🎉 Selamat!</h3>
+                    <p>Kamu telah menyelesaikan materi <strong>Penelitian Geografi</strong>.</p>
+                    <div style="margin-top: 16px;">
+                        <span class="next-step-btn">
+                            ➡️ Lanjutkan ke materi berikutnya: Fenomena Geosfer (Litosfer, Atmosfer, Hidrosfer)
+                        </span>
+                    </div>
+                    <p style="margin-top: 12px; font-size: 0.85rem; color: #888;">
+                        <i class="fas fa-info-circle" style="color: #3498db;"></i> 
+                        Siapkan dirimu untuk bab selanjutnya!
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTION 12 : REFERENSI ========== -->
+        <section id="section12" class="section">
+            <div class="section-wrapper">
+                <div class="section-header">
+                    <div class="num">12</div>
+                    <h2>Referensi <small>Daftar Pustaka</small></h2>
+                </div>
+                <ul class="ref-list">
+                    <li><i class="fas fa-file-pdf"></i> <strong>Kurikulum Merdeka:</strong> Capaian Pembelajaran Mata Pelajaran IPS Fase E-Fase F, BSKAP Kemendikbudristek (2024).</li>
+                    <li><i class="fas fa-book"></i> Suharyono & Amien, M. (2013). <em>Pengantar Filsafat Geografi</em>. Yogyakarta: Ombak.</li>
+                    <li><i class="fas fa-book"></i> Bintarto. <em>Metode Penelitian Geografi</em>. Yogyakarta: UGM Press.</li>
+                    <li><i class="fas fa-book"></i> Muta’ali, Luthfi. (2015). <em>Geografi Pemukiman</em>. Yogyakarta: Badan Penerbit Fakultas Geografi UGM.</li>
+                    <li><i class="fas fa-book"></i> Sartono Kartodirdjo. (1992). <em>Pendekatan Ilmu Sosial dalam Metodologi Sejarah</em>. Jakarta: Gramedia.</li>
+                    <li><i class="fas fa-book"></i> Haggett, Peter. <em>Geography: A Modern Synthesis</em>. New York: Harper & Row.</li>
+                    <li><i class="fas fa-book"></i> de Blij, H.J. & Muller, P.O. <em>Geography: Realms, Regions and Concepts</em>. New York: Wiley.</li>
+                    <li><i class="fas fa-book"></i> Daldjoeni, N. (2005). <em>Geografi untuk Indonesia</em>. Bandung: Alumni.</li>
+                    <li><i class="fas fa-book"></i> Sumaatmadja, Nursid. <em>Metodologi Pengajaran Geografi</em>. Jakarta: Bumi Aksara.</li>
+                    <li><i class="fas fa-book"></i> Danoedoro, P. (2012). <em>Pengantar Penginderaan Jauh Digital</em>. Yogyakarta: Andi.</li>
+                    <li><i class="fas fa-book"></i> I Made Sandy. (2004). <em>Republik Indonesia: Geografi Regional</em>. Jakarta: UI Press.</li>
+                    <li><i class="fas fa-book"></i> Muta’ali, Luthfi. (2015). <em>Geografi Pemukiman</em>. Yogyakarta: Badan Penerbit Fakultas Geografi UGM.</li>
+                </ul>
+                <div class="footer-credit">
+                    <i class="fas fa-school" style="color:#3498db;"></i> <strong style="color:#fff;">SMAN 3 KASONGAN</strong> &nbsp;·&nbsp; 
+                    <i class="fas fa-chalkboard-teacher" style="color:#3498db;"></i> Guru Pengampu: <strong style="color:#fff;">SYAHRANI, S.Pd</strong> &nbsp;·&nbsp; NIP. 197512172005011016
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== NAVIGATION BUTTONS ===== -->
+        <div class="nav-buttons hidden" id="navButtons">
+            <button id="prevBtn" disabled><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+            <span class="counter" id="slideCounter">1 / 12</span>
+            <button id="nextBtn" style="display: flex;">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+        </div>
+
+    </main>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        (function() {
+            // ===== LOADING =====
+            const loader = document.getElementById('loader');
+            const colors = ['#3498db', '#5dade2', '#85c1e9', '#2ecc71', '#1abc9c', '#3498db', '#2980b9', '#00d2d3'];
+            const starSymbols = ['🔬', '🧪', '📊', '🗺️', '📍', '📝', '🌟', '⭐'];
+            for (let i = 0; i < 45; i++) {
+                const star = document.createElement('span');
+                star.className = 'star';
+                star.textContent = starSymbols[Math.floor(Math.random() * starSymbols.length)];
+                star.style.color = colors[Math.floor(Math.random() * colors.length)];
+                star.style.fontSize = (0.8 + Math.random() * 1.8) + 'rem';
+                star.style.left = (Math.random() * 100) + '%';
+                star.style.top = (Math.random() * 100) + '%';
+                const tx1 = (Math.random() - 0.5) * 400;
+                const ty1 = (Math.random() - 0.5) * 300;
+                const tx2 = (Math.random() - 0.5) * 500;
+                const ty2 = (Math.random() - 0.5) * 400;
+                const tx3 = (Math.random() - 0.5) * 300;
+                const ty3 = (Math.random() - 0.5) * 500;
+                const tx4 = (Math.random() - 0.5) * 600;
+                const ty4 = (Math.random() - 0.5) * 400;
+                star.style.setProperty('--tx1', tx1 + 'px');
+                star.style.setProperty('--ty1', ty1 + 'px');
+                star.style.setProperty('--tx2', tx2 + 'px');
+                star.style.setProperty('--ty2', ty2 + 'px');
+                star.style.setProperty('--tx3', tx3 + 'px');
+                star.style.setProperty('--ty3', ty3 + 'px');
+                star.style.setProperty('--tx4', tx4 + 'px');
+                star.style.setProperty('--ty4', ty4 + 'px');
+                star.style.animationDuration = (3.5 + Math.random() * 2.5) + 's';
+                star.style.animationDelay = (Math.random() * 2) + 's';
+                loader.appendChild(star);
+            }
+            setTimeout(() => {
+                loader.classList.add('hidden');
+                setTimeout(() => { loader.style.display = 'none'; }, 500);
+            }, 3000);
+
+            // ===== NAVIGASI =====
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('#navLinks a');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const counter = document.getElementById('slideCounter');
+            const progressBar = document.getElementById('progressBar');
+            const navButtons = document.getElementById('navButtons');
+            const hamburger = document.getElementById('hamburgerBtn');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+
+            let current = 0;
+            const total = sections.length;
+            const sectionMap = {};
+            sections.forEach((el, i) => { sectionMap[el.id] = i; });
+
+            function updateUI(index) {
+                sections.forEach((el, i) => { el.classList.toggle('active', i === index); });
+                const activeId = sections[index].id;
+                navLinks.forEach(link => {
+                    link.classList.toggle('active', link.dataset.section === activeId);
+                });
+                prevBtn.disabled = (index === 0);
+                nextBtn.disabled = (index === total - 1);
+                counter.textContent = (index + 1) + ' / ' + total;
+                progressBar.style.width = ((index + 1) / total * 100) + '%';
+
+                if (index === total - 1) {
+                    nextBtn.style.display = 'none';
+                } else {
+                    nextBtn.style.display = 'flex';
+                }
+
+                if (index === 0) {
+                    navButtons.classList.add('hidden');
+                } else {
+                    navButtons.classList.remove('hidden');
+                }
+
+                document.querySelector('.main-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                closeSidebar();
+            }
+
+            function navigateTo(id) {
+                const idx = sectionMap[id];
+                if (idx !== undefined && idx !== current) {
+                    current = idx;
+                    updateUI(current);
+                }
+            }
+
+            function closeSidebar() {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('active');
+                hamburger.classList.remove('active');
+                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+
+            function toggleSidebar() {
+                sidebar.classList.toggle('open');
+                overlay.classList.toggle('active');
+                hamburger.classList.toggle('active');
+                hamburger.innerHTML = sidebar.classList.contains('open') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            }
+
+            hamburger.addEventListener('click', toggleSidebar);
+            overlay.addEventListener('click', closeSidebar);
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const id = this.dataset.section;
+                    if (id) navigateTo(id);
+                });
+            });
+
+            prevBtn.addEventListener('click', function() {
+                if (current > 0) { current--; updateUI(current); }
+            });
+            nextBtn.addEventListener('click', function() {
+                if (current < total - 1) { current++; updateUI(current); }
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    if (current < total - 1) { current++; updateUI(current); }
+                } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    if (current > 0) { current--; updateUI(current); }
+                }
+            });
+
+            window.navigateTo = navigateTo;
+            updateUI(0);
+        })();
+    </script>
+
+</body>
+</html>
