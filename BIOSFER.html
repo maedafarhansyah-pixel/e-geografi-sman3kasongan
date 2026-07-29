@@ -1,0 +1,1887 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes" />
+    <title>Biosfer – Kelas X (Kurikulum Merdeka)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+    <style>
+        /* ===== VARIABEL & RESET ===== */
+        :root {
+            --primary: #3498db;
+            --primary-light: #5dade2;
+            --primary-dark: #2980b9;
+            --primary-glow: rgba(52,152,219,0.4);
+            --bg-card: #1e1e1e;
+            --bg-card-hover: #2a2a2a;
+            --text-light: #f0f0f0;
+            --text-muted: #aaa;
+            --border-color: #333;
+            --shadow: 0 8px 32px rgba(0,0,0,0.6);
+            --radius: 18px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+            background: #121212;
+            color: #e8e8e8;
+            line-height: 1.7;
+            scroll-behavior: smooth;
+            padding-top: 56px;
+        }
+        /* ===== LOADING ===== */
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: #0a0a0a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            transition: opacity 0.6s ease;
+        }
+        #loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        #loader .loader-text {
+            color: var(--primary);
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            z-index: 10;
+            animation: pulse 1.8s infinite;
+        }
+        @keyframes pulse {
+            0%,100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.95); }
+        }
+        .star {
+            position: absolute;
+            font-size: 1.4rem;
+            user-select: none;
+            pointer-events: none;
+            opacity: 0;
+            animation: flyStar 4.5s ease-in-out infinite;
+        }
+        @keyframes flyStar {
+            0% { opacity: 0; transform: translate(0,0) scale(0.2) rotate(0deg); }
+            15% { opacity: 1; transform: translate(var(--tx1), var(--ty1)) scale(1.3) rotate(20deg); }
+            50% { opacity: 1; transform: translate(var(--tx2), var(--ty2)) scale(0.9) rotate(-15deg); }
+            85% { opacity: 1; transform: translate(var(--tx3), var(--ty3)) scale(1.1) rotate(10deg); }
+            100% { opacity: 0; transform: translate(var(--tx4), var(--ty4)) scale(0.3) rotate(30deg); }
+        }
+        /* ===== HEADER MOBILE ===== */
+        .mobile-header {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            height: 56px;
+            background: rgba(13,13,13,0.92);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            z-index: 1001;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.7);
+        }
+        .mobile-header .brand {
+            color: var(--primary);
+            font-weight: 900;
+            font-size: 1.6rem;
+            letter-spacing: 1.5px;
+        }
+        .hamburger {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 4px 8px;
+            transition: var(--transition);
+        }
+        .hamburger:hover { color: var(--primary); }
+        .hamburger.active { color: var(--primary); }
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            position: fixed;
+            top: 0; left: 0;
+            width: 64px;
+            height: 100vh;
+            background: rgba(13,13,13,0.95);
+            backdrop-filter: blur(8px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            box-shadow: 2px 0 20px rgba(0,0,0,0.8);
+            transition: transform 0.35s ease, width 0.35s ease;
+            overflow: hidden;
+            transform: translateX(-100%);
+        }
+        .sidebar.open {
+            transform: translateX(0);
+            width: 220px;
+        }
+        .sidebar .logo {
+            color: var(--primary);
+            font-size: 1.2rem;
+            font-weight: 700;
+            padding: 16px 0 8px;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            opacity: 0.9;
+            transition: var(--transition);
+        }
+        .sidebar.open .logo {
+            writing-mode: horizontal-tb;
+            font-size: 1.1rem;
+            padding: 12px 0;
+        }
+        .sidebar nav {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 8px 0;
+            flex: 1;
+            justify-content: center;
+            width: 100%;
+        }
+        .sidebar nav a {
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 8px 18px;
+            border-radius: 10px;
+            transition: var(--transition);
+            white-space: nowrap;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+        .sidebar nav a i {
+            font-size: 1.1rem;
+            width: 24px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .sidebar nav a span {
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .sidebar.open nav a span { opacity: 1; }
+        .sidebar nav a:hover,
+        .sidebar nav a.active {
+            color: #fff;
+            background: rgba(52,152,219,0.2);
+        }
+        .sidebar nav a.active {
+            color: var(--primary);
+            background: rgba(52,152,219,0.15);
+            box-shadow: inset 4px 0 0 var(--primary);
+        }
+        .sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease;
+        }
+        .sidebar-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        /* ===== MAIN ===== */
+        .main-content {
+            padding: 16px 16px 60px;
+            max-width: 1100px;
+            margin: 0 auto;
+            transition: margin-left 0.35s ease;
+        }
+        /* ===== SECTION ===== */
+        .section {
+            display: none;
+            animation: fadeUp 0.6s ease;
+            padding: 20px 0 12px;
+        }
+        .section.active { display: block; }
+        @keyframes fadeUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .section-wrapper {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 24px;
+            padding-bottom: 14px;
+            border-bottom: 4px solid transparent;
+            border-image: linear-gradient(90deg, var(--primary), var(--primary-light)) 1;
+        }
+        .section-header .num {
+            background: linear-gradient(145deg, var(--primary), var(--primary-light));
+            color: #121212;
+            font-weight: 700;
+            font-size: 1.2rem;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 4px 14px var(--primary-glow);
+        }
+        .section-header h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-light);
+            letter-spacing: -0.3px;
+        }
+        .section-header h2 small {
+            font-weight: 400;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: block;
+            margin-top: 2px;
+        }
+        /* ===== CARDS ===== */
+        .card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 20px 18px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.8);
+            border-color: var(--primary);
+        }
+        .card .icon { font-size: 2rem; color: var(--primary); margin-bottom: 8px; }
+        .card h3 { font-size: 1.1rem; font-weight: 700; color: var(--text-light); margin-bottom: 4px; }
+        .card p, .card li { font-size: 0.92rem; color: #ccc; line-height: 1.7; }
+        .card ul { padding-left: 18px; margin: 6px 0; }
+        .card ul li { list-style-type: disc; }
+        .card.highlight { background: #252525; border-color: var(--primary); }
+        .card.merdeka-badge { border-left: 6px solid var(--primary); background: var(--bg-card); }
+        .card-enhanced {
+            border-radius: var(--radius);
+            background: linear-gradient(145deg, #1e1e1e, #252525);
+            border: 1px solid #2a2a2a;
+            transition: var(--transition);
+        }
+        .card-enhanced:hover {
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.8);
+            border-color: var(--primary);
+        }
+        /* ===== GRID ===== */
+        .grid-2 { display: grid; grid-template-columns: 1fr; gap: 20px; margin: 14px 0; }
+        .grid-3 { display: grid; grid-template-columns: 1fr; gap: 20px; margin: 14px 0; }
+        .grid-4 { display: grid; grid-template-columns: 1fr; gap: 20px; margin: 14px 0; }
+        .grid-ahli { display: grid; grid-template-columns: 1fr; gap: 20px; margin: 14px 0; }
+        @media (min-width: 600px) {
+            .grid-2 { grid-template-columns: repeat(2,1fr); }
+            .grid-3 { grid-template-columns: repeat(2,1fr); }
+            .grid-4 { grid-template-columns: repeat(2,1fr); }
+            .grid-ahli { grid-template-columns: repeat(2,1fr); }
+        }
+        @media (min-width: 900px) {
+            .grid-3 { grid-template-columns: repeat(3,1fr); }
+            .grid-4 { grid-template-columns: repeat(4,1fr); }
+            .grid-ahli { grid-template-columns: repeat(3,1fr); }
+        }
+        /* ===== INTERACTIVE CARDS ===== */
+        .interactive-card {
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .interactive-card.dark-card {
+            background: linear-gradient(145deg, #2a2a2a, #222);
+            border: 1px solid #3a3a3a;
+        }
+        .interactive-card.dark-card:hover { border-color: var(--primary); transform: translateY(-3px); }
+        .interactive-card.dark-card.open {
+            background: #f5f0e8;
+            border-color: var(--primary);
+            color: #1e2a36;
+        }
+        .interactive-card.dark-card.open h3 { color: #1a2a3a; }
+        .interactive-card.dark-card.open p { color: #2a3a4a; }
+        .interactive-card.dark-card.open .toggle-hint { color: #6a7a8a; }
+        .interactive-card.dark-card.open ul li { color: #2a3a4a; }
+        .interactive-card.dark-card.open strong { color: #1a2a3a; }
+        .interactive-card .back {
+            display: none;
+            padding-top: 12px;
+            border-top: 2px dashed rgba(52,152,219,0.4);
+            margin-top: 12px;
+            font-size: 0.92rem;
+        }
+        .interactive-card.open .back { display: block; }
+        .interactive-card .toggle-hint {
+            font-size: 0.7rem;
+            margin-top: 8px;
+            display: block;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            opacity: 0.7;
+        }
+        .pillar-icon { font-size: 3rem; color: var(--primary); display: block; margin-bottom: 4px; }
+        .guna-icon { font-size: 2.8rem; color: var(--primary); display: block; margin-bottom: 6px; }
+        /* ===== AHLI CARDS ===== */
+        .ahli-card {
+            border-radius: var(--radius);
+            padding: 18px 16px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            background: linear-gradient(145deg, #1e1e1e, #252525);
+        }
+        .ahli-card:hover { border-color: var(--primary); transform: translateY(-3px); }
+        .ahli-card .ahli-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 4px;
+            flex-wrap: wrap;
+        }
+        .ahli-card .ahli-header .icon-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            width: 36px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .ahli-card .ahli-header h3 { font-size: 1.05rem; font-weight: 700; margin: 0; color: var(--text-light); }
+        .ahli-card .ahli-header .sub { font-size: 0.8rem; font-weight: 400; color: #aaa; }
+        .ahli-card ul { padding-left: 18px; margin: 4px 0; }
+        .ahli-card ul li { font-size: 0.9rem; line-height: 1.7; }
+        .ahli-card .keterangan {
+            font-size: 0.85rem;
+            margin-top: 6px;
+            padding-top: 6px;
+            border-top: 1px solid #444;
+        }
+        .ahli-card .keterangan i { color: var(--primary); margin-right: 4px; }
+        /* ===== KOMPONEN GRID ===== */
+        .komponen-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin: 10px 0; }
+        @media (min-width: 600px) { .komponen-grid { grid-template-columns: repeat(2,1fr); } }
+        .komponen-card {
+            background: linear-gradient(145deg, #1e1e1e, #252525);
+            border-radius: 12px;
+            padding: 14px 16px;
+            border-left: 5px solid var(--primary);
+            transition: var(--transition);
+        }
+        .komponen-card:hover { border-color: var(--primary-light); transform: translateX(4px); }
+        .komponen-card h4 { color: var(--primary); font-size: 1rem; margin-bottom: 2px; }
+        .komponen-card p { font-size: 0.9rem; color: #ccc; }
+        /* ===== OTHER ===== */
+        .def-block {
+            background: linear-gradient(145deg, #1e1e1e, #252525);
+            border-radius: var(--radius);
+            padding: 16px 18px;
+            border-left: 6px solid var(--primary);
+            box-shadow: var(--shadow);
+            margin: 12px 0;
+        }
+        .def-block .source { font-weight: 600; color: var(--text-light); }
+        .def-block .source i { color: var(--primary); margin-right: 6px; }
+        .cp-atp-box {
+            background: linear-gradient(145deg, #1a241e, #1e2a24);
+            border-radius: var(--radius);
+            padding: 16px 18px;
+            border-left: 6px solid var(--primary-light);
+            margin: 10px 0;
+            color: #ddd;
+        }
+        .cp-atp-box strong { color: #8cc4d0; }
+        .quote-block {
+            background: linear-gradient(145deg, #1a241e, #1e2a24);
+            border-left: 6px solid var(--primary);
+            padding: 16px 20px;
+            border-radius: 10px;
+            margin: 12px 0;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: #ddd;
+        }
+        .quote-block .author {
+            display: block;
+            margin-top: 8px;
+            font-style: normal;
+            font-weight: 600;
+            color: var(--primary);
+            text-align: right;
+        }
+        .celebration-box {
+            background: linear-gradient(145deg, #1a2a2a, #0d1a1a);
+            border: 2px solid var(--primary);
+            border-radius: 16px;
+            padding: 24px 20px;
+            text-align: center;
+            margin-top: 12px;
+        }
+        .celebration-box h3 { font-size: 1.6rem; color: var(--primary); margin-bottom: 10px; }
+        .celebration-box p { font-size: 1.05rem; color: #ccc; }
+        .next-step-btn {
+            display: inline-block;
+            background: var(--primary);
+            color: #121212;
+            padding: 12px 32px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: var(--transition);
+            margin-top: 14px;
+            border: none;
+            cursor: default;
+        }
+        .next-step-btn:hover { background: var(--primary-light); transform: scale(1.03); }
+        .activity-box {
+            background: linear-gradient(145deg, #1a241e, #1e2a24);
+            border-radius: var(--radius);
+            padding: 20px 18px;
+            border: 2px dashed var(--primary);
+            margin: 14px 0;
+        }
+        .activity-box h3 { color: var(--text-light); font-size: 1.2rem; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .activity-box h3 i { color: var(--primary); }
+        /* ===== TABEL ===== */
+        .worksheet-table {
+            display: grid;
+            grid-template-columns: 60px 1fr 1.2fr 2fr;
+            gap: 6px;
+            margin-top: 12px;
+            font-size: 0.9rem;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #444;
+        }
+        .worksheet-table .header {
+            background: var(--primary);
+            color: #121212;
+            font-weight: 700;
+            padding: 10px 8px;
+            text-align: center;
+        }
+        .worksheet-table .cell { background: #1e1e1e; padding: 10px 8px; color: #ccc; border-bottom: 1px solid #333; min-height: 50px; }
+        .worksheet-table .cell-empty { background: #1a1a1a; color: #555; font-style: italic; padding: 10px 8px; border-bottom: 1px solid #333; min-height: 50px; }
+        /* ===== REFLEKSI ===== */
+        .refleksi-list { list-style: none; padding: 0; margin: 8px 0; }
+        .refleksi-list li { display: flex; align-items: flex-start; gap: 12px; padding: 8px 0; font-size: 1rem; color: #ddd; border-bottom: 1px solid #333; }
+        .refleksi-list li:last-child { border-bottom: none; }
+        .refleksi-list li .check { font-size: 1.4rem; color: #6bcb77; flex-shrink: 0; margin-top: 2px; }
+        /* ===== ASESMEN ===== */
+        .assessment-question {
+            margin-bottom: 16px;
+            padding: 12px 16px;
+            background: linear-gradient(145deg, #1e1e1e, #252525);
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+        }
+        .assessment-question .q-text { font-weight: 600; color: var(--text-light); margin-bottom: 4px; }
+        .assessment-question .q-options { padding-left: 20px; color: #ccc; line-height: 1.8; }
+        .assessment-question .q-options span { display: block; }
+        .essay-question {
+            background: linear-gradient(145deg, #1a1a1a, #222);
+            padding: 16px;
+            border-radius: 10px;
+            border: 1px solid #444;
+            margin-bottom: 16px;
+        }
+        .essay-question .q-text { font-weight: 600; color: var(--text-light); margin-bottom: 4px; }
+        .essay-question .q-note { font-size: 0.85rem; color: #aaa; font-style: italic; }
+        /* ===== REFERENSI ===== */
+        .ref-list { list-style: none; padding: 0; }
+        .ref-list li { padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.88rem; display: flex; align-items: baseline; gap: 10px; color: #ddd; }
+        .ref-list li i { color: var(--primary); font-size: 0.8rem; width: 20px; flex-shrink: 0; }
+        /* ===== PROGRESS & NAV ===== */
+        .progress-wrap {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            height: 4px;
+            background: #2a2a2a;
+            z-index: 999;
+        }
+        .progress-wrap .bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            transition: width 0.4s ease;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 32px;
+            padding-top: 14px;
+            border-top: 2px solid #333;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .nav-buttons.hidden { display: none; }
+        .nav-buttons button {
+            background: #2a2a2a;
+            color: #fff;
+            border: 1px solid #3a3a3a;
+            padding: 8px 22px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .nav-buttons button:hover:not(:disabled) {
+            background: var(--primary);
+            color: #121212;
+            border-color: var(--primary);
+            transform: scale(1.02);
+        }
+        .nav-buttons button:disabled { opacity: 0.3; cursor: not-allowed; }
+        .nav-buttons .counter { font-weight: 500; color: #aaa; font-size: 0.85rem; }
+        /* ===== START BUTTON ===== */
+        .start-btn-wrapper { display: flex; justify-content: center; margin: 28px 0 12px; }
+        .start-btn {
+            background: var(--primary);
+            color: #121212;
+            border: none;
+            padding: 14px 44px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 6px 24px var(--primary-glow);
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .start-btn:hover { background: var(--primary-light); transform: scale(1.04); box-shadow: 0 8px 32px var(--primary-glow); }
+        /* ===== BADGE ===== */
+        .tag {
+            display: inline-block;
+            background: var(--primary);
+            color: #121212;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 2px 16px;
+            border-radius: 40px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .deep-learning-badge {
+            display: inline-block;
+            background: #2a6b8c;
+            color: #fff;
+            padding: 3px 14px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .school-info {
+            background: rgba(13,13,13,0.8);
+            backdrop-filter: blur(4px);
+            color: #e0e0e0;
+            padding: 10px 24px;
+            border-radius: 40px;
+            display: inline-block;
+            font-weight: 500;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+            margin-top: 6px;
+        }
+        .school-info i { color: var(--primary); margin-right: 8px; }
+        .footer-credit {
+            text-align: center;
+            margin-top: 16px;
+            padding-top: 12px;
+            border-top: 1px solid #333;
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+        .footer-credit strong { color: #eee; }
+        .cover-title {
+            font-size: 2.6rem;
+            font-weight: 800;
+            color: var(--text-light);
+            margin: 10px 0 4px;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+        /* ===== TOOLTIP ===== */
+        .hover-trigger { position: relative; cursor: help; display: inline-block; }
+        .hover-trigger .hover-tooltip {
+            display: none;
+            position: absolute;
+            background: #2a2a2a;
+            color: #f0ece4;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            width: 240px;
+            bottom: calc(100% + 12px);
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.9);
+            z-index: 20;
+            text-align: left;
+            line-height: 1.5;
+            border: 1px solid var(--primary);
+        }
+        .hover-trigger .hover-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 8px solid transparent;
+            border-top-color: #2a2a2a;
+        }
+        .hover-trigger:hover .hover-tooltip { display: block; }
+        /* ===== RESPONSIVE ===== */
+        @media (min-width: 600px) {
+            .cover-title { font-size: 3rem; }
+            .section-header h2 { font-size: 1.7rem; }
+            .main-content { padding: 24px 28px 60px; }
+            .start-btn { padding: 16px 56px; font-size: 1.3rem; }
+        }
+        @media (min-width: 900px) {
+            body { padding-top: 0; }
+            .mobile-header { display: none; }
+            .sidebar {
+                transform: translateX(0);
+                width: 64px;
+            }
+            .sidebar:hover { width: 200px; }
+            .sidebar .logo {
+                writing-mode: vertical-rl;
+                text-orientation: mixed;
+                font-size: 1.2rem;
+                padding: 16px 0 8px;
+            }
+            .sidebar:hover .logo {
+                writing-mode: horizontal-tb;
+                font-size: 1.1rem;
+                padding: 12px 0;
+            }
+            .sidebar nav a span { opacity: 0; transition: opacity 0.25s; }
+            .sidebar:hover nav a span { opacity: 1; }
+            .sidebar-overlay { display: none; }
+            .main-content { margin-left: 64px; padding: 28px 40px 60px; max-width: 1100px; }
+            .progress-wrap { left: 64px; }
+            .cover-title { font-size: 3.4rem; }
+            .section-header .num { width: 48px; height: 48px; font-size: 1.3rem; }
+        }
+        @media (max-width: 400px) {
+            .section-header h2 { font-size: 1.1rem; }
+            .cover-title { font-size: 1.8rem; }
+            .card { padding: 14px 12px; }
+            .start-btn { padding: 10px 28px; font-size: 1rem; }
+            .mobile-header .brand { font-size: 1.3rem; }
+            .worksheet-table { grid-template-columns: 1fr; gap: 2px; }
+            .worksheet-table .header { text-align: left; }
+        }
+        .sidebar-overlay { display: block; }
+        @media (min-width: 900px) { .sidebar-overlay { display: none; } }
+        /* ===== EFEK DEKORATIF ===== */
+        .glow-text { text-shadow: 0 0 30px var(--primary-glow); }
+        .divider-gradient {
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+            margin: 20px 0 10px;
+        }
+        .badge-soft {
+            display: inline-block;
+            background: rgba(52,152,219,0.15);
+            color: var(--primary-light);
+            padding: 2px 14px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            border: 1px solid rgba(52,152,219,0.2);
+        }
+        .biosfer-badge {
+            display: inline-block;
+            background: #1a4a6a;
+            color: #fff;
+            padding: 2px 12px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== LOADING SCREEN ===== -->
+    <div id="loader">
+        <div class="loader-text">Memuat Materi Biosfer...</div>
+    </div>
+
+    <!-- ===== MOBILE HEADER ===== -->
+    <header class="mobile-header">
+        <div class="brand">🌿 Biosfer</div>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+
+    <!-- ===== SIDEBAR OVERLAY ===== -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar" id="sidebar">
+        <div class="logo">🌿 Biosfer</div>
+        <nav id="navLinks">
+            <a href="#" data-section="section1" class="active"><i class="fas fa-home"></i><span>Beranda</span></a>
+            <a href="#" data-section="section2"><i class="fas fa-bullseye"></i><span>CP & ATP</span></a>
+            <a href="#" data-section="section3"><i class="fas fa-list-check"></i><span>Indikator</span></a>
+            <a href="#" data-section="section4"><i class="fas fa-cubes"></i><span>Kerangka Deep Learning</span></a>
+            <a href="#" data-section="section5"><i class="fas fa-book-open"></i><span>Pengertian</span></a>
+            <a href="#" data-section="section6"><i class="fas fa-users"></i><span>Definisi Ahli</span></a>
+            <a href="#" data-section="section7"><i class="fas fa-layer-group"></i><span>Bioma</span></a>
+            <a href="#" data-section="section8"><i class="fas fa-lightbulb"></i><span>Interaksi & Keanekaragaman</span></a>
+            <a href="#" data-section="section9"><i class="fas fa-tools"></i><span>Fenomena & Manfaat</span></a>
+            <a href="#" data-section="section10"><i class="fas fa-clipboard-check"></i><span>Asesmen</span></a>
+            <a href="#" data-section="section11"><i class="fas fa-star"></i><span>Refleksi</span></a>
+            <a href="#" data-section="section12"><i class="fas fa-bookmark"></i><span>Referensi</span></a>
+        </nav>
+    </aside>
+
+    <!-- ===== PROGRESS BAR ===== -->
+    <div class="progress-wrap"><div class="bar" id="progressBar"></div></div>
+
+    <!-- ===== MAIN ===== -->
+    <main class="main-content">
+
+        <!-- ========== SECTION 1 : COVER ========== -->
+        <section id="section1" class="section active">
+            <div style="text-align:center; padding: 10px 0 8px 0;">
+                <span class="tag" style="font-size:0.8rem; padding:4px 20px;">KELAS X / FASE E</span>
+                <span class="deep-learning-badge" style="margin-left:6px;"><i class="fas fa-brain"></i> Deep Learning</span>
+                <h1 class="cover-title">
+                    BIOSFER<br/>FENOMENA GEOSFER
+                </h1>
+                <p style="font-size:1rem; color:#aaa; max-width:600px; margin:0 auto; padding:0 10px;">
+                    Pengertian, bioma, interaksi, keanekaragaman hayati, dan<br/>manfaat biosfer dalam kehidupan
+                </p>
+                <div style="margin-top:16px;">
+                    <div class="school-info">
+                        <i class="fas fa-school"></i> SMAN 3 KASONGAN
+                    </div>
+                    <div style="margin-top:6px; font-size:0.9rem; color:#aaa;">
+                        <i class="fas fa-chalkboard-teacher" style="color:#3498db;"></i> Guru Pengampu: <strong style="color:#fff;">SYAHRANI, S.Pd</strong> &nbsp;|&nbsp; NIP. 197512172005011016
+                    </div>
+                </div>
+                <div class="start-btn-wrapper">
+                    <button class="start-btn" onclick="navigateTo('section2')">
+                        <i class="fas fa-play-circle"></i> Mulai Belajar
+                    </button>
+                </div>
+                <div style="margin-top:8px; font-size:0.85rem; color:#666;">
+                    <i class="fas fa-chevron-down"></i> Gunakan navigasi di samping atau tombol di atas
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTION 2 : CP & ATP ========== -->
+        <section id="section2" class="section">
+            <div class="section-wrapper">
+                <div class="section-header">
+                    <div class="num">02</div>
+                    <h2>Capaian & Alur Tujuan Pembelajaran <small>Kurikulum Merdeka Fase E</small></h2>
+                </div>
+
+                <div style="background:linear-gradient(145deg, #1a241e, #1e2a24); border-radius:14px; padding:16px 18px; border-left:6px solid #5aadf0; margin:10px 0;">
+                    <p><strong><i class="fas fa-puzzle-piece" style="color:#8cc4d0;"></i> Rasional Mata Pelajaran Geografi</strong><br/>
+                    Mata pelajaran Geografi membekali peserta didik dengan pengetahuan, keterampilan, dan sikap untuk memahami dan menganalisis fenomena geosfer serta interaksi antara manusia dan lingkungannya. Pembelajaran Geografi mendorong peserta didik untuk berpikir secara keruangan, kelingkungan, dan kewilayahan dalam menghadapi berbagai tantangan global, seperti perubahan iklim, bencana alam, dan pembangunan berkelanjutan.</p>
+                    <p style="margin-top:8px;"><strong><i class="fas fa-star" style="color:#8cc4d0;"></i> Karakteristik Mata Pelajaran Geografi</strong><br/>
+                    Geografi memiliki karakteristik sebagai ilmu yang mengkaji persamaan dan perbedaan fenomena geosfer (fisik dan sosial) dengan sudut pandang kelingkungan, kewilayahan, dan keruangan. Ilmu ini bersifat interdisipliner, menghubungkan ilmu alam dan ilmu sosial, serta berorientasi pada pemecahan masalah nyata di masyarakat.</p>
+                </div>
+
+                <div class="cp-atp-box">
+                    <p><strong><i class="fas fa-flag-checkered" style="color:#8cc4d0;"></i> Capaian Pembelajaran (CP) – Fase E</strong><br/>
+                    Pada akhir Fase E, peserta didik memahami konsep dasar Geografi, peta, pengindraan jauh, Sistem Informasi Geografis (SIG), penelitian Geografi, dan fenomena geosfer fisik yaitu litosfer, atmosfer, dan hidrosfer sebagai ruang kehidupan.</p>
+                </div>
+                <div class="grid-2" style="margin-top:6px;">
+                    <div class="card card-enhanced merdeka-badge">
+                        <div class="icon"><i class="fas fa-route"></i></div>
+                        <h3>
+                            <span class="hover-trigger">
+                                Alur Tujuan Pembelajaran (ATP)
+                                <span class="hover-tooltip">
+                                    ATP adalah rangkaian tujuan pembelajaran yang disusun secara sistematis dan logis, menjadi panduan guru untuk mencapai Capaian Pembelajaran (CP).
+                                </span>
+                            </span>
+                        </h3>
+                        <p>ATP merupakan rangkaian tujuan pembelajaran yang disusun secara sistematis dan logis, menjadi panduan guru untuk mencapai CP.</p>
+                        <ul style="margin-top:6px;">
+                            <li><strong>TP 1:</strong> Menganalisis pengertian dan ruang lingkup biosfer sebagai lapisan kehidupan di bumi.</li>
+                            <li><strong>TP 2:</strong> Mengidentifikasi persebaran bioma di permukaan bumi dan karakteristiknya.</li>
+                            <li><strong>TP 3:</strong> Menerapkan pengetahuan tentang interaksi dan keanekaragaman hayati dalam ekosistem.</li>
+                            <li><strong>TP 4:</strong> Mengevaluasi manfaat dan dampak fenomena biosfer bagi kehidupan manusia.</li>
+                        </ul>
+                    </div>
+                    <div class="card card-enhanced merdeka-badge">
+                        <div class="icon"><i class="fas fa-user-graduate"></i></div>
+                        <h3>Dimensi Profil Lulusan (DPL)</h3>
+                        <ul style="margin-top:6px; list-style-type: none; padding-left: 0;">
+                            <li><strong>Penalaran Kritis:</strong> Mampu menganalisis informasi geografis secara objektif dan membuat kesimpulan yang rasional berdasarkan data.</li>
+                            <li><strong>Komunikasi:</strong> Mampu menyajikan hasil analisis fenomena geografis secara lisan maupun tertulis dengan istilah yang tepat.</li>
+                            <li><strong>Kolaborasi:</strong> Mampu bekerja sama dalam kelompok untuk mengidentifikasi dan memecahkan masalah geografis di lingkungan sekitar.</li>
+                            <li><strong>Kreativitas:</strong> Mampu menghasilkan ide atau produk (peta konsep, infografis) untuk menyajikan pemahaman tentang fenomena geografis.</li>
+                            <li><strong>Kemandirian:</strong> Mampu mencari dan mengolah informasi geografis dari berbagai sumber secara bertanggung jawab.</li>
+                            <li><strong>Kewargaan:</strong> Menunjukkan sikap menghargai lingkungan dan memahami peran manusia dalam menjaga kelestarian bumi.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- ===== TAMBAHAN 1: INDIKATOR PENCAPAIAN YANG LEBIH TERUKUR ===== -->
+                <div style="margin-top:20px; background:linear-gradient(145deg, #1a241e, #1e2a24); border-radius:14px; padding:16px 18px; border-left:6px solid #5aadf0;">
+                    <h4 style="color:#8cc4d0; font-size:1.1rem; display:flex; align-items:center; gap:10px;">
+                        <i class="fas fa-bullseye"></i> Indikator Pencapaian (Terukur)
+                    </h4>
+                    <p style="color:#ccc; font-size:0.95rem; margin-bottom:8px;">Berikut adalah indikator yang lebih terperinci untuk setiap Tujuan Pembelajaran:</p>
+                    <ul style="color:#ddd; padding-left:20px; line-height:2;">
+                        <li><strong>TP 1:</strong> Menganalisis pengertian biosfer melalui studi literatur dari 3 sumber dan menjelaskan lapisan-lapisan kehidupan di bumi.</li>
+                        <li><strong>TP 2:</strong> Mengidentifikasi minimal 4 jenis bioma dan menjelaskan karakteristik serta persebarannya.</li>
+                        <li><strong>TP 3:</strong> Menerapkan pengetahuan tentang interaksi dan keanekaragaman hayati dalam ekosistem di lingkungan sekitar.</li>
+                        <li><strong>TP 4:</strong> Mengevaluasi manfaat dan dampak fenomena biosfer (deforestasi, kepunahan spesies) bagi kehidupan manusia.</li>
+                    </ul>
+                </div>
+
+                <!-- ===== TAMBAHAN 2: ELEMEN KETERAMPILAN PROSES ===== -->
+                <div style="margin-top:16px; background:linear-gradient(145deg, #1a241e, #1e2a24); border-radius:14px; padding:16px 18px; border-left:6px solid #5aadf0;">
+                    <h4 style="color:#8cc4d0; font-size:1.1rem; display:flex; align-items:center; gap:10px;">
+                        <i class="fas fa-cogs"></i> Elemen Keterampilan Proses
+                    </h4>
+                    <p style="color:#ccc; font-size:0.95rem; margin-bottom:8px;">Dalam pembelajaran Biosfer, peserta didik juga akan mengembangkan keterampilan proses berikut:</p>
+                    <ul style="color:#ddd; padding-left:20px; line-height:2;">
+                        <li><strong>Mengamati:</strong> Mengamati keanekaragaman hayati dan ekosistem di lingkungan sekitar.</li>
+                        <li><strong>Menanya:</strong> Merumuskan pertanyaan tentang interaksi dan persebaran makhluk hidup.</li>
+                        <li><strong>Mengumpulkan Informasi:</strong> Mengumpulkan data tentang flora dan fauna di lingkungan sekitar.</li>
+                        <li><strong>Menalar/Mengasosiasi:</strong> Menganalisis hubungan antara kondisi lingkungan dengan keanekaragaman hayati.</li>
+                        <li><strong>Mengomunikasikan:</strong> Menyajikan hasil analisis tentang biosfer dalam bentuk laporan, presentasi, atau infografis.</li>
+                    </ul>
+                </div>
+                <!-- ===== AKHIR TAMBAHAN ===== -->
+
+            </div>
+        </section>
+
+        <!-- ========== SECTION 3 : INDIKATOR ========== -->
+        <section id="section3" class="section">
+            <div class="section-wrapper">
+                <div class="section-header">
+                    <div class="num">03</div>
+                    <h2>Indikator Pencapaian <small>Tujuan Pembelajaran</small></h2>
+                </div>
+                <div class="grid-4">
+                    <div class="card card-enhanced"><i class="fas fa-check-circle" style="color:#3498db; font-size:1.8rem;"></i><h3>Indikator 1</h3><p>Menganalisis pengertian dan ruang lingkup biosfer sebagai lapisan kehidupan di bumi.</p></div>
+                    <div class="card card-enhanced"><i class="fas fa-check-circle" style="color:#3498db; font-size:1.8rem;"></i><h3>Indikator 2</h3><p>Mengidentifikasi persebaran bioma di permukaan bumi dan karakteristiknya.</p></div>
+                    <div class="card card-enhanced"><i class="fas fa-check-circle" style="color:#3498db; font-size:1.8rem;"></i><h3>Indikator 3</h3><p>Menerapkan pengetahuan tentang interaksi dan keanekaragaman hayati dalam ekosistem.</p></div>
+                    <div class="card card-enhanced"><i class="fas fa-check-circle" style="color:#3498db; font-size:1.8rem;"></i><h3>Indikator 4</h3><p>Mengevaluasi manfaat dan dampak fenomena biosfer bagi kehidupan manusia.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTION 4 : KERANGKA PEMBELAJARAN MENDALAM ========== -->
+        <section id="section4" class="section">
+            <div class="section-wrapper">
+                <div class="section-header">
+                    <div class="num">04</div>
+                    <h2>Kerangka Pembelajaran Mendalam <small>Pendekatan Deep Learning</small></h2>
+                </div>
+                <div class="card card-enhanced" style="background:linear-gradient(145deg, #1a241e, #1e2a24); border:1px solid #3498db; padding:18px 16px;">
+                    <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 12px; align-items: start;">
+                        <div style="font-weight: 700; color: #3498db; padding: 8px 12px; font-size: 0.95rem;">Komponen Kerangka Pembelajaran Mendalam</div>
+                        <div style="font-weight: 700; color: #3498db; padding: 8px 12px; font-size: 0.95rem;">Implementasi</div>
+                        <div style="background: #252525; padding: 12px; border-radius: 8px; font-weight: 600; color: #f0f0f0;">Praktik Pedagogis</div>
+                        <div style="background: #1e1e1e; padding: 12px; border-radius: 8px; color: #ccc;">Problem Based Learning (PBL) berbasis inkuiri, Project Based Learning (PjBL).</div>
+                        <div style="background: #252525; padding: 12px; border-radius: 8px; font-weight: 600; color: #f0f0f0;">Lingkungan Pembelajaran</div>
+                        <div style="background: #1e1e1e; padding: 12px; border-radius: 8px; color: #ccc;">Kelas, ruang virtual, perpustakaan, dan lingkungan sekitar sekolah sebagai laboratorium pengamatan keanekaragaman hayati.</div>
+                        <div style="background: #252525; padding: 12px; border-radius: 8px; font-weight: 600; color: #f0f0f0;">Kemitraan Pembelajaran</div>
+                        <div style="background: #1e1e1e; padding: 12px; border-radius: 8px; color: #ccc;">Orang tua, tokoh masyarakat, Dinas Lingkungan Hidup, komunitas peduli lingkungan, kelompok pecinta alam.</div>
+                        <div style="background: #252525; padding: 12px; border-radius: 8px; font-weight: 600; color: #f0f0f0;">Pemanfaatan Digital</div>
+                        <div style="background: #1e1e1e; padding: 12px; border-radius: 8px; color: #ccc;">Google Earth, Google Maps, Canva, Quizizz/Kahoot, video pembelajaran, dan AI secara bertanggung jawab.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTION 5 : PENGERTIAN BIOSFER ========== -->
+        <section id="section5" class="section">
+            <div class="section-wrapper">
+                <div class="section-header">
+                    <div class="num">05</div>
+                    <h2>Pengertian Biosfer <small>Lapisan Kehidupan di Bumi</small></h2>
+                </div>
+                <p style="font-size:1rem; margin-bottom:6px; color:#ccc;">
+                    <i class="fas fa-leaf" style="color:#3498db;"></i> 
+                    Biosfer berasal dari bahasa Yunani, <strong>"bios"</strong> (kehidupan) dan <strong>"sphaira"</strong> (lapisan). Jadi, biosfer adalah <strong>lapisan di permukaan bumi yang menjadi tempat berlangsungnya kehidupan</strong>. Biosfer mencakup seluruh ekosistem di bumi, termasuk daratan, perairan, dan bagian bawah atmosfer yang masih dihuni oleh makhluk hidup.
+                </p>
+
+                <div style="margin-top:16px;">
+                    <h3 style="font-size:1.1rem; color:#f0f0f0; border-left:4px solid #3498db; padding-left:12px; margin-bottom:6px;">
+                        <i class="fas fa-book" style="color:#3498db;"></i> Definisi Biosfer dari Beberapa Ahli
+                    </h3>
+                    <div class="grid-2" style="margin-top:4px;">
+                        <div class="card card-enhanced highlight" style="padding:16px;">
+                            <h4 style="color:#3498db; font-size:1rem;">Vernadsky</h4>
+                            <p style="font-size:0.9rem;">Biosfer adalah <strong>lapisan kehidupan di bumi</strong> yang mencakup seluruh organisme dan interaksinya dengan lingkungan fisik. Biosfer adalah sistem yang dinamis dan saling terhubung.</p>
+                        </div>
+                        <div class="card card-enhanced highlight" style="padding:16px;">
+                            <h4 style="color:#3498db; font-size:1rem;">Suharyono & Amien</h4>
+                            <p style="font-size:0.9rem;">Biosfer adalah <strong>seluruh bagian permukaan bumi yang dihuni oleh makhluk hidup</strong>, termasuk daratan, perairan, dan atmosfer bagian bawah. Biosfer sangat penting bagi keseimbangan ekosistem.</p>
+                        </div>
+                        <div class="card card-enhanced highlight" style="padding:16px;">
+                            <h4 style="color:#3498db; font-size:1rem;">Daldjoeni</h4>
+                            <p style="font-size:0.9rem;">Biosfer adalah <strong>lapisan kehidupan di permukaan bumi</strong> yang meliputi semua makhluk hidup dan lingkungannya. Biosfer adalah tempat berlangsungnya interaksi antara makhluk hidup dan lingkungan.</p>
+                        </div>
+                        <div class="card card-enhanced highlight" style="padding:16px;">
+                            <h4 style="color:#3498db; font-size:1rem;">Muta'ali</h4>
+                            <p style="font-size:0.9rem;">Biosfer adalah <strong>seluruh sistem kehidupan di bumi</strong> yang mencakup manusia, flora, fauna, dan mikroorganisme. Biosfer adalah sumber daya penting bagi kehidupan manusia.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top:14px;">
+                    <div class="def-block">
+                        <div class="source"><i class="fas fa-lightbulb"></i> Ruang Lingkup Biosfer</div>
+                        <p style="color:#ccc; margin-top:4px;">
+                            Biosfer mencakup seluruh tempat di bumi yang dapat dihuni oleh makhluk hidup, yaitu:
+                        </p>
+                        <ul style="margin-top:6px; padding-left:18px; color:#ccc;">
+                            <li><strong>Litosfer bagian atas:</strong> Tanah dan batuan yang menjadi tempat hidup organisme (hingga kedalaman beberapa meter).</li>
+                            <li><strong>Hidrosfer:</strong> Seluruh perairan di bumi (laut, sungai, danau) yang menjadi habitat makhluk hidup.</li>
+                            <li><strong>Atmosfer bagian bawah:</strong> Lapisan udara yang masih mengandung oksigen dan menjadi tempat hidup organisme terbang.</li>
+                        </ul>
+                        <p style="margin-top:6px; font-size:0.9rem; color:#aaa; border-top:1px solid #444; padding-top:6px;">
+                            <i class="fas fa-quote-right" style="color:#3498db;"></i> 
+                            <em>"Biosfer adalah rumah bagi semua makhluk hidup di bumi."</em>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTION 6 : DEFINISI AHLI ========== -->
+        <section id="section6" class="section">
+            <div class="section-wrapper">
+                <div class="section-header">
+                    <div class="num">06</div>
+                    <h2>Definisi Biosfer Menurut Para Ahli <small>Pendapat Tokoh Ekologi & Geografi</small></h2>
+                </div>
+                <p style="font-size:1rem; margin-bottom:10px; color:#ccc;">
+                    <i class="fas fa-quote-left" style="color:#3498db;"></i> 
+                    Berikut adalah definisi biosfer dari berbagai ahli ekologi dan geografi terkemuka. <strong>Klik pada kartu</strong> untuk melihat penjelasan lengkapnya.
+                </p>
+                <div class="grid-ahli">
+                    <!-- 1. Vernadsky -->
+                    <div class="ahli-card interactive-card dark-card" onclick="this.classList.toggle('open')">
+                        <div class="ahli-header">
+                            <span class="icon-number">1</span>
+                            <div>
+                                <h3>Vladimir Vernadsky</h3>
+                                <span class="sub">Ahli Geokimia & Ekologi Ukraina (1863–1945)</span>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <p style="font-weight:500; color:#1a2a3a; font-size:0.9rem;">Pelopor Konsep Biosfer:</p>
+                            <ul>
+                                <li>Biosfer adalah <strong>lapisan kehidupan di bumi</strong>.</li>
+                                <li>Mencakup seluruh <strong>organisme dan interaksinya</strong> dengan lingkungan fisik.</li>
+                                <li>Biosfer adalah <strong>sistem yang dinamis</strong> dan saling terhubung.</li>
+                            </ul>
+                            <div class="keterangan">
+                                <i class="fas fa-info-circle"></i> 
+                                Vernadsky adalah ilmuwan pertama yang mengemukakan konsep biosfer sebagai sistem terintegrasi. Ia menekankan bahwa kehidupan mengubah lingkungan dan lingkungan mengubah kehidupan dalam siklus yang terus-menerus.
+                            </div>
+                        </div>
+                        <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk lihat definisi</span>
+                    </div>
+
+                    <!-- 2. Suharyono & Amien -->
+                    <div class="ahli-card interactive-card dark-card" onclick="this.classList.toggle('open')">
+                        <div class="ahli-header">
+                            <span class="icon-number">2</span>
+                            <div>
+                                <h3>Suharyono & Amien</h3>
+                                <span class="sub">Ahli Geografi Indonesia</span>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <p style="font-weight:500; color:#1a2a3a; font-size:0.9rem;">Definisi dari buku <em>Pengantar Filsafat Geografi</em>:</p>
+                            <ul>
+                                <li>Biosfer adalah <strong>seluruh bagian permukaan bumi yang dihuni oleh makhluk hidup</strong>.</li>
+                                <li>Meliputi <strong>daratan, perairan, dan atmosfer bagian bawah</strong>.</li>
+                                <li>Sangat penting bagi <strong>keseimbangan ekosistem</strong>.</li>
+                            </ul>
+                            <div class="keterangan">
+                                <i class="fas fa-info-circle"></i> 
+                                Suharyono dan Amien menekankan bahwa biosfer adalah tempat semua makhluk hidup, dan keseimbangannya sangat penting bagi kelangsungan kehidupan.
+                            </div>
+                        </div>
+                        <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk lihat definisi</span>
+                    </div>
+
+                    <!-- 3. Daldjoeni -->
+                    <div class="ahli-card interactive-card dark-card" onclick="this.classList.toggle('open')">
+                        <div class="ahli-header">
+                            <span class="icon-number">3</span>
+                            <div>
+                                <h3>Daldjoeni</h3>
+                                <span class="sub">Ahli Geografi Indonesia</span>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <p style="font-weight:500; color:#1a2a3a; font-size:0.9rem;">Definisi biosfer:</p>
+                            <ul>
+                                <li>Biosfer adalah <strong>lapisan kehidupan di permukaan bumi</strong>.</li>
+                                <li>Meliputi <strong>semua makhluk hidup dan lingkungannya</strong>.</li>
+                                <li>Biosfer adalah tempat berlangsungnya <strong>interaksi antara makhluk hidup dan lingkungan</strong>.</li>
+                            </ul>
+                            <div class="keterangan">
+                                <i class="fas fa-info-circle"></i> 
+                                Daldjoeni menekankan bahwa biosfer adalah tempat terjadinya interaksi timbal balik antara makhluk hidup dan lingkungannya.
+                            </div>
+                        </div>
+                        <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk lihat definisi</span>
+                    </div>
+
+                    <!-- 4. Muta'ali -->
+                    <div class="ahli-card interactive-card dark-card" onclick="this.classList.toggle('open')">
+                        <div class="ahli-header">
+                            <span class="icon-number">4</span>
+                            <div>
+                                <h3>Muta'ali</h3>
+                                <span class="sub">Ahli Geografi Pemukiman Indonesia</span>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <p style="font-weight:500; color:#1a2a3a; font-size:0.9rem;">Definisi biosfer:</p>
+                            <ul>
+                                <li>Biosfer adalah <strong>seluruh sistem kehidupan di bumi</strong>.</li>
+                                <li>Mencakup <strong>manusia, flora, fauna, dan mikroorganisme</strong>.</li>
+                                <li>Biosfer adalah <strong>sumber daya penting</strong> bagi kehidupan manusia.</li>
+                            </ul>
+                            <div class="keterangan">
+                                <i class="fas fa-info-circle"></i> 
+                                Muta'ali menekankan bahwa biosfer mencakup semua komponen kehidupan, termasuk manusia, dan merupakan sumber daya yang harus dijaga.
+                            </div>
+                        </div>
+                        <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk lihat definisi</span>
+                    </div>
+
+                    <!-- 5. Odum -->
+                    <div class="ahli-card interactive-card dark-card" onclick="this.classList.toggle('open')">
+                        <div class="ahli-header">
+                            <span class="icon-number">5</span>
+                            <div>
+                                <h3>Eugene P. Odum</h3>
+                                <span class="sub">Ahli Ekologi Amerika (1913–2002)</span>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <p style="font-weight:500; color:#1a2a3a; font-size:0.9rem;">Definisi dari buku <em>Fundamentals of Ecology</em>:</p>
+                            <ul>
+                                <li>Biosfer adalah <strong>sistem ekologi global</strong> yang mencakup semua ekosistem di bumi.</li>
+                                <li>Merupakan <strong>bagian dari bumi yang mendukung kehidupan</strong>.</li>
+                                <li>Biosfer adalah <strong>sistem tertutup</strong> yang bergantung pada energi matahari.</li>
+                            </ul>
+                            <div class="keterangan">
+                                <i class="fas fa-info-circle"></i> 
+                                Odum adalah salah satu ahli ekologi paling berpengaruh. Ia menekankan bahwa biosfer adalah sistem global yang saling terhubung dan bergantung pada energi dari matahari.
+                            </div>
+                        </div>
+                        <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk lihat definisi</span>
+                    </div>
+
+                    <!-- 6. Indonesia: Soemarwoto -->
+                    <div class="ahli-card interactive-card dark-card" onclick="this.classList.toggle('open')">
+                        <div class="ahli-header">
+                            <span class="icon-number">6</span>
+                            <div>
+                                <h3>Otto Soemarwoto</h3>
+                                <span class="sub">Ahli Ekologi Indonesia (1930–2013)</span>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <p style="font-weight:500; color:#1a2a3a; font-size:0.9rem;">Definisi biosfer:</p>
+                            <ul>
+                                <li>Biosfer adalah <strong>lapisan kehidupan di bumi</strong> yang mencakup semua organisme.</li>
+                                <li>Merupakan <strong>sistem yang kompleks</strong> dengan berbagai interaksi.</li>
+                                <li>Biosfer adalah <strong>sumber daya alam</strong> yang harus dijaga kelestariannya.</li>
+                            </ul>
+                            <div class="keterangan">
+                                <i class="fas fa-info-circle"></i> 
+                                Otto Soemarwoto adalah ahli ekologi Indonesia yang banyak meneliti tentang konservasi sumber daya alam. Ia menekankan pentingnya menjaga keseimbangan biosfer untuk keberlanjutan kehidupan.
+                            </div>
+                        </div>
+                        <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk lihat definisi</span>
+                    </div>
+                </div>
+
+                <div style="background:linear-gradient(145deg, #1e1e1e, #252525); border-radius:14px; padding:14px 18px; border:1px solid #333; margin-top:14px;">
+                    <p style="display:flex; align-items:flex-start; gap:10px; color:#ddd;">
+                        <i class="fas fa-lightbulb" style="color:#3498db; font-size:1.4rem; margin-top:2px;"></i>
+                        <span>
+                            <strong style="color:#fff;">Kesimpulan:</strong> Dari berbagai definisi di atas, dapat disimpulkan bahwa biosfer memiliki beberapa karakteristik penting:
+                        </span>
+                    </p>
+                    <ul style="padding-left:40px; margin-top:4px; list-style-type:disc; color:#ccc;">
+                        <li><strong>Lapisan Kehidupan:</strong> Biosfer adalah lapisan di bumi yang dihuni oleh makhluk hidup.</li>
+                        <li><strong>Mencakup Semua Ekosistem:</strong> Biosfer mencakup seluruh ekosistem di darat, laut, dan udara.</li>
+                        <li><strong>Dinamis:</strong> Selalu terjadi interaksi dan perubahan di dalamnya.</li>
+                        <li><strong>Sumber Daya Alam:</strong> Menyediakan berbagai sumber daya bagi kehidupan manusia.</li>
+                        <li><strong>Sistem Tertutup:</strong> Energi utama berasal dari matahari.</li>
+                    </ul>
+                    <p style="margin-top:6px; font-size:0.9rem; color:#aaa; border-top:1px solid #444; padding-top:6px;">
+                        <i class="fas fa-quote-right" style="color:#3498db;"></i> 
+                        <em>"Biosfer adalah rumah bagi seluruh kehidupan di bumi."</em>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTION 7 : BIOMA ========== -->
+        <section id="section7" class="section">
+            <div class="section-wrapper">
+                <div class="section-header">
+                    <div class="num">07</div>
+                    <h2>Bioma <small>Ekosistem Besar di Permukaan Bumi</small></h2>
+                </div>
+
+                <h3 style="font-size:1.1rem; color:#f0f0f0; border-left:4px solid #3498db; padding-left:12px; margin-bottom:6px;">
+                    <i class="fas fa-globe-asia" style="color:#3498db;"></i> Pengertian Bioma
+                </h3>
+                <p style="font-size:0.95rem; color:#ccc; margin-bottom:8px;">
+                    Bioma adalah <strong>ekosistem besar yang terbentuk karena perbedaan kondisi iklim dan geografi di suatu wilayah</strong>. Bioma memiliki karakteristik flora dan fauna yang khas dan tersebar di berbagai belahan dunia.
+                </p>
+
+                <div class="komponen-grid">
+                    <div class="komponen-card interactive-card dark-card" onclick="this.classList.toggle('open')">
+                        <h4>1. Hutan Hujan Tropis</h4>
+                        <p>Bioma dengan curah hujan tinggi dan keanekaragaman hayati tertinggi.</p>
+                        <div class="back">
+                            <p style="color:#2a3a4a;">Hutan hujan tropis terletak di <strong>garis khatulistiwa</strong> dengan suhu tinggi dan curah hujan >2000 mm/tahun. Memiliki <strong>keanekaragaman hayati tertinggi</strong> di dunia. Contoh: Amazon, Kongo, dan hutan di Indonesia (Kalimantan, Papua).</p>
+                            <strong style="color:#1a2a3a;">Flora:</strong> Pohon besar, liana, epifit. <strong>Fauna:</strong> Orangutan, harimau, burung cendrawasih.
+                        </div>
+                        <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span>
+                    </div>
+
+                    <div class="komponen-card interactive-card dark-card" onclick="this.classList.toggle('open')">
+                        <h4>2. Sabana</h4>
+                        <p>Padang rumput tropis dengan pohon-pohon yang tersebar.</p>
+                        <div class="back">
+                            <p style="color:#2a3a4a;">Sabana terletak di <strong>daerah tropis dengan musim kemarau panjang</strong>. Curah hujan 500-1500 mm/tahun. Vegetasi didominasi oleh rumput dan pohon-pohon yang tersebar (akasia, baobab).</p>
+                            <strong style="color:#1a2a3a;">Flora:</strong> Rumput, akasia, baobab. <strong>Fauna:</strong> Zebra, singa, jerapah, gajah.
+                        </div>
+                        <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span>
+                    </div>
+
+                    <div class="komponen-card interactive-card dark-card" onclick="this.classList.toggle('open')">
+                        <h4>3. Gurun</h4>
+                        <p>Bioma dengan curah hujan sangat rendah dan suhu ekstrem.</p>
+                        <div class="back">
+                            <p style="color:#2a3a4a;">Gurun terletak di <strong>daerah subtropis</strong> dengan curah hujan <250 mm/tahun. Suhu sangat tinggi di siang hari dan sangat dingin di malam hari. Vegetasi sangat jarang (kaktus, semak belukar).</p>
+                            <strong style="color:#1a2a3a;">Flora:</strong> Kaktus, semak, lumut. <strong>Fauna:</strong> Unta, kadal, kalajengking.
+                        </div>
+                        <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span>
+                    </div>
+
+                    <div class="komponen-card interactive-card dark-card" onclick="this.classList.toggle('open')">
+                        <h4>4. Hutan Sedang (Berdaun Gugur)</h4>
+                        <p>Hutan di daerah lintang sedang dengan empat musim.</p>
+                        <div class="back">
+                            <p style="color:#2a3a4a;">Hutan sedang terletak di <strong>lintang sedang</strong> (Eropa, Amerika Utara, Asia Timur). Curah hujan 500-1500 mm/tahun. Pohon menggugurkan daun di musim gugur.</p>
+                            <strong style="color:#1a2a3a;">Flora:</strong> Oak, maple, beech. <strong>Fauna:</strong> Rusa, beruang, tupai.
+                        </div>
+                        <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span>
+                    </div>
+
+                    <div class="komponen-card interactive-card dark-card" onclick="this.classList.toggle('open')">
+                        <h4>5. Taiga</h4>
+                        <p>Hutan konifer di daerah subarktik.</p>
+                        <div class="back">
+                            <p style="color:#2a3a4a;">Taiga terletak di <strong>daerah subarktik</strong> (Kanada, Rusia, Skandinavia). Musim dingin panjang dan dingin. Vegetasi didominasi oleh pohon konifer (pinus, cemara).</p>
+                            <strong style="color:#1a2a3a;">Flora:</strong> Pinus, cemara, larch. <strong>Fauna:</strong> Rusa kutub, serigala, beruang hitam.
+                        </div>
+                        <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span>
+                    </div>
+
+                    <div class="komponen-card interactive-card dark-card" onclick="this.classList.toggle('open')">
+                        <h4>6. Tundra</h4>
+                        <p>Bioma di kutub dengan lapisan es abadi (permafrost).</p>
+                        <div class="back">
+                            <p style="color:#2a3a4a;">Tundra terletak di <strong>daerah kutub</strong> (Arktik dan Antarktika) dan pegunungan tinggi. Suhu sangat rendah dan musim dingin panjang. Vegetasi berupa lumut, liken, dan rumput rendah.</p>
+                            <strong style="color:#1a2a3a;">Flora:</strong> Lumut, liken, rumput. <strong>Fauna:</strong> Rusa kutub, rubah kutub, burung salju.
+                        </div>
+                        <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span>
+                    </div>
+                </div>
+
+                <div style="background:linear-gradient(145deg, #1a241e, #1e2a24); border-radius:14px; padding:14px 18px; margin-top:12px; border-left:6px solid #3498db;">
+                    <p style="color:#ccc; font-size:0.95rem;">
+                        <i class="fas fa-info-circle" style="color:#3498db;"></i> 
+                        <strong>Ingat:</strong> Bioma di Indonesia didominasi oleh hutan hujan tropis karena letaknya di garis khatulistiwa. Indonesia memiliki keanekaragaman hayati yang sangat tinggi, menjadikannya salah satu negara megabiodiversitas di dunia.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTION 8 : INTERAKSI DAN KEANEKARAGAMAN ========== -->
+        <section id="section8" class="section">
+            <div class="section-wrapper">
+                <div class="section-header">
+                    <div class="num">08</div>
+                    <h2>Interaksi & Keanekaragaman Hayati <small>Hubungan dalam Ekosistem</small></h2>
+                </div>
+
+                <h3 style="font-size:1.1rem; color:#f0f0f0; border-left:4px solid #3498db; padding-left:12px; margin-bottom:6px;">
+                    <i class="fas fa-handshake" style="color:#3498db;"></i> Interaksi dalam Ekosistem
+                </h3>
+                <p style="font-size:0.95rem; color:#ccc; margin-bottom:8px;">
+                    Di dalam ekosistem, terjadi berbagai interaksi antara makhluk hidup. Interaksi ini dapat bersifat positif, netral, atau negatif.
+                </p>
+                <div class="grid-2">
+                    <div class="card card-enhanced interactive-card dark-card" onclick="this.classList.toggle('open')">
+                        <span class="pillar-icon" style="font-size:2.2rem;">🐟</span>
+                        <h3>Simbiosis Mutualisme</h3>
+                        <p>Hubungan saling menguntungkan antara dua spesies.</p>
+                        <div class="back">
+                            <p style="color:#2a3a4a;">Mutualisme adalah <strong>interaksi antara dua spesies yang saling menguntungkan</strong>. Kedua spesies mendapat manfaat dari hubungan ini.</p>
+                            <strong style="color:#1a2a3a;">Contoh:</strong> Kupu-kupu dan bunga (penyerbukan), ikan badut dan anemon laut (perlindungan).
+                        </div>
+                        <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span>
+                    </div>
+
+                    <div class="card card-enhanced interactive-card dark-card" onclick="this.classList.toggle('open')">
+                        <span class="pillar-icon" style="font-size:2.2rem;">🐛</span>
+                        <h3>Parasitisme</h3>
+                        <p>Hubungan merugikan satu pihak, menguntungkan pihak lain.</p>
+                        <div class="back">
+                            <p style="color:#2a3a4a;">Parasitisme adalah <strong>interaksi di mana satu spesies diuntungkan (parasit) dan spesies lain dirugikan (inang)</strong>. Parasit hidup pada inangnya.</p>
+                            <strong style="color:#1a2a3a;">Contoh:</strong> Cacing pita pada hewan ternak, benalu pada pohon.
+                        </div>
+                        <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span>
+                    </div>
+
+                    <div class="card card-enhanced interactive-card dark-card" onclick="this.classList.toggle('open')">
+                        <span class="pillar-icon" style="font-size:2.2rem;">🦁</span>
+                        <h3>Predasi</h3>
+                        <p>Hubungan pemangsa dan mangsa.</p>
+                        <div class="back">
+                            <p style="color:#2a3a4a;">Predasi adalah <strong>interaksi di mana satu spesies (predator) memangsa spesies lain (mangsa)</strong> untuk mendapatkan makanan.</p>
+                            <strong style="color:#1a2a3a;">Contoh:</strong> Singa dan zebra, elang dan tikus.
+                        </div>
+                        <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span>
+                    </div>
+
+                    <div class="card card-enhanced interactive-card dark-card" onclick="this.classList.toggle('open')">
+                        <span class="pillar-icon" style="font-size:2.2rem;">🍄</span>
+                        <h3>Simbiosis Komensalisme</h3>
+                        <p>Hubungan satu pihak diuntungkan, pihak lain tidak diuntungkan/ dirugikan.</p>
+                        <div class="back">
+                            <p style="color:#2a3a4a;">Komensalisme adalah <strong>interaksi di mana satu spesies diuntungkan (komensal) dan spesies lain tidak diuntungkan atau dirugikan</strong>.</p>
+                            <strong style="color:#1a2a3a;">Contoh:</strong> Ikan remora pada hiu, anggrek pada pohon.
+                        </div>
+                        <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span>
+                    </div>
+                </div>
+
+                <div style="margin-top:16px;">
+                    <h3 style="font-size:1.1rem; color:#f0f0f0; border-left:4px solid #3498db; padding-left:12px; margin-bottom:6px;">
+                        <i class="fas fa-dna" style="color:#3498db;"></i> Keanekaragaman Hayati di Indonesia
+                    </h3>
+                    <p style="font-size:0.95rem; color:#ccc; margin-bottom:8px;">
+                        Indonesia adalah salah satu negara <strong>megabiodiversitas</strong> di dunia dengan keanekaragaman hayati yang sangat tinggi. Hal ini disebabkan oleh:
+                    </p>
+                    <div class="grid-3">
+                        <div class="card card-enhanced" style="border-left:5px solid #3498db;">
+                            <div style="font-size:2rem; color:#3498db; margin-bottom:4px;"><i class="fas fa-leaf"></i></div>
+                            <h4 style="color:#f0f0f0;">Flora</h4>
+                            <p style="font-size:0.9rem;">Ribuan spesies tumbuhan, termasuk yang endemik seperti Rafflesia arnoldii (bunga terbesar di dunia) dan pohon dipterokarpa.</p>
+                        </div>
+                        <div class="card card-enhanced" style="border-left:5px solid #5aadf0;">
+                            <div style="font-size:2rem; color:#5aadf0; margin-bottom:4px;"><i class="fas fa-paw"></i></div>
+                            <h4 style="color:#f0f0f0;">Fauna</h4>
+                            <p style="font-size:0.9rem;">Beragam spesies hewan, termasuk orangutan, harimau sumatra, komodo, dan burung cendrawasih. Indonesia memiliki fauna tipe Asiatis, Australis, dan Peralihan.</p>
+                        </div>
+                        <div class="card card-enhanced" style="border-left:5px solid #2980b9;">
+                            <div style="font-size:2rem; color:#2980b9; margin-bottom:4px;"><i class="fas fa-microscope"></i></div>
+                            <h4 style="color:#f0f0f0;">Ekosistem</h4>
+                            <p style="font-size:0.9rem;">Beragam ekosistem seperti hutan hujan tropis, hutan mangrove, terumbu karang, dan padang lamun.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background:linear-gradient(145deg, #1a241e, #1e2a24); border-radius:14px; padding:14px 18px; margin-top:12px; border-left:6px solid #3498db;">
+                    <p style="color:#ccc; font-size:0.95rem;">
+                        <i class="fas fa-info-circle" style="color:#3498db;"></i> 
+                        <strong>Penting:</strong> Keanekaragaman hayati Indonesia sangat berharga dan perlu dijaga dari ancaman seperti deforestasi, perburuan liar, dan perubahan iklim.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTION 9 : FENOMENA DAN MANFAAT BIOSFER ========== -->
+        <section id="section9" class="section">
+            <div class="section-wrapper">
+                <div class="section-header">
+                    <div class="num">09</div>
+                    <h2>Fenomena & Manfaat Biosfer <small>Dampak dan Kegunaan</small></h2>
+                </div>
+
+                <h3 style="font-size:1.1rem; color:#f0f0f0; border-left:4px solid #3498db; padding-left:12px; margin-bottom:6px;">
+                    <i class="fas fa-bolt" style="color:#3498db;"></i> Dampak Fenomena Biosfer
+                </h3>
+                <div class="grid-2" style="margin-bottom:16px;">
+                    <div class="card card-enhanced" style="border-left:4px solid #e74c3c;">
+                        <div style="font-size:2rem; color:#e74c3c; margin-bottom:4px;"><i class="fas fa-skull"></i></div>
+                        <h4 style="color:#f0f0f0;">Dampak Negatif</h4>
+                        <ul style="font-size:0.9rem; padding-left:18px;">
+                            <li><strong>Deforestasi:</strong> Penggundulan hutan yang menyebabkan hilangnya habitat dan kepunahan spesies.</li>
+                            <li><strong>Perburuan Liar:</strong> Mengancam kelangsungan hidup fauna langka.</li>
+                            <li><strong>Perubahan Iklim:</strong> Mempengaruhi pola hidup dan persebaran makhluk hidup.</li>
+                            <li><strong>Pencemaran Lingkungan:</strong> Mengganggu keseimbangan ekosistem.</li>
+                            <li><strong>Kepunahan Spesies:</strong> Hilangnya keanekaragaman hayati.</li>
+                        </ul>
+                    </div>
+                    <div class="card card-enhanced" style="border-left:4px solid #2ecc71;">
+                        <div style="font-size:2rem; color:#2ecc71; margin-bottom:4px;"><i class="fas fa-heart"></i></div>
+                        <h4 style="color:#f0f0f0;">Manfaat Positif</h4>
+                        <ul style="font-size:0.9rem; padding-left:18px;">
+                            <li><strong>Sumber Pangan:</strong> Flora dan fauna menyediakan makanan bagi manusia.</li>
+                            <li><strong>Bahan Obat-obatan:</strong> Banyak obat berasal dari tumbuhan dan hewan.</li>
+                            <li><strong>Regulasi Iklim:</strong> Hutan menyerap CO₂ dan menghasilkan oksigen.</li>
+                            <li><strong>Ekonomi:</strong> Pariwisata alam dan hasil hutan.</li>
+                            <li><strong>Ilmu Pengetahuan:</strong> Sumber penelitian dan pengembangan.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- ===== AKTIVITAS SEDERHANA: MENGAMATI KEANEKARAGAMAN HAYATI ===== -->
+                <div style="margin-top:20px; background:linear-gradient(145deg, #1a241e, #1e2a24); border-radius: 14px; padding: 18px 16px; border: 2px dashed #3498db;">
+                    <h3 style="color:#f0f0f0; font-size:1.1rem; display:flex; align-items:center; gap:10px;">
+                        <i class="fas fa-search" style="color:#3498db;"></i> Aktivitas Sederhana: Mengamati Keanekaragaman Hayati di Lingkungan Sekitar
+                    </h3>
+                    <p style="color:#ccc; font-size:0.95rem; margin:6px 0 10px 0;">
+                        Keanekaragaman hayati ada di sekitar kita, di sekolah, rumah, atau kebun. Mari kita amati!
+                    </p>
+
+                    <!-- LANGKAH-LANGKAH -->
+                    <div style="background:linear-gradient(145deg, #1e1e1e, #252525); border-radius:10px; padding:12px 16px; margin:12px 0; border:1px solid #444;">
+                        <h4 style="color:#f0f0f0; font-size:1rem; display:flex; align-items:center; gap:8px;">
+                            <i class="fas fa-list-ol" style="color:#3498db;"></i> Langkah-langkah
+                        </h4>
+                        <ol style="color:#ccc; padding-left:20px; font-size:0.95rem; line-height:2;">
+                            <li><strong>Pilih satu area</strong> di lingkungan sekitarmu (halaman sekolah, kebun rumah, atau taman).</li>
+                            <li><strong>Amati dan catat</strong> jenis-jenis tumbuhan dan hewan yang ada di area tersebut.</li>
+                            <li><strong>Kelompokkan</strong> makhluk hidup yang kamu temukan berdasarkan jenisnya (pohon, semak, rumput, burung, serangga, dll.).</li>
+                            <li><strong>Catat</strong> jumlah dan ciri-ciri setiap jenis makhluk hidup yang ditemukan.</li>
+                            <li><strong>Hubungkan</strong> dengan materi bioma dan interaksi yang telah dipelajari.</li>
+                        </ol>
+                    </div>
+
+                    <!-- FORMAT TABEL -->
+                    <div style="background:linear-gradient(145deg, #1e1e1e, #252525); border-radius:10px; padding:12px 16px; margin:12px 0; border:1px solid #444;">
+                        <h4 style="color:#f0f0f0; font-size:1rem; display:flex; align-items:center; gap:8px;">
+                            <i class="fas fa-table" style="color:#3498db;"></i> Format Laporan Pengamatan
+                        </h4>
+                        <div style="background:#1a1a1a; padding:10px; border-radius:8px; color:#ccc; font-size:0.9rem; line-height:1.8;">
+                            <p><strong>Nama Pengamat:</strong> .................................</p>
+                            <p><strong>Tanggal Pengamatan:</strong> .................................</p>
+                            <p><strong>Lokasi:</strong> .................................</p>
+                            <p><strong>Jenis Vegetasi:</strong> (pohon/semak/rumput/lainnya) .................................</p>
+                            <p><strong>Jenis Hewan Terlihat:</strong> (burung/serangga/hewan lain) .................................</p>
+                            <p><strong>Jumlah Spesies:</strong> .................................</p>
+                            <p><strong>Interaksi yang Teramati:</strong> .................................</p>
+                            <p><strong>Kondisi Lingkungan:</strong> (bersih/tercemar/rindang) .................................</p>
+                            <p><strong>Catatan Tambahan:</strong> .................................</p>
+                        </div>
+                    </div>
+
+                    <!-- CONTOH HASIL -->
+                    <div style="background:linear-gradient(145deg, #1a1a1a, #222); border-radius:10px; padding:12px 16px; margin:12px 0; border:1px solid #444;">
+                        <h4 style="color:#f0f0f0; font-size:1rem; display:flex; align-items:center; gap:8px;">
+                            <i class="fas fa-pencil-alt" style="color:#3498db;"></i> Contoh Hasil Pengamatan
+                        </h4>
+                        <div style="color:#ccc; font-size:0.9rem; line-height:1.8;">
+                            <p><strong>Nama Pengamat:</strong> Rizky</p>
+                            <p><strong>Tanggal Pengamatan:</strong> 27 Juli 2026</p>
+                            <p><strong>Lokasi:</strong> Halaman SMAN 3 Kasongan</p>
+                            <p><strong>Jenis Vegetasi:</strong> Pohon kelapa, pohon rambutan, rumput, semak belukar</p>
+                            <p><strong>Jenis Hewan Terlihat:</strong> Burung gereja, kupu-kupu, capung, semut</p>
+                            <p><strong>Jumlah Spesies:</strong> 4 jenis tumbuhan, 4 jenis hewan</p>
+                            <p><strong>Interaksi yang Teramati:</strong> Kupu-kupu menghisap nektar bunga (mutualisme)</p>
+                            <p><strong>Kondisi Lingkungan:</strong> Cukup rindang, udara segar</p>
+                            <p><strong>Catatan Tambahan:</strong> Terdapat banyak sampah plastik di sekitar halaman, perlu kebersihan lebih baik</p>
+                        </div>
+                    </div>
+
+                    <!-- TUGAS REFLEKSI -->
+                    <div style="background:linear-gradient(145deg, #1e1e1e, #252525); border-radius:10px; padding:12px 16px; margin:12px 0; border:1px solid #444;">
+                        <h4 style="color:#f0f0f0; font-size:1rem; display:flex; align-items:center; gap:8px;">
+                            <i class="fas fa-pencil-alt" style="color:#3498db;"></i> ✏️ Tugas Refleksi
+                        </h4>
+                        <p style="color:#ccc; font-size:0.95rem; margin-bottom:8px;">
+                            Berdasarkan hasil pengamatan, jawablah pertanyaan berikut di buku tugas:
+                        </p>
+                        <ol style="color:#ccc; padding-left:20px; font-size:0.95rem; line-height:2;">
+                            <li><strong>Berapa jenis tumbuhan dan hewan</strong> yang kamu temukan di area pengamatan?</li>
+                            <li><strong>Apakah keanekaragaman hayati</strong> di tempat tersebut tergolong tinggi atau rendah? Mengapa?</li>
+                            <li><strong>Interaksi apa</strong> yang kamu amati antara makhluk hidup di sana?</li>
+                            <li><strong>Menurutmu, apa yang dapat dilakukan</strong> untuk menjaga keanekaragaman hayati di tempat tersebut?</li>
+                            <li><strong>Kaitkan hasil pengamatanmu</strong> dengan materi biosfer yang telah dipelajari!</li>
+                        </ol>
+                        <p style="font-size:0.85rem; color:#888; margin-top:6px;">
+                            <i class="fas fa-info-circle"></i> Kamu bisa membandingkan hasil pengamatanmu dengan teman yang berbeda lokasi!
+                        </p>
+                    </div>
+
+                    <p style="font-size:0.9rem; color:#aaa; margin-top:4px;">
+                        <i class="fas fa-lightbulb" style="color:#3498db;"></i> 
+                        <strong>Refleksi:</strong> Setelah melakukan pengamatan ini, bagaimana pemahamanmu tentang biosfer membantu kamu lebih menghargai keanekaragaman hayati di sekitarmu?
+                    </p>
+                </div>
+                <!-- ===== AKHIR AKTIVITAS ===== -->
+
+                <div style="background:linear-gradient(145deg, #1a241e, #1e2a24); border-radius:14px; padding:14px 18px; margin-top:12px; border-left:6px solid #3498db;">
+                    <p style="color:#ccc; font-size:0.95rem;">
+                        <i class="fas fa-quote-left" style="color:#3498db;"></i> 
+                        <em>"Biosfer adalah warisan berharga yang harus kita jaga untuk generasi mendatang."</em>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTION 10 : ASESMEN ========== -->
+        <section id="section10" class="section">
+            <div class="section-wrapper">
+                <div class="section-header">
+                    <div class="num">10</div>
+                    <h2>Asesmen Pembelajaran <small>Evaluasi Pemahaman Biosfer</small></h2>
+                </div>
+                <p style="font-size:1rem; margin-bottom:16px; color:#ccc;">
+                    <i class="fas fa-clipboard-list" style="color:#3498db;"></i> 
+                    Setelah mempelajari materi pengertian, bioma, interaksi, keanekaragaman hayati, dan fenomena biosfer, kerjakan asesmen berikut untuk mengukur pemahamanmu.
+                    <strong>Selamat mengerjakan!</strong>
+                </p>
+
+                <!-- Bagian A: Pilihan Ganda (10 soal) -->
+                <div class="card card-enhanced" style="margin-bottom: 20px;">
+                    <h3 style="color: #3498db; display: flex; align-items: center; gap: 10px;">
+                        <span style="background: #3498db; color: #121212; padding: 4px 12px; border-radius: 30px; font-size: 0.9rem;">A</span>
+                        Pilihan Ganda
+                    </h3>
+                    <p style="color: #aaa; font-size: 0.9rem; margin-bottom: 12px;">Pilihlah satu jawaban yang paling tepat!</p>
+
+                    <div class="assessment-question">
+                        <div class="q-text">1. Biosfer berasal dari bahasa Yunani "bios" yang artinya ...</div>
+                        <div class="q-options">
+                            <span>A. Air</span>
+                            <span>B. Kehidupan</span>
+                            <span>C. Lapisan</span>
+                            <span>D. Tanah</span>
+                            <span>E. Udara</span>
+                        </div>
+                    </div>
+
+                    <div class="assessment-question">
+                        <div class="q-text">2. Bioma hutan hujan tropis terletak di ...</div>
+                        <div class="q-options">
+                            <span>A. Lintang sedang</span>
+                            <span>B. Garis khatulistiwa</span>
+                            <span>C. Daerah kutub</span>
+                            <span>D. Daerah gurun</span>
+                            <span>E. Pegunungan tinggi</span>
+                        </div>
+                    </div>
+
+                    <div class="assessment-question">
+                        <div class="q-text">3. Contoh simbiosis mutualisme adalah ...</div>
+                        <div class="q-options">
+                            <span>A. Singa dan zebra</span>
+                            <span>B. Kupu-kupu dan bunga</span>
+                            <span>C. Benalu pada pohon</span>
+                            <span>D. Cacing pita pada sapi</span>
+                            <span>E. Ikan remora pada hiu</span>
+                        </div>
+                    </div>
+
+                    <div class="assessment-question">
+                        <div class="q-text">4. Bioma dengan curah hujan sangat rendah (<250 mm/tahun) adalah ...</div>
+                        <div class="q-options">
+                            <span>A. Hutan hujan tropis</span>
+                            <span>B. Sabana</span>
+                            <span>C. Gurun</span>
+                            <span>D. Taiga</span>
+                            <span>E. Tundra</span>
+                        </div>
+                    </div>
+
+                    <div class="assessment-question">
+                        <div class="q-text">5. Indonesia termasuk negara megabiodiversitas karena memiliki ...</div>
+                        <div class="q-options">
+                            <span>A. Keanekaragaman hayati rendah</span>
+                            <span>B. Keanekaragaman hayati sangat tinggi</span>
+                            <span>C. Tidak memiliki hutan</span>
+                            <span>D. Hanya memiliki satu jenis bioma</span>
+                            <span>E. Tidak ada fauna endemik</span>
+                        </div>
+                    </div>
+
+                    <div class="assessment-question">
+                        <div class="q-text">6. Contoh hewan endemik Indonesia adalah ...</div>
+                        <div class="q-options">
+                            <span>A. Gajah Afrika</span>
+                            <span>B. Orangutan</span>
+                            <span>C. Singa</span>
+                            <span>D. Jerapah</span>
+                            <span>E. Zebra</span>
+                        </div>
+                    </div>
+
+                    <div class="assessment-question">
+                        <div class="q-text">7. Interaksi antara dua spesies yang saling menguntungkan disebut ...</div>
+                        <div class="q-options">
+                            <span>A. Parasitisme</span>
+                            <span>B. Komensalisme</span>
+                            <span>C. Mutualisme</span>
+                            <span>D. Predasi</span>
+                            <span>E. Kompetisi</span>
+                        </div>
+                    </div>
+
+                    <div class="assessment-question">
+                        <div class="q-text">8. Bioma yang didominasi oleh pohon konifer adalah ...</div>
+                        <div class="q-options">
+                            <span>A. Hutan hujan tropis</span>
+                            <span>B. Sabana</span>
+                            <span>C. Gurun</span>
+                            <span>D. Taiga</span>
+                            <span>E. Tundra</span>
+                        </div>
+                    </div>
+
+                    <div class="assessment-question">
+                        <div class="q-text">9. Dampak negatif dari deforestasi adalah ...</div>
+                        <div class="q-options">
+                            <span>A. Meningkatnya keanekaragaman hayati</span>
+                            <span>B. Hilangnya habitat dan kepunahan spesies</span>
+                            <span>C. Menurunnya suhu global</span>
+                            <span>D. Meningkatnya kesuburan tanah</span>
+                            <span>E. Bertambahnya sumber air</span>
+                        </div>
+                    </div>
+
+                    <div class="assessment-question">
+                        <div class="q-text">10. Manfaat biosfer bagi manusia adalah ...</div>
+                        <div class="q-options">
+                            <span>A. Sumber pangan dan obat-obatan</span>
+                            <span>B. Menyebabkan kepunahan spesies</span>
+                            <span>C. Meningkatkan polusi</span>
+                            <span>D. Menurunkan kualitas udara</span>
+                            <span>E. Menyebabkan deforestasi</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bagian B: Analisis dan Refleksi -->
+                <div class="card card-enhanced" style="margin-bottom: 20px;">
+                    <h3 style="color: #3498db; display: flex; align-items: center; gap: 10px;">
+                        <span style="background: #3498db; color: #121212; padding: 4px 12px; border-radius: 30px; font-size: 0.9rem;">B</span>
+                        Analisis & Refleksi
+                    </h3>
+                    <p style="color: #aaa; font-size: 0.9rem; margin-bottom: 12px;">Jawablah pertanyaan berikut dengan uraian yang jelas dan sistematis!</p>
+
+                    <div class="essay-question">
+                        <div class="q-text">1. Jelaskan perbedaan antara bioma hutan hujan tropis dan bioma tundra! Berikan ciri-ciri masing-masing!</div>
+                        <div class="q-note">(Petunjuk: Perhatikan letak geografis, suhu, curah hujan, dan jenis vegetasi).</div>
+                    </div>
+
+                    <div class="essay-question">
+                        <div class="q-text">2. Pilihlah salah satu jenis interaksi ekosistem (mutualisme, parasitisme, atau predasi). Analisislah contoh interaksi tersebut di lingkungan sekitarmu!</div>
+                        <div class="q-note">(Petunjuk: Hubungkan dengan materi interaksi dalam ekosistem).</div>
+                    </div>
+
+                    <div class="essay-question">
+                        <div class="q-text">3. Refleksikan bagaimana pemahaman tentang biosfer dapat membantumu dalam menjaga kelestarian lingkungan dan keanekaragaman hayati!</div>
+                        <div class="q-note">(Petunjuk: Hubungkan dengan upaya konservasi dan pelestarian alam).</div>
+                    </div>
+                </div>
+
+                <div style="background:linear-gradient(145deg, #1a241e, #1e2a24); border-radius: 14px; padding: 14px 18px; border-left: 6px solid #3498db; margin-top: 10px;">
+                    <p style="display: flex; align-items: center; gap: 10px; color: #ccc; font-size: 0.9rem;">
+                        <i class="fas fa-info-circle" style="color: #3498db; font-size: 1.2rem;"></i>
+                        <span><strong style="color: #fff;">Catatan:</strong> Kerjakan dengan jujur dan mandiri. Gunakan pemahamanmu dari seluruh materi yang telah dipelajari. Selamat berlatih!</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTION 11 : REFLEKSI ========== -->
+        <section id="section11" class="section">
+            <div class="section-wrapper">
+                <div class="section-header">
+                    <div class="num">11</div>
+                    <h2>Refleksi Pembelajaran <small>Menyimpulkan Materi</small></h2>
+                </div>
+                <div class="card card-enhanced" style="background:linear-gradient(145deg, #1a2a2a, #1e2e2e); border: 1px solid #3498db;">
+                    <h3 style="display: flex; align-items: center; gap: 10px; color: #f0f0f0;">
+                        <span style="font-size: 1.8rem;">🌟</span> Apa yang Kamu Dapatkan Hari Ini?
+                    </h3>
+                    <ul class="refleksi-list">
+                        <li><span class="check">✅</span><span>Memahami pengertian biosfer dan ruang lingkupnya.</span></li>
+                        <li><span class="check">✅</span><span>Mengenal jenis-jenis bioma di permukaan bumi.</span></li>
+                        <li><span class="check">✅</span><span>Mengetahui interaksi dalam ekosistem (mutualisme, parasitisme, predasi, komensalisme).</span></li>
+                        <li><span class="check">✅</span><span>Menyadari bahwa Indonesia adalah negara megabiodiversitas.</span></li>
+                        <li><span class="check">✅</span><span>Memahami manfaat dan dampak biosfer bagi kehidupan manusia.</span></li>
+                    </ul>
+                </div>
+
+                <div class="card card-enhanced" style="background:linear-gradient(145deg, #1e1e1e, #252525); margin-top: 16px; border-left: 6px solid #3498db;">
+                    <h3 style="display: flex; align-items: center; gap: 10px; color: #f0f0f0;">
+                        <i class="fas fa-pen-fancy" style="color: #3498db; font-size: 1.4rem;"></i> Renungkan
+                    </h3>
+                    <p style="font-size: 1.05rem; color: #ddd; font-style: italic; margin-top: 4px;">
+                        "Bagaimana pemahaman tentang biosfer dapat membantu kita menjaga kelestarian lingkungan dan keanekaragaman hayati untuk generasi mendatang?"
+                    </p>
+                    <p style="margin-top: 8px; font-size: 0.9rem; color: #aaa;">
+                        <i class="fas fa-arrow-right" style="color: #3498db;"></i> 
+                        Coba tuliskan jawabanmu di buku catatan sebagai bentuk refleksi pribadi.
+                    </p>
+                </div>
+
+                <div class="quote-block">
+                    <i class="fas fa-leaf" style="color: #3498db; margin-right: 10px;"></i>
+                    🌿 Pesan Hari Ini
+                    <blockquote style="margin: 8px 0 0 0; padding: 0; border: none; background: transparent; color: #ddd;">
+                        "Biosfer adalah rumah bagi semua makhluk hidup. Menjaganya berarti menjaga masa depan bumi."
+                        <span class="author">— Otto Soemarwoto</span>
+                    </blockquote>
+                </div>
+
+                <div class="celebration-box">
+                    <h3>🎉 Selamat!</h3>
+                    <p>Kamu telah menyelesaikan materi <strong>Biosfer (Fenomena Geosfer)</strong>.</p>
+                    <div style="margin-top: 16px;">
+                        <span class="next-step-btn">
+                            ➡️ Lanjutkan ke materi berikutnya: Antroposfer
+                        </span>
+                    </div>
+                    <p style="margin-top: 12px; font-size: 0.85rem; color: #888;">
+                        <i class="fas fa-info-circle" style="color: #3498db;"></i> 
+                        Siapkan dirimu untuk bab selanjutnya!
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTION 12 : REFERENSI ========== -->
+        <section id="section12" class="section">
+            <div class="section-wrapper">
+                <div class="section-header">
+                    <div class="num">12</div>
+                    <h2>Referensi <small>Daftar Pustaka</small></h2>
+                </div>
+                <ul class="ref-list">
+                    <li><i class="fas fa-file-pdf"></i> <strong>Kurikulum Merdeka:</strong> Capaian Pembelajaran Mata Pelajaran IPS Fase E-Fase F, BSKAP Kemendikbudristek (2024).</li>
+                    <li><i class="fas fa-book"></i> Suharyono & Amien, M. (2013). <em>Pengantar Filsafat Geografi</em>. Yogyakarta: Ombak.</li>
+                    <li><i class="fas fa-book"></i> Daldjoeni, N. (2005). <em>Geografi untuk Indonesia</em>. Bandung: Alumni.</li>
+                    <li><i class="fas fa-book"></i> Muta’ali, Luthfi. (2015). <em>Geografi Pemukiman</em>. Yogyakarta: Badan Penerbit Fakultas Geografi UGM.</li>
+                    <li><i class="fas fa-book"></i> Odum, E.P. (1993). <em>Dasar-dasar Ekologi</em>. Yogyakarta: Gadjah Mada University Press.</li>
+                    <li><i class="fas fa-book"></i> Soemarwoto, Otto. (2001). <em>Ekologi Lingkungan Hidup dan Pembangunan</em>. Jakarta: Djambatan.</li>
+                    <li><i class="fas fa-book"></i> Vernadsky, V.I. (1998). <em>The Biosphere</em>. New York: Copernicus.</li>
+                    <li><i class="fas fa-book"></i> Haggett, Peter. <em>Geography: A Modern Synthesis</em>. New York: Harper & Row.</li>
+                    <li><i class="fas fa-book"></i> de Blij, H.J. & Muller, P.O. <em>Geography: Realms, Regions and Concepts</em>. New York: Wiley.</li>
+                    <li><i class="fas fa-book"></i> Sumaatmadja, Nursid. <em>Metodologi Pengajaran Geografi</em>. Jakarta: Bumi Aksara.</li>
+                    <li><i class="fas fa-book"></i> Sartono Kartodirdjo. (1992). <em>Pendekatan Ilmu Sosial dalam Metodologi Sejarah</em>. Jakarta: Gramedia.</li>
+                    <li><i class="fas fa-book"></i> Bintarto. <em>Metode Penelitian Geografi</em>. Yogyakarta: UGM Press.</li>
+                </ul>
+                <div class="footer-credit">
+                    <i class="fas fa-school" style="color:#3498db;"></i> <strong style="color:#fff;">SMAN 3 KASONGAN</strong> &nbsp;·&nbsp; 
+                    <i class="fas fa-chalkboard-teacher" style="color:#3498db;"></i> Guru Pengampu: <strong style="color:#fff;">SYAHRANI, S.Pd</strong> &nbsp;·&nbsp; NIP. 197512172005011016
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== NAVIGATION BUTTONS ===== -->
+        <div class="nav-buttons hidden" id="navButtons">
+            <button id="prevBtn" disabled><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+            <span class="counter" id="slideCounter">1 / 12</span>
+            <button id="nextBtn" style="display: flex;">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+        </div>
+
+    </main>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        (function() {
+            // ===== LOADING =====
+            const loader = document.getElementById('loader');
+            const colors = ['#3498db', '#5dade2', '#85c1e9', '#2ecc71', '#1abc9c', '#3498db', '#2980b9', '#00d2d3'];
+            const starSymbols = ['🌿', '🌳', '🐒', '🦜', '🌸', '🌟', '⭐', '🍃'];
+            for (let i = 0; i < 45; i++) {
+                const star = document.createElement('span');
+                star.className = 'star';
+                star.textContent = starSymbols[Math.floor(Math.random() * starSymbols.length)];
+                star.style.color = colors[Math.floor(Math.random() * colors.length)];
+                star.style.fontSize = (0.8 + Math.random() * 1.8) + 'rem';
+                star.style.left = (Math.random() * 100) + '%';
+                star.style.top = (Math.random() * 100) + '%';
+                const tx1 = (Math.random() - 0.5) * 400;
+                const ty1 = (Math.random() - 0.5) * 300;
+                const tx2 = (Math.random() - 0.5) * 500;
+                const ty2 = (Math.random() - 0.5) * 400;
+                const tx3 = (Math.random() - 0.5) * 300;
+                const ty3 = (Math.random() - 0.5) * 500;
+                const tx4 = (Math.random() - 0.5) * 600;
+                const ty4 = (Math.random() - 0.5) * 400;
+                star.style.setProperty('--tx1', tx1 + 'px');
+                star.style.setProperty('--ty1', ty1 + 'px');
+                star.style.setProperty('--tx2', tx2 + 'px');
+                star.style.setProperty('--ty2', ty2 + 'px');
+                star.style.setProperty('--tx3', tx3 + 'px');
+                star.style.setProperty('--ty3', ty3 + 'px');
+                star.style.setProperty('--tx4', tx4 + 'px');
+                star.style.setProperty('--ty4', ty4 + 'px');
+                star.style.animationDuration = (3.5 + Math.random() * 2.5) + 's';
+                star.style.animationDelay = (Math.random() * 2) + 's';
+                loader.appendChild(star);
+            }
+            setTimeout(() => {
+                loader.classList.add('hidden');
+                setTimeout(() => { loader.style.display = 'none'; }, 500);
+            }, 3000);
+
+            // ===== NAVIGASI =====
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('#navLinks a');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const counter = document.getElementById('slideCounter');
+            const progressBar = document.getElementById('progressBar');
+            const navButtons = document.getElementById('navButtons');
+            const hamburger = document.getElementById('hamburgerBtn');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+
+            let current = 0;
+            const total = sections.length;
+            const sectionMap = {};
+            sections.forEach((el, i) => { sectionMap[el.id] = i; });
+
+            function updateUI(index) {
+                sections.forEach((el, i) => { el.classList.toggle('active', i === index); });
+                const activeId = sections[index].id;
+                navLinks.forEach(link => {
+                    link.classList.toggle('active', link.dataset.section === activeId);
+                });
+                prevBtn.disabled = (index === 0);
+                nextBtn.disabled = (index === total - 1);
+                counter.textContent = (index + 1) + ' / ' + total;
+                progressBar.style.width = ((index + 1) / total * 100) + '%';
+
+                if (index === total - 1) {
+                    nextBtn.style.display = 'none';
+                } else {
+                    nextBtn.style.display = 'flex';
+                }
+
+                if (index === 0) {
+                    navButtons.classList.add('hidden');
+                } else {
+                    navButtons.classList.remove('hidden');
+                }
+
+                document.querySelector('.main-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                closeSidebar();
+            }
+
+            function navigateTo(id) {
+                const idx = sectionMap[id];
+                if (idx !== undefined && idx !== current) {
+                    current = idx;
+                    updateUI(current);
+                }
+            }
+
+            function closeSidebar() {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('active');
+                hamburger.classList.remove('active');
+                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+
+            function toggleSidebar() {
+                sidebar.classList.toggle('open');
+                overlay.classList.toggle('active');
+                hamburger.classList.toggle('active');
+                hamburger.innerHTML = sidebar.classList.contains('open') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            }
+
+            hamburger.addEventListener('click', toggleSidebar);
+            overlay.addEventListener('click', closeSidebar);
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const id = this.dataset.section;
+                    if (id) navigateTo(id);
+                });
+            });
+
+            prevBtn.addEventListener('click', function() {
+                if (current > 0) { current--; updateUI(current); }
+            });
+            nextBtn.addEventListener('click', function() {
+                if (current < total - 1) { current++; updateUI(current); }
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    if (current < total - 1) { current++; updateUI(current); }
+                } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    if (current > 0) { current--; updateUI(current); }
+                }
+            });
+
+            window.navigateTo = navigateTo;
+            updateUI(0);
+        })();
+    </script>
+
+</body>
+</html>
