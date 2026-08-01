@@ -389,12 +389,12 @@
     <!-- PROGRESS BAR -->
     <div class="progress-wrap"><div class="bar" id="progressBar"></div></div>
 
-    <!-- MODAL GAMBAR BESAR (TIMELINE) -->
+    <!-- MODAL GAMBAR BESAR (digunakan untuk semua gambar di halaman 5 & 6) -->
     <div class="modal-overlay" id="imageModal" onclick="closeModal()">
         <div class="modal-content" onclick="event.stopPropagation();">
             <span class="modal-close" onclick="closeModal()">✕</span>
-            <img id="modalImage" src="" alt="Timeline Perkembangan Ilmu Geografi" />
-            <div class="caption">Timeline Perkembangan Ilmu Geografi – Klik di luar gambar untuk menutup</div>
+            <img id="modalImage" src="" alt="Gambar besar" />
+            <div class="caption" id="modalCaption">Klik di luar gambar untuk menutup</div>
         </div>
     </div>
 
@@ -567,7 +567,7 @@
             </div>
         </section>
 
-        <!-- SECTION 5 : PENGERTIAN -->
+        <!-- ========== SECTION 5 : PENGERTIAN (dengan fitur klik untuk perbesar) ========== -->
         <section id="section5" class="section">
             <div class="section-wrapper">
                 <div style="background:rgba(255,165,0,0.12); border-radius:12px; padding:10px 16px; margin-bottom:16px; border-left:4px solid #ff8c00; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
@@ -586,10 +586,11 @@
                             <li><strong>Sudut Pandang Kewilayahan:</strong> Melihat karakteristik unik suatu wilayah dibandingkan wilayah lain.</li>
                         </ul>
                         <div style="text-align:center; margin-top:16px;">
-                            <span class="geosfer-hover-trigger">
-                                <i class="fas fa-globe" style="margin-right:8px;"></i> Arahkan kursor ke sini untuk melihat diagram 5 lapisan Geosfer
+                            <!-- Diagram Geosfer: hover + klik -->
+                            <span class="geosfer-hover-trigger" onclick="openModal('images/geosfer.png', 'Diagram 5 Lapisan Geosfer – Litosfer, Atmosfer, Hidrosfer, Biosfer, Antroposfer')">
+                                <i class="fas fa-globe" style="margin-right:8px;"></i> Arahkan kursor (hover) untuk pratinjau, <strong>klik untuk memperbesar</strong> diagram 5 lapisan Geosfer
                                 <span class="popup-diagram">
-                                    <img src="images/lapisangeosfer.png" alt="Diagram 5 Lapisan Geosfer" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-css').style.display='block';">
+                                    <img src="images/geosfer.png" alt="Diagram 5 Lapisan Geosfer" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-css').style.display='block';">
                                     <div class="fallback-css" style="display:none;">
                                         <div class="geosfer-diagram-css">
                                             <div class="layer layer-litosfer-css">Litosfer</div>
@@ -602,7 +603,7 @@
                                     <div class="caption"><strong>Fenomena Geosfer:</strong> Lima lapisan bumi yang menjadi objek kajian geografi.</div>
                                 </span>
                             </span>
-                            <p style="font-size:0.8rem; color:#666; margin-top:4px;">(Cukup arahkan kursor, tanpa diklik)</p>
+                            <p style="font-size:0.8rem; color:#666; margin-top:4px;">(Arahkan kursor untuk pratinjau, klik untuk melihat ukuran penuh)</p>
                         </div>
                         <p style="margin-top:6px; font-size:0.9rem; color:#aaa; border-top:1px solid #444; padding-top:6px;"><i class="fas fa-quote-right" style="color:#3498db;"></i> <em>"Geografi adalah jembatan antara ilmu alam dan ilmu sosial."</em></p>
                     </div>
@@ -610,15 +611,16 @@
                 <div style="margin-top:14px;">
                     <h3 style="font-size:1.1rem; color:#f0f0f0; border-left:4px solid #3498db; padding-left:12px; margin-bottom:6px;"><i class="fas fa-layer-group" style="color:#3498db;"></i> Ruang Lingkup Geografi</h3>
                     <div style="background:linear-gradient(145deg,#1a2a3a,#1e2a3a); border-radius:10px; padding:12px 16px; margin-top:10px; border-left:4px solid #2ecc71; text-align:center;">
-                        <span class="geosfer-hover-trigger" style="background:#1a3a3a; border-color:#2ecc71;">
-                            <i class="fas fa-image" style="margin-right:8px; color:#2ecc71;"></i> Arahkan kursor ke sini untuk melihat ilustrasi Ruang Lingkup Geografi
-                            <span class="popup-diagram" style="width:520px; max-width:90vw; padding:16px;">
+                        <!-- Ilustrasi Ruang Lingkup: hover + klik -->
+                        <span class="geosfer-hover-trigger" style="background:#1a3a3a; border-color:#2ecc71;" onclick="openModal('images/sawahgunungmanusia.png', 'Ilustrasi Ruang Lingkup Geografi – Fisik (kiri) vs Sosial (kanan)')">
+                            <i class="fas fa-image" style="margin-right:8px; color:#2ecc71;"></i> Arahkan kursor (hover) untuk pratinjau, <strong>klik untuk memperbesar</strong> ilustrasi Ruang Lingkup Geografi
+                            <span class="popup-diagram" style="width:520px; max-width:90vw; padding:16px; pointer-events:none;">
                                 <img src="images/sawahgunungmanusia.png" alt="Ilustrasi Ruang Lingkup Geografi" style="max-width:100%; max-height:300px; border-radius:10px; border:1px solid #444; background:#0d0d0d;" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-text').style.display='block';">
                                 <div class="fallback-text" style="display:none; padding:20px; color:#8cc4d0; font-size:1rem;"><i class="fas fa-image" style="font-size:2rem; display:block; margin-bottom:8px;"></i>Ilustrasi Ruang Lingkup Geografi<br><span style="font-size:0.8rem; color:#666;">(Ganti URL gambar di kode HTML)</span></div>
                                 <div class="caption" style="font-size:0.8rem; color:#aaa; margin-top:8px; border-top:1px solid #333; padding-top:8px;"><strong style="color:#8cc4d0;">Kiri:</strong> Geografi Fisik (alam) &nbsp;|&nbsp; <strong style="color:#8cc4d0;">Kanan:</strong> Geografi Sosial (manusia)</div>
                             </span>
                         </span>
-                        <p style="font-size:0.8rem; color:#666; margin-top:4px;">(Cukup arahkan kursor, tanpa diklik)</p>
+                        <p style="font-size:0.8rem; color:#666; margin-top:4px;">(Arahkan kursor untuk pratinjau, klik untuk melihat ukuran penuh)</p>
                     </div>
                     <div class="grid-2" style="margin-top:4px;">
                         <div class="card card-enhanced" style="padding:16px; border-left:5px solid #3498db;"><h4 style="color:#3498db;">Geografi Fisik</h4><p style="font-size:0.9rem;">Mengkaji fenomena alam di permukaan bumi, seperti:</p><ul style="font-size:0.9rem; padding-left:18px;"><li><strong>Litosfer:</strong> Bentuk lahan, gunung, tanah, gempa bumi</li><li><strong>Atmosfer:</strong> Iklim, cuaca, angin, hujan</li><li><strong>Hidrosfer:</strong> Laut, sungai, danau, siklus air</li><li><strong>Biosfer:</strong> Flora, fauna, ekosistem</li></ul></div>
@@ -648,9 +650,9 @@
                 </div>
                 <div class="section-header"><div class="num">06</div><h2>Definisi Menurut Para Ahli <small>Pendapat Tokoh Geografi Dunia</small></h2></div>
 
-                <!-- TIMELINE -->
+                <!-- TIMELINE (dengan fitur klik untuk perbesar) -->
                 <div style="background:linear-gradient(145deg,#1a2a3a,#1e2a3a); border-radius:10px; padding:12px 16px; margin:16px 0; border-left:4px solid #f39c12; text-align:center;">
-                    <span class="geosfer-hover-trigger" style="background:#1a3a3a; border-color:#f39c12;" onclick="openModal('images/timelinegeografi.png')">
+                    <span class="geosfer-hover-trigger" style="background:#1a3a3a; border-color:#f39c12;" onclick="openModal('images/timelinegeografi.png', 'Timeline Perkembangan Ilmu Geografi – dari Eratosthenes hingga Modern')">
                         <i class="fas fa-history" style="margin-right:8px; color:#f39c12;"></i> 
                         Arahkan kursor (hover) untuk pratinjau, <strong>klik untuk memperbesar</strong> timeline perkembangan ilmu geografi
                         <span class="popup-diagram" style="width:520px; max-width:90vw; padding:16px; pointer-events:none;">
@@ -664,7 +666,7 @@
 
                 <p style="font-size:1rem; margin-bottom:10px; color:#ccc;"><i class="fas fa-quote-left" style="color:#3498db;"></i> Berikut adalah definisi geografi dari berbagai ahli terkemuka dunia. <strong>Klik pada kartu</strong> untuk melihat penjelasan lengkapnya.</p>
                 <div class="grid-ahli">
-                    <!-- 8 ahli, konten lengkap -->
+                    <!-- 8 ahli (konten lengkap) -->
                     <div class="ahli-card interactive-card dark-card" onclick="this.classList.toggle('open')"><div class="ahli-header"><span class="icon-number">1</span><div><h3>Eratosthenes</h3><span class="sub">Ilmuwan Yunani (276–194 SM)</span></div></div><div class="back"><p style="font-weight:500; color:#1a2a3a; font-size:0.9rem;">Dijuluki <em>"Bapak Geografi"</em>:</p><ul><li>Geografi adalah <strong>ilmu yang melukiskan keadaan permukaan bumi</strong> dan segala sesuatu yang ada di atasnya.</li><li>Orang pertama yang menggunakan istilah <em>"geographia"</em> (lukisan bumi).</li><li>Berhasil menghitung keliling bumi dengan akurasi tinggi (± 40.000 km) menggunakan bayangan matahari.</li></ul><div class="keterangan"><i class="fas fa-info-circle"></i> Eratosthenes meletakkan dasar-dasar geografi sebagai ilmu yang mandiri. Ia juga membuat peta dunia pertama yang mencakup Eropa, Asia, dan Afrika.</div></div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk lihat definisi</span></div>
                     <div class="ahli-card interactive-card dark-card" onclick="this.classList.toggle('open')"><div class="ahli-header"><span class="icon-number">2</span><div><h3>Claudius Ptolemaeus</h3><span class="sub">Astronom & Geografi Yunani (100–170 M)</span></div></div><div class="back"><p style="font-weight:500; color:#1a2a3a; font-size:0.9rem;">Penulis <em>Geographia</em>:</p><ul><li>Geografi adalah <strong>penyajian informasi tentang seluruh bagian bumi yang diketahui</strong> melalui peta dan data geografis.</li><li>Mengembangkan sistem koordinat lintang dan bujur yang masih digunakan hingga kini.</li><li>Karyanya menjadi rujukan utama geografi dan kartografi selama lebih dari 1.400 tahun.</li></ul><div class="keterangan"><i class="fas fa-info-circle"></i> Ptolemaeus adalah tokoh kunci dalam perkembangan kartografi. Ia juga meletakkan dasar-dasar proyeksi peta yang memungkinkan penggambaran bumi bulat pada bidang datar.</div></div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk lihat definisi</span></div>
                     <div class="ahli-card interactive-card dark-card" onclick="this.classList.toggle('open')"><div class="ahli-header"><span class="icon-number">3</span><div><h3>Immanuel Kant</h3><span class="sub">Filsuf Jerman (1724–1804)</span></div></div><div class="back"><p style="font-weight:500; color:#1a2a3a; font-size:0.9rem;">Pandangan tentang geografi:</p><ul><li>Geografi adalah <strong>ilmu yang mengkaji hubungan antara fenomena alam dengan manusia dalam ruang</strong>.</li><li>Membagi geografi menjadi <strong>geografi fisik</strong> (alam) dan <strong>geografi manusia</strong> (sosial).</li><li>Geografi adalah ilmu yang <strong>sistematis</strong> dan memberikan pemahaman tentang keragaman permukaan bumi.</li></ul><div class="keterangan"><i class="fas fa-info-circle"></i> Kant menekankan bahwa geografi adalah ilmu yang mengintegrasikan pengetahuan tentang alam dan manusia. Baginya, geografi adalah dasar dari semua pengetahuan tentang dunia.</div></div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk lihat definisi</span></div>
@@ -952,15 +954,23 @@
 
     <!-- JAVASCRIPT -->
     <script>
-        // Modal untuk gambar besar
-        function openModal(src) {
-            document.getElementById('modalImage').src = src;
-            document.getElementById('imageModal').classList.add('active');
+        // Modal untuk gambar besar (digunakan di halaman 5 dan 6)
+        function openModal(src, caption) {
+            const modal = document.getElementById('imageModal');
+            const img = document.getElementById('modalImage');
+            const cap = document.getElementById('modalCaption');
+            img.src = src;
+            cap.textContent = caption || 'Klik di luar gambar untuk menutup';
+            modal.classList.add('active');
         }
+
         function closeModal() {
             document.getElementById('imageModal').classList.remove('active');
         }
-        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
 
         // Navigasi
         (function() {
