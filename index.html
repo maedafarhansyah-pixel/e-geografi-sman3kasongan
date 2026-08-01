@@ -226,13 +226,14 @@
 
         .geosfer-hover-trigger { display:inline-block; background:#1a3a4a; color:#8cc4d0; padding:10px 22px; border-radius:30px; font-weight:600; cursor:pointer; border:2px solid #3498db; transition:0.3s; position:relative; margin:10px 0 6px; font-size:1rem; box-shadow:0 2px 12px rgba(52,152,219,0.15); }
         .geosfer-hover-trigger:hover { background:#2a5a6a; color:#fff; box-shadow:0 4px 20px rgba(52,152,219,0.35); transform:translateY(-2px); }
-        .geosfer-hover-trigger .popup-diagram { display:none; position:absolute; z-index:1000; background:#1e1e1e; border:2px solid #3498db; border-radius:16px; padding:20px; width:340px; bottom:calc(100%+18px); left:50%; transform:translateX(-50%); box-shadow:0 16px 48px rgba(0,0,0,0.9); text-align:center; pointer-events:none; }
+        .geosfer-hover-trigger .popup-diagram { display:none; position:absolute; z-index:1000; background:#1e1e1e; border:2px solid #3498db; border-radius:16px; padding:20px; bottom:calc(100%+18px); left:50%; transform:translateX(-50%); box-shadow:0 16px 48px rgba(0,0,0,0.9); text-align:center; pointer-events:none; }
         .geosfer-hover-trigger:hover .popup-diagram { display:block; animation:popupFade 0.3s ease; }
         @keyframes popupFade { 0% { opacity:0; transform:translateX(-50%) scale(0.92) translateY(12px); } 100% { opacity:1; transform:translateX(-50%) scale(1) translateY(0); } }
         .geosfer-hover-trigger .popup-diagram img { max-width:100%; max-height:220px; border-radius:10px; border:1px solid #444; background:#0d0d0d; }
         .geosfer-hover-trigger .popup-diagram .caption { font-size:0.75rem; color:#aaa; margin-top:8px; border-top:1px solid #333; padding-top:8px; }
         .geosfer-hover-trigger .popup-diagram .caption strong { color:#8cc4d0; }
 
+        /* Fallback CSS diagram geosfer */
         .geosfer-diagram-css { position:relative; width:220px; height:220px; margin:0 auto; }
         .geosfer-diagram-css .layer { position:absolute; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; color:#fff; text-shadow:0 1px 6px rgba(0,0,0,0.8); border:2px solid rgba(255,255,255,0.15); transition:all 0.3s; }
         .geosfer-diagram-css .layer:hover { transform:scale(1.04); border-color:rgba(255,255,255,0.4); }
@@ -452,7 +453,7 @@
             </div>
         </section>
 
-        <!-- SECTION 2 : CP & ATP (singkat, tetap lengkap) -->
+        <!-- SECTION 2 : CP & ATP -->
         <section id="section2" class="section">
             <div class="section-wrapper">
                 <div style="background:rgba(212,175,55,0.12); border-radius:12px; padding:10px 16px; margin-bottom:16px; border-left:4px solid #d4af37; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
@@ -563,7 +564,7 @@
             </div>
         </section>
 
-        <!-- ========== SECTION 5 : PENGERTIAN (DENGAN PERBAIKAN MODAL) ========== -->
+        <!-- ========== SECTION 5 : PENGERTIAN (DIPERBAIKI) ========== -->
         <section id="section5" class="section">
             <div class="section-wrapper">
                 <div style="background:rgba(212,175,55,0.12); border-radius:12px; padding:10px 16px; margin-bottom:16px; border-left:4px solid #d4af37; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
@@ -582,11 +583,11 @@
                             <li><strong>Sudut Pandang Kewilayahan:</strong> Melihat karakteristik unik suatu wilayah dibandingkan wilayah lain.</li>
                         </ul>
                         <div style="text-align:center; margin-top:16px;">
-                            <!-- Diagram Geosfer: hover + klik (sudah diperbaiki) -->
+                            <!-- Diagram Geosfer: hover + klik (diperbaiki agar sama dengan gambar bawah) -->
                             <span class="geosfer-hover-trigger" onclick="openModal('images/geosfer.png', 'Diagram 5 Lapisan Geosfer – Litosfer, Atmosfer, Hidrosfer, Biosfer, Antroposfer')">
                                 <i class="fas fa-globe" style="margin-right:8px;"></i> Arahkan kursor (hover) untuk pratinjau, <strong>klik untuk memperbesar</strong> diagram 5 lapisan Geosfer
-                                <span class="popup-diagram">
-                                    <img src="images/geosfer.png" alt="Diagram 5 Lapisan Geosfer" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-css').style.display='block';">
+                                <span class="popup-diagram" style="width:520px; max-width:90vw; padding:16px;">
+                                    <img src="images/geosfer.png" alt="Diagram 5 Lapisan Geosfer" style="max-width:100%; max-height:300px; border-radius:10px; border:1px solid #444; background:#0d0d0d;" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-css').style.display='block';">
                                     <div class="fallback-css" style="display:none;">
                                         <div class="geosfer-diagram-css">
                                             <div class="layer layer-litosfer-css">Litosfer</div>
@@ -607,7 +608,7 @@
                 <div style="margin-top:14px;">
                     <h3 style="font-size:1.1rem; color:#f0f0f0; border-left:4px solid #3498db; padding-left:12px; margin-bottom:6px;"><i class="fas fa-layer-group" style="color:#3498db;"></i> Ruang Lingkup Geografi</h3>
                     <div style="background:linear-gradient(145deg,#1a2a3a,#1e2a3a); border-radius:10px; padding:12px 16px; margin-top:10px; border-left:4px solid #2ecc71; text-align:center;">
-                        <!-- Ilustrasi Ruang Lingkup: hover + klik (sudah diperbaiki) -->
+                        <!-- Ilustrasi Ruang Lingkup (sudah benar, tidak diubah) -->
                         <span class="geosfer-hover-trigger" style="background:#1a3a3a; border-color:#2ecc71;" onclick="openModal('images/sawahgunungmanusia.png', 'Ilustrasi Ruang Lingkup Geografi – Fisik (kiri) vs Sosial (kanan)')">
                             <i class="fas fa-image" style="margin-right:8px; color:#2ecc71;"></i> Arahkan kursor (hover) untuk pratinjau, <strong>klik untuk memperbesar</strong> ilustrasi Ruang Lingkup Geografi
                             <span class="popup-diagram" style="width:520px; max-width:90vw; padding:16px; pointer-events:none;">
@@ -690,7 +691,7 @@
             </div>
         </section>
 
-        <!-- SECTION 7 : OBJEK & PRINSIP (tetap lengkap, saya singkat agar tidak terlalu panjang) -->
+        <!-- SECTION 7 : OBJEK & PRINSIP -->
         <section id="section7" class="section">
             <div class="section-wrapper">
                 <div style="background:rgba(212,175,55,0.12); border-radius:12px; padding:10px 16px; margin-bottom:16px; border-left:4px solid #d4af37; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
@@ -773,7 +774,7 @@
             </div>
         </section>
 
-        <!-- SECTION 9 : KETERAMPILAN & MANFAAT (singkat, tetap lengkap) -->
+        <!-- SECTION 9 : KETERAMPILAN & MANFAAT -->
         <section id="section9" class="section">
             <div class="section-wrapper">
                 <div style="background:rgba(212,175,55,0.12); border-radius:12px; padding:10px 16px; margin-bottom:16px; border-left:4px solid #d4af37; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
