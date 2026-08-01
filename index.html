@@ -6,6 +6,69 @@
     <title>Pengetahuan Dasar Geografi – Kelas X (Kurikulum Merdeka)</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
     <style>
+        /* ===== MODAL UNTUK GAMBAR BESAR ===== */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.85);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.modal-overlay.active {
+    display: flex;
+}
+.modal-overlay .modal-content {
+    max-width: 90vw;
+    max-height: 90vh;
+    background: #1a1a1a;
+    border-radius: 16px;
+    padding: 16px;
+    border: 2px solid #3498db;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.9);
+    position: relative;
+    text-align: center;
+}
+.modal-overlay .modal-content img {
+    max-width: 100%;
+    max-height: 80vh;
+    border-radius: 10px;
+    display: block;
+}
+.modal-overlay .modal-content .caption {
+    color: #aaa;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid #333;
+}
+.modal-overlay .modal-close {
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    background: #3498db;
+    color: #121212;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: 2px solid #121212;
+    transition: 0.3s;
+}
+.modal-overlay .modal-close:hover {
+    transform: scale(1.1);
+    background: #5aadf0;
+}
         /* ----- RESET & BASE (DARK MODE) ----- */
         * { margin:0; padding:0; box-sizing:border-box; }
         body { font-family:'Segoe UI',Roboto,sans-serif; background:#121212; color:#e8e8e8; line-height:1.6; scroll-behavior:smooth; padding-top:0; }
@@ -384,6 +447,14 @@
         .school-name-gold-cover { color:#d4af37; font-weight:600; text-shadow:0 0 15px rgba(212,175,55,0.5),0 0 40px rgba(212,175,55,0.15); }
     </style>
 </head>
+    <!-- MODAL UNTUK GAMBAR BESAR -->
+<div class="modal-overlay" id="imageModal" onclick="closeModal()">
+    <div class="modal-content" onclick="event.stopPropagation();">
+        <span class="modal-close" onclick="closeModal()">✕</span>
+        <img id="modalImage" src="" alt="Gambar besar" />
+        <div class="caption" id="modalCaption">Klik di luar gambar untuk menutup</div>
+    </div>
+</div>
 <body>
 
     <!-- LOADING -->
@@ -583,6 +654,7 @@
                             <li><strong>Sudut Pandang Kewilayahan:</strong> Melihat karakteristik unik suatu wilayah dibandingkan wilayah lain.</li>
                         </ul>
                      <!-- Diagram Geosfer: hover + klik (konsisten dengan ilustrasi ruang lingkup) -->
+<!-- Diagram Geosfer: hover + klik (konsisten dengan ilustrasi ruang lingkup) -->
 <div style="text-align:center; margin-top:16px;">
     <span class="geosfer-hover-trigger" style="background:#1a3a3a; border-color:#3498db;" onclick="openModal('images/lapisangeosfer.png', 'Diagram 5 Lapisan Geosfer – Litosfer, Atmosfer, Hidrosfer, Biosfer, Antroposfer')">
         <i class="fas fa-globe" style="margin-right:8px;"></i> Arahkan kursor (hover) untuk pratinjau, <strong>klik untuk memperbesar</strong> diagram 5 lapisan Geosfer
@@ -949,6 +1021,25 @@
     </main>
 
     <script>
+        function openModal(src, caption) {
+    const modal = document.getElementById('imageModal');
+    const img = document.getElementById('modalImage');
+    const cap = document.getElementById('modalCaption');
+    img.src = src;
+    cap.textContent = caption || 'Klik di luar gambar untuk menutup';
+    modal.classList.add('active');
+}
+
+function closeModal() {
+    document.getElementById('imageModal').classList.remove('active');
+}
+
+// Tutup modal dengan tombol ESC
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeModal();
+    }
+});
         function openModal(src, caption) {
             const modal = document.getElementById('imageModal');
             const img = document.getElementById('modalImage');
