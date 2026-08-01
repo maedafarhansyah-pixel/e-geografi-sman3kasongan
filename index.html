@@ -1203,6 +1203,205 @@
             line-height: 1.4;
         }
 
+        /* ===== DIAGRAM GEOSFER MODAL ===== */
+        .geosfer-btn {
+            display: inline-block;
+            background: #1a3a4a;
+            color: #8cc4d0;
+            padding: 12px 24px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 1rem;
+            border: 2px solid #3498db;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 10px 0 6px 0;
+            box-shadow: 0 4px 16px rgba(52,152,219,0.15);
+        }
+        .geosfer-btn:hover {
+            background: #2a5a6a;
+            color: #fff;
+            box-shadow: 0 6px 24px rgba(52,152,219,0.35);
+            transform: translateY(-2px);
+        }
+        .geosfer-btn i {
+            margin-right: 8px;
+        }
+
+        /* Modal overlay */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            backdrop-filter: blur(4px);
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #1e1e1e;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 700px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 2px solid #3498db;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.9);
+            position: relative;
+            animation: modalFade 0.4s ease;
+        }
+        @keyframes modalFade {
+            0% { opacity: 0; transform: scale(0.9) translateY(20px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 18px;
+            font-size: 2rem;
+            color: #aaa;
+            cursor: pointer;
+            transition: 0.3s;
+            background: none;
+            border: none;
+            line-height: 1;
+        }
+        .modal-close:hover {
+            color: #fff;
+            transform: rotate(90deg);
+        }
+
+        .modal-content h3 {
+            color: #3498db;
+            font-size: 1.4rem;
+            text-align: center;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+        .modal-content .diagram-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 0;
+        }
+        .modal-content .diagram-container img {
+            max-width: 100%;
+            max-height: 400px;
+            border-radius: 12px;
+            border: 1px solid #444;
+            background: #0d0d0d;
+        }
+        .modal-content .diagram-caption {
+            text-align: center;
+            color: #aaa;
+            font-size: 0.9rem;
+            margin-top: 8px;
+            border-top: 1px solid #333;
+            padding-top: 10px;
+        }
+        .modal-content .diagram-caption strong {
+            color: #8cc4d0;
+        }
+
+        /* CSS Diagram (fallback jika gambar tidak ditemukan) */
+        .geosfer-diagram-css {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+        }
+        .geosfer-diagram-css .layer {
+            position: absolute;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 1px 6px rgba(0,0,0,0.8);
+            border: 2px solid rgba(255,255,255,0.15);
+            transition: all 0.3s;
+        }
+        .geosfer-diagram-css .layer:hover {
+            transform: scale(1.04);
+            border-color: rgba(255,255,255,0.4);
+        }
+        .layer-litosfer-css {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, #8B6B3D, #5D4037);
+            top: 0;
+            left: 0;
+            font-size: 1rem;
+        }
+        .layer-atmosfer-css {
+            width: 240px;
+            height: 240px;
+            background: radial-gradient(circle, #4A90D9, #2C6B9E);
+            top: 30px;
+            left: 30px;
+            font-size: 0.9rem;
+        }
+        .layer-hidrosfer-css {
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, #1E88E5, #0D47A1);
+            top: 60px;
+            left: 60px;
+            font-size: 0.85rem;
+        }
+        .layer-biosfer-css {
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, #43A047, #1B5E20);
+            top: 90px;
+            left: 90px;
+            font-size: 0.8rem;
+        }
+        .layer-antroposfer-css {
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, #E53935, #B71C1C);
+            top: 120px;
+            left: 120px;
+            font-size: 0.65rem;
+        }
+
+        .geosfer-legend {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 6px;
+            margin-top: 12px;
+            padding: 10px;
+            background: #151515;
+            border-radius: 10px;
+        }
+        .geosfer-legend .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.75rem;
+            color: #ccc;
+        }
+        .geosfer-legend .color-box {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
         /* ===== RESPONSIVE ===== */
         @media (min-width: 600px) {
             .grid-2 { grid-template-columns: repeat(2, 1fr); }
@@ -1219,6 +1418,15 @@
             .nav-grid {
                 grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             }
+            .geosfer-diagram-css {
+                width: 350px;
+                height: 350px;
+            }
+            .layer-litosfer-css { width: 350px; height: 350px; }
+            .layer-atmosfer-css { width: 280px; height: 280px; top: 35px; left: 35px; }
+            .layer-hidrosfer-css { width: 210px; height: 210px; top: 70px; left: 70px; }
+            .layer-biosfer-css { width: 140px; height: 140px; top: 105px; left: 105px; }
+            .layer-antroposfer-css { width: 70px; height: 70px; top: 140px; left: 140px; }
         }
 
         @media (min-width: 900px) {
@@ -1284,6 +1492,18 @@
                 justify-content: center;
                 flex-wrap: wrap;
             }
+            .modal-content {
+                padding: 16px;
+            }
+            .geosfer-diagram-css {
+                width: 200px;
+                height: 200px;
+            }
+            .layer-litosfer-css { width: 200px; height: 200px; }
+            .layer-atmosfer-css { width: 160px; height: 160px; top: 20px; left: 20px; font-size: 0.7rem; }
+            .layer-hidrosfer-css { width: 120px; height: 120px; top: 40px; left: 40px; font-size: 0.65rem; }
+            .layer-biosfer-css { width: 80px; height: 80px; top: 60px; left: 60px; font-size: 0.6rem; }
+            .layer-antroposfer-css { width: 40px; height: 40px; top: 80px; left: 80px; font-size: 0.5rem; }
         }
 
         /* Extra utility */
@@ -1826,7 +2046,7 @@
             </div>
         </section>
 
-        <!-- ========== SECTION 5 : PENGERTIAN GEOGRAFI ========== -->
+        <!-- ========== SECTION 5 : PENGERTIAN GEOGRAFI (dengan tombol diagram) ========== -->
         <section id="section5" class="section">
             <div class="section-wrapper">
                 <div style="background: rgba(255, 165, 0, 0.12); border-radius: 12px; padding: 10px 16px; margin-bottom: 16px; border-left: 4px solid #ff8c00; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
@@ -1860,6 +2080,15 @@
                             <li><strong>Sudut Pandang Kelingkungan:</strong> Melihat hubungan timbal balik antara makhluk hidup dengan lingkungannya.</li>
                             <li><strong>Sudut Pandang Kewilayahan:</strong> Melihat karakteristik unik suatu wilayah dibandingkan wilayah lain.</li>
                         </ul>
+
+                        <!-- ===== TOMBOL DAN MODAL DIAGRAM GEOSFER ===== -->
+                        <div style="text-align:center; margin-top:16px;">
+                            <button class="geosfer-btn" onclick="document.getElementById('modalGeosfer').classList.add('active')">
+                                <i class="fas fa-globe"></i> Lihat Diagram 5 Lapisan Geosfer
+                            </button>
+                            <p style="font-size:0.8rem; color:#666; margin-top:4px;">Klik tombol untuk melihat diagram interaktif</p>
+                        </div>
+
                         <p style="margin-top:6px; font-size:0.9rem; color:#aaa; border-top:1px solid #444; padding-top:6px;">
                             <i class="fas fa-quote-right" style="color:#3498db;"></i> 
                             <em>"Geografi adalah jembatan antara ilmu alam dan ilmu sosial."</em>
@@ -2765,6 +2994,48 @@
 
     </main>
 
+    <!-- ===== MODAL DIAGRAM GEOSFER ===== -->
+    <div class="modal-overlay" id="modalGeosfer">
+        <div class="modal-content">
+            <button class="modal-close" onclick="document.getElementById('modalGeosfer').classList.remove('active')">&times;</button>
+            <h3><i class="fas fa-globe" style="color:#3498db;"></i> 5 Lapisan Geosfer</h3>
+
+            <div class="diagram-container">
+                <!-- === GANTI URL GAMBAR DI BAWAH INI === -->
+                <!-- Ganti src dengan URL gambar diagram geosfer dari GitHub-mu -->
+                <img src="images/geosfer.png" 
+                     alt="Diagram 5 Lapisan Geosfer: Litosfer, Atmosfer, Hidrosfer, Biosfer, Antroposfer"
+                     onerror="this.style.display='none'; document.getElementById('fallbackDiagram').style.display='block';">
+                
+                <!-- Fallback CSS (muncul jika gambar tidak ditemukan) -->
+                <div id="fallbackDiagram" style="display:none; width:100%;">
+                    <div class="geosfer-diagram-css">
+                        <div class="layer layer-litosfer-css">Litosfer</div>
+                        <div class="layer layer-atmosfer-css">Atmosfer</div>
+                        <div class="layer layer-hidrosfer-css">Hidrosfer</div>
+                        <div class="layer layer-biosfer-css">Biosfer</div>
+                        <div class="layer layer-antroposfer-css">Antroposfer</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="geosfer-legend">
+                <div class="legend-item"><span class="color-box" style="background:#5D4037;"></span> Litosfer (Batuan)</div>
+                <div class="legend-item"><span class="color-box" style="background:#2C6B9E;"></span> Atmosfer (Udara)</div>
+                <div class="legend-item"><span class="color-box" style="background:#0D47A1;"></span> Hidrosfer (Air)</div>
+                <div class="legend-item"><span class="color-box" style="background:#1B5E20;"></span> Biosfer (Kehidupan)</div>
+                <div class="legend-item"><span class="color-box" style="background:#B71C1C;"></span> Antroposfer (Manusia)</div>
+            </div>
+
+            <div class="diagram-caption">
+                <strong>Fenomena Geosfer:</strong> Lima lapisan bumi yang menjadi objek kajian geografi. 
+                <span style="display:block; font-size:0.8rem; color:#666; margin-top:4px;">
+                    <i class="fas fa-info-circle"></i> Gambar akan muncul setelah kamu mengganti URL gambar di kode HTML.
+                </span>
+            </div>
+        </div>
+    </div>
+
     <!-- ===== JAVASCRIPT ===== -->
     <script>
         (function() {
@@ -2839,7 +3110,6 @@
                 } else if (direction === 'next' && current < total - 1) {
                     current++;
                 } else if (typeof direction === 'string' && direction.startsWith('section')) {
-                    // untuk panggilan langsung dari tombol "Mulai Belajar" atau tautan
                     const idx = sectionMap[direction];
                     if (idx !== undefined && idx !== current) {
                         current = idx;
@@ -2855,11 +3125,9 @@
             function updateUI(index) {
                 sections.forEach((el, i) => { el.classList.toggle('active', i === index); });
                 document.getElementById('progressBar').style.width = ((index + 1) / total * 100) + '%';
-                // Update counter di semua nav
                 document.querySelectorAll('.counter').forEach(el => {
                     el.textContent = `${index + 1} / ${total}`;
                 });
-                // Update tombol next/disabled
                 document.querySelectorAll('.nav-buttons .group button:last-child').forEach(btn => {
                     if (index === total - 1) {
                         btn.disabled = true;
@@ -2869,7 +3137,6 @@
                         btn.innerHTML = 'Selanjutnya <i class="fas fa-arrow-right"></i>';
                     }
                 });
-                // Update tombol prev/disabled
                 document.querySelectorAll('.nav-buttons .group button:first-child').forEach(btn => {
                     if (index === 0) {
                         btn.disabled = true;
@@ -2877,16 +3144,14 @@
                         btn.disabled = false;
                     }
                 });
-                // Render ulang angka halaman
                 renderPageNumbers();
                 document.querySelector('.main-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
 
-            // Inisialisasi
             renderPageNumbers();
             updateUI(0);
 
-            // Override navigateTo untuk menangani id section dari tombol "Mulai Belajar"
+            // Override untuk menangani id section
             const originalNavigateTo = window.navigateTo;
             window.navigateTo = function(id) {
                 if (typeof id === 'string' && id.startsWith('section')) {
@@ -2899,6 +3164,20 @@
                     originalNavigateTo(id);
                 }
             };
+
+            // Tutup modal dengan klik di luar
+            document.getElementById('modalGeosfer').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                }
+            });
+
+            // Tutup modal dengan tombol ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    document.getElementById('modalGeosfer').classList.remove('active');
+                }
+            });
         })();
     </script>
 
