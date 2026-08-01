@@ -594,7 +594,7 @@
 
         .nav-buttons {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             margin-top: 32px;
             padding-top: 14px;
@@ -606,34 +606,44 @@
             display: none;
         }
         .nav-buttons button {
-            background: #2a2a2a;
-            color: #fff;
-            border: none;
+            background: rgba(255, 140, 0, 0.12);
+            color: #ff8c00;
+            border: 1px solid rgba(255, 140, 0, 0.3);
             padding: 8px 20px;
             border-radius: 40px;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 0.85rem;
             cursor: pointer;
             transition: 0.25s;
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 8px;
-            border: 1px solid #3a3a3a;
+            gap: 6px;
         }
         .nav-buttons button:hover:not(:disabled) {
-            background: #3498db;
-            color: #121212;
+            background: rgba(255, 140, 0, 0.25);
+            border-color: #ff8c00;
             transform: scale(1.02);
-            border-color: #3498db;
+            box-shadow: 0 4px 12px rgba(255, 140, 0, 0.15);
         }
         .nav-buttons button:disabled {
-            opacity: 0.35;
+            opacity: 0.4;
             cursor: not-allowed;
+            background: rgba(255, 255, 255, 0.05);
+            color: #666;
+            border-color: rgba(255, 255, 255, 0.1);
+            transform: none;
+            box-shadow: none;
         }
         .nav-buttons .counter {
             font-weight: 500;
             color: #aaa;
             font-size: 0.85rem;
+            padding: 0 10px;
+        }
+        .nav-buttons .group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .start-btn-wrapper {
@@ -1033,7 +1043,7 @@
             .card { padding: 14px 12px; }
             .card p, .card li { font-size: 0.85rem; }
             .etym-tabs button { font-size: 0.75rem; padding: 6px 12px; }
-            .nav-buttons button { padding: 6px 14px; font-size: 0.8rem; }
+            .nav-buttons button { padding: 6px 14px; font-size: 0.75rem; }
             .start-btn { padding: 10px 28px; font-size: 1rem; }
             .celebration-box h3 { font-size: 1.3rem; }
             .mobile-header .brand { font-size: 1.3rem; }
@@ -1055,6 +1065,10 @@
             }
             .nav-buttons .counter {
                 text-align: center;
+            }
+            .nav-buttons .group {
+                justify-content: center;
+                flex-wrap: wrap;
             }
         }
 
@@ -1324,46 +1338,32 @@
         .footer-credit strong {
             color: #eee;
         }
-        .nav-buttons button {
-            background: #2a2a2a;
-            color: #fff;
-            border: 1px solid #3a3a3a;
-        }
-        .nav-buttons button:hover:not(:disabled) {
-            background: #3498db;
-            color: #121212;
-            border-color: #3498db;
-        }
-        .nav-buttons button:disabled {
-            opacity: 0.3;
-        }
-        .nav-buttons .counter {
-            color: #aaa;
-        }
     </style>
 </head>
 <body>
-    <div style="background:#1e293b; padding:14px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:20px; border-radius:10px;">
-    <a href="index.html" style="color:white; text-decoration:none; padding:10px 18px; border-radius:8px; background:#2563eb; font-weight:bold;">
-        📖 Bab 1: Pengantar Ilmu Geografi
-    </a>
-    <a href="PETA.html" style="color:white; text-decoration:none; padding:10px 18px; border-radius:8px; background:#334155; font-weight:bold;">
-        🗺️ Peta
-    </a>
-    <a href="PENGINDERAAN%20JAUH%20DAN%20SIG.html" style="color:white; text-decoration:none; padding:10px 18px; border-radius:8px; background:#334155; font-weight:bold;">
-        🛰️ Penginderaan Jauh & SIG
-    </a>
-    <a href="PENELITIANGEOGRAFI.html" style="color:white; text-decoration:none; padding:10px 18px; border-radius:8px; background:#334155; font-weight:bold;">
-        🔬 Penelitian Geografi
-    </a>
+    <div class="logo-header">
+    <img src="images/logo-provinsi.png" alt="Logo Provinsi">
+    <img src="images/logo-disdik.png" alt="Logo Disdik">
+    <img src="images/logo-sman3kasongan.png" alt="Logo Sekolah">
 </div>
+    .logo-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo-header img {
+    height: 80px;
+    width: auto;
+}
 
     <!-- ===== LOADING SCREEN ===== -->
     <div id="loader">
         <div class="loader-text">Memuat Materi Geografi...</div>
     </div>
 
-    <!-- ===== HEADER MOBILE (tanpa hamburger) ===== -->
+    <!-- ===== HEADER MOBILE ===== -->
     <header class="mobile-header">
         <div class="brand">GEOGRAFI</div>
     </header>
@@ -1374,9 +1374,18 @@
     <!-- ===== MAIN CONTENT ===== -->
     <main class="main-content">
 
-        <!-- ========== SECTION 1 : COVER ========== -->
+        <!-- ========== SECTION 1 : COVER + LOGO ========== -->
         <section id="section1" class="section active">
             <div style="text-align:center; padding: 10px 0 8px 0;">
+
+                <!-- ===== LOGO SECTION ===== -->
+                <div style="display: flex; justify-content: center; align-items: center; gap: 30px; flex-wrap: wrap; margin-bottom: 20px;">
+                    <!-- GANTI src="..." dengan path file logo Anda di GitHub -->
+                    <img src="images/logo-provinsi-kalteng.png" alt="Logo Provinsi Kalimantan Tengah" style="height: 80px; object-fit: contain; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));">
+                    <img src="images/logo-disdik.png" alt="Logo Dinas Pendidikan" style="height: 80px; object-fit: contain; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));">
+                    <img src="images/logo-sman3-kasongan.png" alt="Logo SMAN 3 Kasongan" style="height: 80px; object-fit: contain; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));">
+                </div>
+
                 <span class="tag" style="font-size:0.8rem; padding:4px 20px;">KELAS X / FASE E</span>
                 <span class="deep-learning-badge" style="margin-left:6px;"><i class="fas fa-brain"></i> Deep Learning</span>
                 <h1 class="cover-title">
@@ -1429,6 +1438,17 @@
         <!-- ========== SECTION 2 : CP & ATP ========== -->
         <section id="section2" class="section">
             <div class="section-wrapper">
+                <!-- KOTAK ORANGE + BERANDA -->
+                <div style="background: rgba(255, 165, 0, 0.12); border-radius: 12px; padding: 10px 16px; margin-bottom: 16px; border-left: 4px solid #ff8c00; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                    <div style="display: flex; align-items: center; gap: 8px; color: #e8e8e8; font-size: 0.85rem; flex-wrap: wrap;">
+                        <i class="fas fa-school" style="color: #ff8c00;"></i> SMAN 3 KASONGAN &nbsp;|&nbsp;
+                        <i class="fas fa-chalkboard-teacher" style="color: #ff8c00;"></i> <strong>GURU PENGAMPU: SYAHRANI, S.Pd</strong> &nbsp;|&nbsp;
+                        <i class="fas fa-id-card" style="color: #ff8c00;"></i> NIP. 197512172005011016
+                    </div>
+                    <button onclick="navigateTo('section1')" style="background: #ff8c00; color: #121212; border: none; padding: 6px 16px; border-radius: 30px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 0.85rem; transition: 0.2s; box-shadow: 0 2px 8px rgba(255,140,0,0.3);">
+                        <i class="fas fa-home"></i> Beranda
+                    </button>
+                </div>
                 <div class="section-header">
                     <div class="num">02</div>
                     <h2>Capaian & Alur Tujuan Pembelajaran <small>Kurikulum Merdeka Fase E</small></h2>
@@ -1479,10 +1499,11 @@
                 </div>
                 <!-- ===== NAVIGASI BAWAH ===== -->
                 <div class="nav-buttons">
-                    <button onclick="navigateTo('section1')"><i class="fas fa-home"></i> Beranda</button>
-                    <button onclick="navigateTo('section1')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
-                    <span class="counter">2 / 12</span>
-                    <button onclick="navigateTo('section3')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                    <div class="group">
+                        <button onclick="navigateTo('section1')" id="prevBtn2"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                        <span class="counter">2 / 12</span>
+                        <button onclick="navigateTo('section3')" id="nextBtn2">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1490,6 +1511,16 @@
         <!-- ========== SECTION 3 : INDIKATOR ========== -->
         <section id="section3" class="section">
             <div class="section-wrapper">
+                <div style="background: rgba(255, 165, 0, 0.12); border-radius: 12px; padding: 10px 16px; margin-bottom: 16px; border-left: 4px solid #ff8c00; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                    <div style="display: flex; align-items: center; gap: 8px; color: #e8e8e8; font-size: 0.85rem; flex-wrap: wrap;">
+                        <i class="fas fa-school" style="color: #ff8c00;"></i> SMAN 3 KASONGAN &nbsp;|&nbsp;
+                        <i class="fas fa-chalkboard-teacher" style="color: #ff8c00;"></i> <strong>GURU PENGAMPU: SYAHRANI, S.Pd</strong> &nbsp;|&nbsp;
+                        <i class="fas fa-id-card" style="color: #ff8c00;"></i> NIP. 197512172005011016
+                    </div>
+                    <button onclick="navigateTo('section1')" style="background: #ff8c00; color: #121212; border: none; padding: 6px 16px; border-radius: 30px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 0.85rem; transition: 0.2s; box-shadow: 0 2px 8px rgba(255,140,0,0.3);">
+                        <i class="fas fa-home"></i> Beranda
+                    </button>
+                </div>
                 <div class="section-header">
                     <div class="num">03</div>
                     <h2>Indikator Pencapaian <small>Tujuan Pembelajaran</small></h2>
@@ -1501,10 +1532,11 @@
                     <div class="card card-enhanced"><i class="fas fa-check-circle" style="color:#3498db; font-size:1.8rem;"></i><h3>Indikator 4</h3><p>Mengevaluasi manfaat mempelajari geografi dalam kehidupan sehari-hari dan pembangunan berkelanjutan.</p></div>
                 </div>
                 <div class="nav-buttons">
-                    <button onclick="navigateTo('section1')"><i class="fas fa-home"></i> Beranda</button>
-                    <button onclick="navigateTo('section2')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
-                    <span class="counter">3 / 12</span>
-                    <button onclick="navigateTo('section4')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                    <div class="group">
+                        <button onclick="navigateTo('section2')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                        <span class="counter">3 / 12</span>
+                        <button onclick="navigateTo('section4')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1512,6 +1544,16 @@
         <!-- ========== SECTION 4 : KERANGKA PEMBELAJARAN MENDALAM ========== -->
         <section id="section4" class="section">
             <div class="section-wrapper">
+                <div style="background: rgba(255, 165, 0, 0.12); border-radius: 12px; padding: 10px 16px; margin-bottom: 16px; border-left: 4px solid #ff8c00; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                    <div style="display: flex; align-items: center; gap: 8px; color: #e8e8e8; font-size: 0.85rem; flex-wrap: wrap;">
+                        <i class="fas fa-school" style="color: #ff8c00;"></i> SMAN 3 KASONGAN &nbsp;|&nbsp;
+                        <i class="fas fa-chalkboard-teacher" style="color: #ff8c00;"></i> <strong>GURU PENGAMPU: SYAHRANI, S.Pd</strong> &nbsp;|&nbsp;
+                        <i class="fas fa-id-card" style="color: #ff8c00;"></i> NIP. 197512172005011016
+                    </div>
+                    <button onclick="navigateTo('section1')" style="background: #ff8c00; color: #121212; border: none; padding: 6px 16px; border-radius: 30px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 0.85rem; transition: 0.2s; box-shadow: 0 2px 8px rgba(255,140,0,0.3);">
+                        <i class="fas fa-home"></i> Beranda
+                    </button>
+                </div>
                 <div class="section-header">
                     <div class="num">04</div>
                     <h2>Kerangka Pembelajaran Mendalam <small>Pendekatan Deep Learning</small></h2>
@@ -1531,10 +1573,11 @@
                     </div>
                 </div>
                 <div class="nav-buttons">
-                    <button onclick="navigateTo('section1')"><i class="fas fa-home"></i> Beranda</button>
-                    <button onclick="navigateTo('section3')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
-                    <span class="counter">4 / 12</span>
-                    <button onclick="navigateTo('section5')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                    <div class="group">
+                        <button onclick="navigateTo('section3')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                        <span class="counter">4 / 12</span>
+                        <button onclick="navigateTo('section5')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1542,6 +1585,16 @@
         <!-- ========== SECTION 5 : PENGERTIAN GEOGRAFI ========== -->
         <section id="section5" class="section">
             <div class="section-wrapper">
+                <div style="background: rgba(255, 165, 0, 0.12); border-radius: 12px; padding: 10px 16px; margin-bottom: 16px; border-left: 4px solid #ff8c00; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                    <div style="display: flex; align-items: center; gap: 8px; color: #e8e8e8; font-size: 0.85rem; flex-wrap: wrap;">
+                        <i class="fas fa-school" style="color: #ff8c00;"></i> SMAN 3 KASONGAN &nbsp;|&nbsp;
+                        <i class="fas fa-chalkboard-teacher" style="color: #ff8c00;"></i> <strong>GURU PENGAMPU: SYAHRANI, S.Pd</strong> &nbsp;|&nbsp;
+                        <i class="fas fa-id-card" style="color: #ff8c00;"></i> NIP. 197512172005011016
+                    </div>
+                    <button onclick="navigateTo('section1')" style="background: #ff8c00; color: #121212; border: none; padding: 6px 16px; border-radius: 30px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 0.85rem; transition: 0.2s; box-shadow: 0 2px 8px rgba(255,140,0,0.3);">
+                        <i class="fas fa-home"></i> Beranda
+                    </button>
+                </div>
                 <div class="section-header">
                     <div class="num">05</div>
                     <h2>Pengertian Geografi <small>Etimologis & Filosofis</small></h2>
@@ -1621,10 +1674,11 @@
                     </div>
                 </div>
                 <div class="nav-buttons">
-                    <button onclick="navigateTo('section1')"><i class="fas fa-home"></i> Beranda</button>
-                    <button onclick="navigateTo('section4')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
-                    <span class="counter">5 / 12</span>
-                    <button onclick="navigateTo('section6')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                    <div class="group">
+                        <button onclick="navigateTo('section4')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                        <span class="counter">5 / 12</span>
+                        <button onclick="navigateTo('section6')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1632,6 +1686,16 @@
         <!-- ========== SECTION 6 : DEFINISI AHLI ========== -->
         <section id="section6" class="section">
             <div class="section-wrapper">
+                <div style="background: rgba(255, 165, 0, 0.12); border-radius: 12px; padding: 10px 16px; margin-bottom: 16px; border-left: 4px solid #ff8c00; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                    <div style="display: flex; align-items: center; gap: 8px; color: #e8e8e8; font-size: 0.85rem; flex-wrap: wrap;">
+                        <i class="fas fa-school" style="color: #ff8c00;"></i> SMAN 3 KASONGAN &nbsp;|&nbsp;
+                        <i class="fas fa-chalkboard-teacher" style="color: #ff8c00;"></i> <strong>GURU PENGAMPU: SYAHRANI, S.Pd</strong> &nbsp;|&nbsp;
+                        <i class="fas fa-id-card" style="color: #ff8c00;"></i> NIP. 197512172005011016
+                    </div>
+                    <button onclick="navigateTo('section1')" style="background: #ff8c00; color: #121212; border: none; padding: 6px 16px; border-radius: 30px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 0.85rem; transition: 0.2s; box-shadow: 0 2px 8px rgba(255,140,0,0.3);">
+                        <i class="fas fa-home"></i> Beranda
+                    </button>
+                </div>
                 <div class="section-header">
                     <div class="num">06</div>
                     <h2>Definisi Menurut Para Ahli <small>Pendapat Tokoh Geografi Dunia</small></h2>
@@ -1850,10 +1914,11 @@
                     </p>
                 </div>
                 <div class="nav-buttons">
-                    <button onclick="navigateTo('section1')"><i class="fas fa-home"></i> Beranda</button>
-                    <button onclick="navigateTo('section5')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
-                    <span class="counter">6 / 12</span>
-                    <button onclick="navigateTo('section7')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                    <div class="group">
+                        <button onclick="navigateTo('section5')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                        <span class="counter">6 / 12</span>
+                        <button onclick="navigateTo('section7')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1861,6 +1926,16 @@
         <!-- ========== SECTION 7 : OBJEK DAN PRINSIP GEOGRAFI ========== -->
         <section id="section7" class="section">
             <div class="section-wrapper">
+                <div style="background: rgba(255, 165, 0, 0.12); border-radius: 12px; padding: 10px 16px; margin-bottom: 16px; border-left: 4px solid #ff8c00; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                    <div style="display: flex; align-items: center; gap: 8px; color: #e8e8e8; font-size: 0.85rem; flex-wrap: wrap;">
+                        <i class="fas fa-school" style="color: #ff8c00;"></i> SMAN 3 KASONGAN &nbsp;|&nbsp;
+                        <i class="fas fa-chalkboard-teacher" style="color: #ff8c00;"></i> <strong>GURU PENGAMPU: SYAHRANI, S.Pd</strong> &nbsp;|&nbsp;
+                        <i class="fas fa-id-card" style="color: #ff8c00;"></i> NIP. 197512172005011016
+                    </div>
+                    <button onclick="navigateTo('section1')" style="background: #ff8c00; color: #121212; border: none; padding: 6px 16px; border-radius: 30px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 0.85rem; transition: 0.2s; box-shadow: 0 2px 8px rgba(255,140,0,0.3);">
+                        <i class="fas fa-home"></i> Beranda
+                    </button>
+                </div>
                 <div class="section-header">
                     <div class="num">07</div>
                     <h2>Objek Studi & Prinsip Geografi <small>Materi dan Formal</small></h2>
@@ -2006,10 +2081,11 @@
                     </p>
                 </div>
                 <div class="nav-buttons">
-                    <button onclick="navigateTo('section1')"><i class="fas fa-home"></i> Beranda</button>
-                    <button onclick="navigateTo('section6')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
-                    <span class="counter">7 / 12</span>
-                    <button onclick="navigateTo('section8')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                    <div class="group">
+                        <button onclick="navigateTo('section6')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                        <span class="counter">7 / 12</span>
+                        <button onclick="navigateTo('section8')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -2017,6 +2093,16 @@
         <!-- ========== SECTION 8 : ASPEK DAN PENDEKATAN GEOGRAFI ========== -->
         <section id="section8" class="section">
             <div class="section-wrapper">
+                <div style="background: rgba(255, 165, 0, 0.12); border-radius: 12px; padding: 10px 16px; margin-bottom: 16px; border-left: 4px solid #ff8c00; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                    <div style="display: flex; align-items: center; gap: 8px; color: #e8e8e8; font-size: 0.85rem; flex-wrap: wrap;">
+                        <i class="fas fa-school" style="color: #ff8c00;"></i> SMAN 3 KASONGAN &nbsp;|&nbsp;
+                        <i class="fas fa-chalkboard-teacher" style="color: #ff8c00;"></i> <strong>GURU PENGAMPU: SYAHRANI, S.Pd</strong> &nbsp;|&nbsp;
+                        <i class="fas fa-id-card" style="color: #ff8c00;"></i> NIP. 197512172005011016
+                    </div>
+                    <button onclick="navigateTo('section1')" style="background: #ff8c00; color: #121212; border: none; padding: 6px 16px; border-radius: 30px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 0.85rem; transition: 0.2s; box-shadow: 0 2px 8px rgba(255,140,0,0.3);">
+                        <i class="fas fa-home"></i> Beranda
+                    </button>
+                </div>
                 <div class="section-header">
                     <div class="num">08</div>
                     <h2>Aspek & Pendekatan Geografi <small>Memahami Fenomena Secara Utuh</small></h2>
@@ -2103,10 +2189,11 @@
                     </p>
                 </div>
                 <div class="nav-buttons">
-                    <button onclick="navigateTo('section1')"><i class="fas fa-home"></i> Beranda</button>
-                    <button onclick="navigateTo('section7')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
-                    <span class="counter">8 / 12</span>
-                    <button onclick="navigateTo('section9')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                    <div class="group">
+                        <button onclick="navigateTo('section7')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                        <span class="counter">8 / 12</span>
+                        <button onclick="navigateTo('section9')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -2114,6 +2201,16 @@
         <!-- ========== SECTION 9 : KETERAMPILAN DAN MANFAAT GEOGRAFI ========== -->
         <section id="section9" class="section">
             <div class="section-wrapper">
+                <div style="background: rgba(255, 165, 0, 0.12); border-radius: 12px; padding: 10px 16px; margin-bottom: 16px; border-left: 4px solid #ff8c00; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                    <div style="display: flex; align-items: center; gap: 8px; color: #e8e8e8; font-size: 0.85rem; flex-wrap: wrap;">
+                        <i class="fas fa-school" style="color: #ff8c00;"></i> SMAN 3 KASONGAN &nbsp;|&nbsp;
+                        <i class="fas fa-chalkboard-teacher" style="color: #ff8c00;"></i> <strong>GURU PENGAMPU: SYAHRANI, S.Pd</strong> &nbsp;|&nbsp;
+                        <i class="fas fa-id-card" style="color: #ff8c00;"></i> NIP. 197512172005011016
+                    </div>
+                    <button onclick="navigateTo('section1')" style="background: #ff8c00; color: #121212; border: none; padding: 6px 16px; border-radius: 30px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 0.85rem; transition: 0.2s; box-shadow: 0 2px 8px rgba(255,140,0,0.3);">
+                        <i class="fas fa-home"></i> Beranda
+                    </button>
+                </div>
                 <div class="section-header">
                     <div class="num">09</div>
                     <h2>Keterampilan & Manfaat Geografi <small>Life Skills & Pembangunan Berkelanjutan</small></h2>
@@ -2233,10 +2330,11 @@
                     </p>
                 </div>
                 <div class="nav-buttons">
-                    <button onclick="navigateTo('section1')"><i class="fas fa-home"></i> Beranda</button>
-                    <button onclick="navigateTo('section8')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
-                    <span class="counter">9 / 12</span>
-                    <button onclick="navigateTo('section10')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                    <div class="group">
+                        <button onclick="navigateTo('section8')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                        <span class="counter">9 / 12</span>
+                        <button onclick="navigateTo('section10')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -2244,6 +2342,16 @@
         <!-- ========== SECTION 10 : ASESMEN ========== -->
         <section id="section10" class="section">
             <div class="section-wrapper">
+                <div style="background: rgba(255, 165, 0, 0.12); border-radius: 12px; padding: 10px 16px; margin-bottom: 16px; border-left: 4px solid #ff8c00; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                    <div style="display: flex; align-items: center; gap: 8px; color: #e8e8e8; font-size: 0.85rem; flex-wrap: wrap;">
+                        <i class="fas fa-school" style="color: #ff8c00;"></i> SMAN 3 KASONGAN &nbsp;|&nbsp;
+                        <i class="fas fa-chalkboard-teacher" style="color: #ff8c00;"></i> <strong>GURU PENGAMPU: SYAHRANI, S.Pd</strong> &nbsp;|&nbsp;
+                        <i class="fas fa-id-card" style="color: #ff8c00;"></i> NIP. 197512172005011016
+                    </div>
+                    <button onclick="navigateTo('section1')" style="background: #ff8c00; color: #121212; border: none; padding: 6px 16px; border-radius: 30px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 0.85rem; transition: 0.2s; box-shadow: 0 2px 8px rgba(255,140,0,0.3);">
+                        <i class="fas fa-home"></i> Beranda
+                    </button>
+                </div>
                 <div class="section-header">
                     <div class="num">10</div>
                     <h2>Asesmen Pembelajaran <small>Evaluasi Pemahaman Pengetahuan Dasar Geografi</small></h2>
@@ -2404,10 +2512,11 @@
                     </p>
                 </div>
                 <div class="nav-buttons">
-                    <button onclick="navigateTo('section1')"><i class="fas fa-home"></i> Beranda</button>
-                    <button onclick="navigateTo('section9')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
-                    <span class="counter">10 / 12</span>
-                    <button onclick="navigateTo('section11')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                    <div class="group">
+                        <button onclick="navigateTo('section9')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                        <span class="counter">10 / 12</span>
+                        <button onclick="navigateTo('section11')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -2415,6 +2524,16 @@
         <!-- ========== SECTION 11 : REFLEKSI ========== -->
         <section id="section11" class="section">
             <div class="section-wrapper">
+                <div style="background: rgba(255, 165, 0, 0.12); border-radius: 12px; padding: 10px 16px; margin-bottom: 16px; border-left: 4px solid #ff8c00; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                    <div style="display: flex; align-items: center; gap: 8px; color: #e8e8e8; font-size: 0.85rem; flex-wrap: wrap;">
+                        <i class="fas fa-school" style="color: #ff8c00;"></i> SMAN 3 KASONGAN &nbsp;|&nbsp;
+                        <i class="fas fa-chalkboard-teacher" style="color: #ff8c00;"></i> <strong>GURU PENGAMPU: SYAHRANI, S.Pd</strong> &nbsp;|&nbsp;
+                        <i class="fas fa-id-card" style="color: #ff8c00;"></i> NIP. 197512172005011016
+                    </div>
+                    <button onclick="navigateTo('section1')" style="background: #ff8c00; color: #121212; border: none; padding: 6px 16px; border-radius: 30px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 0.85rem; transition: 0.2s; box-shadow: 0 2px 8px rgba(255,140,0,0.3);">
+                        <i class="fas fa-home"></i> Beranda
+                    </button>
+                </div>
                 <div class="section-header">
                     <div class="num">11</div>
                     <h2>Refleksi Pembelajaran <small>Menyimpulkan Materi</small></h2>
@@ -2466,10 +2585,11 @@
                     </p>
                 </div>
                 <div class="nav-buttons">
-                    <button onclick="navigateTo('section1')"><i class="fas fa-home"></i> Beranda</button>
-                    <button onclick="navigateTo('section10')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
-                    <span class="counter">11 / 12</span>
-                    <button onclick="navigateTo('section12')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                    <div class="group">
+                        <button onclick="navigateTo('section10')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                        <span class="counter">11 / 12</span>
+                        <button onclick="navigateTo('section12')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -2477,6 +2597,16 @@
         <!-- ========== SECTION 12 : REFERENSI ========== -->
         <section id="section12" class="section">
             <div class="section-wrapper">
+                <div style="background: rgba(255, 165, 0, 0.12); border-radius: 12px; padding: 10px 16px; margin-bottom: 16px; border-left: 4px solid #ff8c00; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                    <div style="display: flex; align-items: center; gap: 8px; color: #e8e8e8; font-size: 0.85rem; flex-wrap: wrap;">
+                        <i class="fas fa-school" style="color: #ff8c00;"></i> SMAN 3 KASONGAN &nbsp;|&nbsp;
+                        <i class="fas fa-chalkboard-teacher" style="color: #ff8c00;"></i> <strong>GURU PENGAMPU: SYAHRANI, S.Pd</strong> &nbsp;|&nbsp;
+                        <i class="fas fa-id-card" style="color: #ff8c00;"></i> NIP. 197512172005011016
+                    </div>
+                    <button onclick="navigateTo('section1')" style="background: #ff8c00; color: #121212; border: none; padding: 6px 16px; border-radius: 30px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 0.85rem; transition: 0.2s; box-shadow: 0 2px 8px rgba(255,140,0,0.3);">
+                        <i class="fas fa-home"></i> Beranda
+                    </button>
+                </div>
                 <div class="section-header">
                     <div class="num">12</div>
                     <h2>Referensi <small>Daftar Pustaka</small></h2>
@@ -2499,10 +2629,11 @@
                     <i class="fas fa-chalkboard-teacher" style="color:#3498db;"></i> Guru Pengampu: <strong style="color:#fff;">SYAHRANI, S.Pd</strong> &nbsp;·&nbsp; NIP. 197512172005011016
                 </div>
                 <div class="nav-buttons">
-                    <button onclick="navigateTo('section1')"><i class="fas fa-home"></i> Beranda</button>
-                    <button onclick="navigateTo('section11')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
-                    <span class="counter">12 / 12</span>
-                    <button disabled>Terakhir</button>
+                    <div class="group">
+                        <button onclick="navigateTo('section11')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                        <span class="counter">12 / 12</span>
+                        <button disabled>Terakhir</button>
+                    </div>
                 </div>
             </div>
         </section>
