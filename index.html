@@ -152,7 +152,7 @@
         .start-btn i { font-size:1.4rem; }
 
         .tag { display:inline-block; background:#3498db; color:#121212; font-size:0.7rem; font-weight:700; padding:2px 14px; border-radius:40px; letter-spacing:0.5px; text-transform:uppercase; }
-        .school-info { background:#0d0d0d; color:#88c0d0; padding:10px 20px; border-radius:40px; display:inline-block; font-weight:500; font-size:0.9rem; box-shadow:0 4px 12px rgba(0,0,0,0.4); margin-top:6px; }
+        .school-info { background:#0d0d0d; padding:10px 20px; border-radius:40px; display:inline-block; font-weight:500; font-size:0.9rem; box-shadow:0 4px 12px rgba(0,0,0,0.4); margin-top:6px; }
         .school-info i { color:#3498db; margin-right:8px; }
         .footer-credit { text-align:center; margin-top:16px; padding-top:12px; border-top:1px solid #333; font-size:0.85rem; color:#aaa; }
         .footer-credit strong { color:#eee; }
@@ -243,6 +243,7 @@
         .layer-antroposfer-css { width:44px; height:44px; background:radial-gradient(circle,#E53935,#B71C1C); top:88px; left:88px; font-size:0.5rem; }
         @media (max-width:500px) { .geosfer-hover-trigger .popup-diagram { width:280px; left:50%; transform:translateX(-50%); bottom:calc(100%+12px); padding:14px; } .geosfer-hover-trigger:hover .popup-diagram { transform:translateX(-50%) scale(1); } .geosfer-diagram-css { width:160px; height:160px; } .layer-litosfer-css { width:160px; height:160px; font-size:0.7rem; } .layer-atmosfer-css { width:128px; height:128px; top:16px; left:16px; font-size:0.6rem; } .layer-hidrosfer-css { width:96px; height:96px; top:32px; left:32px; font-size:0.55rem; } .layer-biosfer-css { width:64px; height:64px; top:48px; left:48px; font-size:0.5rem; } .layer-antroposfer-css { width:32px; height:32px; top:64px; left:64px; font-size:0.4rem; } }
 
+        /* ===== MODAL UNTUK GAMBAR BESAR ===== */
         .modal-overlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:9999; justify-content:center; align-items:center; cursor:pointer; }
         .modal-overlay.active { display:flex; }
         .modal-overlay .modal-content { max-width:90vw; max-height:90vh; background:#1a1a1a; border-radius:16px; padding:16px; border:2px solid #3498db; box-shadow:0 20px 60px rgba(0,0,0,0.9); position:relative; text-align:center; }
@@ -378,7 +379,8 @@
         .start-btn:hover { background:#5aadf0; box-shadow:0 8px 28px rgba(52,152,219,0.6); }
         .footer-credit { border-top:1px solid #333; color:#aaa; }
         .footer-credit strong { color:#eee; }
-        .school-name-header { color:#88c0d0; font-weight:500; }
+        .school-name-gold { color:#d4af37; font-weight:600; text-shadow:0 0 12px rgba(212,175,55,0.4),0 0 30px rgba(212,175,55,0.1); }
+        .school-name-gold-cover { color:#d4af37; font-weight:600; text-shadow:0 0 15px rgba(212,175,55,0.5),0 0 40px rgba(212,175,55,0.15); }
     </style>
 </head>
 <body>
@@ -415,11 +417,11 @@
                 <span class="tag" style="font-size:0.8rem; padding:4px 20px;">KELAS X / FASE E</span>
                 <span class="deep-learning-badge" style="margin-left:6px;"><i class="fas fa-brain"></i> Deep Learning</span>
                 <h1 class="cover-title">PENGETAHUAN DASAR<br/>GEOGRAFI</h1>
-                <p style="font-size:1rem; color:#aaa; max-width:600px; margin:0 auto; padding:0 10px;">
-                    Pengertian, objek, prinsip, aspek, pendekatan, dan manfaat geografi<br/>dalam kehidupan sehari-hari
-                </p>
+                <p style="font-size:1rem; color:#aaa; max-width:600px; margin:0 auto; padding:0 10px;">Pengertian, objek, prinsip, aspek, pendekatan, dan manfaat geografi<br/>dalam kehidupan sehari-hari</p>
                 <div style="margin-top:16px;">
-                    <div class="school-info" style="font-size:2rem; padding:12px 28px; color:#88c0d0;">SMAN 3 KASONGAN</div>
+                    <div class="school-info" style="font-size:2rem; padding:12px 28px;">
+                        <span class="school-name-gold-cover">SMAN 3 KASONGAN</span>
+                    </div>
                     <div style="margin-top:6px; font-size:0.9rem; color:#aaa;">
                         <i class="fas fa-chalkboard-teacher" style="color:#88c0d0;"></i> 
                         Guru Pengampu: <strong style="color:#88c0d0; text-shadow:0 0 10px rgba(136,192,208,0.3);">SYAHRANI, S.Pd</strong> &nbsp;|&nbsp; 
@@ -427,13 +429,9 @@
                     </div>
                 </div>
                 <div class="start-btn-wrapper">
-                    <button class="start-btn" onclick="navigateTo('section2')">
-                        <i class="fas fa-play-circle"></i> Mulai Belajar
-                    </button>
+                    <button class="start-btn" onclick="navigateTo('section2')"><i class="fas fa-play-circle"></i> Mulai Belajar</button>
                 </div>
-                <div style="margin-top:6px; font-size:0.85rem; color:#666;">
-                    <i class="fas fa-chevron-down"></i> Jelajahi materi menggunakan navigasi di bawah
-                </div>
+                <div style="margin-top:6px; font-size:0.85rem; color:#666;"><i class="fas fa-chevron-down"></i> Jelajahi materi menggunakan navigasi di bawah</div>
                 <div class="nav-box">
                     <div class="nav-header"><i class="fas fa-compass"></i> Navigasi Cepat Materi</div>
                     <div class="nav-grid">
@@ -454,26 +452,19 @@
             </div>
         </section>
 
-        <!-- SECTION 2 : CP & ATP -->
+        <!-- SECTION 2 : CP & ATP (singkat, tetap lengkap) -->
         <section id="section2" class="section">
             <div class="section-wrapper">
                 <div style="background:rgba(212,175,55,0.12); border-radius:12px; padding:10px 16px; margin-bottom:16px; border-left:4px solid #d4af37; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-                    <div style="display:flex; align-items:center; gap:8px; color:#e8e8e8; font-size:0.85rem; flex-wrap:wrap;">
-                        <span class="school-name-header">SMAN 3 KASONGAN</span>
-                    </div>
+                    <div style="display:flex; align-items:center; gap:8px; color:#e8e8e8; font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
                     <button onclick="navigateTo('section1')" style="background:linear-gradient(145deg,#d4af37,#b8962e); color:#121212; border:none; padding:6px 16px; border-radius:30px; font-weight:700; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.85rem; transition:0.2s; box-shadow:0 2px 12px rgba(212,175,55,0.5);"><i class="fas fa-home"></i> Beranda</button>
                 </div>
                 <div class="section-header"><div class="num">02</div><h2>Capaian & Alur Tujuan Pembelajaran <small>Kurikulum Merdeka Fase E</small></h2></div>
                 <div style="background:linear-gradient(145deg,#1a241e,#1e2a24); border-radius:14px; padding:16px 18px; border-left:6px solid #5aadf0; margin:10px 0;">
-                    <p><strong><i class="fas fa-puzzle-piece" style="color:#8cc4d0;"></i> Rasional Mata Pelajaran Geografi</strong><br/>
-                    Mata pelajaran Geografi membekali peserta didik dengan pengetahuan, keterampilan, dan sikap untuk memahami dan menganalisis fenomena geosfer serta interaksi antara manusia dan lingkungannya. Pembelajaran Geografi mendorong peserta didik untuk berpikir secara keruangan, kelingkungan, dan kewilayahan dalam menghadapi berbagai tantangan global, seperti perubahan iklim, bencana alam, dan pembangunan berkelanjutan.</p>
-                    <p style="margin-top:8px;"><strong><i class="fas fa-star" style="color:#8cc4d0;"></i> Karakteristik Mata Pelajaran Geografi</strong><br/>
-                    Geografi memiliki karakteristik sebagai ilmu yang mengkaji persamaan dan perbedaan fenomena geosfer (fisik dan sosial) dengan sudut pandang kelingkungan, kewilayahan, dan keruangan. Ilmu ini bersifat interdisipliner, menghubungkan ilmu alam dan ilmu sosial, serta berorientasi pada pemecahan masalah nyata di masyarakat.</p>
+                    <p><strong><i class="fas fa-puzzle-piece" style="color:#8cc4d0;"></i> Rasional Mata Pelajaran Geografi</strong><br/>Mata pelajaran Geografi membekali peserta didik dengan pengetahuan, keterampilan, dan sikap untuk memahami dan menganalisis fenomena geosfer serta interaksi antara manusia dan lingkungannya. Pembelajaran Geografi mendorong peserta didik untuk berpikir secara keruangan, kelingkungan, dan kewilayahan dalam menghadapi berbagai tantangan global, seperti perubahan iklim, bencana alam, dan pembangunan berkelanjutan.</p>
+                    <p style="margin-top:8px;"><strong><i class="fas fa-star" style="color:#8cc4d0;"></i> Karakteristik Mata Pelajaran Geografi</strong><br/>Geografi memiliki karakteristik sebagai ilmu yang mengkaji persamaan dan perbedaan fenomena geosfer (fisik dan sosial) dengan sudut pandang kelingkungan, kewilayahan, dan keruangan. Ilmu ini bersifat interdisipliner, menghubungkan ilmu alam dan ilmu sosial, serta berorientasi pada pemecahan masalah nyata di masyarakat.</p>
                 </div>
-                <div class="cp-atp-box">
-                    <p><strong><i class="fas fa-flag-checkered" style="color:#8cc4d0;"></i> Capaian Pembelajaran (CP) – Fase E</strong><br/>
-                    Pada akhir Fase E, peserta didik memahami konsep dasar Geografi, peta, pengindraan jauh, Sistem Informasi Geografis (SIG), penelitian Geografi, dan fenomena geosfer fisik yaitu litosfer, atmosfer, dan hidrosfer sebagai ruang kehidupan.</p>
-                </div>
+                <div class="cp-atp-box"><p><strong><i class="fas fa-flag-checkered" style="color:#8cc4d0;"></i> Capaian Pembelajaran (CP) – Fase E</strong><br/>Pada akhir Fase E, peserta didik memahami konsep dasar Geografi, peta, pengindraan jauh, Sistem Informasi Geografis (SIG), penelitian Geografi, dan fenomena geosfer fisik yaitu litosfer, atmosfer, dan hidrosfer sebagai ruang kehidupan.</p></div>
                 <div class="flow-diagram">
                     <div class="flow-title"><i class="fas fa-sitemap"></i> Alur Tujuan Pembelajaran (ATP) <span style="font-size:0.7rem; background:#2a2a2a; padding:2px 10px; border-radius:30px; color:#aaa; margin-left:auto;">Klik/tap kartu untuk detail</span></div>
                     <div class="flow-row">
@@ -518,9 +509,7 @@
         <section id="section3" class="section">
             <div class="section-wrapper">
                 <div style="background:rgba(212,175,55,0.12); border-radius:12px; padding:10px 16px; margin-bottom:16px; border-left:4px solid #d4af37; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-                    <div style="display:flex; align-items:center; gap:8px; color:#e8e8e8; font-size:0.85rem; flex-wrap:wrap;">
-                        <span class="school-name-header">SMAN 3 KASONGAN</span>
-                    </div>
+                    <div style="display:flex; align-items:center; gap:8px; color:#e8e8e8; font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
                     <button onclick="navigateTo('section1')" style="background:linear-gradient(145deg,#d4af37,#b8962e); color:#121212; border:none; padding:6px 16px; border-radius:30px; font-weight:700; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.85rem; transition:0.2s; box-shadow:0 2px 12px rgba(212,175,55,0.5);"><i class="fas fa-home"></i> Beranda</button>
                 </div>
                 <div class="section-header"><div class="num">03</div><h2>Indikator Pencapaian <small>Tujuan Pembelajaran</small></h2></div>
@@ -545,9 +534,7 @@
         <section id="section4" class="section">
             <div class="section-wrapper">
                 <div style="background:rgba(212,175,55,0.12); border-radius:12px; padding:10px 16px; margin-bottom:16px; border-left:4px solid #d4af37; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-                    <div style="display:flex; align-items:center; gap:8px; color:#e8e8e8; font-size:0.85rem; flex-wrap:wrap;">
-                        <span class="school-name-header">SMAN 3 KASONGAN</span>
-                    </div>
+                    <div style="display:flex; align-items:center; gap:8px; color:#e8e8e8; font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
                     <button onclick="navigateTo('section1')" style="background:linear-gradient(145deg,#d4af37,#b8962e); color:#121212; border:none; padding:6px 16px; border-radius:30px; font-weight:700; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.85rem; transition:0.2s; box-shadow:0 2px 12px rgba(212,175,55,0.5);"><i class="fas fa-home"></i> Beranda</button>
                 </div>
                 <div class="section-header"><div class="num">04</div><h2>Kerangka Pembelajaran Mendalam <small>Pendekatan Deep Learning</small></h2></div>
@@ -576,13 +563,11 @@
             </div>
         </section>
 
-        <!-- SECTION 5 : PENGERTIAN -->
+        <!-- ========== SECTION 5 : PENGERTIAN (DENGAN PERBAIKAN MODAL) ========== -->
         <section id="section5" class="section">
             <div class="section-wrapper">
                 <div style="background:rgba(212,175,55,0.12); border-radius:12px; padding:10px 16px; margin-bottom:16px; border-left:4px solid #d4af37; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-                    <div style="display:flex; align-items:center; gap:8px; color:#e8e8e8; font-size:0.85rem; flex-wrap:wrap;">
-                        <span class="school-name-header">SMAN 3 KASONGAN</span>
-                    </div>
+                    <div style="display:flex; align-items:center; gap:8px; color:#e8e8e8; font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
                     <button onclick="navigateTo('section1')" style="background:linear-gradient(145deg,#d4af37,#b8962e); color:#121212; border:none; padding:6px 16px; border-radius:30px; font-weight:700; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.85rem; transition:0.2s; box-shadow:0 2px 12px rgba(212,175,55,0.5);"><i class="fas fa-home"></i> Beranda</button>
                 </div>
                 <div class="section-header"><div class="num">05</div><h2>Pengertian Geografi <small>Etimologis & Filosofis</small></h2></div>
@@ -597,7 +582,8 @@
                             <li><strong>Sudut Pandang Kewilayahan:</strong> Melihat karakteristik unik suatu wilayah dibandingkan wilayah lain.</li>
                         </ul>
                         <div style="text-align:center; margin-top:16px;">
-                            <span class="geosfer-hover-trigger" onclick="openModal('images/lapisangeosfer.png', 'Diagram 5 Lapisan Geosfer – Litosfer, Atmosfer, Hidrosfer, Biosfer, Antroposfer')">
+                            <!-- Diagram Geosfer: hover + klik (sudah diperbaiki) -->
+                            <span class="geosfer-hover-trigger" onclick="openModal('images/geosfer.png', 'Diagram 5 Lapisan Geosfer – Litosfer, Atmosfer, Hidrosfer, Biosfer, Antroposfer')">
                                 <i class="fas fa-globe" style="margin-right:8px;"></i> Arahkan kursor (hover) untuk pratinjau, <strong>klik untuk memperbesar</strong> diagram 5 lapisan Geosfer
                                 <span class="popup-diagram">
                                     <img src="images/geosfer.png" alt="Diagram 5 Lapisan Geosfer" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-css').style.display='block';">
@@ -621,6 +607,7 @@
                 <div style="margin-top:14px;">
                     <h3 style="font-size:1.1rem; color:#f0f0f0; border-left:4px solid #3498db; padding-left:12px; margin-bottom:6px;"><i class="fas fa-layer-group" style="color:#3498db;"></i> Ruang Lingkup Geografi</h3>
                     <div style="background:linear-gradient(145deg,#1a2a3a,#1e2a3a); border-radius:10px; padding:12px 16px; margin-top:10px; border-left:4px solid #2ecc71; text-align:center;">
+                        <!-- Ilustrasi Ruang Lingkup: hover + klik (sudah diperbaiki) -->
                         <span class="geosfer-hover-trigger" style="background:#1a3a3a; border-color:#2ecc71;" onclick="openModal('images/sawahgunungmanusia.png', 'Ilustrasi Ruang Lingkup Geografi – Fisik (kiri) vs Sosial (kanan)')">
                             <i class="fas fa-image" style="margin-right:8px; color:#2ecc71;"></i> Arahkan kursor (hover) untuk pratinjau, <strong>klik untuk memperbesar</strong> ilustrasi Ruang Lingkup Geografi
                             <span class="popup-diagram" style="width:520px; max-width:90vw; padding:16px; pointer-events:none;">
@@ -654,17 +641,14 @@
         <section id="section6" class="section">
             <div class="section-wrapper">
                 <div style="background:rgba(212,175,55,0.12); border-radius:12px; padding:10px 16px; margin-bottom:16px; border-left:4px solid #d4af37; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-                    <div style="display:flex; align-items:center; gap:8px; color:#e8e8e8; font-size:0.85rem; flex-wrap:wrap;">
-                        <span class="school-name-header">SMAN 3 KASONGAN</span>
-                    </div>
+                    <div style="display:flex; align-items:center; gap:8px; color:#e8e8e8; font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
                     <button onclick="navigateTo('section1')" style="background:linear-gradient(145deg,#d4af37,#b8962e); color:#121212; border:none; padding:6px 16px; border-radius:30px; font-weight:700; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.85rem; transition:0.2s; box-shadow:0 2px 12px rgba(212,175,55,0.5);"><i class="fas fa-home"></i> Beranda</button>
                 </div>
                 <div class="section-header"><div class="num">06</div><h2>Definisi Menurut Para Ahli <small>Pendapat Tokoh Geografi Dunia</small></h2></div>
-
+                <!-- TIMELINE -->
                 <div style="background:linear-gradient(145deg,#1a2a3a,#1e2a3a); border-radius:10px; padding:12px 16px; margin:16px 0; border-left:4px solid #f39c12; text-align:center;">
                     <span class="geosfer-hover-trigger" style="background:#1a3a3a; border-color:#f39c12;" onclick="openModal('images/timeline2.png', 'Timeline Perkembangan Ilmu Geografi – dari Eratosthenes hingga Modern')">
-                        <i class="fas fa-history" style="margin-right:8px; color:#f39c12;"></i> 
-                        Arahkan kursor (hover) untuk pratinjau, <strong>klik untuk memperbesar</strong> timeline perkembangan ilmu geografi
+                        <i class="fas fa-history" style="margin-right:8px; color:#f39c12;"></i> Arahkan kursor (hover) untuk pratinjau, <strong>klik untuk memperbesar</strong> timeline perkembangan ilmu geografi
                         <span class="popup-diagram" style="width:520px; max-width:90vw; padding:16px; pointer-events:none;">
                             <img src="images/timelinegeografi.png" alt="Timeline Perkembangan Ilmu Geografi" style="max-width:100%; max-height:300px; border-radius:10px; border:1px solid #444; background:#0d0d0d;" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-timeline').style.display='block';">
                             <div class="fallback-timeline" style="display:none; padding:20px; color:#f39c12; font-size:1rem;"><i class="fas fa-image" style="font-size:2rem; display:block; margin-bottom:8px;"></i>Timeline Perkembangan Ilmu Geografi<br><span style="font-size:0.8rem; color:#666;">(Ganti URL gambar di kode HTML)</span></div>
@@ -673,9 +657,9 @@
                     </span>
                     <p style="font-size:0.8rem; color:#666; margin-top:4px;">(Klik pada tombol di atas untuk melihat gambar ukuran besar)</p>
                 </div>
-
                 <p style="font-size:1rem; margin-bottom:10px; color:#ccc;"><i class="fas fa-quote-left" style="color:#3498db;"></i> Berikut adalah definisi geografi dari berbagai ahli terkemuka dunia. <strong>Klik pada kartu</strong> untuk melihat penjelasan lengkapnya.</p>
                 <div class="grid-ahli">
+                    <!-- 8 ahli (konten lengkap) -->
                     <div class="ahli-card interactive-card dark-card" onclick="this.classList.toggle('open')"><div class="ahli-header"><span class="icon-number">1</span><div><h3>Eratosthenes</h3><span class="sub">Ilmuwan Yunani (276–194 SM)</span></div></div><div class="back"><p style="font-weight:500; color:#1a2a3a; font-size:0.9rem;">Dijuluki <em>"Bapak Geografi"</em>:</p><ul><li>Geografi adalah <strong>ilmu yang melukiskan keadaan permukaan bumi</strong> dan segala sesuatu yang ada di atasnya.</li><li>Orang pertama yang menggunakan istilah <em>"geographia"</em> (lukisan bumi).</li><li>Berhasil menghitung keliling bumi dengan akurasi tinggi (± 40.000 km) menggunakan bayangan matahari.</li></ul><div class="keterangan"><i class="fas fa-info-circle"></i> Eratosthenes meletakkan dasar-dasar geografi sebagai ilmu yang mandiri. Ia juga membuat peta dunia pertama yang mencakup Eropa, Asia, dan Afrika.</div></div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk lihat definisi</span></div>
                     <div class="ahli-card interactive-card dark-card" onclick="this.classList.toggle('open')"><div class="ahli-header"><span class="icon-number">2</span><div><h3>Claudius Ptolemaeus</h3><span class="sub">Astronom & Geografi Yunani (100–170 M)</span></div></div><div class="back"><p style="font-weight:500; color:#1a2a3a; font-size:0.9rem;">Penulis <em>Geographia</em>:</p><ul><li>Geografi adalah <strong>penyajian informasi tentang seluruh bagian bumi yang diketahui</strong> melalui peta dan data geografis.</li><li>Mengembangkan sistem koordinat lintang dan bujur yang masih digunakan hingga kini.</li><li>Karyanya menjadi rujukan utama geografi dan kartografi selama lebih dari 1.400 tahun.</li></ul><div class="keterangan"><i class="fas fa-info-circle"></i> Ptolemaeus adalah tokoh kunci dalam perkembangan kartografi. Ia juga meletakkan dasar-dasar proyeksi peta yang memungkinkan penggambaran bumi bulat pada bidang datar.</div></div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk lihat definisi</span></div>
                     <div class="ahli-card interactive-card dark-card" onclick="this.classList.toggle('open')"><div class="ahli-header"><span class="icon-number">3</span><div><h3>Immanuel Kant</h3><span class="sub">Filsuf Jerman (1724–1804)</span></div></div><div class="back"><p style="font-weight:500; color:#1a2a3a; font-size:0.9rem;">Pandangan tentang geografi:</p><ul><li>Geografi adalah <strong>ilmu yang mengkaji hubungan antara fenomena alam dengan manusia dalam ruang</strong>.</li><li>Membagi geografi menjadi <strong>geografi fisik</strong> (alam) dan <strong>geografi manusia</strong> (sosial).</li><li>Geografi adalah ilmu yang <strong>sistematis</strong> dan memberikan pemahaman tentang keragaman permukaan bumi.</li></ul><div class="keterangan"><i class="fas fa-info-circle"></i> Kant menekankan bahwa geografi adalah ilmu yang mengintegrasikan pengetahuan tentang alam dan manusia. Baginya, geografi adalah dasar dari semua pengetahuan tentang dunia.</div></div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk lihat definisi</span></div>
@@ -685,7 +669,6 @@
                     <div class="ahli-card interactive-card dark-card" onclick="this.classList.toggle('open')"><div class="ahli-header"><span class="icon-number">7</span><div><h3>Nursid Sumaatmadja</h3><span class="sub">Ahli Geografi Indonesia</span></div></div><div class="back"><p style="font-weight:500; color:#1a2a3a; font-size:0.9rem;">Definisi geografi:</p><ul><li>Geografi adalah <strong>ilmu yang mempelajari gejala dan fenomena alam serta kehidupan di muka bumi</strong> dengan menggunakan pendekatan keruangan, kelingkungan, dan kompleks wilayah.</li><li>Menekankan pada <strong>interaksi manusia dengan lingkungan</strong> sebagai inti kajian geografi.</li></ul><div class="keterangan"><i class="fas fa-info-circle"></i> Nursid Sumaatmadja adalah tokoh geografi Indonesia yang aktif mengembangkan pendidikan geografi. Definisi ini menekankan bahwa geografi adalah ilmu yang <strong>integratif</strong> dan <strong>aplikatif</strong>.</div></div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk lihat definisi</span></div>
                     <div class="ahli-card interactive-card dark-card" onclick="this.classList.toggle('open')"><div class="ahli-header"><span class="icon-number">8</span><div><h3>Preston James</h3><span class="sub">Ahli Geografi Amerika Serikat</span></div></div><div class="back"><p style="font-weight:500; color:#1a2a3a; font-size:0.9rem;">Definisi geografi:</p><ul><li>Geografi adalah <strong>ilmu yang mempelajari hubungan timbal balik antara manusia dan lingkungannya</strong> serta persebaran fenomena di permukaan bumi.</li><li>Menekankan pada <strong>perspektif keruangan</strong> dan <strong>interaksi manusia-lingkungan</strong>.</li></ul><div class="keterangan"><i class="fas fa-info-circle"></i> Preston James adalah tokoh penting dalam geografi Amerika. Karyanya <em>All Possible Worlds: A History of Geographical Ideas</em> menjadi rujukan penting dalam memahami perkembangan pemikiran geografi.</div></div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk lihat definisi</span></div>
                 </div>
-
                 <div style="background:linear-gradient(145deg,#1e1e1e,#252525); border-radius:14px; padding:14px 18px; border:1px solid #333; margin-top:14px;">
                     <p style="display:flex; align-items:flex-start; gap:10px; color:#ddd;"><i class="fas fa-lightbulb" style="color:#3498db; font-size:1.4rem; margin-top:2px;"></i><span><strong style="color:#fff;">Kesimpulan:</strong> Dari berbagai definisi di atas, dapat disimpulkan bahwa geografi memiliki beberapa dimensi penting:</span></p>
                     <ul style="padding-left:40px; margin-top:4px; list-style-type:disc; color:#ccc;">
@@ -707,13 +690,11 @@
             </div>
         </section>
 
-        <!-- SECTION 7 : OBJEK & PRINSIP -->
+        <!-- SECTION 7 : OBJEK & PRINSIP (tetap lengkap, saya singkat agar tidak terlalu panjang) -->
         <section id="section7" class="section">
             <div class="section-wrapper">
                 <div style="background:rgba(212,175,55,0.12); border-radius:12px; padding:10px 16px; margin-bottom:16px; border-left:4px solid #d4af37; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-                    <div style="display:flex; align-items:center; gap:8px; color:#e8e8e8; font-size:0.85rem; flex-wrap:wrap;">
-                        <span class="school-name-header">SMAN 3 KASONGAN</span>
-                    </div>
+                    <div style="display:flex; align-items:center; gap:8px; color:#e8e8e8; font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
                     <button onclick="navigateTo('section1')" style="background:linear-gradient(145deg,#d4af37,#b8962e); color:#121212; border:none; padding:6px 16px; border-radius:30px; font-weight:700; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.85rem; transition:0.2s; box-shadow:0 2px 12px rgba(212,175,55,0.5);"><i class="fas fa-home"></i> Beranda</button>
                 </div>
                 <div class="section-header"><div class="num">07</div><h2>Objek Studi & Prinsip Geografi <small>Materi dan Formal</small></h2></div>
@@ -725,8 +706,8 @@
                 <h3 style="font-size:1.1rem; color:#f0f0f0; border-left:4px solid #3498db; padding-left:12px; margin-bottom:6px; margin-top:16px;"><i class="fas fa-balance-scale" style="color:#3498db;"></i> Prinsip Geografi</h3>
                 <p style="font-size:0.95rem; color:#ccc; margin-bottom:8px;">Ada <strong>empat prinsip geografi</strong> yang menjadi landasan dalam mengkaji fenomena geosfer. Keempat prinsip ini saling terkait dan digunakan secara bersama-sama. <strong>Klik pada setiap kartu</strong> untuk melihat penjelasan dan contohnya.</p>
                 <div class="prinsip-grid">
-                    <div class="prinsip-card interactive-card dark-card" onclick="this.classList.toggle('open')"><h4>1. Prinsip Distribusi (Penyebaran)</h4><p>Fenomena geosfer tersebar tidak merata di permukaan bumi.</p><div class="back"><p style="color:#2a3a4a;">Prinsip distribusi menekankan bahwa fenomena geosfer <strong>tersebar secara tidak merata</strong> di permukaan bumi. Tugas geografi adalah mendeskripsikan, memetakan, dan menjelaskan pola persebaran tersebut.</p><strong style="color:#1a2a3a;">Contoh:</strong> Persebaran gunung berapi di Indonesia (ring of fire), persebaran penduduk yang padat di pulau Jawa, persebaran hutan hujan tropis di Kalimantan.</div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk penjelasan &amp; contoh</span></div>
-                    <div class="prinsip-card interactive-card dark-card" onclick="this.classList.toggle('open')"><h4>2. Prinsip Interelasi (Hubungan)</h4><p>Fenomena geosfer saling berhubungan dan memengaruhi satu sama lain.</p><div class="back"><p style="color:#2a3a4a;">Prinsip interelasi menekankan bahwa fenomena geosfer <strong>saling berhubungan dan memengaruhi</strong> satu sama lain. Tidak ada fenomena yang berdiri sendiri; semuanya terhubung dalam sistem yang kompleks.</p><strong style="color:#1a2a3a;">Contoh:</strong> Hubungan antara curah hujan tinggi dengan jenis vegetasi hutan hujan; hubungan antara kepadatan penduduk dengan kebutuhan lahan pemukiman; hubungan antara aktivitas gunung berapi dengan kesuburan tanah.</div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk penjelasan &amp; contoh</span></div>
+                    <div class="prinsip-card interactive-card dark-card" onclick="this.classList.toggle('open')"><h4>1. Prinsip Distribusi</h4><p>Fenomena geosfer tersebar tidak merata di permukaan bumi.</p><div class="back"><p style="color:#2a3a4a;">Prinsip distribusi menekankan bahwa fenomena geosfer <strong>tersebar secara tidak merata</strong> di permukaan bumi. Tugas geografi adalah mendeskripsikan, memetakan, dan menjelaskan pola persebaran tersebut.</p><strong style="color:#1a2a3a;">Contoh:</strong> Persebaran gunung berapi di Indonesia (ring of fire), persebaran penduduk yang padat di pulau Jawa, persebaran hutan hujan tropis di Kalimantan.</div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk penjelasan &amp; contoh</span></div>
+                    <div class="prinsip-card interactive-card dark-card" onclick="this.classList.toggle('open')"><h4>2. Prinsip Interelasi</h4><p>Fenomena geosfer saling berhubungan dan memengaruhi satu sama lain.</p><div class="back"><p style="color:#2a3a4a;">Prinsip interelasi menekankan bahwa fenomena geosfer <strong>saling berhubungan dan memengaruhi</strong> satu sama lain. Tidak ada fenomena yang berdiri sendiri; semuanya terhubung dalam sistem yang kompleks.</p><strong style="color:#1a2a3a;">Contoh:</strong> Hubungan antara curah hujan tinggi dengan jenis vegetasi hutan hujan; hubungan antara kepadatan penduduk dengan kebutuhan lahan pemukiman; hubungan antara aktivitas gunung berapi dengan kesuburan tanah.</div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk penjelasan &amp; contoh</span></div>
                     <div class="prinsip-card interactive-card dark-card" onclick="this.classList.toggle('open')"><h4>3. Prinsip Deskripsi</h4><p>Fenomena geosfer digambarkan dan dijelaskan secara terperinci.</p><div class="back"><p style="color:#2a3a4a;">Prinsip deskripsi menekankan bahwa fenomena geosfer harus <strong>digambarkan dan dijelaskan secara terperinci</strong> melalui kata-kata, peta, grafik, atau tabel. Deskripsi yang baik menjadi dasar untuk analisis lebih lanjut.</p><strong style="color:#1a2a3a;">Contoh:</strong> Deskripsi tentang karakteristik fisik Danau Toba, deskripsi tentang kondisi sosial ekonomi penduduk di suatu desa, deskripsi tentang jenis tanah di suatu daerah.</div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk penjelasan &amp; contoh</span></div>
                     <div class="prinsip-card interactive-card dark-card" onclick="this.classList.toggle('open')"><h4>4. Prinsip Korologi</h4><p>Gabungan dari distribusi, interelasi, dan deskripsi dalam satu wilayah.</p><div class="back"><p style="color:#2a3a4a;">Prinsip korologi adalah <strong>gabungan dari tiga prinsip sebelumnya</strong> (distribusi, interelasi, dan deskripsi) dalam konteks suatu wilayah. Prinsip ini menekankan bahwa suatu wilayah memiliki karakteristik unik yang merupakan hasil dari interaksi berbagai fenomena.</p><strong style="color:#1a2a3a;">Contoh:</strong> Analisis wilayah Jakarta sebagai daerah perkotaan dengan karakteristik kepadatan penduduk tinggi, aktivitas ekonomi beragam, dan masalah banjir yang kompleks. Wilayah ini dipahami melalui persebaran (distribusi), hubungan antarfenomena (interelasi), dan deskripsi terperinci.</div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk penjelasan &amp; contoh</span></div>
                 </div>
@@ -763,9 +744,7 @@
         <section id="section8" class="section">
             <div class="section-wrapper">
                 <div style="background:rgba(212,175,55,0.12); border-radius:12px; padding:10px 16px; margin-bottom:16px; border-left:4px solid #d4af37; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-                    <div style="display:flex; align-items:center; gap:8px; color:#e8e8e8; font-size:0.85rem; flex-wrap:wrap;">
-                        <span class="school-name-header">SMAN 3 KASONGAN</span>
-                    </div>
+                    <div style="display:flex; align-items:center; gap:8px; color:#e8e8e8; font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
                     <button onclick="navigateTo('section1')" style="background:linear-gradient(145deg,#d4af37,#b8962e); color:#121212; border:none; padding:6px 16px; border-radius:30px; font-weight:700; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.85rem; transition:0.2s; box-shadow:0 2px 12px rgba(212,175,55,0.5);"><i class="fas fa-home"></i> Beranda</button>
                 </div>
                 <div class="section-header"><div class="num">08</div><h2>Aspek & Pendekatan Geografi <small>Memahami Fenomena Secara Utuh</small></h2></div>
@@ -794,13 +773,11 @@
             </div>
         </section>
 
-        <!-- SECTION 9 : KETERAMPILAN & MANFAAT -->
+        <!-- SECTION 9 : KETERAMPILAN & MANFAAT (singkat, tetap lengkap) -->
         <section id="section9" class="section">
             <div class="section-wrapper">
                 <div style="background:rgba(212,175,55,0.12); border-radius:12px; padding:10px 16px; margin-bottom:16px; border-left:4px solid #d4af37; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-                    <div style="display:flex; align-items:center; gap:8px; color:#e8e8e8; font-size:0.85rem; flex-wrap:wrap;">
-                        <span class="school-name-header">SMAN 3 KASONGAN</span>
-                    </div>
+                    <div style="display:flex; align-items:center; gap:8px; color:#e8e8e8; font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
                     <button onclick="navigateTo('section1')" style="background:linear-gradient(145deg,#d4af37,#b8962e); color:#121212; border:none; padding:6px 16px; border-radius:30px; font-weight:700; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.85rem; transition:0.2s; box-shadow:0 2px 12px rgba(212,175,55,0.5);"><i class="fas fa-home"></i> Beranda</button>
                 </div>
                 <div class="section-header"><div class="num">09</div><h2>Keterampilan & Manfaat Geografi <small>Life Skills & Pembangunan Berkelanjutan</small></h2></div>
@@ -855,9 +832,7 @@
         <section id="section10" class="section">
             <div class="section-wrapper">
                 <div style="background:rgba(212,175,55,0.12); border-radius:12px; padding:10px 16px; margin-bottom:16px; border-left:4px solid #d4af37; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-                    <div style="display:flex; align-items:center; gap:8px; color:#e8e8e8; font-size:0.85rem; flex-wrap:wrap;">
-                        <span class="school-name-header">SMAN 3 KASONGAN</span>
-                    </div>
+                    <div style="display:flex; align-items:center; gap:8px; color:#e8e8e8; font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
                     <button onclick="navigateTo('section1')" style="background:linear-gradient(145deg,#d4af37,#b8962e); color:#121212; border:none; padding:6px 16px; border-radius:30px; font-weight:700; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.85rem; transition:0.2s; box-shadow:0 2px 12px rgba(212,175,55,0.5);"><i class="fas fa-home"></i> Beranda</button>
                 </div>
                 <div class="section-header"><div class="num">10</div><h2>Asesmen Pembelajaran <small>Evaluasi Pemahaman Pengetahuan Dasar Geografi</small></h2></div>
@@ -899,9 +874,7 @@
         <section id="section11" class="section">
             <div class="section-wrapper">
                 <div style="background:rgba(212,175,55,0.12); border-radius:12px; padding:10px 16px; margin-bottom:16px; border-left:4px solid #d4af37; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-                    <div style="display:flex; align-items:center; gap:8px; color:#e8e8e8; font-size:0.85rem; flex-wrap:wrap;">
-                        <span class="school-name-header">SMAN 3 KASONGAN</span>
-                    </div>
+                    <div style="display:flex; align-items:center; gap:8px; color:#e8e8e8; font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
                     <button onclick="navigateTo('section1')" style="background:linear-gradient(145deg,#d4af37,#b8962e); color:#121212; border:none; padding:6px 16px; border-radius:30px; font-weight:700; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.85rem; transition:0.2s; box-shadow:0 2px 12px rgba(212,175,55,0.5);"><i class="fas fa-home"></i> Beranda</button>
                 </div>
                 <div class="section-header"><div class="num">11</div><h2>Refleksi Pembelajaran <small>Menyimpulkan Materi</small></h2></div>
@@ -940,9 +913,7 @@
         <section id="section12" class="section">
             <div class="section-wrapper">
                 <div style="background:rgba(212,175,55,0.12); border-radius:12px; padding:10px 16px; margin-bottom:16px; border-left:4px solid #d4af37; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-                    <div style="display:flex; align-items:center; gap:8px; color:#e8e8e8; font-size:0.85rem; flex-wrap:wrap;">
-                        <span class="school-name-header">SMAN 3 KASONGAN</span>
-                    </div>
+                    <div style="display:flex; align-items:center; gap:8px; color:#e8e8e8; font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
                     <button onclick="navigateTo('section1')" style="background:linear-gradient(145deg,#d4af37,#b8962e); color:#121212; border:none; padding:6px 16px; border-radius:30px; font-weight:700; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.85rem; transition:0.2s; box-shadow:0 2px 12px rgba(212,175,55,0.5);"><i class="fas fa-home"></i> Beranda</button>
                 </div>
                 <div class="section-header"><div class="num">12</div><h2>Referensi <small>Daftar Pustaka</small></h2></div>
@@ -960,7 +931,7 @@
                     <li><i class="fas fa-book"></i> Sartono Kartodirdjo. (1992). <em>Pendekatan Ilmu Sosial dalam Metodologi Sejarah</em>. Jakarta: Gramedia.</li>
                 </ul>
                 <div class="footer-credit">
-                    <i class="fas fa-school" style="color:#3498db;"></i> <strong style="color:#88c0d0;">SMAN 3 KASONGAN</strong> &nbsp;·&nbsp; 
+                    <i class="fas fa-school" style="color:#3498db;"></i> <span class="school-name-gold">SMAN 3 KASONGAN</span> &nbsp;·&nbsp; 
                     <i class="fas fa-chalkboard-teacher" style="color:#88c0d0;"></i> Guru Pengampu: <strong style="color:#88c0d0;">SYAHRANI, S.Pd</strong> &nbsp;·&nbsp; <span style="color:#88c0d0;">NIP. 197512172005011016</span>
                 </div>
                 <div class="nav-buttons">
@@ -976,9 +947,7 @@
 
     </main>
 
-    <!-- JAVASCRIPT -->
     <script>
-        // Modal untuk gambar besar
         function openModal(src, caption) {
             const modal = document.getElementById('imageModal');
             const img = document.getElementById('modalImage');
@@ -996,7 +965,7 @@
             if (e.key === 'Escape') closeModal();
         });
 
-        // Navigasi
+        // Navigasi (sama seperti sebelumnya)
         (function() {
             const loader = document.getElementById('loader');
             const colors = ['#3498db','#5dade2','#85c1e9','#2ecc71','#1abc9c','#3498db','#2980b9','#00d2d3'];
