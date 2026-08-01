@@ -19,7 +19,7 @@
             color: #e8e8e8;
             line-height: 1.6;
             scroll-behavior: smooth;
-            padding-top: 56px;
+            padding-top: 0;
         }
 
         /* ===== LOADING SCREEN ===== */
@@ -77,7 +77,7 @@
             background: #0d0d0d;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
             padding: 0 16px;
             z-index: 1001;
             box-shadow: 0 2px 8px rgba(0,0,0,0.6);
@@ -88,130 +88,12 @@
             font-size: 1.6rem;
             letter-spacing: 1.5px;
         }
-        .mobile-header .brand i {
-            display: none !important;
-        }
-
-        .hamburger {
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 1.8rem;
-            cursor: pointer;
-            padding: 4px 8px;
-            transition: 0.2s;
-        }
-        .hamburger:hover { color: #3498db; }
-        .hamburger.active { color: #3498db; }
-
-        /* ===== SIDEBAR ===== */
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 64px;
-            height: 100vh;
-            background: #0d0d0d;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            box-shadow: 2px 0 12px rgba(0, 0, 0, 0.6);
-            transition: transform 0.3s ease, width 0.3s ease;
-            overflow: hidden;
-            transform: translateX(-100%);
-        }
-        .sidebar.open {
-            transform: translateX(0);
-            width: 220px;
-        }
-        .sidebar .logo {
-            color: #3498db;
-            font-size: 1.2rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            padding: 16px 0 8px 0;
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
-            opacity: 0.9;
-            transition: all 0.3s;
-        }
-        .sidebar.open .logo {
-            writing-mode: horizontal-tb;
-            font-size: 1.1rem;
-            padding: 12px 0;
-        }
-        .sidebar nav {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            padding: 8px 0;
-            flex: 1;
-            justify-content: center;
-            width: 100%;
-        }
-        .sidebar nav a {
-            color: rgba(255, 255, 255, 0.5);
-            text-decoration: none;
-            font-size: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 8px 16px;
-            border-radius: 8px;
-            transition: all 0.25s;
-            white-space: nowrap;
-            width: 100%;
-            font-weight: 500;
-            letter-spacing: 0.3px;
-        }
-        .sidebar nav a i {
-            font-size: 1.1rem;
-            width: 24px;
-            text-align: center;
-            flex-shrink: 0;
-        }
-        .sidebar nav a span {
-            opacity: 0;
-            transition: opacity 0.25s;
-        }
-        .sidebar.open nav a span {
-            opacity: 1;
-        }
-        .sidebar nav a:hover,
-        .sidebar nav a.active {
-            color: #fff;
-            background: rgba(52, 152, 219, 0.25);
-        }
-        .sidebar nav a.active {
-            color: #3498db;
-            background: rgba(52, 152, 219, 0.18);
-        }
-
-        .sidebar-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            z-index: 999;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-        .sidebar-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
 
         /* ===== MAIN CONTENT ===== */
         .main-content {
             padding: 16px 16px 60px 16px;
             max-width: 1100px;
             margin: 0 auto;
-            transition: margin-left 0.3s ease;
         }
 
         /* ===== SECTION STYLING ===== */
@@ -736,11 +618,13 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            border: 1px solid #3a3a3a;
         }
         .nav-buttons button:hover:not(:disabled) {
             background: #3498db;
             color: #121212;
             transform: scale(1.02);
+            border-color: #3498db;
         }
         .nav-buttons button:disabled {
             opacity: 0.35;
@@ -1026,6 +910,75 @@
             font-style: italic;
         }
 
+        /* ----- NAVIGATION BOX (NEW) ----- */
+        .nav-box {
+            background: linear-gradient(145deg, #1a1a2e, #16213e);
+            border-radius: 20px;
+            padding: 22px 20px;
+            margin-top: 20px;
+            border: 1px solid rgba(52, 152, 219, 0.4);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+            text-align: left;
+        }
+        .nav-box .nav-header {
+            color: #3498db;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+            margin-bottom: 14px;
+        }
+        .nav-box .nav-header i {
+            font-size: 1.3rem;
+        }
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+        }
+        .nav-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px 8px;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+            color: #ccc;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            text-decoration: none;
+        }
+        .nav-item:hover {
+            background: #3498db;
+            color: #121212 !important;
+            transform: translateY(-4px);
+            border-color: #3498db;
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.3);
+        }
+        .nav-item:hover .num-badge {
+            background: rgba(0, 0, 0, 0.2);
+            color: #121212;
+        }
+        .num-badge {
+            font-size: 0.65rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1px 10px;
+            border-radius: 20px;
+            font-weight: 700;
+            color: #3498db;
+            transition: 0.3s;
+        }
+        .nav-label {
+            font-size: 0.8rem;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+
         /* ===== RESPONSIVE ===== */
         @media (min-width: 600px) {
             .grid-2 { grid-template-columns: repeat(2, 1fr); }
@@ -1039,52 +992,31 @@
             .worksheet-table {
                 grid-template-columns: 60px 1fr 1.2fr 2fr;
             }
+            .nav-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
         }
 
         @media (min-width: 900px) {
             body { padding-top: 0; }
             .mobile-header { display: none; }
-            .sidebar {
-                transform: translateX(0);
-                width: 64px;
-            }
-            .sidebar:hover {
-                width: 200px;
-            }
-            .sidebar .logo {
-                writing-mode: vertical-rl;
-                text-orientation: mixed;
-                font-size: 1.2rem;
-                padding: 16px 0 8px 0;
-            }
-            .sidebar:hover .logo {
-                writing-mode: horizontal-tb;
-                font-size: 1.1rem;
-                padding: 12px 0;
-            }
-            .sidebar nav a span {
-                opacity: 0;
-                transition: opacity 0.25s;
-            }
-            .sidebar:hover nav a span {
-                opacity: 1;
-            }
-            .sidebar-overlay { display: none; }
             .main-content {
-                margin-left: 64px;
                 padding: 24px 32px 60px 32px;
                 max-width: 1100px;
             }
             .grid-3 { grid-template-columns: repeat(3, 1fr); }
             .grid-4 { grid-template-columns: repeat(4, 1fr); }
             .grid-ahli { grid-template-columns: repeat(2, 1fr); }
-            .progress-wrap { left: 64px; }
+            .progress-wrap { left: 0; }
             .cover-title { font-size: 3rem; }
             .section-header h2 { font-size: 1.7rem; }
             .section-header .num { width: 44px; height: 44px; font-size: 1.2rem; }
             .start-btn { padding: 18px 64px; font-size: 1.5rem; }
             .worksheet-table {
                 grid-template-columns: 60px 1fr 1.2fr 2.5fr;
+            }
+            .nav-grid {
+                grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
             }
         }
 
@@ -1114,12 +1046,16 @@
             .worksheet-table .header {
                 text-align: left;
             }
-        }
-        .sidebar-overlay {
-            display: block;
-        }
-        @media (min-width: 900px) {
-            .sidebar-overlay { display: none; }
+            .nav-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            }
+            .nav-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .nav-buttons .counter {
+                text-align: center;
+            }
         }
 
         /* Extra utility */
@@ -1427,40 +1363,15 @@
         <div class="loader-text">Memuat Materi Geografi...</div>
     </div>
 
-    <!-- ===== MOBILE HEADER ===== -->
+    <!-- ===== HEADER MOBILE (tanpa hamburger) ===== -->
     <header class="mobile-header">
         <div class="brand">GEOGRAFI</div>
-        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation">
-            <i class="fas fa-bars"></i>
-        </button>
     </header>
-
-    <!-- ===== SIDEBAR OVERLAY ===== -->
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
-
-    <!-- ===== SIDEBAR ===== -->
-    <aside class="sidebar" id="sidebar">
-        <div class="logo">🌍 Geografi</div>
-        <nav id="navLinks">
-            <a href="#" data-section="section1" class="active"><i class="fas fa-home"></i><span>Beranda</span></a>
-            <a href="#" data-section="section2"><i class="fas fa-bullseye"></i><span>CP & ATP</span></a>
-            <a href="#" data-section="section3"><i class="fas fa-list-check"></i><span>Indikator</span></a>
-            <a href="#" data-section="section4"><i class="fas fa-cubes"></i><span>Kerangka Deep Learning</span></a>
-            <a href="#" data-section="section5"><i class="fas fa-book-open"></i><span>Pengertian</span></a>
-            <a href="#" data-section="section6"><i class="fas fa-users"></i><span>Definisi Ahli</span></a>
-            <a href="#" data-section="section7"><i class="fas fa-layer-group"></i><span>Objek & Prinsip</span></a>
-            <a href="#" data-section="section8"><i class="fas fa-lightbulb"></i><span>Aspek & Pendekatan</span></a>
-            <a href="#" data-section="section9"><i class="fas fa-tools"></i><span>Keterampilan & Manfaat</span></a>
-            <a href="#" data-section="section10"><i class="fas fa-clipboard-check"></i><span>Asesmen</span></a>
-            <a href="#" data-section="section11"><i class="fas fa-star"></i><span>Refleksi</span></a>
-            <a href="#" data-section="section12"><i class="fas fa-bookmark"></i><span>Referensi</span></a>
-        </nav>
-    </aside>
 
     <!-- ===== PROGRESS BAR ===== -->
     <div class="progress-wrap"><div class="bar" id="progressBar"></div></div>
 
-    <!-- ===== MAIN ===== -->
+    <!-- ===== MAIN CONTENT ===== -->
     <main class="main-content">
 
         <!-- ========== SECTION 1 : COVER ========== -->
@@ -1487,9 +1398,31 @@
                         <i class="fas fa-play-circle"></i> Mulai Belajar
                     </button>
                 </div>
-                <div style="margin-top:8px; font-size:0.85rem; color:#666;">
-                    <i class="fas fa-chevron-down"></i> Gunakan navigasi di samping atau tombol di atas
+                <div style="margin-top:6px; font-size:0.85rem; color:#666;">
+                    <i class="fas fa-chevron-down"></i> Jelajahi materi menggunakan navigasi di bawah
                 </div>
+
+                <!-- ===== KOTAK NAVIGASI (DAFTAR ISI) ===== -->
+                <div class="nav-box">
+                    <div class="nav-header">
+                        <i class="fas fa-compass"></i> Navigasi Cepat Materi
+                    </div>
+                    <div class="nav-grid">
+                        <div onclick="navigateTo('section1')" class="nav-item"><span class="num-badge">01</span><span class="nav-label">Beranda</span></div>
+                        <div onclick="navigateTo('section2')" class="nav-item"><span class="num-badge">02</span><span class="nav-label">CP & ATP</span></div>
+                        <div onclick="navigateTo('section3')" class="nav-item"><span class="num-badge">03</span><span class="nav-label">Indikator</span></div>
+                        <div onclick="navigateTo('section4')" class="nav-item"><span class="num-badge">04</span><span class="nav-label">Deep Learning</span></div>
+                        <div onclick="navigateTo('section5')" class="nav-item"><span class="num-badge">05</span><span class="nav-label">Pengertian</span></div>
+                        <div onclick="navigateTo('section6')" class="nav-item"><span class="num-badge">06</span><span class="nav-label">Definisi Ahli</span></div>
+                        <div onclick="navigateTo('section7')" class="nav-item"><span class="num-badge">07</span><span class="nav-label">Objek & Prinsip</span></div>
+                        <div onclick="navigateTo('section8')" class="nav-item"><span class="num-badge">08</span><span class="nav-label">Aspek & Pendekatan</span></div>
+                        <div onclick="navigateTo('section9')" class="nav-item"><span class="num-badge">09</span><span class="nav-label">Keterampilan & Manfaat</span></div>
+                        <div onclick="navigateTo('section10')" class="nav-item"><span class="num-badge">10</span><span class="nav-label">Asesmen</span></div>
+                        <div onclick="navigateTo('section11')" class="nav-item"><span class="num-badge">11</span><span class="nav-label">Refleksi</span></div>
+                        <div onclick="navigateTo('section12')" class="nav-item"><span class="num-badge">12</span><span class="nav-label">Referensi</span></div>
+                    </div>
+                </div>
+                <!-- ===== AKHIR KOTAK NAVIGASI ===== -->
             </div>
         </section>
 
@@ -1544,6 +1477,13 @@
                         </ul>
                     </div>
                 </div>
+                <!-- ===== NAVIGASI BAWAH ===== -->
+                <div class="nav-buttons">
+                    <button onclick="navigateTo('section1')"><i class="fas fa-home"></i> Beranda</button>
+                    <button onclick="navigateTo('section1')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                    <span class="counter">2 / 12</span>
+                    <button onclick="navigateTo('section3')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                </div>
             </div>
         </section>
 
@@ -1559,6 +1499,12 @@
                     <div class="card card-enhanced"><i class="fas fa-check-circle" style="color:#3498db; font-size:1.8rem;"></i><h3>Indikator 2</h3><p>Mengidentifikasi objek material dan objek formal dalam studi geografi.</p></div>
                     <div class="card card-enhanced"><i class="fas fa-check-circle" style="color:#3498db; font-size:1.8rem;"></i><h3>Indikator 3</h3><p>Menerapkan prinsip-prinsip geografi (distribusi, interelasi, deskripsi, korologi) untuk menganalisis fenomena di lingkungan sekitar.</p></div>
                     <div class="card card-enhanced"><i class="fas fa-check-circle" style="color:#3498db; font-size:1.8rem;"></i><h3>Indikator 4</h3><p>Mengevaluasi manfaat mempelajari geografi dalam kehidupan sehari-hari dan pembangunan berkelanjutan.</p></div>
+                </div>
+                <div class="nav-buttons">
+                    <button onclick="navigateTo('section1')"><i class="fas fa-home"></i> Beranda</button>
+                    <button onclick="navigateTo('section2')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                    <span class="counter">3 / 12</span>
+                    <button onclick="navigateTo('section4')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
                 </div>
             </div>
         </section>
@@ -1583,6 +1529,12 @@
                         <div style="background: #252525; padding: 12px; border-radius: 8px; font-weight: 600; color: #f0f0f0;">Pemanfaatan Digital</div>
                         <div style="background: #1e1e1e; padding: 12px; border-radius: 8px; color: #ccc;">Google Earth, Google Maps, Canva, Quizizz/Kahoot, video pembelajaran, dan AI secara bertanggung jawab.</div>
                     </div>
+                </div>
+                <div class="nav-buttons">
+                    <button onclick="navigateTo('section1')"><i class="fas fa-home"></i> Beranda</button>
+                    <button onclick="navigateTo('section3')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                    <span class="counter">4 / 12</span>
+                    <button onclick="navigateTo('section5')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
                 </div>
             </div>
         </section>
@@ -1667,6 +1619,12 @@
                             </ul>
                         </div>
                     </div>
+                </div>
+                <div class="nav-buttons">
+                    <button onclick="navigateTo('section1')"><i class="fas fa-home"></i> Beranda</button>
+                    <button onclick="navigateTo('section4')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                    <span class="counter">5 / 12</span>
+                    <button onclick="navigateTo('section6')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
                 </div>
             </div>
         </section>
@@ -1891,6 +1849,12 @@
                         <em>"Geography is the bridge between the natural and social sciences."</em> — Geografi adalah jembatan antara ilmu alam dan ilmu sosial.
                     </p>
                 </div>
+                <div class="nav-buttons">
+                    <button onclick="navigateTo('section1')"><i class="fas fa-home"></i> Beranda</button>
+                    <button onclick="navigateTo('section5')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                    <span class="counter">6 / 12</span>
+                    <button onclick="navigateTo('section7')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                </div>
             </div>
         </section>
 
@@ -2041,6 +2005,12 @@
                         <strong>Ingat:</strong> Keempat prinsip geografi ini digunakan secara <strong>terpadu</strong> untuk memahami fenomena geosfer. Seorang ahli geografi tidak hanya melihat persebaran (distribusi), tetapi juga hubungan antarfenomena (interelasi), mendeskripsikannya secara detail (deskripsi), dan melihatnya dalam konteks wilayah (korologi).
                     </p>
                 </div>
+                <div class="nav-buttons">
+                    <button onclick="navigateTo('section1')"><i class="fas fa-home"></i> Beranda</button>
+                    <button onclick="navigateTo('section6')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                    <span class="counter">7 / 12</span>
+                    <button onclick="navigateTo('section8')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                </div>
             </div>
         </section>
 
@@ -2131,6 +2101,12 @@
                         <i class="fas fa-info-circle" style="color:#3498db;"></i> 
                         <strong>Penerapan:</strong> Dalam praktiknya, ketiga pendekatan ini digunakan <strong>secara terpadu</strong>. Misalnya, untuk memahami masalah banjir di Jakarta, seorang geografi menggunakan pendekatan keruangan (peta daerah banjir), pendekatan kelingkungan (hubungan curah hujan, sungai, dan tutupan lahan), serta pendekatan kompleks wilayah (karakteristik Jakarta sebagai wilayah perkotaan).
                     </p>
+                </div>
+                <div class="nav-buttons">
+                    <button onclick="navigateTo('section1')"><i class="fas fa-home"></i> Beranda</button>
+                    <button onclick="navigateTo('section7')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                    <span class="counter">8 / 12</span>
+                    <button onclick="navigateTo('section9')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
                 </div>
             </div>
         </section>
@@ -2255,6 +2231,12 @@
                         <i class="fas fa-quote-left" style="color:#3498db;"></i> 
                         <em>"Geografi bukan hanya tentang peta dan nama tempat. Geografi adalah tentang memahami dunia kita — bagaimana kita hidup di atasnya, bagaimana kita memengaruhinya, dan bagaimana kita dapat menjaga kelestariannya untuk generasi mendatang."</em>
                     </p>
+                </div>
+                <div class="nav-buttons">
+                    <button onclick="navigateTo('section1')"><i class="fas fa-home"></i> Beranda</button>
+                    <button onclick="navigateTo('section8')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                    <span class="counter">9 / 12</span>
+                    <button onclick="navigateTo('section10')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
                 </div>
             </div>
         </section>
@@ -2421,6 +2403,12 @@
                         <span><strong style="color: #fff;">Catatan:</strong> Kerjakan dengan jujur dan mandiri. Gunakan pemahamanmu dari seluruh materi yang telah dipelajari. Selamat berlatih!</span>
                     </p>
                 </div>
+                <div class="nav-buttons">
+                    <button onclick="navigateTo('section1')"><i class="fas fa-home"></i> Beranda</button>
+                    <button onclick="navigateTo('section9')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                    <span class="counter">10 / 12</span>
+                    <button onclick="navigateTo('section11')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                </div>
             </div>
         </section>
 
@@ -2477,6 +2465,12 @@
                         Siapkan dirimu untuk bab selanjutnya!
                     </p>
                 </div>
+                <div class="nav-buttons">
+                    <button onclick="navigateTo('section1')"><i class="fas fa-home"></i> Beranda</button>
+                    <button onclick="navigateTo('section10')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                    <span class="counter">11 / 12</span>
+                    <button onclick="navigateTo('section12')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                </div>
             </div>
         </section>
 
@@ -2504,15 +2498,14 @@
                     <i class="fas fa-school" style="color:#3498db;"></i> <strong style="color:#fff;">SMAN 3 KASONGAN</strong> &nbsp;·&nbsp; 
                     <i class="fas fa-chalkboard-teacher" style="color:#3498db;"></i> Guru Pengampu: <strong style="color:#fff;">SYAHRANI, S.Pd</strong> &nbsp;·&nbsp; NIP. 197512172005011016
                 </div>
+                <div class="nav-buttons">
+                    <button onclick="navigateTo('section1')"><i class="fas fa-home"></i> Beranda</button>
+                    <button onclick="navigateTo('section11')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                    <span class="counter">12 / 12</span>
+                    <button disabled>Terakhir</button>
+                </div>
             </div>
         </section>
-
-        <!-- ===== NAVIGATION BUTTONS ===== -->
-        <div class="nav-buttons hidden" id="navButtons">
-            <button id="prevBtn" disabled><i class="fas fa-arrow-left"></i> Sebelumnya</button>
-            <span class="counter" id="slideCounter">1 / 12</span>
-            <button id="nextBtn" style="display: flex;">Selanjutnya <i class="fas fa-arrow-right"></i></button>
-        </div>
 
     </main>
 
@@ -2558,16 +2551,6 @@
 
             // ===== NAVIGASI =====
             const sections = document.querySelectorAll('.section');
-            const navLinks = document.querySelectorAll('#navLinks a');
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            const counter = document.getElementById('slideCounter');
-            const progressBar = document.getElementById('progressBar');
-            const navButtons = document.getElementById('navButtons');
-            const hamburger = document.getElementById('hamburgerBtn');
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('sidebarOverlay');
-
             let current = 0;
             const total = sections.length;
             const sectionMap = {};
@@ -2575,29 +2558,8 @@
 
             function updateUI(index) {
                 sections.forEach((el, i) => { el.classList.toggle('active', i === index); });
-                const activeId = sections[index].id;
-                navLinks.forEach(link => {
-                    link.classList.toggle('active', link.dataset.section === activeId);
-                });
-                prevBtn.disabled = (index === 0);
-                nextBtn.disabled = (index === total - 1);
-                counter.textContent = (index + 1) + ' / ' + total;
-                progressBar.style.width = ((index + 1) / total * 100) + '%';
-
-                if (index === total - 1) {
-                    nextBtn.style.display = 'none';
-                } else {
-                    nextBtn.style.display = 'flex';
-                }
-
-                if (index === 0) {
-                    navButtons.classList.add('hidden');
-                } else {
-                    navButtons.classList.remove('hidden');
-                }
-
+                document.getElementById('progressBar').style.width = ((index + 1) / total * 100) + '%';
                 document.querySelector('.main-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
-                closeSidebar();
             }
 
             function navigateTo(id) {
@@ -2607,48 +2569,6 @@
                     updateUI(current);
                 }
             }
-
-            function closeSidebar() {
-                sidebar.classList.remove('open');
-                overlay.classList.remove('active');
-                hamburger.classList.remove('active');
-                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
-            }
-
-            function toggleSidebar() {
-                sidebar.classList.toggle('open');
-                overlay.classList.toggle('active');
-                hamburger.classList.toggle('active');
-                hamburger.innerHTML = sidebar.classList.contains('open') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-            }
-
-            hamburger.addEventListener('click', toggleSidebar);
-            overlay.addEventListener('click', closeSidebar);
-
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const id = this.dataset.section;
-                    if (id) navigateTo(id);
-                });
-            });
-
-            prevBtn.addEventListener('click', function() {
-                if (current > 0) { current--; updateUI(current); }
-            });
-            nextBtn.addEventListener('click', function() {
-                if (current < total - 1) { current++; updateUI(current); }
-            });
-
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-                    e.preventDefault();
-                    if (current < total - 1) { current++; updateUI(current); }
-                } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-                    e.preventDefault();
-                    if (current > 0) { current--; updateUI(current); }
-                }
-            });
 
             window.navigateTo = navigateTo;
             updateUI(0);
