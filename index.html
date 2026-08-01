@@ -677,6 +677,55 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* ===== PAGE NUMBERS ===== */
+        .page-numbers {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .page-numbers a {
+            display: inline-block;
+            min-width: 28px;
+            height: 28px;
+            line-height: 28px;
+            text-align: center;
+            border-radius: 50%;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #aaa;
+            background: #2a2a2a;
+            border: 1px solid #444;
+            text-decoration: none;
+            transition: 0.25s;
+            cursor: pointer;
+        }
+        .page-numbers a:hover {
+            background: #3a3a3a;
+            border-color: #ff8c00;
+            color: #fff;
+        }
+        .page-numbers a.active {
+            background: #ff8c00;
+            color: #121212;
+            border-color: #ff8c00;
+            box-shadow: 0 2px 8px rgba(255,140,0,0.4);
+        }
+        @media (max-width: 500px) {
+            .page-numbers a {
+                min-width: 24px;
+                height: 24px;
+                line-height: 24px;
+                font-size: 0.7rem;
+            }
+            .nav-buttons button {
+                padding: 6px 12px;
+                font-size: 0.75rem;
+            }
         }
 
         .start-btn-wrapper {
@@ -1020,6 +1069,138 @@
             font-size: 0.8rem;
             font-weight: 500;
             line-height: 1.2;
+        }
+
+        /* ===== TAMBAHAN VISUAL UNTUK HALAMAN 2 ===== */
+        .flow-diagram {
+            background: #1e1e1e;
+            border-radius: 16px;
+            padding: 24px 20px;
+            border: 1px solid #333;
+            margin: 20px 0;
+        }
+        .flow-diagram .flow-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #3498db;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .flow-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 12px 20px;
+            margin-bottom: 16px;
+        }
+        .flow-box {
+            background: #2a2a2a;
+            border-radius: 12px;
+            padding: 12px 18px;
+            border: 1px solid #444;
+            text-align: center;
+            min-width: 120px;
+            flex: 1 0 auto;
+            max-width: 200px;
+            transition: 0.3s;
+        }
+        .flow-box:hover {
+            border-color: #3498db;
+            transform: translateY(-2px);
+        }
+        .flow-box .icon {
+            font-size: 1.6rem;
+            color: #3498db;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .flow-box .label {
+            font-weight: 600;
+            color: #f0f0f0;
+            font-size: 0.95rem;
+        }
+        .flow-box .sub {
+            font-size: 0.75rem;
+            color: #aaa;
+        }
+        .flow-arrow {
+            font-size: 1.4rem;
+            color: #5aadf0;
+            font-weight: 300;
+            flex-shrink: 0;
+        }
+        .tp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-top: 8px;
+            width: 100%;
+        }
+        .tp-item {
+            background: #252525;
+            border-radius: 10px;
+            padding: 12px 14px;
+            border-left: 4px solid #3498db;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            transition: 0.3s;
+        }
+        .tp-item:hover {
+            background: #2e2e2e;
+            border-left-color: #5aadf0;
+        }
+        .tp-item .tp-icon {
+            font-size: 1.2rem;
+            color: #3498db;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .tp-item .tp-text {
+            font-size: 0.9rem;
+            color: #ddd;
+        }
+        .tp-item .tp-text strong {
+            color: #f0f0f0;
+        }
+
+        .dpl-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 14px;
+            margin-top: 10px;
+        }
+        .dpl-card {
+            background: #1e1e1e;
+            border-radius: 12px;
+            padding: 14px 12px;
+            border: 1px solid #333;
+            transition: 0.3s;
+            text-align: center;
+        }
+        .dpl-card:hover {
+            border-color: #3498db;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+        }
+        .dpl-card .dpl-icon {
+            font-size: 2rem;
+            color: #3498db;
+            display: block;
+            margin-bottom: 6px;
+        }
+        .dpl-card h4 {
+            color: #f0f0f0;
+            font-size: 0.95rem;
+            margin-bottom: 2px;
+        }
+        .dpl-card p {
+            font-size: 0.8rem;
+            color: #bbb;
+            line-height: 1.4;
         }
 
         /* ===== RESPONSIVE ===== */
@@ -1371,6 +1552,26 @@
         .footer-credit strong {
             color: #eee;
         }
+
+        @media (max-width: 600px) {
+            .flow-row {
+                flex-direction: column;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+            .dpl-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 400px) {
+            .dpl-grid {
+                grid-template-columns: 1fr;
+            }
+            .tp-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1395,7 +1596,6 @@
         <section id="section1" class="section active">
             <div style="text-align:center; padding: 10px 0 8px 0;">
 
-                <!-- ===== LOGO SECTION (RESPONSIF, TIDAK DUPLIKAT) ===== -->
                 <div class="logo-header">
                     <img src="images/Logo-Provinsi-Kalimantan-Tengah.png" alt="Logo Provinsi Kalimantan Tengah">
                     <img src="images/imagesdisdiklogo.png" alt="Logo Dinas Pendidikan">
@@ -1427,7 +1627,6 @@
                     <i class="fas fa-chevron-down"></i> Jelajahi materi menggunakan navigasi di bawah
                 </div>
 
-                <!-- ===== KOTAK NAVIGASI (DAFTAR ISI) ===== -->
                 <div class="nav-box">
                     <div class="nav-header">
                         <i class="fas fa-compass"></i> Navigasi Cepat Materi
@@ -1447,14 +1646,12 @@
                         <div onclick="navigateTo('section12')" class="nav-item"><span class="num-badge">12</span><span class="nav-label">Referensi</span></div>
                     </div>
                 </div>
-                <!-- ===== AKHIR KOTAK NAVIGASI ===== -->
             </div>
         </section>
 
         <!-- ========== SECTION 2 : CP & ATP ========== -->
         <section id="section2" class="section">
             <div class="section-wrapper">
-                <!-- KOTAK ORANGE + BERANDA -->
                 <div style="background: rgba(255, 165, 0, 0.12); border-radius: 12px; padding: 10px 16px; margin-bottom: 16px; border-left: 4px solid #ff8c00; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
                     <div style="display: flex; align-items: center; gap: 8px; color: #e8e8e8; font-size: 0.85rem; flex-wrap: wrap;">
                         <i class="fas fa-school" style="color: #ff8c00;"></i> SMAN 3 KASONGAN &nbsp;|&nbsp;
@@ -1481,44 +1678,73 @@
                     <p><strong><i class="fas fa-flag-checkered" style="color:#8cc4d0;"></i> Capaian Pembelajaran (CP) – Fase E</strong><br/>
                     Pada akhir Fase E, peserta didik memahami konsep dasar Geografi, peta, pengindraan jauh, Sistem Informasi Geografis (SIG), penelitian Geografi, dan fenomena geosfer fisik yaitu litosfer, atmosfer, dan hidrosfer sebagai ruang kehidupan.</p>
                 </div>
-                <div class="grid-2" style="margin-top:6px;">
-                    <div class="card card-enhanced merdeka-badge">
-                        <div class="icon"><i class="fas fa-route"></i></div>
-                        <h3>
-                            <span class="hover-trigger">
-                                Alur Tujuan Pembelajaran (ATP)
-                                <span class="hover-tooltip">
-                                    ATP adalah rangkaian tujuan pembelajaran yang disusun secara sistematis dan logis, menjadi panduan guru untuk mencapai Capaian Pembelajaran (CP).
-                                </span>
-                            </span>
-                        </h3>
-                        <p>ATP merupakan rangkaian tujuan pembelajaran yang disusun secara sistematis dan logis, menjadi panduan guru untuk mencapai CP.</p>
-                        <ul style="margin-top:6px;">
-                            <li><strong>TP 1:</strong> Menganalisis pengertian dan ruang lingkup geografi sebagai ilmu yang mengkaji fenomena geosfer.</li>
-                            <li><strong>TP 2:</strong> Mengidentifikasi objek material dan objek formal dalam studi geografi.</li>
-                            <li><strong>TP 3:</strong> Menerapkan prinsip-prinsip geografi (distribusi, interelasi, deskripsi, korologi) untuk menganalisis fenomena di lingkungan sekitar.</li>
-                            <li><strong>TP 4:</strong> Mengevaluasi manfaat mempelajari geografi dalam kehidupan sehari-hari dan pembangunan berkelanjutan.</li>
-                        </ul>
+
+                <!-- DIAGRAM ATP -->
+                <div class="flow-diagram">
+                    <div class="flow-title">
+                        <i class="fas fa-sitemap"></i> Alur Tujuan Pembelajaran (ATP)
+                        <span style="font-size:0.7rem; background:#2a2a2a; padding:2px 10px; border-radius:30px; color:#aaa; margin-left:auto;">Klik/tap kartu untuk detail</span>
                     </div>
-                    <div class="card card-enhanced merdeka-badge">
-                        <div class="icon"><i class="fas fa-user-graduate"></i></div>
-                        <h3>Dimensi Profil Lulusan (DPL)</h3>
-                        <ul style="margin-top:6px; list-style-type: none; padding-left: 0;">
-                            <li><strong>Penalaran Kritis:</strong> Mampu menganalisis informasi geografis secara objektif dan membuat kesimpulan yang rasional berdasarkan data.</li>
-                            <li><strong>Komunikasi:</strong> Mampu menyajikan hasil analisis fenomena geografis secara lisan maupun tertulis dengan istilah yang tepat.</li>
-                            <li><strong>Kolaborasi:</strong> Mampu bekerja sama dalam kelompok untuk mengidentifikasi dan memecahkan masalah geografis di lingkungan sekitar.</li>
-                            <li><strong>Kreativitas:</strong> Mampu menghasilkan ide atau produk (peta konsep, infografis) untuk menyajikan pemahaman tentang fenomena geografis.</li>
-                            <li><strong>Kemandirian:</strong> Mampu mencari dan mengolah informasi geografis dari berbagai sumber secara bertanggung jawab.</li>
-                            <li><strong>Kewargaan:</strong> Menunjukkan sikap menghargai lingkungan dan memahami peran manusia dalam menjaga kelestarian bumi.</li>
-                        </ul>
+                    <div class="flow-row">
+                        <div class="flow-box">
+                            <span class="icon"><i class="fas fa-flag"></i></span>
+                            <div class="label">Capaian Pembelajaran</div>
+                            <div class="sub">Fase E</div>
+                        </div>
+                        <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+                        <div class="flow-box">
+                            <span class="icon"><i class="fas fa-route"></i></span>
+                            <div class="label">Alur Tujuan Pembelajaran</div>
+                            <div class="sub">Rangkaian tujuan sistematis</div>
+                        </div>
+                        <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+                        <div class="flow-box" style="background:#1e2a3a; border-color:#3498db;">
+                            <span class="icon"><i class="fas fa-bullseye"></i></span>
+                            <div class="label">Tujuan Pembelajaran</div>
+                            <div class="sub">4 tujuan utama</div>
+                        </div>
+                    </div>
+                    <div class="tp-grid">
+                        <div class="tp-item">
+                            <span class="tp-icon"><i class="fas fa-globe-asia"></i></span>
+                            <div class="tp-text"><strong>TP 1</strong> – Menganalisis pengertian dan ruang lingkup geografi sebagai ilmu yang mengkaji fenomena geosfer.</div>
+                        </div>
+                        <div class="tp-item">
+                            <span class="tp-icon"><i class="fas fa-search-plus"></i></span>
+                            <div class="tp-text"><strong>TP 2</strong> – Mengidentifikasi objek material dan objek formal dalam studi geografi.</div>
+                        </div>
+                        <div class="tp-item">
+                            <span class="tp-icon"><i class="fas fa-balance-scale"></i></span>
+                            <div class="tp-text"><strong>TP 3</strong> – Menerapkan prinsip-prinsip geografi (distribusi, interelasi, deskripsi, korologi) untuk menganalisis fenomena di lingkungan sekitar.</div>
+                        </div>
+                        <div class="tp-item">
+                            <span class="tp-icon"><i class="fas fa-leaf"></i></span>
+                            <div class="tp-text"><strong>TP 4</strong> – Mengevaluasi manfaat mempelajari geografi dalam kehidupan sehari-hari dan pembangunan berkelanjutan.</div>
+                        </div>
                     </div>
                 </div>
-                <!-- ===== NAVIGASI BAWAH ===== -->
+
+                <!-- DPL GRID -->
+                <div style="margin-top:20px;">
+                    <div class="info-card" style="border-left-color:#2ecc71; background:linear-gradient(145deg, #1e1e1e, #252525);">
+                        <h3 style="color:#2ecc71;"><i class="fas fa-user-graduate"></i> Dimensi Profil Lulusan (DPL)</h3>
+                        <div class="dpl-grid">
+                            <div class="dpl-card"><span class="dpl-icon"><i class="fas fa-brain"></i></span><h4>Penalaran Kritis</h4><p>Menganalisis informasi geografis secara objektif dan membuat kesimpulan rasional.</p></div>
+                            <div class="dpl-card"><span class="dpl-icon"><i class="fas fa-comments"></i></span><h4>Komunikasi</h4><p>Menyajikan hasil analisis fenomena geografis secara lisan maupun tertulis dengan istilah yang tepat.</p></div>
+                            <div class="dpl-card"><span class="dpl-icon"><i class="fas fa-handshake"></i></span><h4>Kolaborasi</h4><p>Bekerja sama dalam kelompok untuk mengidentifikasi dan memecahkan masalah geografis di lingkungan sekitar.</p></div>
+                            <div class="dpl-card"><span class="dpl-icon"><i class="fas fa-lightbulb"></i></span><h4>Kreativitas</h4><p>Menghasilkan ide atau produk (peta konsep, infografis) untuk menyajikan pemahaman tentang fenomena geografis.</p></div>
+                            <div class="dpl-card"><span class="dpl-icon"><i class="fas fa-user-check"></i></span><h4>Kemandirian</h4><p>Mencari dan mengolah informasi geografis dari berbagai sumber secara bertanggung jawab.</p></div>
+                            <div class="dpl-card"><span class="dpl-icon"><i class="fas fa-globe"></i></span><h4>Kewargaan</h4><p>Menunjukkan sikap menghargai lingkungan dan memahami peran manusia dalam menjaga kelestarian bumi.</p></div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="nav-buttons">
                     <div class="group">
-                        <button onclick="navigateTo('section1')" id="prevBtn2"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                        <button onclick="navigateTo('prev')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                        <span class="page-numbers"></span>
+                        <button onclick="navigateTo('next')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
                         <span class="counter">2 / 12</span>
-                        <button onclick="navigateTo('section3')" id="nextBtn2">Selanjutnya <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
             </div>
@@ -1549,15 +1775,16 @@
                 </div>
                 <div class="nav-buttons">
                     <div class="group">
-                        <button onclick="navigateTo('section2')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                        <button onclick="navigateTo('prev')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                        <span class="page-numbers"></span>
+                        <button onclick="navigateTo('next')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
                         <span class="counter">3 / 12</span>
-                        <button onclick="navigateTo('section4')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ========== SECTION 4 : KERANGKA PEMBELAJARAN MENDALAM ========== -->
+        <!-- ========== SECTION 4 : DEEP LEARNING ========== -->
         <section id="section4" class="section">
             <div class="section-wrapper">
                 <div style="background: rgba(255, 165, 0, 0.12); border-radius: 12px; padding: 10px 16px; margin-bottom: 16px; border-left: 4px solid #ff8c00; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
@@ -1590,9 +1817,10 @@
                 </div>
                 <div class="nav-buttons">
                     <div class="group">
-                        <button onclick="navigateTo('section3')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                        <button onclick="navigateTo('prev')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                        <span class="page-numbers"></span>
+                        <button onclick="navigateTo('next')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
                         <span class="counter">4 / 12</span>
-                        <button onclick="navigateTo('section5')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
             </div>
@@ -1620,30 +1848,7 @@
                     Kata "geografi" berasal dari bahasa Yunani: <strong>geo</strong> (bumi) dan <strong>graphien</strong> (menulis/melukis). Jadi secara harfiah, geografi berarti <strong>"lukisan bumi"</strong>. Namun, seiring perkembangan ilmu pengetahuan, pengertian geografi menjadi lebih luas dan mendalam.
                 </p>
 
-                <div style="margin-top:16px;">
-                    <h3 style="font-size:1.1rem; color:#f0f0f0; border-left:4px solid #3498db; padding-left:12px; margin-bottom:6px;">
-                        <i class="fas fa-book" style="color:#3498db;"></i> Definisi Geografi dari Beberapa Ahli
-                    </h3>
-                    <div class="grid-2" style="margin-top:4px;">
-                        <div class="card card-enhanced highlight" style="padding:16px;">
-                            <h4 style="color:#3498db; font-size:1rem;">Eratosthenes</h4>
-                            <p style="font-size:0.9rem;">Geografi adalah <strong>ilmu yang melukiskan keadaan permukaan bumi</strong> dan segala sesuatu yang ada di atasnya. Beliau adalah orang pertama yang menggunakan istilah "geografi" dan berhasil menghitung keliling bumi dengan akurasi tinggi.</p>
-                        </div>
-                        <div class="card card-enhanced highlight" style="padding:16px;">
-                            <h4 style="color:#3498db; font-size:1rem;">Claudius Ptolemaeus</h4>
-                            <p style="font-size:0.9rem;">Geografi adalah <strong>penyajian informasi tentang seluruh bagian bumi yang diketahui</strong> melalui peta dan data geografis. Ptolemaeus menulis buku <em>Geographia</em> yang menjadi rujukan utama selama berabad-abad.</p>
-                        </div>
-                        <div class="card card-enhanced highlight" style="padding:16px;">
-                            <h4 style="color:#3498db; font-size:1rem;">Immanuel Kant</h4>
-                            <p style="font-size:0.9rem;">Geografi adalah <strong>ilmu yang mengkaji hubungan antara fenomena alam dengan manusia dalam ruang</strong>. Kant membagi geografi menjadi geografi fisik (alam) dan geografi manusia (sosial).</p>
-                        </div>
-                        <div class="card card-enhanced highlight" style="padding:16px;">
-                            <h4 style="color:#3498db; font-size:1rem;">Bintarto</h4>
-                            <p style="font-size:0.9rem;">Geografi adalah <strong>ilmu yang mempelajari persamaan dan perbedaan fenomena geosfer dengan sudut pandang kelingkungan dan kewilayahan</strong> dalam konteks keruangan. Definisi ini menekankan pada pendekatan regional dan ekologis.</p>
-                        </div>
-                    </div>
-                </div>
-
+                <!-- Hakikat -->
                 <div style="margin-top:14px;">
                     <div class="def-block">
                         <div class="source"><i class="fas fa-lightbulb"></i> Hakikat Geografi</div>
@@ -1662,6 +1867,7 @@
                     </div>
                 </div>
 
+                <!-- Ruang Lingkup -->
                 <div style="margin-top:14px;">
                     <h3 style="font-size:1.1rem; color:#f0f0f0; border-left:4px solid #3498db; padding-left:12px; margin-bottom:6px;">
                         <i class="fas fa-layer-group" style="color:#3498db;"></i> Ruang Lingkup Geografi
@@ -1689,11 +1895,22 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Tautan ke halaman 6 -->
+                <div style="background:linear-gradient(145deg, #1a2a3a, #1e2a3a); border-radius: 10px; padding: 12px 16px; margin-top: 16px; border-left: 4px solid #3498db;">
+                    <p style="font-size:0.95rem; color:#ccc;">
+                        <i class="fas fa-info-circle" style="color:#3498db;"></i> 
+                        <strong>Ingin tahu definisi geografi dari para ahli secara lebih lengkap?</strong> 
+                        Kunjungi <a href="#" onclick="navigateTo('section6'); return false;" style="color:#3498db; text-decoration:underline; cursor:pointer;">Halaman 6 – Definisi Menurut Para Ahli</a> untuk penjelasan interaktif dari Eratosthenes, Ptolemaeus, Kant, Humboldt, Ritter, Bintarto, Sumaatmadja, dan Preston James.
+                    </p>
+                </div>
+
                 <div class="nav-buttons">
                     <div class="group">
-                        <button onclick="navigateTo('section4')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                        <button onclick="navigateTo('prev')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                        <span class="page-numbers"></span>
+                        <button onclick="navigateTo('next')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
                         <span class="counter">5 / 12</span>
-                        <button onclick="navigateTo('section6')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
             </div>
@@ -1864,7 +2081,7 @@
                         <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk lihat definisi</span>
                     </div>
 
-                    <!-- 7. R. Bintarto (lanjutan) dan Nursid Sumaatmadja -->
+                    <!-- 7. Nursid Sumaatmadja -->
                     <div class="ahli-card interactive-card dark-card" onclick="this.classList.toggle('open')">
                         <div class="ahli-header">
                             <span class="icon-number">7</span>
@@ -1931,15 +2148,16 @@
                 </div>
                 <div class="nav-buttons">
                     <div class="group">
-                        <button onclick="navigateTo('section5')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                        <button onclick="navigateTo('prev')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                        <span class="page-numbers"></span>
+                        <button onclick="navigateTo('next')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
                         <span class="counter">6 / 12</span>
-                        <button onclick="navigateTo('section7')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ========== SECTION 7 : OBJEK DAN PRINSIP GEOGRAFI ========== -->
+        <!-- ========== SECTION 7 : OBJEK DAN PRINSIP ========== -->
         <section id="section7" class="section">
             <div class="section-wrapper">
                 <div style="background: rgba(255, 165, 0, 0.12); border-radius: 12px; padding: 10px 16px; margin-bottom: 16px; border-left: 4px solid #ff8c00; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
@@ -2033,7 +2251,7 @@
                     </div>
                 </div>
 
-                <!-- ===== TAMBAHAN: 10 KONSEP ESENSIAL GEOGRAFI ===== -->
+                <!-- 10 Konsep Esensial -->
                 <div style="margin-top:20px;">
                     <h3 style="font-size:1.1rem; color:#f0f0f0; border-left:4px solid #3498db; padding-left:12px; margin-bottom:6px;">
                         <i class="fas fa-list-ul" style="color:#3498db;"></i> 10 Konsep Esensial Geografi
@@ -2088,7 +2306,6 @@
                         <strong>Penerapan:</strong> Saat mengamati sebuah fenomena, cobalah tanyakan: di mana lokasinya? bagaimana polanya? apa hubungannya dengan wilayah lain? Dengan sepuluh konsep ini, analisis geografis menjadi lebih tajam dan menyeluruh.
                     </p>
                 </div>
-                <!-- ===== AKHIR TAMBAHAN ===== -->
 
                 <div style="background:linear-gradient(145deg, #1a241e, #1e2a24); border-radius:14px; padding:14px 18px; margin-top:12px; border-left:6px solid #3498db;">
                     <p style="color:#ccc; font-size:0.95rem;">
@@ -2098,15 +2315,16 @@
                 </div>
                 <div class="nav-buttons">
                     <div class="group">
-                        <button onclick="navigateTo('section6')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                        <button onclick="navigateTo('prev')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                        <span class="page-numbers"></span>
+                        <button onclick="navigateTo('next')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
                         <span class="counter">7 / 12</span>
-                        <button onclick="navigateTo('section8')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ========== SECTION 8 : ASPEK DAN PENDEKATAN GEOGRAFI ========== -->
+        <!-- ========== SECTION 8 : ASPEK DAN PENDEKATAN ========== -->
         <section id="section8" class="section">
             <div class="section-wrapper">
                 <div style="background: rgba(255, 165, 0, 0.12); border-radius: 12px; padding: 10px 16px; margin-bottom: 16px; border-left: 4px solid #ff8c00; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
@@ -2206,15 +2424,16 @@
                 </div>
                 <div class="nav-buttons">
                     <div class="group">
-                        <button onclick="navigateTo('section7')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                        <button onclick="navigateTo('prev')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                        <span class="page-numbers"></span>
+                        <button onclick="navigateTo('next')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
                         <span class="counter">8 / 12</span>
-                        <button onclick="navigateTo('section9')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ========== SECTION 9 : KETERAMPILAN DAN MANFAAT GEOGRAFI ========== -->
+        <!-- ========== SECTION 9 : KETERAMPILAN DAN MANFAAT ========== -->
         <section id="section9" class="section">
             <div class="section-wrapper">
                 <div style="background: rgba(255, 165, 0, 0.12); border-radius: 12px; padding: 10px 16px; margin-bottom: 16px; border-left: 4px solid #ff8c00; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
@@ -2253,7 +2472,7 @@
                     </div>
                 </div>
 
-                <!-- ===== AKTIVITAS OBSERVASI SEDERHANA ===== -->
+                <!-- Aktivitas Observasi -->
                 <div style="margin-top:20px; background:linear-gradient(145deg, #1a241e, #1e2a24); border-radius: 14px; padding: 18px 16px; border: 2px dashed #3498db;">
                     <h3 style="color:#f0f0f0; font-size:1.1rem; display:flex; align-items:center; gap:10px;">
                         <i class="fas fa-binoculars" style="color:#3498db;"></i> Aktivitas: Observasi Sederhana di Sekitarmu
@@ -2288,7 +2507,6 @@
                         <strong>Refleksi:</strong> Setelah selesai, coba pikirkan: bagaimana objek yang kamu amati berhubungan dengan lingkungan sekitarnya? Apakah ada pengaruh timbal balik antara manusia dan alam di tempat itu?
                     </p>
                 </div>
-                <!-- ===== AKHIR TAMBAHAN ===== -->
 
                 <h3 style="font-size:1.1rem; color:#f0f0f0; border-left:4px solid #3498db; padding-left:12px; margin-bottom:6px; margin-top:16px;">
                     <i class="fas fa-heart" style="color:#3498db;"></i> Manfaat Mempelajari Geografi
@@ -2347,9 +2565,10 @@
                 </div>
                 <div class="nav-buttons">
                     <div class="group">
-                        <button onclick="navigateTo('section8')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                        <button onclick="navigateTo('prev')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                        <span class="page-numbers"></span>
+                        <button onclick="navigateTo('next')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
                         <span class="counter">9 / 12</span>
-                        <button onclick="navigateTo('section10')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
             </div>
@@ -2378,7 +2597,6 @@
                     <strong>Selamat mengerjakan!</strong>
                 </p>
 
-                <!-- Bagian A: Pilihan Ganda (10 soal) -->
                 <div class="card card-enhanced" style="margin-bottom: 20px;">
                     <h3 style="color: #3498db; display: flex; align-items: center; gap: 10px;">
                         <span style="background: #3498db; color: #121212; padding: 4px 12px; border-radius: 30px; font-size: 0.9rem;">A</span>
@@ -2386,139 +2604,27 @@
                     </h3>
                     <p style="color: #aaa; font-size: 0.9rem; margin-bottom: 12px;">Pilihlah satu jawaban yang paling tepat!</p>
 
-                    <div class="assessment-question">
-                        <div class="q-text">1. Kata "geografi" berasal dari bahasa Yunani "geo" dan "graphien" yang artinya ...</div>
-                        <div class="q-options">
-                            <span>A. Bumi dan langit</span>
-                            <span>B. Bumi dan menulis/melukis</span>
-                            <span>C. Alam dan manusia</span>
-                            <span>D. Wilayah dan peta</span>
-                            <span>E. Iklim dan cuaca</span>
-                        </div>
-                    </div>
-
-                    <div class="assessment-question">
-                        <div class="q-text">2. Tokoh yang dijuluki sebagai "Bapak Geografi" adalah ...</div>
-                        <div class="q-options">
-                            <span>A. Claudius Ptolemaeus</span>
-                            <span>B. Immanuel Kant</span>
-                            <span>C. Eratosthenes</span>
-                            <span>D. Alexander von Humboldt</span>
-                            <span>E. Carl Ritter</span>
-                        </div>
-                    </div>
-
-                    <div class="assessment-question">
-                        <div class="q-text">3. Objek material geografi adalah ...</div>
-                        <div class="q-options">
-                            <span>A. Cara pandang geografi</span>
-                            <span>B. Seluruh fenomena di permukaan bumi (geosfer)</span>
-                            <span>C. Metode penelitian geografi</span>
-                            <span>D. Peta dan data geografis</span>
-                            <span>E. Hubungan manusia dan lingkungan</span>
-                        </div>
-                    </div>
-
-                    <div class="assessment-question">
-                        <div class="q-text">4. Prinsip geografi yang menekankan bahwa fenomena geosfer saling berhubungan dan memengaruhi adalah ...</div>
-                        <div class="q-options">
-                            <span>A. Distribusi</span>
-                            <span>B. Interelasi</span>
-                            <span>C. Deskripsi</span>
-                            <span>D. Korologi</span>
-                            <span>E. Keruangan</span>
-                        </div>
-                    </div>
-
-                    <div class="assessment-question">
-                        <div class="q-text">5. Aspek geografi yang mengkaji fenomena alam seperti topografi, iklim, dan hidrologi adalah ...</div>
-                        <div class="q-options">
-                            <span>A. Aspek sosial</span>
-                            <span>B. Aspek ekonomi</span>
-                            <span>C. Aspek fisik</span>
-                            <span>D. Aspek budaya</span>
-                            <span>E. Aspek politik</span>
-                        </div>
-                    </div>
-
-                    <div class="assessment-question">
-                        <div class="q-text">6. Pendekatan geografi yang menganalisis persebaran dan pola fenomena di permukaan bumi disebut ...</div>
-                        <div class="q-options">
-                            <span>A. Pendekatan kelingkungan</span>
-                            <span>B. Pendekatan kompleks wilayah</span>
-                            <span>C. Pendekatan keruangan</span>
-                            <span>D. Pendekatan historis</span>
-                            <span>E. Pendekatan deskriptif</span>
-                        </div>
-                    </div>
-
-                    <div class="assessment-question">
-                        <div class="q-text">7. Menurut Bintarto, geografi adalah ilmu yang mempelajari persamaan dan perbedaan fenomena geosfer dengan sudut pandang ...</div>
-                        <div class="q-options">
-                            <span>A. Kelingkungan dan kewilayahan</span>
-                            <span>B. Historis dan ekonomis</span>
-                            <span>C. Sosial dan budaya</span>
-                            <span>D. Fisik dan kimia</span>
-                            <span>E. Politik dan hukum</span>
-                        </div>
-                    </div>
-
-                    <div class="assessment-question">
-                        <div class="q-text">8. Prinsip korologi merupakan gabungan dari prinsip distribusi, interelasi, dan ...</div>
-                        <div class="q-options">
-                            <span>A. Deskripsi</span>
-                            <span>B. Keruangan</span>
-                            <span>C. Kelingkungan</span>
-                            <span>D. Analisis</span>
-                            <span>E. Pemetaan</span>
-                        </div>
-                    </div>
-
-                    <div class="assessment-question">
-                        <div class="q-text">9. Contoh penerapan pendekatan kelingkungan dalam geografi adalah ...</div>
-                        <div class="q-options">
-                            <span>A. Memetakan persebaran pusat perbelanjaan</span>
-                            <span>B. Menganalisis dampak deforestasi terhadap banjir</span>
-                            <span>C. Menggambar peta topografi suatu daerah</span>
-                            <span>D. Menghitung kepadatan penduduk di suatu kota</span>
-                            <span>E. Mengidentifikasi jenis batuan di suatu gunung</span>
-                        </div>
-                    </div>
-
-                    <div class="assessment-question">
-                        <div class="q-text">10. Manfaat mempelajari geografi yang berkaitan dengan pengurangan risiko bencana adalah ...</div>
-                        <div class="q-options">
-                            <span>A. Memahami persebaran budaya</span>
-                            <span>B. Mitigasi bencana alam</span>
-                            <span>C. Perencanaan tata kota</span>
-                            <span>D. Pengelolaan sumber daya alam</span>
-                            <span>E. Analisis aktivitas ekonomi</span>
-                        </div>
-                    </div>
+                    <div class="assessment-question"><div class="q-text">1. Kata "geografi" berasal dari bahasa Yunani "geo" dan "graphien" yang artinya ...</div><div class="q-options"><span>A. Bumi dan langit</span><span>B. Bumi dan menulis/melukis</span><span>C. Alam dan manusia</span><span>D. Wilayah dan peta</span><span>E. Iklim dan cuaca</span></div></div>
+                    <div class="assessment-question"><div class="q-text">2. Tokoh yang dijuluki sebagai "Bapak Geografi" adalah ...</div><div class="q-options"><span>A. Claudius Ptolemaeus</span><span>B. Immanuel Kant</span><span>C. Eratosthenes</span><span>D. Alexander von Humboldt</span><span>E. Carl Ritter</span></div></div>
+                    <div class="assessment-question"><div class="q-text">3. Objek material geografi adalah ...</div><div class="q-options"><span>A. Cara pandang geografi</span><span>B. Seluruh fenomena di permukaan bumi (geosfer)</span><span>C. Metode penelitian geografi</span><span>D. Peta dan data geografis</span><span>E. Hubungan manusia dan lingkungan</span></div></div>
+                    <div class="assessment-question"><div class="q-text">4. Prinsip geografi yang menekankan bahwa fenomena geosfer saling berhubungan dan memengaruhi adalah ...</div><div class="q-options"><span>A. Distribusi</span><span>B. Interelasi</span><span>C. Deskripsi</span><span>D. Korologi</span><span>E. Keruangan</span></div></div>
+                    <div class="assessment-question"><div class="q-text">5. Aspek geografi yang mengkaji fenomena alam seperti topografi, iklim, dan hidrologi adalah ...</div><div class="q-options"><span>A. Aspek sosial</span><span>B. Aspek ekonomi</span><span>C. Aspek fisik</span><span>D. Aspek budaya</span><span>E. Aspek politik</span></div></div>
+                    <div class="assessment-question"><div class="q-text">6. Pendekatan geografi yang menganalisis persebaran dan pola fenomena di permukaan bumi disebut ...</div><div class="q-options"><span>A. Pendekatan kelingkungan</span><span>B. Pendekatan kompleks wilayah</span><span>C. Pendekatan keruangan</span><span>D. Pendekatan historis</span><span>E. Pendekatan deskriptif</span></div></div>
+                    <div class="assessment-question"><div class="q-text">7. Menurut Bintarto, geografi adalah ilmu yang mempelajari persamaan dan perbedaan fenomena geosfer dengan sudut pandang ...</div><div class="q-options"><span>A. Kelingkungan dan kewilayahan</span><span>B. Historis dan ekonomis</span><span>C. Sosial dan budaya</span><span>D. Fisik dan kimia</span><span>E. Politik dan hukum</span></div></div>
+                    <div class="assessment-question"><div class="q-text">8. Prinsip korologi merupakan gabungan dari prinsip distribusi, interelasi, dan ...</div><div class="q-options"><span>A. Deskripsi</span><span>B. Keruangan</span><span>C. Kelingkungan</span><span>D. Analisis</span><span>E. Pemetaan</span></div></div>
+                    <div class="assessment-question"><div class="q-text">9. Contoh penerapan pendekatan kelingkungan dalam geografi adalah ...</div><div class="q-options"><span>A. Memetakan persebaran pusat perbelanjaan</span><span>B. Menganalisis dampak deforestasi terhadap banjir</span><span>C. Menggambar peta topografi suatu daerah</span><span>D. Menghitung kepadatan penduduk di suatu kota</span><span>E. Mengidentifikasi jenis batuan di suatu gunung</span></div></div>
+                    <div class="assessment-question"><div class="q-text">10. Manfaat mempelajari geografi yang berkaitan dengan pengurangan risiko bencana adalah ...</div><div class="q-options"><span>A. Memahami persebaran budaya</span><span>B. Mitigasi bencana alam</span><span>C. Perencanaan tata kota</span><span>D. Pengelolaan sumber daya alam</span><span>E. Analisis aktivitas ekonomi</span></div></div>
                 </div>
 
-                <!-- Bagian B: Analisis dan Refleksi -->
                 <div class="card card-enhanced" style="margin-bottom: 20px;">
                     <h3 style="color: #3498db; display: flex; align-items: center; gap: 10px;">
                         <span style="background: #3498db; color: #121212; padding: 4px 12px; border-radius: 30px; font-size: 0.9rem;">B</span>
                         Analisis & Refleksi
                     </h3>
                     <p style="color: #aaa; font-size: 0.9rem; margin-bottom: 12px;">Jawablah pertanyaan berikut dengan uraian yang jelas dan sistematis!</p>
-
-                    <div class="essay-question">
-                        <div class="q-text">1. Jelaskan hakikat geografi sebagai ilmu yang mempelajari persamaan dan perbedaan fenomena geosfer! Berikan contoh konkret dari lingkungan sekitarmu!</div>
-                        <div class="q-note">(Petunjuk: Hubungkan dengan pengertian geografi, objek material, dan sudut pandang kelingkungan/kewilayahan).</div>
-                    </div>
-
-                    <div class="essay-question">
-                        <div class="q-text">2. Pilihlah satu fenomena geografis yang terjadi di daerahmu (misalnya: banjir, kemarau panjang, urbanisasi, atau perubahan penggunaan lahan). Analisislah fenomena tersebut menggunakan empat prinsip geografi (distribusi, interelasi, deskripsi, dan korologi)!</div>
-                        <div class="q-note">(Petunjuk: Gunakan langkah-langkah prinsip geografi secara berurutan untuk membangun analisis yang utuh).</div>
-                    </div>
-
-                    <div class="essay-question">
-                        <div class="q-text">3. Refleksikan bagaimana pemahaman tentang geografi dapat membantumu dalam kehidupan sehari-hari dan dalam menjaga kelestarian lingkungan!</div>
-                        <div class="q-note">(Petunjuk: Hubungkan dengan manfaat geografi, seperti mitigasi bencana, pengelolaan sumber daya, dan kesadaran lingkungan).</div>
-                    </div>
+                    <div class="essay-question"><div class="q-text">1. Jelaskan hakikat geografi sebagai ilmu yang mempelajari persamaan dan perbedaan fenomena geosfer! Berikan contoh konkret dari lingkungan sekitarmu!</div><div class="q-note">(Petunjuk: Hubungkan dengan pengertian geografi, objek material, dan sudut pandang kelingkungan/kewilayahan).</div></div>
+                    <div class="essay-question"><div class="q-text">2. Pilihlah satu fenomena geografis yang terjadi di daerahmu (misalnya: banjir, kemarau panjang, urbanisasi, atau perubahan penggunaan lahan). Analisislah fenomena tersebut menggunakan empat prinsip geografi (distribusi, interelasi, deskripsi, dan korologi)!</div><div class="q-note">(Petunjuk: Gunakan langkah-langkah prinsip geografi secara berurutan untuk membangun analisis yang utuh).</div></div>
+                    <div class="essay-question"><div class="q-text">3. Refleksikan bagaimana pemahaman tentang geografi dapat membantumu dalam kehidupan sehari-hari dan dalam menjaga kelestarian lingkungan!</div><div class="q-note">(Petunjuk: Hubungkan dengan manfaat geografi, seperti mitigasi bencana, pengelolaan sumber daya, dan kesadaran lingkungan).</div></div>
                 </div>
 
                 <div style="background:linear-gradient(145deg, #1a241e, #1e2a24); border-radius: 14px; padding: 14px 18px; border-left: 6px solid #3498db; margin-top: 10px;">
@@ -2529,9 +2635,10 @@
                 </div>
                 <div class="nav-buttons">
                     <div class="group">
-                        <button onclick="navigateTo('section9')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                        <button onclick="navigateTo('prev')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                        <span class="page-numbers"></span>
+                        <button onclick="navigateTo('next')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
                         <span class="counter">10 / 12</span>
-                        <button onclick="navigateTo('section11')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
             </div>
@@ -2602,9 +2709,10 @@
                 </div>
                 <div class="nav-buttons">
                     <div class="group">
-                        <button onclick="navigateTo('section10')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                        <button onclick="navigateTo('prev')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                        <span class="page-numbers"></span>
+                        <button onclick="navigateTo('next')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
                         <span class="counter">11 / 12</span>
-                        <button onclick="navigateTo('section12')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
             </div>
@@ -2646,9 +2754,10 @@
                 </div>
                 <div class="nav-buttons">
                     <div class="group">
-                        <button onclick="navigateTo('section11')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                        <button onclick="navigateTo('prev')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                        <span class="page-numbers"></span>
+                        <button onclick="navigateTo('next')" disabled>Terakhir</button>
                         <span class="counter">12 / 12</span>
-                        <button disabled>Terakhir</button>
                     </div>
                 </div>
             </div>
@@ -2659,7 +2768,6 @@
     <!-- ===== JAVASCRIPT ===== -->
     <script>
         (function() {
-            // ===== LOADING =====
             const loader = document.getElementById('loader');
             const colors = ['#3498db', '#5dade2', '#85c1e9', '#2ecc71', '#1abc9c', '#3498db', '#2980b9', '#00d2d3'];
             const starSymbols = ['🌍', '🌎', '🌏', '🌐', '🗺️', '📍', '🌟', '⭐'];
@@ -2696,29 +2804,101 @@
                 setTimeout(() => { loader.style.display = 'none'; }, 500);
             }, 3000);
 
-            // ===== NAVIGASI =====
             const sections = document.querySelectorAll('.section');
             let current = 0;
             const total = sections.length;
             const sectionMap = {};
             sections.forEach((el, i) => { sectionMap[el.id] = i; });
 
-            function updateUI(index) {
-                sections.forEach((el, i) => { el.classList.toggle('active', i === index); });
-                document.getElementById('progressBar').style.width = ((index + 1) / total * 100) + '%';
-                document.querySelector('.main-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // Fungsi untuk membuat link angka halaman
+            function renderPageNumbers() {
+                const containers = document.querySelectorAll('.page-numbers');
+                containers.forEach(container => {
+                    let html = '';
+                    for (let i = 1; i <= total; i++) {
+                        const active = (i === current + 1) ? 'active' : '';
+                        html += `<a href="#" class="${active}" data-page="${i}" onclick="navigateToPage(${i}); return false;">${i}</a>`;
+                    }
+                    container.innerHTML = html;
+                });
             }
 
-            function navigateTo(id) {
-                const idx = sectionMap[id];
-                if (idx !== undefined && idx !== current) {
+            // Navigasi ke halaman berdasarkan angka
+            window.navigateToPage = function(num) {
+                const idx = num - 1;
+                if (idx >= 0 && idx < total && idx !== current) {
                     current = idx;
                     updateUI(current);
                 }
+            };
+
+            // Navigasi 'prev' dan 'next'
+            window.navigateTo = function(direction) {
+                if (direction === 'prev' && current > 0) {
+                    current--;
+                } else if (direction === 'next' && current < total - 1) {
+                    current++;
+                } else if (typeof direction === 'string' && direction.startsWith('section')) {
+                    // untuk panggilan langsung dari tombol "Mulai Belajar" atau tautan
+                    const idx = sectionMap[direction];
+                    if (idx !== undefined && idx !== current) {
+                        current = idx;
+                    } else {
+                        return;
+                    }
+                } else {
+                    return;
+                }
+                updateUI(current);
+            };
+
+            function updateUI(index) {
+                sections.forEach((el, i) => { el.classList.toggle('active', i === index); });
+                document.getElementById('progressBar').style.width = ((index + 1) / total * 100) + '%';
+                // Update counter di semua nav
+                document.querySelectorAll('.counter').forEach(el => {
+                    el.textContent = `${index + 1} / ${total}`;
+                });
+                // Update tombol next/disabled
+                document.querySelectorAll('.nav-buttons .group button:last-child').forEach(btn => {
+                    if (index === total - 1) {
+                        btn.disabled = true;
+                        btn.textContent = 'Terakhir';
+                    } else {
+                        btn.disabled = false;
+                        btn.innerHTML = 'Selanjutnya <i class="fas fa-arrow-right"></i>';
+                    }
+                });
+                // Update tombol prev/disabled
+                document.querySelectorAll('.nav-buttons .group button:first-child').forEach(btn => {
+                    if (index === 0) {
+                        btn.disabled = true;
+                    } else {
+                        btn.disabled = false;
+                    }
+                });
+                // Render ulang angka halaman
+                renderPageNumbers();
+                document.querySelector('.main-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
 
-            window.navigateTo = navigateTo;
+            // Inisialisasi
+            renderPageNumbers();
             updateUI(0);
+
+            // Override navigateTo untuk menangani id section dari tombol "Mulai Belajar"
+            const originalNavigateTo = window.navigateTo;
+            window.navigateTo = function(id) {
+                if (typeof id === 'string' && id.startsWith('section')) {
+                    const idx = sectionMap[id];
+                    if (idx !== undefined && idx !== current) {
+                        current = idx;
+                        updateUI(current);
+                    }
+                } else {
+                    originalNavigateTo(id);
+                }
+            };
         })();
     </script>
 
