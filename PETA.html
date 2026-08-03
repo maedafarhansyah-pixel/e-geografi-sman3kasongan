@@ -1091,9 +1091,7 @@
             </div>
         </section>
 
-        <!-- SECTION 8 : PROYEKSI & SIMBOL -->
-
-          <!-- SECTION 8 : PROYEKSI & SIMBOL PETA (VERSI DIPERKAYA) -->
+        <!-- SECTION 8 : PROYEKSI & SIMBOL PETA (VERSI DIPERKAYA) -->
         <section id="section8" class="section">
             <div class="section-wrapper">
                 <div style="background:rgba(212,175,55,0.12); border-radius:12px; padding:10px 16px; margin-bottom:16px; border-left:4px solid #d4af37; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
@@ -1732,6 +1730,7 @@
     </main>
 
     <script>
+        // ===== FUNGSI MODAL =====
         function openModal(src, caption) {
             const modal = document.getElementById('imageModal');
             const img = document.getElementById('modalImage');
@@ -1749,7 +1748,7 @@
             if (e.key === 'Escape') closeModal();
         });
 
-        // Navigasi (IIFE)
+        // ===== NAVIGASI =====
         (function() {
             const loader = document.getElementById('loader');
             const colors = ['#3498db','#5dade2','#85c1e9','#2ecc71','#1abc9c','#3498db','#2980b9','#00d2d3'];
@@ -1827,30 +1826,31 @@
             renderPageNumbers();
             updateUI(0);
         })();
-    </script>
-    // Fungsi untuk menampilkan kunci jawaban dengan password
-function showAnswerKey() {
-    const password = '1234567890'; // Ganti dengan password yang diinginkan
-    const input = document.getElementById('passwordInput');
-    const message = document.getElementById('passwordMessage');
-    const answerKey = document.getElementById('answerKey');
 
-    if (input.value === password) {
-        answerKey.style.display = 'block';
-        message.textContent = '✅ Password benar!';
-        message.style.color = '#2ecc71';
-        input.value = '';
-        // Sembunyikan pesan setelah 3 detik
-        setTimeout(() => {
-            message.textContent = '';
-        }, 3000);
-    } else {
-        message.textContent = '❌ Password salah! Silakan coba lagi.';
-        message.style.color = '#e74c3c';
-        answerKey.style.display = 'none';
-        input.value = '';
-        input.focus();
-    }
-}
+        // ===== FUNGSI KUNCI JAWABAN (SUDAH DIPINDAHKAN KE DALAM TAG SCRIPT) =====
+        function showAnswerKey() {
+            const password = '1234567890'; // Ganti dengan password yang diinginkan
+            const input = document.getElementById('passwordInput');
+            const message = document.getElementById('passwordMessage');
+            const answerKey = document.getElementById('answerKey');
+
+            if (input.value === password) {
+                answerKey.style.display = 'block';
+                message.textContent = '✅ Password benar!';
+                message.style.color = '#2ecc71';
+                input.value = '';
+                // Sembunyikan pesan setelah 3 detik
+                setTimeout(() => {
+                    message.textContent = '';
+                }, 3000);
+            } else {
+                message.textContent = '❌ Password salah! Silakan coba lagi.';
+                message.style.color = '#e74c3c';
+                answerKey.style.display = 'none';
+                input.value = '';
+                input.focus();
+            }
+        }
+    </script>
 </body>
 </html>
