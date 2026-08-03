@@ -1092,7 +1092,7 @@
         </section>
 
         <!-- SECTION 8 : PROYEKSI & SIMBOL -->
-               <!-- SECTION 8 : PROYEKSI & SIMBOL -->
+                      <!-- SECTION 8 : PROYEKSI & SIMBOL -->
         <section id="section8" class="section">
             <div class="section-wrapper">
                 <div style="background:rgba(212,175,55,0.12); border-radius:12px; padding:10px 16px; margin-bottom:16px; border-left:4px solid #d4af37; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
@@ -1103,58 +1103,67 @@
 
                 <!-- ====== PROYEKSI PETA ====== -->
                 <h3 style="font-size:1.1rem; color:#f0f0f0; border-left:4px solid #3498db; padding-left:12px; margin-bottom:6px;"><i class="fas fa-globe" style="color:#3498db;"></i> Proyeksi Peta</h3>
-                <p style="font-size:0.95rem; color:#ccc; margin-bottom:8px;">Proyeksi peta adalah cara memindahkan permukaan bumi yang bulat ke bidang datar. Setiap proyeksi pasti mengalami distorsi.</p>
+                <p style="font-size:0.95rem; color:#ccc; margin-bottom:12px;">Proyeksi peta adalah cara memindahkan permukaan bumi yang bulat ke bidang datar. Setiap proyeksi pasti mengalami distorsi.</p>
 
-                <!-- ====== GAMBAR ILUSTRASI PROYEKSI ====== -->
-                <div style="background:#1e1e1e; border-radius:14px; padding:16px; border:1px solid #333; margin-bottom:16px; text-align:center;">
-                    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:20px; align-items:flex-end;">
-                        <!-- Proyeksi Silinder -->
-                        <div style="text-align:center;">
-                            <svg width="120" height="120" viewBox="0 0 120 120" style="background:#0d0d0d; border-radius:10px; padding:5px;">
-                                <rect x="15" y="10" width="90" height="100" rx="10" fill="none" stroke="#3498db" stroke-width="2" stroke-dasharray="4"/>
-                                <circle cx="60" cy="60" r="30" fill="#1e3a4a" opacity="0.9"/>
-                                <circle cx="60" cy="60" r="30" fill="none" stroke="#5aadf0" stroke-width="2"/>
-                                <line x1="60" y1="30" x2="60" y2="90" stroke="#f1c40f" stroke-width="1.5" opacity="0.8"/>
-                                <line x1="30" y1="60" x2="90" y2="60" stroke="#f1c40f" stroke-width="1.5" opacity="0.8"/>
-                                <text x="60" y="115" text-anchor="middle" fill="#aaa" font-size="11" font-weight="bold">Silinder</text>
-                            </svg>
-                            <p style="color:#888; font-size:0.7rem; margin-top:2px;">Tabung</p>
+                <!-- ====== GAMBAR ILUSTRASI PROYEKSI (DARI FOLDER images/) ====== -->
+                <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:20px; margin:10px 0 18px 0;">
+                    
+                    <!-- Gambar Proyeksi Silinder -->
+                    <div style="text-align:center; background:#1a1a1a; border-radius:12px; padding:12px; border:1px solid #333; flex:1 1 150px; max-width:200px;">
+                        <img 
+                            src="images/proyeksi-silinder.png" 
+                            alt="Proyeksi Silinder" 
+                            style="width:100%; height:auto; border-radius:8px; cursor:pointer; border:1px solid #444; background:#0d0d0d;" 
+                            onclick="openModal(this.src, 'Proyeksi Silinder - Tabung')"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+                        />
+                        <div style="display:none; color:#888; padding:10px 0; font-size:0.8rem;">
+                            <i class="fas fa-image"></i> Gambar tidak ditemukan
                         </div>
-
-                        <!-- Proyeksi Kerucut -->
-                        <div style="text-align:center;">
-                            <svg width="120" height="120" viewBox="0 0 120 120" style="background:#0d0d0d; border-radius:10px; padding:5px;">
-                                <polygon points="20,90 60,10 100,90" fill="none" stroke="#2ecc71" stroke-width="2" stroke-dasharray="4"/>
-                                <circle cx="60" cy="60" r="30" fill="#1e3a4a" opacity="0.9"/>
-                                <circle cx="60" cy="60" r="30" fill="none" stroke="#5aadf0" stroke-width="2"/>
-                                <line x1="60" y1="30" x2="60" y2="90" stroke="#f1c40f" stroke-width="1.5" opacity="0.8"/>
-                                <line x1="30" y1="60" x2="90" y2="60" stroke="#f1c40f" stroke-width="1.5" opacity="0.8"/>
-                                <text x="60" y="115" text-anchor="middle" fill="#aaa" font-size="11" font-weight="bold">Kerucut</text>
-                            </svg>
-                            <p style="color:#888; font-size:0.7rem; margin-top:2px;">Kerucut</p>
-                        </div>
-
-                        <!-- Proyeksi Azimuthal -->
-                        <div style="text-align:center;">
-                            <svg width="120" height="120" viewBox="0 0 120 120" style="background:#0d0d0d; border-radius:10px; padding:5px;">
-                                <line x1="60" y1="5" x2="60" y2="115" stroke="#e67e22" stroke-width="2" stroke-dasharray="4"/>
-                                <circle cx="60" cy="60" r="30" fill="#1e3a4a" opacity="0.9"/>
-                                <circle cx="60" cy="60" r="30" fill="none" stroke="#5aadf0" stroke-width="2"/>
-                                <line x1="60" y1="30" x2="60" y2="90" stroke="#f1c40f" stroke-width="1.5" opacity="0.8"/>
-                                <line x1="30" y1="60" x2="90" y2="60" stroke="#f1c40f" stroke-width="1.5" opacity="0.8"/>
-                                <text x="60" y="115" text-anchor="middle" fill="#aaa" font-size="11" font-weight="bold">Azimuthal</text>
-                            </svg>
-                            <p style="color:#888; font-size:0.7rem; margin-top:2px;">Bidang Datar</p>
-                        </div>
+                        <p style="color:#ddd; font-weight:600; margin-top:6px; font-size:0.9rem;">🔵 Silinder</p>
+                        <p style="color:#888; font-size:0.7rem; margin-top:-2px;">Tabung</p>
                     </div>
-                    <div style="margin-top:10px; font-size:0.8rem; color:#888; border-top:1px solid #333; padding-top:8px;">
-                        <i class="fas fa-info-circle" style="color:#3498db;"></i> Ilustrasi 3 jenis proyeksi peta: Silinder, Kerucut, dan Azimuthal (Bidang Datar)
+
+                    <!-- Gambar Proyeksi Kerucut -->
+                    <div style="text-align:center; background:#1a1a1a; border-radius:12px; padding:12px; border:1px solid #333; flex:1 1 150px; max-width:200px;">
+                        <img 
+                            src="images/proyeksi-kerucut.png" 
+                            alt="Proyeksi Kerucut" 
+                            style="width:100%; height:auto; border-radius:8px; cursor:pointer; border:1px solid #444; background:#0d0d0d;" 
+                            onclick="openModal(this.src, 'Proyeksi Kerucut')"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+                        />
+                        <div style="display:none; color:#888; padding:10px 0; font-size:0.8rem;">
+                            <i class="fas fa-image"></i> Gambar tidak ditemukan
+                        </div>
+                        <p style="color:#ddd; font-weight:600; margin-top:6px; font-size:0.9rem;">🟢 Kerucut</p>
+                        <p style="color:#888; font-size:0.7rem; margin-top:-2px;">Kerucut</p>
                     </div>
+
+                    <!-- Gambar Proyeksi Azimuthal -->
+                    <div style="text-align:center; background:#1a1a1a; border-radius:12px; padding:12px; border:1px solid #333; flex:1 1 150px; max-width:200px;">
+                        <img 
+                            src="images/proyeksi-azimuthal.png" 
+                            alt="Proyeksi Azimuthal" 
+                            style="width:100%; height:auto; border-radius:8px; cursor:pointer; border:1px solid #444; background:#0d0d0d;" 
+                            onclick="openModal(this.src, 'Proyeksi Azimuthal - Bidang Datar')"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+                        />
+                        <div style="display:none; color:#888; padding:10px 0; font-size:0.8rem;">
+                            <i class="fas fa-image"></i> Gambar tidak ditemukan
+                        </div>
+                        <p style="color:#ddd; font-weight:600; margin-top:6px; font-size:0.9rem;">🟠 Azimuthal</p>
+                        <p style="color:#888; font-size:0.7rem; margin-top:-2px;">Bidang Datar</p>
+                    </div>
+
+                </div>
+                <div style="background:linear-gradient(145deg,#1a241e,#1e2a24); border-radius:10px; padding:8px 14px; margin-top:-4px; border-left:6px solid #3498db; text-align:center;">
+                    <p style="color:#aaa; font-size:0.8rem; margin:0;"><i class="fas fa-info-circle" style="color:#3498db;"></i> Klik gambar untuk memperbesar. Sumber: Dokumentasi Pribadi / BIG</p>
                 </div>
                 <!-- ====== AKHIR GAMBAR PROYEKSI ====== -->
 
                 <!-- KARTU INTERAKTIF PROYEKSI -->
-                <div class="grid-3">
+                <div class="grid-3" style="margin-top:6px;">
                     <div class="card card-enhanced interactive-card dark-card" onclick="this.classList.toggle('open')"><span class="pillar-icon" style="font-size:2.2rem;">🔵</span><h3>Proyeksi Silinder</h3><p>Memproyeksikan ke tabung silinder.</p><div class="back"><p style="color:#2a3a4a;">Baik untuk daerah ekuator. Contoh: <strong>Proyeksi Mercator</strong> untuk navigasi laut.</p></div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span></div>
                     <div class="card card-enhanced interactive-card dark-card" onclick="this.classList.toggle('open')"><span class="pillar-icon" style="font-size:2.2rem;">🟢</span><h3>Proyeksi Kerucut</h3><p>Memproyeksikan ke kerucut.</p><div class="back"><p style="color:#2a3a4a;">Cocok untuk daerah lintang sedang. Contoh: <strong>Proyeksi Lambert</strong> untuk peta AS dan Eropa.</p></div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span></div>
                     <div class="card card-enhanced interactive-card dark-card" onclick="this.classList.toggle('open')"><span class="pillar-icon" style="font-size:2.2rem;">🟠</span><h3>Proyeksi Azimuthal</h3><p>Memproyeksikan ke bidang datar.</p><div class="back"><p style="color:#2a3a4a;">Baik untuk daerah kutub. Contoh: <strong>Proyeksi Gnomonic</strong> untuk penerbangan jarak jauh.</p></div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span></div>
