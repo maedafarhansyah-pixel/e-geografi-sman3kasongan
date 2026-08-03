@@ -1516,6 +1516,59 @@
             };
         })();
     </script>
+    <!-- KODE SECTION 5 DARI ANDA -->
+    <section id="section5" class="section">...</section>
+
+    <!-- KODE SECTION 6 DARI ANDA -->
+    <section id="section6" class="section">...</section>
+
+    <!-- TAPAKAN KODE JAVASCRIPT DI SINI (Sebelum penutup body) -->
+    <script>
+      function navigateTo(target) {
+        // Ambil semua section
+        const sections = document.querySelectorAll('.section');
+        
+        // Cari section mana yang sedang aktif/tampil saat ini
+        let currentIndex = -1;
+        sections.forEach((sec, index) => {
+          if (sec.style.display !== 'none' && sec.classList.contains('active')) {
+            currentIndex = index;
+          }
+        });
+
+        // Sembunyikan semua section terlebih dahulu
+        sections.forEach(sec => {
+          sec.style.display = 'none';
+          sec.classList.remove('active');
+        });
+
+        // Logika Perpindahan
+        if (target === 'next') {
+          let nextIndex = currentIndex + 1;
+          if (nextIndex >= sections.length) nextIndex = 0;
+          showSection(sections[nextIndex]);
+        } else if (target === 'prev') {
+          let prevIndex = currentIndex - 1;
+          if (prevIndex < 0) prevIndex = sections.length - 1;
+          showSection(sections[prevIndex]);
+        } else {
+          // Jika dipanggil nama ID (contoh: navigateTo('section6'))
+          const targetEl = document.getElementById(target);
+          if (targetEl) {
+            showSection(targetEl);
+          }
+        }
+      }
+
+      function showSection(element) {
+        element.style.display = 'block';
+        element.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    </script>
+
+</body>
+</html>
 
 </body>
 </html>
