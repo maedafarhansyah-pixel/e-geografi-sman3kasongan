@@ -1030,6 +1030,10 @@
         <!-- SECTION 7 : KOMPONEN & JENIS PETA -->
        <!-- ============================================================ -->
 
+<!-- ============================================================ -->
+<!-- SECTION 7 : KOMPONEN & JENIS PETA                            -->
+<!-- ============================================================ -->
+
 <section id="section7" class="section">
     <div class="section-wrapper">
         <!-- Header Sekolah & Tombol Home -->
@@ -1052,16 +1056,20 @@
         <!-- GAMBAR 1 : KOLASE KOMPONEN PETA              -->
         <!-- ============================================ -->
         <div style="margin-bottom:20px; background:#1e1e1e; border-radius:14px; padding:12px; border:1px solid #333; text-align:center;">
-            <img 
-                src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/skalapeta.png" 
-                alt="Kolase Komponen Peta" 
-                style="width:100%; max-height:300px; object-fit:cover; border-radius:10px; cursor:pointer; border:1px solid #444; background:#0d0d0d;" 
-                onclick="openModal(this.src, 'Kolase komponen-komponen peta')"
-                onerror="this.style.display='none'; document.getElementById('komponenFallback').style.display='block';"
-            />
-            <div id="komponenFallback" style="display:none; color:#888; padding:20px; text-align:center;">
-                <i class="fas fa-images" style="font-size:2.5rem; color:#555;"></i>
-                <p style="margin-top:8px;">Gambar kolase komponen peta tidak ditemukan.<br/>Ganti URL gambar di kode HTML.</p>
+            <div style="position:relative; background:#0d0d0d; border-radius:10px; overflow:hidden; border:1px solid #444;">
+                <img 
+                    src="https://placehold.co/800x400/2a2a2a/ffffff?text=Kolase+Komponen+Peta" 
+                    alt="Kolase komponen-komponen peta" 
+                    style="width:100%; height:auto; max-height:400px; object-fit:contain; display:block; cursor:pointer; transition:0.3s;" 
+                    onclick="openModal(this.src, 'Kolase komponen-komponen peta')"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                />
+                <div style="display:none; align-items:center; justify-content:center; flex-direction:column; height:300px; background:linear-gradient(145deg,#1a1a1a,#2a2a2a); color:#aaa; border-radius:10px;">
+                    <i class="fas fa-map" style="font-size:3rem; color:#d4af37;"></i>
+                    <p style="margin-top:12px; font-weight:600; color:#ccc;">Kolase Komponen Peta</p>
+                    <p style="font-size:0.85rem; color:#888;">Gagal memuat gambar, klik untuk coba lagi</p>
+                    <button onclick="this.parentElement.previousElementSibling.style.display='block'; this.parentElement.style.display='none';" style="margin-top:8px; background:#d4af37; border:none; padding:6px 18px; border-radius:20px; color:#121212; font-weight:bold; cursor:pointer;">Muat Ulang</button>
+                </div>
             </div>
             <div style="margin-top:8px; font-size:0.8rem; color:#888; border-top:1px solid #333; padding-top:8px;">
                 <i class="fas fa-info-circle" style="color:#3498db;"></i> Klik gambar untuk memperbesar 
@@ -1089,23 +1097,27 @@
         </div>
 
         <!-- ============================================ -->
-        <!-- GAMBAR 2 : PETA TEMATIK (dengan judul)      -->
+        <!-- GAMBAR 2 : PETA TEMATIK                      -->
         <!-- ============================================ -->
         <div style="margin:24px 0 12px 0;">
             <h4 style="color:#3498db; font-size:1rem; margin-bottom:6px; display:flex; align-items:center; gap:8px;">
                 <i class="fas fa-map-pin"></i> Peta Tematik
             </h4>
             <div style="background:#1e1e1e; border-radius:14px; padding:12px; border:1px solid #333; text-align:center;">
-                <img 
-                    src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/petatematik.png" 
-                    alt="Contoh Peta Tematik" 
-                    style="width:100%; max-height:280px; object-fit:cover; border-radius:10px; cursor:pointer; border:1px solid #444; background:#0d0d0d;" 
-                    onclick="openModal(this.src, 'Contoh Peta Tematik')"
-                    onerror="this.style.display='none'; document.getElementById('tematikFallback').style.display='block';"
-                />
-                <div id="tematikFallback" style="display:none; color:#888; padding:20px; text-align:center;">
-                    <i class="fas fa-image" style="font-size:2.5rem; color:#555;"></i>
-                    <p style="margin-top:8px;">Gambar peta tematik tidak ditemukan.<br/>Ganti URL gambar di kode HTML.</p>
+                <div style="position:relative; background:#0d0d0d; border-radius:10px; overflow:hidden; border:1px solid #444;">
+                    <img 
+                        src="https://placehold.co/800x400/1a2a3a/ffffff?text=Peta+Tematik+(Kepadatan+Penduduk)" 
+                        alt="Contoh Peta Tematik" 
+                        style="width:100%; height:auto; max-height:400px; object-fit:contain; display:block; cursor:pointer; transition:0.3s;" 
+                        onclick="openModal(this.src, 'Contoh Peta Tematik')"
+                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                    />
+                    <div style="display:none; align-items:center; justify-content:center; flex-direction:column; height:300px; background:linear-gradient(145deg,#1a2a3a,#0d1a2a); color:#aaa; border-radius:10px;">
+                        <i class="fas fa-chart-pie" style="font-size:3rem; color:#3498db;"></i>
+                        <p style="margin-top:12px; font-weight:600; color:#ccc;">Peta Tematik</p>
+                        <p style="font-size:0.85rem; color:#888;">Gagal memuat gambar</p>
+                        <button onclick="this.parentElement.previousElementSibling.style.display='block'; this.parentElement.style.display='none';" style="margin-top:8px; background:#3498db; border:none; padding:6px 18px; border-radius:20px; color:#fff; font-weight:bold; cursor:pointer;">Muat Ulang</button>
+                    </div>
                 </div>
                 <div style="margin-top:8px; font-size:0.8rem; color:#888; border-top:1px solid #333; padding-top:8px;">
                     <i class="fas fa-info-circle" style="color:#3498db;"></i> Klik gambar untuk memperbesar 
@@ -1116,23 +1128,27 @@
         </div>
 
         <!-- ============================================ -->
-        <!-- GAMBAR 3 : PETA UMUM (dengan judul)          -->
+        <!-- GAMBAR 3 : PETA UMUM                         -->
         <!-- ============================================ -->
         <div style="margin:16px 0 12px 0;">
             <h4 style="color:#5aadf0; font-size:1rem; margin-bottom:6px; display:flex; align-items:center; gap:8px;">
                 <i class="fas fa-globe"></i> Peta Umum
             </h4>
             <div style="background:#1e1e1e; border-radius:14px; padding:12px; border:1px solid #333; text-align:center;">
-                <img 
-                    src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/petaumumkolase.png" 
-                    alt="Contoh Peta Umum" 
-                    style="width:100%; max-height:280px; object-fit:cover; border-radius:10px; cursor:pointer; border:1px solid #444; background:#0d0d0d;" 
-                    onclick="openModal(this.src, 'Contoh Peta Umum')"
-                    onerror="this.style.display='none'; document.getElementById('umumFallback').style.display='block';"
-                />
-                <div id="umumFallback" style="display:none; color:#888; padding:20px; text-align:center;">
-                    <i class="fas fa-image" style="font-size:2.5rem; color:#555;"></i>
-                    <p style="margin-top:8px;">Gambar peta umum tidak ditemukan.<br/>Ganti URL gambar di kode HTML.</p>
+                <div style="position:relative; background:#0d0d0d; border-radius:10px; overflow:hidden; border:1px solid #444;">
+                    <img 
+                        src="https://placehold.co/800x400/2a3a2a/ffffff?text=Peta+Umum+(Topografi)" 
+                        alt="Contoh Peta Umum" 
+                        style="width:100%; height:auto; max-height:400px; object-fit:contain; display:block; cursor:pointer; transition:0.3s;" 
+                        onclick="openModal(this.src, 'Contoh Peta Umum')"
+                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                    />
+                    <div style="display:none; align-items:center; justify-content:center; flex-direction:column; height:300px; background:linear-gradient(145deg,#1a2a1a,#0d1a0d); color:#aaa; border-radius:10px;">
+                        <i class="fas fa-map-marked-alt" style="font-size:3rem; color:#5aadf0;"></i>
+                        <p style="margin-top:12px; font-weight:600; color:#ccc;">Peta Umum</p>
+                        <p style="font-size:0.85rem; color:#888;">Gagal memuat gambar</p>
+                        <button onclick="this.parentElement.previousElementSibling.style.display='block'; this.parentElement.style.display='none';" style="margin-top:8px; background:#5aadf0; border:none; padding:6px 18px; border-radius:20px; color:#121212; font-weight:bold; cursor:pointer;">Muat Ulang</button>
+                    </div>
                 </div>
                 <div style="margin-top:8px; font-size:0.8rem; color:#888; border-top:1px solid #333; padding-top:8px;">
                     <i class="fas fa-info-circle" style="color:#3498db;"></i> Klik gambar untuk memperbesar 
@@ -1190,6 +1206,7 @@
         </div>
     </div>
 </section>
+        
         <!-- SECTION 8 : PROYEKSI & SIMBOL -->
         <section id="section8" class="section">
             <div class="section-wrapper">
