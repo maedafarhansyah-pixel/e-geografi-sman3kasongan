@@ -698,120 +698,125 @@
       <!-- ============================================================ -->
 <!-- SECTION 5 : PENGERTIAN PETA (DENGAN KOLOM GAMBAR DARI GITHUB) -->
 <!-- ============================================================ -->
-        <!-- ============================================================ -->
-        <!-- SECTION 5 : PENGERTIAN PETA                                   -->
-        <!-- ============================================================ -->
-        <section id="section5" class="section">
-            <div class="section-wrapper">
-
-                <!-- Header Sekolah & Tombol Home -->
-                <div style="background:rgba(212,175,55,0.12); border-radius:12px; padding:10px 16px; margin-bottom:16px; border-left:4px solid #d4af37; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-                    <div style="display:flex; align-items:center; gap:8px; color:#e8e8e8; font-size:0.85rem; flex-wrap:wrap;">
-                        <span class="school-name-gold">SMAN 3 KASONGAN</span>
-                    </div>
-                    <button onclick="navigateTo('section1')" style="background:linear-gradient(145deg,#d4af37,#b8962e); color:#121212; border:none; padding:6px 16px; border-radius:30px; font-weight:700; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.85rem; transition:0.2s; box-shadow:0 2px 12px rgba(212,175,55,0.5);">
-                        <i class="fas fa-home"></i> Beranda
-                    </button>
-                </div>
-
-                <!-- Judul Halaman -->
-                <div class="section-header">
-                    <div class="num">05</div>
-                    <h2>Pengertian Peta <small>Representasi Permukaan Bumi</small></h2>
-                </div>
-
-                <!-- ============================================ -->
-                <!-- KONTEN UTAMA: 2 KOLOM (TEKS + GAMBAR)       -->
-                <!-- ============================================ -->
-                <div class="grid-2" style="margin-top:0;">
-                    
-                    <!-- KOLOM KIRI : TEKS PENJELASAN -->
-                    <div style="display:flex; flex-direction:column; gap:12px;">
-                        <p style="font-size:1rem; color:#ccc; margin:0;">
-                            <i class="fas fa-map" style="color:#3498db;"></i> Kata "peta" berasal dari bahasa Inggris "map" yang berarti gambaran permukaan bumi. 
-                            Secara umum, peta adalah representasi atau gambaran permukaan bumi pada bidang datar yang diperkecil dengan skala tertentu.
-                        </p>
-
-                        <!-- Karakteristik Dasar Peta -->
-                        <div style="background:linear-gradient(145deg,#1e1e1e,#252525); border-radius:14px; padding:14px 18px; border-left:6px solid #3498db;">
-                            <h4 style="color:#f0f0f0; font-size:1rem; display:flex; align-items:center; gap:8px; margin:0 0 4px 0;">
-                                <i class="fas fa-cube" style="color:#3498db;"></i> Karakteristik Dasar Peta
-                            </h4>
-                            <ul style="padding-left:18px; color:#ccc; margin:4px 0 0 0; line-height:1.8;">
-                                <li><strong>Representasi:</strong> Merupakan gambaran (tiruan) dari kondisi permukaan bumi.</li>
-                                <li><strong>Skala:</strong> Selalu diperkecil dengan perbandingan tertentu (skala).</li>
-                                <li><strong>Bidang Datar:</strong> Digambarkan pada bidang datar (2D) meskipun bumi itu bulat.</li>
-                                <li><strong>Simbol:</strong> Menggunakan simbol-simbol khusus untuk mewakili kenampakan sebenarnya.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- KOLOM KANAN : GAMBAR DARI GITHUB -->
-                    <div style="background:#1e1e1e; border-radius:14px; padding:16px; border:1px solid #333; display:flex; flex-direction:column; align-items:center; justify-content:center;">
-                        <img 
-                            src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/mapsborneo.png" 
-                            alt="Ilustrasi Peta dan Pemetaan" 
-                            style="width:100%; max-height:280px; object-fit:contain; border-radius:10px; cursor:pointer; border:1px solid #444; background:#0d0d0d;" 
-                            onclick="openModal(this.src, this.alt)"
-                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                        />
-                        <!-- Teks fallback jika gambar gagal dimuat -->
-                        <div style="display:none; align-items:center; justify-content:center; flex-direction:column; height:200px; background:#0d0d0d; color:#aaa; border-radius:10px; border:1px solid #444; width:100%; padding:10px;">
-                            <i class="fas fa-image" style="font-size:2.5rem; color:#555;"></i>
-                            <p style="margin-top:8px;">Gambar tidak ditemukan.<br/>Silakan ganti URL gambar di kode HTML.</p>
-                            <button onclick="this.parentElement.style.display='none'; this.parentElement.previousElementSibling.style.display='block';" style="margin-top:8px; background:#3498db; border:none; padding:4px 16px; border-radius:20px; color:#121212; font-weight:bold; cursor:pointer;">Muat Ulang</button>
-                        </div>
-                        <div style="margin-top:8px; font-size:0.8rem; color:#888; border-top:1px solid #333; padding-top:8px; width:100%; text-align:center;">
-                            <i class="fas fa-info-circle" style="color:#3498db;"></i> Klik gambar untuk memperbesar 
-                            <span style="color:#555; margin:0 6px;">|</span> 
-                            <span>Sumber: Dokumen Pribadi / BIG</span>
-                        </div>
-                    </div>
-                </div> <!-- penutup grid-2 -->
-
-                <!-- ============================================ -->
-                <!-- FUNGSI PETA                                  -->
-                <!-- ============================================ -->
-                <div style="margin-top:16px;">
-                    <div class="def-block">
-                        <div class="source"><i class="fas fa-lightbulb"></i> Fungsi Peta dalam Kehidupan</div>
-                        <ul style="margin-top:6px; padding-left:18px; color:#ccc;">
-                            <li><strong>Menunjukkan Lokasi:</strong> Menentukan letak suatu tempat secara pasti.</li>
-                            <li><strong>Memberikan Informasi:</strong> Menyajikan data geografis (fisik, sosial, ekonomi).</li>
-                            <li><strong>Alat Analisis:</strong> Membantu perencanaan tata ruang, mitigasi bencana, dan studi kasus.</li>
-                            <li><strong>Komunikasi Spasial:</strong> Menyampaikan informasi tentang ruang secara visual dan universal.</li>
-                        </ul>
-                        <p style="margin-top:6px; font-size:0.9rem; color:#aaa; border-top:1px solid #444; padding-top:6px;">
-                            <i class="fas fa-quote-right" style="color:#3498db;"></i> 
-                            <em>"Peta adalah jendela untuk melihat dunia tanpa harus berada di sana."</em>
-                        </p>
-                    </div>
-                </div> <!-- penutup div fungsi peta -->
-
-                <!-- ============================================ -->
-                <!-- PETUNJUK KE HALAMAN 6 (PILIHAN)             -->
-                <!-- ============================================ -->
-                <div style="background:rgba(52,152,219,0.08); border-radius:12px; padding:12px 16px; border:1px dashed #3498db; margin-top:8px; text-align:center;">
-                    <i class="fas fa-arrow-right" style="color:#3498db;"></i> 
-                    Ingin tahu definisi peta secara lebih mendalam dari para ahli kartografi dunia? 
-                    <strong style="color:#f0f0f0;">Kunjungi Halaman 6 (Definisi Ahli)</strong> 
-                    <i class="fas fa-arrow-left" style="color:#3498db;"></i>
-                </div>
-
-            </div> <!-- penutup section-wrapper -->
-        </section> <!-- penutup section5 -->
-
-    <!-- ============================================================ -->
-    <!-- SECTION 6 : DEFINISI AHLI PETA                               -->
-    <!-- ============================================================ -->
-    <section id="section6" class="section">
+      <!-- ============================================================ -->
+<!-- SECTION 5 : PENGERTIAN PETA                                   -->
+<!-- ============================================================ -->
+<section id="section5" class="section">
     <div class="section-wrapper">
+
         <!-- Header Sekolah & Tombol Home -->
         <div style="background:rgba(212,175,55,0.12); border-radius:12px; padding:10px 16px; margin-bottom:16px; border-left:4px solid #d4af37; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
             <div style="display:flex; align-items:center; gap:8px; color:#e8e8e8; font-size:0.85rem; flex-wrap:wrap;">
                 <span class="school-name-gold">SMAN 3 KASONGAN</span>
             </div>
-            <button onclick="navigateTo('section1')" style="background:linear-gradient(145deg,#d4af37,#b8962e); color:#121212; border:none; padding:6px 16px; border-radius:30px; font-weight:700; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.85rem; transition:0.2s; box-shadow:0 2px 12px rgba(212,175,55,0.5);">
+            <button type="button" onclick="navigateTo('section1')" style="background:linear-gradient(145deg,#d4af37,#b8962e); color:#121212; border:none; padding:6px 16px; border-radius:30px; font-weight:700; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.85rem; transition:0.2s; box-shadow:0 2px 12px rgba(212,175,55,0.5);">
+                <i class="fas fa-home"></i> Beranda
+            </button>
+        </div>
+
+        <!-- Judul Halaman -->
+        <div class="section-header">
+            <div class="num">05</div>
+            <h2>Pengertian Peta <small>Representasi Permukaan Bumi</small></h2>
+        </div>
+
+        <!-- KONTEN UTAMA: 2 KOLOM (TEKS + GAMBAR) -->
+        <div class="grid-2" style="margin-top:0;">
+            
+            <!-- KOLOM KIRI : TEKS PENJELASAN -->
+            <div style="display:flex; flex-direction:column; gap:12px;">
+                <p style="font-size:1rem; color:#ccc; margin:0;">
+                    <i class="fas fa-map" style="color:#3498db;"></i> Kata "peta" berasal dari bahasa Inggris "map" yang berarti gambaran permukaan bumi. Secara umum, peta adalah representasi atau gambaran permukaan bumi pada bidang datar yang diperkecil dengan skala tertentu.
+                </p>
+
+                <!-- Karakteristik Dasar Peta -->
+                <div style="background:linear-gradient(145deg,#1e1e1e,#252525); border-radius:14px; padding:14px 18px; border-left:6px solid #3498db;">
+                    <h4 style="color:#f0f0f0; font-size:1rem; display:flex; align-items:center; gap:8px; margin:0 0 4px 0;">
+                        <i class="fas fa-cube" style="color:#3498db;"></i> Karakteristik Dasar Peta
+                    </h4>
+                    <ul style="padding-left:18px; color:#ccc; margin:4px 0 0 0; line-height:1.8;">
+                        <li><strong>Representasi:</strong> Merupakan gambaran (tiruan) dari kondisi permukaan bumi.</li>
+                        <li><strong>Skala:</strong> Selalu diperkecil dengan perbandingan tertentu (skala).</li>
+                        <li><strong>Bidang Datar:</strong> Digambarkan pada bidang datar (2D) meskipun bumi itu bulat.</li>
+                        <li><strong>Simbol:</strong> Menggunakan simbol-simbol khusus untuk mewakili kenampakan sebenarnya.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- KOLOM KANAN : GAMBAR -->
+            <div style="background:#1e1e1e; border-radius:14px; padding:16px; border:1px solid #333; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+                <img 
+                    src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/mapsborneo.png" 
+                    alt="Ilustrasi Peta dan Pemetaan" 
+                    style="width:100%; max-height:280px; object-fit:contain; border-radius:10px; cursor:pointer; border:1px solid #444; background:#0d0d0d;" 
+                    onclick="openModal(this.src, this.alt)"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                />
+                <!-- Fallback jika gambar gagal dimuat -->
+                <div style="display:none; align-items:center; justify-content:center; flex-direction:column; height:200px; background:#0d0d0d; color:#aaa; border-radius:10px; border:1px solid #444; width:100%; padding:10px;">
+                    <i class="fas fa-image" style="font-size:2.5rem; color:#555;"></i>
+                    <p style="margin-top:8px;">Gambar tidak ditemukan.<br/>Silakan ganti URL gambar di kode HTML.</p>
+                    <button type="button" onclick="this.parentElement.style.display='none'; this.parentElement.previousElementSibling.style.display='block';" style="margin-top:8px; background:#3498db; border:none; padding:4px 16px; border-radius:20px; color:#121212; font-weight:bold; cursor:pointer;">Muat Ulang</button>
+                </div>
+                <div style="margin-top:8px; font-size:0.8rem; color:#888; border-top:1px solid #333; padding-top:8px; width:100%; text-align:center;">
+                    <i class="fas fa-info-circle" style="color:#3498db;"></i> Klik gambar untuk memperbesar 
+                    <span style="color:#555; margin:0 6px;">|</span> 
+                    <span>Sumber: Dokumen Pribadi / BIG</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- FUNGSI PETA -->
+        <div style="margin-top:16px;">
+            <div class="def-block">
+                <div class="source"><i class="fas fa-lightbulb"></i> Fungsi Peta dalam Kehidupan</div>
+                <ul style="margin-top:6px; padding-left:18px; color:#ccc;">
+                    <li><strong>Menunjukkan Lokasi:</strong> Menentukan letak suatu tempat secara pasti.</li>
+                    <li><strong>Memberikan Informasi:</strong> Menyajikan data geografis (fisik, sosial, ekonomi).</li>
+                    <li><strong>Alat Analisis:</strong> Membantu perencanaan tata ruang, mitigasi bencana, dan studi kasus.</li>
+                    <li><strong>Komunikasi Spasial:</strong> Menyampaikan informasi tentang ruang secara visual dan universal.</li>
+                </ul>
+                <p style="margin-top:6px; font-size:0.9rem; color:#aaa; border-top:1px solid #444; padding-top:6px;">
+                    <i class="fas fa-quote-right" style="color:#3498db;"></i> 
+                    <em>"Peta adalah jendela untuk melihat dunia tanpa harus berada di sana."</em>
+                </p>
+            </div>
+        </div>
+
+        <!-- CALL TO ACTION / NAVIGASI LANGSUNG KE SECTION 6 -->
+        <div style="background:rgba(52,152,219,0.08); border-radius:12px; padding:12px 16px; border:1px dashed #3498db; margin-top:16px; text-align:center; cursor:pointer;" onclick="navigateTo('section6')">
+            <i class="fas fa-arrow-right" style="color:#3498db;"></i> 
+            Ingin tahu definisi peta secara lebih mendalam dari para ahli kartografi dunia? 
+            <strong style="color:#3498db; text-decoration:underline;">Lanjut ke Halaman 6 (Definisi Ahli)</strong> 
+            <i class="fas fa-arrow-right" style="color:#3498db;"></i>
+        </div>
+
+        <!-- NAVIGASI BAWAH SECTION 5 -->
+        <div class="nav-buttons" style="margin-top:20px;">
+            <div class="group">
+                <button type="button" onclick="navigateTo('prev')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                <span class="page-numbers"></span>
+                <button type="button" onclick="navigateTo('section6')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                <span class="counter">5 / 12</span>
+            </div>
+        </div>
+
+    </div> <!-- penutup section-wrapper -->
+</section> <!-- penutup section5 -->
+
+
+<!-- ============================================================ -->
+<!-- SECTION 6 : DEFINISI AHLI PETA                               -->
+<!-- ============================================================ -->
+<section id="section6" class="section">
+    <div class="section-wrapper">
+
+        <!-- Header Sekolah & Tombol Home -->
+        <div style="background:rgba(212,175,55,0.12); border-radius:12px; padding:10px 16px; margin-bottom:16px; border-left:4px solid #d4af37; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+            <div style="display:flex; align-items:center; gap:8px; color:#e8e8e8; font-size:0.85rem; flex-wrap:wrap;">
+                <span class="school-name-gold">SMAN 3 KASONGAN</span>
+            </div>
+            <button type="button" onclick="navigateTo('section1')" style="background:linear-gradient(145deg,#d4af37,#b8962e); color:#121212; border:none; padding:6px 16px; border-radius:30px; font-weight:700; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.85rem; transition:0.2s; box-shadow:0 2px 12px rgba(212,175,55,0.5);">
                 <i class="fas fa-home"></i> Beranda
             </button>
         </div>
@@ -822,9 +827,7 @@
             <h2>Definisi Peta Menurut Para Ahli <small>Pendapat Tokoh Kartografi</small></h2>
         </div>
 
-        <!-- ============================================ -->
-        <!-- 1 GAMBAR KOLASE (PEMBUKA)                   -->
-        <!-- ============================================ -->
+        <!-- GAMBAR KOLASE -->
         <div style="margin-bottom:16px; background:#1e1e1e; border-radius:14px; padding:12px; border:1px solid #333; text-align:center;">
             <div style="position:relative; background:#0d0d0d; border-radius:10px; overflow:hidden; border:1px solid #444;">
                 <img 
@@ -838,7 +841,7 @@
                     <i class="fas fa-users" style="font-size:3rem; color:#d4af37;"></i>
                     <p style="margin-top:12px; font-weight:600; color:#ccc;">Kolase Tokoh Kartografi</p>
                     <p style="font-size:0.85rem; color:#888;">Gagal memuat gambar, klik untuk coba lagi</p>
-                    <button onclick="this.parentElement.previousElementSibling.style.display='block'; this.parentElement.style.display='none';" style="margin-top:8px; background:#d4af37; border:none; padding:6px 18px; border-radius:20px; color:#121212; font-weight:bold; cursor:pointer;">Muat Ulang</button>
+                    <button type="button" onclick="this.parentElement.previousElementSibling.style.display='block'; this.parentElement.style.display='none';" style="margin-top:8px; background:#d4af37; border:none; padding:6px 18px; border-radius:20px; color:#121212; font-weight:bold; cursor:pointer;">Muat Ulang</button>
                 </div>
             </div>
             <div style="margin-top:8px; font-size:0.8rem; color:#888; border-top:1px solid #333; padding-top:8px;">
@@ -848,17 +851,12 @@
             </div>
         </div>
 
-        <!-- ============================================ -->
-        <!-- TEKS PENGANTAR                              -->
-        <!-- ============================================ -->
         <p style="font-size:1rem; margin-bottom:12px; color:#ccc;">
             <i class="fas fa-quote-left" style="color:#3498db;"></i> Berikut definisi peta dari berbagai ahli kartografi. 
             <strong>Klik kartu</strong> untuk penjelasan lengkap.
         </p>
 
-        <!-- ============================================ -->
-        <!-- GRID 6 KARTU AHLI (TANPA GAMBAR)            -->
-        <!-- ============================================ -->
+        <!-- GRID 6 KARTU AHLI -->
         <div class="grid-ahli">
             
             <!-- 1. ICA -->
@@ -957,7 +955,7 @@
                 <div class="back">
                     <p style="font-weight:500; color:#1a2a3a; font-size:0.9rem;">Penulis <em>Geographia</em>:</p>
                     <ul>
-                        <li>Peta adalah penyajian informasi tentang seluruh bagian bumi yang diketahui.</li>
+                        <li>Peta adalah penyajikan informasi tentang seluruh bagian bumi yang diketahui.</li>
                         <li>Menggunakan sistem koordinat lintang dan bujur.</li>
                         <li>Karyanya menjadi dasar kartografi modern selama 1.400 tahun.</li>
                     </ul>
@@ -989,32 +987,30 @@
 
         </div>
 
-        <!-- ============================================ -->
-        <!-- KESIMPULAN                                  -->
-        <!-- ============================================ -->
+        <!-- KESIMPULAN -->
         <div style="background:linear-gradient(145deg,#1e1e1e,#252525); border-radius:14px; padding:14px 18px; border:1px solid #333; margin-top:14px;">
-            <p style="display:flex; align-items:flex-start; gap:10px; color:#ddd;">
+            <p style="display:flex; align-items:flex-start; gap:10px; color:#ddd; margin:0;">
                 <i class="fas fa-lightbulb" style="color:#3498db; font-size:1.4rem; margin-top:2px;"></i>
                 <span><strong style="color:#fff;">Kesimpulan:</strong> Peta memiliki karakteristik: representasi, skala, simbol, dan fungsi komunikasi.</span>
             </p>
-            <p style="margin-top:6px; font-size:0.9rem; color:#aaa; border-top:1px solid #444; padding-top:6px;">
+            <p style="margin-top:6px; font-size:0.9rem; color:#aaa; border-top:1px solid #444; padding-top:6px; margin-bottom:0;">
                 <i class="fas fa-quote-right" style="color:#3498db;"></i> 
                 <em>"A map is the greatest of all epic poems."</em> — Gilbert H. Grosvenor
             </p>
         </div>
 
-        <!-- Tombol Navigasi Bawah -->
-        <div class="nav-buttons">
+        <!-- NAVIGASI BAWAH SECTION 6 -->
+        <div class="nav-buttons" style="margin-top:20px;">
             <div class="group">
-                <button onclick="navigateTo('prev')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                <button type="button" onclick="navigateTo('section5')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
                 <span class="page-numbers"></span>
-                <button onclick="navigateTo('next')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                <button type="button" onclick="navigateTo('next')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
                 <span class="counter">6 / 12</span>
             </div>
         </div>
-    </div>
-</section>
 
+    </div> <!-- penutup section-wrapper -->
+</section> <!-- penutup section6 -->
         <!-- SECTION 7 : KOMPONEN & JENIS PETA -->
        <!-- ============================================================ -->
 
