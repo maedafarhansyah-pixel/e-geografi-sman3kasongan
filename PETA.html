@@ -1010,49 +1010,168 @@
 </section>
 
         <!-- SECTION 7 : KOMPONEN & JENIS PETA -->
-        <section id="section7" class="section">
-            <div class="section-wrapper">
-                <div style="background:rgba(212,175,55,0.12); border-radius:12px; padding:10px 16px; margin-bottom:16px; border-left:4px solid #d4af37; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-                    <div style="display:flex; align-items:center; gap:8px; color:#e8e8e8; font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
-                    <button onclick="navigateTo('section1')" style="background:linear-gradient(145deg,#d4af37,#b8962e); color:#121212; border:none; padding:6px 16px; border-radius:30px; font-weight:700; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.85rem; transition:0.2s; box-shadow:0 2px 12px rgba(212,175,55,0.5);"><i class="fas fa-home"></i> Beranda</button>
-                </div>
-                <div class="section-header"><div class="num">07</div><h2>Komponen & Jenis Peta <small>Membaca dan Mengklasifikasikan Peta</small></h2></div>
+       <!-- ============================================================ -->
 
-                <h3 style="font-size:1.1rem; color:#f0f0f0; border-left:4px solid #3498db; padding-left:12px; margin-bottom:6px;"><i class="fas fa-list-ul" style="color:#3498db;"></i> Komponen-Komponen Peta</h3>
-                <p style="font-size:0.95rem; color:#ccc; margin-bottom:8px;">Sebuah peta yang baik harus memiliki beberapa komponen utama.</p>
-                <div class="komponen-grid">
-                    <div class="komponen-card interactive-card dark-card" onclick="this.classList.toggle('open')"><h4>1. Judul Peta</h4><p>Memberikan informasi tentang isi atau tema peta.</p><div class="back"><p style="color:#2a3a4a;">Judul menjelaskan apa yang digambarkan, misalnya "Peta Persebaran Penduduk".</p></div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span></div>
-                    <div class="komponen-card interactive-card dark-card" onclick="this.classList.toggle('open')"><h4>2. Skala Peta</h4><p>Perbandingan jarak di peta dengan jarak sebenarnya.</p><div class="back"><p style="color:#2a3a4a;">Skala angka (1:100.000) atau garis. Menentukan tingkat detail.</p></div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span></div>
-                    <div class="komponen-card interactive-card dark-card" onclick="this.classList.toggle('open')"><h4>3. Legenda</h4><p>Keterangan tentang simbol-simbol yang digunakan.</p><div class="back"><p style="color:#2a3a4a;">Membantu memahami makna simbol seperti warna, garis, titik.</p></div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span></div>
-                    <div class="komponen-card interactive-card dark-card" onclick="this.classList.toggle('open')"><h4>4. Orientasi</h4><p>Menunjukkan arah utara pada peta.</p><div class="back"><p style="color:#2a3a4a;">Biasanya tanda panah dengan huruf U (Utara) atau N.</p></div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span></div>
-                    <div class="komponen-card interactive-card dark-card" onclick="this.classList.toggle('open')"><h4>5. Inset</h4><p>Peta kecil yang menunjukkan lokasi peta utama dalam konteks lebih luas.</p><div class="back"><p style="color:#2a3a4a;">Membantu memahami posisi wilayah yang dipetakan.</p></div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span></div>
-                    <div class="komponen-card interactive-card dark-card" onclick="this.classList.toggle('open')"><h4>6. Simbol</h4><p>Tanda atau gambar yang mewakili kenampakan di permukaan bumi.</p><div class="back"><p style="color:#2a3a4a;">Titik (kota), garis (jalan), area (hutan). Harus mudah dipahami.</p></div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span></div>
-                    <div class="komponen-card interactive-card dark-card" onclick="this.classList.toggle('open')"><h4>7. Tahun Pembuatan</h4><p>Menunjukkan kapan peta dibuat atau diperbarui.</p><div class="back"><p style="color:#2a3a4a;">Penting karena kenampakan bumi berubah seiring waktu.</p></div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span></div>
-                    <div class="komponen-card interactive-card dark-card" onclick="this.classList.toggle('open')"><h4>8. Sumber Peta</h4><p>Informasi tentang lembaga atau penulis yang membuat peta.</p><div class="back"><p style="color:#2a3a4a;">Menunjukkan kredibilitas dan keandalan data, misalnya BIG.</p></div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span></div>
-                </div>
+<section id="section7" class="section">
+    <div class="section-wrapper">
+        <!-- Header Sekolah & Tombol Home -->
+        <div style="background:rgba(212,175,55,0.12); border-radius:12px; padding:10px 16px; margin-bottom:16px; border-left:4px solid #d4af37; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+            <div style="display:flex; align-items:center; gap:8px; color:#e8e8e8; font-size:0.85rem; flex-wrap:wrap;">
+                <span class="school-name-gold">SMAN 3 KASONGAN</span>
+            </div>
+            <button onclick="navigateTo('section1')" style="background:linear-gradient(145deg,#d4af37,#b8962e); color:#121212; border:none; padding:6px 16px; border-radius:30px; font-weight:700; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.85rem; transition:0.2s; box-shadow:0 2px 12px rgba(212,175,55,0.5);">
+                <i class="fas fa-home"></i> Beranda
+            </button>
+        </div>
 
-                <div style="margin-top:16px;">
-                    <h3 style="font-size:1.1rem; color:#f0f0f0; border-left:4px solid #3498db; padding-left:12px; margin-bottom:6px;"><i class="fas fa-tags" style="color:#3498db;"></i> Jenis-Jenis Peta</h3>
-                    <div class="grid-2">
-                        <div class="card card-enhanced" style="border-left:5px solid #3498db;"><h4 style="color:#3498db;">Peta Tematik</h4><p style="font-size:0.9rem;">Menggambarkan tema tertentu, seperti:</p><ul style="font-size:0.9rem; padding-left:18px;"><li><strong>Peta Kepadatan Penduduk:</strong> Persebaran jumlah penduduk.</li><li><strong>Peta Iklim:</strong> Curah hujan, suhu, tipe iklim.</li><li><strong>Peta Tanah:</strong> Jenis dan karakteristik tanah.</li><li><strong>Peta Pariwisata:</strong> Lokasi objek wisata.</li></ul></div>
-                        <div class="card card-enhanced" style="border-left:5px solid #5aadf0;"><h4 style="color:#5aadf0;">Peta Umum</h4><p style="font-size:0.9rem;">Menggambarkan kenampakan umum, seperti:</p><ul style="font-size:0.9rem; padding-left:18px;"><li><strong>Peta Topografi:</strong> Bentuk permukaan bumi (relief, kontur).</li><li><strong>Peta Dunia:</strong> Seluruh permukaan bumi skala kecil.</li><li><strong>Peta Chorografi:</strong> Wilayah luas skala sedang.</li><li><strong>Peta Kadaster:</strong> Kepemilikan tanah skala besar.</li></ul></div>
-                    </div>
-                </div>
+        <!-- Judul Halaman -->
+        <div class="section-header">
+            <div class="num">07</div>
+            <h2>Komponen & Jenis Peta <small>Membaca dan Mengklasifikasikan Peta</small></h2>
+        </div>
 
-                <div style="background:linear-gradient(145deg,#1a241e,#1e2a24); border-radius:14px; padding:14px 18px; margin-top:12px; border-left:6px solid #3498db;">
-                    <p style="color:#ccc; font-size:0.95rem;"><i class="fas fa-info-circle" style="color:#3498db;"></i> <strong>Ingat:</strong> Setiap jenis peta memiliki fungsi berbeda. Peta tematik untuk analisis spesifik, peta umum untuk orientasi dan navigasi.</p>
+        <!-- ============================================ -->
+        <!-- GAMBAR 1 : KOLASE KOMPONEN PETA              -->
+        <!-- ============================================ -->
+        <div style="margin-bottom:20px; background:#1e1e1e; border-radius:14px; padding:12px; border:1px solid #333; text-align:center;">
+            <img 
+                src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/komponen_peta_kolase.jpg" 
+                alt="Kolase Komponen Peta" 
+                style="width:100%; max-height:300px; object-fit:cover; border-radius:10px; cursor:pointer; border:1px solid #444; background:#0d0d0d;" 
+                onclick="openModal(this.src, 'Kolase komponen-komponen peta')"
+                onerror="this.style.display='none'; document.getElementById('komponenFallback').style.display='block';"
+            />
+            <div id="komponenFallback" style="display:none; color:#888; padding:20px; text-align:center;">
+                <i class="fas fa-images" style="font-size:2.5rem; color:#555;"></i>
+                <p style="margin-top:8px;">Gambar kolase komponen peta tidak ditemukan.<br/>Ganti URL gambar di kode HTML.</p>
+            </div>
+            <div style="margin-top:8px; font-size:0.8rem; color:#888; border-top:1px solid #333; padding-top:8px;">
+                <i class="fas fa-info-circle" style="color:#3498db;"></i> Klik gambar untuk memperbesar 
+                <span style="color:#555; margin:0 6px;">|</span> 
+                <span>8 komponen utama peta</span>
+            </div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- DAFTAR KOMPONEN PETA (kartu interaktif)      -->
+        <!-- ============================================ -->
+        <h3 style="font-size:1.1rem; color:#f0f0f0; border-left:4px solid #3498db; padding-left:12px; margin-bottom:6px;">
+            <i class="fas fa-list-ul" style="color:#3498db;"></i> Komponen-Komponen Peta
+        </h3>
+        <p style="font-size:0.95rem; color:#ccc; margin-bottom:8px;">Sebuah peta yang baik harus memiliki beberapa komponen utama.</p>
+        <div class="komponen-grid">
+            <div class="komponen-card interactive-card dark-card" onclick="this.classList.toggle('open')"><h4>1. Judul Peta</h4><p>Memberikan informasi tentang isi atau tema peta.</p><div class="back"><p style="color:#e0e8f0;">Judul menjelaskan apa yang digambarkan, misalnya "Peta Persebaran Penduduk".</p></div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span></div>
+            <div class="komponen-card interactive-card dark-card" onclick="this.classList.toggle('open')"><h4>2. Skala Peta</h4><p>Perbandingan jarak di peta dengan jarak sebenarnya.</p><div class="back"><p style="color:#e0e8f0;">Skala angka (1:100.000) atau garis. Menentukan tingkat detail.</p></div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span></div>
+            <div class="komponen-card interactive-card dark-card" onclick="this.classList.toggle('open')"><h4>3. Legenda</h4><p>Keterangan tentang simbol-simbol yang digunakan.</p><div class="back"><p style="color:#e0e8f0;">Membantu memahami makna simbol seperti warna, garis, titik.</p></div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span></div>
+            <div class="komponen-card interactive-card dark-card" onclick="this.classList.toggle('open')"><h4>4. Orientasi</h4><p>Menunjukkan arah utara pada peta.</p><div class="back"><p style="color:#e0e8f0;">Biasanya tanda panah dengan huruf U (Utara) atau N.</p></div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span></div>
+            <div class="komponen-card interactive-card dark-card" onclick="this.classList.toggle('open')"><h4>5. Inset</h4><p>Peta kecil yang menunjukkan lokasi peta utama dalam konteks lebih luas.</p><div class="back"><p style="color:#e0e8f0;">Membantu memahami posisi wilayah yang dipetakan.</p></div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span></div>
+            <div class="komponen-card interactive-card dark-card" onclick="this.classList.toggle('open')"><h4>6. Simbol</h4><p>Tanda atau gambar yang mewakili kenampakan di permukaan bumi.</p><div class="back"><p style="color:#e0e8f0;">Titik (kota), garis (jalan), area (hutan). Harus mudah dipahami.</p></div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span></div>
+            <div class="komponen-card interactive-card dark-card" onclick="this.classList.toggle('open')"><h4>7. Tahun Pembuatan</h4><p>Menunjukkan kapan peta dibuat atau diperbarui.</p><div class="back"><p style="color:#e0e8f0;">Penting karena kenampakan bumi berubah seiring waktu.</p></div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span></div>
+            <div class="komponen-card interactive-card dark-card" onclick="this.classList.toggle('open')"><h4>8. Sumber Peta</h4><p>Informasi tentang lembaga atau penulis yang membuat peta.</p><div class="back"><p style="color:#e0e8f0;">Menunjukkan kredibilitas dan keandalan data, misalnya BIG.</p></div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span></div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- GAMBAR 2 : PETA TEMATIK (dengan judul)      -->
+        <!-- ============================================ -->
+        <div style="margin:24px 0 12px 0;">
+            <h4 style="color:#3498db; font-size:1rem; margin-bottom:6px; display:flex; align-items:center; gap:8px;">
+                <i class="fas fa-map-pin"></i> Peta Tematik
+            </h4>
+            <div style="background:#1e1e1e; border-radius:14px; padding:12px; border:1px solid #333; text-align:center;">
+                <img 
+                    src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/peta_tematik.jpg" 
+                    alt="Contoh Peta Tematik" 
+                    style="width:100%; max-height:280px; object-fit:cover; border-radius:10px; cursor:pointer; border:1px solid #444; background:#0d0d0d;" 
+                    onclick="openModal(this.src, 'Contoh Peta Tematik')"
+                    onerror="this.style.display='none'; document.getElementById('tematikFallback').style.display='block';"
+                />
+                <div id="tematikFallback" style="display:none; color:#888; padding:20px; text-align:center;">
+                    <i class="fas fa-image" style="font-size:2.5rem; color:#555;"></i>
+                    <p style="margin-top:8px;">Gambar peta tematik tidak ditemukan.<br/>Ganti URL gambar di kode HTML.</p>
                 </div>
-                <div class="nav-buttons">
-                    <div class="group">
-                        <button onclick="navigateTo('prev')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
-                        <span class="page-numbers"></span>
-                        <button onclick="navigateTo('next')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
-                        <span class="counter">7 / 12</span>
-                    </div>
+                <div style="margin-top:8px; font-size:0.8rem; color:#888; border-top:1px solid #333; padding-top:8px;">
+                    <i class="fas fa-info-circle" style="color:#3498db;"></i> Klik gambar untuk memperbesar 
+                    <span style="color:#555; margin:0 6px;">|</span> 
+                    <span>Contoh peta tematik (kepadatan penduduk, iklim, dll.)</span>
                 </div>
             </div>
-        </section>
+        </div>
 
+        <!-- ============================================ -->
+        <!-- GAMBAR 3 : PETA UMUM (dengan judul)          -->
+        <!-- ============================================ -->
+        <div style="margin:16px 0 12px 0;">
+            <h4 style="color:#5aadf0; font-size:1rem; margin-bottom:6px; display:flex; align-items:center; gap:8px;">
+                <i class="fas fa-globe"></i> Peta Umum
+            </h4>
+            <div style="background:#1e1e1e; border-radius:14px; padding:12px; border:1px solid #333; text-align:center;">
+                <img 
+                    src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/peta_umum.jpg" 
+                    alt="Contoh Peta Umum" 
+                    style="width:100%; max-height:280px; object-fit:cover; border-radius:10px; cursor:pointer; border:1px solid #444; background:#0d0d0d;" 
+                    onclick="openModal(this.src, 'Contoh Peta Umum')"
+                    onerror="this.style.display='none'; document.getElementById('umumFallback').style.display='block';"
+                />
+                <div id="umumFallback" style="display:none; color:#888; padding:20px; text-align:center;">
+                    <i class="fas fa-image" style="font-size:2.5rem; color:#555;"></i>
+                    <p style="margin-top:8px;">Gambar peta umum tidak ditemukan.<br/>Ganti URL gambar di kode HTML.</p>
+                </div>
+                <div style="margin-top:8px; font-size:0.8rem; color:#888; border-top:1px solid #333; padding-top:8px;">
+                    <i class="fas fa-info-circle" style="color:#3498db;"></i> Klik gambar untuk memperbesar 
+                    <span style="color:#555; margin:0 6px;">|</span> 
+                    <span>Contoh peta umum (topografi, dunia, chorografi, kadaster)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- JENIS-JENIS PETA (deskripsi)                 -->
+        <!-- ============================================ -->
+        <h3 style="font-size:1.1rem; color:#f0f0f0; border-left:4px solid #3498db; padding-left:12px; margin-bottom:6px; margin-top:16px;">
+            <i class="fas fa-tags" style="color:#3498db;"></i> Jenis-Jenis Peta
+        </h3>
+        <div class="grid-2">
+            <div class="card card-enhanced" style="border-left:5px solid #3498db;">
+                <h4 style="color:#3498db;">Peta Tematik</h4>
+                <p style="font-size:0.9rem;">Menggambarkan tema tertentu, seperti:</p>
+                <ul style="font-size:0.9rem; padding-left:18px;">
+                    <li><strong>Peta Kepadatan Penduduk:</strong> Persebaran jumlah penduduk.</li>
+                    <li><strong>Peta Iklim:</strong> Curah hujan, suhu, tipe iklim.</li>
+                    <li><strong>Peta Tanah:</strong> Jenis dan karakteristik tanah.</li>
+                    <li><strong>Peta Pariwisata:</strong> Lokasi objek wisata.</li>
+                </ul>
+            </div>
+            <div class="card card-enhanced" style="border-left:5px solid #5aadf0;">
+                <h4 style="color:#5aadf0;">Peta Umum</h4>
+                <p style="font-size:0.9rem;">Menggambarkan kenampakan umum, seperti:</p>
+                <ul style="font-size:0.9rem; padding-left:18px;">
+                    <li><strong>Peta Topografi:</strong> Bentuk permukaan bumi (relief, kontur).</li>
+                    <li><strong>Peta Dunia:</strong> Seluruh permukaan bumi skala kecil.</li>
+                    <li><strong>Peta Chorografi:</strong> Wilayah luas skala sedang.</li>
+                    <li><strong>Peta Kadaster:</strong> Kepemilikan tanah skala besar.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Catatan penutup -->
+        <div style="background:linear-gradient(145deg,#1a241e,#1e2a24); border-radius:14px; padding:14px 18px; margin-top:12px; border-left:6px solid #3498db;">
+            <p style="color:#ccc; font-size:0.95rem;">
+                <i class="fas fa-info-circle" style="color:#3498db;"></i> 
+                <strong>Ingat:</strong> Setiap jenis peta memiliki fungsi berbeda. Peta tematik untuk analisis spesifik, peta umum untuk orientasi dan navigasi.
+            </p>
+        </div>
+
+        <!-- Navigasi Bawah -->
+        <div class="nav-buttons">
+            <div class="group">
+                <button onclick="navigateTo('prev')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                <span class="page-numbers"></span>
+                <button onclick="navigateTo('next')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                <span class="counter">7 / 12</span>
+            </div>
+        </div>
+    </div>
+</section>
         <!-- SECTION 8 : PROYEKSI & SIMBOL -->
         <section id="section8" class="section">
             <div class="section-wrapper">
