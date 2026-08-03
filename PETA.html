@@ -1092,7 +1092,8 @@
         </section>
 
         <!-- SECTION 8 : PROYEKSI & SIMBOL -->
-                      <!-- SECTION 8 : PROYEKSI & SIMBOL -->
+
+          <!-- SECTION 8 : PROYEKSI & SIMBOL PETA (VERSI DIPERKAYA) -->
         <section id="section8" class="section">
             <div class="section-wrapper">
                 <div style="background:rgba(212,175,55,0.12); border-radius:12px; padding:10px 16px; margin-bottom:16px; border-left:4px solid #d4af37; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
@@ -1103,7 +1104,19 @@
 
                 <!-- ====== PROYEKSI PETA ====== -->
                 <h3 style="font-size:1.1rem; color:#f0f0f0; border-left:4px solid #3498db; padding-left:12px; margin-bottom:6px;"><i class="fas fa-globe" style="color:#3498db;"></i> Proyeksi Peta</h3>
-                <p style="font-size:0.95rem; color:#ccc; margin-bottom:12px;">Proyeksi peta adalah cara memindahkan permukaan bumi yang bulat ke bidang datar. Setiap proyeksi pasti mengalami distorsi.</p>
+                <p style="font-size:0.95rem; color:#ccc; margin-bottom:12px;">Proyeksi peta adalah cara memindahkan permukaan bumi yang bulat ke bidang datar. Setiap proyeksi pasti mengalami distorsi (perubahan bentuk, luas, atau jarak).</p>
+
+                <!-- ====== TUJUAN PROYEKSI ====== -->
+                <div style="background:linear-gradient(145deg,#1a2a3a,#0d1a2a); border-radius:12px; padding:14px 18px; margin-bottom:16px; border-left:6px solid #f1c40f;">
+                    <h4 style="color:#f1c40f; font-size:1rem; margin:0 0 6px 0;"><i class="fas fa-bullseye"></i> Tujuan Proyeksi Peta</h4>
+                    <p style="color:#ccc; font-size:0.9rem; margin:0;">Setiap proyeksi berusaha mempertahankan setidaknya <strong>salah satu</strong> dari tiga sifat berikut, tetapi tidak mungkin mempertahankan semuanya sekaligus:</p>
+                    <ul style="color:#ccc; font-size:0.9rem; padding-left:20px; margin:6px 0 0 0;">
+                        <li><strong>Conform (Bentuk)</strong> → Bentuk pada peta sesuai dengan bentuk sebenarnya di bumi.</li>
+                        <li><strong>Equivalent (Luas)</strong> → Perbandingan luas pada peta dan sebenarnya tetap sama.</li>
+                        <li><strong>Equidistance (Jarak)</strong> → Jarak pada peta sesuai dengan jarak sebenarnya di bumi.</li>
+                    </ul>
+                    <p style="color:#aaa; font-size:0.85rem; margin-top:8px; border-top:1px solid #333; padding-top:6px;"><i class="fas fa-lightbulb" style="color:#f1c40f;"></i> Contoh: Proyeksi Mercator mempertahankan <strong>bentuk (conform)</strong>, tetapi mengorbankan luas daerah di sekitar kutub.</p>
+                </div>
 
                 <!-- ====== GAMBAR ILUSTRASI PROYEKSI (DARI FOLDER images/) ====== -->
                 <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:20px; margin:10px 0 18px 0;">
@@ -1162,28 +1175,79 @@
                 </div>
                 <!-- ====== AKHIR GAMBAR PROYEKSI ====== -->
 
-                <!-- KARTU INTERAKTIF PROYEKSI -->
+                <!-- KARTU INTERAKTIF PROYEKSI (diperkaya dengan karakteristik wilayah) -->
                 <div class="grid-3" style="margin-top:6px;">
-                    <div class="card card-enhanced interactive-card dark-card" onclick="this.classList.toggle('open')"><span class="pillar-icon" style="font-size:2.2rem;">🔵</span><h3>Proyeksi Silinder</h3><p>Memproyeksikan ke tabung silinder.</p><div class="back"><p style="color:#2a3a4a;">Baik untuk daerah ekuator. Contoh: <strong>Proyeksi Mercator</strong> untuk navigasi laut.</p></div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span></div>
-                    <div class="card card-enhanced interactive-card dark-card" onclick="this.classList.toggle('open')"><span class="pillar-icon" style="font-size:2.2rem;">🟢</span><h3>Proyeksi Kerucut</h3><p>Memproyeksikan ke kerucut.</p><div class="back"><p style="color:#2a3a4a;">Cocok untuk daerah lintang sedang. Contoh: <strong>Proyeksi Lambert</strong> untuk peta AS dan Eropa.</p></div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span></div>
-                    <div class="card card-enhanced interactive-card dark-card" onclick="this.classList.toggle('open')"><span class="pillar-icon" style="font-size:2.2rem;">🟠</span><h3>Proyeksi Azimuthal</h3><p>Memproyeksikan ke bidang datar.</p><div class="back"><p style="color:#2a3a4a;">Baik untuk daerah kutub. Contoh: <strong>Proyeksi Gnomonic</strong> untuk penerbangan jarak jauh.</p></div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span></div>
-                </div>
-                <div style="background:linear-gradient(145deg,#1a241e,#1e2a24); border-radius:14px; padding:14px 18px; margin-top:12px; border-left:6px solid #3498db;">
-                    <p style="color:#ccc; font-size:0.95rem;"><i class="fas fa-info-circle" style="color:#3498db;"></i> <strong>Penting:</strong> Tidak ada proyeksi sempurna. Pemilihan tergantung tujuan dan wilayah.</p>
-                </div>
-
-                <!-- ====== SIMBOL PETA ====== -->
-                <div style="margin-top:16px;">
-                    <h3 style="font-size:1.1rem; color:#f0f0f0; border-left:4px solid #3498db; padding-left:12px; margin-bottom:6px;"><i class="fas fa-paint-brush" style="color:#3498db;"></i> Simbol Peta</h3>
-                    <p style="font-size:0.95rem; color:#ccc; margin-bottom:8px;">Simbol peta adalah tanda atau gambar yang mewakili kenampakan di permukaan bumi.</p>
-                    <div class="grid-3">
-                        <div class="card card-enhanced"><div style="font-size:2rem; color:#3498db; margin-bottom:4px;">⬤</div><h4 style="color:#f0f0f0;">Simbol Titik</h4><p style="font-size:0.9rem;">Untuk objek titik: kota, gunung, lokasi penting.</p></div>
-                        <div class="card card-enhanced"><div style="font-size:2rem; color:#3498db; margin-bottom:4px;">━</div><h4 style="color:#f0f0f0;">Simbol Garis</h4><p style="font-size:0.9rem;">Untuk objek linier: jalan, sungai, rel kereta.</p></div>
-                        <div class="card card-enhanced"><div style="font-size:2rem; color:#3498db; margin-bottom:4px;">◻</div><h4 style="color:#f0f0f0;">Simbol Area</h4><p style="font-size:0.9rem;">Untuk objek wilayah: hutan, danau, permukiman.</p></div>
+                    <div class="card card-enhanced interactive-card dark-card" onclick="this.classList.toggle('open')">
+                        <span class="pillar-icon" style="font-size:2.2rem;">🔵</span>
+                        <h3>Proyeksi Silinder</h3>
+                        <p>Memproyeksikan ke tabung silinder. Cocok untuk <strong>daerah ekuator/khatulistiwa</strong>.</p>
+                        <div class="back">
+                            <p style="color:#2a3a4a;"><strong>Karakteristik:</strong> Distorsi kecil di ekuator, membesar ke arah kutub. Contoh: <strong>Proyeksi Mercator</strong> (navigasi laut).</p>
+                            <p style="color:#2a3a4a; margin-top:4px;"><strong>Wilayah:</strong> Peta dunia, peta navigasi, wilayah tropis.</p>
+                        </div>
+                        <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span>
+                    </div>
+                    <div class="card card-enhanced interactive-card dark-card" onclick="this.classList.toggle('open')">
+                        <span class="pillar-icon" style="font-size:2.2rem;">🟢</span>
+                        <h3>Proyeksi Kerucut</h3>
+                        <p>Memproyeksikan ke kerucut. Cocok untuk <strong>daerah lintang sedang</strong>.</p>
+                        <div class="back">
+                            <p style="color:#2a3a4a;"><strong>Karakteristik:</strong> Distorsi minimal di lintang sedang, baik untuk bentuk dan luas. Contoh: <strong>Proyeksi Lambert</strong> (peta AS dan Eropa).</p>
+                            <p style="color:#2a3a4a; margin-top:4px;"><strong>Wilayah:</strong> Peta regional, peta negara-negara di lintang 30°–60°.</p>
+                        </div>
+                        <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span>
+                    </div>
+                    <div class="card card-enhanced interactive-card dark-card" onclick="this.classList.toggle('open')">
+                        <span class="pillar-icon" style="font-size:2.2rem;">🟠</span>
+                        <h3>Proyeksi Azimuthal</h3>
+                        <p>Memproyeksikan ke bidang datar. Cocok untuk <strong>daerah kutub</strong>.</p>
+                        <div class="back">
+                            <p style="color:#2a3a4a;"><strong>Karakteristik:</strong> Distorsi kecil di sekitar titik pusat (kutub), membesar ke arah luar. Contoh: <strong>Proyeksi Gnomonic</strong> (penerbangan jarak jauh).</p>
+                            <p style="color:#2a3a4a; margin-top:4px;"><strong>Wilayah:</strong> Peta kutub, peta navigasi udara, peta gempa.</p>
+                        </div>
+                        <span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk detail</span>
                     </div>
                 </div>
                 <div style="background:linear-gradient(145deg,#1a241e,#1e2a24); border-radius:14px; padding:14px 18px; margin-top:12px; border-left:6px solid #3498db;">
-                    <p style="color:#ccc; font-size:0.95rem;"><i class="fas fa-info-circle" style="color:#3498db;"></i> <strong>Catatan:</strong> Standar simbol peta di Indonesia diatur oleh Badan Informasi Geospasial (BIG).</p>
+                    <p style="color:#ccc; font-size:0.95rem;"><i class="fas fa-info-circle" style="color:#3498db;"></i> <strong>Penting:</strong> Tidak ada proyeksi sempurna. Pemilihan tergantung <strong>tujuan</strong> dan <strong>wilayah</strong> yang dipetakan.</p>
+                </div>
+
+                <!-- ====== SIMBOL PETA (diperkaya dengan contoh lebih detail) ====== -->
+                <div style="margin-top:16px;">
+                    <h3 style="font-size:1.1rem; color:#f0f0f0; border-left:4px solid #3498db; padding-left:12px; margin-bottom:6px;"><i class="fas fa-paint-brush" style="color:#3498db;"></i> Simbol Peta</h3>
+                    <p style="font-size:0.95rem; color:#ccc; margin-bottom:8px;">Simbol peta adalah tanda atau gambar yang mewakili kenampakan di permukaan bumi. Berdasarkan bentuknya, simbol dibagi menjadi tiga jenis:</p>
+                    <div class="grid-3">
+                        <div class="card card-enhanced">
+                            <div style="font-size:2rem; color:#3498db; margin-bottom:4px;">⬤</div>
+                            <h4 style="color:#f0f0f0;">Simbol Titik</h4>
+                            <p style="font-size:0.9rem;">Untuk kenampakan yang <strong>sempit/lokal</strong>.</p>
+                            <ul style="font-size:0.85rem; color:#ccc; padding-left:18px; margin-top:4px;">
+                                <li><strong>Contoh:</strong> kota (■), gunung (▲), bandara (✈), pelabuhan (⚓), tempat ibadah (⛪).</li>
+                                <li><strong>Fungsi:</strong> Menunjukkan lokasi pasti suatu objek.</li>
+                            </ul>
+                        </div>
+                        <div class="card card-enhanced">
+                            <div style="font-size:2rem; color:#3498db; margin-bottom:4px;">━</div>
+                            <h4 style="color:#f0f0f0;">Simbol Garis</h4>
+                            <p style="font-size:0.9rem;">Untuk kenampakan yang <strong>memanjang</strong>.</p>
+                            <ul style="font-size:0.85rem; color:#ccc; padding-left:18px; margin-top:4px;">
+                                <li><strong>Contoh:</strong> jalan raya (═), sungai (≈), rel kereta (┅), batas administrasi (―).</li>
+                                <li><strong>Fungsi:</strong> Menunjukkan arah, rute, atau batas.</li>
+                            </ul>
+                        </div>
+                        <div class="card card-enhanced">
+                            <div style="font-size:2rem; color:#3498db; margin-bottom:4px;">◻</div>
+                            <h4 style="color:#f0f0f0;">Simbol Area</h4>
+                            <p style="font-size:0.9rem;">Untuk kenampakan yang <strong>meluas</strong>.</p>
+                            <ul style="font-size:0.85rem; color:#ccc; padding-left:18px; margin-top:4px;">
+                                <li><strong>Contoh:</strong> hutan (🌳), danau (💧), rawa (🌿), sawah (🌾), permukiman (🏘️).</li>
+                                <li><strong>Fungsi:</strong> Menunjukkan sebaran atau luas suatu wilayah.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div style="background:linear-gradient(145deg,#1a241e,#1e2a24); border-radius:14px; padding:14px 18px; margin-top:12px; border-left:6px solid #3498db;">
+                    <p style="color:#ccc; font-size:0.95rem;"><i class="fas fa-info-circle" style="color:#3498db;"></i> <strong>Catatan:</strong> Standar simbol peta di Indonesia diatur oleh Badan Informasi Geospasial (BIG). Simbol harus <strong>mudah dipahami</strong> dan <strong>konsisten</strong>.</p>
                 </div>
 
                 <!-- ====== NAVIGASI ====== -->
@@ -1197,7 +1261,6 @@
                 </div>
             </div>
         </section>
-
         <!-- SECTION 9 : KETERAMPILAN & MANFAAT PETA -->
         <section id="section9" class="section">
             <div class="section-wrapper">
