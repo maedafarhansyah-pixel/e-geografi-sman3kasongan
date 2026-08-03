@@ -606,37 +606,76 @@
         </section>
 
         <!-- SECTION 4 : DEEP LEARNING -->
-        <section id="section4" class="section">
-            <div class="section-wrapper">
-                <div style="background:rgba(212,175,55,0.12); border-radius:12px; padding:10px 16px; margin-bottom:16px; border-left:4px solid #d4af37; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-                    <div style="display:flex; align-items:center; gap:8px; color:#e8e8e8; font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
-                    <button onclick="navigateTo('section1')" style="background:linear-gradient(145deg,#d4af37,#b8962e); color:#121212; border:none; padding:6px 16px; border-radius:30px; font-weight:700; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.85rem; transition:0.2s; box-shadow:0 2px 12px rgba(212,175,55,0.5);"><i class="fas fa-home"></i> Beranda</button>
-                </div>
-                <div class="section-header"><div class="num">04</div><h2>Kerangka Pembelajaran Mendalam <small>Pendekatan Deep Learning</small></h2></div>
-                <div class="card card-enhanced" style="background:linear-gradient(145deg,#1a241e,#1e2a24); border:1px solid #3498db; padding:18px 16px;">
-                    <div style="display:grid; grid-template-columns:1fr 2fr; gap:12px; align-items:start;">
-                        <div style="font-weight:700; color:#3498db; padding:8px 12px; font-size:0.95rem;">Komponen Kerangka Pembelajaran Mendalam</div>
-                        <div style="font-weight:700; color:#3498db; padding:8px 12px; font-size:0.95rem;">Implementasi</div>
-                        <div style="background:#252525; padding:12px; border-radius:8px; font-weight:600; color:#f0f0f0;">Praktik Pedagogis</div>
-                        <div style="background:#1e1e1e; padding:12px; border-radius:8px; color:#ccc;">Problem Based Learning (PBL) berbasis inkuiri, Project Based Learning (PjBL).</div>
-                        <div style="background:#252525; padding:12px; border-radius:8px; font-weight:600; color:#f0f0f0;">Lingkungan Pembelajaran</div>
-                        <div style="background:#1e1e1e; padding:12px; border-radius:8px; color:#ccc;">Kelas, ruang virtual, perpustakaan, dan lingkungan sekitar sekolah sebagai laboratorium geografi.</div>
-                        <div style="background:#252525; padding:12px; border-radius:8px; font-weight:600; color:#f0f0f0;">Kemitraan Pembelajaran</div>
-                        <div style="background:#1e1e1e; padding:12px; border-radius:8px; color:#ccc;">Orang tua, tokoh masyarakat, BMKG, BPBD, Dinas Lingkungan Hidup, komunitas peduli lingkungan.</div>
-                        <div style="background:#252525; padding:12px; border-radius:8px; font-weight:600; color:#f0f0f0;">Pemanfaatan Digital</div>
-                        <div style="background:#1e1e1e; padding:12px; border-radius:8px; color:#ccc;">Google Earth, Google Maps, Canva, Quizizz/Kahoot, video pembelajaran, dan AI secara bertanggung jawab.</div>
-                    </div>
-                </div>
-                <div class="nav-buttons">
-                    <div class="group">
-                        <button onclick="navigateTo('prev')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
-                        <span class="page-numbers"></span>
-                        <button onclick="navigateTo('next')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
-                        <span class="counter">4 / 12</span>
-                    </div>
-                </div>
+       <!-- ============================================================ -->
+
+<section id="section4" class="section">
+    <div class="section-wrapper">
+        <!-- Header Sekolah & Tombol Home (tetap dipertahankan) -->
+        <div style="background:rgba(212,175,55,0.12); border-radius:12px; padding:10px 16px; margin-bottom:16px; border-left:4px solid #d4af37; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+            <div style="display:flex; align-items:center; gap:8px; color:#e8e8e8; font-size:0.85rem; flex-wrap:wrap;">
+                <span class="school-name-gold">SMAN 3 KASONGAN</span>
             </div>
-        </section>
+            <button onclick="navigateTo('section1')" style="background:linear-gradient(145deg,#d4af37,#b8962e); color:#121212; border:none; padding:6px 16px; border-radius:30px; font-weight:700; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.85rem; transition:0.2s; box-shadow:0 2px 12px rgba(212,175,55,0.5);">
+                <i class="fas fa-home"></i> Beranda
+            </button>
+        </div>
+
+        <!-- Judul Halaman -->
+        <div class="section-header">
+            <div class="num">04</div>
+            <h2>Kerangka Pembelajaran Mendalam <small>Pendekatan Deep Learning</small></h2>
+        </div>
+
+        <!-- KONTEN UTAMA (Telah diperbarui sesuai saran) -->
+        <div class="card card-enhanced" style="background:linear-gradient(145deg,#1a241e,#1e2a24); border:1px solid #3498db; padding:18px 16px;">
+            <div style="display:grid; grid-template-columns:1fr 2fr; gap:12px; align-items:start;">
+                
+                <!-- Kolom Kiri (Judul Komponen) -->
+                <div style="font-weight:700; color:#3498db; padding:8px 12px; font-size:0.95rem;">Komponen Kerangka Pembelajaran Mendalam</div>
+                <div style="font-weight:700; color:#3498db; padding:8px 12px; font-size:0.95rem;">Implementasi</div>
+
+                <!-- 1. PRAKTIK PEDAGOGIS (Diperbarui) -->
+                <div style="background:#252525; padding:12px; border-radius:8px; font-weight:600; color:#f0f0f0;">Praktik Pedagogis</div>
+                <div style="background:#1e1e1e; padding:12px; border-radius:8px; color:#ccc;">
+                    Problem Based Learning (PBL), Project Based Learning (PjBL), 
+                    <strong>Inkuiri, Discovery Learning,</strong> dan pendekatan kontekstual lainnya yang mendorong eksplorasi aktif peserta didik.
+                </div>
+
+                <!-- 2. LINGKUNGAN PEMBELAJARAN (Diperbarui) -->
+                <div style="background:#252525; padding:12px; border-radius:8px; font-weight:600; color:#f0f0f0;">Lingkungan Pembelajaran</div>
+                <div style="background:#1e1e1e; padding:12px; border-radius:8px; color:#ccc;">
+                    Kelas interaktif, <strong>laboratorium geografi, ruang diskusi,</strong> perpustakaan, 
+                    lingkungan sekitar sekolah sebagai laboratorium alam, serta ruang virtual (sinkronus/asinkronus).
+                </div>
+
+                <!-- 3. KEMITRAAN PEMBELAJARAN (Diperbarui) -->
+                <div style="background:#252525; padding:12px; border-radius:8px; font-weight:600; color:#f0f0f0;">Kemitraan Pembelajaran</div>
+                <div style="background:#1e1e1e; padding:12px; border-radius:8px; color:#ccc;">
+                    Orang tua, tokoh masyarakat, BMKG, BPBD, Dinas Lingkungan Hidup, 
+                    <strong>Badan Informasi Geospasial (BIG),</strong> dan komunitas peduli lingkungan.
+                </div>
+
+                <!-- 4. PEMANFAATAN DIGITAL (Diperbarui) -->
+                <div style="background:#252525; padding:12px; border-radius:8px; font-weight:600; color:#f0f0f0;">Pemanfaatan Digital</div>
+                <div style="background:#1e1e1e; padding:12px; border-radius:8px; color:#ccc;">
+                    Google Earth, Google Maps, <strong>ArcGIS Online, QGIS,</strong> Canva, Quizizz/Kahoot, 
+                    video pembelajaran, dan pemanfaatan AI secara bertanggung jawab.
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Tombol Navigasi Bawah (tetap dipertahankan) -->
+        <div class="nav-buttons">
+            <div class="group">
+                <button onclick="navigateTo('prev')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                <span class="page-numbers"></span>
+                <button onclick="navigateTo('next')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                <span class="counter">4 / 12</span>
+            </div>
+        </div>
+    </div>
+</section>
 
         <!-- SECTION 5 : PENGERTIAN PETA -->
         <section id="section5" class="section">
