@@ -2830,10 +2830,38 @@
             </h3>
             <p style="color:rgba(255,255,255,0.4); font-size:0.85rem; margin-bottom:16px;">Pilihlah satu jawaban yang paling tepat (A, B, C, D, atau E)!</p>
 
-            <!-- Soal 1-15 Pilihan Ganda -->
+            <style>
+                .pg-options {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 4px 30px;
+                    padding-left: 20px;
+                    color: #ccc;
+                    line-height: 2;
+                    font-size: 0.9rem;
+                }
+                .pg-options span {
+                    display: block;
+                }
+                .pg-options span:nth-child(1) { color: #5dade2; } /* A - Biru */
+                .pg-options span:nth-child(2) { color: #2ecc71; } /* B - Hijau */
+                .pg-options span:nth-child(3) { color: #f1c40f; } /* C - Kuning */
+                .pg-options span:nth-child(4) { color: #e67e22; } /* D - Oranye */
+                .pg-options span:nth-child(5) { color: #e74c3c; } /* E - Merah */
+                
+                @media (max-width: 600px) {
+                    .pg-options {
+                        grid-template-columns: 1fr;
+                        gap: 2px;
+                        padding-left: 16px;
+                    }
+                }
+            </style>
+
+            <!-- Soal 1 -->
             <div class="assessment-question" style="margin-bottom:14px; padding:14px 18px; background:rgba(255,255,255,0.02); border-radius:10px; border-left:4px solid #3498db; transition:0.3s;">
                 <div class="q-text" style="font-weight:600; color:#f0f0f0; margin-bottom:6px; font-size:0.95rem;">1. Kata "geografi" berasal dari bahasa Yunani "geo" dan "graphien" yang artinya ...</div>
-                <div class="q-options" style="padding-left:20px; color:#ccc; line-height:2; font-size:0.9rem;">
+                <div class="pg-options">
                     <span>A. Bumi dan langit</span>
                     <span>B. Bumi dan menulis/melukis</span>
                     <span>C. Alam dan manusia</span>
@@ -2842,9 +2870,10 @@
                 </div>
             </div>
 
+            <!-- Soal 2 -->
             <div class="assessment-question" style="margin-bottom:14px; padding:14px 18px; background:rgba(255,255,255,0.02); border-radius:10px; border-left:4px solid #3498db; transition:0.3s;">
                 <div class="q-text" style="font-weight:600; color:#f0f0f0; margin-bottom:6px; font-size:0.95rem;">2. Tokoh yang dijuluki sebagai "Bapak Geografi" adalah ...</div>
-                <div class="q-options" style="padding-left:20px; color:#ccc; line-height:2; font-size:0.9rem;">
+                <div class="pg-options">
                     <span>A. Claudius Ptolemaeus</span>
                     <span>B. Immanuel Kant</span>
                     <span>C. Eratosthenes</span>
@@ -2853,9 +2882,10 @@
                 </div>
             </div>
 
+            <!-- Soal 3 -->
             <div class="assessment-question" style="margin-bottom:14px; padding:14px 18px; background:rgba(255,255,255,0.02); border-radius:10px; border-left:4px solid #3498db; transition:0.3s;">
                 <div class="q-text" style="font-weight:600; color:#f0f0f0; margin-bottom:6px; font-size:0.95rem;">3. Objek material geografi adalah ...</div>
-                <div class="q-options" style="padding-left:20px; color:#ccc; line-height:2; font-size:0.9rem;">
+                <div class="pg-options">
                     <span>A. Cara pandang geografi</span>
                     <span>B. Seluruh fenomena di permukaan bumi (geosfer)</span>
                     <span>C. Metode penelitian geografi</span>
@@ -2864,9 +2894,10 @@
                 </div>
             </div>
 
+            <!-- Soal 4 -->
             <div class="assessment-question" style="margin-bottom:14px; padding:14px 18px; background:rgba(255,255,255,0.02); border-radius:10px; border-left:4px solid #3498db; transition:0.3s;">
                 <div class="q-text" style="font-weight:600; color:#f0f0f0; margin-bottom:6px; font-size:0.95rem;">4. Prinsip geografi yang menekankan bahwa fenomena geosfer saling berhubungan dan memengaruhi adalah ...</div>
-                <div class="q-options" style="padding-left:20px; color:#ccc; line-height:2; font-size:0.9rem;">
+                <div class="pg-options">
                     <span>A. Distribusi</span>
                     <span>B. Interelasi</span>
                     <span>C. Deskripsi</span>
@@ -2875,9 +2906,10 @@
                 </div>
             </div>
 
+            <!-- Soal 5 -->
             <div class="assessment-question" style="margin-bottom:14px; padding:14px 18px; background:rgba(255,255,255,0.02); border-radius:10px; border-left:4px solid #3498db; transition:0.3s;">
                 <div class="q-text" style="font-weight:600; color:#f0f0f0; margin-bottom:6px; font-size:0.95rem;">5. Aspek geografi yang mengkaji fenomena alam seperti topografi, iklim, dan hidrologi adalah ...</div>
-                <div class="q-options" style="padding-left:20px; color:#ccc; line-height:2; font-size:0.9rem;">
+                <div class="pg-options">
                     <span>A. Aspek sosial</span>
                     <span>B. Aspek ekonomi</span>
                     <span>C. Aspek fisik</span>
@@ -2886,9 +2918,10 @@
                 </div>
             </div>
 
+            <!-- Soal 6 -->
             <div class="assessment-question" style="margin-bottom:14px; padding:14px 18px; background:rgba(255,255,255,0.02); border-radius:10px; border-left:4px solid #3498db; transition:0.3s;">
                 <div class="q-text" style="font-weight:600; color:#f0f0f0; margin-bottom:6px; font-size:0.95rem;">6. Pendekatan geografi yang menganalisis persebaran dan pola fenomena di permukaan bumi disebut ...</div>
-                <div class="q-options" style="padding-left:20px; color:#ccc; line-height:2; font-size:0.9rem;">
+                <div class="pg-options">
                     <span>A. Pendekatan kelingkungan</span>
                     <span>B. Pendekatan kompleks wilayah</span>
                     <span>C. Pendekatan keruangan</span>
@@ -2897,9 +2930,10 @@
                 </div>
             </div>
 
+            <!-- Soal 7 -->
             <div class="assessment-question" style="margin-bottom:14px; padding:14px 18px; background:rgba(255,255,255,0.02); border-radius:10px; border-left:4px solid #3498db; transition:0.3s;">
                 <div class="q-text" style="font-weight:600; color:#f0f0f0; margin-bottom:6px; font-size:0.95rem;">7. Menurut Bintarto, geografi adalah ilmu yang mempelajari persamaan dan perbedaan fenomena geosfer dengan sudut pandang ...</div>
-                <div class="q-options" style="padding-left:20px; color:#ccc; line-height:2; font-size:0.9rem;">
+                <div class="pg-options">
                     <span>A. Kelingkungan dan kewilayahan</span>
                     <span>B. Historis dan ekonomis</span>
                     <span>C. Sosial dan budaya</span>
@@ -2908,9 +2942,10 @@
                 </div>
             </div>
 
+            <!-- Soal 8 -->
             <div class="assessment-question" style="margin-bottom:14px; padding:14px 18px; background:rgba(255,255,255,0.02); border-radius:10px; border-left:4px solid #3498db; transition:0.3s;">
                 <div class="q-text" style="font-weight:600; color:#f0f0f0; margin-bottom:6px; font-size:0.95rem;">8. Prinsip korologi merupakan gabungan dari prinsip distribusi, interelasi, dan ...</div>
-                <div class="q-options" style="padding-left:20px; color:#ccc; line-height:2; font-size:0.9rem;">
+                <div class="pg-options">
                     <span>A. Deskripsi</span>
                     <span>B. Keruangan</span>
                     <span>C. Kelingkungan</span>
@@ -2919,9 +2954,10 @@
                 </div>
             </div>
 
+            <!-- Soal 9 -->
             <div class="assessment-question" style="margin-bottom:14px; padding:14px 18px; background:rgba(255,255,255,0.02); border-radius:10px; border-left:4px solid #3498db; transition:0.3s;">
                 <div class="q-text" style="font-weight:600; color:#f0f0f0; margin-bottom:6px; font-size:0.95rem;">9. Contoh penerapan pendekatan kelingkungan dalam geografi adalah ...</div>
-                <div class="q-options" style="padding-left:20px; color:#ccc; line-height:2; font-size:0.9rem;">
+                <div class="pg-options">
                     <span>A. Memetakan persebaran pusat perbelanjaan</span>
                     <span>B. Menganalisis dampak deforestasi terhadap banjir</span>
                     <span>C. Menggambar peta topografi suatu daerah</span>
@@ -2930,9 +2966,10 @@
                 </div>
             </div>
 
+            <!-- Soal 10 -->
             <div class="assessment-question" style="margin-bottom:14px; padding:14px 18px; background:rgba(255,255,255,0.02); border-radius:10px; border-left:4px solid #3498db; transition:0.3s;">
                 <div class="q-text" style="font-weight:600; color:#f0f0f0; margin-bottom:6px; font-size:0.95rem;">10. Manfaat mempelajari geografi yang berkaitan dengan pengurangan risiko bencana adalah ...</div>
-                <div class="q-options" style="padding-left:20px; color:#ccc; line-height:2; font-size:0.9rem;">
+                <div class="pg-options">
                     <span>A. Memahami persebaran budaya</span>
                     <span>B. Mitigasi bencana alam</span>
                     <span>C. Perencanaan tata kota</span>
@@ -2941,9 +2978,10 @@
                 </div>
             </div>
 
+            <!-- Soal 11 -->
             <div class="assessment-question" style="margin-bottom:14px; padding:14px 18px; background:rgba(255,255,255,0.02); border-radius:10px; border-left:4px solid #3498db; transition:0.3s;">
                 <div class="q-text" style="font-weight:600; color:#f0f0f0; margin-bottom:6px; font-size:0.95rem;">11. Lapisan bumi yang terdiri dari batuan dan tanah disebut ...</div>
-                <div class="q-options" style="padding-left:20px; color:#ccc; line-height:2; font-size:0.9rem;">
+                <div class="pg-options">
                     <span>A. Atmosfer</span>
                     <span>B. Hidrosfer</span>
                     <span>C. Litosfer</span>
@@ -2952,9 +2990,10 @@
                 </div>
             </div>
 
+            <!-- Soal 12 -->
             <div class="assessment-question" style="margin-bottom:14px; padding:14px 18px; background:rgba(255,255,255,0.02); border-radius:10px; border-left:4px solid #3498db; transition:0.3s;">
                 <div class="q-text" style="font-weight:600; color:#f0f0f0; margin-bottom:6px; font-size:0.95rem;">12. Menurut Immanuel Kant, geografi dibagi menjadi dua bagian yaitu ...</div>
-                <div class="q-options" style="padding-left:20px; color:#ccc; line-height:2; font-size:0.9rem;">
+                <div class="pg-options">
                     <span>A. Geografi fisik dan geografi manusia</span>
                     <span>B. Geografi regional dan geografi sistematik</span>
                     <span>C. Geografi politik dan geografi ekonomi</span>
@@ -2963,9 +3002,10 @@
                 </div>
             </div>
 
+            <!-- Soal 13 -->
             <div class="assessment-question" style="margin-bottom:14px; padding:14px 18px; background:rgba(255,255,255,0.02); border-radius:10px; border-left:4px solid #3498db; transition:0.3s;">
                 <div class="q-text" style="font-weight:600; color:#f0f0f0; margin-bottom:6px; font-size:0.95rem;">13. Objek formal geografi berkaitan dengan ...</div>
-                <div class="q-options" style="padding-left:20px; color:#ccc; line-height:2; font-size:0.9rem;">
+                <div class="pg-options">
                     <span>A. Fenomena yang dikaji</span>
                     <span>B. Cara pandang atau pendekatan</span>
                     <span>C. Metode penelitian</span>
@@ -2974,9 +3014,10 @@
                 </div>
             </div>
 
+            <!-- Soal 14 -->
             <div class="assessment-question" style="margin-bottom:14px; padding:14px 18px; background:rgba(255,255,255,0.02); border-radius:10px; border-left:4px solid #3498db; transition:0.3s;">
                 <div class="q-text" style="font-weight:600; color:#f0f0f0; margin-bottom:6px; font-size:0.95rem;">14. Konsep geografi yang menggambarkan bentuk permukaan bumi seperti gunung, lembah, dan dataran adalah ...</div>
-                <div class="q-options" style="padding-left:20px; color:#ccc; line-height:2; font-size:0.9rem;">
+                <div class="pg-options">
                     <span>A. Lokasi</span>
                     <span>B. Pola</span>
                     <span>C. Morfologi</span>
@@ -2985,9 +3026,10 @@
                 </div>
             </div>
 
+            <!-- Soal 15 -->
             <div class="assessment-question" style="margin-bottom:14px; padding:14px 18px; background:rgba(255,255,255,0.02); border-radius:10px; border-left:4px solid #3498db; transition:0.3s;">
                 <div class="q-text" style="font-weight:600; color:#f0f0f0; margin-bottom:6px; font-size:0.95rem;">15. Berikut yang termasuk dalam aspek nonfisik geografi adalah ...</div>
-                <div class="q-options" style="padding-left:20px; color:#ccc; line-height:2; font-size:0.9rem;">
+                <div class="pg-options">
                     <span>A. Topografi dan iklim</span>
                     <span>B. Hidrologi dan pedologi</span>
                     <span>C. Demografi dan ekonomi</span>
