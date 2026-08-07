@@ -2034,6 +2034,221 @@
             border-radius: 14px;
             border-left: 6px solid #2ecc71;
         }
+
+        /* ===== COVER PAGE SPECIFIC FIXES ===== */
+        .cover-section {
+            text-align: center;
+            padding: 10px 0 8px;
+        }
+        .cover-section .logo-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: clamp(12px, 4vw, 30px);
+            flex-wrap: wrap;
+            margin-bottom: 18px;
+        }
+        .cover-section .logo-header img {
+            height: clamp(50px, 8vw, 100px);
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.5));
+        }
+        .cover-section .badge-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+        .cover-section .cover-title {
+            font-size: clamp(1.8rem, 6vw, 3.4rem);
+            font-weight: 800;
+            margin: 8px 0 6px;
+            letter-spacing: -0.3px;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #f0f0f0, #d4af37, #f0f0f0, #d4af37);
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmerText 4s infinite linear;
+            display: inline-block;
+            line-height: 1.2;
+        }
+        .cover-section .cover-sub {
+            font-size: clamp(0.9rem, 1.5vw, 1.15rem);
+            color: #aaa;
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 0 12px;
+            line-height: 1.7;
+        }
+        .cover-section .school-info-wrap {
+            margin-top: 14px;
+        }
+        .cover-section .school-info-wrap .school-info {
+            background: rgba(13, 17, 26, 0.8);
+            backdrop-filter: blur(8px);
+            padding: 10px 28px;
+            border-radius: 40px;
+            display: inline-block;
+            font-weight: 500;
+            font-size: clamp(1.2rem, 2.5vw, 2rem);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .cover-section .teacher-info {
+            margin-top: 6px;
+            font-size: clamp(0.75rem, 1vw, 0.9rem);
+            color: #aaa;
+        }
+        .cover-section .teacher-info strong {
+            color: #88c0d0;
+            text-shadow: 0 0 10px rgba(136, 192, 208, 0.3);
+        }
+        .cover-section .start-btn-wrapper {
+            display: flex;
+            justify-content: center;
+            margin: 22px 0 10px;
+        }
+        .cover-section .start-btn {
+            background: linear-gradient(145deg, #3498db, #5dade2);
+            color: #121212;
+            border: none;
+            padding: clamp(12px, 2vw, 18px) clamp(32px, 5vw, 64px);
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: clamp(1rem, 1.8vw, 1.5rem);
+            cursor: pointer;
+            transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 6px 30px rgba(52, 152, 219, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            position: relative;
+            overflow: hidden;
+        }
+        .cover-section .start-btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent 60%);
+            opacity: 0;
+            transition: 0.6s;
+        }
+        .cover-section .start-btn:hover::before {
+            opacity: 1;
+        }
+        .cover-section .start-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 48px rgba(52, 152, 219, 0.5);
+        }
+        .cover-section .start-btn i {
+            font-size: 1.4rem;
+        }
+        .cover-section .nav-box {
+            background: rgba(26, 26, 46, 0.85);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: clamp(16px, 2.5vw, 26px) clamp(14px, 2vw, 28px);
+            margin-top: 16px;
+            border: 1px solid rgba(52, 152, 219, 0.15);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+            text-align: left;
+        }
+        .cover-section .nav-box .nav-header {
+            color: #3498db;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            padding-bottom: 10px;
+            margin-bottom: 14px;
+        }
+        .cover-section .nav-box .nav-header i {
+            font-size: 1.3rem;
+        }
+        .cover-section .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 8px;
+        }
+        .cover-section .nav-item {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 10px 6px;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 1px solid transparent;
+            color: #ccc;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            text-decoration: none;
+        }
+        .cover-section .nav-item:hover {
+            background: linear-gradient(145deg, #3498db, #5dade2);
+            color: #121212 !important;
+            transform: translateY(-4px) scale(1.04);
+            border-color: #3498db;
+            box-shadow: 0 6px 24px rgba(52, 152, 219, 0.25);
+        }
+        .cover-section .nav-item .num-badge {
+            font-size: 0.6rem;
+            background: rgba(255, 255, 255, 0.06);
+            padding: 1px 10px;
+            border-radius: 20px;
+            font-weight: 700;
+            color: #3498db;
+            transition: 0.3s;
+        }
+        .cover-section .nav-item:hover .num-badge {
+            background: rgba(0, 0, 0, 0.15);
+            color: #121212;
+        }
+        .cover-section .nav-item .nav-label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+        .cover-section .scroll-hint {
+            margin-top: 6px;
+            font-size: 0.8rem;
+            color: #666;
+        }
+        @media (max-width: 480px) {
+            .cover-section .nav-grid {
+                grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+            }
+            .cover-section .nav-item {
+                padding: 8px 4px;
+            }
+            .cover-section .nav-item .nav-label {
+                font-size: 0.65rem;
+            }
+            .cover-section .nav-item .num-badge {
+                font-size: 0.5rem;
+                padding: 1px 8px;
+            }
+        }
+        @media (min-width: 600px) {
+            .cover-section .nav-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 10px;
+            }
+        }
+        @media (min-width: 900px) {
+            .cover-section .nav-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            }
+        }
     </style>
 </head>
 <body>
@@ -2075,48 +2290,54 @@
     <!-- ===== MAIN CONTENT ===== -->
     <main class="main-content">
 
-        <!-- ===== SECTION 1 : COVER ===== -->
-        <section id="section1" class="section active">
-            <div style="text-align:center; padding:10px 0 8px;">
-                <div class="logo-header">
-                    <img src="images/Logo-Provinsi-Kalimantan-Tengah.png" alt="Logo Provinsi Kalimantan Tengah">
-                    <img src="images/imagesdisdiklogo.png" alt="Logo Dinas Pendidikan">
-                    <img src="images/LOGOSMAN3KAS.png" alt="Logo SMAN 3 Kasongan">
+        <!-- ===== SECTION 1 : COVER (RAPI) ===== -->
+        <section id="section1" class="section active cover-section">
+            <div class="logo-header">
+                <img src="images/Logo-Provinsi-Kalimantan-Tengah.png" alt="Logo Provinsi Kalimantan Tengah">
+                <img src="images/imagesdisdiklogo.png" alt="Logo Dinas Pendidikan">
+                <img src="images/LOGOSMAN3KAS.png" alt="Logo SMAN 3 Kasongan">
+            </div>
+
+            <div class="badge-wrapper">
+                <span class="tag" style="font-size:0.75rem; padding:4px 18px;">KELAS X / FASE E</span>
+                <span class="deep-learning-badge" style="margin-left:4px;"><i class="fas fa-brain"></i> Deep Learning</span>
+            </div>
+
+            <h1 class="cover-title">PENGETAHUAN DASAR<br />GEOGRAFI</h1>
+            <p class="cover-sub">Pengertian, objek, prinsip, aspek, pendekatan, dan manfaat geografi<br />dalam kehidupan sehari-hari</p>
+
+            <div class="school-info-wrap">
+                <div class="school-info">
+                    <span class="school-name-gold-cover">SMAN 3 KASONGAN</span>
                 </div>
-                <span class="tag" style="font-size:0.8rem; padding:4px 20px;">KELAS X / FASE E</span>
-                <span class="deep-learning-badge" style="margin-left:6px;"><i class="fas fa-brain"></i> Deep Learning</span>
-                <h1 class="cover-title">PENGETAHUAN DASAR<br />GEOGRAFI</h1>
-                <p style="font-size:1rem; color:#aaa; max-width:600px; margin:0 auto; padding:0 10px;">Pengertian, objek, prinsip, aspek, pendekatan, dan manfaat geografi<br />dalam kehidupan sehari-hari</p>
-                <div style="margin-top:16px;">
-                    <div class="school-info" style="font-size:2rem; padding:12px 28px;">
-                        <span class="school-name-gold-cover">SMAN 3 KASONGAN</span>
-                    </div>
-                    <div style="margin-top:6px; font-size:0.9rem; color:#aaa;">
-                        <i class="fas fa-chalkboard-teacher" style="color:#88c0d0;"></i>
-                        Guru Pengampu: <strong style="color:#88c0d0; text-shadow:0 0 10px rgba(136,192,208,0.3);">SYAHRANI, S.Pd</strong> &nbsp;|&nbsp;
-                        <span style="color:#88c0d0; text-shadow:0 0 10px rgba(136,192,208,0.3);">NIP. 197512172005011016</span>
-                    </div>
+                <div class="teacher-info">
+                    <i class="fas fa-chalkboard-teacher" style="color:#88c0d0;"></i>
+                    Guru Pengampu: <strong>SYAHRANI, S.Pd</strong> &nbsp;|&nbsp;
+                    <span style="color:#88c0d0;">NIP. 197512172005011016</span>
                 </div>
-                <div class="start-btn-wrapper">
-                    <button class="start-btn" onclick="navigateTo('section2')"><i class="fas fa-play-circle"></i> Mulai Belajar</button>
-                </div>
-                <div style="margin-top:6px; font-size:0.85rem; color:#666;"><i class="fas fa-chevron-down"></i> Jelajahi materi menggunakan navigasi di bawah</div>
-                <div class="nav-box">
-                    <div class="nav-header"><i class="fas fa-compass"></i> Navigasi Cepat Materi</div>
-                    <div class="nav-grid">
-                        <div onclick="navigateTo('section1')" class="nav-item"><span class="num-badge">01</span><span class="nav-label">Beranda</span></div>
-                        <div onclick="navigateTo('section2')" class="nav-item"><span class="num-badge">02</span><span class="nav-label">CP & ATP</span></div>
-                        <div onclick="navigateTo('section3')" class="nav-item"><span class="num-badge">03</span><span class="nav-label">Indikator</span></div>
-                        <div onclick="navigateTo('section4')" class="nav-item"><span class="num-badge">04</span><span class="nav-label">Deep Learning</span></div>
-                        <div onclick="navigateTo('section5')" class="nav-item"><span class="num-badge">05</span><span class="nav-label">Pengertian</span></div>
-                        <div onclick="navigateTo('section6')" class="nav-item"><span class="num-badge">06</span><span class="nav-label">Definisi Ahli</span></div>
-                        <div onclick="navigateTo('section7')" class="nav-item"><span class="num-badge">07</span><span class="nav-label">Objek & Prinsip</span></div>
-                        <div onclick="navigateTo('section8')" class="nav-item"><span class="num-badge">08</span><span class="nav-label">Aspek & Pendekatan</span></div>
-                        <div onclick="navigateTo('section9')" class="nav-item"><span class="num-badge">09</span><span class="nav-label">Keterampilan & Manfaat</span></div>
-                        <div onclick="navigateTo('section10')" class="nav-item"><span class="num-badge">10</span><span class="nav-label">Asesmen</span></div>
-                        <div onclick="navigateTo('section11')" class="nav-item"><span class="num-badge">11</span><span class="nav-label">Refleksi</span></div>
-                        <div onclick="navigateTo('section12')" class="nav-item"><span class="num-badge">12</span><span class="nav-label">Referensi</span></div>
-                    </div>
+            </div>
+
+            <div class="start-btn-wrapper">
+                <button class="start-btn" onclick="navigateTo('section2')"><i class="fas fa-play-circle"></i> Mulai Belajar</button>
+            </div>
+
+            <div class="scroll-hint"><i class="fas fa-chevron-down"></i> Jelajahi materi menggunakan navigasi di bawah</div>
+
+            <div class="nav-box">
+                <div class="nav-header"><i class="fas fa-compass"></i> Navigasi Cepat Materi</div>
+                <div class="nav-grid">
+                    <div onclick="navigateTo('section1')" class="nav-item"><span class="num-badge">01</span><span class="nav-label">Beranda</span></div>
+                    <div onclick="navigateTo('section2')" class="nav-item"><span class="num-badge">02</span><span class="nav-label">CP & ATP</span></div>
+                    <div onclick="navigateTo('section3')" class="nav-item"><span class="num-badge">03</span><span class="nav-label">Indikator</span></div>
+                    <div onclick="navigateTo('section4')" class="nav-item"><span class="num-badge">04</span><span class="nav-label">Deep Learning</span></div>
+                    <div onclick="navigateTo('section5')" class="nav-item"><span class="num-badge">05</span><span class="nav-label">Pengertian</span></div>
+                    <div onclick="navigateTo('section6')" class="nav-item"><span class="num-badge">06</span><span class="nav-label">Definisi Ahli</span></div>
+                    <div onclick="navigateTo('section7')" class="nav-item"><span class="num-badge">07</span><span class="nav-label">Objek & Prinsip</span></div>
+                    <div onclick="navigateTo('section8')" class="nav-item"><span class="num-badge">08</span><span class="nav-label">Aspek & Pendekatan</span></div>
+                    <div onclick="navigateTo('section9')" class="nav-item"><span class="num-badge">09</span><span class="nav-label">Keterampilan & Manfaat</span></div>
+                    <div onclick="navigateTo('section10')" class="nav-item"><span class="num-badge">10</span><span class="nav-label">Asesmen</span></div>
+                    <div onclick="navigateTo('section11')" class="nav-item"><span class="num-badge">11</span><span class="nav-label">Refleksi</span></div>
+                    <div onclick="navigateTo('section12')" class="nav-item"><span class="num-badge">12</span><span class="nav-label">Referensi</span></div>
                 </div>
             </div>
         </section>
@@ -2984,18 +3205,17 @@
             const MAX_SPEED = 0.7;
             const CONNECTION_DIST = 160;
 
-            // Color palette - vibrant and varied
             const colors = [
-                { r: 52, g: 152, b: 219 }, // bright blue
-                { r: 46, g: 204, b: 113 }, // emerald green
-                { r: 155, g: 89, b: 182 }, // purple
-                { r: 231, g: 76, b: 60 }, // red
-                { r: 241, g: 196, b: 15 }, // yellow
-                { r: 26, g: 188, b: 156 }, // teal
-                { r: 230, g: 126, b: 34 }, // orange
-                { r: 52, g: 73, b: 94 }, // dark blue
-                { r: 142, g: 68, b: 173 }, // deep purple
-                { r: 26, g: 126, b: 169 }, // ocean blue
+                { r: 52, g: 152, b: 219 },
+                { r: 46, g: 204, b: 113 },
+                { r: 155, g: 89, b: 182 },
+                { r: 231, g: 76, b: 60 },
+                { r: 241, g: 196, b: 15 },
+                { r: 26, g: 188, b: 156 },
+                { r: 230, g: 126, b: 34 },
+                { r: 52, g: 73, b: 94 },
+                { r: 142, g: 68, b: 173 },
+                { r: 26, g: 126, b: 169 },
             ];
 
             function resize() {
@@ -3027,8 +3247,6 @@
                     this.y += this.vy;
                     if (this.x < 0 || this.x > width) this.vx *= -1;
                     if (this.y < 0 || this.y > height) this.vy *= -1;
-
-                    // Store trail
                     this.trail.push({ x: this.x, y: this.y });
                     if (this.trail.length > this.maxTrail) {
                         this.trail.shift();
@@ -3038,7 +3256,6 @@
                     const r = this.radius + Math.sin(time * this.pulseSpeed + this.pulseOffset) * 1.2;
                     const alpha = this.opacity * (0.8 + 0.2 * Math.sin(time * this.pulseSpeed * 0.7 + this.pulseOffset));
 
-                    // Draw glow trail
                     for (let i = 0; i < this.trail.length - 1; i++) {
                         const t = i / this.trail.length;
                         const trailAlpha = alpha * t * 0.3;
@@ -3049,7 +3266,6 @@
                         ctx.fill();
                     }
 
-                    // Main particle with glow
                     const gradient = ctx.createRadialGradient(
                         this.x, this.y, 0,
                         this.x, this.y, r * 2.5
@@ -3064,13 +3280,11 @@
                     ctx.fillStyle = gradient;
                     ctx.fill();
 
-                    // Core dot
                     ctx.beginPath();
                     ctx.arc(this.x, this.y, r * 0.6, 0, Math.PI * 2);
                     ctx.fillStyle = `rgba(255, 255, 255, ${alpha * 0.7})`;
                     ctx.fill();
 
-                    // Inner glow
                     ctx.beginPath();
                     ctx.arc(this.x, this.y, r, 0, Math.PI * 2);
                     const innerGrad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, r);
@@ -3094,7 +3308,6 @@
                         if (dist < CONNECTION_DIST) {
                             const t = 1 - dist / CONNECTION_DIST;
                             const alpha = 0.08 * t * t;
-                            // Blend colors
                             const c1 = particles[i].color;
                             const c2 = particles[j].color;
                             const r = Math.round(c1.r * (1 - t) + c2.r * t);
@@ -3108,7 +3321,6 @@
                             ctx.lineWidth = 1.0 + t * 1.2;
                             ctx.stroke();
 
-                            // Glow on connection
                             if (t > 0.6) {
                                 ctx.beginPath();
                                 ctx.moveTo(particles[i].x, particles[i].y);
@@ -3131,8 +3343,6 @@
                 mouse.x = null;
                 mouse.y = null;
             });
-
-            // Touch support for mobile
             document.addEventListener('touchmove', (e) => {
                 const touch = e.touches[0];
                 if (touch) {
@@ -3150,16 +3360,12 @@
             function animate() {
                 time++;
                 ctx.clearRect(0, 0, width, height);
-
-                // Update and draw particles
                 particles.forEach(p => {
                     p.update();
                     p.draw(time);
                 });
-
                 drawLines(time);
 
-                // Mouse interaction - attract particles
                 if (mouse.x !== null && mouse.y !== null) {
                     particles.forEach(p => {
                         const dx = p.x - mouse.x;
