@@ -25,7 +25,212 @@
             cursor: auto;
         }
 
-        /* ===== ANIMATED BACKGROUND CANVAS (Premium) ===== */
+        /* ===== LOADER KEKINIAN (Super Modern) ===== */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0b0f1a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+            overflow: hidden;
+        }
+        #loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        /* Emoji berjatuhan */
+        .falling-emoji {
+            position: absolute;
+            font-size: 2rem;
+            user-select: none;
+            pointer-events: none;
+            animation: fallDown linear forwards;
+            opacity: 0.7;
+            will-change: transform;
+        }
+        @keyframes fallDown {
+            0% {
+                transform: translateY(-100px) rotate(0deg) scale(0.5);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+                transform: translateY(10vh) rotate(20deg) scale(1);
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(110vh) rotate(360deg) scale(0.3);
+                opacity: 0;
+            }
+        }
+
+        /* Loader ring dengan glow */
+        .loader-ring-wrapper {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            z-index: 10;
+        }
+        .loader-ring {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 5px solid transparent;
+            border-top-color: #3498db;
+            border-right-color: #8e44ad;
+            border-bottom-color: #e74c3c;
+            border-left-color: #2ecc71;
+            animation: spinRing 1s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+            position: relative;
+            box-shadow: 0 0 60px rgba(52, 152, 219, 0.2), 0 0 80px rgba(142, 68, 173, 0.15);
+        }
+        .loader-ring::after {
+            content: '';
+            position: absolute;
+            inset: 12px;
+            border-radius: 50%;
+            border: 4px solid transparent;
+            border-bottom-color: #f1c40f;
+            border-left-color: #e67e22;
+            animation: spinRing 0.7s linear infinite reverse;
+        }
+        @keyframes spinRing {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Glow effect di belakang ring */
+        .loader-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(52, 152, 219, 0.08), rgba(142, 68, 173, 0.05), transparent 70%);
+            animation: pulseGlow 1.5s ease-in-out infinite alternate;
+            z-index: -1;
+        }
+        @keyframes pulseGlow {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.5;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1.3);
+                opacity: 1;
+            }
+        }
+
+        /* Judul Loader dengan Neon Glow */
+        .loader-title {
+            font-size: clamp(2.2rem, 6vw, 4rem);
+            font-weight: 800;
+            letter-spacing: 4px;
+            margin-top: 24px;
+            z-index: 10;
+            background: linear-gradient(135deg, #3498db, #8e44ad, #e74c3c, #f1c40f);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientMove 3s ease-in-out infinite;
+            text-shadow: 0 0 40px rgba(52, 152, 219, 0.2);
+            position: relative;
+        }
+        .loader-title::after {
+            content: 'GEOGRAFI';
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background: none;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(52, 152, 219, 0.3), 0 0 60px rgba(142, 68, 173, 0.2);
+            filter: blur(8px);
+            opacity: 0.5;
+            animation: none;
+        }
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Subtitle loader */
+        .loader-sub {
+            font-size: clamp(0.8rem, 1.5vw, 1.1rem);
+            color: rgba(255, 255, 255, 0.3);
+            letter-spacing: 6px;
+            margin-top: 6px;
+            z-index: 10;
+            font-weight: 300;
+            text-transform: uppercase;
+        }
+        .loader-sub span {
+            color: #8e44ad;
+            font-weight: 600;
+        }
+
+        /* Loading bar kekinian */
+        .loader-bar-wrapper {
+            width: clamp(200px, 40vw, 400px);
+            height: 6px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 10px;
+            margin-top: 20px;
+            z-index: 10;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        .loader-bar {
+            height: 100%;
+            width: 0%;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #3498db, #8e44ad, #e74c3c, #f1c40f);
+            background-size: 300% 100%;
+            animation: barGradient 2s linear infinite;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 20px rgba(52, 152, 219, 0.3);
+        }
+        @keyframes barGradient {
+            0% {
+                background-position: 0% 0%;
+            }
+            100% {
+                background-position: 300% 0%;
+            }
+        }
+        .loader-bar-text {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.3);
+            margin-top: 6px;
+            z-index: 10;
+            font-weight: 500;
+            letter-spacing: 1px;
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* ===== ANIMATED BACKGROUND CANVAS ===== */
         #bgCanvas {
             position: fixed;
             top: 0;
@@ -37,7 +242,7 @@
             opacity: 0.7;
         }
 
-        /* ===== SECTION BG OVERLAY (Soft Gradient) ===== */
+        /* ===== SECTION BG OVERLAY ===== */
         .section-bg-overlay {
             position: fixed;
             top: 0;
@@ -52,8 +257,41 @@
         .section-bg-overlay.bg-cover {
             background: radial-gradient(ellipse at 30% 40%, #142b44, #080c18);
         }
+        .section-bg-overlay.bg-cp {
+            background: radial-gradient(ellipse at 70% 30%, #1a3a2a, #0a121a);
+        }
+        .section-bg-overlay.bg-indikator {
+            background: radial-gradient(ellipse at 50% 50%, #1a2a3a, #0a121a);
+        }
+        .section-bg-overlay.bg-deep {
+            background: radial-gradient(ellipse at 30% 70%, #1a2a3a, #0a121a);
+        }
+        .section-bg-overlay.bg-pengertian {
+            background: radial-gradient(ellipse at 50% 40%, #1a3a4a, #0a121a);
+        }
+        .section-bg-overlay.bg-ahli {
+            background: radial-gradient(ellipse at 70% 60%, #1a2a3a, #0a121a);
+        }
+        .section-bg-overlay.bg-objek {
+            background: radial-gradient(ellipse at 40% 50%, #1a3a2a, #0a121a);
+        }
+        .section-bg-overlay.bg-aspek {
+            background: radial-gradient(ellipse at 60% 40%, #1a2a3a, #0a121a);
+        }
+        .section-bg-overlay.bg-manfaat {
+            background: radial-gradient(ellipse at 50% 60%, #1a3a2a, #0a121a);
+        }
+        .section-bg-overlay.bg-asesmen {
+            background: radial-gradient(ellipse at 40% 30%, #1a2a3a, #0a121a);
+        }
+        .section-bg-overlay.bg-refleksi {
+            background: radial-gradient(ellipse at 60% 70%, #1a2a3a, #0a121a);
+        }
+        .section-bg-overlay.bg-referensi {
+            background: radial-gradient(ellipse at 50% 50%, #1a2a3a, #0a121a);
+        }
 
-        /* ===== FLOATING ORBS (Lebih Halus) ===== */
+        /* ===== FLOATING ORBS ===== */
         .floating-orb {
             position: fixed;
             border-radius: 50%;
@@ -88,61 +326,6 @@
             left: 50%;
             box-shadow: 0 0 120px #4a2a6a;
             transform: translate(-50%, -50%);
-        }
-
-        /* ===== LOADER ===== */
-        #loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #0b0f1a;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 99999;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
-        }
-        #loader.hidden {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-        .loader-ring {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            border: 4px solid rgba(52, 152, 219, 0.1);
-            border-top-color: #3498db;
-            border-right-color: #5dade2;
-            border-bottom-color: #2ecc71;
-            animation: spin 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
-            position: relative;
-            box-shadow: 0 0 40px rgba(52, 152, 219, 0.15);
-        }
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-        .loader-text {
-            color: #3498db;
-            font-size: 1.1rem;
-            font-weight: 400;
-            letter-spacing: 6px;
-            margin-top: 24px;
-            animation: pulseText 1.5s ease-in-out infinite;
-        }
-        @keyframes pulseText {
-            0%,
-            100% {
-                opacity: 0.4;
-            }
-            50% {
-                opacity: 1;
-            }
         }
 
         /* ===== MOBILE HEADER ===== */
@@ -204,7 +387,7 @@
             }
         }
 
-        /* ===== COVER SECTION (Premium) ===== */
+        /* ===== COVER SECTION ===== */
         .cover-section {
             text-align: center;
             padding: 10px 0 8px;
@@ -228,7 +411,6 @@
         .cover-section .logo-header img:hover {
             transform: scale(1.05);
         }
-
         .cover-section .badge-wrapper {
             display: flex;
             justify-content: center;
@@ -265,7 +447,6 @@
         .cover-section .deep-learning-badge i {
             margin-right: 6px;
         }
-
         .cover-title {
             font-size: clamp(2rem, 7vw, 3.8rem);
             font-weight: 800;
@@ -290,7 +471,6 @@
                 background-position: 100% 50%;
             }
         }
-
         .cover-sub {
             font-size: clamp(0.95rem, 1.6vw, 1.25rem);
             color: rgba(255, 255, 255, 0.7);
@@ -301,7 +481,6 @@
             font-weight: 300;
             letter-spacing: 0.3px;
         }
-
         .cover-section .school-info-wrap {
             margin-top: 18px;
         }
@@ -322,7 +501,6 @@
             color: #d4af37;
             text-shadow: 0 0 40px rgba(212, 175, 55, 0.15);
         }
-
         .cover-section .teacher-info {
             margin-top: 8px;
             font-size: clamp(0.75rem, 1vw, 0.9rem);
@@ -338,7 +516,6 @@
             color: #88c0d0;
             margin-right: 6px;
         }
-
         .cover-section .start-btn-wrapper {
             display: flex;
             justify-content: center;
@@ -387,7 +564,6 @@
         .cover-section .start-btn:hover i {
             transform: translateX(4px);
         }
-
         .cover-section .scroll-hint {
             margin-top: 6px;
             font-size: 0.75rem;
@@ -408,7 +584,7 @@
             }
         }
 
-        /* ===== NAV BOX (Premium Glass) ===== */
+        /* ===== NAV BOX ===== */
         .cover-section .nav-box {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(16px);
@@ -516,7 +692,7 @@
             }
         }
 
-        /* ===== OTHER SECTIONS (dari kode sebelumnya, dipertahankan) ===== */
+        /* ===== OTHER SECTIONS ===== */
         .section-header {
             display: flex;
             align-items: center;
@@ -1609,10 +1785,19 @@
 </head>
 <body>
 
-    <!-- ===== LOADER ===== -->
+    <!-- ===== LOADER KEKINIAN (Super Modern) ===== -->
     <div id="loader">
-        <div class="loader-ring"></div>
-        <div class="loader-text">Memuat Materi Geografi</div>
+        <!-- Emoji berjatuhan akan diisi oleh JS -->
+        <div class="loader-ring-wrapper">
+            <div class="loader-glow"></div>
+            <div class="loader-ring"></div>
+        </div>
+        <div class="loader-title">GEOGRAFI</div>
+        <div class="loader-sub">Untuk <span>Generasi Z</span></div>
+        <div class="loader-bar-wrapper">
+            <div class="loader-bar" id="loaderBar"></div>
+        </div>
+        <div class="loader-bar-text" id="loaderBarText">0%</div>
     </div>
 
     <!-- ===== ANIMATED BACKGROUND CANVAS ===== -->
@@ -1646,7 +1831,7 @@
     <!-- ===== MAIN CONTENT ===== -->
     <main class="main-content">
 
-        <!-- ===== SECTION 1 : COVER (Premium) ===== -->
+        <!-- ===== SECTION 1 : COVER ===== -->
         <section id="section1" class="section active cover-section">
             <div class="logo-header">
                 <img src="images/Logo-Provinsi-Kalimantan-Tengah.png" alt="Logo Provinsi Kalimantan Tengah">
@@ -2509,6 +2694,78 @@
 
     <!-- ===== JAVASCRIPT ===== -->
     <script>
+        // ===== LOADER KEKINIAN =====
+        (function() {
+            const loader = document.getElementById('loader');
+            const bar = document.getElementById('loaderBar');
+            const barText = document.getElementById('loaderBarText');
+
+            // Emoji berjatuhan
+            const emojis = ['🌍', '🌎', '🌏', '🗺️', '📍', '🧭', '⭐', '✨', '🌟', '🚀', '💫', '🔥', '🌈', '🎯', '💡'];
+            const loaderEl = document.getElementById('loader');
+
+            function createFallingEmoji() {
+                const emoji = document.createElement('span');
+                emoji.className = 'falling-emoji';
+                emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                emoji.style.left = Math.random() * 100 + '%';
+                emoji.style.fontSize = (1.2 + Math.random() * 2) + 'rem';
+                emoji.style.animationDuration = (3 + Math.random() * 3) + 's';
+                emoji.style.animationDelay = (Math.random() * 0.5) + 's';
+                emoji.style.opacity = 0.3 + Math.random() * 0.5;
+                loaderEl.appendChild(emoji);
+                // Hapus setelah animasi selesai
+                setTimeout(() => {
+                    if (emoji.parentNode) emoji.remove();
+                }, 6000);
+            }
+
+            // Buat 15 emoji awal
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => createFallingEmoji(), i * 200);
+            }
+            // Terus buat emoji baru selama loader aktif
+            let emojiInterval = setInterval(() => {
+                if (!loader.classList.contains('hidden')) {
+                    createFallingEmoji();
+                } else {
+                    clearInterval(emojiInterval);
+                }
+            }, 800);
+
+            // Progress bar
+            let progress = 0;
+            const targetProgress = 100;
+            const duration = 3000; // 3 detik
+            const startTime = Date.now();
+
+            function updateProgress() {
+                const elapsed = Date.now() - startTime;
+                progress = Math.min((elapsed / duration) * 100, 100);
+                bar.style.width = progress + '%';
+                barText.textContent = Math.round(progress) + '%';
+                if (progress < 100) {
+                    requestAnimationFrame(updateProgress);
+                } else {
+                    // Selesai loading
+                    setTimeout(() => {
+                        loader.classList.add('hidden');
+                        setTimeout(() => { loader.style.display = 'none'; }, 800);
+                    }, 400);
+                }
+            }
+            updateProgress();
+
+            // Hapus interval saat loader hilang
+            const observer = new MutationObserver(() => {
+                if (loader.classList.contains('hidden')) {
+                    clearInterval(emojiInterval);
+                    observer.disconnect();
+                }
+            });
+            observer.observe(loader, { attributes: true, attributeFilter: ['class'] });
+        })();
+
         // ===== PARALLAX FLOATING ORBS =====
         (function() {
             const orbs = document.querySelectorAll('.floating-orb');
@@ -2532,7 +2789,7 @@
             animateOrbs();
         })();
 
-        // ===== 3D TILT EFFECT ON CARDS (Lighter) =====
+        // ===== 3D TILT EFFECT ON CARDS =====
         (function() {
             const cards = document.querySelectorAll('.card, .ahli-card, .prinsip-card, .guna-card');
             cards.forEach(card => {
@@ -2553,7 +2810,7 @@
             });
         })();
 
-        // ===== CANVAS PARTICLE BACKGROUND (Premium - larger, smoother, colorful) =====
+        // ===== CANVAS PARTICLE BACKGROUND =====
         (function() {
             const canvas = document.getElementById('bgCanvas');
             const ctx = canvas.getContext('2d');
@@ -2829,15 +3086,6 @@
                 } else { originalNavigateTo(id); }
             };
         })();
-
-        // ===== LOADER =====
-        window.addEventListener('load', function() {
-            setTimeout(() => {
-                const loader = document.getElementById('loader');
-                loader.classList.add('hidden');
-                setTimeout(() => { loader.style.display = 'none'; }, 800);
-            }, 1000);
-        });
     </script>
 
 </body>
