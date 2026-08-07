@@ -1588,41 +1588,178 @@
     <!-- ===== MAIN CONTENT ===== -->
     <main class="main-content">
 
-        <!-- ===== SECTION 1 : COVER ===== -->
-        <section id="section1" class="section active cover-section">
-            <div class="logo-header">
-                <img src="images/Logo-Provinsi-Kalimantan-Tengah.png" alt="Logo Provinsi Kalimantan Tengah">
-                <img src="images/imagesdisdiklogo.png" alt="Logo Dinas Pendidikan">
-                <img src="images/LOGOSMAN3KAS.png" alt="Logo SMAN 3 Kasongan">
+     <!-- ===== SECTION 1 : COVER (SUPER KEREN & PREMIUM) ===== -->
+<section id="section1" class="section active cover-section">
+    <!-- Background efek partikel di cover -->
+    <div style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; overflow:hidden;">
+        <div id="coverParticles" style="position:absolute; top:0; left:0; width:100%; height:100%;"></div>
+        <style>
+            .cover-star {
+                position: absolute;
+                width: 4px;
+                height: 4px;
+                background: radial-gradient(circle, #3498db, #8e44ad);
+                border-radius: 50%;
+                animation: floatStar var(--duration) ease-in-out infinite alternate;
+                box-shadow: 0 0 20px rgba(52,152,219,0.3);
+            }
+            @keyframes floatStar {
+                0% { opacity: 0.2; transform: translateY(0) scale(0.5) rotate(0deg); }
+                100% { opacity: 1; transform: translateY(-30px) scale(1.2) rotate(180deg); }
+            }
+        </style>
+    </div>
+
+    <!-- Logo Header -->
+    <div class="logo-header" style="position:relative; z-index:1;">
+        <img src="images/Logo-Provinsi-Kalimantan-Tengah.png" alt="Logo Provinsi Kalimantan Tengah" style="height:clamp(50px,8vw,110px); width:auto; object-fit:contain; filter:drop-shadow(0 4px 20px rgba(0,0,0,0.4)); transition:transform 0.4s ease;">
+        <img src="images/imagesdisdiklogo.png" alt="Logo Dinas Pendidikan" style="height:clamp(50px,8vw,110px); width:auto; object-fit:contain; filter:drop-shadow(0 4px 20px rgba(0,0,0,0.4)); transition:transform 0.4s ease;">
+        <img src="images/LOGOSMAN3KAS.png" alt="Logo SMAN 3 Kasongan" style="height:clamp(50px,8vw,110px); width:auto; object-fit:contain; filter:drop-shadow(0 4px 20px rgba(0,0,0,0.4)); transition:transform 0.4s ease;">
+    </div>
+
+    <!-- Badge Wrapper -->
+    <div class="badge-wrapper" style="position:relative; z-index:1; display:flex; justify-content:center; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:14px;">
+        <span class="tag" style="display:inline-block; background:rgba(52,152,219,0.15); backdrop-filter:blur(4px); color:#5dade2; font-size:0.7rem; font-weight:600; padding:4px 18px; border-radius:40px; letter-spacing:1px; text-transform:uppercase; border:1px solid rgba(52,152,219,0.2); animation:tagPulse 3s ease-in-out infinite;">KELAS X / FASE E</span>
+        <span class="deep-learning-badge" style="display:inline-block; background:rgba(46,204,113,0.12); backdrop-filter:blur(4px); color:#2ecc71; padding:4px 16px; border-radius:40px; font-size:0.7rem; font-weight:600; letter-spacing:0.5px; border:1px solid rgba(46,204,113,0.2); animation:tagPulse 3s ease-in-out infinite 0.5s;"><i class="fas fa-brain"></i> Deep Learning</span>
+    </div>
+    <style>
+        @keyframes tagPulse {
+            0%, 100% { border-color: rgba(52,152,219,0.2); }
+            50% { border-color: rgba(142,68,173,0.4); }
+        }
+    </style>
+
+    <!-- Judul Cover -->
+    <h1 class="cover-title" style="position:relative; z-index:1; font-size:clamp(2rem,7vw,3.8rem); font-weight:800; margin:8px 0 6px; letter-spacing:-0.5px; text-transform:uppercase; background:linear-gradient(135deg, #f0f0f0 0%, #d4af37 30%, #f0f0f0 60%, #d4af37 100%); background-size:300% 100%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; animation:shimmerText 5s ease-in-out infinite; display:inline-block; line-height:1.15;">
+        PENGETAHUAN DASAR<br />GEOGRAFI
+    </h1>
+    <style>
+        @keyframes shimmerText {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+    </style>
+
+    <!-- Subtitle -->
+    <p class="cover-sub" style="position:relative; z-index:1; font-size:clamp(0.9rem,1.5vw,1.2rem); color:rgba(255,255,255,0.7); max-width:680px; margin:4px auto 0; padding:0 12px; line-height:1.8; font-weight:300; letter-spacing:0.3px;">
+        Pengertian, objek, prinsip, aspek, pendekatan, dan manfaat geografi<br />dalam kehidupan sehari-hari
+    </p>
+
+    <!-- School Info -->
+    <div class="school-info-wrap" style="position:relative; z-index:1; margin-top:16px;">
+        <div class="school-info" style="background:rgba(255,255,255,0.04); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); padding:8px 28px; border-radius:60px; display:inline-block; font-weight:600; font-size:clamp(1.1rem,2.5vw,2rem); box-shadow:0 8px 32px rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.06); letter-spacing:1px;">
+            <span class="school-name-gold-cover" style="color:#d4af37; text-shadow:0 0 40px rgba(212,175,55,0.15);">SMAN 3 KASONGAN</span>
+        </div>
+        <div class="teacher-info" style="margin-top:6px; font-size:clamp(0.7rem,0.9vw,0.85rem); color:rgba(255,255,255,0.5); letter-spacing:0.5px;">
+            <i class="fas fa-chalkboard-teacher" style="color:#88c0d0; margin-right:6px;"></i>
+            Guru Pengampu: <strong style="color:#88c0d0; font-weight:500;">SYAHRANI, S.Pd</strong> &nbsp;|&nbsp;
+            <span style="color:rgba(255,255,255,0.4);">NIP. 197512172005011016</span>
+        </div>
+    </div>
+
+    <!-- Tombol Mulai Belajar -->
+    <div class="start-btn-wrapper" style="position:relative; z-index:1; display:flex; justify-content:center; margin:20px 0 10px;">
+        <button class="start-btn" onclick="navigateTo('section2')" style="background:linear-gradient(145deg, #3498db, #8e44ad); color:#fff; border:none; padding:clamp(12px,2vw,18px) clamp(32px,5vw,60px); border-radius:60px; font-weight:700; font-size:clamp(1rem,1.6vw,1.3rem); cursor:pointer; transition:all 0.4s cubic-bezier(0.34,1.56,0.64,1); box-shadow:0 8px 40px rgba(52,152,219,0.25); display:inline-flex; align-items:center; gap:14px; position:relative; overflow:hidden; letter-spacing:0.5px;">
+            <i class="fas fa-play-circle" style="font-size:1.3rem; transition:transform 0.3s ease;"></i> Mulai Belajar
+        </button>
+        <style>
+            .start-btn::after {
+                content: '';
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: radial-gradient(circle, rgba(255,255,255,0.2), transparent 60%);
+                opacity: 0;
+                transition: 0.6s;
+            }
+            .start-btn:hover::after { opacity: 1; }
+            .start-btn:hover {
+                transform: scale(1.06) translateY(-3px);
+                box-shadow: 0 12px 48px rgba(52,152,219,0.4);
+            }
+            .start-btn:hover i { transform: translateX(4px); }
+        </style>
+    </div>
+
+    <!-- Scroll Hint -->
+    <div class="scroll-hint" style="position:relative; z-index:1; margin-top:4px; font-size:0.7rem; color:rgba(255,255,255,0.2); letter-spacing:2px;">
+        <i class="fas fa-chevron-down" style="animation:bounceDown 2s ease-in-out infinite; display:inline-block;"></i> &nbsp;Jelajahi materi
+    </div>
+    <style>
+        @keyframes bounceDown {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(6px); }
+        }
+    </style>
+
+    <!-- ===== NAVIGASI CEPAT (DIPERTAHANKAN) ===== -->
+    <div class="nav-box" style="position:relative; z-index:1; background:rgba(255,255,255,0.03); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border-radius:24px; padding:clamp(16px,2.5vw,28px) clamp(14px,2vw,28px); margin-top:18px; border:1px solid rgba(255,255,255,0.06); box-shadow:0 12px 48px rgba(0,0,0,0.4); text-align:left; transition:border-color 0.4s ease;">
+        <div class="nav-header" style="color:#5dade2; display:flex; align-items:center; gap:12px; font-size:clamp(0.9rem,1.1vw,1.05rem); font-weight:500; border-bottom:1px solid rgba(255,255,255,0.04); padding-bottom:12px; margin-bottom:16px; letter-spacing:0.5px;">
+            <i class="fas fa-compass" style="font-size:1.2rem; background:linear-gradient(135deg, #3498db, #8e44ad); -webkit-background-clip:text; -webkit-text-fill-color:transparent;"></i> Navigasi Cepat Materi
+        </div>
+        <div class="nav-grid" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(110px,1fr)); gap:8px;">
+            <div onclick="navigateTo('section1')" class="nav-item" style="background:rgba(255,255,255,0.02); padding:10px 6px; border-radius:14px; text-align:center; cursor:pointer; transition:all 0.35s cubic-bezier(0.34,1.56,0.64,1); border:1px solid transparent; color:rgba(255,255,255,0.6); display:flex; flex-direction:column; align-items:center; gap:2px;">
+                <span class="num-badge" style="font-size:0.55rem; background:rgba(255,255,255,0.04); padding:1px 10px; border-radius:20px; font-weight:600; color:#5dade2; transition:0.3s;">01</span>
+                <span class="nav-label" style="font-size:0.7rem; font-weight:500; line-height:1.2; letter-spacing:0.3px;">Beranda</span>
             </div>
-
-            <div class="badge-wrapper">
-                <span class="tag">KELAS X / FASE E</span>
-                <span class="deep-learning-badge"><i class="fas fa-brain"></i> Deep Learning</span>
+            <div onclick="navigateTo('section2')" class="nav-item" style="background:rgba(255,255,255,0.02); padding:10px 6px; border-radius:14px; text-align:center; cursor:pointer; transition:all 0.35s cubic-bezier(0.34,1.56,0.64,1); border:1px solid transparent; color:rgba(255,255,255,0.6); display:flex; flex-direction:column; align-items:center; gap:2px;">
+                <span class="num-badge" style="font-size:0.55rem; background:rgba(255,255,255,0.04); padding:1px 10px; border-radius:20px; font-weight:600; color:#5dade2; transition:0.3s;">02</span>
+                <span class="nav-label" style="font-size:0.7rem; font-weight:500; line-height:1.2; letter-spacing:0.3px;">CP & ATP</span>
             </div>
-
-            <h1 class="cover-title">PENGETAHUAN DASAR<br />GEOGRAFI</h1>
-            <p class="cover-sub">Pengertian, objek, prinsip, aspek, pendekatan, dan manfaat geografi<br />dalam kehidupan sehari-hari</p>
-
-            <div class="school-info-wrap">
-                <div class="school-info">
-                    <span class="school-name-gold-cover">SMAN 3 KASONGAN</span>
-                </div>
-                <div class="teacher-info">
-                    <i class="fas fa-chalkboard-teacher"></i>
-                    Guru Pengampu: <strong>SYAHRANI, S.Pd</strong> &nbsp;|&nbsp;
-                    <span style="color:rgba(255,255,255,0.4);">NIP. 197512172005011016</span>
-                </div>
+            <div onclick="navigateTo('section3')" class="nav-item" style="background:rgba(255,255,255,0.02); padding:10px 6px; border-radius:14px; text-align:center; cursor:pointer; transition:all 0.35s cubic-bezier(0.34,1.56,0.64,1); border:1px solid transparent; color:rgba(255,255,255,0.6); display:flex; flex-direction:column; align-items:center; gap:2px;">
+                <span class="num-badge" style="font-size:0.55rem; background:rgba(255,255,255,0.04); padding:1px 10px; border-radius:20px; font-weight:600; color:#5dade2; transition:0.3s;">03</span>
+                <span class="nav-label" style="font-size:0.7rem; font-weight:500; line-height:1.2; letter-spacing:0.3px;">Indikator & Deep</span>
             </div>
-
-            <div class="start-btn-wrapper">
-                <button class="start-btn" onclick="navigateTo('section2')">
-                    <i class="fas fa-play-circle"></i> Mulai Belajar
-                </button>
+            <div onclick="navigateTo('section4')" class="nav-item" style="background:rgba(255,255,255,0.02); padding:10px 6px; border-radius:14px; text-align:center; cursor:pointer; transition:all 0.35s cubic-bezier(0.34,1.56,0.64,1); border:1px solid transparent; color:rgba(255,255,255,0.6); display:flex; flex-direction:column; align-items:center; gap:2px;">
+                <span class="num-badge" style="font-size:0.55rem; background:rgba(255,255,255,0.04); padding:1px 10px; border-radius:20px; font-weight:600; color:#5dade2; transition:0.3s;">04</span>
+                <span class="nav-label" style="font-size:0.7rem; font-weight:500; line-height:1.2; letter-spacing:0.3px;">Pengertian</span>
             </div>
-
-            <div class="scroll-hint"><i class="fas fa-chevron-down"></i> &nbsp;Jelajahi materi</div>
-        </section>
+            <div onclick="navigateTo('section5')" class="nav-item" style="background:rgba(255,255,255,0.02); padding:10px 6px; border-radius:14px; text-align:center; cursor:pointer; transition:all 0.35s cubic-bezier(0.34,1.56,0.64,1); border:1px solid transparent; color:rgba(255,255,255,0.6); display:flex; flex-direction:column; align-items:center; gap:2px;">
+                <span class="num-badge" style="font-size:0.55rem; background:rgba(255,255,255,0.04); padding:1px 10px; border-radius:20px; font-weight:600; color:#5dade2; transition:0.3s;">05</span>
+                <span class="nav-label" style="font-size:0.7rem; font-weight:500; line-height:1.2; letter-spacing:0.3px;">Definisi Ahli</span>
+            </div>
+            <div onclick="navigateTo('section6')" class="nav-item" style="background:rgba(255,255,255,0.02); padding:10px 6px; border-radius:14px; text-align:center; cursor:pointer; transition:all 0.35s cubic-bezier(0.34,1.56,0.64,1); border:1px solid transparent; color:rgba(255,255,255,0.6); display:flex; flex-direction:column; align-items:center; gap:2px;">
+                <span class="num-badge" style="font-size:0.55rem; background:rgba(255,255,255,0.04); padding:1px 10px; border-radius:20px; font-weight:600; color:#5dade2; transition:0.3s;">06</span>
+                <span class="nav-label" style="font-size:0.7rem; font-weight:500; line-height:1.2; letter-spacing:0.3px;">Objek & Prinsip</span>
+            </div>
+            <div onclick="navigateTo('section7')" class="nav-item" style="background:rgba(255,255,255,0.02); padding:10px 6px; border-radius:14px; text-align:center; cursor:pointer; transition:all 0.35s cubic-bezier(0.34,1.56,0.64,1); border:1px solid transparent; color:rgba(255,255,255,0.6); display:flex; flex-direction:column; align-items:center; gap:2px;">
+                <span class="num-badge" style="font-size:0.55rem; background:rgba(255,255,255,0.04); padding:1px 10px; border-radius:20px; font-weight:600; color:#5dade2; transition:0.3s;">07</span>
+                <span class="nav-label" style="font-size:0.7rem; font-weight:500; line-height:1.2; letter-spacing:0.3px;">Aspek & Pendekatan</span>
+            </div>
+            <div onclick="navigateTo('section8')" class="nav-item" style="background:rgba(255,255,255,0.02); padding:10px 6px; border-radius:14px; text-align:center; cursor:pointer; transition:all 0.35s cubic-bezier(0.34,1.56,0.64,1); border:1px solid transparent; color:rgba(255,255,255,0.6); display:flex; flex-direction:column; align-items:center; gap:2px;">
+                <span class="num-badge" style="font-size:0.55rem; background:rgba(255,255,255,0.04); padding:1px 10px; border-radius:20px; font-weight:600; color:#5dade2; transition:0.3s;">08</span>
+                <span class="nav-label" style="font-size:0.7rem; font-weight:500; line-height:1.2; letter-spacing:0.3px;">Keterampilan & Manfaat</span>
+            </div>
+            <div onclick="navigateTo('section9')" class="nav-item" style="background:rgba(255,255,255,0.02); padding:10px 6px; border-radius:14px; text-align:center; cursor:pointer; transition:all 0.35s cubic-bezier(0.34,1.56,0.64,1); border:1px solid transparent; color:rgba(255,255,255,0.6); display:flex; flex-direction:column; align-items:center; gap:2px;">
+                <span class="num-badge" style="font-size:0.55rem; background:rgba(255,255,255,0.04); padding:1px 10px; border-radius:20px; font-weight:600; color:#5dade2; transition:0.3s;">09</span>
+                <span class="nav-label" style="font-size:0.7rem; font-weight:500; line-height:1.2; letter-spacing:0.3px;">Asesmen</span>
+            </div>
+            <div onclick="navigateTo('section10')" class="nav-item" style="background:rgba(255,255,255,0.02); padding:10px 6px; border-radius:14px; text-align:center; cursor:pointer; transition:all 0.35s cubic-bezier(0.34,1.56,0.64,1); border:1px solid transparent; color:rgba(255,255,255,0.6); display:flex; flex-direction:column; align-items:center; gap:2px;">
+                <span class="num-badge" style="font-size:0.55rem; background:rgba(255,255,255,0.04); padding:1px 10px; border-radius:20px; font-weight:600; color:#5dade2; transition:0.3s;">10</span>
+                <span class="nav-label" style="font-size:0.7rem; font-weight:500; line-height:1.2; letter-spacing:0.3px;">Refleksi</span>
+            </div>
+            <div onclick="navigateTo('section11')" class="nav-item" style="background:rgba(255,255,255,0.02); padding:10px 6px; border-radius:14px; text-align:center; cursor:pointer; transition:all 0.35s cubic-bezier(0.34,1.56,0.64,1); border:1px solid transparent; color:rgba(255,255,255,0.6); display:flex; flex-direction:column; align-items:center; gap:2px;">
+                <span class="num-badge" style="font-size:0.55rem; background:rgba(255,255,255,0.04); padding:1px 10px; border-radius:20px; font-weight:600; color:#5dade2; transition:0.3s;">11</span>
+                <span class="nav-label" style="font-size:0.7rem; font-weight:500; line-height:1.2; letter-spacing:0.3px;">Referensi</span>
+            </div>
+        </div>
+        <style>
+            .nav-item:hover {
+                background: rgba(52,152,219,0.15) !important;
+                color: #fff !important;
+                transform: translateY(-4px) scale(1.03);
+                border-color: rgba(52,152,219,0.3) !important;
+                box-shadow: 0 8px 24px rgba(52,152,219,0.08);
+            }
+            .nav-item:hover .num-badge {
+                background: rgba(52,152,219,0.2);
+                color: #fff;
+            }
+        </style>
+    </div>
+</section>
 
         <!-- ===== SECTION 2 : CP & ATP ===== -->
         <section id="section2" class="section">
