@@ -1803,63 +1803,352 @@
             </div>
         </section>
 
-        <!-- ===== SECTION 5 : DEFINISI AHLI ===== -->
-        <section id="section5" class="section">
-            <div class="section-wrapper">
-                <div style="background:rgba(212,175,55,0.06); border-radius:12px; padding:10px 16px; margin-bottom:16px; border-left:4px solid #d4af37; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-                    <div style="display:flex; align-items:center; gap:8px; color:#e8e8e8; font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
-                    <button onclick="navigateTo('section1')" style="background:rgba(212,175,55,0.12); color:#d4af37; border:1px solid rgba(212,175,55,0.15); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem; transition:0.2s; backdrop-filter:blur(4px);"><i class="fas fa-home"></i> Beranda</button>
-                </div>
-                <div class="section-header"><div class="num">05</div><h2>Definisi Menurut Para Ahli <small>Pendapat Tokoh Geografi Dunia</small></h2></div>
-                <div style="background:rgba(26,42,58,0.85); backdrop-filter:blur(8px); border-radius:10px; padding:12px 16px; margin:16px 0; border-left:4px solid #f39c12; text-align:center;">
-                    <span class="geosfer-hover-trigger" style="background:rgba(26,58,58,0.7); border-color:#f39c12;" onclick="openModal('images/timeline2.png', 'Timeline Perkembangan Ilmu Geografi – dari Eratosthenes hingga Modern')">
-                        <i class="fas fa-history" style="margin-right:8px; color:#f39c12;"></i>
-                        Arahkan kursor (hover) untuk pratinjau, <strong>klik untuk memperbesar</strong> timeline perkembangan ilmu geografi
-                        <span class="popup-diagram" style="width:520px; max-width:90vw; padding:16px; pointer-events:none;">
-                            <img src="images/timeline2.png" alt="Timeline Perkembangan Ilmu Geografi" style="max-width:100%; max-height:280px; border-radius:10px; border:1px solid rgba(255,255,255,0.06); background:#0d0d0d;" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-timeline').style.display='block';">
-                            <div class="fallback-timeline" style="display:none; padding:20px; color:#f39c12; font-size:1rem;">
-                                <i class="fas fa-image" style="font-size:2rem; display:block; margin-bottom:8px;"></i>
-                                Timeline Perkembangan Ilmu Geografi<br>
-                                <span style="font-size:0.7rem; color:rgba(255,255,255,0.3);">(Ganti URL gambar di kode HTML)</span>
-                            </div>
-                            <div class="caption" style="font-size:0.7rem; color:rgba(255,255,255,0.5); margin-top:8px; border-top:1px solid rgba(255,255,255,0.04); padding-top:8px;">
-                                <strong style="color:#f39c12;">Tokoh-tokoh penting:</strong> Eratosthenes, Ptolemaeus, Kant, Humboldt, Ritter, hingga geografi modern.
-                            </div>
-                        </span>
-                    </span>
-                    <p style="font-size:0.7rem; color:rgba(255,255,255,0.3); margin-top:4px;">(Arahkan kursor untuk pratinjau, klik untuk ukuran penuh)</p>
-                </div>
-                <p style="font-size:1rem; margin-bottom:10px; color:#ccc;"><i class="fas fa-quote-left" style="color:#3498db;"></i> Berikut adalah definisi geografi dari berbagai ahli terkemuka dunia. <strong>Klik pada kartu</strong> untuk melihat penjelasan lengkapnya.</p>
-                <div class="grid-ahli">
-                    <div class="ahli-card interactive-card dark-card" onclick="this.classList.toggle('open')"><div class="ahli-header"><span class="icon-number">1</span><div><h3>Eratosthenes</h3><span class="sub">Ilmuwan Yunani (276–194 SM)</span></div></div><div class="back"><p style="font-weight:500; color:#1a2a3a; font-size:0.9rem;">Dijuluki <em>"Bapak Geografi"</em>:</p><ul><li>Geografi adalah <strong>ilmu yang melukiskan keadaan permukaan bumi</strong> dan segala sesuatu yang ada di atasnya.</li><li>Orang pertama yang menggunakan istilah <em>"geographia"</em> (lukisan bumi).</li><li>Berhasil menghitung keliling bumi dengan akurasi tinggi (± 40.000 km) menggunakan bayangan matahari.</li></ul><div class="keterangan"><i class="fas fa-info-circle"></i> Eratosthenes meletakkan dasar-dasar geografi sebagai ilmu yang mandiri. Ia juga membuat peta dunia pertama yang mencakup Eropa, Asia, dan Afrika.</div></div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk lihat definisi</span></div>
-                    <div class="ahli-card interactive-card dark-card" onclick="this.classList.toggle('open')"><div class="ahli-header"><span class="icon-number">2</span><div><h3>Claudius Ptolemaeus</h3><span class="sub">Astronom & Geografi Yunani (100–170 M)</span></div></div><div class="back"><p style="font-weight:500; color:#1a2a3a; font-size:0.9rem;">Penulis <em>Geographia</em>:</p><ul><li>Geografi adalah <strong>penyajian informasi tentang seluruh bagian bumi yang diketahui</strong> melalui peta dan data geografis.</li><li>Mengembangkan sistem koordinat lintang dan bujur yang masih digunakan hingga kini.</li><li>Karyanya menjadi rujukan utama geografi dan kartografi selama lebih dari 1.400 tahun.</li></ul><div class="keterangan"><i class="fas fa-info-circle"></i> Ptolemaeus adalah tokoh kunci dalam perkembangan kartografi. Ia juga meletakkan dasar-dasar proyeksi peta yang memungkinkan penggambaran bumi bulat pada bidang datar.</div></div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk lihat definisi</span></div>
-                    <div class="ahli-card interactive-card dark-card" onclick="this.classList.toggle('open')"><div class="ahli-header"><span class="icon-number">3</span><div><h3>Immanuel Kant</h3><span class="sub">Filsuf Jerman (1724–1804)</span></div></div><div class="back"><p style="font-weight:500; color:#1a2a3a; font-size:0.9rem;">Pandangan tentang geografi:</p><ul><li>Geografi adalah <strong>ilmu yang mengkaji hubungan antara fenomena alam dengan manusia dalam ruang</strong>.</li><li>Membagi geografi menjadi <strong>geografi fisik</strong> (alam) dan <strong>geografi manusia</strong> (sosial).</li><li>Geografi adalah ilmu yang <strong>sistematis</strong> dan memberikan pemahaman tentang keragaman permukaan bumi.</li></ul><div class="keterangan"><i class="fas fa-info-circle"></i> Kant menekankan bahwa geografi adalah ilmu yang mengintegrasikan pengetahuan tentang alam dan manusia. Baginya, geografi adalah dasar dari semua pengetahuan tentang dunia.</div></div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk lihat definisi</span></div>
-                    <div class="ahli-card interactive-card dark-card" onclick="this.classList.toggle('open')"><div class="ahli-header"><span class="icon-number">4</span><div><h3>Alexander von Humboldt</h3><span class="sub">Ilmuwan Jerman (1769–1859)</span></div></div><div class="back"><p style="font-weight:500; color:#1a2a3a; font-size:0.9rem;">Pelopor Geografi Modern:</p><ul><li>Geografi adalah <strong>ilmu tentang hubungan timbal balik antara manusia dan lingkungan alam</strong>.</li><li>Menekankan pentingnya <strong>pengamatan langsung</strong> dan <strong>ekspedisi lapangan</strong> dalam penelitian geografi.</li><li>Mengembangkan konsep <strong>zonasi iklim</strong> dan vegetasi berdasarkan ketinggian dan lintang.</li></ul><div class="keterangan"><i class="fas fa-info-circle"></i> Humboldt adalah tokoh yang mengubah geografi dari ilmu deskriptif menjadi ilmu analitis. Ekspedisinya ke Amerika Selatan menghasilkan banyak penemuan penting tentang iklim, vegetasi, dan hubungan alam-manusia.</div></div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk lihat definisi</span></div>
-                    <div class="ahli-card interactive-card dark-card" onclick="this.classList.toggle('open')"><div class="ahli-header"><span class="icon-number">5</span><div><h3>Carl Ritter</h3><span class="sub">Ahli Geografi Jerman (1779–1859)</span></div></div><div class="back"><p style="font-weight:500; color:#1a2a3a; font-size:0.9rem;">Pendiri Geografi Modern:</p><ul><li>Geografi adalah <strong>ilmu tentang hubungan antara alam dan sejarah manusia</strong>.</li><li>Menekankan bahwa geografi harus mempelajari <strong>wilayah secara holistik</strong> (keseluruhan).</li><li>Geografi adalah <strong>jembatan antara ilmu alam dan ilmu sosial</strong>.</li></ul><div class="keterangan"><i class="fas fa-info-circle"></i> Ritter bersama Humboldt dianggap sebagai pendiri geografi modern. Ia menekankan pendekatan <strong>regional</strong> dan <strong>historis</strong> dalam memahami suatu wilayah.</div></div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk lihat definisi</span></div>
-                    <div class="ahli-card interactive-card dark-card" onclick="this.classList.toggle('open')"><div class="ahli-header"><span class="icon-number">6</span><div><h3>Bintarto</h3><span class="sub">Ahli Geografi Indonesia</span></div></div><div class="back"><p style="font-weight:500; color:#1a2a3a; font-size:0.9rem;">Definisi geografi:</p><ul><li>Geografi adalah <strong>ilmu yang mempelajari persamaan dan perbedaan fenomena geosfer dengan sudut pandang kelingkungan dan kewilayahan</strong> dalam konteks keruangan.</li><li>Menekankan pada <strong>pendekatan regional</strong> dan <strong>ekologis</strong>.</li></ul><div class="keterangan"><i class="fas fa-info-circle"></i> Bintarto adalah salah satu tokoh geografi Indonesia yang mengembangkan definisi geografi yang sesuai dengan kondisi dan kebutuhan Indonesia. Definisi ini menjadi rujukan penting dalam pengajaran geografi di Indonesia.</div></div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk lihat definisi</span></div>
-                    <div class="ahli-card interactive-card dark-card" onclick="this.classList.toggle('open')"><div class="ahli-header"><span class="icon-number">7</span><div><h3>Nursid Sumaatmadja</h3><span class="sub">Ahli Geografi Indonesia</span></div></div><div class="back"><p style="font-weight:500; color:#1a2a3a; font-size:0.9rem;">Definisi geografi:</p><ul><li>Geografi adalah <strong>ilmu yang mempelajari gejala dan fenomena alam serta kehidupan di muka bumi</strong> dengan menggunakan pendekatan keruangan, kelingkungan, dan kompleks wilayah.</li><li>Menekankan pada <strong>interaksi manusia dengan lingkungan</strong> sebagai inti kajian geografi.</li></ul><div class="keterangan"><i class="fas fa-info-circle"></i> Nursid Sumaatmadja adalah tokoh geografi Indonesia yang aktif mengembangkan pendidikan geografi. Definisi ini menekankan bahwa geografi adalah ilmu yang <strong>integratif</strong> dan <strong>aplikatif</strong>.</div></div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk lihat definisi</span></div>
-                    <div class="ahli-card interactive-card dark-card" onclick="this.classList.toggle('open')"><div class="ahli-header"><span class="icon-number">8</span><div><h3>Preston James</h3><span class="sub">Ahli Geografi Amerika Serikat</span></div></div><div class="back"><p style="font-weight:500; color:#1a2a3a; font-size:0.9rem;">Definisi geografi:</p><ul><li>Geografi adalah <strong>ilmu yang mempelajari hubungan timbal balik antara manusia dan lingkungannya</strong> serta persebaran fenomena di permukaan bumi.</li><li>Menekankan pada <strong>perspektif keruangan</strong> dan <strong>interaksi manusia-lingkungan</strong>.</li></ul><div class="keterangan"><i class="fas fa-info-circle"></i> Preston James adalah tokoh penting dalam geografi Amerika. Karyanya <em>All Possible Worlds: A History of Geographical Ideas</em> menjadi rujukan penting dalam memahami perkembangan pemikiran geografi.</div></div><span class="toggle-hint"><i class="fas fa-hand-pointer"></i> Klik untuk lihat definisi</span></div>
-                </div>
-                <div style="background:rgba(30,34,46,0.85); backdrop-filter:blur(8px); border-radius:14px; padding:14px 18px; border:1px solid rgba(255,255,255,0.04); margin-top:14px;">
-                    <p style="display:flex; align-items:flex-start; gap:10px; color:#ddd;"><i class="fas fa-lightbulb" style="color:#3498db; font-size:1.4rem; margin-top:2px;"></i><span><strong style="color:#fff;">Kesimpulan:</strong> Dari berbagai definisi di atas, dapat disimpulkan bahwa geografi memiliki beberapa dimensi penting:</span></p>
-                    <ul style="padding-left:40px; margin-top:4px; list-style-type:disc; color:#ccc;">
-                        <li><strong>Dimensi Deskriptif:</strong> Geografi melukiskan keadaan permukaan bumi (Eratosthenes, Ptolemaeus).</li>
-                        <li><strong>Dimensi Hubungan Alam-Manusia:</strong> Geografi mengkaji interaksi manusia dengan lingkungan (Humboldt, Ritter, Preston James).</li>
-                        <li><strong>Dimensi Keruangan:</strong> Geografi melihat fenomena dalam konteks ruang dan wilayah (Kant, Bintarto, Sumaatmadja).</li>
-                        <li><strong>Dimensi Sistematis:</strong> Geografi adalah ilmu yang terstruktur dan metodis (Kant, Ritter).</li>
-                    </ul>
-                    <p style="margin-top:6px; font-size:0.9rem; color:rgba(255,255,255,0.5); border-top:1px solid rgba(255,255,255,0.04); padding-top:6px;"><i class="fas fa-quote-right" style="color:#3498db;"></i> <em>"Geography is the bridge between the natural and social sciences."</em> — Geografi adalah jembatan antara ilmu alam dan ilmu sosial.</p>
-                </div>
-                <div class="nav-buttons">
-                    <div class="group">
-                        <button onclick="navigateTo('prev')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
-                        <span class="page-numbers"></span>
-                        <button onclick="navigateTo('next')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
-                        <span class="counter">5 / 11</span>
+        <!-- ===== SECTION 5 : DEFINISI AHLI (RAPI + WARNA LEMBUT) ===== -->
+<section id="section5" class="section">
+    <div class="section-wrapper">
+        <!-- Header & navigasi -->
+        <div style="background:rgba(212,175,55,0.06); border-radius:12px; padding:10px 16px; margin-bottom:16px; border-left:4px solid #d4af37; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+            <div style="display:flex; align-items:center; gap:8px; color:#e8e8e8; font-size:0.85rem; flex-wrap:wrap;">
+                <span class="school-name-gold">SMAN 3 KASONGAN</span>
+            </div>
+            <button onclick="navigateTo('section1')" style="background:rgba(212,175,55,0.12); color:#d4af37; border:1px solid rgba(212,175,55,0.15); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem; transition:0.2s; backdrop-filter:blur(4px);">
+                <i class="fas fa-home"></i> Beranda
+            </button>
+        </div>
+
+        <!-- Section Header -->
+        <div class="section-header">
+            <div class="num">05</div>
+            <h2>Definisi Menurut Para Ahli <small>Pendapat Tokoh Geografi Dunia</small></h2>
+        </div>
+
+        <!-- Timeline -->
+        <div style="background:rgba(26,42,58,0.85); backdrop-filter:blur(8px); border-radius:10px; padding:12px 16px; margin:16px 0; border-left:4px solid #f39c12; text-align:center;">
+            <span class="geosfer-hover-trigger" style="background:rgba(26,58,58,0.7); border-color:#f39c12;" onclick="openModal('images/timeline2.png', 'Timeline Perkembangan Ilmu Geografi – dari Eratosthenes hingga Modern')">
+                <i class="fas fa-history" style="margin-right:8px; color:#f39c12;"></i>
+                Arahkan kursor (hover) untuk pratinjau, <strong>klik untuk memperbesar</strong> timeline perkembangan ilmu geografi
+                <span class="popup-diagram" style="width:520px; max-width:90vw; padding:16px; pointer-events:none;">
+                    <img src="images/timeline2.png" alt="Timeline Perkembangan Ilmu Geografi" style="max-width:100%; max-height:280px; border-radius:10px; border:1px solid rgba(255,255,255,0.06); background:#0d0d0d;" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-timeline').style.display='block';">
+                    <div class="fallback-timeline" style="display:none; padding:20px; color:#f39c12; font-size:1rem;">
+                        <i class="fas fa-image" style="font-size:2rem; display:block; margin-bottom:8px;"></i>
+                        Timeline Perkembangan Ilmu Geografi<br>
+                        <span style="font-size:0.7rem; color:rgba(255,255,255,0.3);">(Ganti URL gambar di kode HTML)</span>
+                    </div>
+                    <div class="caption" style="font-size:0.7rem; color:rgba(255,255,255,0.5); margin-top:8px; border-top:1px solid rgba(255,255,255,0.04); padding-top:8px;">
+                        <strong style="color:#f39c12;">Tokoh-tokoh penting:</strong> Eratosthenes, Ptolemaeus, Kant, Humboldt, Ritter, hingga geografi modern.
+                    </div>
+                </span>
+            </span>
+            <p style="font-size:0.7rem; color:rgba(255,255,255,0.3); margin-top:4px;">(Arahkan kursor untuk pratinjau, klik untuk ukuran penuh)</p>
+        </div>
+
+        <!-- Deskripsi -->
+        <p style="font-size:0.95rem; margin-bottom:12px; color:rgba(255,255,255,0.7);">
+            <i class="fas fa-quote-left" style="color:#3498db;"></i> 
+            Berikut adalah definisi geografi dari berbagai ahli terkemuka dunia. 
+            <strong style="color:#8cc4d0;">Klik pada kartu</strong> untuk melihat penjelasan lengkapnya.
+        </p>
+
+        <!-- Grid Ahli (3 kolom di desktop) dengan warna lembut saat open -->
+        <div class="grid-ahli" style="grid-template-columns: 1fr; gap:14px;">
+            
+            <!-- Style khusus untuk kartu ahli dengan warna lembut saat open -->
+            <style>
+                /* Kartu ahli default - dark */
+                .ahli-card {
+                    background: rgba(30, 34, 46, 0.85);
+                    backdrop-filter: blur(8px);
+                    border: 1px solid rgba(255, 255, 255, 0.06);
+                    border-radius: 12px;
+                    padding: 14px 16px;
+                    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+                    cursor: pointer;
+                }
+                .ahli-card:hover {
+                    border-color: rgba(52, 152, 219, 0.3);
+                    transform: translateY(-3px);
+                    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+                }
+                
+                /* Kartu ahli saat terbuka (diklik) - WARNA LEMBUT */
+                .ahli-card.open {
+                    background: linear-gradient(145deg, rgba(25, 40, 65, 0.95), rgba(30, 50, 75, 0.95)) !important;
+                    backdrop-filter: blur(12px);
+                    border: 1px solid rgba(74, 122, 156, 0.5) !important;
+                    box-shadow: 0 8px 40px rgba(52, 152, 219, 0.15), inset 0 1px 0 rgba(255,255,255,0.05);
+                    transform: translateY(-2px);
+                }
+                
+                /* Teks di dalam kartu yang terbuka */
+                .ahli-card.open .ahli-header h3 {
+                    color: #e8f0f8 !important;
+                }
+                .ahli-card.open .ahli-header .sub {
+                    color: #8ab4d6 !important;
+                }
+                .ahli-card.open .ahli-header .icon-number {
+                    -webkit-text-fill-color: #6ba3c9 !important;
+                    background: linear-gradient(135deg, #6ba3c9, #4a7a9c) !important;
+                    -webkit-background-clip: text !important;
+                }
+                .ahli-card.open .back p {
+                    color: #c8d6e5 !important;
+                }
+                .ahli-card.open .back ul li {
+                    color: #b0c4d8 !important;
+                }
+                .ahli-card.open .back ul li strong {
+                    color: #8cc4d0 !important;
+                }
+                .ahli-card.open .keterangan {
+                    color: #8ab4d6 !important;
+                    border-top-color: rgba(74, 122, 156, 0.3) !important;
+                }
+                .ahli-card.open .keterangan i {
+                    color: #6ba3c9 !important;
+                }
+                .ahli-card.open .toggle-hint {
+                    color: #6a8aaa !important;
+                }
+                
+                /* Border bawah pada kartu terbuka */
+                .ahli-card.open .back {
+                    border-top-color: rgba(74, 122, 156, 0.3) !important;
+                }
+                
+                /* Animasi untuk kartu terbuka */
+                .ahli-card.open .back {
+                    animation: fadeSlideUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+                }
+            </style>
+
+            <!-- 1. Eratosthenes -->
+            <div class="ahli-card" onclick="this.classList.toggle('open')">
+                <div class="ahli-header" style="display:flex; align-items:center; gap:12px; margin-bottom:2px;">
+                    <span class="icon-number" style="font-size:1.5rem; width:30px; text-align:center; flex-shrink:0; background:linear-gradient(135deg,#3498db,#8e44ad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-weight:700;">1</span>
+                    <div>
+                        <h3 style="font-size:1rem; margin:0; color:#f0f0f0;">Eratosthenes</h3>
+                        <span class="sub" style="font-size:0.7rem; color:#aaa;">Ilmuwan Yunani (276–194 SM)</span>
                     </div>
                 </div>
+                <div class="back" style="display:none; padding-top:10px; border-top:2px dashed rgba(52,152,219,0.2); margin-top:10px; font-size:0.9rem;">
+                    <p style="font-weight:500; font-size:0.85rem; margin-bottom:6px; color:#c8d6e5;">Dijuluki <em>"Bapak Geografi"</em>:</p>
+                    <ul style="margin:0 0 6px 0; padding-left:18px; line-height:1.7; color:#b0c4d8;">
+                        <li>Geografi adalah <strong style="color:#8cc4d0;">ilmu yang melukiskan keadaan permukaan bumi</strong> dan segala sesuatu yang ada di atasnya.</li>
+                        <li>Orang pertama yang menggunakan istilah <em>"geographia"</em> (lukisan bumi).</li>
+                        <li>Berhasil menghitung keliling bumi dengan akurasi tinggi (± 40.000 km) menggunakan bayangan matahari.</li>
+                    </ul>
+                    <div class="keterangan" style="font-size:0.8rem; border-top:1px solid rgba(74,122,156,0.2); padding-top:6px; margin-top:4px; color:#8ab4d6;">
+                        <i class="fas fa-info-circle" style="color:#6ba3c9;"></i> Eratosthenes meletakkan dasar-dasar geografi sebagai ilmu yang mandiri. Ia juga membuat peta dunia pertama yang mencakup Eropa, Asia, dan Afrika.
+                    </div>
+                </div>
+                <span class="toggle-hint" style="font-size:0.65rem; margin-top:4px; display:block; color:#8a8a8a; letter-spacing:0.5px;">
+                    <i class="fas fa-hand-pointer"></i> Klik untuk lihat definisi
+                </span>
             </div>
-        </section>
+
+            <!-- 2. Ptolemaeus -->
+            <div class="ahli-card" onclick="this.classList.toggle('open')">
+                <div class="ahli-header" style="display:flex; align-items:center; gap:12px; margin-bottom:2px;">
+                    <span class="icon-number" style="font-size:1.5rem; width:30px; text-align:center; flex-shrink:0; background:linear-gradient(135deg,#3498db,#8e44ad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-weight:700;">2</span>
+                    <div>
+                        <h3 style="font-size:1rem; margin:0; color:#f0f0f0;">Claudius Ptolemaeus</h3>
+                        <span class="sub" style="font-size:0.7rem; color:#aaa;">Astronom & Geografi Yunani (100–170 M)</span>
+                    </div>
+                </div>
+                <div class="back" style="display:none; padding-top:10px; border-top:2px dashed rgba(52,152,219,0.2); margin-top:10px; font-size:0.9rem;">
+                    <p style="font-weight:500; font-size:0.85rem; margin-bottom:6px; color:#c8d6e5;">Penulis <em>Geographia</em>:</p>
+                    <ul style="margin:0 0 6px 0; padding-left:18px; line-height:1.7; color:#b0c4d8;">
+                        <li>Geografi adalah <strong style="color:#8cc4d0;">penyajian informasi tentang seluruh bagian bumi yang diketahui</strong> melalui peta dan data geografis.</li>
+                        <li>Mengembangkan sistem koordinat lintang dan bujur yang masih digunakan hingga kini.</li>
+                        <li>Karyanya menjadi rujukan utama geografi dan kartografi selama lebih dari 1.400 tahun.</li>
+                    </ul>
+                    <div class="keterangan" style="font-size:0.8rem; border-top:1px solid rgba(74,122,156,0.2); padding-top:6px; margin-top:4px; color:#8ab4d6;">
+                        <i class="fas fa-info-circle" style="color:#6ba3c9;"></i> Ptolemaeus adalah tokoh kunci dalam perkembangan kartografi. Ia juga meletakkan dasar-dasar proyeksi peta.
+                    </div>
+                </div>
+                <span class="toggle-hint" style="font-size:0.65rem; margin-top:4px; display:block; color:#8a8a8a; letter-spacing:0.5px;">
+                    <i class="fas fa-hand-pointer"></i> Klik untuk lihat definisi
+                </span>
+            </div>
+
+            <!-- 3. Kant -->
+            <div class="ahli-card" onclick="this.classList.toggle('open')">
+                <div class="ahli-header" style="display:flex; align-items:center; gap:12px; margin-bottom:2px;">
+                    <span class="icon-number" style="font-size:1.5rem; width:30px; text-align:center; flex-shrink:0; background:linear-gradient(135deg,#3498db,#8e44ad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-weight:700;">3</span>
+                    <div>
+                        <h3 style="font-size:1rem; margin:0; color:#f0f0f0;">Immanuel Kant</h3>
+                        <span class="sub" style="font-size:0.7rem; color:#aaa;">Filsuf Jerman (1724–1804)</span>
+                    </div>
+                </div>
+                <div class="back" style="display:none; padding-top:10px; border-top:2px dashed rgba(52,152,219,0.2); margin-top:10px; font-size:0.9rem;">
+                    <p style="font-weight:500; font-size:0.85rem; margin-bottom:6px; color:#c8d6e5;">Pandangan tentang geografi:</p>
+                    <ul style="margin:0 0 6px 0; padding-left:18px; line-height:1.7; color:#b0c4d8;">
+                        <li>Geografi adalah <strong style="color:#8cc4d0;">ilmu yang mengkaji hubungan antara fenomena alam dengan manusia dalam ruang</strong>.</li>
+                        <li>Membagi geografi menjadi <strong style="color:#8cc4d0;">geografi fisik</strong> (alam) dan <strong style="color:#8cc4d0;">geografi manusia</strong> (sosial).</li>
+                        <li>Geografi adalah ilmu yang <strong style="color:#8cc4d0;">sistematis</strong> dan memberikan pemahaman tentang keragaman permukaan bumi.</li>
+                    </ul>
+                    <div class="keterangan" style="font-size:0.8rem; border-top:1px solid rgba(74,122,156,0.2); padding-top:6px; margin-top:4px; color:#8ab4d6;">
+                        <i class="fas fa-info-circle" style="color:#6ba3c9;"></i> Kant menekankan bahwa geografi adalah ilmu yang mengintegrasikan pengetahuan tentang alam dan manusia. Baginya, geografi adalah dasar dari semua pengetahuan tentang dunia.
+                    </div>
+                </div>
+                <span class="toggle-hint" style="font-size:0.65rem; margin-top:4px; display:block; color:#8a8a8a; letter-spacing:0.5px;">
+                    <i class="fas fa-hand-pointer"></i> Klik untuk lihat definisi
+                </span>
+            </div>
+
+            <!-- 4. Humboldt -->
+            <div class="ahli-card" onclick="this.classList.toggle('open')">
+                <div class="ahli-header" style="display:flex; align-items:center; gap:12px; margin-bottom:2px;">
+                    <span class="icon-number" style="font-size:1.5rem; width:30px; text-align:center; flex-shrink:0; background:linear-gradient(135deg,#3498db,#8e44ad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-weight:700;">4</span>
+                    <div>
+                        <h3 style="font-size:1rem; margin:0; color:#f0f0f0;">Alexander von Humboldt</h3>
+                        <span class="sub" style="font-size:0.7rem; color:#aaa;">Ilmuwan Jerman (1769–1859)</span>
+                    </div>
+                </div>
+                <div class="back" style="display:none; padding-top:10px; border-top:2px dashed rgba(52,152,219,0.2); margin-top:10px; font-size:0.9rem;">
+                    <p style="font-weight:500; font-size:0.85rem; margin-bottom:6px; color:#c8d6e5;">Pelopor Geografi Modern:</p>
+                    <ul style="margin:0 0 6px 0; padding-left:18px; line-height:1.7; color:#b0c4d8;">
+                        <li>Geografi adalah <strong style="color:#8cc4d0;">ilmu tentang hubungan timbal balik antara manusia dan lingkungan alam</strong>.</li>
+                        <li>Menekankan pentingnya <strong style="color:#8cc4d0;">pengamatan langsung</strong> dan <strong style="color:#8cc4d0;">ekspedisi lapangan</strong> dalam penelitian geografi.</li>
+                        <li>Mengembangkan konsep <strong style="color:#8cc4d0;">zonasi iklim</strong> dan vegetasi berdasarkan ketinggian dan lintang.</li>
+                    </ul>
+                    <div class="keterangan" style="font-size:0.8rem; border-top:1px solid rgba(74,122,156,0.2); padding-top:6px; margin-top:4px; color:#8ab4d6;">
+                        <i class="fas fa-info-circle" style="color:#6ba3c9;"></i> Humboldt adalah tokoh yang mengubah geografi dari ilmu deskriptif menjadi ilmu analitis. Ekspedisinya ke Amerika Selatan menghasilkan banyak penemuan penting.
+                    </div>
+                </div>
+                <span class="toggle-hint" style="font-size:0.65rem; margin-top:4px; display:block; color:#8a8a8a; letter-spacing:0.5px;">
+                    <i class="fas fa-hand-pointer"></i> Klik untuk lihat definisi
+                </span>
+            </div>
+
+            <!-- 5. Ritter -->
+            <div class="ahli-card" onclick="this.classList.toggle('open')">
+                <div class="ahli-header" style="display:flex; align-items:center; gap:12px; margin-bottom:2px;">
+                    <span class="icon-number" style="font-size:1.5rem; width:30px; text-align:center; flex-shrink:0; background:linear-gradient(135deg,#3498db,#8e44ad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-weight:700;">5</span>
+                    <div>
+                        <h3 style="font-size:1rem; margin:0; color:#f0f0f0;">Carl Ritter</h3>
+                        <span class="sub" style="font-size:0.7rem; color:#aaa;">Ahli Geografi Jerman (1779–1859)</span>
+                    </div>
+                </div>
+                <div class="back" style="display:none; padding-top:10px; border-top:2px dashed rgba(52,152,219,0.2); margin-top:10px; font-size:0.9rem;">
+                    <p style="font-weight:500; font-size:0.85rem; margin-bottom:6px; color:#c8d6e5;">Pendiri Geografi Modern:</p>
+                    <ul style="margin:0 0 6px 0; padding-left:18px; line-height:1.7; color:#b0c4d8;">
+                        <li>Geografi adalah <strong style="color:#8cc4d0;">ilmu tentang hubungan antara alam dan sejarah manusia</strong>.</li>
+                        <li>Menekankan bahwa geografi harus mempelajari <strong style="color:#8cc4d0;">wilayah secara holistik</strong> (keseluruhan).</li>
+                        <li>Geografi adalah <strong style="color:#8cc4d0;">jembatan antara ilmu alam dan ilmu sosial</strong>.</li>
+                    </ul>
+                    <div class="keterangan" style="font-size:0.8rem; border-top:1px solid rgba(74,122,156,0.2); padding-top:6px; margin-top:4px; color:#8ab4d6;">
+                        <i class="fas fa-info-circle" style="color:#6ba3c9;"></i> Ritter bersama Humboldt dianggap sebagai pendiri geografi modern. Ia menekankan pendekatan <strong>regional</strong> dan <strong>historis</strong> dalam memahami suatu wilayah.
+                    </div>
+                </div>
+                <span class="toggle-hint" style="font-size:0.65rem; margin-top:4px; display:block; color:#8a8a8a; letter-spacing:0.5px;">
+                    <i class="fas fa-hand-pointer"></i> Klik untuk lihat definisi
+                </span>
+            </div>
+
+            <!-- 6. Bintarto -->
+            <div class="ahli-card" onclick="this.classList.toggle('open')">
+                <div class="ahli-header" style="display:flex; align-items:center; gap:12px; margin-bottom:2px;">
+                    <span class="icon-number" style="font-size:1.5rem; width:30px; text-align:center; flex-shrink:0; background:linear-gradient(135deg,#3498db,#8e44ad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-weight:700;">6</span>
+                    <div>
+                        <h3 style="font-size:1rem; margin:0; color:#f0f0f0;">Bintarto</h3>
+                        <span class="sub" style="font-size:0.7rem; color:#aaa;">Ahli Geografi Indonesia</span>
+                    </div>
+                </div>
+                <div class="back" style="display:none; padding-top:10px; border-top:2px dashed rgba(52,152,219,0.2); margin-top:10px; font-size:0.9rem;">
+                    <p style="font-weight:500; font-size:0.85rem; margin-bottom:6px; color:#c8d6e5;">Definisi geografi:</p>
+                    <ul style="margin:0 0 6px 0; padding-left:18px; line-height:1.7; color:#b0c4d8;">
+                        <li>Geografi adalah <strong style="color:#8cc4d0;">ilmu yang mempelajari persamaan dan perbedaan fenomena geosfer dengan sudut pandang kelingkungan dan kewilayahan</strong> dalam konteks keruangan.</li>
+                        <li>Menekankan pada <strong style="color:#8cc4d0;">pendekatan regional</strong> dan <strong style="color:#8cc4d0;">ekologis</strong>.</li>
+                    </ul>
+                    <div class="keterangan" style="font-size:0.8rem; border-top:1px solid rgba(74,122,156,0.2); padding-top:6px; margin-top:4px; color:#8ab4d6;">
+                        <i class="fas fa-info-circle" style="color:#6ba3c9;"></i> Bintarto adalah salah satu tokoh geografi Indonesia yang mengembangkan definisi geografi yang sesuai dengan kondisi dan kebutuhan Indonesia.
+                    </div>
+                </div>
+                <span class="toggle-hint" style="font-size:0.65rem; margin-top:4px; display:block; color:#8a8a8a; letter-spacing:0.5px;">
+                    <i class="fas fa-hand-pointer"></i> Klik untuk lihat definisi
+                </span>
+            </div>
+
+            <!-- 7. Sumaatmadja -->
+            <div class="ahli-card" onclick="this.classList.toggle('open')">
+                <div class="ahli-header" style="display:flex; align-items:center; gap:12px; margin-bottom:2px;">
+                    <span class="icon-number" style="font-size:1.5rem; width:30px; text-align:center; flex-shrink:0; background:linear-gradient(135deg,#3498db,#8e44ad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-weight:700;">7</span>
+                    <div>
+                        <h3 style="font-size:1rem; margin:0; color:#f0f0f0;">Nursid Sumaatmadja</h3>
+                        <span class="sub" style="font-size:0.7rem; color:#aaa;">Ahli Geografi Indonesia</span>
+                    </div>
+                </div>
+                <div class="back" style="display:none; padding-top:10px; border-top:2px dashed rgba(52,152,219,0.2); margin-top:10px; font-size:0.9rem;">
+                    <p style="font-weight:500; font-size:0.85rem; margin-bottom:6px; color:#c8d6e5;">Definisi geografi:</p>
+                    <ul style="margin:0 0 6px 0; padding-left:18px; line-height:1.7; color:#b0c4d8;">
+                        <li>Geografi adalah <strong style="color:#8cc4d0;">ilmu yang mempelajari gejala dan fenomena alam serta kehidupan di muka bumi</strong> dengan menggunakan pendekatan keruangan, kelingkungan, dan kompleks wilayah.</li>
+                        <li>Menekankan pada <strong style="color:#8cc4d0;">interaksi manusia dengan lingkungan</strong> sebagai inti kajian geografi.</li>
+                    </ul>
+                    <div class="keterangan" style="font-size:0.8rem; border-top:1px solid rgba(74,122,156,0.2); padding-top:6px; margin-top:4px; color:#8ab4d6;">
+                        <i class="fas fa-info-circle" style="color:#6ba3c9;"></i> Nursid Sumaatmadja adalah tokoh geografi Indonesia yang aktif mengembangkan pendidikan geografi. Definisi ini menekankan bahwa geografi adalah ilmu yang <strong>integratif</strong> dan <strong>aplikatif</strong>.
+                    </div>
+                </div>
+                <span class="toggle-hint" style="font-size:0.65rem; margin-top:4px; display:block; color:#8a8a8a; letter-spacing:0.5px;">
+                    <i class="fas fa-hand-pointer"></i> Klik untuk lihat definisi
+                </span>
+            </div>
+
+            <!-- 8. Preston James -->
+            <div class="ahli-card" onclick="this.classList.toggle('open')">
+                <div class="ahli-header" style="display:flex; align-items:center; gap:12px; margin-bottom:2px;">
+                    <span class="icon-number" style="font-size:1.5rem; width:30px; text-align:center; flex-shrink:0; background:linear-gradient(135deg,#3498db,#8e44ad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-weight:700;">8</span>
+                    <div>
+                        <h3 style="font-size:1rem; margin:0; color:#f0f0f0;">Preston James</h3>
+                        <span class="sub" style="font-size:0.7rem; color:#aaa;">Ahli Geografi Amerika Serikat</span>
+                    </div>
+                </div>
+                <div class="back" style="display:none; padding-top:10px; border-top:2px dashed rgba(52,152,219,0.2); margin-top:10px; font-size:0.9rem;">
+                    <p style="font-weight:500; font-size:0.85rem; margin-bottom:6px; color:#c8d6e5;">Definisi geografi:</p>
+                    <ul style="margin:0 0 6px 0; padding-left:18px; line-height:1.7; color:#b0c4d8;">
+                        <li>Geografi adalah <strong style="color:#8cc4d0;">ilmu yang mempelajari hubungan timbal balik antara manusia dan lingkungannya</strong> serta persebaran fenomena di permukaan bumi.</li>
+                        <li>Menekankan pada <strong style="color:#8cc4d0;">perspektif keruangan</strong> dan <strong style="color:#8cc4d0;">interaksi manusia-lingkungan</strong>.</li>
+                    </ul>
+                    <div class="keterangan" style="font-size:0.8rem; border-top:1px solid rgba(74,122,156,0.2); padding-top:6px; margin-top:4px; color:#8ab4d6;">
+                        <i class="fas fa-info-circle" style="color:#6ba3c9;"></i> Preston James adalah tokoh penting dalam geografi Amerika. Karyanya <em>All Possible Worlds: A History of Geographical Ideas</em> menjadi rujukan penting dalam memahami perkembangan pemikiran geografi.
+                    </div>
+                </div>
+                <span class="toggle-hint" style="font-size:0.65rem; margin-top:4px; display:block; color:#8a8a8a; letter-spacing:0.5px;">
+                    <i class="fas fa-hand-pointer"></i> Klik untuk lihat definisi
+                </span>
+            </div>
+        </div>
+
+        <!-- Kesimpulan -->
+        <div style="background:rgba(30,34,46,0.85); backdrop-filter:blur(8px); border-radius:14px; padding:16px 20px; border:1px solid rgba(255,255,255,0.04); margin-top:16px;">
+            <p style="display:flex; align-items:flex-start; gap:12px; color:#ddd; margin-bottom:8px;">
+                <i class="fas fa-lightbulb" style="color:#3498db; font-size:1.3rem; margin-top:2px;"></i>
+                <span><strong style="color:#fff;">Kesimpulan:</strong> Dari berbagai definisi di atas, geografi memiliki beberapa dimensi penting:</span>
+            </p>
+            <ul style="padding-left:40px; margin:4px 0; list-style-type:disc; color:#ccc; line-height:1.8;">
+                <li><strong>Dimensi Deskriptif:</strong> Geografi melukiskan keadaan permukaan bumi (Eratosthenes, Ptolemaeus).</li>
+                <li><strong>Dimensi Hubungan Alam-Manusia:</strong> Geografi mengkaji interaksi manusia dengan lingkungan (Humboldt, Ritter, Preston James).</li>
+                <li><strong>Dimensi Keruangan:</strong> Geografi melihat fenomena dalam konteks ruang dan wilayah (Kant, Bintarto, Sumaatmadja).</li>
+                <li><strong>Dimensi Sistematis:</strong> Geografi adalah ilmu yang terstruktur dan metodis (Kant, Ritter).</li>
+            </ul>
+            <p style="margin-top:8px; font-size:0.9rem; color:rgba(255,255,255,0.5); border-top:1px solid rgba(255,255,255,0.04); padding-top:8px;">
+                <i class="fas fa-quote-right" style="color:#3498db;"></i> 
+                <em>"Geography is the bridge between the natural and social sciences."</em> — Geografi adalah jembatan antara ilmu alam dan ilmu sosial.
+            </p>
+        </div>
+
+        <!-- Navigasi -->
+        <div class="nav-buttons">
+            <div class="group">
+                <button onclick="navigateTo('prev')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                <span class="page-numbers"></span>
+                <button onclick="navigateTo('next')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                <span class="counter">5 / 11</span>
+            </div>
+        </div>
+    </div>
+</section>
 
         <!-- ===== SECTION 6 : OBJEK & PRINSIP ===== -->
         <section id="section6" class="section">
