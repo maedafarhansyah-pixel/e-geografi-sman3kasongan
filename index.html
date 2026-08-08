@@ -3050,12 +3050,12 @@
             </div>
         </section>
 
-     <!-- ============================================================
+    <!-- ============================================================
      SECTION 3 : PERTEMUAN 1 – FONDASI KEILMUAN GEOGRAFI
      ============================================================ -->
 <section id="section3" class="section">
 
-    <!-- ===== STYLE PERBAIKAN KETERBACAAN ===== -->
+    <!-- ===== STYLE PERBAIKAN KETERBACAAN + GARIS PEMISAH ===== -->
     <style>
         /* Perbaikan umum untuk semua teks di dalam section3 */
         #section3 {
@@ -3100,21 +3100,98 @@
             margin-bottom: 0.4rem;
             line-height: 1.7;
         }
-        /* Perbaikan pada card definisi dan geosfer */
-        #section3 .geo-def-card,
-        #section3 .hakikat-card,
-        #section3 .geosfer-card {
+
+        /* ===== GARIS PEMISAH ===== */
+
+        /* 1. Antar definisi ahli (card dalam grid) */
+        #section3 .geo-def-card {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 1.2rem;
+            margin-bottom: 1.2rem;
             background: rgba(255, 255, 255, 0.02);
-            padding: 1rem 1.2rem;
             border-radius: 12px;
+            padding: 1rem 1.2rem;
+        }
+        #section3 .geo-def-card:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        /* 2. Antar hakikat card */
+        #section3 .hakikat-card {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 1.2rem;
+            margin-bottom: 1.2rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            padding: 1rem 1.2rem;
+        }
+        #section3 .hakikat-card:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        /* 3. Antar geosfer card */
+        #section3 .geosfer-card {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 1.2rem;
+            margin-bottom: 1.2rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            padding: 1rem 1.2rem;
             border: 1px solid rgba(255, 255, 255, 0.04);
-            transition: background 0.2s;
         }
-        #section3 .geo-def-card p,
-        #section3 .hakikat-card p,
-        #section3 .geosfer-card p {
-            margin-bottom: 0.4rem;
+        #section3 .geosfer-card:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
         }
+
+        /* 4. Antar subjudul (h4) di dalam detail body */
+        #section3 .detail-body h4 {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding-bottom: 0.4rem;
+            margin-bottom: 0.8rem;
+            margin-top: 1.2rem;
+        }
+        #section3 .detail-body h4:first-of-type {
+            margin-top: 0;
+        }
+
+        /* 5. Antar paragraf (margin bawah sudah diatur, tapi kita pertegas) */
+        #section3 .detail-body p {
+            margin-bottom: 1rem;
+        }
+
+        /* 6. Antar bagian materi (A, B, C, D) */
+        #section3 .materi-detail {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 1.2rem;
+            margin-top: 1.2rem;
+        }
+        #section3 .materi-detail:first-of-type {
+            border-top: none;
+            padding-top: 0;
+            margin-top: 0;
+        }
+
+        /* 7. Untuk definisi modern (semarang card) kita beri garis bawah */
+        #section3 .semarang-def-card {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+            background: rgba(108, 92, 231, 0.04);
+            border-radius: 14px;
+            padding: 1.2rem 1.5rem;
+            border: 1px solid rgba(108, 92, 231, 0.08);
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        /* 8. Untuk kutipan definisi (def-quote) beri garis bawah tipis */
         #section3 .def-quote {
             font-style: italic;
             background: rgba(108, 92, 231, 0.05);
@@ -3124,6 +3201,8 @@
             margin: 0.5rem 0;
             color: rgba(255, 255, 255, 0.9);
         }
+
+        /* 9. Contoh lokal */
         #section3 .contoh-lokal {
             background: rgba(253, 203, 110, 0.04);
             border-left: 3px solid #fdcb6e;
@@ -3131,22 +3210,10 @@
             border-radius: 6px;
             font-size: 0.95rem;
             color: rgba(255, 255, 255, 0.8);
+            margin-top: 0.5rem;
         }
-        #section3 .semarang-def-card {
-            background: rgba(108, 92, 231, 0.04);
-            border-radius: 14px;
-            padding: 1.2rem 1.5rem;
-            margin: 1rem 0;
-            border: 1px solid rgba(108, 92, 231, 0.08);
-            display: flex;
-            gap: 1rem;
-            align-items: flex-start;
-        }
-        #section3 .semarang-def-card .bg-emoji {
-            font-size: 2.8rem;
-            line-height: 1;
-            flex-shrink: 0;
-        }
+
+        /* ===== SISANYA (tag, badge, dll) ===== */
         #section3 .tag-container {
             display: flex;
             flex-wrap: wrap;
@@ -3179,42 +3246,16 @@
             gap: 1rem;
             margin: 1rem 0;
         }
-        #section3 .geosfer-card {
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 12px;
-            padding: 1rem 1.2rem;
-            border: 1px solid rgba(255, 255, 255, 0.04);
-        }
         #section3 .geosfer-icon {
             font-size: 2rem;
             display: block;
             margin-bottom: 0.2rem;
-        }
-        #section3 .geosfer-card h4 {
-            font-size: 1.05rem;
-            margin-bottom: 0.3rem;
-        }
-        #section3 .geosfer-desc {
-            font-size: 0.95rem;
-            margin-bottom: 0.4rem;
-        }
-        #section3 .geosfer-example {
-            font-size: 0.9rem;
-            background: rgba(255, 255, 255, 0.02);
-            padding: 0.4rem 0.8rem;
-            border-radius: 6px;
-            border-left: 2px solid currentColor;
         }
         #section3 .hakikat-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1rem;
             margin: 1rem 0;
-        }
-        #section3 .hakikat-card {
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 12px;
-            padding: 1rem 1.2rem;
         }
         #section3 .hakikat-icon {
             font-size: 2rem;
@@ -3225,11 +3266,6 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1rem;
             margin: 1rem 0;
-        }
-        #section3 .geo-def-card {
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 12px;
-            padding: 1rem 1.2rem;
         }
         #section3 .def-number {
             font-size: 0.75rem;
@@ -3277,7 +3313,6 @@
             margin-top: 0.6rem;
             font-weight: 500;
         }
-        /* Perbaikan untuk detail header */
         #section3 .detail-header {
             display: flex;
             justify-content: space-between;
@@ -3339,7 +3374,8 @@
             color: #fd79a8;
             font-weight: 600;
         }
-        /* Responsif untuk layar kecil */
+
+        /* Responsif */
         @media (max-width: 640px) {
             #section3 .semarang-def-card {
                 flex-direction: column;
