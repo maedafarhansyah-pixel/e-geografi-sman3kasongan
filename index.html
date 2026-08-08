@@ -4159,6 +4159,1115 @@
         <a href="#section1" data-section="1" title="Beranda"><i class="fas fa-home"></i></a>
     </nav>
 
+    <!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-Geografi SMAN 3 Kasongan</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ============================================================
+               GLOBAL RESET & BASE
+               ============================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #0b0d15;
+            color: #f0f4fa;
+            transition: background 0.4s ease, color 0.4s ease;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        /* ============================================================
+               THEME VARIABLES (Light / Dark)
+               ============================================================ */
+        :root {
+            --bg-primary: #0b0d15;
+            --bg-secondary: #11141f;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --bg-card-hover: rgba(255, 255, 255, 0.06);
+            --text-primary: #f0f4fa;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --text-muted: rgba(255, 255, 255, 0.4);
+            --border-color: rgba(255, 255, 255, 0.06);
+            --border-color-strong: rgba(255, 255, 255, 0.1);
+            --shadow-color: rgba(0, 0, 0, 0.4);
+            --glass-bg: rgba(255, 255, 255, 0.04);
+            --glass-border: rgba(255, 255, 255, 0.06);
+            --glow-purple: rgba(108, 92, 231, 0.15);
+            --glow-cyan: rgba(0, 206, 201, 0.15);
+            --glow-pink: rgba(253, 121, 168, 0.15);
+            --glow-yellow: rgba(253, 203, 110, 0.15);
+            --progress-bar: #6c5ce7;
+            --toggle-bg: #1a1d2e;
+            --toggle-dot: #f0f4fa;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f4f6fb;
+            --bg-secondary: #e8ecf5;
+            --bg-card: rgba(0, 0, 0, 0.02);
+            --bg-card-hover: rgba(0, 0, 0, 0.04);
+            --text-primary: #0b0d15;
+            --text-secondary: rgba(0, 0, 0, 0.7);
+            --text-muted: rgba(0, 0, 0, 0.4);
+            --border-color: rgba(0, 0, 0, 0.06);
+            --border-color-strong: rgba(0, 0, 0, 0.1);
+            --shadow-color: rgba(0, 0, 0, 0.08);
+            --glass-bg: rgba(255, 255, 255, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --glow-purple: rgba(108, 92, 231, 0.08);
+            --glow-cyan: rgba(0, 206, 201, 0.08);
+            --glow-pink: rgba(253, 121, 168, 0.08);
+            --glow-yellow: rgba(253, 203, 110, 0.08);
+            --progress-bar: #6c5ce7;
+            --toggle-bg: #c8cddf;
+            --toggle-dot: #f0f4fa;
+        }
+
+        /* ============================================================
+               SCROLLBAR
+               ============================================================ */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #6c5ce7;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #7c6cf7;
+        }
+
+        /* ============================================================
+               READING PROGRESS BAR
+               ============================================================ */
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #6c5ce7, #00cec9, #fd79a8, #fdcb6e);
+            background-size: 300% 100%;
+            z-index: 9999;
+            width: 0%;
+            transition: width 0.1s ease;
+            border-radius: 0 0 4px 0;
+            box-shadow: 0 0 20px rgba(108, 92, 231, 0.3);
+            animation: progressGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes progressGlow {
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        /* ============================================================
+               DARK / LIGHT TOGGLE
+               ============================================================ */
+        .theme-toggle-wrapper {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9998;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: 8px 14px 8px 18px;
+            border-radius: 40px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px var(--shadow-color);
+        }
+
+        .theme-toggle-wrapper .label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .theme-toggle {
+            position: relative;
+            width: 48px;
+            height: 26px;
+            background: var(--toggle-bg);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            flex-shrink: 0;
+            border: none;
+            outline: none;
+        }
+
+        .theme-toggle .dot {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 20px;
+            height: 20px;
+            background: var(--toggle-dot);
+            border-radius: 50%;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+        }
+
+        .theme-toggle .dot i {
+            transition: opacity 0.3s ease;
+        }
+
+        .theme-toggle .dot .sun-icon {
+            opacity: 0;
+        }
+        .theme-toggle .dot .moon-icon {
+            opacity: 1;
+        }
+
+        [data-theme="light"] .theme-toggle .dot {
+            transform: translateX(22px);
+        }
+        [data-theme="light"] .theme-toggle .dot .sun-icon {
+            opacity: 1;
+        }
+        [data-theme="light"] .theme-toggle .dot .moon-icon {
+            opacity: 0;
+        }
+
+        /* ============================================================
+               FLOATING NAVIGATION
+               ============================================================ */
+        .floating-nav {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9997;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 8px 16px;
+            border-radius: 50px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 40px var(--shadow-color);
+        }
+
+        .floating-nav a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: transparent;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.25s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .floating-nav a:hover,
+        .floating-nav a.active {
+            background: rgba(108, 92, 231, 0.15);
+            color: #a29bfe;
+            transform: scale(1.1);
+        }
+
+        .floating-nav a.active {
+            background: rgba(108, 92, 231, 0.2);
+            color: #a29bfe;
+            box-shadow: 0 0 20px rgba(108, 92, 231, 0.15);
+        }
+
+        .floating-nav .nav-divider {
+            width: 1px;
+            height: 24px;
+            background: var(--border-color);
+        }
+
+        .floating-nav .nav-label {
+            font-size: 0.6rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            color: var(--text-muted);
+            padding: 0 4px;
+        }
+
+        /* ============================================================
+               ANIMATED BACKGROUND PARTICLES (subtle)
+               ============================================================ */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.3;
+        }
+
+        /* ============================================================
+               GLASSMORPHISM CARDS
+               ============================================================ */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px var(--shadow-color);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            background: var(--bg-card-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 48px var(--shadow-color);
+        }
+
+        /* ============================================================
+               ANIMATED DIVIDERS
+               ============================================================ */
+        .section-divider {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin: 32px 0 24px;
+            padding: 0 8px;
+        }
+
+        .section-divider .line {
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--border-color-strong), transparent);
+            border-radius: 4px;
+        }
+
+        .section-divider .line.gradient {
+            background: linear-gradient(90deg, #6c5ce7, #00cec9, #fd79a8, #fdcb6e);
+            background-size: 300% 100%;
+            animation: dividerFlow 6s ease-in-out infinite;
+            height: 3px;
+        }
+
+        @keyframes dividerFlow {
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .section-divider .icon {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            flex-shrink: 0;
+            animation: pulseIcon 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseIcon {
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.6;
+            }
+            50% {
+                transform: scale(1.15);
+                opacity: 1;
+            }
+        }
+
+        .section-divider .label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            flex-shrink: 0;
+        }
+
+        /* ============================================================
+               TYPEWRITER EFFECT
+               ============================================================ */
+        .typewriter {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid #6c5ce7;
+            animation: typewriter 1.8s steps(30) 0.5s forwards, blinkCursor 0.8s step-end infinite;
+            max-width: 0;
+        }
+
+        @keyframes typewriter {
+            to {
+                max-width: 100%;
+            }
+        }
+
+        @keyframes blinkCursor {
+            0%,
+            100% {
+                border-color: #6c5ce7;
+            }
+            50% {
+                border-color: transparent;
+            }
+        }
+
+        .typewriter-container {
+            display: inline-block;
+        }
+
+        /* ============================================================
+               SCROLL REVEAL ANIMATIONS
+               ============================================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 {
+            transition-delay: 0.1s;
+        }
+        .reveal-delay-2 {
+            transition-delay: 0.2s;
+        }
+        .reveal-delay-3 {
+            transition-delay: 0.3s;
+        }
+        .reveal-delay-4 {
+            transition-delay: 0.4s;
+        }
+
+        /* ============================================================
+               SECTION CONTAINER
+               ============================================================ */
+        .section {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 32px 40px;
+            background: var(--bg-secondary);
+            border-radius: 24px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 64px var(--shadow-color);
+            transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+            backdrop-filter: blur(2px);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+            margin-bottom: 18px;
+        }
+
+        .section-header .num {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: rgba(108, 92, 231, 0.12);
+            line-height: 1;
+            letter-spacing: -2px;
+        }
+
+        .section-header h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.2;
+        }
+
+        .section-header h2 small {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: var(--text-muted);
+            display: block;
+            margin-top: 2px;
+        }
+
+        .badge-pertemuan {
+            background: rgba(108, 92, 231, 0.08);
+            color: #a29bfe;
+            padding: 4px 16px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(108, 92, 231, 0.06);
+            margin-left: auto;
+            white-space: nowrap;
+        }
+
+        /* ============================================================
+               SCHOOL NAME BADGE
+               ============================================================ */
+        .school-name-gold {
+            color: #fdcb6e;
+            font-weight: 700;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* ============================================================
+               PROGRESS TRACKER (enhanced)
+               ============================================================ */
+        .progress-tracker {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            background: var(--glass-bg);
+            border-radius: 40px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .progress-tracker .step {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .progress-tracker .step.active {
+            background: #6c5ce7;
+            border-color: #6c5ce7;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(108, 92, 231, 0.25);
+            transform: scale(1.05);
+        }
+
+        .progress-tracker .step.done {
+            background: rgba(0, 206, 201, 0.12);
+            border-color: #00cec9;
+            color: #00cec9;
+        }
+
+        .progress-tracker .line {
+            flex: 1;
+            min-width: 20px;
+            height: 2px;
+            background: var(--border-color);
+            border-radius: 4px;
+            transition: background 0.4s ease;
+        }
+
+        .progress-tracker .line.done {
+            background: linear-gradient(90deg, #6c5ce7, #00cec9);
+        }
+
+        /* ============================================================
+               PERTEMUAN BADGE
+               ============================================================ */
+        .pertemuan-badge {
+            background: rgba(108, 92, 231, 0.06);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 4px 14px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border: 1px solid rgba(108, 92, 231, 0.04);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* ============================================================
+               IMAGE CARDS (3D tilt already present, we enhance)
+               ============================================================ */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .image-card-premium {
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .image-card-premium:hover {
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: 0 16px 48px var(--shadow-color);
+            border-color: rgba(108, 92, 231, 0.15);
+        }
+
+        .image-card-premium .img-wrap {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 16/10;
+            background: var(--bg-secondary);
+        }
+
+        .image-card-premium .img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .image-card-premium:hover .img-wrap img {
+            transform: scale(1.04);
+        }
+
+        .image-card-premium .overlay-glow {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(108, 92, 231, 0.05), transparent 50%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .image-card-premium:hover .overlay-glow {
+            opacity: 1;
+        }
+
+        .image-card-premium .zoom-badge-premium {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.6rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            opacity: 0;
+            transform: translateY(6px);
+            transition: all 0.3s ease;
+        }
+
+        .image-card-premium:hover .zoom-badge-premium {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .image-card-premium .image-number {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
+            color: rgba(255, 255, 255, 0.6);
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.6rem;
+            font-weight: 600;
+        }
+
+        .image-card-premium .image-label-premium {
+            padding: 12px 16px 4px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .image-card-premium .image-label-premium .emoji-big {
+            font-size: 1.2rem;
+        }
+
+        .image-card-premium .image-sub-premium {
+            padding: 0 16px 14px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* ============================================================
+               NAV BUTTONS
+               ============================================================ */
+        .nav-buttons {
+            margin-top: 28px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .nav-buttons .group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .nav-buttons button {
+            background: var(--glass-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 8px 22px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: inherit;
+        }
+
+        .nav-buttons button:hover {
+            background: rgba(108, 92, 231, 0.08);
+            border-color: #6c5ce7;
+            color: #a29bfe;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px var(--shadow-color);
+        }
+
+        .nav-buttons .counter {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            padding: 0 4px;
+        }
+
+        /* ============================================================
+               RESPONSIVE
+               ============================================================ */
+        @media (max-width: 992px) {
+            .grid-3 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .section {
+                padding: 24px 20px;
+                margin: 24px 0;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            .section {
+                padding: 16px 14px;
+                margin: 16px 0;
+                border-radius: 16px;
+            }
+            .section-header h2 {
+                font-size: 1.2rem;
+            }
+            .section-header .num {
+                font-size: 2rem;
+            }
+            .badge-pertemuan {
+                font-size: 0.65rem;
+                padding: 2px 12px;
+            }
+            .theme-toggle-wrapper {
+                top: 12px;
+                right: 12px;
+                padding: 6px 12px 6px 14px;
+            }
+            .theme-toggle-wrapper .label {
+                display: none;
+            }
+            .floating-nav {
+                padding: 6px 12px;
+                gap: 4px;
+                bottom: 16px;
+            }
+            .floating-nav a {
+                width: 30px;
+                height: 30px;
+                font-size: 0.7rem;
+            }
+            .floating-nav .nav-label {
+                display: none;
+            }
+            .floating-nav .nav-divider {
+                height: 18px;
+            }
+            .progress-tracker .step {
+                width: 24px;
+                height: 24px;
+                font-size: 0.6rem;
+            }
+            .nav-buttons button {
+                padding: 6px 16px;
+                font-size: 0.75rem;
+            }
+        }
+
+        /* ============================================================
+               MISC UTILITIES
+               ============================================================ */
+        .text-gradient {
+            background: linear-gradient(135deg, #6c5ce7, #00cec9, #fd79a8, #fdcb6e);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientMove 6s ease-in-out infinite;
+        }
+
+        @keyframes gradientMove {
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .glow-box {
+            box-shadow: 0 0 40px rgba(108, 92, 231, 0.05);
+            transition: box-shadow 0.4s ease;
+        }
+
+        .glow-box:hover {
+            box-shadow: 0 0 60px rgba(108, 92, 231, 0.1);
+        }
+
+        /* ============================================================
+               EXISTING STYLES FROM ORIGINAL CODE (merged)
+               ============================================================ */
+        /* We keep all existing .detail-header, .detail-body, etc. styles
+               but override with our variables where needed */
+        .detail-header {
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            padding: 0.6rem 0.8rem !important;
+            background: var(--glass-bg) !important;
+            border-radius: 10px !important;
+            cursor: pointer !important;
+            transition: all 0.2s ease !important;
+            border: 1px solid var(--border-color) !important;
+        }
+
+        .detail-header:hover {
+            background: var(--bg-card-hover) !important;
+        }
+
+        .detail-header h4 {
+            font-size: 1.05rem !important;
+            font-weight: 600 !important;
+            margin: 0 !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 0.6rem !important;
+            color: var(--text-primary) !important;
+        }
+
+        .detail-body {
+            padding: 0.8rem 0.6rem 0.2rem !important;
+        }
+
+        .detail-body p,
+        .detail-body li {
+            color: var(--text-secondary) !important;
+        }
+
+        .detail-body h4 {
+            color: var(--text-primary) !important;
+            border-bottom: 1px solid var(--border-color) !important;
+        }
+
+        .local-badge {
+            font-size: 0.7rem !important;
+            background: rgba(108, 92, 231, 0.1) !important;
+            color: #a29bfe !important;
+            padding: 0.1rem 0.6rem !important;
+            border-radius: 30px !important;
+            font-weight: 500 !important;
+            letter-spacing: 0.3px !important;
+        }
+
+        .highlight {
+            color: #fdcb6e !important;
+            font-weight: 500 !important;
+        }
+        .highlight-geo {
+            color: #6c5ce7 !important;
+            font-weight: 600 !important;
+        }
+        .highlight-lingkungan {
+            color: #00cec9 !important;
+            font-weight: 600 !important;
+        }
+        .highlight-wilayah {
+            color: #fd79a8 !important;
+            font-weight: 600 !important;
+        }
+
+        .def-quote {
+            font-style: italic !important;
+            background: rgba(108, 92, 231, 0.05) !important;
+            padding: 0.5rem 1rem !important;
+            border-radius: 8px !important;
+            border-left: 3px solid #6c5ce7 !important;
+            margin: 0.5rem 0 !important;
+            color: var(--text-secondary) !important;
+        }
+
+        .contoh-lokal {
+            background: rgba(253, 203, 110, 0.04) !important;
+            border-left: 3px solid #fdcb6e !important;
+            padding: 0.5rem 1rem !important;
+            border-radius: 6px !important;
+            font-size: 0.95rem !important;
+            color: var(--text-secondary) !important;
+            margin-top: 0.5rem !important;
+        }
+
+        .semarang-def-card {
+            background: rgba(108, 92, 231, 0.04) !important;
+            border-radius: 14px !important;
+            padding: 1.2rem 1.5rem !important;
+            border: 1px solid rgba(108, 92, 231, 0.08) !important;
+            display: flex !important;
+            gap: 1rem !important;
+            align-items: flex-start !important;
+            margin-bottom: 1rem !important;
+        }
+
+        .geo-def-card {
+            background: var(--glass-bg) !important;
+            border-radius: 12px !important;
+            padding: 1rem 1.2rem !important;
+            border-bottom: 1px solid var(--border-color) !important;
+            margin-bottom: 1.2rem !important;
+        }
+
+        .geo-def-card:last-child {
+            border-bottom: none !important;
+            margin-bottom: 0 !important;
+        }
+
+        .hakikat-card {
+            background: var(--glass-bg) !important;
+            border-radius: 12px !important;
+            padding: 1rem 1.2rem !important;
+            border-bottom: 1px solid var(--border-color) !important;
+            margin-bottom: 1.2rem !important;
+        }
+
+        .hakikat-card:last-child {
+            border-bottom: none !important;
+            margin-bottom: 0 !important;
+        }
+
+        .geosfer-card {
+            background: var(--glass-bg) !important;
+            border-radius: 12px !important;
+            padding: 1rem 1.2rem !important;
+            border: 1px solid var(--border-color) !important;
+            margin-bottom: 1.2rem !important;
+        }
+
+        .geosfer-card:last-child {
+            margin-bottom: 0 !important;
+        }
+
+        .mini-quiz {
+            background: var(--glass-bg) !important;
+            border-radius: 14px !important;
+            padding: 1.2rem 1.5rem !important;
+            margin: 1.2rem 0 !important;
+            border: 1px solid var(--border-color) !important;
+        }
+
+        .quiz-options button {
+            background: var(--glass-bg) !important;
+            border: 1px solid var(--border-color) !important;
+            color: var(--text-secondary) !important;
+            padding: 0.4rem 1.2rem !important;
+            border-radius: 30px !important;
+            font-size: 0.9rem !important;
+            cursor: pointer !important;
+            transition: all 0.2s ease !important;
+        }
+
+        .quiz-options button:hover {
+            background: rgba(108, 92, 231, 0.08) !important;
+            border-color: #6c5ce7 !important;
+            color: #a29bfe !important;
+        }
+
+        .tag {
+            background: rgba(108, 92, 231, 0.08) !important;
+            color: var(--text-secondary) !important;
+            padding: 0.2rem 0.8rem !important;
+            border-radius: 30px !important;
+            font-size: 0.8rem !important;
+            font-weight: 500 !important;
+        }
+
+        .hakikat-grid,
+        .geo-definition-grid,
+        .geosfer-grid {
+            display: grid !important;
+            gap: 1rem !important;
+            margin: 1rem 0 !important;
+        }
+
+        .hakikat-grid {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+        }
+        .geo-definition-grid {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+        }
+        .geosfer-grid {
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) !important;
+        }
+
+        /* Responsive overrides for grids */
+        @media (max-width: 640px) {
+            .hakikat-grid,
+            .geo-definition-grid,
+            .geosfer-grid {
+                grid-template-columns: 1fr !important;
+            }
+            .semarang-def-card {
+                flex-direction: column !important;
+                align-items: center !important;
+                text-align: center !important;
+            }
+            .detail-header h4 {
+                font-size: 0.95rem !important;
+                flex-wrap: wrap !important;
+            }
+            .detail-explanation {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+            }
+        }
+
+        .detail-explanation {
+            display: flex !important;
+            gap: 0.8rem !important;
+            align-items: flex-start !important;
+            margin-bottom: 0.8rem !important;
+        }
+
+        .detail-explanation .emoji-big {
+            font-size: 2.4rem !important;
+            line-height: 1 !important;
+            flex-shrink: 0 !important;
+        }
+
+        .materi-detail {
+            border-top: 1px solid var(--border-color) !important;
+            padding-top: 1.2rem !important;
+            margin-top: 1.2rem !important;
+        }
+
+        .materi-detail:first-of-type {
+            border-top: none !important;
+            padding-top: 0 !important;
+            margin-top: 0 !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ============================================================
+    READING PROGRESS BAR
+    ============================================================ -->
+    <div id="progress-bar"></div>
+
+    <!-- ============================================================
+    THEME TOGGLE
+    ============================================================ -->
+    <div class="theme-toggle-wrapper">
+        <span class="label"><i class="fas fa-palette"></i> Tema</span>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <span class="dot">
+                <i class="fas fa-sun sun-icon" style="color:#fdcb6e;"></i>
+                <i class="fas fa-moon moon-icon" style="color:#a29bfe;"></i>
+            </span>
+        </button>
+    </div>
+
+    <!-- ============================================================
+    PARTICLES CANVAS
+    ============================================================ -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- ============================================================
+    FLOATING NAVIGATION
+    ============================================================ -->
+    <nav class="floating-nav" id="floatingNav">
+        <span class="nav-label">Lompat</span>
+        <a href="#section3" class="active" data-section="3" title="Pertemuan 1">1</a>
+        <div class="nav-divider"></div>
+        <a href="#section4" data-section="4" title="Pertemuan 2">2</a>
+        <div class="nav-divider"></div>
+        <a href="#section5" data-section="5" title="Pertemuan 3">3</a>
+        <div class="nav-divider"></div>
+        <a href="#section1" data-section="1" title="Beranda"><i class="fas fa-home"></i></a>
+    </nav>
+
     <!-- ============================================================
     SECTION 3 – PERTEMUAN 1
     ============================================================ -->
@@ -5247,15 +6356,16 @@
                         </div>
                     </div>
 
+                    <!-- ===== ANALISIS SPASIAL – DIPERBAIKI ===== -->
                     <div style="background:rgba(253,203,110,0.04); border-radius:12px; padding:14px 16px; border-left:4px solid #fdcb6e;">
                         <h4 style="color:#fdcb6e; font-size:0.95rem; font-weight:700;">4. Analisis Spasial</h4>
                         <p style="font-size:0.9rem; color:var(--text-secondary); line-height:1.7;">
                             <strong>Mengamati pola persebaran</strong> suatu fenomena di lingkungan sekitar, lalu mencari tahu penyebabnya. Pada tingkat dasar, cukup dengan observasi dan peta sederhana.
                         </p>
                         <div style="background:rgba(253,203,110,0.06); border-radius:8px; padding:10px 14px; margin-top:6px;">
-                            <span style="color:#fdcb6e; font-weight:600;">📌 Contoh Katingan – Praktik Sederhana:</span>
+                            <span style="color:#fdcb6e; font-weight:600;">📌 Contoh Katingan – Praktik Sederhana (sesuai kondisi sekolah baru):</span>
                             <span style="color:var(--text-secondary); font-size:0.85rem;">
-                                Siswa mengamati persebaran <strong>jenis pohon</strong> di halaman sekolah atau di kebun sekitar. Mereka mencatat lokasi pohon yang berbeda (misalnya pohon mangga, kelapa, dan rambutan) pada peta sederhana. Setelah itu, mereka mendiskusikan mengapa pohon tertentu tumbuh di tempat tertentu — misalnya pohon kelapa lebih banyak di tempat terbuka yang terkena sinar matahari penuh, sedangkan pohon rambutan tumbuh di tempat yang sedikit teduh. Dari sini, siswa belajar bahwa faktor lingkungan (cahaya, kelembapan, jenis tanah) memengaruhi persebaran vegetasi.
+                                Siswa mengamati persebaran jenis semak dan rumput di halaman sekolah yang baru dibuka. Mereka mencatat lokasi tumbuhan yang berbeda (misalnya semak berduri, rumput tinggi, alang-alang, dan tanaman pionir lainnya) pada peta sederhana. Setelah itu, mereka mendiskusikan mengapa jenis tumbuhan tertentu tumbuh di tempat tertentu — misalnya rumput tinggi lebih subur di area lembab dekat genangan air, sedangkan semak berduri mendominasi tanah kering dan berpasir. Dari sini, siswa belajar bahwa faktor lingkungan (kelembaban tanah, intensitas cahaya, drainase) memengaruhi persebaran vegetasi awal di lahan baru.
                             </span>
                         </div>
                         <div style="margin-top:4px; font-size:0.8rem; color:var(--text-muted);">
@@ -5263,6 +6373,7 @@
                         </div>
                     </div>
 
+                    <!-- ===== KOMUNIKASI GEOGRAFI – DIPERBAIKI ===== -->
                     <div style="background:rgba(255,107,107,0.04); border-radius:12px; padding:14px 16px; border-left:4px solid #ff6b6b;">
                         <h4 style="color:#ff6b6b; font-size:0.95rem; font-weight:700;">5. Komunikasi Geografi</h4>
                         <p style="font-size:0.9rem; color:var(--text-secondary); line-height:1.7;">
@@ -5271,11 +6382,11 @@
                         <div style="background:rgba(255,107,107,0.06); border-radius:8px; padding:10px 14px; margin-top:6px;">
                             <span style="color:#fdcb6e; font-weight:600;">📌 Contoh Katingan – Praktik Sederhana:</span>
                             <span style="color:var(--text-secondary); font-size:0.85rem;">
-                                Setelah mengamati persebaran pohon di lingkungan sekolah, siswa membuat <strong>poster atau laporan sederhana</strong> yang berisi:
+                                Setelah mengamati persebaran semak dan kondisi tanah di lingkungan sekolah, siswa membuat <strong>poster atau laporan sederhana</strong> yang berisi:
                                 <ul style="font-size:0.8rem; padding-left:18px; margin-top:4px; color:var(--text-muted);">
-                                    <li>Gambar atau foto jenis pohon yang ditemukan.</li>
-                                    <li>Peta lokasi pohon-pohon tersebut (digambar tangan).</li>
-                                    <li>Penjelasan singkat mengapa pohon itu tumbuh di tempat tertentu.</li>
+                                    <li>Gambar atau foto jenis vegetasi yang ditemukan (misalnya semak berduri, rumput rawa, alang-alang).</li>
+                                    <li>Peta lokasi tumbuhan tersebut (digambar tangan) dengan menunjukkan area lembab dan kering.</li>
+                                    <li>Penjelasan singkat mengapa vegetasi itu tumbuh di tempat tertentu (misalnya area becek dengan rerumputan rawa, area kering dengan semak belukar).</li>
                                 </ul>
                                 Hasil karya tersebut kemudian <strong>dipresentasikan di depan kelas</strong> atau <strong>dibagikan kepada teman-teman</strong> untuk berbagi informasi. Kegiatan ini melatih siswa menyampaikan informasi geografi secara jelas, kreatif, dan percaya diri.
                             </span>
@@ -5659,7 +6770,7 @@
     </section>
 
     <!-- ============================================================
-    SCRIPTS
+    SCRIPTS (sama seperti sebelumnya, tidak diubah)
     ============================================================ -->
     <script>
         // ============================================================
@@ -5668,7 +6779,6 @@
         const themeToggle = document.getElementById('themeToggle');
         const html = document.documentElement;
 
-        // Load saved theme or system preference
         const savedTheme = localStorage.getItem('theme');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
@@ -5677,7 +6787,7 @@
         } else if (prefersDark) {
             html.setAttribute('data-theme', 'dark');
         } else {
-            html.setAttribute('data-theme', 'dark'); // default dark
+            html.setAttribute('data-theme', 'dark');
         }
 
         themeToggle.addEventListener('click', () => {
@@ -5700,7 +6810,7 @@
         });
 
         // ============================================================
-        // 3. PARTICLES CANVAS (subtle)
+        // 3. PARTICLES CANVAS
         // ============================================================
         (function initParticles() {
             const canvas = document.getElementById('particles-canvas');
@@ -5778,7 +6888,7 @@
         })();
 
         // ============================================================
-        // 4. SCROLL REVEAL (Intersection Observer)
+        // 4. SCROLL REVEAL
         // ============================================================
         (function initReveal() {
             const reveals = document.querySelectorAll('.reveal');
@@ -5797,7 +6907,7 @@
         })();
 
         // ============================================================
-        // 5. DETAIL TOGGLE (accordion)
+        // 5. DETAIL TOGGLE
         // ============================================================
         function toggleDetail(header) {
             const body = header.nextElementSibling;
@@ -5811,7 +6921,6 @@
             }
         }
 
-        // Initialize all detail bodies as open by default
         document.querySelectorAll('.detail-body').forEach(body => {
             body.style.display = 'block';
         });
@@ -5824,20 +6933,17 @@
             const feedback = container.querySelector('.quiz-feedback');
             const allBtns = container.querySelectorAll('.quiz-options button');
 
-            // Disable all buttons
             allBtns.forEach(b => {
                 b.disabled = true;
                 b.style.opacity = '0.5';
                 b.style.cursor = 'default';
             });
 
-            // Highlight correct/incorrect
             allBtns.forEach(b => {
                 if (b === btn) {
                     b.style.borderColor = isCorrect ? '#00cec9' : '#ff6b6b';
                     b.style.background = isCorrect ? 'rgba(0,206,201,0.1)' : 'rgba(255,107,107,0.1)';
                 }
-                // Also highlight the correct answer if wrong was chosen
                 if (!isCorrect && b.textContent.trim() === container.querySelector(
                         '.quiz-options button[data-correct]')?.textContent?.trim()) {
                     b.style.borderColor = '#00cec9';
@@ -5845,32 +6951,15 @@
                 }
             });
 
-            // Mark the correct button with data-correct for future reference
-            const correctBtn = container.querySelector('.quiz-options button[data-correct]');
-            if (!correctBtn) {
-                // Find the correct one by checking which one would be correct (we stored it in a closure)
-                // Since we can't easily get it, we just show feedback.
-            }
-
             feedback.textContent = isCorrect ? '✅ Jawaban benar!' : '❌ Jawaban kurang tepat. Coba baca ulang materi.';
             feedback.style.color = isCorrect ? '#00cec9' : '#ff6b6b';
         }
 
-        // Mark correct answers with data-correct attribute for quiz buttons
-        // We'll do this by scanning the quiz questions and setting data-correct on the correct button
-        document.querySelectorAll('.mini-quiz').forEach(quiz => {
-            const btns = quiz.querySelectorAll('.quiz-options button');
-            // We need to know which one is correct — we'll infer from the checkQuiz calls
-            // But since we can't easily, we'll set a data attribute on the correct button when the quiz is loaded
-            // Instead, we'll just let the checkQuiz function handle it.
-        });
-
         // ============================================================
-        // 7. NAVIGATION (simplified)
+        // 7. NAVIGATION
         // ============================================================
         function navigateTo(target) {
             if (target === 'prev') {
-                // Find previous section
                 const sections = document.querySelectorAll('.section');
                 let currentIdx = -1;
                 sections.forEach((s, i) => {
@@ -5895,23 +6984,15 @@
             } else if (target === 'section1') {
                 window.location.href = '#section1';
             } else {
-                // If it's a section ID, scroll to it
                 const el = document.querySelector(target);
                 if (el) el.scrollIntoView({ behavior: 'smooth' });
             }
         }
 
-        // Show only first section initially (or all if you prefer)
-        // For demo, we show all sections but they are stacked. We'll hide all except first.
-        // Actually, since we have sections displayed as blocks, we'll just keep them all visible
-        // But the navigation buttons will still work.
-        // We'll just show all sections.
-
         // ============================================================
-        // 8. IMAGE MODAL (simple lightbox)
+        // 8. IMAGE MODAL
         // ============================================================
         function openModal(src, caption) {
-            // Create overlay
             const overlay = document.createElement('div');
             overlay.style.cssText = `
                     position: fixed; top:0; left:0; width:100%; height:100%;
@@ -5943,12 +7024,10 @@
             overlay.appendChild(cap);
             document.body.appendChild(overlay);
 
-            // Close on click
             overlay.addEventListener('click', () => {
                 overlay.remove();
             });
 
-            // Close on escape
             document.addEventListener('keydown', function handler(e) {
                 if (e.key === 'Escape') {
                     const el = document.getElementById('imageModal');
@@ -5977,7 +7056,6 @@
                 link.classList.remove('active');
                 const sectionNum = link.dataset.section;
                 if (sectionNum && activeIdx !== -1) {
-                    // section3 -> index 0, section4 -> index 1, etc.
                     const idx = parseInt(sectionNum) - 3;
                     if (idx === activeIdx) {
                         link.classList.add('active');
