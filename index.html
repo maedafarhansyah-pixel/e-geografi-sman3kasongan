@@ -79,10 +79,18 @@
             opacity: 0.15;
         }
         @keyframes orbFloat {
-            0% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(40px, -30px) scale(1.1); }
-            66% { transform: translate(-20px, 40px) scale(0.9); }
-            100% { transform: translate(30px, -10px) scale(1.05); }
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(40px, -30px) scale(1.1);
+            }
+            66% {
+                transform: translate(-20px, 40px) scale(0.9);
+            }
+            100% {
+                transform: translate(30px, -10px) scale(1.05);
+            }
         }
 
         /* ============================================================
@@ -124,19 +132,50 @@
             animation: shootingStar linear forwards;
         }
         @keyframes shootingStar {
-            0% { opacity: 0; transform: translate(0, 0) scale(0.5); }
-            5% { opacity: 1; transform: translate(0, 0) scale(1); }
-            70% { opacity: 1; }
-            100% { opacity: 0; transform: translate(-500px, 300px) scale(0.2); }
+            0% {
+                opacity: 0;
+                transform: translate(0, 0) scale(0.5);
+            }
+            5% {
+                opacity: 1;
+                transform: translate(0, 0) scale(1);
+            }
+            70% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-500px, 300px) scale(0.2);
+            }
         }
-        .shooting-star.color-1 { background: #6c5ce7; box-shadow: 0 0 8px 3px rgba(108, 92, 231, 0.6); }
-        .shooting-star.color-1::before { background: linear-gradient(to left, rgba(108, 92, 231, 0.8), transparent); }
-        .shooting-star.color-2 { background: #00cec9; box-shadow: 0 0 8px 3px rgba(0, 206, 201, 0.6); }
-        .shooting-star.color-2::before { background: linear-gradient(to left, rgba(0, 206, 201, 0.8), transparent); }
-        .shooting-star.color-3 { background: #fd79a8; box-shadow: 0 0 8px 3px rgba(253, 121, 168, 0.6); }
-        .shooting-star.color-3::before { background: linear-gradient(to left, rgba(253, 121, 168, 0.8), transparent); }
-        .shooting-star.color-4 { background: #fdcb6e; box-shadow: 0 0 8px 3px rgba(253, 203, 110, 0.6); }
-        .shooting-star.color-4::before { background: linear-gradient(to left, rgba(253, 203, 110, 0.8), transparent); }
+        .shooting-star.color-1 {
+            background: #6c5ce7;
+            box-shadow: 0 0 8px 3px rgba(108, 92, 231, 0.6);
+        }
+        .shooting-star.color-1::before {
+            background: linear-gradient(to left, rgba(108, 92, 231, 0.8), transparent);
+        }
+        .shooting-star.color-2 {
+            background: #00cec9;
+            box-shadow: 0 0 8px 3px rgba(0, 206, 201, 0.6);
+        }
+        .shooting-star.color-2::before {
+            background: linear-gradient(to left, rgba(0, 206, 201, 0.8), transparent);
+        }
+        .shooting-star.color-3 {
+            background: #fd79a8;
+            box-shadow: 0 0 8px 3px rgba(253, 121, 168, 0.6);
+        }
+        .shooting-star.color-3::before {
+            background: linear-gradient(to left, rgba(253, 121, 168, 0.8), transparent);
+        }
+        .shooting-star.color-4 {
+            background: #fdcb6e;
+            box-shadow: 0 0 8px 3px rgba(253, 203, 110, 0.6);
+        }
+        .shooting-star.color-4::before {
+            background: linear-gradient(to left, rgba(253, 203, 110, 0.8), transparent);
+        }
 
         /* ============================================================
                    LOADER
@@ -194,11 +233,19 @@
             animation: pulseGlow 1.5s ease-in-out infinite alternate;
         }
         @keyframes spinRing {
-            to { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
         @keyframes pulseGlow {
-            0% { transform: scale(0.8); opacity: 0.6; }
-            100% { transform: scale(1.2); opacity: 1; }
+            0% {
+                transform: scale(0.8);
+                opacity: 0.6;
+            }
+            100% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
         }
         .loader-title {
             font-size: clamp(2.5rem, 6vw, 4rem);
@@ -212,11 +259,16 @@
             letter-spacing: 2px;
         }
         @keyframes gradientMove {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
         }
         .loader-sub {
-            color: rgba(255,255,255,0.3);
+            color: rgba(255, 255, 255, 0.3);
             font-size: 0.9rem;
             letter-spacing: 4px;
             font-weight: 300;
@@ -225,7 +277,7 @@
         .loader-bar-track {
             width: clamp(200px, 40vw, 400px);
             height: 6px;
-            background: rgba(255,255,255,0.05);
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 10px;
             margin-top: 20px;
             overflow: hidden;
@@ -242,11 +294,15 @@
             box-shadow: 0 0 30px rgba(108, 92, 231, 0.3);
         }
         @keyframes barShine {
-            0% { background-position: 0% 0%; }
-            100% { background-position: 300% 0%; }
+            0% {
+                background-position: 0% 0%;
+            }
+            100% {
+                background-position: 300% 0%;
+            }
         }
         .loader-percent {
-            color: rgba(255,255,255,0.2);
+            color: rgba(255, 255, 255, 0.2);
             font-size: 0.7rem;
             margin-top: 6px;
             font-weight: 500;
@@ -261,10 +317,21 @@
             opacity: 0.5;
         }
         @keyframes fallEmoji {
-            0% { transform: translateY(-100px) rotate(0deg) scale(0); opacity: 0; }
-            10% { opacity: 0.8; transform: translateY(10vh) rotate(30deg) scale(1.2); }
-            90% { opacity: 0.8; }
-            100% { transform: translateY(110vh) rotate(360deg) scale(0.2); opacity: 0; }
+            0% {
+                transform: translateY(-100px) rotate(0deg) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+                transform: translateY(10vh) rotate(30deg) scale(1.2);
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(110vh) rotate(360deg) scale(0.2);
+                opacity: 0;
+            }
         }
 
         /* ============================================================
@@ -284,7 +351,7 @@
             justify-content: space-between;
             padding: 0 16px;
             z-index: 1001;
-            border-bottom: 1px solid rgba(255,255,255,0.04);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
         }
         .mobile-header .brand {
             font-weight: 800;
@@ -301,7 +368,7 @@
             font-size: 1.3rem;
         }
         .mobile-header .menu-toggle {
-            color: rgba(255,255,255,0.5);
+            color: rgba(255, 255, 255, 0.5);
             font-size: 1.3rem;
             cursor: pointer;
             transition: 0.3s;
@@ -336,8 +403,14 @@
             display: block;
         }
         @keyframes sectionEnter {
-            0% { opacity: 0; transform: translateY(60px) scale(0.95) rotateX(5deg); }
-            100% { opacity: 1; transform: translateY(0) scale(1) rotateX(0); }
+            0% {
+                opacity: 0;
+                transform: translateY(60px) scale(0.95) rotateX(5deg);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1) rotateX(0);
+            }
         }
 
         /* ============================================================
@@ -350,7 +423,7 @@
             margin-bottom: 24px;
             padding-bottom: 14px;
             flex-wrap: wrap;
-            border-bottom: 2px solid rgba(255,255,255,0.04);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.04);
             position: relative;
         }
         .section-header::after {
@@ -387,8 +460,15 @@
             animation: ringPulse 2s ease-in-out infinite;
         }
         @keyframes ringPulse {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.3); opacity: 0; }
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scale(1.3);
+                opacity: 0;
+            }
         }
         .section-header h2 {
             font-size: 1.4rem;
@@ -400,7 +480,7 @@
         .section-header h2 small {
             font-weight: 600;
             font-size: 0.85rem;
-            color: rgba(255,255,255,0.5);
+            color: rgba(255, 255, 255, 0.5);
             display: block;
             margin-top: 2px;
         }
@@ -424,9 +504,9 @@
             -webkit-backdrop-filter: blur(12px);
             border-radius: 18px;
             padding: 20px 18px;
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.04);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.04);
             transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-            border: 1px solid rgba(255,255,255,0.04);
+            border: 1px solid rgba(255, 255, 255, 0.04);
             position: relative;
             overflow: hidden;
         }
@@ -467,7 +547,7 @@
         .card p,
         .card li {
             font-size: 0.95rem;
-            color: rgba(255,255,255,0.75);
+            color: rgba(255, 255, 255, 0.75);
             line-height: 1.8;
             font-weight: 400;
         }
@@ -518,7 +598,7 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: rgba(255,255,255,0.03);
+            background: rgba(255, 255, 255, 0.03);
             z-index: 999;
             backdrop-filter: blur(4px);
             overflow: hidden;
@@ -536,8 +616,12 @@
         }
         @keyframes barGlow {
             0%,
-            100% { box-shadow: 0 0 20px rgba(108, 92, 231, 0.2); }
-            50% { box-shadow: 0 0 50px rgba(0, 206, 201, 0.3); }
+            100% {
+                box-shadow: 0 0 20px rgba(108, 92, 231, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 50px rgba(0, 206, 201, 0.3);
+            }
         }
         .progress-wrap .bar::after {
             content: '';
@@ -546,12 +630,16 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
             animation: sweepBar 2s infinite;
         }
         @keyframes sweepBar {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
         }
 
         /* ============================================================
@@ -563,7 +651,7 @@
             align-items: center;
             margin-top: 36px;
             padding-top: 18px;
-            border-top: 1px solid rgba(255,255,255,0.04);
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
             flex-wrap: wrap;
             gap: 10px;
         }
@@ -596,7 +684,7 @@
         }
         .nav-buttons .counter {
             font-weight: 500;
-            color: rgba(255,255,255,0.3);
+            color: rgba(255, 255, 255, 0.3);
             font-size: 0.85rem;
             padding: 0 12px;
             font-variant-numeric: tabular-nums;
@@ -623,9 +711,9 @@
             border-radius: 50%;
             font-size: 0.8rem;
             font-weight: 700;
-            color: rgba(255,255,255,0.4);
-            background: rgba(255,255,255,0.02);
-            border: 1px solid rgba(255,255,255,0.03);
+            color: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.03);
             text-decoration: none;
             transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
             cursor: pointer;
@@ -662,7 +750,7 @@
             height: clamp(55px, 9vw, 120px);
             width: auto;
             object-fit: contain;
-            filter: drop-shadow(0 8px 30px rgba(0,0,0,0.5));
+            filter: drop-shadow(0 8px 30px rgba(0, 0, 0, 0.5));
             transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         .cover-section .logo-grid img:hover {
@@ -711,12 +799,16 @@
         }
         @keyframes cosmicShimmer {
             0%,
-            100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+            100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
         }
         .cover-sub {
             font-size: clamp(1rem, 1.6vw, 1.3rem);
-            color: rgba(255,255,255,0.65);
+            color: rgba(255, 255, 255, 0.65);
             max-width: 680px;
             margin: 4px auto 0;
             padding: 0 12px;
@@ -725,14 +817,14 @@
             letter-spacing: 0.5px;
         }
         .cover-sub strong {
-            color: rgba(255,255,255,0.85);
+            color: rgba(255, 255, 255, 0.85);
             font-weight: 700;
         }
         .cover-section .school-wrap {
             margin-top: 18px;
         }
         .cover-section .school-name {
-            background: rgba(255,255,255,0.02);
+            background: rgba(255, 255, 255, 0.02);
             backdrop-filter: blur(16px);
             padding: 10px 32px;
             border-radius: 60px;
@@ -740,7 +832,7 @@
             font-weight: 800;
             font-size: clamp(1.2rem, 2.8vw, 2.2rem);
             box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255,255,255,0.04);
+            border: 1px solid rgba(255, 255, 255, 0.04);
             letter-spacing: 2px;
         }
         .cover-section .school-name .gold {
@@ -751,7 +843,7 @@
         .cover-section .teacher-info {
             margin-top: 6px;
             font-size: clamp(0.75rem, 0.9vw, 0.9rem);
-            color: rgba(255,255,255,0.4);
+            color: rgba(255, 255, 255, 0.4);
             letter-spacing: 0.5px;
             font-weight: 500;
         }
@@ -814,13 +906,13 @@
                    NAV BOX
                    ============================================================ */
         .nav-box {
-            background: rgba(255,255,255,0.02);
+            background: rgba(255, 255, 255, 0.02);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-radius: 28px;
             padding: clamp(20px, 3vw, 36px) clamp(16px, 2.5vw, 32px);
             margin-top: 24px;
-            border: 1px solid rgba(255,255,255,0.04);
+            border: 1px solid rgba(255, 255, 255, 0.04);
             box-shadow: 0 16px 60px rgba(0, 0, 0, 0.3);
         }
         .nav-box .nav-header {
@@ -830,7 +922,7 @@
             gap: 14px;
             font-size: clamp(1rem, 1.2vw, 1.2rem);
             font-weight: 700;
-            border-bottom: 1px solid rgba(255,255,255,0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
             padding-bottom: 14px;
             margin-bottom: 20px;
             letter-spacing: 0.5px;
@@ -847,14 +939,14 @@
             gap: 10px;
         }
         .nav-box .nav-item {
-            background: rgba(255,255,255,0.01);
+            background: rgba(255, 255, 255, 0.01);
             padding: 14px 10px;
             border-radius: 16px;
             text-align: center;
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             border: 1px solid transparent;
-            color: rgba(255,255,255,0.5);
+            color: rgba(255, 255, 255, 0.5);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -914,7 +1006,7 @@
             padding: 18px 20px;
             border-left: 6px solid #6c5ce7;
             margin: 10px 0;
-            color: rgba(255,255,255,0.85);
+            color: rgba(255, 255, 255, 0.85);
             position: relative;
             overflow: hidden;
             font-size: 0.95rem;
@@ -941,7 +1033,7 @@
             backdrop-filter: blur(8px);
             border-radius: 20px;
             padding: 24px 20px;
-            border: 1px solid rgba(255,255,255,0.03);
+            border: 1px solid rgba(255, 255, 255, 0.03);
             margin: 20px 0;
         }
         .flow-diagram .flow-title {
@@ -966,7 +1058,7 @@
             backdrop-filter: blur(4px);
             border-radius: 14px;
             padding: 14px 20px;
-            border: 1px solid rgba(255,255,255,0.03);
+            border: 1px solid rgba(255, 255, 255, 0.03);
             text-align: center;
             min-width: 120px;
             flex: 1 0 auto;
@@ -993,7 +1085,7 @@
         }
         .flow-box .sub {
             font-size: 0.8rem;
-            color: rgba(255,255,255,0.4);
+            color: rgba(255, 255, 255, 0.4);
             font-weight: 500;
         }
         .flow-arrow {
@@ -1037,7 +1129,7 @@
         }
         .tp-item .tp-text {
             font-size: 0.92rem;
-            color: rgba(255,255,255,0.75);
+            color: rgba(255, 255, 255, 0.75);
             font-weight: 400;
         }
         .tp-item .tp-text strong {
@@ -1059,7 +1151,7 @@
             backdrop-filter: blur(8px);
             border-radius: 14px;
             padding: 16px 14px;
-            border: 1px solid rgba(255,255,255,0.03);
+            border: 1px solid rgba(255, 255, 255, 0.03);
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             text-align: center;
         }
@@ -1084,7 +1176,7 @@
         }
         .dpl-card p {
             font-size: 0.85rem;
-            color: rgba(255,255,255,0.55);
+            color: rgba(255, 255, 255, 0.55);
             line-height: 1.5;
             font-weight: 400;
         }
@@ -1117,14 +1209,14 @@
         }
         .prinsip-card p {
             font-size: 0.92rem;
-            color: rgba(255,255,255,0.75);
+            color: rgba(255, 255, 255, 0.75);
         }
         .prinsip-card .contoh {
             font-size: 0.88rem;
-            color: rgba(255,255,255,0.5);
+            color: rgba(255, 255, 255, 0.5);
             margin-top: 4px;
             padding-top: 4px;
-            border-top: 1px solid rgba(255,255,255,0.03);
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
         }
         .prinsip-card .contoh strong {
             color: #00cec9;
@@ -1149,7 +1241,7 @@
             width: 100%;
             border-collapse: collapse;
             font-size: 0.88rem;
-            color: rgba(255,255,255,0.85);
+            color: rgba(255, 255, 255, 0.85);
             margin: 12px 0;
             border-radius: 16px;
             overflow: hidden;
@@ -1158,18 +1250,18 @@
             background: rgba(108, 92, 231, 0.12);
             padding: 12px 14px;
             text-align: left;
-            border: 1px solid rgba(255,255,255,0.03);
+            border: 1px solid rgba(255, 255, 255, 0.03);
             color: #a29bfe;
             font-weight: 700;
         }
         .rubrik-table td {
             padding: 12px 14px;
-            border: 1px solid rgba(255,255,255,0.03);
+            border: 1px solid rgba(255, 255, 255, 0.03);
             vertical-align: top;
             font-weight: 400;
         }
         .rubrik-table tr:hover {
-            background: rgba(255,255,255,0.01);
+            background: rgba(255, 255, 255, 0.01);
         }
         .rubrik-table .skor {
             color: #fdcb6e;
@@ -1191,7 +1283,7 @@
             backdrop-filter: blur(8px);
             border-radius: 16px;
             padding: 16px 14px;
-            border: 1px solid rgba(255,255,255,0.03);
+            border: 1px solid rgba(255, 255, 255, 0.03);
             text-align: center;
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
@@ -1212,7 +1304,7 @@
         }
         .tech-card p {
             font-size: 0.85rem;
-            color: rgba(255,255,255,0.45);
+            color: rgba(255, 255, 255, 0.45);
             line-height: 1.5;
             font-weight: 400;
         }
@@ -1241,7 +1333,7 @@
         }
         .isu-card p {
             font-size: 0.92rem;
-            color: rgba(255,255,255,0.75);
+            color: rgba(255, 255, 255, 0.75);
             font-weight: 400;
         }
         .isu-card .tag-aktual {
@@ -1282,7 +1374,7 @@
         }
         .assessment-question .q-options {
             padding-left: 20px;
-            color: rgba(255,255,255,0.65);
+            color: rgba(255, 255, 255, 0.65);
             line-height: 2.2;
             font-weight: 400;
         }
@@ -1296,7 +1388,7 @@
             backdrop-filter: blur(8px);
             padding: 16px 18px;
             border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.03);
+            border: 1px solid rgba(255, 255, 255, 0.03);
             margin-bottom: 16px;
             transition: all 0.3s ease;
         }
@@ -1312,7 +1404,7 @@
         }
         .essay-question .q-note {
             font-size: 0.88rem;
-            color: rgba(255,255,255,0.35);
+            color: rgba(255, 255, 255, 0.35);
             font-style: italic;
             font-weight: 400;
         }
@@ -1331,8 +1423,8 @@
             gap: 14px;
             padding: 10px 0;
             font-size: 1rem;
-            color: rgba(255,255,255,0.75);
-            border-bottom: 1px solid rgba(255,255,255,0.02);
+            color: rgba(255, 255, 255, 0.75);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
             font-weight: 400;
         }
         .refleksi-list li:last-child {
@@ -1354,7 +1446,7 @@
             margin: 12px 0;
             font-style: italic;
             font-size: 1.1rem;
-            color: rgba(255,255,255,0.75);
+            color: rgba(255, 255, 255, 0.75);
             font-weight: 400;
         }
         .quote-block .author {
@@ -1382,10 +1474,14 @@
         }
         @keyframes celebPulse {
             0%,
-            100% { border-color: #6c5ce7;
-                box-shadow: 0 0 40px rgba(108, 92, 231, 0.05); }
-            50% { border-color: #00cec9;
-                box-shadow: 0 0 60px rgba(0, 206, 201, 0.08); }
+            100% {
+                border-color: #6c5ce7;
+                box-shadow: 0 0 40px rgba(108, 92, 231, 0.05);
+            }
+            50% {
+                border-color: #00cec9;
+                box-shadow: 0 0 60px rgba(0, 206, 201, 0.08);
+            }
         }
         .celebration-box h3 {
             font-size: 1.8rem;
@@ -1397,7 +1493,7 @@
         }
         .celebration-box p {
             font-size: 1.05rem;
-            color: rgba(255,255,255,0.75);
+            color: rgba(255, 255, 255, 0.75);
             font-weight: 400;
         }
         .celebration-box .next-btn {
@@ -1429,12 +1525,12 @@
         }
         .ref-list li {
             padding: 8px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.02);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
             font-size: 0.9rem;
             display: flex;
             align-items: baseline;
             gap: 12px;
-            color: rgba(255,255,255,0.65);
+            color: rgba(255, 255, 255, 0.65);
             transition: all 0.3s ease;
             font-weight: 400;
         }
@@ -1474,8 +1570,14 @@
             animation: modalFadeIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         @keyframes modalFadeIn {
-            0% { opacity: 0; transform: scale(0.92); }
-            100% { opacity: 1; transform: scale(1); }
+            0% {
+                opacity: 0;
+                transform: scale(0.92);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
         .modal-overlay .modal-content {
             max-width: 92vw;
@@ -1485,7 +1587,7 @@
             -webkit-backdrop-filter: blur(20px);
             border-radius: 28px;
             padding: 24px;
-            border: 1px solid rgba(255,255,255,0.06);
+            border: 1px solid rgba(255, 255, 255, 0.06);
             box-shadow: 0 40px 120px rgba(0, 0, 0, 0.9), 0 0 80px rgba(108, 92, 231, 0.06);
             position: relative;
             text-align: center;
@@ -1533,15 +1635,19 @@
         .modal-overlay .modal-content .image-wrapper .loading-shimmer {
             position: absolute;
             inset: 0;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.02), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.02), transparent);
             background-size: 200% 100%;
             animation: shimmer 1.5s infinite;
             border-radius: 16px;
             pointer-events: none;
         }
         @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
         }
         .modal-overlay .modal-content .image-counter {
             position: absolute;
@@ -1614,12 +1720,12 @@
             gap: 16px;
             margin-top: 16px;
             padding-top: 14px;
-            border-top: 1px solid rgba(255,255,255,0.03);
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
         }
         .modal-overlay .modal-content .zoom-controls button {
-            background: rgba(255,255,255,0.02);
-            border: 1px solid rgba(255,255,255,0.04);
-            color: rgba(255,255,255,0.4);
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            color: rgba(255, 255, 255, 0.4);
             width: 40px;
             height: 40px;
             border-radius: 50%;
@@ -1637,7 +1743,7 @@
             transform: scale(1.08);
         }
         .modal-overlay .modal-content .zoom-controls .zoom-level {
-            color: rgba(255,255,255,0.3);
+            color: rgba(255, 255, 255, 0.3);
             font-size: 0.85rem;
             font-weight: 700;
             min-width: 56px;
@@ -1645,17 +1751,17 @@
             font-variant-numeric: tabular-nums;
         }
         .modal-overlay .modal-content .caption {
-            color: rgba(255,255,255,0.35);
+            color: rgba(255, 255, 255, 0.35);
             font-size: 0.9rem;
             margin-top: 12px;
             padding-top: 10px;
-            border-top: 1px solid rgba(255,255,255,0.02);
+            border-top: 1px solid rgba(255, 255, 255, 0.02);
             letter-spacing: 0.5px;
             font-weight: 400;
             line-height: 1.6;
         }
         .modal-overlay .modal-content .caption strong {
-            color: rgba(255,255,255,0.6);
+            color: rgba(255, 255, 255, 0.6);
             font-weight: 600;
         }
         .modal-overlay .modal-close {
@@ -1673,7 +1779,7 @@
             justify-content: center;
             font-size: 1.2rem;
             cursor: pointer;
-            border: 1px solid rgba(255,255,255,0.04);
+            border: 1px solid rgba(255, 255, 255, 0.04);
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
             z-index: 20;
@@ -1714,7 +1820,7 @@
             -webkit-backdrop-filter: blur(12px);
             border-radius: 20px;
             padding: 12px;
-            border: 1px solid rgba(255,255,255,0.03);
+            border: 1px solid rgba(255, 255, 255, 0.03);
             transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
             cursor: pointer;
             position: relative;
@@ -1758,7 +1864,7 @@
             border-radius: 14px;
             transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
             display: block;
-            background: rgba(255,255,255,0.02);
+            background: rgba(255, 255, 255, 0.02);
         }
         .image-card-premium:hover .img-wrap img {
             transform: scale(1.04);
@@ -1812,7 +1918,7 @@
             font-size: 0.6rem;
             font-weight: 600;
             color: rgba(255, 255, 255, 0.3);
-            border: 1px solid rgba(255,255,255,0.02);
+            border: 1px solid rgba(255, 255, 255, 0.02);
             letter-spacing: 0.5px;
         }
         .image-card-premium .image-label-premium {
@@ -1830,13 +1936,13 @@
         }
         .image-card-premium .image-sub-premium {
             font-size: 0.82rem;
-            color: rgba(255,255,255,0.35);
+            color: rgba(255, 255, 255, 0.35);
             margin-top: 2px;
             font-weight: 400;
             letter-spacing: 0.3px;
         }
         .image-card-premium .image-sub-premium i {
-            color: rgba(255,255,255,0.1);
+            color: rgba(255, 255, 255, 0.1);
             margin: 0 4px;
         }
         @media (max-width: 600px) {
@@ -1874,7 +1980,7 @@
         }
         .rekomendasi-box ul {
             padding-left: 20px;
-            color: rgba(255,255,255,0.75);
+            color: rgba(255, 255, 255, 0.75);
             font-size: 0.92rem;
             line-height: 2;
             font-weight: 400;
@@ -1907,13 +2013,13 @@
             text-align: center;
             margin-top: 20px;
             padding-top: 14px;
-            border-top: 1px solid rgba(255,255,255,0.02);
+            border-top: 1px solid rgba(255, 255, 255, 0.02);
             font-size: 0.88rem;
-            color: rgba(255,255,255,0.25);
+            color: rgba(255, 255, 255, 0.25);
             font-weight: 400;
         }
         .footer-credit strong {
-            color: rgba(255,255,255,0.45);
+            color: rgba(255, 255, 255, 0.45);
             font-weight: 600;
         }
         .footer-credit .gold {
@@ -2134,7 +2240,7 @@
             margin: 10px 0;
             border-radius: 14px;
             overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.04);
+            border: 1px solid rgba(255, 255, 255, 0.04);
         }
         .accordion .accordion-header {
             background: rgba(20, 26, 46, 0.6);
@@ -2176,7 +2282,7 @@
         }
         .accordion .accordion-body p,
         .accordion .accordion-body ul {
-            color: rgba(255,255,255,0.75);
+            color: rgba(255, 255, 255, 0.75);
             font-size: 0.92rem;
             font-weight: 400;
         }
@@ -2193,7 +2299,7 @@
             backdrop-filter: blur(8px);
             border-radius: 16px;
             padding: 18px 20px;
-            border: 1px solid rgba(255,255,255,0.04);
+            border: 1px solid rgba(255, 255, 255, 0.04);
             margin: 12px 0;
         }
         .mini-quiz .quiz-question {
@@ -2208,9 +2314,9 @@
             gap: 8px;
         }
         .mini-quiz .quiz-options button {
-            background: rgba(255,255,255,0.02);
-            border: 2px solid rgba(255,255,255,0.04);
-            color: rgba(255,255,255,0.65);
+            background: rgba(255, 255, 255, 0.02);
+            border: 2px solid rgba(255, 255, 255, 0.04);
+            color: rgba(255, 255, 255, 0.65);
             padding: 8px 20px;
             border-radius: 30px;
             cursor: pointer;
@@ -2268,14 +2374,14 @@
             width: 32px;
             height: 32px;
             border-radius: 50%;
-            background: rgba(255,255,255,0.02);
-            border: 2px solid rgba(255,255,255,0.04);
+            background: rgba(255, 255, 255, 0.02);
+            border: 2px solid rgba(255, 255, 255, 0.04);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 0.8rem;
             font-weight: 700;
-            color: rgba(255,255,255,0.2);
+            color: rgba(255, 255, 255, 0.2);
             transition: all 0.4s ease;
         }
         .progress-tracker .step.done {
@@ -2293,7 +2399,7 @@
             flex: 1;
             min-width: 20px;
             height: 2px;
-            background: rgba(255,255,255,0.04);
+            background: rgba(255, 255, 255, 0.04);
         }
         .progress-tracker .line.done {
             background: #00cec9;
@@ -2334,7 +2440,7 @@
             transition: transform 0.3s ease;
             border-radius: 12px;
             max-width: 100%;
-            border: 1px solid rgba(255,255,255,0.04);
+            border: 1px solid rgba(255, 255, 255, 0.04);
         }
         .img-zoom:hover {
             transform: scale(1.02);
@@ -2374,7 +2480,7 @@
             overflow: hidden;
             transition: max-height 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), padding 0.4s ease;
             padding: 0 16px;
-            background: rgba(0,0,0,0.1);
+            background: rgba(0, 0, 0, 0.1);
             border-radius: 0 0 12px 12px;
         }
         .materi-detail .detail-body.open {
@@ -2384,7 +2490,7 @@
 
         /* === PENJELASAN DETAIL === */
         .detail-explanation {
-            background: rgba(0,0,0,0.15);
+            background: rgba(0, 0, 0, 0.15);
             border-radius: 12px;
             padding: 14px 18px;
             margin: 10px 0;
@@ -2398,7 +2504,7 @@
         .detail-explanation p {
             font-size: 0.95rem;
             font-weight: 400;
-            color: rgba(255,255,255,0.85);
+            color: rgba(255, 255, 255, 0.85);
             line-height: 1.8;
         }
         .detail-explanation strong {
@@ -2418,26 +2524,26 @@
         .section span:not(.badge):not(.num-badge):not(.tag-aktual):not(.local-badge) {
             font-size: 0.95rem;
             font-weight: 400;
-            color: rgba(255,255,255,0.8);
+            color: rgba(255, 255, 255, 0.8);
             line-height: 1.8;
         }
 
         .section strong {
             font-weight: 700;
-            color: rgba(255,255,255,0.92);
+            color: rgba(255, 255, 255, 0.92);
         }
 
         .section .card p,
         .section .card li {
             font-size: 0.95rem;
             font-weight: 400;
-            color: rgba(255,255,255,0.75);
+            color: rgba(255, 255, 255, 0.75);
             line-height: 1.8;
         }
 
         .section .card strong {
             font-weight: 700;
-            color: rgba(255,255,255,0.9);
+            color: rgba(255, 255, 255, 0.9);
         }
 
         .detail-body p,
@@ -2445,13 +2551,13 @@
         .detail-body span:not(.badge):not(.num-badge):not(.tag-aktual):not(.local-badge) {
             font-size: 0.95rem !important;
             font-weight: 400 !important;
-            color: rgba(255,255,255,0.8) !important;
+            color: rgba(255, 255, 255, 0.8) !important;
             line-height: 1.8 !important;
         }
 
         .detail-body strong {
             font-weight: 700 !important;
-            color: rgba(255,255,255,0.92) !important;
+            color: rgba(255, 255, 255, 0.92) !important;
         }
 
         .tooltip-box {
@@ -2464,27 +2570,27 @@
         .flow-box .sub {
             font-size: 0.8rem !important;
             font-weight: 500 !important;
-            color: rgba(255,255,255,0.4) !important;
+            color: rgba(255, 255, 255, 0.4) !important;
         }
 
         .dpl-card p {
             font-size: 0.85rem !important;
             font-weight: 400 !important;
-            color: rgba(255,255,255,0.55) !important;
+            color: rgba(255, 255, 255, 0.55) !important;
             line-height: 1.5 !important;
         }
 
         .tech-card p {
             font-size: 0.85rem !important;
             font-weight: 400 !important;
-            color: rgba(255,255,255,0.45) !important;
+            color: rgba(255, 255, 255, 0.45) !important;
             line-height: 1.5 !important;
         }
 
         .rubrik-table td {
             font-size: 0.88rem !important;
             font-weight: 400 !important;
-            color: rgba(255,255,255,0.85) !important;
+            color: rgba(255, 255, 255, 0.85) !important;
             line-height: 1.6 !important;
         }
 
@@ -2496,48 +2602,48 @@
         .refleksi-list li {
             font-size: 1rem !important;
             font-weight: 400 !important;
-            color: rgba(255,255,255,0.75) !important;
+            color: rgba(255, 255, 255, 0.75) !important;
             line-height: 1.8 !important;
         }
 
         .quote-block {
             font-size: 1.1rem !important;
             font-weight: 400 !important;
-            color: rgba(255,255,255,0.75) !important;
+            color: rgba(255, 255, 255, 0.75) !important;
             line-height: 1.8 !important;
         }
 
         .isu-card p {
             font-size: 0.92rem !important;
             font-weight: 400 !important;
-            color: rgba(255,255,255,0.75) !important;
+            color: rgba(255, 255, 255, 0.75) !important;
             line-height: 1.8 !important;
         }
 
         .assessment-question .q-options span {
             font-size: 0.9rem !important;
             font-weight: 400 !important;
-            color: rgba(255,255,255,0.65) !important;
+            color: rgba(255, 255, 255, 0.65) !important;
         }
 
         .ref-list li {
             font-size: 0.9rem !important;
             font-weight: 400 !important;
-            color: rgba(255,255,255,0.65) !important;
+            color: rgba(255, 255, 255, 0.65) !important;
             line-height: 1.6 !important;
         }
 
         .rekomendasi-box ul {
             font-size: 0.92rem !important;
             font-weight: 400 !important;
-            color: rgba(255,255,255,0.75) !important;
+            color: rgba(255, 255, 255, 0.75) !important;
             line-height: 2 !important;
         }
 
         .celebration-box p {
             font-size: 1.05rem !important;
             font-weight: 400 !important;
-            color: rgba(255,255,255,0.75) !important;
+            color: rgba(255, 255, 255, 0.75) !important;
             line-height: 1.8 !important;
         }
 
@@ -2570,7 +2676,7 @@
         }
         .soal-pg .opsi {
             padding-left: 20px;
-            color: rgba(255,255,255,0.65);
+            color: rgba(255, 255, 255, 0.65);
             font-size: 0.9rem;
             font-weight: 400;
             line-height: 2.2;
@@ -2630,7 +2736,7 @@
             margin-bottom: 4px;
         }
         .soal-essay .petunjuk {
-            color: rgba(255,255,255,0.3);
+            color: rgba(255, 255, 255, 0.3);
             font-size: 0.85rem;
             font-style: italic;
             font-weight: 400;
@@ -2655,7 +2761,7 @@
         }
         .contoh-box p {
             font-size: 0.92rem;
-            color: rgba(255,255,255,0.7);
+            color: rgba(255, 255, 255, 0.7);
             font-weight: 400;
             margin-top: 2px;
         }
@@ -2690,7 +2796,7 @@
             backdrop-filter: blur(8px);
             border-radius: 16px;
             padding: 16px 14px;
-            border: 1px solid rgba(255,255,255,0.03);
+            border: 1px solid rgba(255, 255, 255, 0.03);
             text-align: center;
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
@@ -2711,9 +2817,57 @@
         }
         .profesi-card p {
             font-size: 0.85rem;
-            color: rgba(255,255,255,0.45);
+            color: rgba(255, 255, 255, 0.45);
             line-height: 1.5;
             font-weight: 400;
+        }
+
+        /* ============================================================
+                   STUDI KASUS
+                   ============================================================ */
+        .studi-kasus {
+            background: rgba(20, 40, 30, 0.7);
+            backdrop-filter: blur(8px);
+            border-radius: 16px;
+            padding: 18px 20px;
+            border-left: 6px solid #fdcb6e;
+            margin: 12px 0;
+        }
+        .studi-kasus h4 {
+            color: #fdcb6e;
+            font-size: 1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .studi-kasus p {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.75);
+            font-weight: 400;
+            line-height: 1.8;
+        }
+        .studi-kasus ul {
+            padding-left: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.92rem;
+            font-weight: 400;
+            line-height: 2;
+        }
+        .studi-kasus ul li strong {
+            color: #a29bfe;
+            font-weight: 700;
+        }
+        .studi-kasus .tag-lokal {
+            display: inline-block;
+            background: rgba(253, 203, 110, 0.06);
+            color: #fdcb6e;
+            font-size: 0.6rem;
+            font-weight: 700;
+            padding: 2px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(253, 203, 110, 0.06);
+            margin-left: 6px;
         }
     </style>
 </head>
@@ -2855,7 +3009,7 @@
         </section>
 
         <!-- ============================================================
-        SECTION 2 : CP & ATP
+        SECTION 2 : CP & ATP (dirapikan dengan fitur modern)
         ============================================================ -->
         <section id="section2" class="section">
             <div style="background:rgba(108,92,231,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(108,92,231,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
@@ -2933,7 +3087,7 @@
         </section>
 
         <!-- ============================================================
-        SECTION 3 : PERTEMUAN 1 – DENGAN GAMBAR PREMIUM
+        SECTION 3 : PERTEMUAN 1 – MATERI LENGKAP
         ============================================================ -->
         <section id="section3" class="section">
             <div style="background:rgba(108,92,231,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(108,92,231,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
@@ -2980,7 +3134,6 @@
                     </span>
                 </div>
                 <div class="grid-3">
-                    <!-- Gambar 1: Bumi -->
                     <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/bumi23.png', '🌍 Bumi dari Luar Angkasa – Planet kita yang indah dengan atmosfer yang melindungi kehidupan.')" data-index="0">
                         <div class="img-wrap">
                             <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/bumi23.png" alt="Bumi" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🌍 Bumi%3C/text%3E%3C/svg%3E'" />
@@ -2991,8 +3144,6 @@
                         <div class="image-label-premium"><span class="emoji-big">🌍</span> Bumi dari Luar Angkasa</div>
                         <div class="image-sub-premium"><i class="fas fa-arrow-right"></i> Planet dengan atmosfer pelindung</div>
                     </div>
-
-                    <!-- Gambar 2: Lapisan Geosfer -->
                     <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/lapisangeosfer.png', '🌋 Lapisan Geosfer Bumi – Litosfer, atmosfer, hidrosfer, biosfer, dan antroposfer.')" data-index="1">
                         <div class="img-wrap">
                             <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/lapisangeosfer.png" alt="Lapisan Geosfer" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🌋 Lapisan Bumi%3C/text%3E%3C/svg%3E'" />
@@ -3003,8 +3154,6 @@
                         <div class="image-label-premium"><span class="emoji-big">🌋</span> Lapisan Geosfer Bumi</div>
                         <div class="image-sub-premium"><i class="fas fa-arrow-right"></i> 5 lapisan penyusun bumi</div>
                     </div>
-
-                    <!-- Gambar 3: Sungai Katingan -->
                     <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/sungaikatingan.png', '🏞️ Sungai Katingan – Contoh hidrosfer di Kalimantan Tengah yang menjadi urat nadi kehidupan masyarakat.')" data-index="2">
                         <div class="img-wrap">
                             <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/sungaikatingan.png" alt="Sungai Katingan" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🏞️ Sungai Katingan%3C/text%3E%3C/svg%3E'" />
@@ -3018,7 +3167,7 @@
                 </div>
             </div>
 
-            <!-- ===== MATERI SINGKAT PERTEMUAN 1 ===== -->
+            <!-- ===== MATERI LENGKAP PERTEMUAN 1 ===== -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
                     <h4><i class="fas fa-book-open" style="color:#6c5ce7;"></i> A. Pengertian Geografi <span class="local-badge"><i class="fas fa-map-pin"></i> Asal Kata</span></h4>
@@ -3037,6 +3186,14 @@
                             <i class="fas fa-lightbulb" style="color:#fdcb6e;"></i> <strong style="color:rgba(255,255,255,0.7); font-weight:600;">Bayangkan:</strong> Seperti pelukis yang menggambar pemandangan, ahli geografi "melukis" gambaran tentang bumi.
                         </p>
                     </div>
+                    <div style="margin-top:12px;">
+                        <h5 style="color:#a29bfe; font-weight:700; font-size:0.95rem;"><i class="fas fa-user-graduate"></i> Definisi Menurut Para Ahli</h5>
+                        <ul style="color:rgba(255,255,255,0.7); font-weight:400; padding-left:20px; line-height:2.2; font-size:0.92rem;">
+                            <li><strong style="color:#f0f4fa;">Eratosthenes</strong> (Bapak Geografi): Geografi adalah ilmu yang menggambarkan permukaan bumi.</li>
+                            <li><strong style="color:#f0f4fa;">Bintarto</strong>: Geografi adalah ilmu yang mempelajari hubungan kausal antara fenomena geosfer dan kehidupan manusia.</li>
+                            <li><strong style="color:#f0f4fa;">Sumaatmadja</strong>: Geografi adalah ilmu yang mempelajari persamaan dan perbedaan fenomena geosfer dengan sudut pandang kelingkungan dan kewilayahan.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
@@ -3050,9 +3207,19 @@
                         <span class="emoji-big">🧠</span>
                         <p>Geografi memiliki dua sudut pandang utama: <span class="highlight">kelingkungan</span> (hubungan makhluk hidup dengan lingkungan) dan <span class="highlight">kewilayahan</span> (karakteristik unik suatu wilayah).</p>
                     </div>
-                    <div style="background:rgba(0,206,201,0.03); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #00cec9;">
+                    <div style="display:grid; gap:10px; margin-top:8px;">
+                        <div style="background:rgba(108,92,231,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #6c5ce7;">
+                            <h4 style="color:#a29bfe; font-size:0.95rem; font-weight:700;">🌿 Hakikat Kelingkungan</h4>
+                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Mempelajari hubungan timbal balik antara manusia dan lingkungan. Contoh: Masyarakat Katingan memanfaatkan sungai untuk transportasi dan ekonomi.</p>
+                        </div>
+                        <div style="background:rgba(0,206,201,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #00cec9;">
+                            <h4 style="color:#00cec9; font-size:0.95rem; font-weight:700;">🗺️ Hakikat Kewilayahan</h4>
+                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Mempelajari karakteristik khas suatu wilayah. Contoh: Katingan memiliki lahan gambut, sungai besar, dan hutan hujan tropis yang membedakannya dari daerah lain.</p>
+                        </div>
+                    </div>
+                    <div style="background:rgba(253,203,110,0.03); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #fdcb6e;">
                         <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">
-                            <i class="fas fa-tree" style="color:#00cec9;"></i> <strong style="color:rgba(255,255,255,0.7); font-weight:600;">Contoh Katingan:</strong> Wilayah Katingan memiliki lahan gambut luas, sungai besar, dan hutan hujan tropis.
+                            <i class="fas fa-tree" style="color:#fdcb6e;"></i> <strong style="color:rgba(255,255,255,0.7); font-weight:600;">Contoh Katingan:</strong> Wilayah Katingan memiliki lahan gambut luas, sungai besar, dan hutan hujan tropis yang menjadi ciri khas wilayahnya.
                         </p>
                     </div>
                 </div>
@@ -3069,26 +3236,55 @@
                         <p>Bumi terdiri dari <span class="highlight">5 lapisan</span> yang disebut geosfer: Litosfer (batuan), Atmosfer (udara), Hidrosfer (air), Biosfer (kehidupan), dan Antroposfer (manusia).</p>
                     </div>
                     <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px;">
-                        <div style="background:rgba(108,92,231,0.04); border-radius:10px; padding:10px 14px; border-left:3px solid #6c5ce7;">
+                        <div style="background:rgba(108,92,231,0.04); border-radius:10px; padding:12px 14px; border-left:3px solid #6c5ce7;">
                             <h4 style="color:#a29bfe; font-size:0.9rem; font-weight:700;">🌋 Litosfer</h4>
-                            <p style="font-size:0.85rem; color:rgba(255,255,255,0.6); font-weight:400;">Lapisan batuan dan tanah. Contoh: Tanah gambut Katingan.</p>
+                            <p style="font-size:0.85rem; color:rgba(255,255,255,0.6); font-weight:400;">Lapisan batuan dan tanah. Contoh: Tanah gambut Katingan yang tebal 3-8 meter.</p>
                         </div>
-                        <div style="background:rgba(0,206,201,0.04); border-radius:10px; padding:10px 14px; border-left:3px solid #00cec9;">
+                        <div style="background:rgba(0,206,201,0.04); border-radius:10px; padding:12px 14px; border-left:3px solid #00cec9;">
                             <h4 style="color:#00cec9; font-size:0.9rem; font-weight:700;">☁️ Atmosfer</h4>
-                            <p style="font-size:0.85rem; color:rgba(255,255,255,0.6); font-weight:400;">Lapisan udara. Contoh: Iklim tropis Katingan.</p>
+                            <p style="font-size:0.85rem; color:rgba(255,255,255,0.6); font-weight:400;">Lapisan udara. Contoh: Iklim tropis Katingan dengan curah hujan tinggi.</p>
                         </div>
-                        <div style="background:rgba(253,121,168,0.04); border-radius:10px; padding:10px 14px; border-left:3px solid #fd79a8;">
+                        <div style="background:rgba(253,121,168,0.04); border-radius:10px; padding:12px 14px; border-left:3px solid #fd79a8;">
                             <h4 style="color:#fd79a8; font-size:0.9rem; font-weight:700;">💧 Hidrosfer</h4>
-                            <p style="font-size:0.85rem; color:rgba(255,255,255,0.6); font-weight:400;">Lapisan air. Contoh: Sungai Katingan.</p>
+                            <p style="font-size:0.85rem; color:rgba(255,255,255,0.6); font-weight:400;">Lapisan air. Contoh: Sungai Katingan yang mengalir sepanjang tahun.</p>
                         </div>
-                        <div style="background:rgba(253,203,110,0.04); border-radius:10px; padding:10px 14px; border-left:3px solid #fdcb6e;">
+                        <div style="background:rgba(253,203,110,0.04); border-radius:10px; padding:12px 14px; border-left:3px solid #fdcb6e;">
                             <h4 style="color:#fdcb6e; font-size:0.9rem; font-weight:700;">🌿 Biosfer</h4>
-                            <p style="font-size:0.85rem; color:rgba(255,255,255,0.6); font-weight:400;">Lapisan kehidupan. Contoh: Orangutan Kalimantan.</p>
+                            <p style="font-size:0.85rem; color:rgba(255,255,255,0.6); font-weight:400;">Lapisan kehidupan. Contoh: Orangutan Kalimantan dan flora hutan tropis.</p>
                         </div>
                     </div>
-                    <div style="background:rgba(108,92,231,0.04); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #6c5ce7;">
+                    <div style="background:rgba(108,92,231,0.04); border-radius:10px; padding:12px 14px; margin-top:8px; border-left:3px solid #6c5ce7;">
                         <h4 style="color:#a29bfe; font-size:0.9rem; font-weight:700;">👥 Antroposfer</h4>
-                        <p style="font-size:0.85rem; color:rgba(255,255,255,0.6); font-weight:400;">Lapisan manusia. Contoh: Masyarakat Dayak Ngaju.</p>
+                        <p style="font-size:0.85rem; color:rgba(255,255,255,0.6); font-weight:400;">Lapisan manusia. Contoh: Masyarakat Dayak Ngaju yang tinggal di sepanjang Sungai Katingan.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="materi-detail reveal">
+                <div class="detail-header" onclick="toggleDetail(this)">
+                    <h4><i class="fas fa-arrows-alt-h" style="color:#0984e3;"></i> D. Ruang Lingkup Geografi</h4>
+                    <i class="fas fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;"></i>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-explanation">
+                        <span class="emoji-big">📚</span>
+                        <p>Geografi terbagi menjadi dua ruang lingkup utama: <span class="highlight">Geografi Fisik</span> dan <span class="highlight">Geografi Sosial</span>.</p>
+                    </div>
+                    <div style="display:grid; gap:10px; margin-top:8px;">
+                        <div style="background:rgba(0,206,201,0.03); border-radius:10px; padding:12px 16px; border-left:4px solid #00cec9;">
+                            <h4 style="color:#00cec9; font-size:0.95rem; font-weight:700;">🏔️ Geografi Fisik</h4>
+                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Mempelajari fenomena alam: litosfer, atmosfer, hidrosfer, biosfer. Contoh: Bentuk lahan, iklim, sungai, flora-fauna.</p>
+                            <div style="margin-top:4px; background:rgba(0,0,0,0.1); border-radius:6px; padding:6px 10px;">
+                                <span style="font-size:0.8rem; color:rgba(255,255,255,0.4); font-weight:400;"><i class="fas fa-map-pin" style="color:#00cec9;"></i> Lokal: Lahan gambut Katingan, Sungai Katingan, iklim tropis.</span>
+                            </div>
+                        </div>
+                        <div style="background:rgba(253,121,168,0.03); border-radius:10px; padding:12px 16px; border-left:4px solid #fd79a8;">
+                            <h4 style="color:#fd79a8; font-size:0.95rem; font-weight:700;">👥 Geografi Sosial</h4>
+                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Mempelajari aktivitas manusia: antroposfer, sosial, budaya, ekonomi, politik. Contoh: Persebaran penduduk, budaya, mata pencaharian.</p>
+                            <div style="margin-top:4px; background:rgba(0,0,0,0.1); border-radius:6px; padding:6px 10px;">
+                                <span style="font-size:0.8rem; color:rgba(255,255,255,0.4); font-weight:400;"><i class="fas fa-map-pin" style="color:#fd79a8;"></i> Lokal: Masyarakat Dayak Ngaju, penambang emas, petani gambut.</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -3115,7 +3311,7 @@
         </section>
 
         <!-- ============================================================
-        SECTION 4 : PERTEMUAN 2 – DENGAN GAMBAR PREMIUM
+        SECTION 4 : PERTEMUAN 2 – MATERI LENGKAP
         ============================================================ -->
         <section id="section4" class="section">
             <div style="background:rgba(108,92,231,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(108,92,231,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
@@ -3162,7 +3358,6 @@
                     </span>
                 </div>
                 <div class="grid-3">
-                    <!-- Gambar 1: Tambang Tradisional -->
                     <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/TAMBANGTRADISIONAL.png', '⛏️ Penambangan Emas Tradisional – Contoh interelasi manusia dan lingkungan di Katingan.')" data-index="3">
                         <div class="img-wrap">
                             <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/TAMBANGTRADISIONAL.png" alt="Tambang Emas" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E⛏️ Tambang Emas%3C/text%3E%3C/svg%3E'" />
@@ -3173,8 +3368,6 @@
                         <div class="image-label-premium"><span class="emoji-big">⛏️</span> Tambang Emas Tradisional</div>
                         <div class="image-sub-premium"><i class="fas fa-arrow-right"></i> Interelasi manusia & lingkungan</div>
                     </div>
-
-                    <!-- Gambar 2: Budaya Dayak -->
                     <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/BUDAYA1.png', '🎭 Budaya Dayak Ngaju – Aspek sosial budaya dalam geografi di Katingan.')" data-index="4">
                         <div class="img-wrap">
                             <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/BUDAYA1.png" alt="Budaya Dayak" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🎭 Budaya Dayak%3C/text%3E%3C/svg%3E'" />
@@ -3185,8 +3378,6 @@
                         <div class="image-label-premium"><span class="emoji-big">🎭</span> Budaya Dayak Ngaju</div>
                         <div class="image-sub-premium"><i class="fas fa-arrow-right"></i> Aspek sosial budaya</div>
                     </div>
-
-                    <!-- Gambar 3: Lahan Gambut -->
                     <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/lahangambut.png', '🌿 Lahan Gambut Katingan – Contoh aspek fisik geografi dengan ketebalan 3-8 meter.')" data-index="5">
                         <div class="img-wrap">
                             <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/lahangambut.png" alt="Lahan Gambut" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🌿 Lahan Gambut%3C/text%3E%3C/svg%3E'" />
@@ -3200,7 +3391,7 @@
                 </div>
             </div>
 
-            <!-- ===== MATERI PERTEMUAN 2 (diringkas) ===== -->
+            <!-- ===== MATERI LENGKAP PERTEMUAN 2 ===== -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
                     <h4><i class="fas fa-search" style="color:#6c5ce7;"></i> A. Objek Studi Geografi <span class="local-badge"><i class="fas fa-map-pin"></i> Katingan</span></h4>
@@ -3213,23 +3404,30 @@
                     </div>
                     <div class="grid-2">
                         <div style="background:rgba(108,92,231,0.04); border-radius:12px; padding:14px; border-left:4px solid #6c5ce7;">
-                            <h4 style="color:#a29bfe; font-size:0.95rem; font-weight:700;">Objek Material</h4>
-                            <ul style="font-size:0.88rem; padding-left:16px; color:rgba(255,255,255,0.5);">
-                                <li>Litosfer: Tanah gambut Katingan</li>
-                                <li>Atmosfer: Iklim tropis</li>
-                                <li>Hidrosfer: Sungai Katingan</li>
-                                <li>Biosfer: Orangutan</li>
-                                <li>Antroposfer: Penambang emas</li>
+                            <h4 style="color:#a29bfe; font-size:0.95rem; font-weight:700;">🌍 Objek Material</h4>
+                            <p style="font-size:0.88rem; color:rgba(255,255,255,0.6); font-weight:400;">Seluruh fenomena geosfer yang dipelajari:</p>
+                            <ul style="font-size:0.88rem; padding-left:16px; color:rgba(255,255,255,0.5); line-height:2;">
+                                <li><strong style="color:#f0f4fa; font-weight:700;">Litosfer:</strong> Tanah gambut Katingan</li>
+                                <li><strong style="color:#f0f4fa; font-weight:700;">Atmosfer:</strong> Iklim tropis Katingan</li>
+                                <li><strong style="color:#f0f4fa; font-weight:700;">Hidrosfer:</strong> Sungai Katingan</li>
+                                <li><strong style="color:#f0f4fa; font-weight:700;">Biosfer:</strong> Orangutan Kalimantan</li>
+                                <li><strong style="color:#f0f4fa; font-weight:700;">Antroposfer:</strong> Masyarakat Dayak Ngaju</li>
                             </ul>
                         </div>
                         <div style="background:rgba(0,206,201,0.04); border-radius:12px; padding:14px; border-left:4px solid #00cec9;">
-                            <h4 style="color:#00cec9; font-size:0.95rem; font-weight:700;">Objek Formal</h4>
-                            <ul style="font-size:0.88rem; padding-left:16px; color:rgba(255,255,255,0.5);">
-                                <li>Keruangan: Pola persebaran tambang</li>
-                                <li>Kelingkungan: Interaksi penambang dengan sungai</li>
-                                <li>Kompleks Wilayah: Karakteristik Katingan</li>
+                            <h4 style="color:#00cec9; font-size:0.95rem; font-weight:700;">🔬 Objek Formal</h4>
+                            <p style="font-size:0.88rem; color:rgba(255,255,255,0.6); font-weight:400;">Cara pandang/mendekati objek material:</p>
+                            <ul style="font-size:0.88rem; padding-left:16px; color:rgba(255,255,255,0.5); line-height:2;">
+                                <li><strong style="color:#f0f4fa; font-weight:700;">Keruangan:</strong> Pola persebaran tambang emas</li>
+                                <li><strong style="color:#f0f4fa; font-weight:700;">Kelingkungan:</strong> Interaksi penambang dengan sungai</li>
+                                <li><strong style="color:#f0f4fa; font-weight:700;">Kompleks Wilayah:</strong> Karakteristik unik Katingan</li>
                             </ul>
                         </div>
+                    </div>
+                    <div style="background:rgba(253,203,110,0.03); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #fdcb6e;">
+                        <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">
+                            <i class="fas fa-lightbulb" style="color:#fdcb6e;"></i> <strong style="color:rgba(255,255,255,0.7); font-weight:600;">Ingat:</strong> Objek material adalah <em>apa</em> yang dipelajari, objek formal adalah <em>bagaimana</em> cara mempelajarinya.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -3240,22 +3438,115 @@
                     <i class="fas fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;"></i>
                 </div>
                 <div class="detail-body">
+                    <div class="detail-explanation">
+                        <span class="emoji-big">⚖️</span>
+                        <p>Prinsip geografi adalah <span class="highlight">landasan</span> untuk menganalisis fenomena geosfer. Ada 4 prinsip utama.</p>
+                    </div>
                     <div style="display:grid; gap:10px;">
-                        <div style="background:rgba(0,0,0,0.1); border-radius:10px; padding:10px 14px; border-left:4px solid #6c5ce7;">
-                            <h4 style="color:#a29bfe; font-size:0.9rem; font-weight:700;">1. Distribusi</h4>
-                            <p style="font-size:0.9rem; color:rgba(255,255,255,0.6);">Fenomena tersebar tidak merata. Contoh: Tambang emas di sepanjang Sungai Katingan.</p>
+                        <div style="background:rgba(108,92,231,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #6c5ce7;">
+                            <h4 style="color:#a29bfe; font-size:0.9rem; font-weight:700;">1. Distribusi (Penyebaran)</h4>
+                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Fenomena geosfer tersebar tidak merata di permukaan bumi.</p>
+                            <div style="margin-top:4px; background:rgba(0,0,0,0.1); border-radius:6px; padding:6px 10px;">
+                                <span style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400;"><i class="fas fa-map-pin" style="color:#6c5ce7;"></i> Contoh: Tambang emas tersebar di sepanjang aliran Sungai Katingan.</span>
+                            </div>
                         </div>
-                        <div style="background:rgba(0,0,0,0.1); border-radius:10px; padding:10px 14px; border-left:4px solid #00cec9;">
-                            <h4 style="color:#00cec9; font-size:0.9rem; font-weight:700;">2. Interelasi</h4>
-                            <p style="font-size:0.9rem; color:rgba(255,255,255,0.6);">Fenomena saling memengaruhi. Contoh: Tambang emas → mencemari sungai → ikan mati.</p>
+                        <div style="background:rgba(0,206,201,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #00cec9;">
+                            <h4 style="color:#00cec9; font-size:0.9rem; font-weight:700;">2. Interelasi (Saling Hubung)</h4>
+                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Fenomena satu saling memengaruhi fenomena lainnya.</p>
+                            <div style="margin-top:4px; background:rgba(0,0,0,0.1); border-radius:6px; padding:6px 10px;">
+                                <span style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400;"><i class="fas fa-map-pin" style="color:#00cec9;"></i> Contoh: Tambang emas → mencemari sungai → ikan mati → nelayan kehilangan pendapatan.</span>
+                            </div>
                         </div>
-                        <div style="background:rgba(0,0,0,0.1); border-radius:10px; padding:10px 14px; border-left:4px solid #fd79a8;">
-                            <h4 style="color:#fd79a8; font-size:0.9rem; font-weight:700;">3. Deskripsi</h4>
-                            <p style="font-size:0.9rem; color:rgba(255,255,255,0.6);">Fenomena digambarkan secara detail. Contoh: Lahan gambut Katingan tebal 3-8 m.</p>
+                        <div style="background:rgba(253,121,168,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #fd79a8;">
+                            <h4 style="color:#fd79a8; font-size:0.9rem; font-weight:700;">3. Deskripsi (Penggambaran)</h4>
+                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Fenomena digambarkan secara detail dan faktual.</p>
+                            <div style="margin-top:4px; background:rgba(0,0,0,0.1); border-radius:6px; padding:6px 10px;">
+                                <span style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400;"><i class="fas fa-map-pin" style="color:#fd79a8;"></i> Contoh: Lahan gambut Katingan memiliki ketebalan 3-8 meter dengan vegetasi khas.</span>
+                            </div>
                         </div>
-                        <div style="background:rgba(0,0,0,0.1); border-radius:10px; padding:10px 14px; border-left:4px solid #fdcb6e;">
-                            <h4 style="color:#fdcb6e; font-size:0.9rem; font-weight:700;">4. Korologi</h4>
-                            <p style="font-size:0.9rem; color:rgba(255,255,255,0.6);">Gabungan distribusi, interelasi, deskripsi dalam satu wilayah. Contoh: Analisis Katingan.</p>
+                        <div style="background:rgba(253,203,110,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #fdcb6e;">
+                            <h4 style="color:#fdcb6e; font-size:0.9rem; font-weight:700;">4. Korologi (Gabungan)</h4>
+                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Gabungan distribusi + interelasi + deskripsi dalam satu wilayah.</p>
+                            <div style="margin-top:4px; background:rgba(0,0,0,0.1); border-radius:6px; padding:6px 10px;">
+                                <span style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400;"><i class="fas fa-map-pin" style="color:#fdcb6e;"></i> Contoh: Analisis komprehensif Katingan sebagai wilayah gambut dengan segala karakteristiknya.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="materi-detail reveal">
+                <div class="detail-header" onclick="toggleDetail(this)">
+                    <h4><i class="fas fa-cubes" style="color:#0984e3;"></i> C. Aspek Geografi</h4>
+                    <i class="fas fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;"></i>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-explanation">
+                        <span class="emoji-big">🧩</span>
+                        <p>Aspek geografi adalah <span class="highlight">sudut pandang</span> untuk melihat fenomena: Aspek Fisik dan Aspek Nonfisik.</p>
+                    </div>
+                    <div class="grid-2">
+                        <div style="background:rgba(0,206,201,0.03); border-radius:12px; padding:14px; border-left:4px solid #00cec9;">
+                            <h4 style="color:#00cec9; font-size:0.95rem; font-weight:700;">🏔️ Aspek Fisik</h4>
+                            <ul style="font-size:0.88rem; padding-left:16px; color:rgba(255,255,255,0.6); line-height:2.2;">
+                                <li>Topografi (bentuk lahan)</li>
+                                <li>Iklim dan cuaca</li>
+                                <li>Hidrologi (air)</li>
+                                <li>Tanah dan batuan</li>
+                                <li>Flora dan fauna</li>
+                            </ul>
+                            <div style="margin-top:4px; background:rgba(0,0,0,0.1); border-radius:6px; padding:6px 10px;">
+                                <span style="font-size:0.8rem; color:rgba(255,255,255,0.4); font-weight:400;"><i class="fas fa-map-pin" style="color:#00cec9;"></i> Lokal: Lahan gambut, Sungai Katingan, iklim tropis.</span>
+                            </div>
+                        </div>
+                        <div style="background:rgba(253,121,168,0.03); border-radius:12px; padding:14px; border-left:4px solid #fd79a8;">
+                            <h4 style="color:#fd79a8; font-size:0.95rem; font-weight:700;">👥 Aspek Nonfisik</h4>
+                            <ul style="font-size:0.88rem; padding-left:16px; color:rgba(255,255,255,0.6); line-height:2.2;">
+                                <li>Kependudukan</li>
+                                <li>Budaya dan sosial</li>
+                                <li>Ekonomi dan politik</li>
+                                <li>Pendidikan dan kesehatan</li>
+                                <li>Kelembagaan</li>
+                            </ul>
+                            <div style="margin-top:4px; background:rgba(0,0,0,0.1); border-radius:6px; padding:6px 10px;">
+                                <span style="font-size:0.8rem; color:rgba(255,255,255,0.4); font-weight:400;"><i class="fas fa-map-pin" style="color:#fd79a8;"></i> Lokal: Masyarakat Dayak Ngaju, penambang emas, budaya rumah betang.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="materi-detail reveal">
+                <div class="detail-header" onclick="toggleDetail(this)">
+                    <h4><i class="fas fa-route" style="color:#6c5ce7;"></i> D. Pendekatan Geografi</h4>
+                    <i class="fas fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;"></i>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-explanation">
+                        <span class="emoji-big">🗺️</span>
+                        <p>Pendekatan geografi adalah <span class="highlight">cara menganalisis</span> fenomena geosfer. Ada 3 pendekatan utama.</p>
+                    </div>
+                    <div style="display:grid; gap:10px;">
+                        <div style="background:rgba(108,92,231,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #6c5ce7;">
+                            <h4 style="color:#a29bfe; font-size:0.9rem; font-weight:700;">📍 Pendekatan Keruangan</h4>
+                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Menganalisis persebaran dan pola fenomena dalam ruang.</p>
+                            <div style="margin-top:4px; background:rgba(0,0,0,0.1); border-radius:6px; padding:6px 10px;">
+                                <span style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400;"><i class="fas fa-map-pin" style="color:#6c5ce7;"></i> Contoh: Pemetaan persebaran tambang emas di Katingan.</span>
+                            </div>
+                        </div>
+                        <div style="background:rgba(0,206,201,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #00cec9;">
+                            <h4 style="color:#00cec9; font-size:0.9rem; font-weight:700;">🌿 Pendekatan Kelingkungan</h4>
+                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Menganalisis interaksi manusia dengan lingkungan.</p>
+                            <div style="margin-top:4px; background:rgba(0,0,0,0.1); border-radius:6px; padding:6px 10px;">
+                                <span style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400;"><i class="fas fa-map-pin" style="color:#00cec9;"></i> Contoh: Dampak penambangan emas terhadap ekosistem sungai.</span>
+                            </div>
+                        </div>
+                        <div style="background:rgba(253,121,168,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #fd79a8;">
+                            <h4 style="color:#fd79a8; font-size:0.9rem; font-weight:700;">🏛️ Pendekatan Kompleks Wilayah</h4>
+                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Menganalisis karakteristik unik suatu wilayah secara terpadu.</p>
+                            <div style="margin-top:4px; background:rgba(0,0,0,0.1); border-radius:6px; padding:6px 10px;">
+                                <span style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400;"><i class="fas fa-map-pin" style="color:#fd79a8;"></i> Contoh: Analisis komprehensif Katingan sebagai wilayah gambut.</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -3283,7 +3574,7 @@
         </section>
 
         <!-- ============================================================
-        SECTION 5 : PERTEMUAN 3 – DENGAN GAMBAR PREMIUM (sudah ada)
+        SECTION 5 : PERTEMUAN 3 – MATERI LENGKAP
         ============================================================ -->
         <section id="section5" class="section">
             <div style="background:rgba(108,92,231,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(108,92,231,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
@@ -3330,7 +3621,6 @@
                     </span>
                 </div>
                 <div class="grid-3">
-                    <!-- Gambar 1: Pembangunan Berkelanjutan -->
                     <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/hidupberkelanjutan.png', '🌱 Pembangunan Berkelanjutan – Geografi membantu merancang tata ruang yang ramah lingkungan.')" data-index="6">
                         <div class="img-wrap">
                             <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/hidupberkelanjutan.png" alt="Pembangunan Berkelanjutan" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🌱 Berkelanjutan%3C/text%3E%3C/svg%3E'" />
@@ -3341,8 +3631,6 @@
                         <div class="image-label-premium"><span class="emoji-big">🌱</span> Pembangunan Berkelanjutan</div>
                         <div class="image-sub-premium"><i class="fas fa-arrow-right"></i> Perencanaan tata ruang ramah lingkungan</div>
                     </div>
-
-                    <!-- Gambar 2: Mitigasi Banjir -->
                     <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/mitigasibanjir.png', '🌊 Mitigasi Bencana Banjir – Geografi mengidentifikasi daerah rawan dan merancang sistem peringatan dini.')" data-index="7">
                         <div class="img-wrap">
                             <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/mitigasibanjir.png" alt="Mitigasi Banjir" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🌊 Mitigasi Banjir%3C/text%3E%3C/svg%3E'" />
@@ -3353,8 +3641,6 @@
                         <div class="image-label-premium"><span class="emoji-big">🌊</span> Mitigasi Bencana Banjir</div>
                         <div class="image-sub-premium"><i class="fas fa-arrow-right"></i> Sistem peringatan dini & infrastruktur</div>
                     </div>
-
-                    <!-- Gambar 3: Ekowisata -->
                     <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/tnsebngau.png', '🦧 Ekowisata Katingan – Potensi wisata alam yang dapat dikembangkan secara berkelanjutan.')" data-index="8">
                         <div class="img-wrap">
                             <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/tnsebngau.png" alt="Ekowisata" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🦧 Ekowisata%3C/text%3E%3C/svg%3E'" />
@@ -3368,7 +3654,38 @@
                 </div>
             </div>
 
-            <!-- ===== MATERI PERTEMUAN 3 (ringkasan) ===== -->
+            <!-- ===== MATERI LENGKAP PERTEMUAN 3 ===== -->
+            <div class="materi-detail reveal">
+                <div class="detail-header" onclick="toggleDetail(this)">
+                    <h4><i class="fas fa-tools" style="color:#6c5ce7;"></i> A. Keterampilan Dasar Geografi</h4>
+                    <i class="fas fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;"></i>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-explanation">
+                        <span class="emoji-big">🛠️</span>
+                        <p>Geografi membutuhkan <span class="highlight">keterampilan dasar</span> untuk memahami fenomena geosfer.</p>
+                    </div>
+                    <div style="display:grid; gap:10px;">
+                        <div style="background:rgba(108,92,231,0.03); border-radius:10px; padding:12px 16px; border-left:4px solid #6c5ce7;">
+                            <h4 style="color:#a29bfe; font-size:0.9rem; font-weight:700;">🔍 Observasi Lapangan</h4>
+                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Mengamati langsung fenomena geosfer di lingkungan sekitar.</p>
+                        </div>
+                        <div style="background:rgba(0,206,201,0.03); border-radius:10px; padding:12px 16px; border-left:4px solid #00cec9;">
+                            <h4 style="color:#00cec9; font-size:0.9rem; font-weight:700;">📊 Interpretasi Data</h4>
+                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Membaca dan menganalisis data peta, tabel, grafik, dan citra.</p>
+                        </div>
+                        <div style="background:rgba(253,121,168,0.03); border-radius:10px; padding:12px 16px; border-left:4px solid #fd79a8;">
+                            <h4 style="color:#fd79a8; font-size:0.9rem; font-weight:700;">🗺️ Pemetaan</h4>
+                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Membuat dan membaca peta untuk menggambarkan fenomena.</p>
+                        </div>
+                        <div style="background:rgba(253,203,110,0.03); border-radius:10px; padding:12px 16px; border-left:4px solid #fdcb6e;">
+                            <h4 style="color:#fdcb6e; font-size:0.9rem; font-weight:700;">📝 Pelaporan</h4>
+                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Menyajikan hasil analisis secara lisan dan tertulis.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
                     <h4><i class="fas fa-hand-holding-heart" style="color:#fd79a8;"></i> B. Manfaat Geografi</h4>
@@ -3381,17 +3698,74 @@
                     </div>
                     <div style="display:grid; gap:10px;">
                         <div style="background:rgba(108,92,231,0.03); border-radius:12px; padding:12px 16px; border-left:4px solid #6c5ce7;">
-                            <h4 style="color:#a29bfe; font-size:0.95rem; font-weight:700;">Perencanaan Wilayah</h4>
-                            <p style="font-size:0.95rem; color:rgba(255,255,255,0.75);">Peta lahan gambut untuk zona budidaya dan lindung.</p>
+                            <h4 style="color:#a29bfe; font-size:0.9rem; font-weight:700;">🏙️ Perencanaan Wilayah</h4>
+                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Geografi membantu merancang tata ruang yang sesuai dengan karakteristik wilayah. Contoh: Peta lahan gambut untuk zona budidaya dan lindung di Katingan.</p>
                         </div>
                         <div style="background:rgba(0,206,201,0.03); border-radius:12px; padding:12px 16px; border-left:4px solid #00cec9;">
-                            <h4 style="color:#00cec9; font-size:0.95rem; font-weight:700;">Mitigasi Bencana</h4>
-                            <p style="font-size:0.95rem; color:rgba(255,255,255,0.75);">Analisis DAS Katingan untuk prediksi banjir.</p>
+                            <h4 style="color:#00cec9; font-size:0.9rem; font-weight:700;">🌊 Mitigasi Bencana</h4>
+                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Geografi mengidentifikasi daerah rawan bencana dan merancang sistem peringatan dini. Contoh: Analisis DAS Katingan untuk prediksi banjir.</p>
                         </div>
                         <div style="background:rgba(253,121,168,0.03); border-radius:12px; padding:12px 16px; border-left:4px solid #fd79a8;">
-                            <h4 style="color:#fd79a8; font-size:0.95rem; font-weight:700;">Pengelolaan SDA</h4>
-                            <p style="font-size:0.95rem; color:rgba(255,255,255,0.75);">Peta geologi untuk eksplorasi mineral ramah lingkungan.</p>
+                            <h4 style="color:#fd79a8; font-size:0.9rem; font-weight:700;">🌿 Pengelolaan SDA</h4>
+                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Geografi membantu pengelolaan sumber daya alam secara berkelanjutan. Contoh: Peta geologi untuk eksplorasi mineral ramah lingkungan.</p>
                         </div>
+                        <div style="background:rgba(253,203,110,0.03); border-radius:12px; padding:12px 16px; border-left:4px solid #fdcb6e;">
+                            <h4 style="color:#fdcb6e; font-size:0.9rem; font-weight:700;">📚 Pendidikan Lingkungan</h4>
+                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Geografi menumbuhkan kesadaran dan kepedulian terhadap lingkungan. Contoh: Edukasi tentang pentingnya menjaga hutan gambut.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="materi-detail reveal">
+                <div class="detail-header" onclick="toggleDetail(this)">
+                    <h4><i class="fas fa-fire" style="color:#e74c3c;"></i> C. Studi Kasus Lokal: Kebakaran Hutan & Lahan <span class="local-badge"><i class="fas fa-tree"></i> Katingan</span></h4>
+                    <i class="fas fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;"></i>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-explanation">
+                        <span class="emoji-big">🔥</span>
+                        <p>Studi kasus <span class="highlight">kebakaran hutan dan lahan</span> di Kabupaten Katingan sebagai fenomena geosfer yang kompleks.</p>
+                    </div>
+                    <div class="studi-kasus">
+                        <h4><i class="fas fa-map-pin"></i> Fenomena Karhutla Katingan <span class="tag-lokal">Lokal</span></h4>
+                        <p><strong style="color:#f0f4fa;">Deskripsi:</strong> Kebakaran hutan dan lahan terjadi hampir setiap tahun di Katingan, terutama pada musim kemarau. Lahan gambut yang kering mudah terbakar dan sulit dipadamkan.</p>
+                        <ul>
+                            <li><strong>Distribusi:</strong> Karhutla tersebar di lahan gambut dan hutan di Katingan.</li>
+                            <li><strong>Interelasi:</strong> Karhutla menyebabkan kabut asap, gangguan pernapasan, kerugian ekonomi, dan kerusakan ekosistem.</li>
+                            <li><strong>Deskripsi:</strong> Lahan gambut Katingan memiliki ketebalan 3-8 meter, dengan vegetasi khas dan ekosistem yang unik.</li>
+                            <li><strong>Korologi:</strong> Analisis komprehensif Karhutla Katingan sebagai fenomena geosfer yang kompleks.</li>
+                        </ul>
+                    </div>
+                    <div style="background:rgba(0,206,201,0.03); border-radius:10px; padding:12px 16px; border-left:4px solid #00cec9; margin-top:8px;">
+                        <h4 style="color:#00cec9; font-size:0.9rem; font-weight:700;">💡 Rekomendasi Mitigasi</h4>
+                        <ul style="font-size:0.9rem; color:rgba(255,255,255,0.6); padding-left:20px; line-height:2;">
+                            <li>Pemetaan zona rawan kebakaran</li>
+                            <li>Pembuatan kanal kanal untuk menjaga kelembaban gambut</li>
+                            <li>Sosialisasi kepada masyarakat tentang bahaya karhutla</li>
+                            <li>Penegakan hukum terhadap pembakar hutan</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="materi-detail reveal">
+                <div class="detail-header" onclick="toggleDetail(this)">
+                    <h4><i class="fas fa-briefcase" style="color:#0984e3;"></i> D. Profesi di Bidang Geografi</h4>
+                    <i class="fas fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;"></i>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-explanation">
+                        <span class="emoji-big">💼</span>
+                        <p>Geografi membuka banyak <span class="highlight">peluang karir</span> yang menarik dan bermanfaat.</p>
+                    </div>
+                    <div class="profesi-grid">
+                        <div class="profesi-card"><span class="profesi-icon">🗺️</span><h4>Kartografer</h4><p>Pembuat peta digital & konvensional</p></div>
+                        <div class="profesi-card"><span class="profesi-icon">🌍</span><h4>Ahli SIG</h4><p>Analisis data spasial & sistem informasi geografis</p></div>
+                        <div class="profesi-card"><span class="profesi-icon">📊</span><h4>Perencana Wilayah</h4><p>Merancang tata ruang kota & wilayah</p></div>
+                        <div class="profesi-card"><span class="profesi-icon">🌱</span><h4>Konsultan Lingkungan</h4><p>Analisis dampak & konservasi lingkungan</p></div>
+                        <div class="profesi-card"><span class="profesi-icon">🛰️</span><h4>Analis Penginderaan Jauh</h4><p>Interpretasi citra satelit & drone</p></div>
+                        <div class="profesi-card"><span class="profesi-icon">🏫</span><h4>Pengajar Geografi</h4><p>Mendidik generasi sadar lingkungan</p></div>
                     </div>
                 </div>
             </div>
@@ -3462,66 +3836,21 @@
                 </div>
                 <p style="color:rgba(255,255,255,0.2); font-size:0.8rem; font-weight:400; margin-bottom:12px;"><i class="fas fa-arrow-right" style="color:#a29bfe;"></i> Pilih satu jawaban paling tepat!</p>
 
-                <div class="soal-pg">
-                    <div class="pertanyaan"><span class="nomor">1.</span> Kata "geografi" berasal dari bahasa Yunani "geo" dan "graphien" yang artinya ...</div>
-                    <div class="opsi"><span>A. Bumi dan langit</span><span>B. Bumi dan menulis/melukis</span><span>C. Alam dan manusia</span><span>D. Wilayah dan peta</span><span>E. Iklim dan cuaca</span></div>
-                </div>
-                <div class="soal-pg">
-                    <div class="pertanyaan"><span class="nomor">2.</span> Tokoh yang dijuluki "Bapak Geografi" adalah ...</div>
-                    <div class="opsi"><span>A. Ptolemaeus</span><span>B. Immanuel Kant</span><span>C. Eratosthenes</span><span>D. Humboldt</span><span>E. Carl Ritter</span></div>
-                </div>
-                <div class="soal-pg">
-                    <div class="pertanyaan"><span class="nomor">3.</span> Objek material geografi adalah ...</div>
-                    <div class="opsi"><span>A. Cara pandang geografi</span><span>B. Seluruh fenomena geosfer</span><span>C. Metode penelitian</span><span>D. Peta dan data</span><span>E. Hubungan manusia-lingkungan</span></div>
-                </div>
-                <div class="soal-pg">
-                    <div class="pertanyaan"><span class="nomor">4.</span> Prinsip yang menekankan fenomena geosfer saling memengaruhi adalah ...</div>
-                    <div class="opsi"><span>A. Distribusi</span><span>B. Interelasi</span><span>C. Deskripsi</span><span>D. Korologi</span><span>E. Keruangan</span></div>
-                </div>
-                <div class="soal-pg">
-                    <div class="pertanyaan"><span class="nomor">5.</span> Aspek geografi yang mengkaji topografi, iklim, hidrologi adalah ...</div>
-                    <div class="opsi"><span>A. Aspek sosial</span><span>B. Aspek ekonomi</span><span>C. Aspek fisik</span><span>D. Aspek budaya</span><span>E. Aspek politik</span></div>
-                </div>
-                <div class="soal-pg">
-                    <div class="pertanyaan"><span class="nomor">6.</span> Lapisan geosfer yang terdiri dari batuan dan tanah disebut ...</div>
-                    <div class="opsi"><span>A. Atmosfer</span><span>B. Hidrosfer</span><span>C. Litosfer</span><span>D. Biosfer</span><span>E. Antroposfer</span></div>
-                </div>
-                <div class="soal-pg">
-                    <div class="pertanyaan"><span class="nomor">7.</span> Pendekatan geografi yang menganalisis persebaran dan pola fenomena adalah ...</div>
-                    <div class="opsi"><span>A. Keruangan</span><span>B. Kelingkungan</span><span>C. Kompleks Wilayah</span><span>D. Deskriptif</span><span>E. Korologi</span></div>
-                </div>
-                <div class="soal-pg">
-                    <div class="pertanyaan"><span class="nomor">8.</span> Geografi sosial mempelajari tentang ...</div>
-                    <div class="opsi"><span>A. Bentuk lahan</span><span>B. Iklim dan cuaca</span><span>C. Aktivitas manusia</span><span>D. Jenis tanah</span><span>E. Flora dan fauna</span></div>
-                </div>
-                <div class="soal-pg">
-                    <div class="pertanyaan"><span class="nomor">9.</span> Prinsip korologi adalah gabungan dari prinsip ...</div>
-                    <div class="opsi"><span>A. Distribusi dan deskripsi</span><span>B. Distribusi, interelasi, dan deskripsi</span><span>C. Interelasi dan deskripsi</span><span>D. Keruangan dan kelingkungan</span><span>E. Deskripsi dan korologi</span></div>
-                </div>
-                <div class="soal-pg">
-                    <div class="pertanyaan"><span class="nomor">10.</span> Contoh fenomena antroposfer adalah ...</div>
-                    <div class="opsi"><span>A. Gunung meletus</span><span>B. Aktivitas penambangan emas</span><span>C. Hujan tropis</span><span>D. Sungai Katingan</span><span>E. Hutan hujan tropis</span></div>
-                </div>
-                <div class="soal-pg">
-                    <div class="pertanyaan"><span class="nomor">11.</span> Hakikat geografi yang melihat hubungan timbal balik makhluk hidup dengan lingkungan adalah ...</div>
-                    <div class="opsi"><span>A. Kewilayahan</span><span>B. Keruangan</span><span>C. Kelingkungan</span><span>D. Korologi</span><span>E. Deskripsi</span></div>
-                </div>
-                <div class="soal-pg">
-                    <div class="pertanyaan"><span class="nomor">12.</span> Yang termasuk objek formal geografi adalah ...</div>
-                    <div class="opsi"><span>A. Gunung dan sungai</span><span>B. Pendekatan keruangan</span><span>C. Manusia dan hewan</span><span>D. Tanah dan batuan</span><span>E. Iklim dan cuaca</span></div>
-                </div>
-                <div class="soal-pg">
-                    <div class="pertanyaan"><span class="nomor">13.</span> Manfaat geografi dalam pembangunan berkelanjutan adalah ...</div>
-                    <div class="opsi"><span>A. Perencanaan tata ruang yang ramah lingkungan</span><span>B. Membangun gedung pencakar langit</span><span>C. Menambah populasi penduduk</span><span>D. Mengurangi jumlah sekolah</span><span>E. Menebang hutan secara liar</span></div>
-                </div>
-                <div class="soal-pg">
-                    <div class="pertanyaan"><span class="nomor">14.</span> Lapisan udara yang menyelimuti bumi disebut ...</div>
-                    <div class="opsi"><span>A. Litosfer</span><span>B. Hidrosfer</span><span>C. Atmosfer</span><span>D. Biosfer</span><span>E. Antroposfer</span></div>
-                </div>
-                <div class="soal-pg">
-                    <div class="pertanyaan"><span class="nomor">15.</span> Contoh aspek nonfisik dalam geografi adalah ...</div>
-                    <div class="opsi"><span>A. Jenis tanah</span><span>B. Curah hujan</span><span>C. Budaya masyarakat Dayak</span><span>D. Bentuk sungai</span><span>E. Jenis batuan</span></div>
-                </div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">1.</span> Kata "geografi" berasal dari bahasa Yunani "geo" dan "graphien" yang artinya ...</div><div class="opsi"><span>A. Bumi dan langit</span><span>B. Bumi dan menulis/melukis</span><span>C. Alam dan manusia</span><span>D. Wilayah dan peta</span><span>E. Iklim dan cuaca</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">2.</span> Tokoh yang dijuluki "Bapak Geografi" adalah ...</div><div class="opsi"><span>A. Ptolemaeus</span><span>B. Immanuel Kant</span><span>C. Eratosthenes</span><span>D. Humboldt</span><span>E. Carl Ritter</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">3.</span> Objek material geografi adalah ...</div><div class="opsi"><span>A. Cara pandang geografi</span><span>B. Seluruh fenomena geosfer</span><span>C. Metode penelitian</span><span>D. Peta dan data</span><span>E. Hubungan manusia-lingkungan</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">4.</span> Prinsip yang menekankan fenomena geosfer saling memengaruhi adalah ...</div><div class="opsi"><span>A. Distribusi</span><span>B. Interelasi</span><span>C. Deskripsi</span><span>D. Korologi</span><span>E. Keruangan</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">5.</span> Aspek geografi yang mengkaji topografi, iklim, hidrologi adalah ...</div><div class="opsi"><span>A. Aspek sosial</span><span>B. Aspek ekonomi</span><span>C. Aspek fisik</span><span>D. Aspek budaya</span><span>E. Aspek politik</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">6.</span> Lapisan geosfer yang terdiri dari batuan dan tanah disebut ...</div><div class="opsi"><span>A. Atmosfer</span><span>B. Hidrosfer</span><span>C. Litosfer</span><span>D. Biosfer</span><span>E. Antroposfer</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">7.</span> Pendekatan geografi yang menganalisis persebaran dan pola fenomena adalah ...</div><div class="opsi"><span>A. Keruangan</span><span>B. Kelingkungan</span><span>C. Kompleks Wilayah</span><span>D. Deskriptif</span><span>E. Korologi</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">8.</span> Geografi sosial mempelajari tentang ...</div><div class="opsi"><span>A. Bentuk lahan</span><span>B. Iklim dan cuaca</span><span>C. Aktivitas manusia</span><span>D. Jenis tanah</span><span>E. Flora dan fauna</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">9.</span> Prinsip korologi adalah gabungan dari prinsip ...</div><div class="opsi"><span>A. Distribusi dan deskripsi</span><span>B. Distribusi, interelasi, dan deskripsi</span><span>C. Interelasi dan deskripsi</span><span>D. Keruangan dan kelingkungan</span><span>E. Deskripsi dan korologi</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">10.</span> Contoh fenomena antroposfer adalah ...</div><div class="opsi"><span>A. Gunung meletus</span><span>B. Aktivitas penambangan emas</span><span>C. Hujan tropis</span><span>D. Sungai Katingan</span><span>E. Hutan hujan tropis</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">11.</span> Hakikat geografi yang melihat hubungan timbal balik makhluk hidup dengan lingkungan adalah ...</div><div class="opsi"><span>A. Kewilayahan</span><span>B. Keruangan</span><span>C. Kelingkungan</span><span>D. Korologi</span><span>E. Deskripsi</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">12.</span> Yang termasuk objek formal geografi adalah ...</div><div class="opsi"><span>A. Gunung dan sungai</span><span>B. Pendekatan keruangan</span><span>C. Manusia dan hewan</span><span>D. Tanah dan batuan</span><span>E. Iklim dan cuaca</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">13.</span> Manfaat geografi dalam pembangunan berkelanjutan adalah ...</div><div class="opsi"><span>A. Perencanaan tata ruang yang ramah lingkungan</span><span>B. Membangun gedung pencakar langit</span><span>C. Menambah populasi penduduk</span><span>D. Mengurangi jumlah sekolah</span><span>E. Menebang hutan secara liar</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">14.</span> Lapisan udara yang menyelimuti bumi disebut ...</div><div class="opsi"><span>A. Litosfer</span><span>B. Hidrosfer</span><span>C. Atmosfer</span><span>D. Biosfer</span><span>E. Antroposfer</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">15.</span> Contoh aspek nonfisik dalam geografi adalah ...</div><div class="opsi"><span>A. Jenis tanah</span><span>B. Curah hujan</span><span>C. Budaya masyarakat Dayak</span><span>D. Bentuk sungai</span><span>E. Jenis batuan</span></div></div>
             </div>
 
             <!-- ===== BENAR/SALAH (10 SOAL) ===== -->
@@ -3554,26 +3883,11 @@
                 </div>
                 <p style="color:rgba(255,255,255,0.2); font-size:0.8rem; font-weight:400; margin-bottom:12px;"><i class="fas fa-arrow-right" style="color:#fdcb6e;"></i> Jawablah dengan jelas dan lengkap!</p>
 
-                <div class="soal-essay">
-                    <div class="pertanyaan"><span class="nomor">1.</span> Jelaskan pengertian geografi secara etimologis dan berikan contohnya dalam kehidupan sehari-hari!</div>
-                    <div class="petunjuk">(Skor: 0-10) · Jawaban minimal 3 kalimat</div>
-                </div>
-                <div class="soal-essay">
-                    <div class="pertanyaan"><span class="nomor">2.</span> Sebutkan dan jelaskan 4 prinsip geografi beserta contohnya di Kabupaten Katingan!</div>
-                    <div class="petunjuk">(Skor: 0-10) · Sebutkan 4 prinsip dengan contoh masing-masing</div>
-                </div>
-                <div class="soal-essay">
-                    <div class="pertanyaan"><span class="nomor">3.</span> Apa perbedaan antara objek material dan objek formal geografi? Berikan contohnya!</div>
-                    <div class="petunjuk">(Skor: 0-10) · Jelaskan perbedaan dan berikan contoh konkret</div>
-                </div>
-                <div class="soal-essay">
-                    <div class="pertanyaan"><span class="nomor">4.</span> Bagaimana geografi dapat membantu dalam mitigasi bencana kebakaran hutan dan lahan di Katingan?</div>
-                    <div class="petunjuk">(Skor: 0-10) · Berikan minimal 3 cara atau rekomendasi</div>
-                </div>
-                <div class="soal-essay">
-                    <div class="pertanyaan"><span class="nomor">5.</span> Menurutmu, mengapa kita perlu mempelajari geografi? Jelaskan manfaatnya dalam kehidupan sehari-hari!</div>
-                    <div class="petunjuk">(Skor: 0-10) · Jawaban minimal 4 kalimat dengan alasan yang logis</div>
-                </div>
+                <div class="soal-essay"><div class="pertanyaan"><span class="nomor">1.</span> Jelaskan pengertian geografi secara etimologis dan berikan contohnya dalam kehidupan sehari-hari!</div><div class="petunjuk">(Skor: 0-10) · Jawaban minimal 3 kalimat</div></div>
+                <div class="soal-essay"><div class="pertanyaan"><span class="nomor">2.</span> Sebutkan dan jelaskan 4 prinsip geografi beserta contohnya di Kabupaten Katingan!</div><div class="petunjuk">(Skor: 0-10) · Sebutkan 4 prinsip dengan contoh masing-masing</div></div>
+                <div class="soal-essay"><div class="pertanyaan"><span class="nomor">3.</span> Apa perbedaan antara objek material dan objek formal geografi? Berikan contohnya!</div><div class="petunjuk">(Skor: 0-10) · Jelaskan perbedaan dan berikan contoh konkret</div></div>
+                <div class="soal-essay"><div class="pertanyaan"><span class="nomor">4.</span> Bagaimana geografi dapat membantu dalam mitigasi bencana kebakaran hutan dan lahan di Katingan?</div><div class="petunjuk">(Skor: 0-10) · Berikan minimal 3 cara atau rekomendasi</div></div>
+                <div class="soal-essay"><div class="pertanyaan"><span class="nomor">5.</span> Menurutmu, mengapa kita perlu mempelajari geografi? Jelaskan manfaatnya dalam kehidupan sehari-hari!</div><div class="petunjuk">(Skor: 0-10) · Jawaban minimal 4 kalimat dengan alasan yang logis</div></div>
             </div>
 
             <!-- Kunci Jawaban -->
@@ -3642,7 +3956,7 @@
         </section>
 
         <!-- ============================================================
-        SECTION 7 : RUBRIK
+        SECTION 7 : RUBRIK (dirapikan)
         ============================================================ -->
         <section id="section7" class="section">
             <div style="background:rgba(108,92,231,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(108,92,231,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
@@ -3664,42 +3978,12 @@
                     <tr><th>Dimensi</th><th>Indikator</th><th>Kriteria Penilaian</th><th>Skor</th></tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><strong style="color:#a29bfe; font-weight:700;">Penalaran Kritis</strong></td>
-                        <td style="font-weight:400;">Menganalisis fenomena geosfer</td>
-                        <td style="font-weight:400;"><span style="color:#a29bfe; font-weight:700;">4:</span> Analisis dengan 4 prinsip tepat & mendalam<br><span style="color:#00cec9; font-weight:700;">3:</span> 3 prinsip<br><span style="color:#fdcb6e; font-weight:700;">2:</span> 2 prinsip<br><span style="color:#fd79a8; font-weight:700;">1:</span> 1 prinsip/tidak tepat</td>
-                        <td class="skor">/4</td>
-                    </tr>
-                    <tr>
-                        <td><strong style="color:#00cec9; font-weight:700;">Komunikasi</strong></td>
-                        <td style="font-weight:400;">Menyajikan hasil analisis</td>
-                        <td style="font-weight:400;"><span style="color:#a29bfe; font-weight:700;">4:</span> Sangat jelas, terstruktur, istilah tepat<br><span style="color:#00cec9; font-weight:700;">3:</span> Jelas & terstruktur<br><span style="color:#fdcb6e; font-weight:700;">2:</span> Cukup jelas<br><span style="color:#fd79a8; font-weight:700;">1:</span> Kurang jelas</td>
-                        <td class="skor">/4</td>
-                    </tr>
-                    <tr>
-                        <td><strong style="color:#fd79a8; font-weight:700;">Kolaborasi</strong></td>
-                        <td style="font-weight:400;">Kerja sama kelompok</td>
-                        <td style="font-weight:400;"><span style="color:#a29bfe; font-weight:700;">4:</span> Aktif, mendengarkan, menghargai<br><span style="color:#00cec9; font-weight:700;">3:</span> Aktif<br><span style="color:#fdcb6e; font-weight:700;">2:</span> Cukup aktif<br><span style="color:#fd79a8; font-weight:700;">1:</span> Kurang aktif</td>
-                        <td class="skor">/4</td>
-                    </tr>
-                    <tr>
-                        <td><strong style="color:#fdcb6e; font-weight:700;">Kreativitas</strong></td>
-                        <td style="font-weight:400;">Menghasilkan produk/ide</td>
-                        <td style="font-weight:400;"><span style="color:#a29bfe; font-weight:700;">4:</span> Sangat kreatif, informatif, estetis<br><span style="color:#00cec9; font-weight:700;">3:</span> Kreatif & informatif<br><span style="color:#fdcb6e; font-weight:700;">2:</span> Cukup kreatif<br><span style="color:#fd79a8; font-weight:700;">1:</span> Kurang kreatif</td>
-                        <td class="skor">/4</td>
-                    </tr>
-                    <tr>
-                        <td><strong style="color:#0984e3; font-weight:700;">Kemandirian</strong></td>
-                        <td style="font-weight:400;">Tugas mandiri</td>
-                        <td style="font-weight:400;"><span style="color:#a29bfe; font-weight:700;">4:</span> Tepat waktu, lengkap, berkualitas<br><span style="color:#00cec9; font-weight:700;">3:</span> Tepat waktu & lengkap<br><span style="color:#fdcb6e; font-weight:700;">2:</span> Tepat waktu, kurang lengkap<br><span style="color:#fd79a8; font-weight:700;">1:</span> Tidak/telat</td>
-                        <td class="skor">/4</td>
-                    </tr>
-                    <tr>
-                        <td><strong style="color:#e74c3c; font-weight:700;">Kewargaan</strong></td>
-                        <td style="font-weight:400;">Sikap menghargai lingkungan</td>
-                        <td style="font-weight:400;"><span style="color:#a29bfe; font-weight:700;">4:</span> Rekomendasi konkret & berkelanjutan<br><span style="color:#00cec9; font-weight:700;">3:</span> Rekomendasi baik<br><span style="color:#fdcb6e; font-weight:700;">2:</span> Rekomendasi cukup<br><span style="color:#fd79a8; font-weight:700;">1:</span> Tidak ada</td>
-                        <td class="skor">/4</td>
-                    </tr>
+                    <tr><td><strong style="color:#a29bfe; font-weight:700;">Penalaran Kritis</strong></td><td style="font-weight:400;">Menganalisis fenomena geosfer</td><td style="font-weight:400;"><span style="color:#a29bfe; font-weight:700;">4:</span> Analisis dengan 4 prinsip tepat & mendalam<br><span style="color:#00cec9; font-weight:700;">3:</span> 3 prinsip<br><span style="color:#fdcb6e; font-weight:700;">2:</span> 2 prinsip<br><span style="color:#fd79a8; font-weight:700;">1:</span> 1 prinsip/tidak tepat</td><td class="skor">/4</td></tr>
+                    <tr><td><strong style="color:#00cec9; font-weight:700;">Komunikasi</strong></td><td style="font-weight:400;">Menyajikan hasil analisis</td><td style="font-weight:400;"><span style="color:#a29bfe; font-weight:700;">4:</span> Sangat jelas, terstruktur, istilah tepat<br><span style="color:#00cec9; font-weight:700;">3:</span> Jelas & terstruktur<br><span style="color:#fdcb6e; font-weight:700;">2:</span> Cukup jelas<br><span style="color:#fd79a8; font-weight:700;">1:</span> Kurang jelas</td><td class="skor">/4</td></tr>
+                    <tr><td><strong style="color:#fd79a8; font-weight:700;">Kolaborasi</strong></td><td style="font-weight:400;">Kerja sama kelompok</td><td style="font-weight:400;"><span style="color:#a29bfe; font-weight:700;">4:</span> Aktif, mendengarkan, menghargai<br><span style="color:#00cec9; font-weight:700;">3:</span> Aktif<br><span style="color:#fdcb6e; font-weight:700;">2:</span> Cukup aktif<br><span style="color:#fd79a8; font-weight:700;">1:</span> Kurang aktif</td><td class="skor">/4</td></tr>
+                    <tr><td><strong style="color:#fdcb6e; font-weight:700;">Kreativitas</strong></td><td style="font-weight:400;">Menghasilkan produk/ide</td><td style="font-weight:400;"><span style="color:#a29bfe; font-weight:700;">4:</span> Sangat kreatif, informatif, estetis<br><span style="color:#00cec9; font-weight:700;">3:</span> Kreatif & informatif<br><span style="color:#fdcb6e; font-weight:700;">2:</span> Cukup kreatif<br><span style="color:#fd79a8; font-weight:700;">1:</span> Kurang kreatif</td><td class="skor">/4</td></tr>
+                    <tr><td><strong style="color:#0984e3; font-weight:700;">Kemandirian</strong></td><td style="font-weight:400;">Tugas mandiri</td><td style="font-weight:400;"><span style="color:#a29bfe; font-weight:700;">4:</span> Tepat waktu, lengkap, berkualitas<br><span style="color:#00cec9; font-weight:700;">3:</span> Tepat waktu & lengkap<br><span style="color:#fdcb6e; font-weight:700;">2:</span> Tepat waktu, kurang lengkap<br><span style="color:#fd79a8; font-weight:700;">1:</span> Tidak/telat</td><td class="skor">/4</td></tr>
+                    <tr><td><strong style="color:#e74c3c; font-weight:700;">Kewargaan</strong></td><td style="font-weight:400;">Sikap menghargai lingkungan</td><td style="font-weight:400;"><span style="color:#a29bfe; font-weight:700;">4:</span> Rekomendasi konkret & berkelanjutan<br><span style="color:#00cec9; font-weight:700;">3:</span> Rekomendasi baik<br><span style="color:#fdcb6e; font-weight:700;">2:</span> Rekomendasi cukup<br><span style="color:#fd79a8; font-weight:700;">1:</span> Tidak ada</td><td class="skor">/4</td></tr>
                 </tbody>
             </table>
 
@@ -3726,7 +4010,7 @@
         </section>
 
         <!-- ============================================================
-        SECTION 8 : REFLEKSI
+        SECTION 8 : REFLEKSI (dirapikan)
         ============================================================ -->
         <section id="section8" class="section">
             <div style="background:rgba(108,92,231,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(108,92,231,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
@@ -3772,7 +4056,7 @@
         </section>
 
         <!-- ============================================================
-        SECTION 9 : REFERENSI
+        SECTION 9 : REFERENSI (dirapikan)
         ============================================================ -->
         <section id="section9" class="section">
             <div style="background:rgba(108,92,231,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(108,92,231,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
@@ -3818,7 +4102,7 @@
     </main>
 
     <!-- ============================================================
-    JAVASCRIPT (dengan fitur modal premium & navigasi gambar)
+    JAVASCRIPT
     ============================================================ -->
     <script>
         // ============================================================
@@ -3997,7 +4281,7 @@
         }
 
         // ============================================================
-        // MODAL PREMIUM – navigasi, zoom, counter
+        // MODAL PREMIUM
         // ============================================================
         let currentZoom = 1;
         const MIN_ZOOM = 0.5;
