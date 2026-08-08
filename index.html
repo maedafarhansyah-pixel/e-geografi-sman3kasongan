@@ -4529,10 +4529,171 @@
         SECTION 5 : PERTEMUAN 3 – APLIKASI & EVALUASI
         ============================================================ -->
 <section id="section5" class="section">
+
+    <!-- ===== STYLE PERBAIKAN KETERBACAAN ===== -->
+    <style>
+        #section5 {
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+        }
+        #section5 p,
+        #section5 li,
+        #section5 .detail-body p,
+        #section5 .detail-explanation p,
+        #section5 .semarang-def-card p,
+        #section5 .konsep-note p,
+        #section5 .def-quote,
+        #section5 .contoh-lokal {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.88);
+            margin-bottom: 0.75rem;
+            font-weight: 400;
+        }
+        #section5 h3,
+        #section5 h4 {
+            letter-spacing: 0.02em;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        #section5 .detail-header h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+        #section5 ul,
+        #section5 ol {
+            padding-left: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        #section5 ul li,
+        #section5 ol li {
+            margin-bottom: 0.4rem;
+            line-height: 1.7;
+        }
+        /* Garis pemisah antar bagian */
+        #section5 .materi-detail {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 1.2rem;
+            margin-top: 1.2rem;
+        }
+        #section5 .materi-detail:first-of-type {
+            border-top: none;
+            padding-top: 0;
+            margin-top: 0;
+        }
+        #section5 .detail-body h4 {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding-bottom: 0.4rem;
+            margin-bottom: 0.8rem;
+            margin-top: 1.2rem;
+        }
+        #section5 .detail-body h4:first-of-type {
+            margin-top: 0;
+        }
+        #section5 .detail-body p {
+            margin-bottom: 1rem;
+        }
+        #section5 .highlight {
+            color: #fdcb6e;
+            font-weight: 500;
+        }
+        #section5 .local-badge {
+            font-size: 0.7rem;
+            background: rgba(108, 92, 231, 0.1);
+            color: #a29bfe;
+            padding: 0.1rem 0.6rem;
+            border-radius: 30px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+        #section5 .detail-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.6rem 0.8rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+        #section5 .detail-header:hover {
+            background: rgba(255, 255, 255, 0.04);
+        }
+        #section5 .detail-header h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        #section5 .detail-body {
+            padding: 0.8rem 0.6rem 0.2rem;
+        }
+        #section5 .detail-explanation {
+            display: flex;
+            gap: 0.8rem;
+            align-items: flex-start;
+            margin-bottom: 0.8rem;
+        }
+        #section5 .detail-explanation .emoji-big {
+            font-size: 2.4rem;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+        #section5 .mini-quiz {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 14px;
+            padding: 1.2rem 1.5rem;
+            margin: 1.2rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        #section5 .quiz-question {
+            font-size: 1rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0.8rem;
+        }
+        #section5 .quiz-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+        #section5 .quiz-options button {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.15s;
+        }
+        #section5 .quiz-options button:hover {
+            background: rgba(108, 92, 231, 0.1);
+        }
+        #section5 .quiz-feedback {
+            margin-top: 0.6rem;
+            font-weight: 500;
+        }
+        @media (max-width: 640px) {
+            #section5 .detail-explanation {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            #section5 .detail-header h4 {
+                font-size: 0.95rem;
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+
+    <!-- ===== HEADER ===== -->
     <div style="background:rgba(108,92,231,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(108,92,231,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
         <div style="display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.4); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
         <button onclick="navigateTo('section1')" style="background:rgba(255,255,255,0.02); color:rgba(255,255,255,0.3); border:1px solid rgba(255,255,255,0.03); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem;"><i class="fas fa-home"></i> Beranda</button>
     </div>
+
     <div class="section-header">
         <div class="num">05</div>
         <h2>Pertemuan 3 – Aplikasi & Evaluasi <small>Keterampilan, Manfaat, & Studi Kasus</small></h2>
@@ -4561,7 +4722,7 @@
         <li>Mengenal profesi di bidang geografi sebagai motivasi karir.</li>
     </ul>
 
-    <!-- ===== GALERI GAMBAR PREMIUM PERTEMUAN 3 ===== -->
+    <!-- ===== GALERI GAMBAR ===== -->
     <div style="margin:16px 0;">
         <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:14px;">
             <h4 style="color:#a29bfe; font-size:0.95rem; font-weight:700; display:flex; align-items:center; gap:10px;">
@@ -4606,187 +4767,507 @@
         </div>
     </div>
 
-    <!-- ===== A. KETERAMPILAN DASAR GEOGRAFI (BARU - DIPERLUAS) ===== -->
+    <!-- ==========================================================
+    A. KETERAMPILAN DASAR GEOGRAFI (DIPERDALAM)
+    ========================================================== -->
     <div class="materi-detail reveal">
         <div class="detail-header" onclick="toggleDetail(this)">
             <h4><i class="fas fa-tools" style="color:#6c5ce7;"></i> A. Keterampilan Dasar Geografi</h4>
             <i class="fas fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;"></i>
         </div>
         <div class="detail-body">
-            <p style="font-size:0.92rem; color:rgba(255,255,255,0.55); margin-bottom:12px;">Geografi membutuhkan keterampilan khusus untuk mengkaji fenomena secara ilmiah. Berikut 5 keterampilan dasar:</p>
 
-            <div style="display:grid; gap:10px;">
-                <div style="background:rgba(108,92,231,0.04); border-radius:10px; padding:10px 14px; border-left:4px solid #6c5ce7;">
-                    <h4 style="color:#a29bfe; font-size:0.9rem; font-weight:700;">1. Observasi Lapangan</h4>
-                    <p style="font-size:0.88rem; color:rgba(255,255,255,0.55);">Pengamatan langsung di lapangan untuk mengumpulkan data primer. Contoh: Survei kondisi lahan gambut Katingan, pengukuran kedalaman gambut, dan identifikasi vegetasi.</p>
-                </div>
-                <div style="background:rgba(0,206,201,0.04); border-radius:10px; padding:10px 14px; border-left:4px solid #00cec9;">
-                    <h4 style="color:#00cec9; font-size:0.9rem; font-weight:700;">2. Interpretasi Data</h4>
-                    <p style="font-size:0.88rem; color:rgba(255,255,255,0.55);">Membaca dan menganalisis data statistik, grafik, dan tabel. Contoh: Menganalisis data curah hujan Katingan untuk prediksi musim kemarau dan potensi kebakaran.</p>
-                </div>
-                <div style="background:rgba(253,121,168,0.04); border-radius:10px; padding:10px 14px; border-left:4px solid #fd79a8;">
-                    <h4 style="color:#fd79a8; font-size:0.9rem; font-weight:700;">3. Pemetaan (Kartografi)</h4>
-                    <p style="font-size:0.88rem; color:rgba(255,255,255,0.55);">Membuat dan membaca peta untuk memvisualisasikan data spasial. Contoh: Membuat peta zona rawan kebakaran gambut di Katingan menggunakan SIG.</p>
-                </div>
-                <div style="background:rgba(253,203,110,0.04); border-radius:10px; padding:10px 14px; border-left:4px solid #fdcb6e;">
-                    <h4 style="color:#fdcb6e; font-size:0.9rem; font-weight:700;">4. Analisis Spasial</h4>
-                    <p style="font-size:0.88rem; color:rgba(255,255,255,0.55);">Mengolah data keruangan untuk menemukan pola dan hubungan. Contoh: Analisis kerapatan titik tambang emas terhadap jarak dari sungai menggunakan SIG.</p>
-                </div>
-                <div style="background:rgba(255,107,107,0.04); border-radius:10px; padding:10px 14px; border-left:4px solid #ff6b6b;">
-                    <h4 style="color:#ff6b6b; font-size:0.9rem; font-weight:700;">5. Komunikasi Geografi</h4>
-                    <p style="font-size:0.88rem; color:rgba(255,255,255,0.55);">Menyajikan hasil analisis dalam bentuk laporan, presentasi, atau infografis. Contoh: Menyusun laporan kebakaran gambut dengan peta, grafik, dan rekomendasi kebijakan.</p>
-                </div>
+            <div class="detail-explanation">
+                <span class="emoji-big">🧭</span>
+                <p style="font-size:0.95rem; line-height:1.7;">
+                    Geografi tidak hanya menghafal nama tempat, tetapi juga <span class="highlight">keterampilan ilmiah</span> untuk mengamati, mengolah data, dan mengambil keputusan berbasis keruangan. Berikut lima keterampilan dasar yang harus dikuasai, lengkap dengan contoh praktik di Katingan.
+                </p>
             </div>
+
+            <div style="display:grid; gap:14px;">
+
+                <!-- 1. Observasi Lapangan -->
+                <div style="background:rgba(108,92,231,0.04); border-radius:12px; padding:14px 16px; border-left:4px solid #6c5ce7;">
+                    <h4 style="color:#a29bfe; font-size:0.95rem; font-weight:700;">1. Observasi Lapangan</h4>
+                    <p style="font-size:0.9rem; color:rgba(255,255,255,0.7); line-height:1.7;">
+                        <strong>Pengamatan langsung</strong> di lapangan untuk mengumpulkan data primer. Meliputi survei, pengukuran, wawancara, dan dokumentasi foto.
+                    </p>
+                    <div style="background:rgba(108,92,231,0.06); border-radius:8px; padding:10px 14px; margin-top:6px;">
+                        <span style="color:#fdcb6e; font-weight:600;">📌 Contoh Katingan:</span>
+                        <span style="color:rgba(255,255,255,0.6); font-size:0.85rem;">
+                            Tim geografi melakukan survei lahan gambut di Tumbang Lahang. Mereka mengukur kedalaman gambut menggunakan bor gambut (kedalaman 3,5–7,2 m), mencatat vegetasi dominan (ramin, jelutung, dan meranti), serta mewawancarai petani tentang praktik pembukaan lahan. Hasil observasi menjadi dasar peta ketebalan gambut.
+                        </span>
+                    </div>
+                    <div style="margin-top:4px; font-size:0.8rem; color:rgba(255,255,255,0.4);">
+                        <i class="fas fa-arrow-right"></i> Observasi yang sistematis menghasilkan data yang akurat dan terpercaya.
+                    </div>
+                </div>
+
+                <!-- 2. Interpretasi Data -->
+                <div style="background:rgba(0,206,201,0.04); border-radius:12px; padding:14px 16px; border-left:4px solid #00cec9;">
+                    <h4 style="color:#00cec9; font-size:0.95rem; font-weight:700;">2. Interpretasi Data</h4>
+                    <p style="font-size:0.9rem; color:rgba(255,255,255,0.7); line-height:1.7;">
+                        <strong>Membaca dan menganalisis</strong> data statistik, grafik, tabel, dan citra satelit. Kemampuan ini mengubah angka menjadi informasi bermakna.
+                    </p>
+                    <div style="background:rgba(0,206,201,0.06); border-radius:8px; padding:10px 14px; margin-top:6px;">
+                        <span style="color:#fdcb6e; font-weight:600;">📌 Contoh Katingan:</span>
+                        <span style="color:rgba(255,255,255,0.6); font-size:0.85rem;">
+                            Data curah hujan harian dari stasiun BMKG Kasongan selama 10 tahun dianalisis untuk melihat tren musim kemarau. Grafik menunjukkan bahwa periode kemarau panjang (El Niño) terjadi setiap 4–5 tahun, dan jumlah titik api (hotspot) meningkat drastis pada tahun-tahun tersebut. Interpretasi ini digunakan untuk menyusun kalender musim dan peringatan dini kebakaran.
+                        </span>
+                    </div>
+                    <div style="margin-top:4px; font-size:0.8rem; color:rgba(255,255,255,0.4);">
+                        <i class="fas fa-arrow-right"></i> Interpretasi data yang tepat menjadi fondasi kebijakan berbasis bukti.
+                    </div>
+                </div>
+
+                <!-- 3. Pemetaan (Kartografi) -->
+                <div style="background:rgba(253,121,168,0.04); border-radius:12px; padding:14px 16px; border-left:4px solid #fd79a8;">
+                    <h4 style="color:#fd79a8; font-size:0.95rem; font-weight:700;">3. Pemetaan (Kartografi)</h4>
+                    <p style="font-size:0.9rem; color:rgba(255,255,255,0.7); line-height:1.7;">
+                        <strong>Membuat dan membaca peta</strong> untuk menyajikan data spasial. Menggunakan peta analog, digital, dan Sistem Informasi Geografis (SIG).
+                    </p>
+                    <div style="background:rgba(253,121,168,0.06); border-radius:8px; padding:10px 14px; margin-top:6px;">
+                        <span style="color:#fdcb6e; font-weight:600;">📌 Contoh Katingan:</span>
+                        <span style="color:rgba(255,255,255,0.6); font-size:0.85rem;">
+                            Dengan SIG, tim membuat peta tematik:
+                            <ul style="font-size:0.8rem; padding-left:18px; margin-top:4px; color:rgba(255,255,255,0.55);">
+                                <li>Peta ketebalan gambut (dari data survei dan citra radar).</li>
+                                <li>Peta zona rawan kebakaran berdasarkan historis hotspot dan tutupan lahan.</li>
+                                <li>Peta aksesibilitas (jalan, sungai) untuk perencanaan pemadaman dan evakuasi.</li>
+                            </ul>
+                            Peta-peta ini membantu pemerintah menetapkan prioritas restorasi gambut.
+                        </span>
+                    </div>
+                    <div style="margin-top:4px; font-size:0.8rem; color:rgba(255,255,255,0.4);">
+                        <i class="fas fa-arrow-right"></i> Pemetaan adalah bahasa visual geografi yang sangat komunikatif.
+                    </div>
+                </div>
+
+                <!-- 4. Analisis Spasial -->
+                <div style="background:rgba(253,203,110,0.04); border-radius:12px; padding:14px 16px; border-left:4px solid #fdcb6e;">
+                    <h4 style="color:#fdcb6e; font-size:0.95rem; font-weight:700;">4. Analisis Spasial</h4>
+                    <p style="font-size:0.9rem; color:rgba(255,255,255,0.7); line-height:1.7;">
+                        <strong>Mengolah data keruangan</strong> untuk menemukan pola, hubungan, dan tren. Menggunakan operasi overlay, buffer, dan statistik spasial.
+                    </p>
+                    <div style="background:rgba(253,203,110,0.06); border-radius:8px; padding:10px 14px; margin-top:6px;">
+                        <span style="color:#fdcb6e; font-weight:600;">📌 Contoh Katingan:</span>
+                        <span style="color:rgba(255,255,255,0.6); font-size:0.85rem;">
+                            Analisis buffer (zona jarak) dibuat di sekitar sungai untuk melihat pengaruh jarak terhadap konsentrasi tambang emas. Hasilnya: 80% titik tambang berada dalam radius 500 m dari sungai, karena endapan alluvial terkonsentrasi di bantaran. Analisis ini menjadi dasar penetapan zona lindung sempadan sungai.
+                        </span>
+                    </div>
+                    <div style="margin-top:4px; font-size:0.8rem; color:rgba(255,255,255,0.4);">
+                        <i class="fas fa-arrow-right"></i> Analisis spasial menjawab pertanyaan "di mana dan mengapa" secara kuantitatif.
+                    </div>
+                </div>
+
+                <!-- 5. Komunikasi Geografi -->
+                <div style="background:rgba(255,107,107,0.04); border-radius:12px; padding:14px 16px; border-left:4px solid #ff6b6b;">
+                    <h4 style="color:#ff6b6b; font-size:0.95rem; font-weight:700;">5. Komunikasi Geografi</h4>
+                    <p style="font-size:0.9rem; color:rgba(255,255,255,0.7); line-height:1.7;">
+                        <strong>Menyajikan hasil analisis</strong> secara jelas dan menarik melalui laporan, presentasi, infografis, atau dashboard interaktif.
+                    </p>
+                    <div style="background:rgba(255,107,107,0.06); border-radius:8px; padding:10px 14px; margin-top:6px;">
+                        <span style="color:#fdcb6e; font-weight:600;">📌 Contoh Katingan:</span>
+                        <span style="color:rgba(255,255,255,0.6); font-size:0.85rem;">
+                            Setelah analisis kebakaran gambut, tim menyusun laporan <strong>"Risiko dan Mitigasi Karhutla di Katingan"</strong> yang berisi:
+                            <ul style="font-size:0.8rem; padding-left:18px; margin-top:4px; color:rgba(255,255,255,0.55);">
+                                <li>Peta hotspot dan sebaran asap.</li>
+                                <li>Grafik tren curah hujan dan titik api.</li>
+                                <li>Rekomendasi kebijakan: kanal blok, restorasi, dan pertanian tanpa bakar.</li>
+                            </ul>
+                            Laporan ini dipresentasikan di forum daerah dan menjadi bahan advokasi ke pemerintah provinsi.
+                        </span>
+                    </div>
+                    <div style="margin-top:4px; font-size:0.8rem; color:rgba(255,255,255,0.4);">
+                        <i class="fas fa-arrow-right"></i> Komunikasi yang efektif memastikan temuan geografi berdampak pada kebijakan.
+                    </div>
+                </div>
+
+            </div><!-- end grid -->
         </div>
     </div>
 
-    <!-- ===== B. MANFAAT GEOGRAFI (DIPERLUAS) ===== -->
+    <!-- ==========================================================
+    B. MANFAAT GEOGRAFI (DIPERDALAM + SDGs)
+    ========================================================== -->
     <div class="materi-detail reveal">
         <div class="detail-header" onclick="toggleDetail(this)">
             <h4><i class="fas fa-hand-holding-heart" style="color:#fd79a8;"></i> B. Manfaat Geografi dalam Kehidupan</h4>
             <i class="fas fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;"></i>
         </div>
         <div class="detail-body">
-            <div style="display:grid; gap:12px;">
+
+            <div class="detail-explanation">
+                <span class="emoji-big">🌏</span>
+                <p style="font-size:0.95rem; line-height:1.7;">
+                    Geografi memiliki peran strategis dalam berbagai aspek kehidupan, mulai dari perencanaan tata ruang hingga pembangunan berkelanjutan. Berikut manfaat utama yang dikaitkan dengan Tujuan Pembangunan Berkelanjutan (SDGs).
+                </p>
+            </div>
+
+            <div style="display:grid; gap:14px;">
+
                 <!-- Manfaat 1 -->
-                <div style="background:rgba(108,92,231,0.04); border-radius:12px; padding:12px 16px; border-left:4px solid #6c5ce7;">
-                    <h4 style="color:#a29bfe; font-size:0.95rem; font-weight:700;">🌆 Perencanaan Wilayah & Tata Ruang</h4>
-                    <p style="font-size:0.9rem; color:rgba(255,255,255,0.65); line-height:1.6;">Geografi menyediakan peta dan data spasial untuk menentukan zona budidaya, zona lindung, dan permukiman. <span class="highlight">Contoh Katingan:</span> Peta lahan gambut digunakan untuk menentukan kawasan yang boleh dibuka untuk perkebunan dan kawasan yang harus dilestarikan.</p>
+                <div style="background:rgba(108,92,231,0.04); border-radius:12px; padding:14px 16px; border-left:4px solid #6c5ce7;">
+                    <h4 style="color:#a29bfe; font-size:0.95rem; font-weight:700;">🌆 Perencanaan Wilayah & Tata Ruang (SDG 11)</h4>
+                    <p style="font-size:0.9rem; color:rgba(255,255,255,0.7); line-height:1.7;">
+                        Geografi menyediakan <strong>data spasial</strong> untuk menentukan zona budidaya, zona lindung, permukiman, dan infrastruktur. Tanpa geografi, pembangunan akan tidak terarah dan merusak lingkungan.
+                    </p>
+                    <div style="background:rgba(108,92,231,0.06); border-radius:8px; padding:10px 14px; margin-top:6px;">
+                        <span style="color:#fdcb6e; font-weight:600;">📌 Contoh Katingan:</span>
+                        <span style="color:rgba(255,255,255,0.6); font-size:0.85rem;">
+                            Peta lahan gambut dan tutupan hutan digunakan untuk menyusun <strong>Rencana Tata Ruang Wilayah (RTRW)</strong> Kabupaten Katingan. Kawasan gambut dalam (ketebalan > 3 m) ditetapkan sebagai zona lindung, sementara gambut dangkal (< 3 m) dapat dimanfaatkan untuk pertanian berkelanjutan dengan syarat pengelolaan air yang baik.
+                        </span>
+                    </div>
                 </div>
 
                 <!-- Manfaat 2 -->
-                <div style="background:rgba(0,206,201,0.04); border-radius:12px; padding:12px 16px; border-left:4px solid #00cec9;">
-                    <h4 style="color:#00cec9; font-size:0.95rem; font-weight:700;">🌊 Mitigasi Bencana Alam</h4>
-                    <p style="font-size:0.9rem; color:rgba(255,255,255,0.65); line-height:1.6;">Geografi mengidentifikasi daerah rawan bencana (banjir, kebakaran, longsor) dan merancang sistem peringatan dini. <span class="highlight">Contoh Katingan:</span> Analisis DAS (Daerah Aliran Sungai) Katingan untuk prediksi banjir dan pemetaan zona rawan kebakaran gambut berdasarkan historis titik api (hotspot).</p>
+                <div style="background:rgba(0,206,201,0.04); border-radius:12px; padding:14px 16px; border-left:4px solid #00cec9;">
+                    <h4 style="color:#00cec9; font-size:0.95rem; font-weight:700;">🌊 Mitigasi Bencana Alam (SDG 13)</h4>
+                    <p style="font-size:0.9rem; color:rgba(255,255,255,0.7); line-height:1.7;">
+                        Geografi mengidentifikasi <strong>daerah rawan bencana</strong> (banjir, kebakaran, longsor, gempa) dan merancang sistem peringatan dini serta jalur evakuasi.
+                    </p>
+                    <div style="background:rgba(0,206,201,0.06); border-radius:8px; padding:10px 14px; margin-top:6px;">
+                        <span style="color:#fdcb6e; font-weight:600;">📌 Contoh Katingan:</span>
+                        <span style="color:rgba(255,255,255,0.6); font-size:0.85rem;">
+                            Analisis <strong>Daerah Aliran Sungai (DAS) Katingan</strong> menghasilkan peta zona banjir berdasarkan curah hujan dan topografi. Desa-desa di bantaran sungai (seperti Tumbang Samba) mendapatkan sistem peringatan dini berbasis ketinggian air sungai. Selain itu, pemetaan titik api historis digunakan untuk memprediksi zona rawan kebakaran gambut setiap musim kemarau.
+                        </span>
+                    </div>
                 </div>
 
                 <!-- Manfaat 3 -->
-                <div style="background:rgba(253,121,168,0.04); border-radius:12px; padding:12px 16px; border-left:4px solid #fd79a8;">
-                    <h4 style="color:#fd79a8; font-size:0.95rem; font-weight:700;">🛢️ Pengelolaan Sumber Daya Alam</h4>
-                    <p style="font-size:0.9rem; color:rgba(255,255,255,0.65); line-height:1.6;">Geografi membantu eksplorasi dan pengelolaan SDA secara berkelanjutan. <span class="highlight">Contoh Katingan:</span> Peta geologi dan geomorfologi digunakan untuk identifikasi potensi mineral (emas) dan air tanah, serta pemetaan lahan gambut untuk konservasi karbon.</p>
+                <div style="background:rgba(253,121,168,0.04); border-radius:12px; padding:14px 16px; border-left:4px solid #fd79a8;">
+                    <h4 style="color:#fd79a8; font-size:0.95rem; font-weight:700;">🛢️ Pengelolaan Sumber Daya Alam (SDG 12, 15)</h4>
+                    <p style="font-size:0.9rem; color:rgba(255,255,255,0.7); line-height:1.7;">
+                        Geografi membantu <strong>eksplorasi, pemanfaatan, dan konservasi</strong> sumber daya alam secara bijak, termasuk mineral, air, hutan, dan lahan.
+                    </p>
+                    <div style="background:rgba(253,121,168,0.06); border-radius:8px; padding:10px 14px; margin-top:6px;">
+                        <span style="color:#fdcb6e; font-weight:600;">📌 Contoh Katingan:</span>
+                        <span style="color:rgba(255,255,255,0.6); font-size:0.85rem;">
+                            <ul style="font-size:0.8rem; padding-left:18px; margin-top:4px; color:rgba(255,255,255,0.55);">
+                                <li><strong>Potensi mineral:</strong> Peta geologi dan geomorfologi digunakan untuk identifikasi endapan emas alluvial, sehingga penambangan dapat dilakukan secara teratur dan tidak merusak sungai.</li>
+                                <li><strong>Konservasi gambut:</strong> Pemetaan karbon gambut (stok karbon > 500 ton/ha) menjadi dasar untuk proyek <em>REDD+</em> (pengurangan emisi dari deforestasi) yang memberikan insentif kepada masyarakat untuk menjaga hutan.</li>
+                            </ul>
+                        </span>
+                    </div>
                 </div>
 
                 <!-- Manfaat 4 -->
-                <div style="background:rgba(253,203,110,0.04); border-radius:12px; padding:12px 16px; border-left:4px solid #fdcb6e;">
-                    <h4 style="color:#fdcb6e; font-size:0.95rem; font-weight:700;">🌍 Pendidikan & Kesadaran Lingkungan</h4>
-                    <p style="font-size:0.9rem; color:rgba(255,255,255,0.65); line-height:1.6;">Geografi menumbuhkan kesadaran tentang hubungan manusia-lingkungan dan pentingnya pelestarian. <span class="highlight">Contoh Katingan:</span> Program pendidikan konservasi orangutan dan restorasi gambut melibatkan masyarakat lokal dengan pendekatan geografi partisipatif.</p>
+                <div style="background:rgba(253,203,110,0.04); border-radius:12px; padding:14px 16px; border-left:4px solid #fdcb6e;">
+                    <h4 style="color:#fdcb6e; font-size:0.95rem; font-weight:700;">🌍 Pendidikan & Kesadaran Lingkungan (SDG 4)</h4>
+                    <p style="font-size:0.9rem; color:rgba(255,255,255,0.7); line-height:1.7;">
+                        Geografi <strong>menumbuhkan kesadaran</strong> akan hubungan manusia-lingkungan dan pentingnya pelestarian melalui pendidikan formal dan non-formal.
+                    </p>
+                    <div style="background:rgba(253,203,110,0.06); border-radius:8px; padding:10px 14px; margin-top:6px;">
+                        <span style="color:#fdcb6e; font-weight:600;">📌 Contoh Katingan:</span>
+                        <span style="color:rgba(255,255,255,0.6); font-size:0.85rem;">
+                            Program <strong>"Geografi Sekolah"</strong> bekerja sama dengan BKSDA dan WWF mengajak siswa SMA di Kasongan untuk survei orangutan di Taman Nasional Sebangau. Mereka belajar menggunakan GPS, mengidentifikasi sarang orangutan, dan mencatat data perilaku. Kegiatan ini tidak hanya mengajarkan keterampilan geografi, tetapi juga menumbuhkan rasa cinta terhadap alam.
+                        </span>
+                    </div>
                 </div>
 
                 <!-- Manfaat 5 (Baru) -->
-                <div style="background:rgba(255,107,107,0.04); border-radius:12px; padding:12px 16px; border-left:4px solid #ff6b6b;">
-                    <h4 style="color:#ff6b6b; font-size:0.95rem; font-weight:700;">📈 Pengembangan Ekonomi & Pariwisata</h4>
-                    <p style="font-size:0.9rem; color:rgba(255,255,255,0.65); line-height:1.6;">Geografi mengidentifikasi potensi wisata alam dan budaya sebagai penggerak ekonomi lokal. <span class="highlight">Contoh Katingan:</span> Ekowisata berbasis orangutan di Taman Nasional Sebangau dan wisata budaya Dayak Ngaju (rumah betang, upacara adat) yang dapat dikembangkan dengan prinsip berkelanjutan.</p>
+                <div style="background:rgba(255,107,107,0.04); border-radius:12px; padding:14px 16px; border-left:4px solid #ff6b6b;">
+                    <h4 style="color:#ff6b6b; font-size:0.95rem; font-weight:700;">📈 Pengembangan Ekonomi & Pariwisata (SDG 8)</h4>
+                    <p style="font-size:0.9rem; color:rgba(255,255,255,0.7); line-height:1.7;">
+                        Geografi mengidentifikasi <strong>potensi wisata alam dan budaya</strong> yang dapat menjadi sumber pendapatan alternatif bagi masyarakat lokal.
+                    </p>
+                    <div style="background:rgba(255,107,107,0.06); border-radius:8px; padding:10px 14px; margin-top:6px;">
+                        <span style="color:#fdcb6e; font-weight:600;">📌 Contoh Katingan:</span>
+                        <span style="color:rgba(255,255,255,0.6); font-size:0.85rem;">
+                            Inventarisasi potensi wisata di Katingan menghasilkan:
+                            <ul style="font-size:0.8rem; padding-left:18px; margin-top:4px; color:rgba(255,255,255,0.55);">
+                                <li><strong>Ekowisata berbasis orangutan</strong> di Taman Nasional Sebangau (berbatasan dengan Katingan).</li>
+                                <li><strong>Wisata budaya Dayak Ngaju:</strong> rumah betang, upacara <em>tiwah</em>, dan kerajinan tangan.</li>
+                                <li><strong>Wisata sungai:</strong> menyusuri Sungai Katingan dengan perahu klotok.</li>
+                            </ul>
+                            Pengembangan ekowisata dilakukan dengan prinsip berkelanjutan: melibatkan masyarakat lokal, menjaga kelestarian alam, dan mengurangi aktivitas penambangan ilegal.
+                        </span>
+                    </div>
                 </div>
-            </div>
 
-            <div style="background:rgba(0,206,201,0.03); border-radius:10px; padding:12px 16px; margin-top:12px; border:1px dashed rgba(0,206,201,0.15);">
-                <span style="color:#00cec9; font-weight:600;">🌱 Geografi untuk Pembangunan Berkelanjutan (SDGs):</span>
-                <span style="color:rgba(255,255,255,0.5); font-size:0.85rem;">Geografi berkontribusi pada Tujuan Pembangunan Berkelanjutan (SDGs) seperti penanganan perubahan iklim (SDG 13), kehidupan di darat (SDG 15), dan kota berkelanjutan (SDG 11).</span>
-            </div>
+                <!-- Manfaat 6: Pembangunan Berkelanjutan secara umum -->
+                <div style="background:rgba(0,206,201,0.02); border-radius:12px; padding:14px 16px; border:1px solid rgba(0,206,201,0.08);">
+                    <h4 style="color:#00cec9; font-size:0.95rem; font-weight:700;">🌱 Geografi sebagai Pilar Pembangunan Berkelanjutan</h4>
+                    <p style="font-size:0.9rem; color:rgba(255,255,255,0.7); line-height:1.7;">
+                        Geografi berkontribusi pada <strong>17 Tujuan Pembangunan Berkelanjutan (SDGs)</strong>, terutama:
+                    </p>
+                    <ul style="font-size:0.85rem; padding-left:20px; color:rgba(255,255,255,0.6); line-height:1.8;">
+                        <li><strong>SDG 6:</strong> Air bersih dan sanitasi – melalui pengelolaan DAS dan konservasi air tanah.</li>
+                        <li><strong>SDG 11:</strong> Kota dan pemukiman berkelanjutan – melalui perencanaan tata ruang dan transportasi.</li>
+                        <li><strong>SDG 13:</strong> Penanganan perubahan iklim – melalui mitigasi emisi gambut dan adaptasi bencana.</li>
+                        <li><strong>SDG 15:</strong> Kehidupan di darat – melalui konservasi hutan, lahan gambut, dan keanekaragaman hayati.</li>
+                    </ul>
+                    <div style="background:rgba(0,206,201,0.04); border-radius:6px; padding:8px 12px; margin-top:6px;">
+                        <span style="color:#00cec9; font-weight:600;">💡 Pesan kunci:</span>
+                        <span style="color:rgba(255,255,255,0.5); font-size:0.85rem;">Dengan pendekatan geografi, pembangunan ekonomi dan kelestarian lingkungan dapat berjalan seiring.</span>
+                    </div>
+                </div>
+
+            </div><!-- end grid -->
         </div>
     </div>
 
-    <!-- ===== C. STUDI KASUS: KEBAKARAN HUTAN & LAHAN (DIPERLUAS) ===== -->
+    <!-- ==========================================================
+    C. STUDI KASUS: KEBAKARAN HUTAN & LAHAN (DIPERDALAM)
+    ========================================================== -->
     <div class="materi-detail reveal">
         <div class="detail-header" onclick="toggleDetail(this)">
             <h4><i class="fas fa-fire" style="color:#ff6b6b;"></i> C. Studi Kasus: Kebakaran Hutan & Lahan di Katingan</h4>
             <i class="fas fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;"></i>
         </div>
         <div class="detail-body">
+
+            <div class="detail-explanation">
+                <span class="emoji-big">🔥</span>
+                <p style="font-size:0.95rem; line-height:1.7;">
+                    Kasus kebakaran hutan dan lahan (karhutla) di Katingan merupakan contoh nyata bagaimana <span class="highlight">analisis geografi terintegrasi</span> digunakan untuk memahami akar masalah dan merumuskan solusi. Mari kita telaah secara mendalam.
+                </p>
+            </div>
+
+            <!-- Pendahuluan -->
             <div style="background:rgba(255,107,107,0.04); border-radius:12px; padding:14px 16px; margin-bottom:12px; border-left:4px solid #ff6b6b;">
-                <h4 style="color:#ff6b6b; font-size:0.95rem; font-weight:700;">🔥 Fenomena: Kebakaran Lahan Gambut</h4>
-                <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); line-height:1.7;">Katingan merupakan salah satu kabupaten di Kalimantan Tengah dengan lahan gambut terluas. Kebakaran hutan dan lahan (karhutla) terjadi hampir setiap tahun pada musim kemarau, terutama di wilayah dengan kanal-kanal drainase untuk perkebunan sawit.</p>
-            </div>
-
-            <div style="display:grid; gap:12px;">
-                <!-- Analisis dengan Pendekatan Geografi -->
-                <div style="background:rgba(108,92,231,0.04); border-radius:10px; padding:12px 14px; border-left:4px solid #6c5ce7;">
-                    <h4 style="color:#a29bfe; font-size:0.9rem; font-weight:700;">📊 Analisis dengan Pendekatan Keruangan</h4>
-                    <p style="font-size:0.88rem; color:rgba(255,255,255,0.55); line-height:1.6;">Titik-titik api (hotspot) terkonsentrasi di daerah dengan kanal drainase dan lahan gambut dangkal (< 3 meter). Pola spasial menunjukkan kebakaran menyebar dari tepi kanal ke arah dalam gambut. Peta sebaran titik api dari satelit MODIS dan VIIRS digunakan untuk pemantauan.</p>
-                </div>
-
-                <div style="background:rgba(0,206,201,0.04); border-radius:10px; padding:12px 14px; border-left:4px solid #00cec9;">
-                    <h4 style="color:#00cec9; font-size:0.9rem; font-weight:700;">🌿 Analisis dengan Pendekatan Kelingkungan</h4>
-                    <p style="font-size:0.88rem; color:rgba(255,255,255,0.55); line-height:1.6;">Faktor alam: El Niño menyebabkan kemarau panjang dan menurunkan muka air tanah. Faktor manusia: pembukaan lahan dengan cara dibakar, drainase gambut, dan pengelolaan lahan yang tidak tepat. Dampak: hilangnya habitat orangutan, emisi CO₂, kabut asap (ISPU > 300) yang mengganggu kesehatan dan aktivitas ekonomi.</p>
-                </div>
-
-                <div style="background:rgba(253,121,168,0.04); border-radius:10px; padding:12px 14px; border-left:4px solid #fd79a8;">
-                    <h4 style="color:#fd79a8; font-size:0.9rem; font-weight:700;">🏘️ Analisis dengan Pendekatan Kompleks Wilayah</h4>
-                    <p style="font-size:0.88rem; color:rgba(255,255,255,0.55); line-height:1.6;">Katingan sebagai wilayah gambut tropis memiliki karakteristik: lahan gambut tebal dengan karbon tinggi (fisik) → masyarakat bergantung pada lahan untuk ekonomi (nonfisik) → kebakaran terjadi akibat interaksi kompleks antara iklim, penggunaan lahan, dan perilaku masyarakat → solusi memerlukan pendekatan terpadu: restorasi gambut (rewetting), pembangunan kanal blok, dan sosialisasi pertanian tanpa bakar.</p>
+                <h4 style="color:#ff6b6b; font-size:0.95rem; font-weight:700;">🔥 Fenomena: Kebakaran Lahan Gambut Berulang</h4>
+                <p style="font-size:0.9rem; color:rgba(255,255,255,0.7); line-height:1.7;">
+                    Katingan memiliki <strong>lahan gambut seluas ± 500.000 ha</strong> (sekitar 60% dari luas kabupaten). Kebakaran terjadi hampir setiap tahun pada musim kemarau (Juni–September), dengan puncaknya pada tahun El Niño (2015, 2019). Kebakaran tidak hanya merusak ekosistem, tetapi juga mengganggu kesehatan, ekonomi, dan hubungan sosial.
+                </p>
+                <div style="background:rgba(255,107,107,0.06); border-radius:8px; padding:8px 14px; margin-top:6px;">
+                    <span style="color:#fdcb6e; font-weight:600;">📊 Data penting:</span>
+                    <span style="color:rgba(255,255,255,0.55); font-size:0.85rem;">
+                        Tahun 2019: 2.347 titik api terdeteksi di Katingan, luas lahan terbakar 89.000 ha, dan ISPU (Indeks Standar Pencemar Udara) > 300 (berbahaya) selama 2 bulan.
+                    </span>
                 </div>
             </div>
+
+            <!-- Analisis 3 Pendekatan -->
+            <div style="display:grid; gap:14px;">
+
+                <!-- Pendekatan Keruangan -->
+                <div style="background:rgba(108,92,231,0.04); border-radius:12px; padding:14px 16px; border-left:4px solid #6c5ce7;">
+                    <h4 style="color:#a29bfe; font-size:0.95rem; font-weight:700;">📊 Analisis Keruangan</h4>
+                    <p style="font-size:0.9rem; color:rgba(255,255,255,0.7); line-height:1.7;">
+                        Dengan data satelit (MODIS, VIIRS) dan SIG, ditemukan pola spasial yang jelas:
+                    </p>
+                    <ul style="font-size:0.88rem; padding-left:20px; color:rgba(255,255,255,0.6); line-height:1.8;">
+                        <li><strong>Konsentrasi hotspot</strong> berada di daerah dengan kanal drainase (bekas perkebunan sawit) dan gambut dangkal (< 3 m).</li>
+                        <li>Kebakaran <strong>menyebar dari tepi kanal</strong> ke arah dalam gambut, dengan kecepatan rambat lebih tinggi pada lahan terbuka.</li>
+                        <li>Zona rawan tertinggi berada di Kecamatan Katingan Tengah dan Katingan Hulu, terutama di sekitar Tumbang Samba dan Tumbang Lahang.</li>
+                    </ul>
+                    <div style="background:rgba(108,92,231,0.06); border-radius:6px; padding:8px 12px; margin-top:6px;">
+                        <span style="color:#a29bfe; font-weight:600;">🛰️ Teknologi:</span>
+                        <span style="color:rgba(255,255,255,0.5); font-size:0.85rem;">Pemanfaatan citra <em>Sentinel-2</em> untuk mendeteksi area bekas terbakar dan memantau regenerasi vegetasi.</span>
+                    </div>
+                </div>
+
+                <!-- Pendekatan Kelingkungan -->
+                <div style="background:rgba(0,206,201,0.04); border-radius:12px; padding:14px 16px; border-left:4px solid #00cec9;">
+                    <h4 style="color:#00cec9; font-size:0.95rem; font-weight:700;">🌿 Analisis Kelingkungan</h4>
+                    <p style="font-size:0.9rem; color:rgba(255,255,255,0.7); line-height:1.7;">
+                        Interaksi antara faktor alam dan manusia menjadi penyebab utama:
+                    </p>
+                    <ul style="font-size:0.88rem; padding-left:20px; color:rgba(255,255,255,0.6); line-height:1.8;">
+                        <li><strong>Alam:</strong> El Niño menyebabkan kemarau ekstrem, muka air gambut turun hingga > 40 cm, sehingga gambut kering dan mudah terbakar.</li>
+                        <li><strong>Manusia:</strong> Pembukaan lahan dengan cara dibakar, pembuatan kanal drainase (untuk sawit), dan kurangnya kesadaran akan bahaya kebakaran.</li>
+                        <li><strong>Dampak ekologi:</strong> Hilangnya habitat orangutan (populasi menurun 20% di area terbakar), emisi CO₂ setara dengan 2 juta ton/tahun, dan hilangnya keanekaragaman hayati.</li>
+                    </ul>
+                    <div style="background:rgba(0,206,201,0.06); border-radius:6px; padding:8px 12px; margin-top:6px;">
+                        <span style="color:#00cec9; font-weight:600;">📈 Dampak sosial-ekonomi:</span>
+                        <span style="color:rgba(255,255,255,0.5); font-size:0.85rem;">Kabut asap menyebabkan ISPU > 300, sekolah tutup, masyarakat terkena ISPA, dan pendapatan dari sektor pariwisata/perikanan menurun drastis.</span>
+                    </div>
+                </div>
+
+                <!-- Pendekatan Kompleks Wilayah -->
+                <div style="background:rgba(253,121,168,0.04); border-radius:12px; padding:14px 16px; border-left:4px solid #fd79a8;">
+                    <h4 style="color:#fd79a8; font-size:0.95rem; font-weight:700;">🏘️ Analisis Kompleks Wilayah</h4>
+                    <p style="font-size:0.9rem; color:rgba(255,255,255,0.7); line-height:1.7;">
+                        Katingan sebagai <strong>wilayah gambut tropis</strong> memiliki karakteristik unik yang membutuhkan pendekatan terpadu:
+                    </p>
+                    <ul style="font-size:0.88rem; padding-left:20px; color:rgba(255,255,255,0.6); line-height:1.8;">
+                        <li><strong>Fisik:</strong> gambut tebal (3–8 m), keanekaragaman hayati tinggi, iklim tropis basah dengan musim kemarau yang ekstrem.</li>
+                        <li><strong>Sosial-ekonomi:</strong> masyarakat (Dayak Ngaju, pendatang) bergantung pada lahan untuk perkebunan, tambang, dan perikanan.</li>
+                        <li><strong>Kelembagaan:</strong> tumpang tindih antara hak adat, izin usaha perkebunan, dan kawasan konservasi (Taman Nasional Sebangau).</li>
+                    </ul>
+                    <div style="background:rgba(253,121,168,0.06); border-radius:6px; padding:8px 12px; margin-top:6px;">
+                        <span style="color:#fd79a8; font-weight:600;">🔍 Kesimpulan:</span>
+                        <span style="color:rgba(255,255,255,0.5); font-size:0.85rem;">Penanganan karhutla tidak bisa parsial; harus melibatkan restorasi gambut, penegakan hukum, pemberdayaan masyarakat, dan perbaikan tata ruang.</span>
+                    </div>
+                </div>
+
+            </div><!-- end grid -->
 
             <!-- Solusi & Rekomendasi -->
             <div style="background:rgba(253,203,110,0.04); border-radius:12px; padding:14px 16px; margin-top:12px; border-left:4px solid #fdcb6e;">
                 <h4 style="color:#fdcb6e; font-size:0.95rem; font-weight:700;">💡 Solusi & Rekomendasi Berbasis Geografi</h4>
-                <ul style="font-size:0.88rem; padding-left:20px; color:rgba(255,255,255,0.55); line-height:1.9;">
-                    <li><strong style="color:#a29bfe;">Restorasi Gambut:</strong> Pembasahan kembali (rewetting) lahan gambut dengan kanal blok dan penanaman vegetasi khas gambut.</li>
-                    <li><strong style="color:#00cec9;">Sistem Peringatan Dini:</strong> Pemanfaatan data satelit (hotspot, curah hujan) dan sistem informasi geografi untuk deteksi dini kebakaran.</li>
-                    <li><strong style="color:#fd79a8;">Perubahan Perilaku:</strong> Sosialisasi pertanian tanpa bakar dan pengembangan alternatif ekonomi (ekowisata, hasil hutan non-kayu).</li>
-                    <li><strong style="color:#fdcb6e;">Kebijakan Tata Ruang:</strong> Penegakan zona lindung gambut dan moratorium pembukaan lahan gambut baru.</li>
-                    <li><strong style="color:#ff6b6b;">Kolaborasi Multi-pihak:</strong> Kerjasama antara pemerintah, masyarakat, perusahaan, dan LSM dalam pengelolaan gambut berkelanjutan.</li>
+                <ul style="font-size:0.9rem; padding-left:20px; color:rgba(255,255,255,0.7); line-height:1.9;">
+                    <li><strong style="color:#a29bfe;">Restorasi gambut (rewetting):</strong> Membangun kanal blok untuk menahan air di lahan gambut, serta menanam vegetasi khas gambut (ramin, jelutung) yang tahan api.</li>
+                    <li><strong style="color:#00cec9;">Sistem peringatan dini berbasis SIG:</strong> Mengintegrasikan data hotspot, curah hujan, dan muka air tanah untuk memprediksi zona rawan kebakaran 7 hari ke depan.</li>
+                    <li><strong style="color:#fd79a8;">Sosialisasi pertanian tanpa bakar:</strong> Memberikan pelatihan dan pendampingan kepada petani untuk menggunakan alat mekanis dan pupuk organik.</li>
+                    <li><strong style="color:#fdcb6e;">Penegakan zona lindung:</strong> Memperkuat pengawasan di kawasan gambut dalam (> 3 m) yang ditetapkan sebagai zona lindung dalam RTRW.</li>
+                    <li><strong style="color:#ff6b6b;">Kolaborasi multi-pihak:</strong> Pemerintah, masyarakat, perusahaan (sawit), dan LSM (WWF, KPC) bekerja sama dalam program restorasi dan pemantauan.</li>
                 </ul>
+                <div style="background:rgba(253,203,110,0.06); border-radius:6px; padding:8px 12px; margin-top:6px;">
+                    <span style="color:#fdcb6e; font-weight:600;">📌 Keberhasilan di lapangan:</span>
+                    <span style="color:rgba(255,255,255,0.5); font-size:0.85rem;">Program "Katingan Mentaya Project" (KMP) berhasil menurunkan titik api hingga 70% di area intervensi dengan melibatkan masyarakat sebagai brigade pemadam dan pemantau.</span>
+                </div>
             </div>
+
         </div>
     </div>
 
-    <!-- ===== D. PROFESI DI BIDANG GEOGRAFI (BARU - DIPERLUAS) ===== -->
+    <!-- ==========================================================
+    D. PROFESI DI BIDANG GEOGRAFI (DIPERDALAM)
+    ========================================================== -->
     <div class="materi-detail reveal">
         <div class="detail-header" onclick="toggleDetail(this)">
             <h4><i class="fas fa-briefcase" style="color:#00cec9;"></i> D. Profesi di Bidang Geografi</h4>
             <i class="fas fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;"></i>
         </div>
         <div class="detail-body">
-            <p style="font-size:0.92rem; color:rgba(255,255,255,0.55); margin-bottom:12px;">Lulusan geografi memiliki peluang karir yang luas. Berikut beberapa profesi yang dapat ditekuni:</p>
 
-            <div style="display:grid; gap:10px;">
-                <div style="background:rgba(108,92,231,0.04); border-radius:10px; padding:10px 14px; border-left:4px solid #6c5ce7; display:flex; align-items:flex-start; gap:10px; flex-wrap:wrap;">
-                    <span style="font-size:1.5rem;">🗺️</span>
-                    <div>
-                        <h4 style="color:#a29bfe; font-size:0.9rem; font-weight:700;">Kartografer & SIG Specialist</h4>
-                        <p style="font-size:0.85rem; color:rgba(255,255,255,0.5);">Membuat peta digital, analisis spasial, dan mengelola basis data geospasial untuk berbagai sektor (pemerintahan, swasta, LSM).</p>
-                    </div>
-                </div>
-                <div style="background:rgba(0,206,201,0.04); border-radius:10px; padding:10px 14px; border-left:4px solid #00cec9; display:flex; align-items:flex-start; gap:10px; flex-wrap:wrap;">
-                    <span style="font-size:1.5rem;">🏙️</span>
-                    <div>
-                        <h4 style="color:#00cec9; font-size:0.9rem; font-weight:700;">Perencana Tata Ruang & Wilayah</h4>
-                        <p style="font-size:0.85rem; color:rgba(255,255,255,0.5);">Merancang tata ruang kota/kabupaten, zona lindung dan budidaya, serta perencanaan pembangunan infrastruktur.</p>
-                    </div>
-                </div>
-                <div style="background:rgba(253,121,168,0.04); border-radius:10px; padding:10px 14px; border-left:4px solid #fd79a8; display:flex; align-items:flex-start; gap:10px; flex-wrap:wrap;">
-                    <span style="font-size:1.5rem;">🌦️</span>
-                    <div>
-                        <h4 style="color:#fd79a8; font-size:0.9rem; font-weight:700;">Ahli Klimatologi & Mitigasi Bencana</h4>
-                        <p style="font-size:0.85rem; color:rgba(255,255,255,0.5);">Menganalisis data iklim, memprediksi bencana alam, dan merancang sistem mitigasi serta kebijakan adaptasi.</p>
-                    </div>
-                </div>
-                <div style="background:rgba(253,203,110,0.04); border-radius:10px; padding:10px 14px; border-left:4px solid #fdcb6e; display:flex; align-items:flex-start; gap:10px; flex-wrap:wrap;">
-                    <span style="font-size:1.5rem;">🌳</span>
-                    <div>
-                        <h4 style="color:#fdcb6e; font-size:0.9rem; font-weight:700;">Konservasi & Pengelolaan Lingkungan</h4>
-                        <p style="font-size:0.85rem; color:rgba(255,255,255,0.5);">Mengelola kawasan konservasi, restorasi ekosistem (gambut, hutan), dan pengembangan ekowisata berkelanjutan.</p>
-                    </div>
-                </div>
-                <div style="background:rgba(255,107,107,0.04); border-radius:10px; padding:10px 14px; border-left:4px solid #ff6b6b; display:flex; align-items:flex-start; gap:10px; flex-wrap:wrap;">
-                    <span style="font-size:1.5rem;">📊</span>
-                    <div>
-                        <h4 style="color:#ff6b6b; font-size:0.9rem; font-weight:700;">Analis Data Spasial & Geodemografi</h4>
-                        <p style="font-size:0.85rem; color:rgba(255,255,255,0.5);">Menganalisis data kependudukan, ekonomi, dan sosial dengan pendekatan keruangan untuk kebijakan pembangunan.</p>
-                    </div>
-                </div>
-                <div style="background:rgba(0,206,201,0.04); border-radius:10px; padding:10px 14px; border-left:4px solid #a29bfe; display:flex; align-items:flex-start; gap:10px; flex-wrap:wrap;">
-                    <span style="font-size:1.5rem;">📚</span>
-                    <div>
-                        <h4 style="color:#a29bfe; font-size:0.9rem; font-weight:700;">Pendidik & Peneliti Geografi</h4>
-                        <p style="font-size:0.85rem; color:rgba(255,255,255,0.5);">Mengajar di sekolah/universitas, melakukan penelitian geografi, dan menulis karya ilmiah untuk pengembangan ilmu.</p>
-                    </div>
-                </div>
+            <div class="detail-explanation">
+                <span class="emoji-big">🚀</span>
+                <p style="font-size:0.95rem; line-height:1.7;">
+                    Lulusan geografi memiliki <span class="highlight">peluang karir yang sangat luas</span>, baik di sektor pemerintahan, swasta, LSM, maupun wirausaha. Berikut adalah beberapa profesi utama dengan deskripsi tugas, keterampilan yang dibutuhkan, dan contoh proyek nyata.
+                </p>
             </div>
+
+            <div style="display:grid; gap:14px;">
+
+                <!-- Profesi 1 -->
+                <div style="background:rgba(108,92,231,0.04); border-radius:12px; padding:14px 16px; border-left:4px solid #6c5ce7;">
+                    <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+                        <span style="font-size:1.8rem;">🗺️</span>
+                        <div>
+                            <h4 style="color:#a29bfe; font-size:0.95rem; font-weight:700; margin:0;">Kartografer & SIG Specialist</h4>
+                        </div>
+                    </div>
+                    <p style="font-size:0.9rem; color:rgba(255,255,255,0.7); line-height:1.6; margin-top:4px;">
+                        <strong>Tugas:</strong> Membuat peta digital dan cetak, mengelola basis data geospasial, melakukan analisis spasial dengan perangkat lunak GIS (ArcGIS, QGIS, Google Earth Engine).
+                    </p>
+                    <div style="background:rgba(108,92,231,0.06); border-radius:6px; padding:8px 12px; margin-top:4px;">
+                        <span style="color:#a29bfe; font-weight:600;">💼 Contoh proyek:</span>
+                        <span style="color:rgba(255,255,255,0.5); font-size:0.85rem;">Memetakan zona rawan kebakaran gambut Katingan untuk Badan Penanggulangan Bencana Daerah (BPBD).</span>
+                    </div>
+                    <div style="margin-top:4px; font-size:0.8rem; color:rgba(255,255,255,0.4);">
+                        <i class="fas fa-arrow-right"></i> Keterampilan: penguasaan SIG, desain kartografi, analisis data spasial.
+                    </div>
+                </div>
+
+                <!-- Profesi 2 -->
+                <div style="background:rgba(0,206,201,0.04); border-radius:12px; padding:14px 16px; border-left:4px solid #00cec9;">
+                    <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+                        <span style="font-size:1.8rem;">🏙️</span>
+                        <div>
+                            <h4 style="color:#00cec9; font-size:0.95rem; font-weight:700; margin:0;">Perencana Tata Ruang & Wilayah</h4>
+                        </div>
+                    </div>
+                    <p style="font-size:0.9rem; color:rgba(255,255,255,0.7); line-height:1.6; margin-top:4px;">
+                        <strong>Tugas:</strong> Menyusun rencana tata ruang kota/kabupaten, menentukan zona lindung dan budidaya, merancang pembangunan infrastruktur yang sesuai dengan karakteristik wilayah.
+                    </p>
+                    <div style="background:rgba(0,206,201,0.06); border-radius:6px; padding:8px 12px; margin-top:4px;">
+                        <span style="color:#00cec9; font-weight:600;">💼 Contoh proyek:</span>
+                        <span style="color:rgba(255,255,255,0.5); font-size:0.85rem;">Menyusun Rencana Detail Tata Ruang (RDTR) Kecamatan Katingan Tengah dengan mempertimbangkan kawasan gambut, pemukiman, dan jalur evakuasi banjir.</span>
+                    </div>
+                    <div style="margin-top:4px; font-size:0.8rem; color:rgba(255,255,255,0.4);">
+                        <i class="fas fa-arrow-right"></i> Keterampilan: SIG, peraturan tata ruang, analisis kebijakan, komunikasi publik.
+                    </div>
+                </div>
+
+                <!-- Profesi 3 -->
+                <div style="background:rgba(253,121,168,0.04); border-radius:12px; padding:14px 16px; border-left:4px solid #fd79a8;">
+                    <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+                        <span style="font-size:1.8rem;">🌦️</span>
+                        <div>
+                            <h4 style="color:#fd79a8; font-size:0.95rem; font-weight:700; margin:0;">Ahli Klimatologi & Mitigasi Bencana</h4>
+                        </div>
+                    </div>
+                    <p style="font-size:0.9rem; color:rgba(255,255,255,0.7); line-height:1.6; margin-top:4px;">
+                        <strong>Tugas:</strong> Menganalisis data iklim, memprediksi bencana alam (banjir, kekeringan, kebakaran), merancang sistem mitigasi, dan menyusun rencana adaptasi.
+                    </p>
+                    <div style="background:rgba(253,121,168,0.06); border-radius:6px; padding:8px 12px; margin-top:4px;">
+                        <span style="color:#fd79a8; font-weight:600;">💼 Contoh proyek:</span>
+                        <span style="color:rgba(255,255,255,0.5); font-size:0.85rem;">Mengembangkan dashboard peringatan dini karhutla berbasis data satelit dan curah hujan untuk Kabupaten Katingan.</span>
+                    </div>
+                    <div style="margin-top:4px; font-size:0.8rem; color:rgba(255,255,255,0.4);">
+                        <i class="fas fa-arrow-right"></i> Keterampilan: statistik, klimatologi, pemrograman (Python/R), SIG.
+                    </div>
+                </div>
+
+                <!-- Profesi 4 -->
+                <div style="background:rgba(253,203,110,0.04); border-radius:12px; padding:14px 16px; border-left:4px solid #fdcb6e;">
+                    <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+                        <span style="font-size:1.8rem;">🌳</span>
+                        <div>
+                            <h4 style="color:#fdcb6e; font-size:0.95rem; font-weight:700; margin:0;">Konservasi & Pengelolaan Lingkungan</h4>
+                        </div>
+                    </div>
+                    <p style="font-size:0.9rem; color:rgba(255,255,255,0.7); line-height:1.6; margin-top:4px;">
+                        <strong>Tugas:</strong> Mengelola kawasan konservasi (taman nasional, suaka margasatwa), merancang program restorasi ekosistem, mengembangkan ekowisata berkelanjutan, dan memantau keanekaragaman hayati.
+                    </p>
+                    <div style="background:rgba(253,203,110,0.06); border-radius:6px; padding:8px 12px; margin-top:4px;">
+                        <span style="color:#fdcb6e; font-weight:600;">💼 Contoh proyek:</span>
+                        <span style="color:rgba(255,255,255,0.5); font-size:0.85rem;">Program restorasi gambut di Katingan dengan melibatkan masyarakat lokal sebagai penjaga hutan dan pemadam kebakaran.</span>
+                    </div>
+                    <div style="margin-top:4px; font-size:0.8rem; color:rgba(255,255,255,0.4);">
+                        <i class="fas fa-arrow-right"></i> Keterampilan: ekologi, SIG, manajemen proyek, pemberdayaan masyarakat.
+                    </div>
+                </div>
+
+                <!-- Profesi 5 -->
+                <div style="background:rgba(255,107,107,0.04); border-radius:12px; padding:14px 16px; border-left:4px solid #ff6b6b;">
+                    <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+                        <span style="font-size:1.8rem;">📊</span>
+                        <div>
+                            <h4 style="color:#ff6b6b; font-size:0.95rem; font-weight:700; margin:0;">Analis Data Spasial & Geodemografi</h4>
+                        </div>
+                    </div>
+                    <p style="font-size:0.9rem; color:rgba(255,255,255,0.7); line-height:1.6; margin-top:4px;">
+                        <strong>Tugas:</strong> Menganalisis data kependudukan, ekonomi, kesehatan, dan sosial dengan pendekatan keruangan untuk mendukung kebijakan pembangunan berbasis bukti.
+                    </p>
+                    <div style="background:rgba(255,107,107,0.06); border-radius:6px; padding:8px 12px; margin-top:4px;">
+                        <span style="color:#ff6b6b; font-weight:600;">💼 Contoh proyek:</span>
+                        <span style="color:rgba(255,255,255,0.5); font-size:0.85rem;">Memetakan kepadatan penduduk dan akses fasilitas kesehatan di Katingan untuk perencanaan puskesmas baru.</span>
+                    </div>
+                    <div style="margin-top:4px; font-size:0.8rem; color:rgba(255,255,255,0.4);">
+                        <i class="fas fa-arrow-right"></i> Keterampilan: statistik, SIG, bahasa pemrograman (R, Python), data mining.
+                    </div>
+                </div>
+
+                <!-- Profesi 6 -->
+                <div style="background:rgba(0,206,201,0.02); border-radius:12px; padding:14px 16px; border-left:4px solid #a29bfe;">
+                    <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+                        <span style="font-size:1.8rem;">📚</span>
+                        <div>
+                            <h4 style="color:#a29bfe; font-size:0.95rem; font-weight:700; margin:0;">Pendidik & Peneliti Geografi</h4>
+                        </div>
+                    </div>
+                    <p style="font-size:0.9rem; color:rgba(255,255,255,0.7); line-height:1.6; margin-top:4px;">
+                        <strong>Tugas:</strong> Mengajar geografi di tingkat SMA, perguruan tinggi, atau lembaga pelatihan; melakukan penelitian ilmiah; menulis buku dan artikel ilmiah untuk pengembangan ilmu geografi.
+                    </p>
+                    <div style="background:rgba(108,92,231,0.06); border-radius:6px; padding:8px 12px; margin-top:4px;">
+                        <span style="color:#a29bfe; font-weight:600;">💼 Contoh proyek:</span>
+                        <span style="color:rgba(255,255,255,0.5); font-size:0.85rem;">Penelitian tentang efektivitas restorasi gambut di Katingan yang diterbitkan di jurnal internasional dan menjadi acuan kebijakan nasional.</span>
+                    </div>
+                    <div style="margin-top:4px; font-size:0.8rem; color:rgba(255,255,255,0.4);">
+                        <i class="fas fa-arrow-right"></i> Keterampilan: pedagogi, metodologi penelitian, penulisan ilmiah, komunikasi.
+                    </div>
+                </div>
+
+            </div><!-- end grid -->
+
+            <!-- Motivasi Karir -->
+            <div style="background:rgba(0,206,201,0.02); border-radius:12px; padding:12px 16px; margin-top:12px; border:1px solid rgba(0,206,201,0.08);">
+                <span style="color:#00cec9; font-weight:600;">🌟 Mengapa memilih karir geografi?</span>
+                <span style="color:rgba(255,255,255,0.55); font-size:0.85rem; display:block; margin-top:4px;">
+                    Geografi adalah <strong>ilmu masa depan</strong> karena semakin banyak masalah yang memerlukan pendekatan keruangan: perubahan iklim, urbanisasi, ketahanan pangan, dan pengelolaan sumber daya alam. Lulusan geografi memiliki keterampilan analitis, teknis (SIG, penginderaan jauh), dan komunikasi yang sangat dibutuhkan di era data.
+                </span>
+            </div>
+
         </div>
     </div>
 
-    <!-- ===== KUIS PERTEMUAN 3 ===== -->
+    <!-- ==========================================================
+    KUIS PERTEMUAN 3
+    ========================================================== -->
     <div class="mini-quiz reveal">
         <div class="quiz-question">🧠 <strong>Kuis Cepat:</strong> Manfaat geografi untuk mengurangi risiko bencana disebut...</div>
         <div class="quiz-options">
@@ -4798,6 +5279,9 @@
         <div class="quiz-feedback"></div>
     </div>
 
+    <!-- ==========================================================
+    NAVIGASI
+    ========================================================== -->
     <div class="nav-buttons">
         <div class="group">
             <button onclick="navigateTo('prev')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
@@ -4806,6 +5290,7 @@
             <span class="counter">5 / 9</span>
         </div>
     </div>
+
 </section>
         <!-- ============================================================
         SECTION 6 : ASESMEN (tetap seperti aslinya)
