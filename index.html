@@ -2197,7 +2197,6 @@
         /* ============================================================
                    TULISAN DI PERJELAS
                    ============================================================ */
-        /* Memperjelas semua teks kecil */
         .section p,
         .section li,
         .section span:not(.badge):not(.num-badge):not(.tag-aktual):not(.local-badge) {
@@ -2225,7 +2224,6 @@
             color: rgba(255,255,255,0.9);
         }
 
-        /* Teks di dalam detail body */
         .detail-body p,
         .detail-body li,
         .detail-body span:not(.badge):not(.num-badge):not(.tag-aktual):not(.local-badge) {
@@ -2240,7 +2238,6 @@
             color: rgba(255,255,255,0.92) !important;
         }
 
-        /* Tooltip box text */
         .tooltip-box {
             font-size: 0.85rem !important;
             font-weight: 400 !important;
@@ -2248,14 +2245,12 @@
             line-height: 1.6 !important;
         }
 
-        /* Flow diagram text */
         .flow-box .sub {
             font-size: 0.8rem !important;
             font-weight: 500 !important;
             color: rgba(255,255,255,0.4) !important;
         }
 
-        /* DPL card text */
         .dpl-card p {
             font-size: 0.85rem !important;
             font-weight: 400 !important;
@@ -2263,7 +2258,6 @@
             line-height: 1.5 !important;
         }
 
-        /* Tech card text */
         .tech-card p {
             font-size: 0.85rem !important;
             font-weight: 400 !important;
@@ -2271,7 +2265,6 @@
             line-height: 1.5 !important;
         }
 
-        /* Rubrik table text */
         .rubrik-table td {
             font-size: 0.88rem !important;
             font-weight: 400 !important;
@@ -2284,7 +2277,6 @@
             font-weight: 700 !important;
         }
 
-        /* Refleksi list */
         .refleksi-list li {
             font-size: 1rem !important;
             font-weight: 400 !important;
@@ -2292,7 +2284,6 @@
             line-height: 1.8 !important;
         }
 
-        /* Quote block */
         .quote-block {
             font-size: 1.1rem !important;
             font-weight: 400 !important;
@@ -2300,7 +2291,6 @@
             line-height: 1.8 !important;
         }
 
-        /* Isu card */
         .isu-card p {
             font-size: 0.92rem !important;
             font-weight: 400 !important;
@@ -2308,14 +2298,12 @@
             line-height: 1.8 !important;
         }
 
-        /* Assessment options */
         .assessment-question .q-options span {
             font-size: 0.9rem !important;
             font-weight: 400 !important;
             color: rgba(255,255,255,0.65) !important;
         }
 
-        /* Ref list */
         .ref-list li {
             font-size: 0.9rem !important;
             font-weight: 400 !important;
@@ -2323,7 +2311,6 @@
             line-height: 1.6 !important;
         }
 
-        /* Rekomendasi box */
         .rekomendasi-box ul {
             font-size: 0.92rem !important;
             font-weight: 400 !important;
@@ -2331,12 +2318,106 @@
             line-height: 2 !important;
         }
 
-        /* Celebration box */
         .celebration-box p {
             font-size: 1.05rem !important;
             font-weight: 400 !important;
             color: rgba(255,255,255,0.75) !important;
             line-height: 1.8 !important;
+        }
+
+        /* ============================================================
+                   ASESMEN - SOAL LENGKAP
+                   ============================================================ */
+        .soal-pg {
+            margin-bottom: 14px;
+            padding: 14px 18px;
+            background: rgba(20, 26, 46, 0.5);
+            border-radius: 12px;
+            border-left: 4px solid #6c5ce7;
+            transition: all 0.3s ease;
+        }
+        .soal-pg:hover {
+            border-left-color: #00cec9;
+            background: rgba(20, 26, 46, 0.7);
+        }
+        .soal-pg .nomor {
+            color: #a29bfe;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-right: 8px;
+        }
+        .soal-pg .pertanyaan {
+            color: #f0f4fa;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+        .soal-pg .opsi {
+            padding-left: 20px;
+            color: rgba(255,255,255,0.65);
+            font-size: 0.9rem;
+            font-weight: 400;
+            line-height: 2.2;
+        }
+        .soal-pg .opsi span {
+            display: block;
+        }
+
+        .soal-bs {
+            margin-bottom: 10px;
+            padding: 12px 16px;
+            background: rgba(20, 26, 46, 0.4);
+            border-radius: 10px;
+            border-left: 4px solid #00cec9;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .soal-bs:hover {
+            background: rgba(20, 26, 46, 0.6);
+        }
+        .soal-bs .nomor {
+            color: #00cec9;
+            font-weight: 700;
+            font-size: 0.85rem;
+            min-width: 30px;
+        }
+        .soal-bs .pertanyaan {
+            color: #f0f4fa;
+            font-weight: 500;
+            font-size: 0.92rem;
+            flex: 1;
+        }
+
+        .soal-essay {
+            margin-bottom: 14px;
+            padding: 14px 18px;
+            background: rgba(20, 26, 46, 0.4);
+            border-radius: 12px;
+            border-left: 4px solid #fdcb6e;
+            transition: all 0.3s ease;
+        }
+        .soal-essay:hover {
+            background: rgba(20, 26, 46, 0.6);
+        }
+        .soal-essay .nomor {
+            color: #fdcb6e;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-right: 8px;
+        }
+        .soal-essay .pertanyaan {
+            color: #f0f4fa;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+        .soal-essay .petunjuk {
+            color: rgba(255,255,255,0.3);
+            font-size: 0.85rem;
+            font-style: italic;
+            font-weight: 400;
         }
     </style>
 </head>
@@ -2546,7 +2627,7 @@
         </section>
 
         <!-- ============================================================
-        SECTION 3 : PERTEMUAN 1 – DIPERKAYA DENGAN PENJELASAN DETAIL
+        SECTION 3 : PERTEMUAN 1
         ============================================================ -->
         <section id="section3" class="section">
             <div style="background:rgba(108,92,231,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(108,92,231,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
@@ -2559,7 +2640,6 @@
                 <span class="badge-pertemuan"><i class="far fa-clock"></i> 3×45'</span>
             </div>
 
-            <!-- Progress Tracker -->
             <div class="progress-tracker">
                 <span class="step active">1</span><span class="line"></span>
                 <span class="step">2</span><span class="line"></span>
@@ -2607,10 +2687,10 @@
                 </div>
             </div>
 
-            <!-- ===== MATERI 1 : PENGERTIAN GEOGRAFI ===== -->
+            <!-- ===== MATERI SINGKAT PERTEMUAN 1 ===== -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
-                    <h4><i class="fas fa-book-open" style="color:#6c5ce7;"></i> A. Pengertian Geografi (Etimologis) <span class="local-badge"><i class="fas fa-map-pin"></i> Asal Kata</span></h4>
+                    <h4><i class="fas fa-book-open" style="color:#6c5ce7;"></i> A. Pengertian Geografi <span class="local-badge"><i class="fas fa-map-pin"></i> Asal Kata</span></h4>
                     <i class="fas fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;"></i>
                 </div>
                 <div class="detail-body">
@@ -2618,33 +2698,17 @@
                         <span class="emoji-big">📖</span>
                         <p><strong>Apa itu Geografi?</strong> Geografi adalah ilmu yang mempelajari tentang <span class="highlight">bumi dan segala isinya</span>, termasuk manusia, hewan, tumbuhan, dan fenomena alam yang terjadi di dalamnya.</p>
                     </div>
-
                     <p style="color:rgba(255,255,255,0.85); font-size:0.95rem; font-weight:400;">
-                        Kata <strong>"geografi"</strong> berasal dari bahasa Yunani Kuno, terdiri dari dua kata:
+                        Kata <strong>"geografi"</strong> berasal dari bahasa Yunani Kuno: <strong style="color:#6c5ce7;">Geo</strong> (Bumi) dan <strong style="color:#00cec9;">Graphien</strong> (Menulis/Melukis). Jadi geografi berarti <span style="color:#fdcb6e; font-weight:700;">"lukisan bumi"</span>.
                     </p>
-                    <ul style="color:rgba(255,255,255,0.75); font-size:0.95rem; font-weight:400;">
-                        <li><strong style="color:#6c5ce7; font-weight:700;">Geo</strong> = <span class="tooltip-trigger">Bumi <span class="tooltip-box">Dalam bahasa Yunani, "Geo" merujuk pada planet Bumi secara keseluruhan, termasuk daratan, lautan, dan atmosfer.</span></span></li>
-                        <li><strong style="color:#00cec9; font-weight:700;">Graphien</strong> = <span class="tooltip-trigger">Menulis atau Melukis <span class="tooltip-box">"Graphien" berarti menggambarkan atau mendeskripsikan sesuatu secara terperinci, seperti melukis potret suatu tempat.</span></span></li>
-                    </ul>
-                    <p style="color:rgba(255,255,255,0.85); font-size:0.95rem; font-weight:400; margin-top:8px;">
-                        <strong style="font-weight:700;">Jadi, geografi secara harfiah berarti <span style="color:#fdcb6e; font-weight:700;">"lukisan bumi"</span>.</strong>
-                    </p>
-
                     <div style="background:rgba(253,203,110,0.03); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #fdcb6e;">
                         <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">
-                            <i class="fas fa-lightbulb" style="color:#fdcb6e;"></i> <strong style="color:rgba(255,255,255,0.7); font-weight:600;">Bayangkan:</strong> Seperti seorang pelukis yang menggambar pemandangan alam, ahli geografi "melukis" gambaran tentang bumi beserta segala isinya — gunung, sungai, kota, dan manusianya.
-                        </p>
-                    </div>
-
-                    <div style="background:rgba(0,206,201,0.03); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #00cec9;">
-                        <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">
-                            <i class="fas fa-question-circle" style="color:#00cec9;"></i> <strong style="color:rgba(255,255,255,0.7); font-weight:600;">Coba Pikirkan:</strong> Jika kamu diminta untuk "melukis" atau menggambarkan kampung halamanmu, apa saja yang akan kamu gambarkan? Gunung? Sungai? Rumah-rumah? Itulah yang dilakukan oleh ahli geografi!
+                            <i class="fas fa-lightbulb" style="color:#fdcb6e;"></i> <strong style="color:rgba(255,255,255,0.7); font-weight:600;">Bayangkan:</strong> Seperti pelukis yang menggambar pemandangan, ahli geografi "melukis" gambaran tentang bumi.
                         </p>
                     </div>
                 </div>
             </div>
 
-            <!-- ===== MATERI 2 : HAKIKAT GEOGRAFI ===== -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
                     <h4><i class="fas fa-globe-asia" style="color:#00cec9;"></i> B. Hakikat Geografi <span class="local-badge"><i class="fas fa-tree"></i> Kalimantan</span></h4>
@@ -2653,32 +2717,16 @@
                 <div class="detail-body">
                     <div class="detail-explanation">
                         <span class="emoji-big">🧠</span>
-                        <p><strong>Hakikat Geografi</strong> adalah cara pandang atau sudut pandang yang digunakan untuk melihat fenomena di bumi. Geografi memiliki dua sudut pandang utama, yaitu <span class="highlight">kelingkungan</span> dan <span class="highlight">kewilayahan</span>.</p>
+                        <p>Geografi memiliki dua sudut pandang utama: <span class="highlight">kelingkungan</span> (hubungan makhluk hidup dengan lingkungan) dan <span class="highlight">kewilayahan</span> (karakteristik unik suatu wilayah).</p>
                     </div>
-
-                    <p style="color:rgba(255,255,255,0.85); font-size:0.95rem; font-weight:400;">
-                        Geografi pada hakikatnya adalah <strong style="color:#f0f4fa; font-weight:700;">ilmu yang mempelajari persamaan dan perbedaan fenomena geosfer</strong> (lapisan bumi) dengan sudut pandang:
-                    </p>
-                    <ul style="color:rgba(255,255,255,0.75); font-size:0.95rem; font-weight:400;">
-                        <li><strong style="color:#6c5ce7; font-weight:700;">Kelingkungan</strong> – Melihat hubungan timbal balik antara makhluk hidup dengan lingkungannya. <span class="tooltip-trigger">🔍 <span class="tooltip-box">Contoh: Bagaimana masyarakat Dayak di Kalimantan beradaptasi dengan lingkungan hutan gambut dan sungai.</span></span></li>
-                        <li><strong style="color:#00cec9; font-weight:700;">Kewilayahan</strong> – Melihat karakteristik unik suatu wilayah dibandingkan wilayah lain. <span class="tooltip-trigger">🔍 <span class="tooltip-box">Contoh: Mengapa Kabupaten Katingan memiliki karakteristik berbeda dengan Kabupaten Kotawaringin Timur? (perbedaan jenis tanah, vegetasi, dan mata pencaharian)</span></span></li>
-                    </ul>
-
                     <div style="background:rgba(0,206,201,0.03); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #00cec9;">
                         <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">
-                            <i class="fas fa-tree" style="color:#00cec9;"></i> <strong style="color:rgba(255,255,255,0.7); font-weight:600;">Contoh Lokal Katingan:</strong> Wilayah Katingan memiliki karakteristik <strong style="font-weight:600;">lahan gambut</strong> yang luas, <strong style="font-weight:600;">sungai-sungai besar</strong> (Sungai Katingan, Sungai Samba), dan <strong style="font-weight:600;">hutan hujan tropis</strong> yang kaya akan keanekaragaman hayati. Ini adalah contoh fenomena geosfer yang dipelajari dalam geografi.
-                        </p>
-                    </div>
-
-                    <div style="background:rgba(253,121,168,0.03); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #fd79a8;">
-                        <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">
-                            <i class="fas fa-question-circle" style="color:#fd79a8;"></i> <strong style="color:rgba(255,255,255,0.7); font-weight:600;">Perhatikan Sekitarmu:</strong> Apa perbedaan antara lingkungan di sekitar sekolahmu dengan lingkungan di kota lain? Mengapa bisa berbeda? Itulah yang dipelajari dalam hakikat geografi!
+                            <i class="fas fa-tree" style="color:#00cec9;"></i> <strong style="color:rgba(255,255,255,0.7); font-weight:600;">Contoh Katingan:</strong> Wilayah Katingan memiliki lahan gambut luas, sungai besar, dan hutan hujan tropis.
                         </p>
                     </div>
                 </div>
             </div>
 
-            <!-- ===== MATERI 3 : 5 LAPISAN GEOSFER ===== -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
                     <h4><i class="fas fa-layer-group" style="color:#fd79a8;"></i> C. 5 Lapisan Geosfer <span class="local-badge"><i class="fas fa-water"></i> Sungai Katingan</span></h4>
@@ -2687,156 +2735,33 @@
                 <div class="detail-body">
                     <div class="detail-explanation">
                         <span class="emoji-big">🌍</span>
-                        <p><strong>Geosfer</strong> adalah lapisan-lapisan yang menyusun bumi. Bayangkan bumi seperti <span class="highlight">kue lapis</span> yang memiliki beberapa lapisan berbeda. Setiap lapisan memiliki karakteristik dan fungsinya masing-masing.</p>
+                        <p>Bumi terdiri dari <span class="highlight">5 lapisan</span> yang disebut geosfer: Litosfer (batuan), Atmosfer (udara), Hidrosfer (air), Biosfer (kehidupan), dan Antroposfer (manusia).</p>
                     </div>
-
-                    <p style="color:rgba(255,255,255,0.85); font-size:0.95rem; font-weight:400;">Ada <strong style="font-weight:700;">5 lapisan utama</strong> yang menjadi objek kajian geografi:</p>
-
                     <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px;">
                         <div style="background:rgba(108,92,231,0.04); border-radius:10px; padding:10px 14px; border-left:3px solid #6c5ce7;">
                             <h4 style="color:#a29bfe; font-size:0.9rem; font-weight:700;">🌋 Litosfer</h4>
-                            <p style="font-size:0.85rem; color:rgba(255,255,255,0.6); font-weight:400;">Lapisan <strong style="font-weight:600;">batuan dan tanah</strong>.</p>
-                            <p style="font-size:0.8rem; color:rgba(255,255,255,0.4); font-weight:400;"><i class="fas fa-map-pin" style="color:#fdcb6e;"></i> <strong style="font-weight:600;">Contoh Katingan:</strong> Tanah gambut di Katingan, formasi batuan di sepanjang Sungai Katingan.</p>
-                            <div style="background:rgba(0,0,0,0.1); border-radius:6px; padding:4px 8px; margin-top:4px;">
-                                <p style="font-size:0.75rem; color:rgba(255,255,255,0.3); font-weight:400;"><i class="fas fa-lightbulb" style="color:#fdcb6e;"></i> Tanah gambut terbentuk dari sisa-sisa tumbuhan yang membusuk selama ribuan tahun.</p>
-                            </div>
+                            <p style="font-size:0.85rem; color:rgba(255,255,255,0.6); font-weight:400;">Lapisan batuan dan tanah. Contoh: Tanah gambut Katingan.</p>
                         </div>
                         <div style="background:rgba(0,206,201,0.04); border-radius:10px; padding:10px 14px; border-left:3px solid #00cec9;">
                             <h4 style="color:#00cec9; font-size:0.9rem; font-weight:700;">☁️ Atmosfer</h4>
-                            <p style="font-size:0.85rem; color:rgba(255,255,255,0.6); font-weight:400;">Lapisan <strong style="font-weight:600;">udara</strong> yang menyelimuti bumi.</p>
-                            <p style="font-size:0.8rem; color:rgba(255,255,255,0.4); font-weight:400;"><i class="fas fa-map-pin" style="color:#fdcb6e;"></i> <strong style="font-weight:600;">Contoh Katingan:</strong> Iklim tropis dengan curah hujan tinggi (>3000 mm/tahun), musim kemarau yang memicu kebakaran hutan dan lahan.</p>
-                            <div style="background:rgba(0,0,0,0.1); border-radius:6px; padding:4px 8px; margin-top:4px;">
-                                <p style="font-size:0.75rem; color:rgba(255,255,255,0.3); font-weight:400;"><i class="fas fa-lightbulb" style="color:#fdcb6e;"></i> Atmosfer melindungi bumi dari radiasi matahari yang berbahaya.</p>
-                            </div>
+                            <p style="font-size:0.85rem; color:rgba(255,255,255,0.6); font-weight:400;">Lapisan udara. Contoh: Iklim tropis Katingan.</p>
                         </div>
                         <div style="background:rgba(253,121,168,0.04); border-radius:10px; padding:10px 14px; border-left:3px solid #fd79a8;">
                             <h4 style="color:#fd79a8; font-size:0.9rem; font-weight:700;">💧 Hidrosfer</h4>
-                            <p style="font-size:0.85rem; color:rgba(255,255,255,0.6); font-weight:400;">Lapisan <strong style="font-weight:600;">air</strong> di permukaan bumi.</p>
-                            <p style="font-size:0.8rem; color:rgba(255,255,255,0.4); font-weight:400;"><i class="fas fa-map-pin" style="color:#fdcb6e;"></i> <strong style="font-weight:600;">Contoh Katingan:</strong> Sungai Katingan, Sungai Samba, danau-danau kecil, rawa-rawa gambut.</p>
-                            <div style="background:rgba(0,0,0,0.1); border-radius:6px; padding:4px 8px; margin-top:4px;">
-                                <p style="font-size:0.75rem; color:rgba(255,255,255,0.3); font-weight:400;"><i class="fas fa-lightbulb" style="color:#fdcb6e;"></i> 71% permukaan bumi tertutup oleh air!</p>
-                            </div>
+                            <p style="font-size:0.85rem; color:rgba(255,255,255,0.6); font-weight:400;">Lapisan air. Contoh: Sungai Katingan.</p>
                         </div>
                         <div style="background:rgba(253,203,110,0.04); border-radius:10px; padding:10px 14px; border-left:3px solid #fdcb6e;">
                             <h4 style="color:#fdcb6e; font-size:0.9rem; font-weight:700;">🌿 Biosfer</h4>
-                            <p style="font-size:0.85rem; color:rgba(255,255,255,0.6); font-weight:400;">Lapisan <strong style="font-weight:600;">kehidupan</strong> (flora & fauna).</p>
-                            <p style="font-size:0.8rem; color:rgba(255,255,255,0.4); font-weight:400;"><i class="fas fa-map-pin" style="color:#fdcb6e;"></i> <strong style="font-weight:600;">Contoh Katingan:</strong> Orangutan Kalimantan, bekantan, pohon ramin, meranti, dan berbagai jenis anggrek.</p>
-                            <div style="background:rgba(0,0,0,0.1); border-radius:6px; padding:4px 8px; margin-top:4px;">
-                                <p style="font-size:0.75rem; color:rgba(255,255,255,0.3); font-weight:400;"><i class="fas fa-lightbulb" style="color:#fdcb6e;"></i> Kalimantan adalah salah satu pusat keanekaragaman hayati dunia!</p>
-                            </div>
+                            <p style="font-size:0.85rem; color:rgba(255,255,255,0.6); font-weight:400;">Lapisan kehidupan. Contoh: Orangutan Kalimantan.</p>
                         </div>
                     </div>
                     <div style="background:rgba(108,92,231,0.04); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #6c5ce7;">
                         <h4 style="color:#a29bfe; font-size:0.9rem; font-weight:700;">👥 Antroposfer</h4>
-                        <p style="font-size:0.85rem; color:rgba(255,255,255,0.6); font-weight:400;">Lapisan <strong style="font-weight:600;">manusia</strong> dan aktivitasnya.</p>
-                        <p style="font-size:0.8rem; color:rgba(255,255,255,0.4); font-weight:400;"><i class="fas fa-map-pin" style="color:#fdcb6e;"></i> <strong style="font-weight:600;">Contoh Katingan:</strong> Masyarakat Dayak Ngaju, petani karet, penambang emas tradisional, nelayan sungai.</p>
-                        <div style="background:rgba(0,0,0,0.1); border-radius:6px; padding:4px 8px; margin-top:4px;">
-                            <p style="font-size:0.75rem; color:rgba(255,255,255,0.3); font-weight:400;"><i class="fas fa-lightbulb" style="color:#fdcb6e;"></i> Manusia adalah satu-satunya makhluk yang mampu mengubah lingkungan secara signifikan.</p>
-                        </div>
+                        <p style="font-size:0.85rem; color:rgba(255,255,255,0.6); font-weight:400;">Lapisan manusia. Contoh: Masyarakat Dayak Ngaju.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- ===== MATERI 4 : DEFINISI AHLI ===== -->
-            <div class="materi-detail reveal">
-                <div class="detail-header" onclick="toggleDetail(this)">
-                    <h4><i class="fas fa-user-graduate" style="color:#fdcb6e;"></i> D. Definisi Para Ahli <span class="local-badge"><i class="fas fa-history"></i> Tokoh Dunia</span></h4>
-                    <i class="fas fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;"></i>
-                </div>
-                <div class="detail-body">
-                    <div class="detail-explanation">
-                        <span class="emoji-big">👨‍🏫</span>
-                        <p>Banyak ilmuwan yang mendefinisikan geografi dari sudut pandang yang berbeda. Mari kita kenali <span class="highlight">4 tokoh penting</span> yang memberikan kontribusi besar dalam ilmu geografi!</p>
-                    </div>
-
-                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-                        <div style="background:rgba(0,0,0,0.15); padding:12px 14px; border-radius:10px; border-left:3px solid #6c5ce7;">
-                            <strong style="color:#a29bfe; font-size:0.9rem; font-weight:700;">Eratosthenes</strong>
-                            <p style="color:rgba(255,255,255,0.6); font-size:0.85rem; font-weight:400; margin-top:2px;">"Bapak Geografi" – ilmu yang melukiskan permukaan bumi. Ia adalah orang pertama yang menghitung keliling bumi dengan akurasi tinggi.</p>
-                            <div style="background:rgba(0,0,0,0.1); border-radius:6px; padding:4px 8px; margin-top:4px;">
-                                <p style="font-size:0.75rem; color:rgba(255,255,255,0.3); font-weight:400;"><i class="fas fa-calculator" style="color:#fdcb6e;"></i> Perhitungan keliling bumi Eratosthenes hanya berbeda 2% dari ukuran sebenarnya!</p>
-                            </div>
-                        </div>
-                        <div style="background:rgba(0,0,0,0.15); padding:12px 14px; border-radius:10px; border-left:3px solid #00cec9;">
-                            <strong style="color:#00cec9; font-size:0.9rem; font-weight:700;">Bintarto</strong>
-                            <p style="color:rgba(255,255,255,0.6); font-size:0.85rem; font-weight:400; margin-top:2px;">Ilmu yang mempelajari persamaan & perbedaan fenomena geosfer dengan sudut pandang kelingkungan & kewilayahan. <span class="tooltip-trigger">🔍 <span class="tooltip-box">Definisi ini sangat cocok untuk menganalisis wilayah Katingan yang memiliki keunikan gambut dan sungai.</span></span></p>
-                            <div style="background:rgba(0,0,0,0.1); border-radius:6px; padding:4px 8px; margin-top:4px;">
-                                <p style="font-size:0.75rem; color:rgba(255,255,255,0.3); font-weight:400;"><i class="fas fa-tree" style="color:#fdcb6e;"></i> Definisi ini membantu kita memahami keunikan Katingan dibandingkan wilayah lain.</p>
-                            </div>
-                        </div>
-                        <div style="background:rgba(0,0,0,0.15); padding:12px 14px; border-radius:10px; border-left:3px solid #fdcb6e;">
-                            <strong style="color:#fdcb6e; font-size:0.9rem; font-weight:700;">Nursid Sumaatmadja</strong>
-                            <p style="color:rgba(255,255,255,0.6); font-size:0.85rem; font-weight:400; margin-top:2px;">Ilmu yang mempelajari gejala & fenomena alam serta kehidupan dengan pendekatan keruangan, kelingkungan, & kompleks wilayah.</p>
-                            <div style="background:rgba(0,0,0,0.1); border-radius:6px; padding:4px 8px; margin-top:4px;">
-                                <p style="font-size:0.75rem; color:rgba(255,255,255,0.3); font-weight:400;"><i class="fas fa-lightbulb" style="color:#fdcb6e;"></i> Pendekatan ini memungkinkan kita melihat fenomena secara menyeluruh.</p>
-                            </div>
-                        </div>
-                        <div style="background:rgba(0,0,0,0.15); padding:12px 14px; border-radius:10px; border-left:3px solid #fd79a8;">
-                            <strong style="color:#fd79a8; font-size:0.9rem; font-weight:700;">Immanuel Kant</strong>
-                            <p style="color:rgba(255,255,255,0.6); font-size:0.85rem; font-weight:400; margin-top:2px;">Membagi geografi menjadi Geografi Fisik dan Geografi Manusia. Ini menjadi dasar pembagian ilmu geografi hingga kini.</p>
-                            <div style="background:rgba(0,0,0,0.1); border-radius:6px; padding:4px 8px; margin-top:4px;">
-                                <p style="font-size:0.75rem; color:rgba(255,255,255,0.3); font-weight:400;"><i class="fas fa-sitemap" style="color:#fdcb6e;"></i> Pembagian ini sangat membantu dalam mempelajari geografi secara terstruktur.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="background:rgba(253,203,110,0.03); border-radius:10px; padding:10px 14px; margin-top:10px; border-left:3px solid #fdcb6e;">
-                        <p style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400;">
-                            <i class="fas fa-quote-left" style="color:#fdcb6e;"></i> <em>"Geografi adalah jembatan antara ilmu alam dan ilmu sosial."</em> — Karena geografi mempelajari alam (fisik) dan manusia (sosial) secara terpadu.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ===== MATERI 5 : RUANG LINGKUP ===== -->
-            <div class="materi-detail reveal">
-                <div class="detail-header" onclick="toggleDetail(this)">
-                    <h4><i class="fas fa-arrows-alt-h" style="color:#0984e3;"></i> E. Ruang Lingkup Geografi <span class="local-badge"><i class="fas fa-city"></i> Fisik vs Sosial</span></h4>
-                    <i class="fas fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;"></i>
-                </div>
-                <div class="detail-body">
-                    <div class="detail-explanation">
-                        <span class="emoji-big">📊</span>
-                        <p>Geografi memiliki ruang lingkup yang sangat luas. Secara umum, ruang lingkup geografi dibagi menjadi dua bagian besar, yaitu <span class="highlight">Geografi Fisik</span> yang mempelajari alam, dan <span class="highlight">Geografi Sosial</span> yang mempelajari manusia.</p>
-                    </div>
-
-                    <div class="grid-2">
-                        <div style="background:rgba(108,92,231,0.04); border-radius:12px; padding:14px; border-left:4px solid #6c5ce7;">
-                            <h4 style="color:#a29bfe; font-size:0.95rem; font-weight:700;">🌋 Geografi Fisik</h4>
-                            <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">Mengkaji fenomena <strong style="font-weight:600;">alam</strong> di permukaan bumi:</p>
-                            <ul style="font-size:0.88rem; padding-left:16px; color:rgba(255,255,255,0.5); font-weight:400;">
-                                <li><strong style="color:rgba(255,255,255,0.7); font-weight:600;">Litosfer:</strong> Bentuk lahan, gunung, tanah gambut di Katingan</li>
-                                <li><strong style="color:rgba(255,255,255,0.7); font-weight:600;">Atmosfer:</strong> Iklim tropis, musim kemarau & hujan di Kalteng</li>
-                                <li><strong style="color:rgba(255,255,255,0.7); font-weight:600;">Hidrosfer:</strong> Sungai Katingan, rawa-rawa gambut</li>
-                                <li><strong style="color:rgba(255,255,255,0.7); font-weight:600;">Biosfer:</strong> Orangutan, bekantan, pohon ramin</li>
-                            </ul>
-                            <div style="background:rgba(0,0,0,0.1); border-radius:6px; padding:4px 8px; margin-top:6px;">
-                                <p style="font-size:0.75rem; color:rgba(255,255,255,0.3); font-weight:400;"><i class="fas fa-search" style="color:#fdcb6e;"></i> Geografi fisik membantu kita memahami mengapa terjadi bencana alam.</p>
-                            </div>
-                        </div>
-                        <div style="background:rgba(0,206,201,0.04); border-radius:12px; padding:14px; border-left:4px solid #00cec9;">
-                            <h4 style="color:#00cec9; font-size:0.95rem; font-weight:700;">👥 Geografi Sosial</h4>
-                            <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">Mengkaji aktivitas <strong style="font-weight:600;">manusia</strong> dan interaksinya:</p>
-                            <ul style="font-size:0.88rem; padding-left:16px; color:rgba(255,255,255,0.5); font-weight:400;">
-                                <li><strong style="color:rgba(255,255,255,0.7); font-weight:600;">Kependudukan:</strong> Suku Dayak Ngaju, transmigran Jawa</li>
-                                <li><strong style="color:rgba(255,255,255,0.7); font-weight:600;">Ekonomi:</strong> Pertanian karet, perkebunan sawit, tambang emas tradisional</li>
-                                <li><strong style="color:rgba(255,255,255,0.7); font-weight:600;">Sosial Budaya:</strong> Budaya Dayak, tradisi bahuma, upacara adat</li>
-                                <li><strong style="color:rgba(255,255,255,0.7); font-weight:600;">Politik:</strong> Wilayah Kabupaten Katingan, tata ruang daerah</li>
-                            </ul>
-                            <div style="background:rgba(0,0,0,0.1); border-radius:6px; padding:4px 8px; margin-top:6px;">
-                                <p style="font-size:0.75rem; color:rgba(255,255,255,0.3); font-weight:400;"><i class="fas fa-search" style="color:#fdcb6e;"></i> Geografi sosial membantu kita memahami kehidupan masyarakat di suatu wilayah.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div style="background:rgba(253,203,110,0.03); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #fdcb6e;">
-                        <p style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400;">
-                            <i class="fas fa-question-circle" style="color:#fdcb6e;"></i> <strong style="color:rgba(255,255,255,0.7); font-weight:600;">Mari Berpikir:</strong> Menurutmu, apakah kegiatan menambang emas di sungai termasuk kajian Geografi Fisik atau Geografi Sosial? (Jawaban: Keduanya! Karena melibatkan alam dan manusia)
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ===== MINI QUIZ PERTEMUAN 1 ===== -->
             <div class="mini-quiz reveal">
                 <div class="quiz-question">🧠 <strong>Kuis Cepat:</strong> Lapisan geosfer yang terdiri dari batuan dan tanah disebut...</div>
                 <div class="quiz-options">
@@ -2846,23 +2771,6 @@
                     <button onclick="checkQuiz(this, false)">Biosfer</button>
                 </div>
                 <div class="quiz-feedback"></div>
-            </div>
-
-            <!-- ===== ISU AKTUAL ===== -->
-            <div style="margin-top:12px;">
-                <h3 style="color:#f0f4fa; font-size:0.95rem; font-weight:700; border-left:4px solid #e74c3c; padding-left:12px; margin-bottom:8px;"><i class="fas fa-fire" style="color:#e74c3c;"></i> Isu Aktual & Lokal</h3>
-                <div class="isu-card">
-                    <h4><span class="tag-aktual">🔥</span> Kebakaran Hutan & Lahan (Karhutla) di Katingan</h4>
-                    <p>Lahan gambut di Katingan sangat rentan terbakar saat musim kemarau. Ini adalah contoh nyata <strong style="font-weight:600;">interelasi</strong> antara atmosfer (cuaca), litosfer (tanah gambut), biosfer (hutan), dan antroposfer (aktivitas manusia).</p>
-                </div>
-                <div class="isu-card">
-                    <h4><span class="tag-aktual">🏗️</span> Pembangunan IKN & Dampak ke Katingan</h4>
-                    <p>Pemindahan Ibu Kota ke Kalimantan Timur berdampak pada wilayah sekitar, termasuk Katingan. Geografi membantu menganalisis <strong style="font-weight:600;">persebaran</strong> dampak, <strong style="font-weight:600;">interelasi</strong> ekonomi-lingkungan, dan <strong style="font-weight:600;">deskripsi</strong> karakteristik wilayah.</p>
-                </div>
-            </div>
-
-            <div style="background:rgba(0,0,0,0.2); backdrop-filter:blur(8px); border-radius:12px; padding:12px 16px; margin-top:12px; border-left:4px solid #fdcb6e;">
-                <p style="color:rgba(255,255,255,0.5); font-size:0.9rem; font-weight:400;"><i class="fas fa-pencil-alt" style="color:#fdcb6e;"></i> <strong style="color:rgba(255,255,255,0.7); font-weight:600;">Tugas:</strong> Buat peta konsep tentang pengertian geografi & 5 lapisan geosfer menggunakan <strong style="color:#a29bfe; font-weight:600;">Canva</strong>! Sertakan contoh dari Kabupaten Katingan.</p>
             </div>
 
             <div class="nav-buttons">
@@ -2876,7 +2784,7 @@
         </section>
 
         <!-- ============================================================
-        SECTION 4 : PERTEMUAN 2 – DIPERKAYA
+        SECTION 4 : PERTEMUAN 2
         ============================================================ -->
         <section id="section4" class="section">
             <div style="background:rgba(108,92,231,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(108,92,231,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
@@ -2889,7 +2797,6 @@
                 <span class="badge-pertemuan"><i class="far fa-clock"></i> 3×45'</span>
             </div>
 
-            <!-- Progress Tracker -->
             <div class="progress-tracker">
                 <span class="step done">1</span><span class="line done"></span>
                 <span class="step active">2</span><span class="line"></span>
@@ -2907,12 +2814,11 @@
             <h3 style="font-size:1.05rem; color:#f0f4fa; font-weight:700; border-left:4px solid #6c5ce7; padding-left:12px; margin-bottom:6px;"><i class="fas fa-bullseye" style="color:#a29bfe;"></i> Tujuan Pembelajaran</h3>
             <ul style="color:rgba(255,255,255,0.7); font-weight:400; padding-left:20px; margin-bottom:16px; line-height:2; font-size:0.95rem;">
                 <li>Membedakan objek material dan objek formal geografi dengan contoh nyata.</li>
-                <li>Menjelaskan 4 prinsip geografi (distribusi, interelasi, deskripsi, korologi) dengan contoh lokal yang mudah dipahami.</li>
+                <li>Menjelaskan 4 prinsip geografi (distribusi, interelasi, deskripsi, korologi).</li>
                 <li>Mengidentifikasi aspek fisik dan nonfisik geografi di Katingan.</li>
-                <li>Menjelaskan 3 pendekatan geografi (keruangan, kelingkungan, kompleks wilayah) dengan studi kasus.</li>
+                <li>Menjelaskan 3 pendekatan geografi (keruangan, kelingkungan, kompleks wilayah).</li>
             </ul>
 
-            <!-- GAMBAR PERTEMUAN 2 -->
             <div style="margin:16px 0;">
                 <h4 style="color:#a29bfe; font-size:0.9rem; font-weight:700; margin-bottom:10px;"><i class="fas fa-images"></i> Galeri Gambar</h4>
                 <div class="grid-3">
@@ -2920,7 +2826,7 @@
                         <img src="https://raw.githubusercontent.com/yourusername/geography-images/main/gold-mining-katingan.jpg" alt="Penambangan emas Katingan" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E⛏️ Tambang Emas%3C/text%3E%3C/svg%3E'" />
                         <div class="zoom-badge"><i class="fas fa-search-plus"></i> Klik untuk zoom</div>
                         <div class="image-label">⛏️ Tambang Emas Tradisional</div>
-                        <div class="image-sub">Contoh interelasi antara manusia dan lingkungan di Katingan</div>
+                        <div class="image-sub">Contoh interelasi manusia dan lingkungan di Katingan</div>
                     </div>
                     <div class="image-card" onclick="openModal('https://raw.githubusercontent.com/yourusername/geography-images/main/dayak-ngaju-culture.jpg', 'Budaya Dayak Ngaju di Katingan')">
                         <img src="https://raw.githubusercontent.com/yourusername/geography-images/main/dayak-ngaju-culture.jpg" alt="Budaya Dayak Ngaju" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🎭 Budaya Dayak%3C/text%3E%3C/svg%3E'" />
@@ -2937,202 +2843,66 @@
                 </div>
             </div>
 
-            <!-- ===== OBJEK STUDI ===== -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
-                    <h4><i class="fas fa-search" style="color:#6c5ce7;"></i> A. Objek Studi Geografi <span class="local-badge"><i class="fas fa-gem"></i> Tambang Katingan</span></h4>
+                    <h4><i class="fas fa-search" style="color:#6c5ce7;"></i> A. Objek Studi Geografi</h4>
                     <i class="fas fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;"></i>
                 </div>
                 <div class="detail-body">
                     <div class="detail-explanation">
                         <span class="emoji-big">🔍</span>
-                        <p>Dalam geografi, ada dua jenis objek yang dipelajari, yaitu <span class="highlight">objek material</span> dan <span class="highlight">objek formal</span>. Objek material adalah <strong>apa</strong> yang dipelajari, sedangkan objek formal adalah <strong>bagaimana</strong> cara mempelajarinya.</p>
+                        <p><span class="highlight">Objek material</span> adalah apa yang dipelajari (fenomena geosfer). <span class="highlight">Objek formal</span> adalah bagaimana cara mempelajarinya (pendekatan).</p>
                     </div>
-
                     <div class="grid-2">
                         <div style="background:rgba(108,92,231,0.04); border-radius:12px; padding:14px; border-left:4px solid #6c5ce7;">
                             <h4 style="color:#a29bfe; font-size:0.95rem; font-weight:700;">Objek Material</h4>
-                            <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">Seluruh fenomena di permukaan bumi (geosfer):</p>
                             <ul style="font-size:0.88rem; padding-left:16px; color:rgba(255,255,255,0.5); font-weight:400;">
-                                <li><strong style="color:rgba(255,255,255,0.7); font-weight:600;">Litosfer:</strong> Tanah gambut, batuan di Katingan</li>
-                                <li><strong style="color:rgba(255,255,255,0.7); font-weight:600;">Atmosfer:</strong> Iklim tropis Katingan</li>
-                                <li><strong style="color:rgba(255,255,255,0.7); font-weight:600;">Hidrosfer:</strong> Sungai Katingan</li>
-                                <li><strong style="color:rgba(255,255,255,0.7); font-weight:600;">Biosfer:</strong> Orangutan, bekantan</li>
-                                <li><strong style="color:rgba(255,255,255,0.7); font-weight:600;">Antroposfer:</strong> Penambang emas tradisional</li>
+                                <li>Litosfer: Tanah gambut Katingan</li>
+                                <li>Atmosfer: Iklim tropis</li>
+                                <li>Hidrosfer: Sungai Katingan</li>
+                                <li>Biosfer: Orangutan</li>
+                                <li>Antroposfer: Penambang emas</li>
                             </ul>
-                            <div style="background:rgba(0,0,0,0.1); border-radius:6px; padding:4px 8px; margin-top:6px;">
-                                <p style="font-size:0.75rem; color:rgba(255,255,255,0.3); font-weight:400;"><i class="fas fa-lightbulb" style="color:#fdcb6e;"></i> Objek material adalah semua yang ada di bumi, baik yang hidup maupun tidak hidup.</p>
-                            </div>
                         </div>
                         <div style="background:rgba(0,206,201,0.04); border-radius:12px; padding:14px; border-left:4px solid #00cec9;">
                             <h4 style="color:#00cec9; font-size:0.95rem; font-weight:700;">Objek Formal</h4>
-                            <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">Cara pandang atau pendekatan:</p>
                             <ul style="font-size:0.88rem; padding-left:16px; color:rgba(255,255,255,0.5); font-weight:400;">
-                                <li><strong style="color:rgba(255,255,255,0.7); font-weight:600;">Keruangan:</strong> Pola persebaran tambang emas di Katingan</li>
-                                <li><strong style="color:rgba(255,255,255,0.7); font-weight:600;">Kelingkungan:</strong> Interaksi penambang dengan sungai</li>
-                                <li><strong style="color:rgba(255,255,255,0.7); font-weight:600;">Kompleks Wilayah:</strong> Karakteristik Katingan</li>
+                                <li>Keruangan: Pola persebaran tambang</li>
+                                <li>Kelingkungan: Interaksi penambang dengan sungai</li>
+                                <li>Kompleks Wilayah: Karakteristik Katingan</li>
                             </ul>
-                            <div style="background:rgba(0,0,0,0.1); border-radius:6px; padding:4px 8px; margin-top:6px;">
-                                <p style="font-size:0.75rem; color:rgba(255,255,255,0.3); font-weight:400;"><i class="fas fa-lightbulb" style="color:#fdcb6e;"></i> Objek formal adalah cara kita melihat dan menganalisis fenomena di bumi.</p>
-                            </div>
                         </div>
-                    </div>
-                    <div style="background:rgba(253,203,110,0.03); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #fdcb6e;">
-                        <p style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400;">
-                            <i class="fas fa-lightbulb" style="color:#fdcb6e;"></i> <strong style="color:rgba(255,255,255,0.7); font-weight:600;">Perbedaan:</strong> Objek material adalah <strong style="font-weight:600;">apa</strong> yang dipelajari (fenomena), sedangkan objek formal adalah <strong style="font-weight:600;">bagaimana</strong> cara mempelajarinya (pendekatan).
-                        </p>
                     </div>
                 </div>
             </div>
 
-            <!-- ===== 4 PRINSIP GEOGRAFI ===== -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
-                    <h4><i class="fas fa-balance-scale" style="color:#fdcb6e;"></i> B. 4 Prinsip Geografi <span class="local-badge"><i class="fas fa-tree"></i> Analisis Katingan</span></h4>
+                    <h4><i class="fas fa-balance-scale" style="color:#fdcb6e;"></i> B. 4 Prinsip Geografi</h4>
                     <i class="fas fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;"></i>
                 </div>
                 <div class="detail-body">
-                    <div class="detail-explanation">
-                        <span class="emoji-big">⚖️</span>
-                        <p>Prinsip geografi adalah <span class="highlight">aturan dasar</span> yang digunakan untuk menganalisis fenomena di bumi. Ada 4 prinsip utama yang harus kita pahami!</p>
-                    </div>
-
-                    <div style="display:grid; gap:12px;">
-                        <div style="background:rgba(0,0,0,0.1); border-radius:10px; padding:12px 14px; border-left:4px solid #6c5ce7;">
-                            <h4 style="color:#a29bfe; font-size:0.9rem; font-weight:700;">1. Distribusi (Penyebaran)</h4>
-                            <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">Fenomena geosfer <strong style="font-weight:600;">tersebar tidak merata</strong> di permukaan bumi.</p>
-                            <div style="background:rgba(253,203,110,0.02); border-radius:8px; padding:8px 12px; margin-top:4px; border-left:2px solid #fdcb6e;">
-                                <p style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400;"><i class="fas fa-map-pin" style="color:#fdcb6e;"></i> <strong style="font-weight:600;">Contoh Katingan:</strong> Tambang emas tradisional tersebar di sepanjang aliran Sungai Katingan, terutama di wilayah Katingan Kuala, Katingan Hilir, dan Katingan Tengah. Tidak semua desa memiliki tambang.</p>
-                            </div>
-                            <div style="background:rgba(0,0,0,0.05); border-radius:6px; padding:4px 8px; margin-top:4px;">
-                                <p style="font-size:0.75rem; color:rgba(255,255,255,0.3); font-weight:400;"><i class="fas fa-question-circle" style="color:#00cec9;"></i> Mengapa tambang emas hanya ada di daerah tertentu? Karena faktor geologi dan sejarah pembentukan bumi.</p>
-                            </div>
+                    <div style="display:grid; gap:10px;">
+                        <div style="background:rgba(0,0,0,0.1); border-radius:10px; padding:10px 14px; border-left:4px solid #6c5ce7;">
+                            <h4 style="color:#a29bfe; font-size:0.9rem; font-weight:700;">1. Distribusi</h4>
+                            <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">Fenomena tersebar tidak merata. Contoh: Tambang emas di sepanjang Sungai Katingan.</p>
                         </div>
-                        <div style="background:rgba(0,0,0,0.1); border-radius:10px; padding:12px 14px; border-left:4px solid #00cec9;">
-                            <h4 style="color:#00cec9; font-size:0.9rem; font-weight:700;">2. Interelasi (Hubungan)</h4>
-                            <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">Fenomena geosfer <strong style="font-weight:600;">saling berhubungan dan memengaruhi</strong> satu sama lain.</p>
-                            <div style="background:rgba(253,203,110,0.02); border-radius:8px; padding:8px 12px; margin-top:4px; border-left:2px solid #fdcb6e;">
-                                <p style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400;"><i class="fas fa-map-pin" style="color:#fdcb6e;"></i> <strong style="font-weight:600;">Contoh Katingan:</strong> Aktivitas penambangan emas (antroposfer) → menggunakan merkuri → mencemari Sungai Katingan (hidrosfer) → ikan mati (biosfer) → nelayan kehilangan mata pencaharian (antroposfer).</p>
-                            </div>
-                            <div style="background:rgba(0,0,0,0.05); border-radius:6px; padding:4px 8px; margin-top:4px;">
-                                <p style="font-size:0.75rem; color:rgba(255,255,255,0.3); font-weight:400;"><i class="fas fa-question-circle" style="color:#00cec9;"></i> Dapatkah kamu menemukan contoh interelasi lain di sekitarmu?</p>
-                            </div>
+                        <div style="background:rgba(0,0,0,0.1); border-radius:10px; padding:10px 14px; border-left:4px solid #00cec9;">
+                            <h4 style="color:#00cec9; font-size:0.9rem; font-weight:700;">2. Interelasi</h4>
+                            <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">Fenomena saling memengaruhi. Contoh: Tambang emas → mencemari sungai → ikan mati.</p>
                         </div>
-                        <div style="background:rgba(0,0,0,0.1); border-radius:10px; padding:12px 14px; border-left:4px solid #fd79a8;">
+                        <div style="background:rgba(0,0,0,0.1); border-radius:10px; padding:10px 14px; border-left:4px solid #fd79a8;">
                             <h4 style="color:#fd79a8; font-size:0.9rem; font-weight:700;">3. Deskripsi</h4>
-                            <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">Fenomena geosfer <strong style="font-weight:600;">digambarkan dan dijelaskan</strong> secara terperinci.</p>
-                            <div style="background:rgba(253,203,110,0.02); border-radius:8px; padding:8px 12px; margin-top:4px; border-left:2px solid #fdcb6e;">
-                                <p style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400;"><i class="fas fa-map-pin" style="color:#fdcb6e;"></i> <strong style="font-weight:600;">Contoh Katingan:</strong> Deskripsi lahan gambut di Katingan: memiliki ketebalan 3-8 meter, berwarna cokelat kehitaman, tekstur berserat, mudah terbakar saat musim kemarau, dan memiliki keasaman tinggi (pH rendah).</p>
-                            </div>
-                            <div style="background:rgba(0,0,0,0.05); border-radius:6px; padding:4px 8px; margin-top:4px;">
-                                <p style="font-size:0.75rem; color:rgba(255,255,255,0.3); font-weight:400;"><i class="fas fa-question-circle" style="color:#00cec9;"></i> Jika kamu diminta mendeskripsikan sekolahmu, apa yang akan kamu katakan?</p>
-                            </div>
+                            <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">Fenomena digambarkan secara detail. Contoh: Lahan gambut Katingan memiliki ketebalan 3-8 meter.</p>
                         </div>
-                        <div style="background:rgba(0,0,0,0.1); border-radius:10px; padding:12px 14px; border-left:4px solid #fdcb6e;">
+                        <div style="background:rgba(0,0,0,0.1); border-radius:10px; padding:10px 14px; border-left:4px solid #fdcb6e;">
                             <h4 style="color:#fdcb6e; font-size:0.9rem; font-weight:700;">4. Korologi</h4>
-                            <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">Gabungan dari distribusi, interelasi, dan deskripsi dalam <strong style="font-weight:600;">satu wilayah</strong>.</p>
-                            <div style="background:rgba(253,203,110,0.02); border-radius:8px; padding:8px 12px; margin-top:4px; border-left:2px solid #fdcb6e;">
-                                <p style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400;"><i class="fas fa-map-pin" style="color:#fdcb6e;"></i> <strong style="font-weight:600;">Contoh Katingan:</strong> Analisis wilayah Katingan sebagai daerah aliran sungai dengan aktivitas tambang emas, perkebunan sawit, dan pemukiman masyarakat Dayak. Ketiga aspek ini saling terkait membentuk karakteristik unik Katingan.</p>
-                            </div>
-                            <div style="background:rgba(0,0,0,0.05); border-radius:6px; padding:4px 8px; margin-top:4px;">
-                                <p style="font-size:0.75rem; color:rgba(255,255,255,0.3); font-weight:400;"><i class="fas fa-question-circle" style="color:#00cec9;"></i> Korologi adalah prinsip paling lengkap karena menggabungkan semua prinsip lainnya.</p>
-                            </div>
+                            <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">Gabungan distribusi, interelasi, dan deskripsi dalam satu wilayah. Contoh: Analisis wilayah Katingan.</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- ===== ASPEK GEOGRAFI ===== -->
-            <div class="materi-detail reveal">
-                <div class="detail-header" onclick="toggleDetail(this)">
-                    <h4><i class="fas fa-cubes" style="color:#0984e3;"></i> C. Aspek Geografi <span class="local-badge"><i class="fas fa-water"></i> Fisik vs Sosial</span></h4>
-                    <i class="fas fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;"></i>
-                </div>
-                <div class="detail-body">
-                    <div class="detail-explanation">
-                        <span class="emoji-big">🔢</span>
-                        <p>Aspek geografi adalah <span class="highlight">bagian-bagian</span> atau unsur-unsur yang membentuk fenomena geosfer. Secara umum, aspek geografi dibagi menjadi dua, yaitu aspek fisik dan aspek sosial.</p>
-                    </div>
-
-                    <div class="grid-2">
-                        <div style="background:rgba(108,92,231,0.04); border-radius:12px; padding:14px; border-left:4px solid #6c5ce7;">
-                            <h4 style="color:#a29bfe; font-size:0.95rem; font-weight:700;">🌿 Aspek Fisik</h4>
-                            <ul style="font-size:0.88rem; padding-left:16px; color:rgba(255,255,255,0.5); font-weight:400;">
-                                <li><strong style="color:rgba(255,255,255,0.7); font-weight:600;">Topografi:</strong> Rawa gambut, dataran rendah Katingan</li>
-                                <li><strong style="color:rgba(255,255,255,0.7); font-weight:600;">Klimatologi:</strong> Curah hujan >3000 mm/tahun</li>
-                                <li><strong style="color:rgba(255,255,255,0.7); font-weight:600;">Hidrologi:</strong> Sungai Katingan, anak-anak sungai</li>
-                                <li><strong style="color:rgba(255,255,255,0.7); font-weight:600;">Pedologi:</strong> Tanah gambut, podsolik merah-kuning</li>
-                                <li><strong style="color:rgba(255,255,255,0.7); font-weight:600;">Biogeografi:</strong> Hutan hujan tropis, orangutan</li>
-                            </ul>
-                            <div style="background:rgba(0,0,0,0.1); border-radius:6px; padding:4px 8px; margin-top:6px;">
-                                <p style="font-size:0.75rem; color:rgba(255,255,255,0.3); font-weight:400;"><i class="fas fa-search" style="color:#fdcb6e;"></i> Aspek fisik adalah semua yang berkaitan dengan alam dan lingkungan.</p>
-                            </div>
-                        </div>
-                        <div style="background:rgba(0,206,201,0.04); border-radius:12px; padding:14px; border-left:4px solid #00cec9;">
-                            <h4 style="color:#00cec9; font-size:0.95rem; font-weight:700;">👥 Aspek Nonfisik (Sosial)</h4>
-                            <ul style="font-size:0.88rem; padding-left:16px; color:rgba(255,255,255,0.5); font-weight:400;">
-                                <li><strong style="color:rgba(255,255,255,0.7); font-weight:600;">Demografi:</strong> Suku Dayak Ngaju, transmigran Jawa</li>
-                                <li><strong style="color:rgba(255,255,255,0.7); font-weight:600;">Ekonomi:</strong> Tambang emas, perkebunan sawit, karet</li>
-                                <li><strong style="color:rgba(255,255,255,0.7); font-weight:600;">Sosial Budaya:</strong> Upacara adat Dayak, bahuma</li>
-                                <li><strong style="color:rgba(255,255,255,0.7); font-weight:600;">Politik:</strong> Kabupaten Katingan, kecamatan, desa</li>
-                                <li><strong style="color:rgba(255,255,255,0.7); font-weight:600;">Permukiman:</strong> Rumah panggung di sepanjang sungai</li>
-                            </ul>
-                            <div style="background:rgba(0,0,0,0.1); border-radius:6px; padding:4px 8px; margin-top:6px;">
-                                <p style="font-size:0.75rem; color:rgba(255,255,255,0.3); font-weight:400;"><i class="fas fa-search" style="color:#fdcb6e;"></i> Aspek sosial adalah semua yang berkaitan dengan manusia dan aktivitasnya.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ===== 3 PENDEKATAN ===== -->
-            <div class="materi-detail reveal">
-                <div class="detail-header" onclick="toggleDetail(this)">
-                    <h4><i class="fas fa-sitemap" style="color:#fd79a8;"></i> D. 3 Pendekatan Geografi <span class="local-badge"><i class="fas fa-globe"></i> Analisis Wilayah</span></h4>
-                    <i class="fas fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;"></i>
-                </div>
-                <div class="detail-body">
-                    <div class="detail-explanation">
-                        <span class="emoji-big">🔄</span>
-                        <p>Pendekatan geografi adalah <span class="highlight">cara menganalisis</span> fenomena di bumi. Ada 3 pendekatan utama yang digunakan dalam geografi.</p>
-                    </div>
-
-                    <div class="grid-3">
-                        <div style="background:rgba(108,92,231,0.04); border-radius:12px; padding:14px; border-left:4px solid #6c5ce7;">
-                            <h4 style="color:#a29bfe; font-size:0.9rem; font-weight:700;">🌐 Keruangan</h4>
-                            <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">Menganalisis <strong style="font-weight:600;">persebaran dan pola</strong> fenomena.</p>
-                            <div style="background:rgba(253,203,110,0.02); border-radius:6px; padding:6px 10px; margin-top:4px;">
-                                <p style="font-size:0.8rem; color:rgba(255,255,255,0.4); font-weight:400;"><i class="fas fa-map-pin" style="color:#fdcb6e;"></i> Pemetaan lokasi tambang emas di Katingan menggunakan Google Earth.</p>
-                            </div>
-                            <div style="background:rgba(0,0,0,0.05); border-radius:6px; padding:4px 8px; margin-top:4px;">
-                                <p style="font-size:0.75rem; color:rgba(255,255,255,0.3); font-weight:400;"><i class="fas fa-question-circle" style="color:#00cec9;"></i> Dengan pendekatan ini, kita bisa melihat di mana fenomena terjadi.</p>
-                            </div>
-                        </div>
-                        <div style="background:rgba(0,206,201,0.04); border-radius:12px; padding:14px; border-left:4px solid #00cec9;">
-                            <h4 style="color:#00cec9; font-size:0.9rem; font-weight:700;">🌿 Kelingkungan</h4>
-                            <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">Menganalisis <strong style="font-weight:600;">interaksi manusia-lingkungan</strong>.</p>
-                            <div style="background:rgba(253,203,110,0.02); border-radius:6px; padding:6px 10px; margin-top:4px;">
-                                <p style="font-size:0.8rem; color:rgba(255,255,255,0.4); font-weight:400;"><i class="fas fa-map-pin" style="color:#fdcb6e;"></i> Dampak tambang emas terhadap ekosistem Sungai Katingan.</p>
-                            </div>
-                            <div style="background:rgba(0,0,0,0.05); border-radius:6px; padding:4px 8px; margin-top:4px;">
-                                <p style="font-size:0.75rem; color:rgba(255,255,255,0.3); font-weight:400;"><i class="fas fa-question-circle" style="color:#00cec9;"></i> Pendekatan ini membantu kita memahami hubungan timbal balik.</p>
-                            </div>
-                        </div>
-                        <div style="background:rgba(253,121,168,0.04); border-radius:12px; padding:14px; border-left:4px solid #fd79a8;">
-                            <h4 style="color:#fd79a8; font-size:0.9rem; font-weight:700;">🏙️ Kompleks Wilayah</h4>
-                            <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">Menganalisis <strong style="font-weight:600;">perpaduan fisik & sosial</strong>.</p>
-                            <div style="background:rgba(253,203,110,0.02); border-radius:6px; padding:6px 10px; margin-top:4px;">
-                                <p style="font-size:0.8rem; color:rgba(255,255,255,0.4); font-weight:400;"><i class="fas fa-map-pin" style="color:#fdcb6e;"></i> Karakteristik Katingan: sungai, tambang, pemukiman Dayak, sawit.</p>
-                            </div>
-                            <div style="background:rgba(0,0,0,0.05); border-radius:6px; padding:4px 8px; margin-top:4px;">
-                                <p style="font-size:0.75rem; color:rgba(255,255,255,0.3); font-weight:400;"><i class="fas fa-question-circle" style="color:#00cec9;"></i> Pendekatan ini adalah gabungan dari dua pendekatan sebelumnya.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ===== MINI QUIZ PERTEMUAN 2 ===== -->
             <div class="mini-quiz reveal">
                 <div class="quiz-question">🧠 <strong>Kuis Cepat:</strong> Prinsip geografi yang menekankan fenomena saling memengaruhi adalah...</div>
                 <div class="quiz-options">
@@ -3142,10 +2912,6 @@
                     <button onclick="checkQuiz(this, false)">Korologi</button>
                 </div>
                 <div class="quiz-feedback"></div>
-            </div>
-
-            <div style="background:rgba(0,0,0,0.2); backdrop-filter:blur(8px); border-radius:12px; padding:12px 16px; margin-top:12px; border-left:4px solid #fdcb6e;">
-                <p style="color:rgba(255,255,255,0.5); font-size:0.9rem; font-weight:400;"><i class="fas fa-pencil-alt" style="color:#fdcb6e;"></i> <strong style="color:rgba(255,255,255,0.7); font-weight:600;">Tugas Kelompok:</strong> Analisis fenomena penambangan emas di Katingan dengan <strong style="color:#a29bfe; font-weight:600;">4 prinsip geografi</strong> & presentasikan menggunakan <strong style="color:#a29bfe; font-weight:600;">Canva/PPT</strong>!</p>
             </div>
 
             <div class="nav-buttons">
@@ -3159,7 +2925,7 @@
         </section>
 
         <!-- ============================================================
-        SECTION 5 : PERTEMUAN 3 – DIPERKAYA
+        SECTION 5 : PERTEMUAN 3
         ============================================================ -->
         <section id="section5" class="section">
             <div style="background:rgba(108,92,231,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(108,92,231,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
@@ -3172,7 +2938,6 @@
                 <span class="badge-pertemuan"><i class="far fa-clock"></i> 3×45'</span>
             </div>
 
-            <!-- Progress Tracker -->
             <div class="progress-tracker">
                 <span class="step done">1</span><span class="line done"></span>
                 <span class="step done">2</span><span class="line done"></span>
@@ -3192,10 +2957,8 @@
                 <li>Menjelaskan manfaat geografi dalam kehidupan dan pembangunan berkelanjutan.</li>
                 <li>Melatih keterampilan dasar geografi (observasi, interpretasi data).</li>
                 <li>Menganalisis studi kasus lokal dengan pendekatan geografi.</li>
-                <li>Menyelesaikan asesmen untuk mengukur pemahaman.</li>
             </ul>
 
-            <!-- GAMBAR PERTEMUAN 3 -->
             <div style="margin:16px 0;">
                 <h4 style="color:#a29bfe; font-size:0.9rem; font-weight:700; margin-bottom:10px;"><i class="fas fa-images"></i> Galeri Gambar</h4>
                 <div class="grid-3">
@@ -3220,156 +2983,34 @@
                 </div>
             </div>
 
-            <!-- ===== KETERAMPILAN ===== -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
-                    <h4><i class="fas fa-tools" style="color:#6c5ce7;"></i> A. Keterampilan Dasar Geografi <span class="local-badge"><i class="fas fa-binoculars"></i> Observasi</span></h4>
+                    <h4><i class="fas fa-tools" style="color:#6c5ce7;"></i> A. Keterampilan Dasar Geografi</h4>
                     <i class="fas fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;"></i>
                 </div>
                 <div class="detail-body">
-                    <div class="detail-explanation">
-                        <span class="emoji-big">🛠️</span>
-                        <p>Seperti ilmuwan lainnya, ahli geografi memiliki <span class="highlight">keterampilan khusus</span> yang digunakan untuk mengamati dan menganalisis fenomena di bumi.</p>
-                    </div>
-
                     <div class="grid-3">
                         <div style="background:rgba(108,92,231,0.04); border-radius:12px; padding:14px; text-align:center; border-left:4px solid #6c5ce7;">
                             <div style="font-size:2.2rem; color:#6c5ce7;"><i class="fas fa-eye"></i></div>
                             <h4 style="color:#f0f4fa; font-size:0.9rem; font-weight:700;">Observasi</h4>
-                            <p style="font-size:0.9rem; color:rgba(255,255,255,0.5); font-weight:400;">Mengamati fenomena geosfer langsung di lapangan. <span class="tooltip-trigger">🔍 <span class="tooltip-box">Contoh: Mengamati kondisi Sungai Katingan, warna air, aktivitas penambang, vegetasi di sekitar sungai.</span></span></p>
-                            <div style="background:rgba(0,0,0,0.05); border-radius:6px; padding:4px 8px; margin-top:6px;">
-                                <p style="font-size:0.75rem; color:rgba(255,255,255,0.3); font-weight:400;"><i class="fas fa-lightbulb" style="color:#fdcb6e;"></i> Observasi adalah dasar dari semua penelitian geografi.</p>
-                            </div>
+                            <p style="font-size:0.9rem; color:rgba(255,255,255,0.5); font-weight:400;">Mengamati fenomena langsung di lapangan.</p>
                         </div>
                         <div style="background:rgba(0,206,201,0.04); border-radius:12px; padding:14px; text-align:center; border-left:4px solid #00cec9;">
                             <div style="font-size:2.2rem; color:#00cec9;"><i class="fas fa-map"></i></div>
                             <h4 style="color:#f0f4fa; font-size:0.9rem; font-weight:700;">Interpretasi Peta</h4>
-                            <p style="font-size:0.9rem; color:rgba(255,255,255,0.5); font-weight:400;">Membaca & menganalisis peta. <span class="tooltip-trigger">🔍 <span class="tooltip-box">Contoh: Membaca peta Rupa Bumi Katingan untuk melihat aliran sungai, desa-desa, dan tutupan lahan.</span></span></p>
-                            <div style="background:rgba(0,0,0,0.05); border-radius:6px; padding:4px 8px; margin-top:6px;">
-                                <p style="font-size:0.75rem; color:rgba(255,255,255,0.3); font-weight:400;"><i class="fas fa-lightbulb" style="color:#fdcb6e;"></i> Peta adalah bahasa visual geografi.</p>
-                            </div>
+                            <p style="font-size:0.9rem; color:rgba(255,255,255,0.5); font-weight:400;">Membaca & menganalisis peta.</p>
                         </div>
                         <div style="background:rgba(253,203,110,0.04); border-radius:12px; padding:14px; text-align:center; border-left:4px solid #fdcb6e;">
                             <div style="font-size:2.2rem; color:#fdcb6e;"><i class="fas fa-chart-line"></i></div>
                             <h4 style="color:#f0f4fa; font-size:0.9rem; font-weight:700;">Analisis Data</h4>
-                            <p style="font-size:0.9rem; color:rgba(255,255,255,0.5); font-weight:400;">Mengolah data geografis. <span class="tooltip-trigger">🔍 <span class="tooltip-box">Contoh: Menganalisis data curah hujan Katingan, debit Sungai Katingan, atau jumlah penambang emas.</span></span></p>
-                            <div style="background:rgba(0,0,0,0.05); border-radius:6px; padding:4px 8px; margin-top:6px;">
-                                <p style="font-size:0.75rem; color:rgba(255,255,255,0.3); font-weight:400;"><i class="fas fa-lightbulb" style="color:#fdcb6e;"></i> Data membantu kita membuat kesimpulan yang akurat.</p>
-                            </div>
+                            <p style="font-size:0.9rem; color:rgba(255,255,255,0.5); font-weight:400;">Mengolah data geografis.</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- ===== MANFAAT ===== -->
-            <div class="materi-detail reveal">
-                <div class="detail-header" onclick="toggleDetail(this)">
-                    <h4><i class="fas fa-heart" style="color:#fd79a8;"></i> B. Manfaat Geografi <span class="local-badge"><i class="fas fa-leaf"></i> Kehidupan Sehari-hari</span></h4>
-                    <i class="fas fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;"></i>
-                </div>
-                <div class="detail-body">
-                    <div class="detail-explanation">
-                        <span class="emoji-big">💡</span>
-                        <p>Geografi bukan hanya pelajaran di sekolah. Geografi memiliki <span class="highlight">banyak manfaat</span> dalam kehidupan sehari-hari!</p>
-                    </div>
-
-                    <div class="grid-4">
-                        <div style="background:rgba(108,92,231,0.04); border-radius:12px; padding:14px; text-align:center; border-left:4px solid #6c5ce7;">
-                            <div style="font-size:2rem; color:#6c5ce7;"><i class="fas fa-globe-asia"></i></div>
-                            <h4 style="color:#f0f4fa; font-size:0.85rem; font-weight:700;">Memahami Lingkungan</h4>
-                            <p style="font-size:0.8rem; color:rgba(255,255,255,0.5); font-weight:400;">Mengetahui kondisi alam Katingan: gambut, hutan, sungai, dan potensi bencana.</p>
-                            <div style="background:rgba(0,0,0,0.05); border-radius:6px; padding:4px 8px; margin-top:4px;">
-                                <p style="font-size:0.65rem; color:rgba(255,255,255,0.2); font-weight:400;"><i class="fas fa-question-circle" style="color:#00cec9;"></i> Dengan memahami lingkungan, kita bisa hidup lebih harmonis dengan alam.</p>
-                            </div>
-                        </div>
-                        <div style="background:rgba(0,206,201,0.04); border-radius:12px; padding:14px; text-align:center; border-left:4px solid #00cec9;">
-                            <div style="font-size:2rem; color:#00cec9;"><i class="fas fa-users"></i></div>
-                            <h4 style="color:#f0f4fa; font-size:0.85rem; font-weight:700;">Memahami Masyarakat</h4>
-                            <p style="font-size:0.8rem; color:rgba(255,255,255,0.5); font-weight:400;">Memahami kehidupan Dayak, transmigran, dan interaksi sosial di Katingan.</p>
-                            <div style="background:rgba(0,0,0,0.05); border-radius:6px; padding:4px 8px; margin-top:4px;">
-                                <p style="font-size:0.65rem; color:rgba(255,255,255,0.2); font-weight:400;"><i class="fas fa-question-circle" style="color:#00cec9;"></i> Geografi membantu kita menghargai keragaman budaya.</p>
-                            </div>
-                        </div>
-                        <div style="background:rgba(253,121,168,0.04); border-radius:12px; padding:14px; text-align:center; border-left:4px solid #fd79a8;">
-                            <div style="font-size:2rem; color:#fd79a8;"><i class="fas fa-shield-alt"></i></div>
-                            <h4 style="color:#f0f4fa; font-size:0.85rem; font-weight:700;">Mitigasi Bencana</h4>
-                            <p style="font-size:0.8rem; color:rgba(255,255,255,0.5); font-weight:400;">Mengenali risiko banjir, kebakaran hutan & lahan (karhutla), dan tanah longsor.</p>
-                            <div style="background:rgba(0,0,0,0.05); border-radius:6px; padding:4px 8px; margin-top:4px;">
-                                <p style="font-size:0.65rem; color:rgba(255,255,255,0.2); font-weight:400;"><i class="fas fa-question-circle" style="color:#00cec9;"></i> Geografi bisa menyelamatkan nyawa!</p>
-                            </div>
-                        </div>
-                        <div style="background:rgba(253,203,110,0.04); border-radius:12px; padding:14px; text-align:center; border-left:4px solid #fdcb6e;">
-                            <div style="font-size:2rem; color:#fdcb6e;"><i class="fas fa-leaf"></i></div>
-                            <h4 style="color:#f0f4fa; font-size:0.85rem; font-weight:700;">Pembangunan Berkelanjutan</h4>
-                            <p style="font-size:0.8rem; color:rgba(255,255,255,0.5); font-weight:400;">Perencanaan tata ruang yang ramah lingkungan dan berkelanjutan.</p>
-                            <div style="background:rgba(0,0,0,0.05); border-radius:6px; padding:4px 8px; margin-top:4px;">
-                                <p style="font-size:0.65rem; color:rgba(255,255,255,0.2); font-weight:400;"><i class="fas fa-question-circle" style="color:#00cec9;"></i> Masa depan bumi ada di tangan kita!</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ===== STUDI KASUS LOKAL ===== -->
-            <div class="materi-detail reveal">
-                <div class="detail-header" onclick="toggleDetail(this)">
-                    <h4><i class="fas fa-gem" style="color:#fdcb6e;"></i> C. Studi Kasus: Penambangan Emas di Katingan <span class="local-badge"><i class="fas fa-exclamation-triangle"></i> Analisis Dampak</span></h4>
-                    <i class="fas fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;"></i>
-                </div>
-                <div class="detail-body">
-                    <div class="detail-explanation">
-                        <span class="emoji-big">📋</span>
-                        <p>Mari kita terapkan semua yang sudah kita pelajari untuk menganalisis <span class="highlight">studi kasus nyata</span> di Kabupaten Katingan!</p>
-                    </div>
-
-                    <div style="background:rgba(0,0,0,0.1); border-radius:12px; padding:14px 16px;">
-                        <p style="color:rgba(255,255,255,0.8); font-size:0.95rem; font-weight:400;">
-                            Penambangan emas tradisional (tambang rakyat) banyak ditemukan di sepanjang aliran sungai di Kabupaten Katingan. Aktivitas ini menjadi <strong style="font-weight:700;">mata pencaharian utama</strong> bagi sebagian masyarakat, namun juga menimbulkan <strong style="font-weight:700;">dampak negatif</strong> terhadap lingkungan.
-                        </p>
-
-                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px;">
-                            <div style="background:rgba(253,121,168,0.02); border-radius:10px; padding:12px 14px; border-left:3px solid #fd79a8;">
-                                <h4 style="color:#fd79a8; font-size:0.9rem; font-weight:700;">⚠️ Dampak Fisik</h4>
-                                <ul style="font-size:0.88rem; color:rgba(255,255,255,0.5); font-weight:400; padding-left:16px;">
-                                    <li><strong style="color:rgba(255,255,255,0.7); font-weight:600;">Erosi:</strong> Kerusakan tebing sungai akibat penggalian</li>
-                                    <li><strong style="color:rgba(255,255,255,0.7); font-weight:600;">Pencemaran:</strong> Air sungai tercemar merkuri (Hg)</li>
-                                    <li><strong style="color:rgba(255,255,255,0.7); font-weight:600;">Kerusakan hutan:</strong> Penebangan pohon di sekitar tambang</li>
-                                    <li><strong style="color:rgba(255,255,255,0.7); font-weight:600;">Pendangkalan:</strong> Sungai menjadi dangkal akibat sedimentasi</li>
-                                </ul>
-                            </div>
-                            <div style="background:rgba(0,206,201,0.02); border-radius:10px; padding:12px 14px; border-left:3px solid #00cec9;">
-                                <h4 style="color:#00cec9; font-size:0.9rem; font-weight:700;">👥 Dampak Sosial</h4>
-                                <ul style="font-size:0.88rem; color:rgba(255,255,255,0.5); font-weight:400; padding-left:16px;">
-                                    <li><strong style="color:rgba(255,255,255,0.7); font-weight:600;">Ekonomi:</strong> Sumber pendapatan, tapi tidak stabil</li>
-                                    <li><strong style="color:rgba(255,255,255,0.7); font-weight:600;">Kesehatan:</strong> Gangguan kesehatan akibat merkuri</li>
-                                    <li><strong style="color:rgba(255,255,255,0.7); font-weight:600;">Konflik:</strong> Sengketa lahan antar penambang</li>
-                                    <li><strong style="color:rgba(255,255,255,0.7); font-weight:600;">Migrasi:</strong> Masuknya penduduk dari luar untuk menambang</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div style="background:rgba(108,92,231,0.02); border-radius:10px; padding:12px 14px; margin-top:12px; border-left:3px solid #6c5ce7;">
-                            <h4 style="color:#a29bfe; font-size:0.9rem; font-weight:700;">🌱 Solusi & Rekomendasi</h4>
-                            <ul style="font-size:0.88rem; color:rgba(255,255,255,0.5); font-weight:400; padding-left:16px;">
-                                <li><strong style="color:rgba(255,255,255,0.7); font-weight:600;">1.</strong> Menggunakan metode penambangan <strong style="font-weight:600;">ramah lingkungan</strong> tanpa merkuri</li>
-                                <li><strong style="color:rgba(255,255,255,0.7); font-weight:600;">2.</strong> Melakukan <strong style="font-weight:600;">reklamasi</strong> lahan bekas tambang</li>
-                                <li><strong style="color:rgba(255,255,255,0.7); font-weight:600;">3.</strong> Memberdayakan masyarakat dengan <strong style="font-weight:600;">alternatif ekonomi</strong> (budidaya ikan, ekowisata)</li>
-                                <li><strong style="color:rgba(255,255,255,0.7); font-weight:600;">4.</strong> Pengawasan ketat dari pemerintah dan <strong style="font-weight:600;">penegakan hukum</strong></li>
-                            </ul>
-                        </div>
-
-                        <div style="background:rgba(253,203,110,0.02); border-radius:8px; padding:10px 14px; margin-top:8px; border-left:3px solid #fdcb6e;">
-                            <p style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400;">
-                                <i class="fas fa-lightbulb" style="color:#fdcb6e;"></i> <strong style="color:rgba(255,255,255,0.6); font-weight:600;">Refleksi:</strong> Kasus ini menunjukkan <strong style="font-weight:600;">interelasi</strong> yang erat antara aktivitas manusia (antroposfer) dengan lingkungan alam (litosfer, hidrosfer, biosfer). Geografi membantu kita melihat <strong style="font-weight:600;">hubungan kompleks</strong> ini dan mencari solusi berkelanjutan.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ===== MINI QUIZ PERTEMUAN 3 ===== -->
             <div class="mini-quiz reveal">
-                <div class="quiz-question">🧠 <strong>Kuis Cepat:</strong> Manfaat geografi yang berkaitan dengan pengurangan risiko bencana adalah...</div>
+                <div class="quiz-question">🧠 <strong>Kuis Cepat:</strong> Manfaat geografi untuk mengurangi risiko bencana disebut...</div>
                 <div class="quiz-options">
                     <button onclick="checkQuiz(this, false)">Memahami budaya</button>
                     <button onclick="checkQuiz(this, false)">Analisis ekonomi</button>
@@ -3377,10 +3018,6 @@
                     <button onclick="checkQuiz(this, false)">Perencanaan kota</button>
                 </div>
                 <div class="quiz-feedback"></div>
-            </div>
-
-            <div style="background:rgba(0,0,0,0.2); backdrop-filter:blur(8px); border-radius:12px; padding:12px 16px; margin-top:12px; border-left:4px solid #fdcb6e;">
-                <p style="color:rgba(255,255,255,0.5); font-size:0.9rem; font-weight:400;"><i class="fas fa-pencil-alt" style="color:#fdcb6e;"></i> <strong style="color:rgba(255,255,255,0.7); font-weight:600;">Tugas Akhir:</strong> Buat <strong style="color:#a29bfe; font-weight:600;">infografis</strong> Canva tentang "Dampak Penambangan Emas di Katingan" + 3 rekomendasi solusi!</p>
             </div>
 
             <div class="nav-buttons">
@@ -3394,7 +3031,7 @@
         </section>
 
         <!-- ============================================================
-        SECTION 6 : ASESMEN – SAMA SEPERTI SEBELUMNYA
+        SECTION 6 : ASESMEN – LENGKAP 15 PG + 10 BS + 5 ESSAY
         ============================================================ -->
         <section id="section6" class="section">
             <div style="background:rgba(108,92,231,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(108,92,231,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
@@ -3404,9 +3041,10 @@
             <div class="section-header">
                 <div class="num">06</div>
                 <h2>Asesmen <small>Evaluasi Pemahaman</small></h2>
-                <span class="badge-pertemuan"><i class="fas fa-check-circle"></i> 35 Soal</span>
+                <span class="badge-pertemuan"><i class="fas fa-check-circle"></i> 30 Soal</span>
             </div>
 
+            <!-- Statistik Soal -->
             <div style="background:linear-gradient(145deg, rgba(20,26,46,0.8), rgba(10,16,36,0.8)); backdrop-filter:blur(12px); border-radius:16px; padding:20px 24px; margin-bottom:24px; border:1px solid rgba(255,255,255,0.03);">
                 <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap:12px;">
                     <div style="display:flex; align-items:center; gap:12px; padding:10px 14px; background:rgba(108,92,231,0.04); border-radius:12px; border:1px solid rgba(108,92,231,0.06);">
@@ -3419,16 +3057,16 @@
                     </div>
                     <div style="display:flex; align-items:center; gap:12px; padding:10px 14px; background:rgba(253,121,168,0.04); border-radius:12px; border:1px solid rgba(253,121,168,0.06);">
                         <div style="width:36px; height:36px; border-radius:50%; background:rgba(253,121,168,0.08); display:flex; align-items:center; justify-content:center;"><i class="fas fa-pencil-alt" style="color:#fd79a8;"></i></div>
-                        <div><span style="color:rgba(255,255,255,0.2); font-size:0.6rem; font-weight:600; text-transform:uppercase;">Essay</span><div style="color:#f0f4fa; font-size:1.2rem; font-weight:700;">10</div></div>
+                        <div><span style="color:rgba(255,255,255,0.2); font-size:0.6rem; font-weight:600; text-transform:uppercase;">Essay</span><div style="color:#f0f4fa; font-size:1.2rem; font-weight:700;">5</div></div>
                     </div>
                 </div>
                 <div style="margin-top:14px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.02); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
-                    <span style="color:rgba(255,255,255,0.25); font-size:0.85rem; font-weight:400;"><i class="fas fa-info-circle" style="color:#a29bfe;"></i> Total <strong style="color:#f0f4fa; font-weight:700;">35 soal</strong> · Kerjakan dengan jujur</span>
+                    <span style="color:rgba(255,255,255,0.25); font-size:0.85rem; font-weight:400;"><i class="fas fa-info-circle" style="color:#a29bfe;"></i> Total <strong style="color:#f0f4fa; font-weight:700;">30 soal</strong> · Kerjakan dengan jujur</span>
                     <span style="color:rgba(255,255,255,0.1); font-size:0.75rem; font-weight:400;"><i class="far fa-clock"></i> 60 menit</span>
                 </div>
             </div>
 
-            <!-- PG SOAL 1-5 -->
+            <!-- ===== PILIHAN GANDA (15 SOAL) ===== -->
             <div style="background:rgba(20,26,46,0.5); backdrop-filter:blur(8px); border-radius:16px; padding:20px; border:1px solid rgba(255,255,255,0.02); margin-bottom:20px;">
                 <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
                     <div style="width:32px; height:32px; border-radius:50%; background:linear-gradient(145deg,#2a3a5a,#1a2a4a); display:flex; align-items:center; justify-content:center; font-weight:700; color:#a29bfe; font-size:0.85rem;">A</div>
@@ -3437,61 +3075,241 @@
                 </div>
                 <p style="color:rgba(255,255,255,0.2); font-size:0.8rem; font-weight:400; margin-bottom:12px;"><i class="fas fa-arrow-right" style="color:#a29bfe;"></i> Pilih satu jawaban paling tepat!</p>
 
-                <div style="margin-bottom:12px; padding:12px 16px; background:rgba(255,255,255,0.01); border-radius:10px; border-left:3px solid rgba(255,255,255,0.02);">
-                    <div style="color:#e0e8f0; font-size:0.92rem; font-weight:600;"><span style="display:inline-block; background:rgba(255,255,255,0.02); color:rgba(255,255,255,0.25); font-size:0.6rem; font-weight:700; padding:0 10px; border-radius:20px; margin-right:8px;">01</span> Kata "geografi" berasal dari bahasa Yunani "geo" dan "graphien" yang artinya ...</div>
-                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px 30px; padding-left:16px; margin:4px 0;">
-                        <span style="color:rgba(255,255,255,0.55); font-size:0.88rem; font-weight:400; line-height:2.2; padding:0 6px; border-radius:4px; border-left:2px solid rgba(255,255,255,0.04); padding-left:12px;">A. Bumi dan langit</span>
-                        <span style="color:rgba(255,255,255,0.55); font-size:0.88rem; font-weight:400; line-height:2.2; padding:0 6px; border-radius:4px; border-left:2px solid rgba(255,255,255,0.04); padding-left:12px;">B. Bumi dan menulis/melukis</span>
-                        <span style="color:rgba(255,255,255,0.55); font-size:0.88rem; font-weight:400; line-height:2.2; padding:0 6px; border-radius:4px; border-left:2px solid rgba(255,255,255,0.04); padding-left:12px;">C. Alam dan manusia</span>
-                        <span style="color:rgba(255,255,255,0.55); font-size:0.88rem; font-weight:400; line-height:2.2; padding:0 6px; border-radius:4px; border-left:2px solid rgba(255,255,255,0.04); padding-left:12px;">D. Wilayah dan peta</span>
-                        <span style="color:rgba(255,255,255,0.55); font-size:0.88rem; font-weight:400; line-height:2.2; padding:0 6px; border-radius:4px; border-left:2px solid rgba(255,255,255,0.04); padding-left:12px;">E. Iklim dan cuaca</span>
+                <!-- Soal 1 -->
+                <div class="soal-pg">
+                    <div class="pertanyaan"><span class="nomor">1.</span> Kata "geografi" berasal dari bahasa Yunani "geo" dan "graphien" yang artinya ...</div>
+                    <div class="opsi">
+                        <span>A. Bumi dan langit</span>
+                        <span>B. Bumi dan menulis/melukis</span>
+                        <span>C. Alam dan manusia</span>
+                        <span>D. Wilayah dan peta</span>
+                        <span>E. Iklim dan cuaca</span>
                     </div>
                 </div>
 
-                <div style="margin-bottom:12px; padding:12px 16px; background:rgba(255,255,255,0.01); border-radius:10px; border-left:3px solid rgba(255,255,255,0.02);">
-                    <div style="color:#e0e8f0; font-size:0.92rem; font-weight:600;"><span style="display:inline-block; background:rgba(255,255,255,0.02); color:rgba(255,255,255,0.25); font-size:0.6rem; font-weight:700; padding:0 10px; border-radius:20px; margin-right:8px;">02</span> Tokoh yang dijuluki "Bapak Geografi" adalah ...</div>
-                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px 30px; padding-left:16px; margin:4px 0;">
-                        <span style="color:rgba(255,255,255,0.55); font-size:0.88rem; font-weight:400; line-height:2.2; padding:0 6px; border-radius:4px; border-left:2px solid rgba(255,255,255,0.04); padding-left:12px;">A. Ptolemaeus</span>
-                        <span style="color:rgba(255,255,255,0.55); font-size:0.88rem; font-weight:400; line-height:2.2; padding:0 6px; border-radius:4px; border-left:2px solid rgba(255,255,255,0.04); padding-left:12px;">B. Immanuel Kant</span>
-                        <span style="color:rgba(255,255,255,0.55); font-size:0.88rem; font-weight:400; line-height:2.2; padding:0 6px; border-radius:4px; border-left:2px solid rgba(255,255,255,0.04); padding-left:12px;">C. Eratosthenes</span>
-                        <span style="color:rgba(255,255,255,0.55); font-size:0.88rem; font-weight:400; line-height:2.2; padding:0 6px; border-radius:4px; border-left:2px solid rgba(255,255,255,0.04); padding-left:12px;">D. Humboldt</span>
-                        <span style="color:rgba(255,255,255,0.55); font-size:0.88rem; font-weight:400; line-height:2.2; padding:0 6px; border-radius:4px; border-left:2px solid rgba(255,255,255,0.04); padding-left:12px;">E. Carl Ritter</span>
+                <!-- Soal 2 -->
+                <div class="soal-pg">
+                    <div class="pertanyaan"><span class="nomor">2.</span> Tokoh yang dijuluki "Bapak Geografi" adalah ...</div>
+                    <div class="opsi">
+                        <span>A. Ptolemaeus</span>
+                        <span>B. Immanuel Kant</span>
+                        <span>C. Eratosthenes</span>
+                        <span>D. Humboldt</span>
+                        <span>E. Carl Ritter</span>
                     </div>
                 </div>
 
-                <div style="margin-bottom:12px; padding:12px 16px; background:rgba(255,255,255,0.01); border-radius:10px; border-left:3px solid rgba(255,255,255,0.02);">
-                    <div style="color:#e0e8f0; font-size:0.92rem; font-weight:600;"><span style="display:inline-block; background:rgba(255,255,255,0.02); color:rgba(255,255,255,0.25); font-size:0.6rem; font-weight:700; padding:0 10px; border-radius:20px; margin-right:8px;">03</span> Objek material geografi adalah ...</div>
-                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px 30px; padding-left:16px; margin:4px 0;">
-                        <span style="color:rgba(255,255,255,0.55); font-size:0.88rem; font-weight:400; line-height:2.2; padding:0 6px; border-radius:4px; border-left:2px solid rgba(255,255,255,0.04); padding-left:12px;">A. Cara pandang geografi</span>
-                        <span style="color:rgba(255,255,255,0.55); font-size:0.88rem; font-weight:400; line-height:2.2; padding:0 6px; border-radius:4px; border-left:2px solid rgba(255,255,255,0.04); padding-left:12px;">B. Seluruh fenomena geosfer</span>
-                        <span style="color:rgba(255,255,255,0.55); font-size:0.88rem; font-weight:400; line-height:2.2; padding:0 6px; border-radius:4px; border-left:2px solid rgba(255,255,255,0.04); padding-left:12px;">C. Metode penelitian</span>
-                        <span style="color:rgba(255,255,255,0.55); font-size:0.88rem; font-weight:400; line-height:2.2; padding:0 6px; border-radius:4px; border-left:2px solid rgba(255,255,255,0.04); padding-left:12px;">D. Peta dan data</span>
-                        <span style="color:rgba(255,255,255,0.55); font-size:0.88rem; font-weight:400; line-height:2.2; padding:0 6px; border-radius:4px; border-left:2px solid rgba(255,255,255,0.04); padding-left:12px;">E. Hubungan manusia-lingkungan</span>
+                <!-- Soal 3 -->
+                <div class="soal-pg">
+                    <div class="pertanyaan"><span class="nomor">3.</span> Objek material geografi adalah ...</div>
+                    <div class="opsi">
+                        <span>A. Cara pandang geografi</span>
+                        <span>B. Seluruh fenomena geosfer</span>
+                        <span>C. Metode penelitian</span>
+                        <span>D. Peta dan data</span>
+                        <span>E. Hubungan manusia-lingkungan</span>
                     </div>
                 </div>
 
-                <div style="margin-bottom:12px; padding:12px 16px; background:rgba(255,255,255,0.01); border-radius:10px; border-left:3px solid rgba(255,255,255,0.02);">
-                    <div style="color:#e0e8f0; font-size:0.92rem; font-weight:600;"><span style="display:inline-block; background:rgba(255,255,255,0.02); color:rgba(255,255,255,0.25); font-size:0.6rem; font-weight:700; padding:0 10px; border-radius:20px; margin-right:8px;">04</span> Prinsip yang menekankan fenomena geosfer saling memengaruhi adalah ...</div>
-                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px 30px; padding-left:16px; margin:4px 0;">
-                        <span style="color:rgba(255,255,255,0.55); font-size:0.88rem; font-weight:400; line-height:2.2; padding:0 6px; border-radius:4px; border-left:2px solid rgba(255,255,255,0.04); padding-left:12px;">A. Distribusi</span>
-                        <span style="color:rgba(255,255,255,0.55); font-size:0.88rem; font-weight:400; line-height:2.2; padding:0 6px; border-radius:4px; border-left:2px solid rgba(255,255,255,0.04); padding-left:12px;">B. Interelasi</span>
-                        <span style="color:rgba(255,255,255,0.55); font-size:0.88rem; font-weight:400; line-height:2.2; padding:0 6px; border-radius:4px; border-left:2px solid rgba(255,255,255,0.04); padding-left:12px;">C. Deskripsi</span>
-                        <span style="color:rgba(255,255,255,0.55); font-size:0.88rem; font-weight:400; line-height:2.2; padding:0 6px; border-radius:4px; border-left:2px solid rgba(255,255,255,0.04); padding-left:12px;">D. Korologi</span>
-                        <span style="color:rgba(255,255,255,0.55); font-size:0.88rem; font-weight:400; line-height:2.2; padding:0 6px; border-radius:4px; border-left:2px solid rgba(255,255,255,0.04); padding-left:12px;">E. Keruangan</span>
+                <!-- Soal 4 -->
+                <div class="soal-pg">
+                    <div class="pertanyaan"><span class="nomor">4.</span> Prinsip yang menekankan fenomena geosfer saling memengaruhi adalah ...</div>
+                    <div class="opsi">
+                        <span>A. Distribusi</span>
+                        <span>B. Interelasi</span>
+                        <span>C. Deskripsi</span>
+                        <span>D. Korologi</span>
+                        <span>E. Keruangan</span>
                     </div>
                 </div>
 
-                <div style="margin-bottom:12px; padding:12px 16px; background:rgba(255,255,255,0.01); border-radius:10px; border-left:3px solid rgba(255,255,255,0.02);">
-                    <div style="color:#e0e8f0; font-size:0.92rem; font-weight:600;"><span style="display:inline-block; background:rgba(255,255,255,0.02); color:rgba(255,255,255,0.25); font-size:0.6rem; font-weight:700; padding:0 10px; border-radius:20px; margin-right:8px;">05</span> Aspek geografi yang mengkaji topografi, iklim, hidrologi adalah ...</div>
-                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px 30px; padding-left:16px; margin:4px 0;">
-                        <span style="color:rgba(255,255,255,0.55); font-size:0.88rem; font-weight:400; line-height:2.2; padding:0 6px; border-radius:4px; border-left:2px solid rgba(255,255,255,0.04); padding-left:12px;">A. Aspek sosial</span>
-                        <span style="color:rgba(255,255,255,0.55); font-size:0.88rem; font-weight:400; line-height:2.2; padding:0 6px; border-radius:4px; border-left:2px solid rgba(255,255,255,0.04); padding-left:12px;">B. Aspek ekonomi</span>
-                        <span style="color:rgba(255,255,255,0.55); font-size:0.88rem; font-weight:400; line-height:2.2; padding:0 6px; border-radius:4px; border-left:2px solid rgba(255,255,255,0.04); padding-left:12px;">C. Aspek fisik</span>
-                        <span style="color:rgba(255,255,255,0.55); font-size:0.88rem; font-weight:400; line-height:2.2; padding:0 6px; border-radius:4px; border-left:2px solid rgba(255,255,255,0.04); padding-left:12px;">D. Aspek budaya</span>
-                        <span style="color:rgba(255,255,255,0.55); font-size:0.88rem; font-weight:400; line-height:2.2; padding:0 6px; border-radius:4px; border-left:2px solid rgba(255,255,255,0.04); padding-left:12px;">E. Aspek politik</span>
+                <!-- Soal 5 -->
+                <div class="soal-pg">
+                    <div class="pertanyaan"><span class="nomor">5.</span> Aspek geografi yang mengkaji topografi, iklim, hidrologi adalah ...</div>
+                    <div class="opsi">
+                        <span>A. Aspek sosial</span>
+                        <span>B. Aspek ekonomi</span>
+                        <span>C. Aspek fisik</span>
+                        <span>D. Aspek budaya</span>
+                        <span>E. Aspek politik</span>
                     </div>
                 </div>
-                <p style="color:rgba(255,255,255,0.1); font-size:0.75rem; font-weight:400; text-align:center; margin-top:8px;">(Soal 6-15 di versi lengkap)</p>
+
+                <!-- Soal 6 -->
+                <div class="soal-pg">
+                    <div class="pertanyaan"><span class="nomor">6.</span> Lapisan geosfer yang terdiri dari batuan dan tanah disebut ...</div>
+                    <div class="opsi">
+                        <span>A. Atmosfer</span>
+                        <span>B. Hidrosfer</span>
+                        <span>C. Litosfer</span>
+                        <span>D. Biosfer</span>
+                        <span>E. Antroposfer</span>
+                    </div>
+                </div>
+
+                <!-- Soal 7 -->
+                <div class="soal-pg">
+                    <div class="pertanyaan"><span class="nomor">7.</span> Pendekatan geografi yang menganalisis persebaran dan pola fenomena adalah ...</div>
+                    <div class="opsi">
+                        <span>A. Keruangan</span>
+                        <span>B. Kelingkungan</span>
+                        <span>C. Kompleks Wilayah</span>
+                        <span>D. Deskriptif</span>
+                        <span>E. Korologi</span>
+                    </div>
+                </div>
+
+                <!-- Soal 8 -->
+                <div class="soal-pg">
+                    <div class="pertanyaan"><span class="nomor">8.</span> Geografi sosial mempelajari tentang ...</div>
+                    <div class="opsi">
+                        <span>A. Bentuk lahan</span>
+                        <span>B. Iklim dan cuaca</span>
+                        <span>C. Aktivitas manusia</span>
+                        <span>D. Jenis tanah</span>
+                        <span>E. Flora dan fauna</span>
+                    </div>
+                </div>
+
+                <!-- Soal 9 -->
+                <div class="soal-pg">
+                    <div class="pertanyaan"><span class="nomor">9.</span> Prinsip korologi adalah gabungan dari prinsip ...</div>
+                    <div class="opsi">
+                        <span>A. Distribusi dan deskripsi</span>
+                        <span>B. Distribusi, interelasi, dan deskripsi</span>
+                        <span>C. Interelasi dan deskripsi</span>
+                        <span>D. Keruangan dan kelingkungan</span>
+                        <span>E. Deskripsi dan korologi</span>
+                    </div>
+                </div>
+
+                <!-- Soal 10 -->
+                <div class="soal-pg">
+                    <div class="pertanyaan"><span class="nomor">10.</span> Contoh fenomena antroposfer adalah ...</div>
+                    <div class="opsi">
+                        <span>A. Gunung meletus</span>
+                        <span>B. Aktivitas penambangan emas</span>
+                        <span>C. Hujan tropis</span>
+                        <span>D. Sungai Katingan</span>
+                        <span>E. Hutan hujan tropis</span>
+                    </div>
+                </div>
+
+                <!-- Soal 11 -->
+                <div class="soal-pg">
+                    <div class="pertanyaan"><span class="nomor">11.</span> Hakikat geografi yang melihat hubungan timbal balik makhluk hidup dengan lingkungan adalah ...</div>
+                    <div class="opsi">
+                        <span>A. Kewilayahan</span>
+                        <span>B. Keruangan</span>
+                        <span>C. Kelingkungan</span>
+                        <span>D. Korologi</span>
+                        <span>E. Deskripsi</span>
+                    </div>
+                </div>
+
+                <!-- Soal 12 -->
+                <div class="soal-pg">
+                    <div class="pertanyaan"><span class="nomor">12.</span> Yang termasuk objek formal geografi adalah ...</div>
+                    <div class="opsi">
+                        <span>A. Gunung dan sungai</span>
+                        <span>B. Pendekatan keruangan</span>
+                        <span>C. Manusia dan hewan</span>
+                        <span>D. Tanah dan batuan</span>
+                        <span>E. Iklim dan cuaca</span>
+                    </div>
+                </div>
+
+                <!-- Soal 13 -->
+                <div class="soal-pg">
+                    <div class="pertanyaan"><span class="nomor">13.</span> Manfaat geografi dalam pembangunan berkelanjutan adalah ...</div>
+                    <div class="opsi">
+                        <span>A. Perencanaan tata ruang yang ramah lingkungan</span>
+                        <span>B. Membangun gedung pencakar langit</span>
+                        <span>C. Menambah populasi penduduk</span>
+                        <span>D. Mengurangi jumlah sekolah</span>
+                        <span>E. Menebang hutan secara liar</span>
+                    </div>
+                </div>
+
+                <!-- Soal 14 -->
+                <div class="soal-pg">
+                    <div class="pertanyaan"><span class="nomor">14.</span> Lapisan udara yang menyelimuti bumi disebut ...</div>
+                    <div class="opsi">
+                        <span>A. Litosfer</span>
+                        <span>B. Hidrosfer</span>
+                        <span>C. Atmosfer</span>
+                        <span>D. Biosfer</span>
+                        <span>E. Antroposfer</span>
+                    </div>
+                </div>
+
+                <!-- Soal 15 -->
+                <div class="soal-pg">
+                    <div class="pertanyaan"><span class="nomor">15.</span> Contoh aspek nonfisik dalam geografi adalah ...</div>
+                    <div class="opsi">
+                        <span>A. Jenis tanah</span>
+                        <span>B. Curah hujan</span>
+                        <span>C. Budaya masyarakat Dayak</span>
+                        <span>D. Bentuk sungai</span>
+                        <span>E. Jenis batuan</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== BENAR/SALAH (10 SOAL) ===== -->
+            <div style="background:rgba(20,26,46,0.5); backdrop-filter:blur(8px); border-radius:16px; padding:20px; border:1px solid rgba(255,255,255,0.02); margin-bottom:20px;">
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+                    <div style="width:32px; height:32px; border-radius:50%; background:linear-gradient(145deg,#1a3a3a,#0a2a2a); display:flex; align-items:center; justify-content:center; font-weight:700; color:#00cec9; font-size:0.85rem;">B</div>
+                    <h3 style="color:#f0f4fa; font-size:1.05rem; font-weight:700; margin:0;">Benar / Salah</h3>
+                    <span style="font-size:0.7rem; color:rgba(255,255,255,0.1); font-weight:400; margin-left:auto;">10 Soal</span>
+                </div>
+                <p style="color:rgba(255,255,255,0.2); font-size:0.8rem; font-weight:400; margin-bottom:12px;"><i class="fas fa-arrow-right" style="color:#00cec9;"></i> Tuliskan B (Benar) atau S (Salah) pada lembar jawaban!</p>
+
+                <div class="soal-bs"><span class="nomor">1.</span><span class="pertanyaan">Geografi berasal dari bahasa Yunani "geo" yang berarti menulis.</span></div>
+                <div class="soal-bs"><span class="nomor">2.</span><span class="pertanyaan">Eratosthenes dijuluki sebagai "Bapak Geografi".</span></div>
+                <div class="soal-bs"><span class="nomor">3.</span><span class="pertanyaan">Objek formal geografi adalah seluruh fenomena geosfer.</span></div>
+                <div class="soal-bs"><span class="nomor">4.</span><span class="pertanyaan">Prinsip distribusi menekankan bahwa fenomena saling memengaruhi.</span></div>
+                <div class="soal-bs"><span class="nomor">5.</span><span class="pertanyaan">Litosfer adalah lapisan udara yang menyelimuti bumi.</span></div>
+                <div class="soal-bs"><span class="nomor">6.</span><span class="pertanyaan">Geografi sosial mempelajari aktivitas manusia seperti budaya Dayak.</span></div>
+                <div class="soal-bs"><span class="nomor">7.</span><span class="pertanyaan">Pendekatan kelingkungan menganalisis interaksi manusia dengan lingkungan.</span></div>
+                <div class="soal-bs"><span class="nomor">8.</span><span class="pertanyaan">Hidrosfer adalah lapisan kehidupan (flora dan fauna).</span></div>
+                <div class="soal-bs"><span class="nomor">9.</span><span class="pertanyaan">Prinsip korologi hanya membahas distribusi fenomena saja.</span></div>
+                <div class="soal-bs"><span class="nomor">10.</span><span class="pertanyaan">Mitigasi bencana adalah salah satu manfaat geografi.</span></div>
+            </div>
+
+            <!-- ===== ESSAY (5 SOAL) ===== -->
+            <div style="background:rgba(20,26,46,0.5); backdrop-filter:blur(8px); border-radius:16px; padding:20px; border:1px solid rgba(255,255,255,0.02); margin-bottom:20px;">
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+                    <div style="width:32px; height:32px; border-radius:50%; background:linear-gradient(145deg,#3a2a1a,#2a1a0a); display:flex; align-items:center; justify-content:center; font-weight:700; color:#fdcb6e; font-size:0.85rem;">C</div>
+                    <h3 style="color:#f0f4fa; font-size:1.05rem; font-weight:700; margin:0;">Essay</h3>
+                    <span style="font-size:0.7rem; color:rgba(255,255,255,0.1); font-weight:400; margin-left:auto;">5 Soal</span>
+                </div>
+                <p style="color:rgba(255,255,255,0.2); font-size:0.8rem; font-weight:400; margin-bottom:12px;"><i class="fas fa-arrow-right" style="color:#fdcb6e;"></i> Jawablah dengan jelas dan lengkap!</p>
+
+                <div class="soal-essay">
+                    <div class="pertanyaan"><span class="nomor">1.</span> Jelaskan pengertian geografi secara etimologis dan berikan contohnya dalam kehidupan sehari-hari!</div>
+                    <div class="petunjuk">(Skor: 0-10) · Jawaban minimal 3 kalimat</div>
+                </div>
+
+                <div class="soal-essay">
+                    <div class="pertanyaan"><span class="nomor">2.</span> Sebutkan dan jelaskan 4 prinsip geografi beserta contohnya di Kabupaten Katingan!</div>
+                    <div class="petunjuk">(Skor: 0-10) · Sebutkan 4 prinsip dengan contoh masing-masing</div>
+                </div>
+
+                <div class="soal-essay">
+                    <div class="pertanyaan"><span class="nomor">3.</span> Apa perbedaan antara objek material dan objek formal geografi? Berikan contohnya!</div>
+                    <div class="petunjuk">(Skor: 0-10) · Jelaskan perbedaan dan berikan contoh konkret</div>
+                </div>
+
+                <div class="soal-essay">
+                    <div class="pertanyaan"><span class="nomor">4.</span> Bagaimana geografi dapat membantu dalam mitigasi bencana kebakaran hutan dan lahan di Katingan?</div>
+                    <div class="petunjuk">(Skor: 0-10) · Berikan minimal 3 cara atau rekomendasi</div>
+                </div>
+
+                <div class="soal-essay">
+                    <div class="pertanyaan"><span class="nomor">5.</span> Menurutmu, mengapa kita perlu mempelajari geografi? Jelaskan manfaatnya dalam kehidupan sehari-hari!</div>
+                    <div class="petunjuk">(Skor: 0-10) · Jawaban minimal 4 kalimat dengan alasan yang logis</div>
+                </div>
             </div>
 
             <!-- Kunci Jawaban -->
@@ -3512,34 +3330,34 @@
                     <div style="background:rgba(255,255,255,0.01); border-radius:12px; padding:16px;">
                         <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
                             <div>
-                                <h4 style="color:#a29bfe; margin-bottom:8px; font-size:0.85rem; font-weight:700;"><i class="fas fa-check-circle"></i> PG</h4>
-                                <div style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400; line-height:2.2; display:grid; grid-template-columns:1fr 1fr; gap:0 20px;">
+                                <h4 style="color:#a29bfe; margin-bottom:8px; font-size:0.85rem; font-weight:700;"><i class="fas fa-check-circle"></i> PG (15 Soal)</h4>
+                                <div style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400; line-height:2.2; display:grid; grid-template-columns:1fr 1fr 1fr; gap:0 15px;">
                                     <div>1. B</div><div>2. C</div><div>3. B</div><div>4. B</div><div>5. C</div>
-                                    <div>6. C</div><div>7. A</div><div>8. A</div><div>9. B</div><div>10. B</div>
-                                    <div>11. C</div><div>12. A</div><div>13. B</div><div>14. C</div><div>15. C</div>
+                                    <div>6. C</div><div>7. A</div><div>8. C</div><div>9. B</div><div>10. B</div>
+                                    <div>11. C</div><div>12. B</div><div>13. A</div><div>14. C</div><div>15. C</div>
                                 </div>
                             </div>
                             <div>
-                                <h4 style="color:#00cec9; margin-bottom:8px; font-size:0.85rem; font-weight:700;"><i class="fas fa-check-double"></i> B/S</h4>
+                                <h4 style="color:#00cec9; margin-bottom:8px; font-size:0.85rem; font-weight:700;"><i class="fas fa-check-double"></i> B/S (10 Soal)</h4>
                                 <div style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400; line-height:2.2;">
-                                    <div>1. <span style="color:#00cec9; font-weight:700;">B</span></div>
+                                    <div>1. <span style="color:#fd79a8; font-weight:700;">S</span> (geo = bumi)</div>
                                     <div>2. <span style="color:#00cec9; font-weight:700;">B</span></div>
-                                    <div>3. <span style="color:#fd79a8; font-weight:700;">S</span></div>
-                                    <div>4. <span style="color:#fd79a8; font-weight:700;">S</span></div>
-                                    <div>5. <span style="color:#00cec9; font-weight:700;">B</span></div>
-                                    <div>6. <span style="color:#fd79a8; font-weight:700;">S</span></div>
+                                    <div>3. <span style="color:#fd79a8; font-weight:700;">S</span> (itu objek material)</div>
+                                    <div>4. <span style="color:#fd79a8; font-weight:700;">S</span> (itu interelasi)</div>
+                                    <div>5. <span style="color:#fd79a8; font-weight:700;">S</span> (itu atmosfer)</div>
+                                    <div>6. <span style="color:#00cec9; font-weight:700;">B</span></div>
                                     <div>7. <span style="color:#00cec9; font-weight:700;">B</span></div>
-                                    <div>8. <span style="color:#fd79a8; font-weight:700;">S</span></div>
-                                    <div>9. <span style="color:#fd79a8; font-weight:700;">S</span></div>
+                                    <div>8. <span style="color:#fd79a8; font-weight:700;">S</span> (itu biosfer)</div>
+                                    <div>9. <span style="color:#fd79a8; font-weight:700;">S</span> (gabungan semua)</div>
                                     <div>10. <span style="color:#00cec9; font-weight:700;">B</span></div>
                                 </div>
                             </div>
                         </div>
                         <div style="margin-top:14px; border-top:1px solid rgba(255,255,255,0.02); padding-top:12px;">
-                            <h4 style="color:#fd79a8; margin-bottom:6px; font-size:0.85rem; font-weight:700;"><i class="fas fa-pencil-alt"></i> Essay</h4>
+                            <h4 style="color:#fdcb6e; margin-bottom:6px; font-size:0.85rem; font-weight:700;"><i class="fas fa-pencil-alt"></i> Essay (5 Soal)</h4>
                             <div style="font-size:0.8rem; color:rgba(255,255,255,0.3); font-weight:400; line-height:2;">
-                                <div><strong style="color:rgba(255,255,255,0.5); font-weight:600;">1-5:</strong> Jawaban sesuai dengan materi yang telah dipelajari.</div>
-                                <div><strong style="color:rgba(255,255,255,0.5); font-weight:600;">Skor:</strong> 0-10 per soal · Total maksimal 100</div>
+                                <div><strong style="color:rgba(255,255,255,0.5); font-weight:600;">Soal 1-5:</strong> Jawaban sesuai dengan materi yang telah dipelajari di pertemuan 1-3.</div>
+                                <div><strong style="color:rgba(255,255,255,0.5); font-weight:600;">Skor:</strong> 0-10 per soal · Total maksimal 50 (Essay) + 50 (PG & BS) = 100</div>
                             </div>
                         </div>
                     </div>
@@ -3560,7 +3378,7 @@
         </section>
 
         <!-- ============================================================
-        SECTION 7 : RUBRIK – SAMA SEPERTI SEBELUMNYA
+        SECTION 7 : RUBRIK
         ============================================================ -->
         <section id="section7" class="section">
             <div style="background:rgba(108,92,231,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(108,92,231,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
@@ -3633,16 +3451,6 @@
                 </div>
             </div>
 
-            <div class="rekomendasi-box" style="margin-top:14px;">
-                <h4><i class="fas fa-lightbulb" style="color:#00cec9;"></i> Rekomendasi Peningkatan</h4>
-                <ul>
-                    <li><strong>Perkaya Studi Kasus:</strong> Tambahkan fenomena lokal (karhutla, urbanisasi, tata guna lahan).</li>
-                    <li><strong>Integrasikan Teknologi:</strong> Quizizz, Google Earth, Canva untuk pembelajaran interaktif.</li>
-                    <li><strong>Tautkan Isu Aktual:</strong> Perubahan iklim, IKN, energi terbarukan.</li>
-                    <li><strong>Gunakan Rubrik:</strong> Terapkan secara konsisten untuk setiap tugas/proyek.</li>
-                </ul>
-            </div>
-
             <div class="nav-buttons">
                 <div class="group">
                     <button onclick="navigateTo('prev')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
@@ -3654,7 +3462,7 @@
         </section>
 
         <!-- ============================================================
-        SECTION 8 : REFLEKSI – SAMA SEPERTI SEBELUMNYA
+        SECTION 8 : REFLEKSI
         ============================================================ -->
         <section id="section8" class="section">
             <div style="background:rgba(108,92,231,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(108,92,231,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
@@ -3683,16 +3491,10 @@
                 <p style="margin-top:8px; font-size:0.88rem; color:rgba(255,255,255,0.25); font-weight:400;"><i class="fas fa-arrow-right" style="color:#a29bfe;"></i> Tuliskan jawabanmu di buku catatan.</p>
             </div>
 
-            <div class="quote-block">
-                <i class="fas fa-globe" style="color:#6c5ce7; margin-right:10px;"></i> 🌍 Pesan Hari Ini
-                <blockquote style="margin:8px 0 0 0; padding:0; border:none; background:transparent; color:rgba(255,255,255,0.65); font-weight:400;">"Geografi bukan hanya tentang peta. Geografi adalah tentang memahami dunia kita dan bagaimana kita menjaganya."<span class="author">— Alexander von Humboldt</span></blockquote>
-            </div>
-
             <div class="celebration-box">
                 <h3>🎉 Selamat!</h3>
                 <p>Kamu telah menyelesaikan materi <strong style="color:#f0f4fa; font-weight:700;">Pengetahuan Dasar Geografi</strong> dalam 3 pertemuan!</p>
                 <div style="margin-top:14px;"><span class="next-btn">➡️ Lanjutkan ke Peta dan Pemetaan</span></div>
-                <p style="margin-top:12px; font-size:0.8rem; color:rgba(255,255,255,0.2); font-weight:400;"><i class="fas fa-info-circle" style="color:#a29bfe;"></i> Siapkan dirimu untuk bab selanjutnya!</p>
             </div>
 
             <div class="nav-buttons">
@@ -3706,7 +3508,7 @@
         </section>
 
         <!-- ============================================================
-        SECTION 9 : REFERENSI – SAMA SEPERTI SEBELUMNYA
+        SECTION 9 : REFERENSI
         ============================================================ -->
         <section id="section9" class="section">
             <div style="background:rgba(108,92,231,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(108,92,231,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
