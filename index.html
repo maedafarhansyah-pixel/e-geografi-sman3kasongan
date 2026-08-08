@@ -3923,13 +3923,190 @@
     </div>
 </section>
 <!-- ============================================================
-        SECTION 4 : PERTEMUAN 2 – INTEK KAJIAN GEOGRAFI
+        SECTION 4 : PERTEMUAN 2 – INTI KAJIAN GEOGRAFI
         ============================================================ -->
 <section id="section4" class="section">
+
+    <!-- ===== STYLE PERBAIKAN KETERBACAAN ===== -->
+    <style>
+        #section4 {
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+        }
+        #section4 p,
+        #section4 li,
+        #section4 .detail-body p,
+        #section4 .detail-explanation p,
+        #section4 .geosfer-desc,
+        #section4 .hakikat-card p,
+        #section4 .geo-def-card p,
+        #section4 .semarang-def-card p,
+        #section4 .konsep-note p,
+        #section4 .def-quote,
+        #section4 .contoh-lokal,
+        #section4 .geosfer-example {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.88);
+            margin-bottom: 0.75rem;
+            font-weight: 400;
+        }
+        #section4 h3,
+        #section4 h4 {
+            letter-spacing: 0.02em;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        #section4 .detail-header h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+        #section4 ul,
+        #section4 ol {
+            padding-left: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        #section4 ul li,
+        #section4 ol li {
+            margin-bottom: 0.4rem;
+            line-height: 1.7;
+        }
+        /* Garis pemisah antar bagian */
+        #section4 .materi-detail {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 1.2rem;
+            margin-top: 1.2rem;
+        }
+        #section4 .materi-detail:first-of-type {
+            border-top: none;
+            padding-top: 0;
+            margin-top: 0;
+        }
+        #section4 .detail-body h4 {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding-bottom: 0.4rem;
+            margin-bottom: 0.8rem;
+            margin-top: 1.2rem;
+        }
+        #section4 .detail-body h4:first-of-type {
+            margin-top: 0;
+        }
+        #section4 .detail-body p {
+            margin-bottom: 1rem;
+        }
+        #section4 .highlight {
+            color: #fdcb6e;
+            font-weight: 500;
+        }
+        #section4 .highlight-geo {
+            color: #6c5ce7;
+            font-weight: 600;
+        }
+        #section4 .highlight-lingkungan {
+            color: #00cec9;
+            font-weight: 600;
+        }
+        #section4 .highlight-wilayah {
+            color: #fd79a8;
+            font-weight: 600;
+        }
+        #section4 .local-badge {
+            font-size: 0.7rem;
+            background: rgba(108, 92, 231, 0.1);
+            color: #a29bfe;
+            padding: 0.1rem 0.6rem;
+            border-radius: 30px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+        #section4 .detail-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.6rem 0.8rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+        #section4 .detail-header:hover {
+            background: rgba(255, 255, 255, 0.04);
+        }
+        #section4 .detail-header h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        #section4 .detail-body {
+            padding: 0.8rem 0.6rem 0.2rem;
+        }
+        #section4 .detail-explanation {
+            display: flex;
+            gap: 0.8rem;
+            align-items: flex-start;
+            margin-bottom: 0.8rem;
+        }
+        #section4 .detail-explanation .emoji-big {
+            font-size: 2.4rem;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+        #section4 .mini-quiz {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 14px;
+            padding: 1.2rem 1.5rem;
+            margin: 1.2rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        #section4 .quiz-question {
+            font-size: 1rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0.8rem;
+        }
+        #section4 .quiz-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+        #section4 .quiz-options button {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.15s;
+        }
+        #section4 .quiz-options button:hover {
+            background: rgba(108, 92, 231, 0.1);
+        }
+        #section4 .quiz-feedback {
+            margin-top: 0.6rem;
+            font-weight: 500;
+        }
+        @media (max-width: 640px) {
+            #section4 .detail-explanation {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            #section4 .detail-header h4 {
+                font-size: 0.95rem;
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+
+    <!-- ===== HEADER ===== -->
     <div style="background:rgba(108,92,231,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(108,92,231,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
         <div style="display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.4); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
         <button onclick="navigateTo('section1')" style="background:rgba(255,255,255,0.02); color:rgba(255,255,255,0.3); border:1px solid rgba(255,255,255,0.03); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem;"><i class="fas fa-home"></i> Beranda</button>
     </div>
+
     <div class="section-header">
         <div class="num">04</div>
         <h2>Pertemuan 2 – Inti Kajian Geografi <small>Objek, Prinsip, Aspek, & Pendekatan</small></h2>
@@ -3958,7 +4135,7 @@
         <li>Menjelaskan 3 pendekatan geografi (keruangan, kelingkungan, kompleks wilayah) dengan studi kasus.</li>
     </ul>
 
-    <!-- ===== GALERI GAMBAR PREMIUM PERTEMUAN 2 ===== -->
+    <!-- ===== GALERI GAMBAR ===== -->
     <div style="margin:16px 0;">
         <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:14px;">
             <h4 style="color:#a29bfe; font-size:0.95rem; font-weight:700; display:flex; align-items:center; gap:10px;">
@@ -4003,188 +4180,326 @@
         </div>
     </div>
 
-    <!-- ===== A. OBJEK STUDI GEOGRAFI (DIPERLUAS) ===== -->
+    <!-- ==========================================================
+    A. OBJEK STUDI GEOGRAFI (DIPERDALAM)
+    ========================================================== -->
     <div class="materi-detail reveal">
         <div class="detail-header" onclick="toggleDetail(this)">
             <h4><i class="fas fa-search" style="color:#6c5ce7;"></i> A. Objek Studi Geografi <span class="local-badge"><i class="fas fa-map-pin"></i> Katingan</span></h4>
             <i class="fas fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;"></i>
         </div>
         <div class="detail-body">
+
+            <!-- Penjelasan awal -->
             <div class="detail-explanation" style="margin-bottom:14px;">
                 <span class="emoji-big">🔍</span>
-                <p style="font-size:0.95rem; line-height:1.7;">Objek material = <span class="highlight">apa</span> yang dipelajari (fenomena geosfer). Objek formal = <span class="highlight">bagaimana</span> cara mempelajarinya (pendekatan). Keduanya saling melengkapi dalam kajian geografi.</p>
+                <p style="font-size:0.95rem; line-height:1.7;">
+                    Objek material = <span class="highlight">apa</span> yang dipelajari (fenomena geosfer). 
+                    Objek formal = <span class="highlight">bagaimana</span> cara mempelajarinya (pendekatan/analisis). 
+                    Keduanya saling melengkapi: tanpa objek formal, geografi hanya sekadar deskripsi; tanpa objek material, analisis menjadi abstrak.
+                </p>
             </div>
 
-            <!-- Objek Material -->
+            <!-- Objek Material – diperluas -->
             <div style="background:rgba(108,92,231,0.04); border-radius:12px; padding:14px; border-left:4px solid #6c5ce7; margin-bottom:12px;">
-                <h4 style="color:#a29bfe; font-size:0.95rem; font-weight:700; margin-bottom:6px;">Objek Material</h4>
-                <p style="font-size:0.9rem; color:rgba(255,255,255,0.55); margin-bottom:8px;">Fenomena geosfer yang meliputi 5 lapisan bumi:</p>
-                <ul style="font-size:0.88rem; padding-left:20px; color:rgba(255,255,255,0.6); line-height:1.9;">
-                    <li><strong style="color:#a29bfe;">Litosfer (lapisan batuan):</strong> Tanah gambut di Katingan dengan ketebalan 3–8 meter, tanah podsolik merah-kuning, dan batuan sedimen.</li>
-                    <li><strong style="color:#00cec9;">Atmosfer (lapisan udara):</strong> Iklim tropis dengan curah hujan tinggi (2.500–3.500 mm/tahun) dan suhu rata-rata 26–28°C.</li>
-                    <li><strong style="color:#fd79a8;">Hidrosfer (lapisan air):</strong> Sungai Katingan (panjang ± 650 km), rawa-rawa, dan danau musiman.</li>
-                    <li><strong style="color:#fdcb6e;">Biosfer (lapisan kehidupan):</strong> Orangutan Kalimantan (<em>Pongo pygmaeus</em>), bekantan, dan flora khas lahan gambut.</li>
-                    <li><strong style="color:#ff6b6b;">Antroposfer (lapisan manusia):</strong> Masyarakat penambang emas tradisional, petani, dan nelayan di sepanjang sungai.</li>
+                <h4 style="color:#a29bfe; font-size:0.95rem; font-weight:700; margin-bottom:6px;">Objek Material – Fenomena Geosfer</h4>
+                <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); margin-bottom:8px;">
+                    Geografi mempelajari 5 lapisan bumi (geosfer) yang saling berinteraksi. Di Katingan, setiap lapisan memiliki karakteristik khas:
+                </p>
+                <ul style="font-size:0.88rem; padding-left:20px; color:rgba(255,255,255,0.7); line-height:1.9;">
+                    <li><strong style="color:#a29bfe;">Litosfer (lapisan batuan & tanah):</strong> Tanah gambut organosol setebal 3–8 m, tanah podsolik merah-kuning di daerah dataran, dan batuan sedimen alluvial di sepanjang sungai. Wilayah ini juga memiliki potensi endapan emas yang menjadi daya tarik penambangan.</li>
+                    <li><strong style="color:#00cec9;">Atmosfer (lapisan udara):</strong> Iklim tropis basah dengan curah hujan tahunan 2.500–3.500 mm, suhu rata-rata 26–28°C, dan kelembapan tinggi (>80%). Musim kemarau (Juni–September) sering memicu kebakaran hutan dan lahan gambut.</li>
+                    <li><strong style="color:#fd79a8;">Hidrosfer (lapisan air):</strong> Sungai Katingan (panjang ±650 km) dengan anak-anak sungai seperti Samba, Lahang, dan Mendawai. Rawa-rawa dan danau musiman (danau arang) menjadi habitat ikan dan sumber air bagi masyarakat.</li>
+                    <li><strong style="color:#fdcb6e;">Biosfer (lapisan kehidupan):</strong> Hutan rawa gambut dengan flora khas: ramin, jelutung, meranti, dan rotan. Fauna endemik: orangutan Kalimantan (<em>Pongo pygmaeus</em>), bekantan, burung rangkong, dan berbagai jenis ikan air tawar.</li>
+                    <li><strong style="color:#ff6b6b;">Antroposfer (lapisan manusia):</strong> Masyarakat multi-etnis (Dayak Ngaju, Jawa, Madura, Banjar) dengan mata pencaharian: petani ladang, penambang emas tradisional, nelayan sungai, dan pekerja perkebunan sawit.</li>
                 </ul>
+                <div style="background:rgba(253,203,110,0.04); border-radius:8px; padding:8px 14px; margin-top:6px; border-left:3px solid #fdcb6e;">
+                    <span style="color:#fdcb6e; font-weight:600;">💡 Mengapa penting?</span>
+                    <span style="color:rgba(255,255,255,0.55); font-size:0.85rem;">Memahami objek material membantu kita mengenali potensi dan masalah lingkungan, seperti kebakaran gambut, pencemaran sungai, dan hilangnya habitat satwa.</span>
+                </div>
             </div>
 
-            <!-- Objek Formal -->
+            <!-- Objek Formal – diperluas -->
             <div style="background:rgba(0,206,201,0.04); border-radius:12px; padding:14px; border-left:4px solid #00cec9;">
-                <h4 style="color:#00cec9; font-size:0.95rem; font-weight:700; margin-bottom:6px;">Objek Formal</h4>
-                <p style="font-size:0.9rem; color:rgba(255,255,255,0.55); margin-bottom:8px;">Cara pandang atau pendekatan yang digunakan untuk mengkaji objek material:</p>
-                <ul style="font-size:0.88rem; padding-left:20px; color:rgba(255,255,255,0.6); line-height:1.9;">
-                    <li><strong style="color:#a29bfe;">Pendekatan Keruangan:</strong> Menganalisis pola persebaran tambang emas di sepanjang Sungai Katingan dan hubungannya dengan permukiman.</li>
-                    <li><strong style="color:#00cec9;">Pendekatan Kelingkungan:</strong> Mengkaji interaksi penambang dengan sungai (pencemaran air) dan upaya pelestarian.</li>
-                    <li><strong style="color:#fd79a8;">Pendekatan Kompleks Wilayah:</strong> Memahami karakteristik unik Katingan sebagai wilayah gambut dengan keanekaragaman hayati tinggi.</li>
+                <h4 style="color:#00cec9; font-size:0.95rem; font-weight:700; margin-bottom:6px;">Objek Formal – Cara Pandang / Pendekatan</h4>
+                <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); margin-bottom:8px;">
+                    Objek formal adalah <span class="highlight">metode analisis</span> yang digunakan untuk mengkaji objek material. Geografi memiliki 3 pendekatan utama yang akan dibahas di bagian D. Secara ringkas:
+                </p>
+                <ul style="font-size:0.88rem; padding-left:20px; color:rgba(255,255,255,0.7); line-height:1.9;">
+                    <li><strong style="color:#a29bfe;">Pendekatan Keruangan:</strong> Menganalisis pola persebaran tambang emas di sepanjang Sungai Katingan, hubungannya dengan pemukiman, dan aksesibilitas.</li>
+                    <li><strong style="color:#00cec9;">Pendekatan Kelingkungan:</strong> Mengkaji dampak penambangan terhadap kualitas air sungai dan ekosistem gambut, serta upaya rehabilitasi.</li>
+                    <li><strong style="color:#fd79a8;">Pendekatan Kompleks Wilayah:</strong> Memahami Katingan sebagai wilayah gambut tropis dengan keunikan fisik, sosial, dan ekonomi yang memerlukan perencanaan terpadu.</li>
                 </ul>
+                <div style="background:rgba(0,206,201,0.06); border-radius:8px; padding:8px 14px; margin-top:6px; border-left:3px solid #00cec9;">
+                    <span style="color:#00cec9; font-weight:600;">🔎 Contoh konkret:</span>
+                    <span style="color:rgba(255,255,255,0.55); font-size:0.85rem;">Objek material: lahan gambut. Objek formal: pendekatan ekologi untuk menganalisis siklus karbon dan strategi mitigasi kebakaran.</span>
+                </div>
             </div>
+
         </div>
     </div>
 
-    <!-- ===== B. 4 PRINSIP GEOGRAFI (DIPERLUAS) ===== -->
+    <!-- ==========================================================
+    B. 4 PRINSIP GEOGRAFI (DIPERDALAM)
+    ========================================================== -->
     <div class="materi-detail reveal">
         <div class="detail-header" onclick="toggleDetail(this)">
             <h4><i class="fas fa-balance-scale" style="color:#fdcb6e;"></i> B. 4 Prinsip Geografi</h4>
             <i class="fas fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;"></i>
         </div>
         <div class="detail-body">
-            <div style="display:grid; gap:12px;">
+
+            <p style="font-size:0.92rem; color:rgba(255,255,255,0.6); margin-bottom:14px;">
+                Prinsip geografi adalah <span class="highlight">landasan berpikir</span> yang digunakan untuk menganalisis fenomena. Empat prinsip ini saling berurutan: dari yang paling sederhana (distribusi) hingga yang paling kompleks (korologi).
+            </p>
+
+            <div style="display:grid; gap:14px;">
+
                 <!-- Prinsip 1 -->
-                <div style="background:rgba(108,92,231,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #6c5ce7;">
-                    <h4 style="color:#a29bfe; font-size:0.9rem; font-weight:700;">1. Prinsip Distribusi (Penyebaran)</h4>
-                    <p style="font-size:0.9rem; color:rgba(255,255,255,0.65); line-height:1.6;">Fenomena geografi tersebar tidak merata di permukaan bumi. Analisis distribusi membantu memahami <span class="highlight">pola</span> dan <span class="highlight">faktor penyebab</span> ketidakmerataan.</p>
+                <div style="background:rgba(108,92,231,0.04); border-radius:12px; padding:14px 16px; border-left:4px solid #6c5ce7;">
+                    <h4 style="color:#a29bfe; font-size:0.95rem; font-weight:700;">1. Prinsip Distribusi (Penyebaran)</h4>
+                    <p style="font-size:0.9rem; color:rgba(255,255,255,0.7); line-height:1.7;">
+                        Fenomena geografi <strong>tidak tersebar merata</strong> di permukaan bumi. Ada wilayah yang padat, ada yang jarang, ada yang kaya sumber daya, ada yang miskin. Prinsip ini menanyakan: <span class="highlight">"di mana"</span> dan <span class="highlight">"mengapa di situ"</span>.
+                    </p>
                     <div style="background:rgba(108,92,231,0.06); border-radius:8px; padding:10px 14px; margin-top:6px;">
                         <span style="color:#fdcb6e; font-weight:600;">📌 Contoh Katingan:</span>
-                        <span style="color:rgba(255,255,255,0.55); font-size:0.85rem;">Tambang emas tradisional tersebar di sepanjang aliran Sungai Katingan, terutama di daerah Tumbang Samba dan Tumbang Lahang, karena endapan alluvial terbawa arus sungai.</span>
+                        <span style="color:rgba(255,255,255,0.6); font-size:0.85rem;">
+                            Tambang emas tradisional tersebar di sepanjang aliran Sungai Katingan, terutama di daerah Tumbang Samba, Tumbang Lahang, dan Tumbang Manggu, karena endapan alluvial (butiran emas) terbawa arus dan terakumulasi di titik-titik tertentu. Pemukiman penduduk juga mengikuti aliran sungai sebagai jalur transportasi utama.
+                        </span>
+                    </div>
+                    <div style="margin-top:6px; font-size:0.8rem; color:rgba(255,255,255,0.4);">
+                        <i class="fas fa-arrow-right"></i> Analisis distribusi membantu pemerintah dalam perencanaan tata ruang dan mitigasi risiko.
                     </div>
                 </div>
 
                 <!-- Prinsip 2 -->
-                <div style="background:rgba(0,206,201,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #00cec9;">
-                    <h4 style="color:#00cec9; font-size:0.9rem; font-weight:700;">2. Prinsip Interelasi (Saling Keterkaitan)</h4>
-                    <p style="font-size:0.9rem; color:rgba(255,255,255,0.65); line-height:1.6;">Fenomena geografi saling memengaruhi dan berkaitan satu sama lain. Tidak ada fenomena yang berdiri sendiri.</p>
+                <div style="background:rgba(0,206,201,0.04); border-radius:12px; padding:14px 16px; border-left:4px solid #00cec9;">
+                    <h4 style="color:#00cec9; font-size:0.95rem; font-weight:700;">2. Prinsip Interelasi (Saling Keterkaitan)</h4>
+                    <p style="font-size:0.9rem; color:rgba(255,255,255,0.7); line-height:1.7;">
+                        <strong>Tidak ada fenomena yang berdiri sendiri</strong>; semuanya saling memengaruhi dalam suatu sistem. Prinsip ini menjawab: <span class="highlight">"bagaimana hubungan antara fenomena satu dengan yang lain?"</span>
+                    </p>
                     <div style="background:rgba(0,206,201,0.06); border-radius:8px; padding:10px 14px; margin-top:6px;">
                         <span style="color:#fdcb6e; font-weight:600;">📌 Contoh Katingan:</span>
-                        <span style="color:rgba(255,255,255,0.55); font-size:0.85rem;">Penambangan emas tradisional menggunakan merkuri → mencemari Sungai Katingan → menurunkan populasi ikan → berdampak pada nelayan dan rantai makanan.</span>
+                        <span style="color:rgba(255,255,255,0.6); font-size:0.85rem;">
+                            Penambangan emas tradisional menggunakan merkuri (air raksa) → merkuri terbawa aliran sungai → mencemari air dan sedimen → menurunkan populasi ikan dan biota air → nelayan kehilangan mata pencaharian → pendapatan masyarakat menurun → muncul konflik sosial dan pergeseran ekonomi ke sektor lain.
+                        </span>
+                    </div>
+                    <div style="margin-top:6px; font-size:0.8rem; color:rgba(255,255,255,0.4);">
+                        <i class="fas fa-arrow-right"></i> Interelasi menekankan perlunya pendekatan holistik dalam menyelesaikan masalah.
                     </div>
                 </div>
 
                 <!-- Prinsip 3 -->
-                <div style="background:rgba(253,121,168,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #fd79a8;">
-                    <h4 style="color:#fd79a8; font-size:0.9rem; font-weight:700;">3. Prinsip Deskripsi (Penggambaran)</h4>
-                    <p style="font-size:0.9rem; color:rgba(255,255,255,0.65); line-height:1.6;">Fenomena geografi digambarkan secara detail dan sistematis melalui data kualitatif dan kuantitatif.</p>
+                <div style="background:rgba(253,121,168,0.04); border-radius:12px; padding:14px 16px; border-left:4px solid #fd79a8;">
+                    <h4 style="color:#fd79a8; font-size:0.95rem; font-weight:700;">3. Prinsip Deskripsi (Penggambaran)</h4>
+                    <p style="font-size:0.9rem; color:rgba(255,255,255,0.7); line-height:1.7;">
+                        Fenomena geografi harus <strong>digambarkan secara detail dan sistematis</strong> melalui data kualitatif maupun kuantitatif. Prinsip ini menjawab: <span class="highlight">"apa"</span> dan <span class="highlight">"bagaimana ciri-cirinya"</span>.
+                    </p>
                     <div style="background:rgba(253,121,168,0.06); border-radius:8px; padding:10px 14px; margin-top:6px;">
                         <span style="color:#fdcb6e; font-weight:600;">📌 Contoh Katingan:</span>
-                        <span style="color:rgba(255,255,255,0.55); font-size:0.85rem;">Lahan gambut Katingan memiliki ketebalan 3–8 meter, kandungan karbon tinggi, dan vegetasi khas seperti ramin (<em>Gonystylus bancanus</em>) dan jelutung (<em>Dyera costulata</em>).</span>
+                        <span style="color:rgba(255,255,255,0.6); font-size:0.85rem;">
+                            Lahan gambut Katingan memiliki ketebalan 3–8 meter, kandungan karbon organik >50%, pH tanah asam (3,5–4,5), dan vegetasi didominasi oleh ramin (<em>Gonystylus bancanus</em>), jelutung (<em>Dyera costulata</em>), dan meranti. Data ini digunakan untuk memetakan zona prioritas restorasi.
+                        </span>
+                    </div>
+                    <div style="margin-top:6px; font-size:0.8rem; color:rgba(255,255,255,0.4);">
+                        <i class="fas fa-arrow-right"></i> Deskripsi yang akurat menjadi dasar pengambilan keputusan berbasis data.
                     </div>
                 </div>
 
                 <!-- Prinsip 4 -->
-                <div style="background:rgba(253,203,110,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #fdcb6e;">
-                    <h4 style="color:#fdcb6e; font-size:0.9rem; font-weight:700;">4. Prinsip Korologi (Gabungan)</h4>
-                    <p style="font-size:0.9rem; color:rgba(255,255,255,0.65); line-height:1.6;">Prinsip paling lengkap yang menggabungkan distribusi, interelasi, dan deskripsi dalam satu wilayah. Menjawab pertanyaan <span class="highlight">di mana, mengapa, dan bagaimana</span>.</p>
+                <div style="background:rgba(253,203,110,0.04); border-radius:12px; padding:14px 16px; border-left:4px solid #fdcb6e;">
+                    <h4 style="color:#fdcb6e; font-size:0.95rem; font-weight:700;">4. Prinsip Korologi (Gabungan / Integrasi)</h4>
+                    <p style="font-size:0.9rem; color:rgba(255,255,255,0.7); line-height:1.7;">
+                        Prinsip paling lengkap yang <strong>menggabungkan distribusi, interelasi, dan deskripsi</strong> dalam satu analisis wilayah. Menjawab pertanyaan lengkap: <span class="highlight">"di mana, mengapa, bagaimana, dan apa dampaknya"</span>.
+                    </p>
                     <div style="background:rgba(253,203,110,0.06); border-radius:8px; padding:10px 14px; margin-top:6px;">
                         <span style="color:#fdcb6e; font-weight:600;">📌 Contoh Katingan:</span>
-                        <span style="color:rgba(255,255,255,0.55); font-size:0.85rem;">Analisis korologi Katingan: lahan gambut (distribusi) → kebakaran lahan terjadi karena El Niño (interelasi) → ketebalan gambut 3–8 m, potensi karbon tinggi (deskripsi) → solusi: restorasi gambut dan sistem peringatan dini.</span>
+                        <span style="color:rgba(255,255,255,0.6); font-size:0.85rem;">
+                            Analisis korologi lahan gambut Katingan:<br/>
+                            • <strong>Distribusi:</strong> lahan gambut tersebar di sepanjang wilayah dataran rendah, terutama di sekitar Sungai Katingan.<br/>
+                            • <strong>Interelasi:</strong> kebakaran lahan dipicu oleh El Niño (kekeringan) dan aktivitas manusia (pembukaan lahan).<br/>
+                            • <strong>Deskripsi:</strong> ketebalan gambut 3–8 m, potensi karbon terbesar di Kalimantan Tengah.<br/>
+                            • <strong>Kesimpulan:</strong> diperlukan restorasi gambut berbasis masyarakat dan sistem peringatan dini kebakaran.
+                        </span>
+                    </div>
+                    <div style="margin-top:6px; font-size:0.8rem; color:rgba(255,255,255,0.4);">
+                        <i class="fas fa-arrow-right"></i> Korologi menjadi fondasi perencanaan wilayah yang berkelanjutan.
                     </div>
                 </div>
-            </div>
+
+            </div><!-- end grid -->
         </div>
     </div>
 
-    <!-- ===== C. ASPEK GEOGRAFI (BARU - DIPERLUAS) ===== -->
+    <!-- ==========================================================
+    C. ASPEK GEOGRAFI (FISIK & NONFISIK) – DIPERDALAM
+    ========================================================== -->
     <div class="materi-detail reveal">
         <div class="detail-header" onclick="toggleDetail(this)">
             <h4><i class="fas fa-layer-group" style="color:#00cec9;"></i> C. Aspek Geografi <span class="local-badge"><i class="fas fa-tree"></i> Fisik & Nonfisik</span></h4>
             <i class="fas fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;"></i>
         </div>
         <div class="detail-body">
-            <p style="font-size:0.92rem; color:rgba(255,255,255,0.55); margin-bottom:12px;">Geografi mengkaji dua aspek utama: <span class="highlight">aspek fisik</span> (alam) dan <span class="highlight">aspek nonfisik</span> (manusia). Keduanya saling berinteraksi membentuk karakteristik suatu wilayah.</p>
 
-            <div style="display:grid; gap:12px;">
+            <p style="font-size:0.92rem; color:rgba(255,255,255,0.6); margin-bottom:14px;">
+                Geografi mengkaji dua aspek utama: <span class="highlight">aspek fisik</span> (alam) dan <span class="highlight">aspek nonfisik</span> (manusia/sosial). Keduanya <strong>saling terkait</strong> dan membentuk karakteristik unik suatu wilayah. Di Katingan, interaksi ini sangat terlihat.
+            </p>
+
+            <div style="display:grid; gap:14px;">
+
                 <!-- Aspek Fisik -->
                 <div style="background:rgba(0,206,201,0.04); border-radius:12px; padding:14px 16px; border-left:4px solid #00cec9;">
-                    <h4 style="color:#00cec9; font-size:0.95rem; font-weight:700; margin-bottom:6px;">🌍 Aspek Fisik</h4>
-                    <p style="font-size:0.88rem; color:rgba(255,255,255,0.5); margin-bottom:6px;">Segala fenomena alam yang membentuk lingkungan:</p>
-                    <ul style="font-size:0.85rem; padding-left:20px; color:rgba(255,255,255,0.55); line-height:1.8;">
-                        <li><strong style="color:#a29bfe;">Topografi:</strong> Katingan didominasi dataran rendah dengan ketinggian 5–50 mdpl, sebagian besar berupa lahan gambut dan rawa.</li>
-                        <li><strong style="color:#00cec9;">Hidrologi:</strong> Sistem sungai yang kompleks, Sungai Katingan merupakan tulang punggung transportasi dan sumber air.</li>
-                        <li><strong style="color:#fd79a8;">Iklim:</strong> Iklim tropis basah dengan dua musim (hujan dan kemarau), curah hujan tinggi mempengaruhi kehidupan masyarakat.</li>
-                        <li><strong style="color:#fdcb6e;">Flora & Fauna:</strong> Hutan rawa gambut menjadi habitat orangutan, bekantan, dan berbagai jenis burung endemik.</li>
-                        <li><strong style="color:#ff6b6b;">Tanah:</strong> Tanah gambut (organosol) dan tanah podsolik merah-kuning dengan kesuburan rendah hingga sedang.</li>
+                    <h4 style="color:#00cec9; font-size:0.95rem; font-weight:700; margin-bottom:6px;">🌍 Aspek Fisik (Alam)</h4>
+                    <p style="font-size:0.88rem; color:rgba(255,255,255,0.6); margin-bottom:6px;">Segala fenomena alam yang membentuk lingkungan, meliputi:</p>
+                    <ul style="font-size:0.85rem; padding-left:20px; color:rgba(255,255,255,0.65); line-height:1.9;">
+                        <li><strong style="color:#a29bfe;">Topografi:</strong> Katingan didominasi dataran rendah dengan ketinggian 5–50 mdpl. Sebagian besar berupa lahan gambut dan rawa, dengan beberapa perbukitan rendah di bagian utara.</li>
+                        <li><strong style="color:#00cec9;">Hidrologi:</strong> Sistem sungai yang kompleks dengan Sungai Katingan sebagai tulang punggung. Terdapat juga danau musiman (danau arang) yang berfungsi sebagai penampung air saat banjir.</li>
+                        <li><strong style="color:#fd79a8;">Iklim:</strong> Iklim tropis basah (Af menurut klasifikasi Köppen) dengan dua musim: hujan (Oktober–Maret) dan kemarau (April–September). Curah hujan tahunan 2.500–3.500 mm, suhu 26–28°C.</li>
+                        <li><strong style="color:#fdcb6e;">Flora & Fauna:</strong> Hutan rawa gambut menjadi habitat orangutan, bekantan, burung rangkong, dan berbagai jenis ikan (seperti arwana, gabus, dan patin). Flora khas: ramin, jelutung, meranti, dan rotan.</li>
+                        <li><strong style="color:#ff6b6b;">Tanah:</strong> Tanah gambut (organosol) di dataran rendah, dan tanah podsolik merah-kuning (ultisol) di daerah perbukitan. Tanah gambut memiliki kesuburan rendah namun menyimpan karbon sangat tinggi.</li>
                     </ul>
+                    <div style="background:rgba(0,206,201,0.06); border-radius:8px; padding:8px 14px; margin-top:6px; border-left:3px solid #00cec9;">
+                        <span style="color:#00cec9; font-weight:600;">🌱 Signifikansi fisik:</span>
+                        <span style="color:rgba(255,255,255,0.55); font-size:0.85rem;">Kondisi fisik ini menentukan potensi sumber daya (air, kayu, ikan, emas) sekaligus kerentanan terhadap bencana (banjir, kebakaran gambut, kekeringan).</span>
+                    </div>
                 </div>
 
                 <!-- Aspek Nonfisik -->
                 <div style="background:rgba(253,121,168,0.04); border-radius:12px; padding:14px 16px; border-left:4px solid #fd79a8;">
-                    <h4 style="color:#fd79a8; font-size:0.95rem; font-weight:700; margin-bottom:6px;">👥 Aspek Nonfisik (Sosial)</h4>
-                    <p style="font-size:0.88rem; color:rgba(255,255,255,0.5); margin-bottom:6px;">Aktivitas manusia yang membentuk budaya dan ekonomi:</p>
-                    <ul style="font-size:0.85rem; padding-left:20px; color:rgba(255,255,255,0.55); line-height:1.8;">
-                        <li><strong style="color:#a29bfe;">Demografi:</strong> Penduduk Katingan sebagian besar suku Dayak Ngaju dan pendatang (Jawa, Madura, Banjar).</li>
-                        <li><strong style="color:#00cec9;">Ekonomi:</strong> Pertanian lahan kering, perkebunan sawit, penambangan emas tradisional, dan perikanan sungai.</li>
-                        <li><strong style="color:#fd79a8;">Budaya:</strong> Tradisi <em>balian</em> (pengobatan tradisional), upacara adat <em>tiwah</em> (kematian), dan kesenian khas Dayak.</li>
-                        <li><strong style="color:#fdcb6e;">Politik & Kelembagaan:</strong> Struktur pemerintahan dengan kearifan lokal dalam pengelolaan sumber daya alam.</li>
-                        <li><strong style="color:#ff6b6b;">Pendidikan & Teknologi:</strong> Akses pendidikan yang terus berkembang, pemanfaatan teknologi informasi di perkotaan.</li>
+                    <h4 style="color:#fd79a8; font-size:0.95rem; font-weight:700; margin-bottom:6px;">👥 Aspek Nonfisik (Sosial / Manusia)</h4>
+                    <p style="font-size:0.88rem; color:rgba(255,255,255,0.6); margin-bottom:6px;">Aktivitas dan budaya manusia yang membentuk wajah sosial-ekonomi wilayah:</p>
+                    <ul style="font-size:0.85rem; padding-left:20px; color:rgba(255,255,255,0.65); line-height:1.9;">
+                        <li><strong style="color:#a29bfe;">Demografi:</strong> Penduduk Katingan sekitar 160.000 jiwa (2023), mayoritas suku Dayak Ngaju, dengan pendatang dari Jawa, Madura, Banjar, dan Bugis. Sebaran tidak merata, terkonsentrasi di sepanjang sungai.</li>
+                        <li><strong style="color:#00cec9;">Ekonomi:</strong> Sektor utama: pertanian lahan kering (padi, jagung, ubi), perkebunan sawit, penambangan emas tradisional, perikanan sungai, dan perdagangan kecil. Pendapatan masyarakat masih di bawah rata-rata provinsi.</li>
+                        <li><strong style="color:#fd79a8;">Budaya:</strong> Tradisi <em>balian</em> (pengobatan spiritual), upacara <em>tiwah</em> (upacara kematian adat), rumah betang (rumah panjang), dan kesenian seperti tarian dan sastra lisan. Kearifan lokal seperti <em>kayu talo</em> (larangan menebang pohon tertentu) masih dijalankan.</li>
+                        <li><strong style="color:#fdcb6e;">Politik & Kelembagaan:</strong> Struktur pemerintahan kabupaten dengan 6 kecamatan. Lembaga adat (Dewan Adat Dayak) berperan dalam pengelolaan sumber daya alam dan resolusi konflik.</li>
+                        <li><strong style="color:#ff6b6b;">Pendidikan & Teknologi:</strong> Akses pendidikan terbatas di pedalaman, namun mulai berkembang di perkotaan. Teknologi informasi (smartphone, internet) telah masuk, membuka akses informasi dan pemasaran.</li>
                     </ul>
+                    <div style="background:rgba(253,121,168,0.06); border-radius:8px; padding:8px 14px; margin-top:6px; border-left:3px solid #fd79a8;">
+                        <span style="color:#fd79a8; font-weight:600;">🤝 Signifikansi sosial:</span>
+                        <span style="color:rgba(255,255,255,0.55); font-size:0.85rem;">Aspek nonfisik menentukan bagaimana masyarakat memanfaatkan, mengelola, dan beradaptasi dengan lingkungan fisiknya. Perubahan sosial (modernisasi, urbanisasi) membawa dampak pada lingkungan.</span>
+                    </div>
                 </div>
+
+            </div><!-- end grid -->
+
+            <!-- Keterkaitan Fisik-Nonfisik -->
+            <div style="background:rgba(108,92,231,0.04); border-radius:12px; padding:12px 16px; margin-top:12px; border:1px dashed rgba(108,92,231,0.2);">
+                <span style="color:#a29bfe; font-weight:600;">🔗 Keterkaitan Fisik & Nonfisik:</span>
+                <span style="color:rgba(255,255,255,0.55); font-size:0.85rem; display:block; margin-top:4px;">
+                    Lahan gambut yang subur (fisik) → dibuka menjadi perkebunan sawit oleh investor (nonfisik) → drainase gambut menyebabkan penurunan muka air tanah (fisik) → lahan kering dan mudah terbakar (fisik) → kebakaran terjadi, menghasilkan kabut asap (fisik) → mengganggu kesehatan dan aktivitas ekonomi masyarakat (nonfisik) → pemerintah membuat kebijakan moratorium pembukaan gambut (nonfisik).
+                </span>
             </div>
 
-            <div style="background:rgba(108,92,231,0.04); border-radius:10px; padding:12px 16px; margin-top:12px; border:1px dashed rgba(108,92,231,0.2);">
-                <span style="color:#a29bfe; font-weight:600;">💡 Keterkaitan Aspek Fisik & Nonfisik:</span>
-                <span style="color:rgba(255,255,255,0.55); font-size:0.85rem;">Lahan gambut (fisik) dimanfaatkan untuk perkebunan sawit (nonfisik) → drainase gambut → kebakaran lahan (fisik) → dampak kesehatan dan ekonomi masyarakat (nonfisik).</span>
-            </div>
         </div>
     </div>
 
-    <!-- ===== D. PENDEKATAN GEOGRAFI (BARU - DIPERLUAS) ===== -->
+    <!-- ==========================================================
+    D. 3 PENDEKATAN GEOGRAFI (DIPERDALAM + STUDI KASUS)
+    ========================================================== -->
     <div class="materi-detail reveal">
         <div class="detail-header" onclick="toggleDetail(this)">
             <h4><i class="fas fa-compass" style="color:#fd79a8;"></i> D. 3 Pendekatan Geografi <span class="local-badge"><i class="fas fa-chart-line"></i> Analisis</span></h4>
             <i class="fas fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;"></i>
         </div>
         <div class="detail-body">
-            <p style="font-size:0.92rem; color:rgba(255,255,255,0.55); margin-bottom:12px;">Pendekatan geografi adalah cara pandang dalam menganalisis fenomena. Terdapat 3 pendekatan utama:</p>
 
-            <div style="display:grid; gap:14px;">
+            <p style="font-size:0.92rem; color:rgba(255,255,255,0.6); margin-bottom:14px;">
+                Pendekatan geografi adalah <span class="highlight">cara pandang atau metode</span> yang digunakan untuk menganalisis fenomena. Tiga pendekatan utama ini saling melengkapi dan sering digunakan secara bersamaan untuk memahami suatu wilayah secara utuh.
+            </p>
+
+            <div style="display:grid; gap:16px;">
+
                 <!-- Pendekatan Keruangan -->
                 <div style="background:rgba(108,92,231,0.04); border-radius:12px; padding:14px 16px; border-left:4px solid #6c5ce7;">
                     <h4 style="color:#a29bfe; font-size:0.95rem; font-weight:700;">1. Pendekatan Keruangan (Spatial Approach)</h4>
-                    <p style="font-size:0.88rem; color:rgba(255,255,255,0.6); line-height:1.6;">Menganalisis fenomena berdasarkan <span class="highlight">lokasi, pola, dan distribusi</span> di permukaan bumi. Menjawab pertanyaan "di mana" dan "mengapa di sana".</p>
+                    <p style="font-size:0.9rem; color:rgba(255,255,255,0.7); line-height:1.7;">
+                        Menganalisis fenomena berdasarkan <span class="highlight">lokasi, pola, dan distribusi</span> di permukaan bumi. Fokus pada <strong>letak, jarak, keterjangkauan</strong>, dan bagaimana elemen-elemen di suatu tempat tersusun secara spasial. Menjawab pertanyaan <em>"di mana"</em> dan <em>"mengapa di situ"</em>.
+                    </p>
                     <div style="background:rgba(108,92,231,0.06); border-radius:8px; padding:10px 14px; margin-top:6px;">
-                        <span style="color:#fdcb6e; font-weight:600;">📌 Studi Kasus Katingan:</span>
-                        <span style="color:rgba(255,255,255,0.5); font-size:0.85rem;">Pola persebaran tambang emas tradisional di Katingan terkonsentrasi di sepanjang aliran sungai karena endapan mineral terbawa arus dan terakumulasi di titik-titik tertentu (pengendapan alluvial). Analisis spasial menggunakan SIG (Sistem Informasi Geografis) dapat memetakan zona potensi tambang dan zona lindung.</span>
+                        <span style="color:#fdcb6e; font-weight:600;">📌 Studi Kasus Katingan – Analisis Keruangan:</span>
+                        <span style="color:rgba(255,255,255,0.6); font-size:0.85rem;">
+                            Dengan menggunakan <strong>Sistem Informasi Geografis (SIG)</strong>, kita dapat memetakan:
+                            <ul style="font-size:0.8rem; padding-left:18px; margin-top:4px; color:rgba(255,255,255,0.55);">
+                                <li>Persebaran tambang emas tradisional di sepanjang aliran sungai dan titik-titik akumulasi endapan.</li>
+                                <li>Pola pemukiman penduduk yang mayoritas berada di bantaran sungai karena akses transportasi air.</li>
+                                <li>Zona rawan kebakaran gambut berdasarkan peta tutupan lahan dan jarak dari kanal drainase.</li>
+                            </ul>
+                            Analisis ini menghasilkan peta <strong>zona potensi tambang</strong> dan <strong>zona lindung</strong> untuk perencanaan tata ruang.
+                        </span>
+                    </div>
+                    <div style="margin-top:6px; font-size:0.8rem; color:rgba(255,255,255,0.4);">
+                        <i class="fas fa-arrow-right"></i> Pendekatan keruangan menjadi dasar dalam perencanaan infrastruktur dan mitigasi bencana.
                     </div>
                 </div>
 
                 <!-- Pendekatan Kelingkungan -->
                 <div style="background:rgba(0,206,201,0.04); border-radius:12px; padding:14px 16px; border-left:4px solid #00cec9;">
-                    <h4 style="color:#00cec9; font-size:0.95rem; font-weight:700;">2. Pendekatan Kelingkungan (Ecological Approach)</h4>
-                    <p style="font-size:0.88rem; color:rgba(255,255,255,0.6); line-height:1.6;">Menganalisis <span class="highlight">interaksi antara manusia dan lingkungan</span>. Menjawab pertanyaan "bagaimana manusia memengaruhi lingkungan dan sebaliknya".</p>
+                    <h4 style="color:#00cec9; font-size:0.95rem; font-weight:700;">2. Pendekatan Kelingkungan (Ecological / Ecosystem Approach)</h4>
+                    <p style="font-size:0.9rem; color:rgba(255,255,255,0.7); line-height:1.7;">
+                        Menganalisis <span class="highlight">interaksi timbal balik antara manusia dan lingkungan</span>. Tidak hanya dampak manusia terhadap alam, tetapi juga bagaimana alam membatasi dan memberi peluang bagi manusia. Menjawab <em>"bagaimana hubungan timbal balik"</em>.
+                    </p>
                     <div style="background:rgba(0,206,201,0.06); border-radius:8px; padding:10px 14px; margin-top:6px;">
-                        <span style="color:#fdcb6e; font-weight:600;">📌 Studi Kasus Katingan:</span>
-                        <span style="color:rgba(255,255,255,0.5); font-size:0.85rem;">Kebakaran hutan dan lahan gambut di Katingan terjadi karena kombinasi faktor alam (El Niño, kemarau panjang) dan aktivitas manusia (pembukaan lahan, drainase). Dampak ekologis: hilangnya habitat orangutan, emisi karbon tinggi, dan kabut asap yang mengganggu kesehatan.</span>
+                        <span style="color:#fdcb6e; font-weight:600;">📌 Studi Kasus Katingan – Analisis Kelingkungan:</span>
+                        <span style="color:rgba(255,255,255,0.6); font-size:0.85rem;">
+                            Kebakaran hutan dan lahan gambut di Katingan terjadi karena kombinasi:
+                            <ul style="font-size:0.8rem; padding-left:18px; margin-top:4px; color:rgba(255,255,255,0.55);">
+                                <li><strong>Faktor alam:</strong> El Niño menyebabkan kemarau panjang, muka air tanah turun, sehingga gambut kering dan mudah terbakar.</li>
+                                <li><strong>Faktor manusia:</strong> Pembukaan lahan dengan cara dibakar, pembuatan kanal drainase untuk perkebunan, dan kurangnya kesadaran lingkungan.</li>
+                            </ul>
+                            Dampak ekologis: hilangnya habitat orangutan, emisi karbon besar-besaran (Katingan menyumbang emisi tinggi), kabut asap yang mengganggu kesehatan, dan penurunan kualitas air sungai.
+                            <br/><strong>Solusi:</strong> restorasi gambut (rewetting), agroforestri, dan pemberdayaan masyarakat dengan mata pencaharian alternatif.
+                        </span>
+                    </div>
+                    <div style="margin-top:6px; font-size:0.8rem; color:rgba(255,255,255,0.4);">
+                        <i class="fas fa-arrow-right"></i> Pendekatan ini penting untuk merumuskan kebijakan lingkungan yang berkelanjutan.
                     </div>
                 </div>
 
                 <!-- Pendekatan Kompleks Wilayah -->
                 <div style="background:rgba(253,121,168,0.04); border-radius:12px; padding:14px 16px; border-left:4px solid #fd79a8;">
-                    <h4 style="color:#fd79a8; font-size:0.95rem; font-weight:700;">3. Pendekatan Kompleks Wilayah (Regional Approach)</h4>
-                    <p style="font-size:0.88rem; color:rgba(255,255,255,0.6); line-height:1.6;">Mengkaji <span class="highlight">kombinasi faktor fisik dan nonfisik</span> yang membentuk karakteristik unik suatu wilayah. Menjawab pertanyaan "apa yang membuat wilayah ini berbeda".</p>
+                    <h4 style="color:#fd79a8; font-size:0.95rem; font-weight:700;">3. Pendekatan Kompleks Wilayah (Regional / Integrated Approach)</h4>
+                    <p style="font-size:0.9rem; color:rgba(255,255,255,0.7); line-height:1.7;">
+                        Mengkaji <span class="highlight">kombinasi faktor fisik dan nonfisik</span> yang membentuk karakteristik unik suatu wilayah. Pendekatan ini mengintegrasikan aspek keruangan dan kelingkungan untuk memahami <strong>keunikan wilayah</strong> dan merumuskan perencanaan terpadu. Menjawab <em>"apa yang membuat wilayah ini berbeda dan bagaimana mengelolanya"</em>.
+                    </p>
                     <div style="background:rgba(253,121,168,0.06); border-radius:8px; padding:10px 14px; margin-top:6px;">
-                        <span style="color:#fdcb6e; font-weight:600;">📌 Studi Kasus Katingan:</span>
-                        <span style="color:rgba(255,255,255,0.5); font-size:0.85rem;">Katingan sebagai wilayah gambut tropis memiliki karakteristik: lahan gambut tebal (fisik), keanekaragaman hayati tinggi (flora-fauna), masyarakat dengan kearifan lokal (nonfisik), dan tekanan dari aktivitas ekonomi (perkebunan, tambang). Pendekatan ini menghasilkan perencanaan tata ruang yang mempertimbangkan semua aspek.</span>
+                        <span style="color:#fdcb6e; font-weight:600;">📌 Studi Kasus Katingan – Analisis Kompleks Wilayah:</span>
+                        <span style="color:rgba(255,255,255,0.6); font-size:0.85rem;">
+                            Katingan sebagai wilayah gambut tropis memiliki karakteristik:
+                            <ul style="font-size:0.8rem; padding-left:18px; margin-top:4px; color:rgba(255,255,255,0.55);">
+                                <li><strong>Fisik:</strong> lahan gambut tebal (3–8 m), keanekaragaman hayati tinggi, iklim tropis basah.</li>
+                                <li><strong>Sosial-ekonomi:</strong> masyarakat dengan kearifan lokal (Dayak Ngaju) yang menjaga hutan, namun tekanan ekonomi mendorong konversi lahan.</li>
+                                <li><strong>Tekanan pembangunan:</strong> perkebunan sawit dan tambang emas memberikan pendapatan namun merusak ekosistem.</li>
+                            </ul>
+                            Pendekatan ini menghasilkan <strong>Rencana Tata Ruang Wilayah (RTRW)</strong> yang mempertimbangkan:
+                            <ul style="font-size:0.8rem; padding-left:18px; margin-top:4px; color:rgba(255,255,255,0.55);">
+                                <li>Zona konservasi gambut sebagai perlindungan karbon dan keanekaragaman hayati.</li>
+                                <li>Zona budidaya yang berkelanjutan (pertanian ramah gambut, ekowisata).</li>
+                                <li>Zona pemukiman dengan infrastruktur tahan banjir dan kebakaran.</li>
+                            </ul>
+                        </span>
+                    </div>
+                    <div style="margin-top:6px; font-size:0.8rem; color:rgba(255,255,255,0.4);">
+                        <i class="fas fa-arrow-right"></i> Pendekatan ini adalah puncak analisis geografi yang menghasilkan kebijakan terpadu.
                     </div>
                 </div>
+
+            </div><!-- end grid -->
+
+            <!-- Sinergi -->
+            <div style="background:rgba(253,203,110,0.04); border-radius:12px; padding:12px 16px; margin-top:12px; border-left:4px solid #fdcb6e;">
+                <span style="color:#fdcb6e; font-weight:600;">🔗 Sinergi Ketiga Pendekatan – Contoh Nyata:</span>
+                <span style="color:rgba(255,255,255,0.55); font-size:0.85rem; display:block; margin-top:4px;">
+                    <strong>Keruangan</strong> memetakan lokasi lahan gambut dan kanal drainase → <strong>Kelingkungan</strong> menganalisis dampak kebakaran terhadap ekosistem dan kesehatan → <strong>Kompleks Wilayah</strong> merumuskan kebijakan restorasi gambut yang melibatkan masyarakat, pemerintah, dan sektor swasta. Hasilnya: program restorasi gambut berbasis komunitas, sistem peringatan dini kebakaran, dan alternatif ekonomi berkelanjutan.
+                </span>
             </div>
 
-            <div style="background:rgba(253,203,110,0.04); border-radius:10px; padding:12px 16px; margin-top:12px; border-left:4px solid #fdcb6e;">
-                <span style="color:#fdcb6e; font-weight:600;">🔗 Sinergi Ketiga Pendekatan:</span>
-                <span style="color:rgba(255,255,255,0.5); font-size:0.85rem;">Pendekatan keruangan memetakan lokasi lahan gambut → pendekatan kelingkungan menganalisis dampak kebakaran → pendekatan kompleks wilayah merumuskan kebijakan restorasi gambut yang berkelanjutan.</span>
-            </div>
         </div>
     </div>
 
-    <!-- ===== KUIS PERTEMUAN 2 ===== -->
+    <!-- ==========================================================
+    KUIS PERTEMUAN 2
+    ========================================================== -->
     <div class="mini-quiz reveal">
         <div class="quiz-question">🧠 <strong>Kuis Cepat:</strong> Prinsip geografi yang menekankan fenomena saling memengaruhi adalah...</div>
         <div class="quiz-options">
@@ -4196,6 +4511,9 @@
         <div class="quiz-feedback"></div>
     </div>
 
+    <!-- ==========================================================
+    NAVIGASI
+    ========================================================== -->
     <div class="nav-buttons">
         <div class="group">
             <button onclick="navigateTo('prev')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
@@ -4204,6 +4522,7 @@
             <span class="counter">4 / 9</span>
         </div>
     </div>
+
 </section>
 
 <!-- ============================================================
