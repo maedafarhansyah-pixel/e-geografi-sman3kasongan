@@ -212,11 +212,12 @@
             letter-spacing: 2px;
         }
         @keyframes gradientMove {
-            0%, 100% { background-position: 0% 50%; }
+            0%,
+            100% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
         }
         .loader-sub {
-            color: rgba(255,255,255,0.3);
+            color: rgba(255, 255, 255, 0.3);
             font-size: 0.9rem;
             letter-spacing: 4px;
             font-weight: 300;
@@ -225,7 +226,7 @@
         .loader-bar-track {
             width: clamp(200px, 40vw, 400px);
             height: 6px;
-            background: rgba(255,255,255,0.05);
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 10px;
             margin-top: 20px;
             overflow: hidden;
@@ -246,7 +247,7 @@
             100% { background-position: 300% 0%; }
         }
         .loader-percent {
-            color: rgba(255,255,255,0.2);
+            color: rgba(255, 255, 255, 0.2);
             font-size: 0.7rem;
             margin-top: 6px;
             font-weight: 500;
@@ -284,7 +285,7 @@
             justify-content: space-between;
             padding: 0 16px;
             z-index: 1001;
-            border-bottom: 1px solid rgba(255,255,255,0.04);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
         }
         .mobile-header .brand {
             font-weight: 800;
@@ -301,7 +302,7 @@
             font-size: 1.3rem;
         }
         .mobile-header .menu-toggle {
-            color: rgba(255,255,255,0.5);
+            color: rgba(255, 255, 255, 0.5);
             font-size: 1.3rem;
             cursor: pointer;
             transition: 0.3s;
@@ -350,7 +351,7 @@
             margin-bottom: 24px;
             padding-bottom: 14px;
             flex-wrap: wrap;
-            border-bottom: 2px solid rgba(255,255,255,0.04);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.04);
             position: relative;
         }
         .section-header::after {
@@ -387,7 +388,8 @@
             animation: ringPulse 2s ease-in-out infinite;
         }
         @keyframes ringPulse {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
+            0%,
+            100% { transform: scale(1); opacity: 0.5; }
             50% { transform: scale(1.3); opacity: 0; }
         }
         .section-header h2 {
@@ -400,7 +402,7 @@
         .section-header h2 small {
             font-weight: 600;
             font-size: 0.85rem;
-            color: rgba(255,255,255,0.5);
+            color: rgba(255, 255, 255, 0.5);
             display: block;
             margin-top: 2px;
         }
@@ -424,9 +426,9 @@
             -webkit-backdrop-filter: blur(12px);
             border-radius: 18px;
             padding: 20px 18px;
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.04);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.04);
             transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-            border: 1px solid rgba(255,255,255,0.04);
+            border: 1px solid rgba(255, 255, 255, 0.04);
             position: relative;
             overflow: hidden;
         }
@@ -467,7 +469,7 @@
         .card p,
         .card li {
             font-size: 0.95rem;
-            color: rgba(255,255,255,0.75);
+            color: rgba(255, 255, 255, 0.75);
             line-height: 1.8;
             font-weight: 400;
         }
@@ -518,7 +520,7 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: rgba(255,255,255,0.03);
+            background: rgba(255, 255, 255, 0.03);
             z-index: 999;
             backdrop-filter: blur(4px);
             overflow: hidden;
@@ -546,7 +548,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
             animation: sweepBar 2s infinite;
         }
         @keyframes sweepBar {
@@ -563,7 +565,7 @@
             align-items: center;
             margin-top: 36px;
             padding-top: 18px;
-            border-top: 1px solid rgba(255,255,255,0.04);
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
             flex-wrap: wrap;
             gap: 10px;
         }
@@ -596,7 +598,7 @@
         }
         .nav-buttons .counter {
             font-weight: 500;
-            color: rgba(255,255,255,0.3);
+            color: rgba(255, 255, 255, 0.3);
             font-size: 0.85rem;
             padding: 0 12px;
             font-variant-numeric: tabular-nums;
@@ -623,9 +625,9 @@
             border-radius: 50%;
             font-size: 0.8rem;
             font-weight: 700;
-            color: rgba(255,255,255,0.4);
-            background: rgba(255,255,255,0.02);
-            border: 1px solid rgba(255,255,255,0.03);
+            color: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.03);
             text-decoration: none;
             transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
             cursor: pointer;
@@ -662,7 +664,7 @@
             height: clamp(55px, 9vw, 120px);
             width: auto;
             object-fit: contain;
-            filter: drop-shadow(0 8px 30px rgba(0,0,0,0.5));
+            filter: drop-shadow(0 8px 30px rgba(0, 0, 0, 0.5));
             transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         .cover-section .logo-grid img:hover {
@@ -716,7 +718,7 @@
         }
         .cover-sub {
             font-size: clamp(1rem, 1.6vw, 1.3rem);
-            color: rgba(255,255,255,0.65);
+            color: rgba(255, 255, 255, 0.65);
             max-width: 680px;
             margin: 4px auto 0;
             padding: 0 12px;
@@ -725,14 +727,14 @@
             letter-spacing: 0.5px;
         }
         .cover-sub strong {
-            color: rgba(255,255,255,0.85);
+            color: rgba(255, 255, 255, 0.85);
             font-weight: 700;
         }
         .cover-section .school-wrap {
             margin-top: 18px;
         }
         .cover-section .school-name {
-            background: rgba(255,255,255,0.02);
+            background: rgba(255, 255, 255, 0.02);
             backdrop-filter: blur(16px);
             padding: 10px 32px;
             border-radius: 60px;
@@ -740,7 +742,7 @@
             font-weight: 800;
             font-size: clamp(1.2rem, 2.8vw, 2.2rem);
             box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255,255,255,0.04);
+            border: 1px solid rgba(255, 255, 255, 0.04);
             letter-spacing: 2px;
         }
         .cover-section .school-name .gold {
@@ -751,7 +753,7 @@
         .cover-section .teacher-info {
             margin-top: 6px;
             font-size: clamp(0.75rem, 0.9vw, 0.9rem);
-            color: rgba(255,255,255,0.4);
+            color: rgba(255, 255, 255, 0.4);
             letter-spacing: 0.5px;
             font-weight: 500;
         }
@@ -814,13 +816,13 @@
                    NAV BOX
                    ============================================================ */
         .nav-box {
-            background: rgba(255,255,255,0.02);
+            background: rgba(255, 255, 255, 0.02);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-radius: 28px;
             padding: clamp(20px, 3vw, 36px) clamp(16px, 2.5vw, 32px);
             margin-top: 24px;
-            border: 1px solid rgba(255,255,255,0.04);
+            border: 1px solid rgba(255, 255, 255, 0.04);
             box-shadow: 0 16px 60px rgba(0, 0, 0, 0.3);
         }
         .nav-box .nav-header {
@@ -830,7 +832,7 @@
             gap: 14px;
             font-size: clamp(1rem, 1.2vw, 1.2rem);
             font-weight: 700;
-            border-bottom: 1px solid rgba(255,255,255,0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
             padding-bottom: 14px;
             margin-bottom: 20px;
             letter-spacing: 0.5px;
@@ -847,14 +849,14 @@
             gap: 10px;
         }
         .nav-box .nav-item {
-            background: rgba(255,255,255,0.01);
+            background: rgba(255, 255, 255, 0.01);
             padding: 14px 10px;
             border-radius: 16px;
             text-align: center;
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             border: 1px solid transparent;
-            color: rgba(255,255,255,0.5);
+            color: rgba(255, 255, 255, 0.5);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -914,7 +916,7 @@
             padding: 18px 20px;
             border-left: 6px solid #6c5ce7;
             margin: 10px 0;
-            color: rgba(255,255,255,0.85);
+            color: rgba(255, 255, 255, 0.85);
             position: relative;
             overflow: hidden;
             font-size: 0.95rem;
@@ -941,7 +943,7 @@
             backdrop-filter: blur(8px);
             border-radius: 20px;
             padding: 24px 20px;
-            border: 1px solid rgba(255,255,255,0.03);
+            border: 1px solid rgba(255, 255, 255, 0.03);
             margin: 20px 0;
         }
         .flow-diagram .flow-title {
@@ -966,7 +968,7 @@
             backdrop-filter: blur(4px);
             border-radius: 14px;
             padding: 14px 20px;
-            border: 1px solid rgba(255,255,255,0.03);
+            border: 1px solid rgba(255, 255, 255, 0.03);
             text-align: center;
             min-width: 120px;
             flex: 1 0 auto;
@@ -993,7 +995,7 @@
         }
         .flow-box .sub {
             font-size: 0.8rem;
-            color: rgba(255,255,255,0.4);
+            color: rgba(255, 255, 255, 0.4);
             font-weight: 500;
         }
         .flow-arrow {
@@ -1037,7 +1039,7 @@
         }
         .tp-item .tp-text {
             font-size: 0.92rem;
-            color: rgba(255,255,255,0.75);
+            color: rgba(255, 255, 255, 0.75);
             font-weight: 400;
         }
         .tp-item .tp-text strong {
@@ -1059,7 +1061,7 @@
             backdrop-filter: blur(8px);
             border-radius: 14px;
             padding: 16px 14px;
-            border: 1px solid rgba(255,255,255,0.03);
+            border: 1px solid rgba(255, 255, 255, 0.03);
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             text-align: center;
         }
@@ -1084,7 +1086,7 @@
         }
         .dpl-card p {
             font-size: 0.85rem;
-            color: rgba(255,255,255,0.55);
+            color: rgba(255, 255, 255, 0.55);
             line-height: 1.5;
             font-weight: 400;
         }
@@ -1117,14 +1119,14 @@
         }
         .prinsip-card p {
             font-size: 0.92rem;
-            color: rgba(255,255,255,0.75);
+            color: rgba(255, 255, 255, 0.75);
         }
         .prinsip-card .contoh {
             font-size: 0.88rem;
-            color: rgba(255,255,255,0.5);
+            color: rgba(255, 255, 255, 0.5);
             margin-top: 4px;
             padding-top: 4px;
-            border-top: 1px solid rgba(255,255,255,0.03);
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
         }
         .prinsip-card .contoh strong {
             color: #00cec9;
@@ -1149,7 +1151,7 @@
             width: 100%;
             border-collapse: collapse;
             font-size: 0.88rem;
-            color: rgba(255,255,255,0.85);
+            color: rgba(255, 255, 255, 0.85);
             margin: 12px 0;
             border-radius: 16px;
             overflow: hidden;
@@ -1158,18 +1160,18 @@
             background: rgba(108, 92, 231, 0.12);
             padding: 12px 14px;
             text-align: left;
-            border: 1px solid rgba(255,255,255,0.03);
+            border: 1px solid rgba(255, 255, 255, 0.03);
             color: #a29bfe;
             font-weight: 700;
         }
         .rubrik-table td {
             padding: 12px 14px;
-            border: 1px solid rgba(255,255,255,0.03);
+            border: 1px solid rgba(255, 255, 255, 0.03);
             vertical-align: top;
             font-weight: 400;
         }
         .rubrik-table tr:hover {
-            background: rgba(255,255,255,0.01);
+            background: rgba(255, 255, 255, 0.01);
         }
         .rubrik-table .skor {
             color: #fdcb6e;
@@ -1191,7 +1193,7 @@
             backdrop-filter: blur(8px);
             border-radius: 16px;
             padding: 16px 14px;
-            border: 1px solid rgba(255,255,255,0.03);
+            border: 1px solid rgba(255, 255, 255, 0.03);
             text-align: center;
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
@@ -1212,7 +1214,7 @@
         }
         .tech-card p {
             font-size: 0.85rem;
-            color: rgba(255,255,255,0.45);
+            color: rgba(255, 255, 255, 0.45);
             line-height: 1.5;
             font-weight: 400;
         }
@@ -1241,7 +1243,7 @@
         }
         .isu-card p {
             font-size: 0.92rem;
-            color: rgba(255,255,255,0.75);
+            color: rgba(255, 255, 255, 0.75);
             font-weight: 400;
         }
         .isu-card .tag-aktual {
@@ -1282,7 +1284,7 @@
         }
         .assessment-question .q-options {
             padding-left: 20px;
-            color: rgba(255,255,255,0.65);
+            color: rgba(255, 255, 255, 0.65);
             line-height: 2.2;
             font-weight: 400;
         }
@@ -1296,7 +1298,7 @@
             backdrop-filter: blur(8px);
             padding: 16px 18px;
             border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.03);
+            border: 1px solid rgba(255, 255, 255, 0.03);
             margin-bottom: 16px;
             transition: all 0.3s ease;
         }
@@ -1312,7 +1314,7 @@
         }
         .essay-question .q-note {
             font-size: 0.88rem;
-            color: rgba(255,255,255,0.35);
+            color: rgba(255, 255, 255, 0.35);
             font-style: italic;
             font-weight: 400;
         }
@@ -1331,8 +1333,8 @@
             gap: 14px;
             padding: 10px 0;
             font-size: 1rem;
-            color: rgba(255,255,255,0.75);
-            border-bottom: 1px solid rgba(255,255,255,0.02);
+            color: rgba(255, 255, 255, 0.75);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
             font-weight: 400;
         }
         .refleksi-list li:last-child {
@@ -1354,7 +1356,7 @@
             margin: 12px 0;
             font-style: italic;
             font-size: 1.1rem;
-            color: rgba(255,255,255,0.75);
+            color: rgba(255, 255, 255, 0.75);
             font-weight: 400;
         }
         .quote-block .author {
@@ -1397,7 +1399,7 @@
         }
         .celebration-box p {
             font-size: 1.05rem;
-            color: rgba(255,255,255,0.75);
+            color: rgba(255, 255, 255, 0.75);
             font-weight: 400;
         }
         .celebration-box .next-btn {
@@ -1429,12 +1431,12 @@
         }
         .ref-list li {
             padding: 8px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.02);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
             font-size: 0.9rem;
             display: flex;
             align-items: baseline;
             gap: 12px;
-            color: rgba(255,255,255,0.65);
+            color: rgba(255, 255, 255, 0.65);
             transition: all 0.3s ease;
             font-weight: 400;
         }
@@ -1485,7 +1487,7 @@
             -webkit-backdrop-filter: blur(20px);
             border-radius: 28px;
             padding: 24px;
-            border: 1px solid rgba(255,255,255,0.06);
+            border: 1px solid rgba(255, 255, 255, 0.06);
             box-shadow: 0 40px 120px rgba(0, 0, 0, 0.9), 0 0 80px rgba(108, 92, 231, 0.06);
             position: relative;
             text-align: center;
@@ -1533,7 +1535,7 @@
         .modal-overlay .modal-content .image-wrapper .loading-shimmer {
             position: absolute;
             inset: 0;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.02), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.02), transparent);
             background-size: 200% 100%;
             animation: shimmer 1.5s infinite;
             border-radius: 16px;
@@ -1614,12 +1616,12 @@
             gap: 16px;
             margin-top: 16px;
             padding-top: 14px;
-            border-top: 1px solid rgba(255,255,255,0.03);
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
         }
         .modal-overlay .modal-content .zoom-controls button {
-            background: rgba(255,255,255,0.02);
-            border: 1px solid rgba(255,255,255,0.04);
-            color: rgba(255,255,255,0.4);
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            color: rgba(255, 255, 255, 0.4);
             width: 40px;
             height: 40px;
             border-radius: 50%;
@@ -1637,7 +1639,7 @@
             transform: scale(1.08);
         }
         .modal-overlay .modal-content .zoom-controls .zoom-level {
-            color: rgba(255,255,255,0.3);
+            color: rgba(255, 255, 255, 0.3);
             font-size: 0.85rem;
             font-weight: 700;
             min-width: 56px;
@@ -1645,17 +1647,17 @@
             font-variant-numeric: tabular-nums;
         }
         .modal-overlay .modal-content .caption {
-            color: rgba(255,255,255,0.35);
+            color: rgba(255, 255, 255, 0.35);
             font-size: 0.9rem;
             margin-top: 12px;
             padding-top: 10px;
-            border-top: 1px solid rgba(255,255,255,0.02);
+            border-top: 1px solid rgba(255, 255, 255, 0.02);
             letter-spacing: 0.5px;
             font-weight: 400;
             line-height: 1.6;
         }
         .modal-overlay .modal-content .caption strong {
-            color: rgba(255,255,255,0.6);
+            color: rgba(255, 255, 255, 0.6);
             font-weight: 600;
         }
         .modal-overlay .modal-close {
@@ -1673,7 +1675,7 @@
             justify-content: center;
             font-size: 1.2rem;
             cursor: pointer;
-            border: 1px solid rgba(255,255,255,0.04);
+            border: 1px solid rgba(255, 255, 255, 0.04);
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
             z-index: 20;
@@ -1714,7 +1716,7 @@
             -webkit-backdrop-filter: blur(12px);
             border-radius: 20px;
             padding: 12px;
-            border: 1px solid rgba(255,255,255,0.03);
+            border: 1px solid rgba(255, 255, 255, 0.03);
             transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
             cursor: pointer;
             position: relative;
@@ -1758,7 +1760,7 @@
             border-radius: 14px;
             transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
             display: block;
-            background: rgba(255,255,255,0.02);
+            background: rgba(255, 255, 255, 0.02);
         }
         .image-card-premium:hover .img-wrap img {
             transform: scale(1.04);
@@ -1812,7 +1814,7 @@
             font-size: 0.6rem;
             font-weight: 600;
             color: rgba(255, 255, 255, 0.3);
-            border: 1px solid rgba(255,255,255,0.02);
+            border: 1px solid rgba(255, 255, 255, 0.02);
             letter-spacing: 0.5px;
         }
         .image-card-premium .image-label-premium {
@@ -1830,13 +1832,13 @@
         }
         .image-card-premium .image-sub-premium {
             font-size: 0.82rem;
-            color: rgba(255,255,255,0.35);
+            color: rgba(255, 255, 255, 0.35);
             margin-top: 2px;
             font-weight: 400;
             letter-spacing: 0.3px;
         }
         .image-card-premium .image-sub-premium i {
-            color: rgba(255,255,255,0.1);
+            color: rgba(255, 255, 255, 0.1);
             margin: 0 4px;
         }
         @media (max-width: 600px) {
@@ -1874,7 +1876,7 @@
         }
         .rekomendasi-box ul {
             padding-left: 20px;
-            color: rgba(255,255,255,0.75);
+            color: rgba(255, 255, 255, 0.75);
             font-size: 0.92rem;
             line-height: 2;
             font-weight: 400;
@@ -1907,13 +1909,13 @@
             text-align: center;
             margin-top: 20px;
             padding-top: 14px;
-            border-top: 1px solid rgba(255,255,255,0.02);
+            border-top: 1px solid rgba(255, 255, 255, 0.02);
             font-size: 0.88rem;
-            color: rgba(255,255,255,0.25);
+            color: rgba(255, 255, 255, 0.25);
             font-weight: 400;
         }
         .footer-credit strong {
-            color: rgba(255,255,255,0.45);
+            color: rgba(255, 255, 255, 0.45);
             font-weight: 600;
         }
         .footer-credit .gold {
@@ -2134,7 +2136,7 @@
             margin: 10px 0;
             border-radius: 14px;
             overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.04);
+            border: 1px solid rgba(255, 255, 255, 0.04);
         }
         .accordion .accordion-header {
             background: rgba(20, 26, 46, 0.6);
@@ -2176,7 +2178,7 @@
         }
         .accordion .accordion-body p,
         .accordion .accordion-body ul {
-            color: rgba(255,255,255,0.75);
+            color: rgba(255, 255, 255, 0.75);
             font-size: 0.92rem;
             font-weight: 400;
         }
@@ -2193,7 +2195,7 @@
             backdrop-filter: blur(8px);
             border-radius: 16px;
             padding: 18px 20px;
-            border: 1px solid rgba(255,255,255,0.04);
+            border: 1px solid rgba(255, 255, 255, 0.04);
             margin: 12px 0;
         }
         .mini-quiz .quiz-question {
@@ -2208,9 +2210,9 @@
             gap: 8px;
         }
         .mini-quiz .quiz-options button {
-            background: rgba(255,255,255,0.02);
-            border: 2px solid rgba(255,255,255,0.04);
-            color: rgba(255,255,255,0.65);
+            background: rgba(255, 255, 255, 0.02);
+            border: 2px solid rgba(255, 255, 255, 0.04);
+            color: rgba(255, 255, 255, 0.65);
             padding: 8px 20px;
             border-radius: 30px;
             cursor: pointer;
@@ -2268,14 +2270,14 @@
             width: 32px;
             height: 32px;
             border-radius: 50%;
-            background: rgba(255,255,255,0.02);
-            border: 2px solid rgba(255,255,255,0.04);
+            background: rgba(255, 255, 255, 0.02);
+            border: 2px solid rgba(255, 255, 255, 0.04);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 0.8rem;
             font-weight: 700;
-            color: rgba(255,255,255,0.2);
+            color: rgba(255, 255, 255, 0.2);
             transition: all 0.4s ease;
         }
         .progress-tracker .step.done {
@@ -2293,7 +2295,7 @@
             flex: 1;
             min-width: 20px;
             height: 2px;
-            background: rgba(255,255,255,0.04);
+            background: rgba(255, 255, 255, 0.04);
         }
         .progress-tracker .line.done {
             background: #00cec9;
@@ -2334,7 +2336,7 @@
             transition: transform 0.3s ease;
             border-radius: 12px;
             max-width: 100%;
-            border: 1px solid rgba(255,255,255,0.04);
+            border: 1px solid rgba(255, 255, 255, 0.04);
         }
         .img-zoom:hover {
             transform: scale(1.02);
@@ -2374,7 +2376,7 @@
             overflow: hidden;
             transition: max-height 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), padding 0.4s ease;
             padding: 0 16px;
-            background: rgba(0,0,0,0.1);
+            background: rgba(0, 0, 0, 0.1);
             border-radius: 0 0 12px 12px;
         }
         .materi-detail .detail-body.open {
@@ -2384,7 +2386,7 @@
 
         /* === PENJELASAN DETAIL === */
         .detail-explanation {
-            background: rgba(0,0,0,0.15);
+            background: rgba(0, 0, 0, 0.15);
             border-radius: 12px;
             padding: 14px 18px;
             margin: 10px 0;
@@ -2398,7 +2400,7 @@
         .detail-explanation p {
             font-size: 0.95rem;
             font-weight: 400;
-            color: rgba(255,255,255,0.85);
+            color: rgba(255, 255, 255, 0.85);
             line-height: 1.8;
         }
         .detail-explanation strong {
@@ -2418,26 +2420,26 @@
         .section span:not(.badge):not(.num-badge):not(.tag-aktual):not(.local-badge) {
             font-size: 0.95rem;
             font-weight: 400;
-            color: rgba(255,255,255,0.8);
+            color: rgba(255, 255, 255, 0.8);
             line-height: 1.8;
         }
 
         .section strong {
             font-weight: 700;
-            color: rgba(255,255,255,0.92);
+            color: rgba(255, 255, 255, 0.92);
         }
 
         .section .card p,
         .section .card li {
             font-size: 0.95rem;
             font-weight: 400;
-            color: rgba(255,255,255,0.75);
+            color: rgba(255, 255, 255, 0.75);
             line-height: 1.8;
         }
 
         .section .card strong {
             font-weight: 700;
-            color: rgba(255,255,255,0.9);
+            color: rgba(255, 255, 255, 0.9);
         }
 
         .detail-body p,
@@ -2445,13 +2447,13 @@
         .detail-body span:not(.badge):not(.num-badge):not(.tag-aktual):not(.local-badge) {
             font-size: 0.95rem !important;
             font-weight: 400 !important;
-            color: rgba(255,255,255,0.8) !important;
+            color: rgba(255, 255, 255, 0.8) !important;
             line-height: 1.8 !important;
         }
 
         .detail-body strong {
             font-weight: 700 !important;
-            color: rgba(255,255,255,0.92) !important;
+            color: rgba(255, 255, 255, 0.92) !important;
         }
 
         .tooltip-box {
@@ -2464,27 +2466,27 @@
         .flow-box .sub {
             font-size: 0.8rem !important;
             font-weight: 500 !important;
-            color: rgba(255,255,255,0.4) !important;
+            color: rgba(255, 255, 255, 0.4) !important;
         }
 
         .dpl-card p {
             font-size: 0.85rem !important;
             font-weight: 400 !important;
-            color: rgba(255,255,255,0.55) !important;
+            color: rgba(255, 255, 255, 0.55) !important;
             line-height: 1.5 !important;
         }
 
         .tech-card p {
             font-size: 0.85rem !important;
             font-weight: 400 !important;
-            color: rgba(255,255,255,0.45) !important;
+            color: rgba(255, 255, 255, 0.45) !important;
             line-height: 1.5 !important;
         }
 
         .rubrik-table td {
             font-size: 0.88rem !important;
             font-weight: 400 !important;
-            color: rgba(255,255,255,0.85) !important;
+            color: rgba(255, 255, 255, 0.85) !important;
             line-height: 1.6 !important;
         }
 
@@ -2496,48 +2498,48 @@
         .refleksi-list li {
             font-size: 1rem !important;
             font-weight: 400 !important;
-            color: rgba(255,255,255,0.75) !important;
+            color: rgba(255, 255, 255, 0.75) !important;
             line-height: 1.8 !important;
         }
 
         .quote-block {
             font-size: 1.1rem !important;
             font-weight: 400 !important;
-            color: rgba(255,255,255,0.75) !important;
+            color: rgba(255, 255, 255, 0.75) !important;
             line-height: 1.8 !important;
         }
 
         .isu-card p {
             font-size: 0.92rem !important;
             font-weight: 400 !important;
-            color: rgba(255,255,255,0.75) !important;
+            color: rgba(255, 255, 255, 0.75) !important;
             line-height: 1.8 !important;
         }
 
         .assessment-question .q-options span {
             font-size: 0.9rem !important;
             font-weight: 400 !important;
-            color: rgba(255,255,255,0.65) !important;
+            color: rgba(255, 255, 255, 0.65) !important;
         }
 
         .ref-list li {
             font-size: 0.9rem !important;
             font-weight: 400 !important;
-            color: rgba(255,255,255,0.65) !important;
+            color: rgba(255, 255, 255, 0.65) !important;
             line-height: 1.6 !important;
         }
 
         .rekomendasi-box ul {
             font-size: 0.92rem !important;
             font-weight: 400 !important;
-            color: rgba(255,255,255,0.75) !important;
+            color: rgba(255, 255, 255, 0.75) !important;
             line-height: 2 !important;
         }
 
         .celebration-box p {
             font-size: 1.05rem !important;
             font-weight: 400 !important;
-            color: rgba(255,255,255,0.75) !important;
+            color: rgba(255, 255, 255, 0.75) !important;
             line-height: 1.8 !important;
         }
 
@@ -2570,7 +2572,7 @@
         }
         .soal-pg .opsi {
             padding-left: 20px;
-            color: rgba(255,255,255,0.65);
+            color: rgba(255, 255, 255, 0.65);
             font-size: 0.9rem;
             font-weight: 400;
             line-height: 2.2;
@@ -2630,7 +2632,7 @@
             margin-bottom: 4px;
         }
         .soal-essay .petunjuk {
-            color: rgba(255,255,255,0.3);
+            color: rgba(255, 255, 255, 0.3);
             font-size: 0.85rem;
             font-style: italic;
             font-weight: 400;
@@ -2655,7 +2657,7 @@
         }
         .contoh-box p {
             font-size: 0.92rem;
-            color: rgba(255,255,255,0.7);
+            color: rgba(255, 255, 255, 0.7);
             font-weight: 400;
             margin-top: 2px;
         }
@@ -2690,7 +2692,7 @@
             backdrop-filter: blur(8px);
             border-radius: 16px;
             padding: 16px 14px;
-            border: 1px solid rgba(255,255,255,0.03);
+            border: 1px solid rgba(255, 255, 255, 0.03);
             text-align: center;
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
@@ -2711,9 +2713,125 @@
         }
         .profesi-card p {
             font-size: 0.85rem;
-            color: rgba(255,255,255,0.45);
+            color: rgba(255, 255, 255, 0.45);
             line-height: 1.5;
             font-weight: 400;
+        }
+
+        /* ============================================================
+                   DEFINISI SEMARANG 1988 – KARTU KHUSUS
+                   ============================================================ */
+        .semarang-def-card {
+            background: rgba(0, 206, 201, 0.04);
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin: 12px 0;
+            border-left: 5px solid #00cec9;
+            position: relative;
+            overflow: hidden;
+        }
+        .semarang-def-card .def-badge {
+            background: rgba(0, 206, 201, 0.1);
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-size: 0.6rem;
+            color: #00cec9;
+            letter-spacing: 0.5px;
+            display: inline-block;
+            margin-bottom: 4px;
+            font-weight: 700;
+        }
+        .semarang-def-card h4 {
+            color: #00cec9;
+            font-size: 0.95rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+        .semarang-def-card .def-quote {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #f0f4fa;
+            padding: 8px 12px;
+            background: rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+            margin-bottom: 6px;
+            border: 1px solid rgba(0, 206, 201, 0.05);
+        }
+        .semarang-def-card .def-quote .highlight-geo {
+            color: #fdcb6e;
+            font-weight: 700;
+        }
+        .semarang-def-card .def-quote .highlight-lingkungan {
+            color: #6c5ce7;
+            font-weight: 700;
+        }
+        .semarang-def-card .def-quote .highlight-wilayah {
+            color: #fd79a8;
+            font-weight: 700;
+        }
+        .semarang-def-card p {
+            font-size: 0.92rem;
+            color: rgba(255, 255, 255, 0.65);
+            font-weight: 400;
+            line-height: 1.7;
+        }
+        .semarang-def-card .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        .semarang-def-card .tag-container .tag {
+            background: rgba(108, 92, 231, 0.06);
+            color: #a29bfe;
+            padding: 2px 14px;
+            border-radius: 20px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            border: 1px solid rgba(108, 92, 231, 0.05);
+        }
+        .semarang-def-card .tag-container .tag.tag-lingkungan {
+            background: rgba(108, 92, 231, 0.06);
+            color: #6c5ce7;
+            border-color: rgba(108, 92, 231, 0.08);
+        }
+        .semarang-def-card .tag-container .tag.tag-wilayah {
+            background: rgba(253, 121, 168, 0.06);
+            color: #fd79a8;
+            border-color: rgba(253, 121, 168, 0.08);
+        }
+        .semarang-def-card .tag-container .tag.tag-keruangan {
+            background: rgba(0, 206, 201, 0.06);
+            color: #00cec9;
+            border-color: rgba(0, 206, 201, 0.08);
+        }
+        .semarang-def-card .konsep-note {
+            margin-top: 8px;
+            background: rgba(253, 203, 110, 0.02);
+            border-radius: 8px;
+            padding: 6px 12px;
+            border-left: 3px solid #fdcb6e;
+        }
+        .semarang-def-card .konsep-note p {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.25);
+            margin: 0;
+            font-weight: 400;
+        }
+        .semarang-def-card .konsep-note p strong {
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 700;
+        }
+        .semarang-def-card .bg-emoji {
+            position: absolute;
+            top: -20px;
+            right: -10px;
+            font-size: 4rem;
+            opacity: 0.03;
+            pointer-events: none;
         }
     </style>
 </head>
@@ -2933,7 +3051,7 @@
         </section>
 
         <!-- ============================================================
-        SECTION 3 : PERTEMUAN 1 – DENGAN GAMBAR PREMIUM
+        SECTION 3 : PERTEMUAN 1 – DENGAN PENJELASAN DIPERLUAS + SEMARANG 1988
         ============================================================ -->
         <section id="section3" class="section">
             <div style="background:rgba(108,92,231,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(108,92,231,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
@@ -3018,28 +3136,105 @@
                 </div>
             </div>
 
-            <!-- ===== MATERI SINGKAT PERTEMUAN 1 ===== -->
-            <div class="materi-detail reveal">
+            <!-- ==========================================================
+            A. PENGERTIAN GEOGRAFI – DIPERLUAS + SEMARANG 1988
+            ========================================================== -->
+            <div class="materi-detail reveal" style="margin-top:20px;">
                 <div class="detail-header" onclick="toggleDetail(this)">
                     <h4><i class="fas fa-book-open" style="color:#6c5ce7;"></i> A. Pengertian Geografi <span class="local-badge"><i class="fas fa-map-pin"></i> Asal Kata</span></h4>
                     <i class="fas fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;"></i>
                 </div>
                 <div class="detail-body">
+                    <!-- Intro -->
                     <div class="detail-explanation">
                         <span class="emoji-big">📖</span>
-                        <p><strong>Apa itu Geografi?</strong> Geografi adalah ilmu yang mempelajari tentang <span class="highlight">bumi dan segala isinya</span>, termasuk manusia, hewan, tumbuhan, dan fenomena alam yang terjadi di dalamnya.</p>
+                        <p><strong>Apa itu Geografi?</strong> Geografi adalah ilmu yang mempelajari tentang <span class="highlight">bumi dan segala isinya</span>, termasuk manusia, hewan, tumbuhan, dan fenomena alam yang terjadi di dalamnya. Geografi tidak hanya menghafal nama-nama tempat, tetapi juga <span class="highlight">memahami hubungan antara manusia dan lingkungannya</span>.</p>
                     </div>
-                    <p style="color:rgba(255,255,255,0.85); font-size:0.95rem; font-weight:400;">
-                        Kata <strong>"geografi"</strong> berasal dari bahasa Yunani Kuno: <strong style="color:#6c5ce7;">Geo</strong> (Bumi) dan <strong style="color:#00cec9;">Graphien</strong> (Menulis/Melukis). Jadi geografi berarti <span style="color:#fdcb6e; font-weight:700;">"lukisan bumi"</span>.
-                    </p>
-                    <div style="background:rgba(253,203,110,0.03); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #fdcb6e;">
-                        <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">
-                            <i class="fas fa-lightbulb" style="color:#fdcb6e;"></i> <strong style="color:rgba(255,255,255,0.7); font-weight:600;">Bayangkan:</strong> Seperti pelukis yang menggambar pemandangan, ahli geografi "melukis" gambaran tentang bumi.
+
+                    <!-- Etimologi -->
+                    <div style="background:rgba(108,92,231,0.03); border-radius:12px; padding:14px 16px; margin:8px 0; border-left:4px solid #6c5ce7;">
+                        <h4 style="color:#a29bfe; font-size:0.95rem; font-weight:700;"><i class="fas fa-font"></i> Asal Kata (Etimologi)</h4>
+                        <p style="font-size:0.95rem; color:rgba(255,255,255,0.8); font-weight:400; line-height:1.8;">
+                            Kata <strong>"geografi"</strong> berasal dari bahasa Yunani Kuno: <strong style="color:#6c5ce7;">Geo</strong> (Bumi) dan <strong style="color:#00cec9;">Graphien</strong> (Menulis/Melukis). Jadi geografi berarti <span style="color:#fdcb6e; font-weight:700;">"lukisan bumi"</span>.
+                        </p>
+                        <div style="background:rgba(253,203,110,0.03); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #fdcb6e;">
+                            <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">
+                                <i class="fas fa-lightbulb" style="color:#fdcb6e;"></i> <strong style="color:rgba(255,255,255,0.7); font-weight:600;">Bayangkan:</strong> Seperti pelukis yang menggambar pemandangan, ahli geografi "melukis" gambaran tentang bumi — mulai dari gunung, sungai, hutan, kota, hingga budaya masyarakat.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- ===== DEFINISI MODERN – SEMARANG 1988 ===== -->
+                    <div class="semarang-def-card">
+                        <div class="bg-emoji">🌍</div>
+                        <div>
+                            <span class="def-badge">🇮🇩 1988 · IGI Semarang</span>
+                            <h4>Definisi Modern (Seminar Lokakarya Geografi)</h4>
+                            <div class="def-quote">
+                                "Geografi adalah ilmu yang mempelajari <span class="highlight-geo">persamaan dan perbedaan fenomena geosfer</span> dengan sudut pandang <span class="highlight-lingkungan">kelingkungan</span> dan <span class="highlight-wilayah">kewilayahan</span> dalam konteks keruangan."
+                            </div>
+                            <p>
+                                <i class="fas fa-map-pin" style="color:#00cec9;"></i> <strong style="color:rgba(255,255,255,0.8);">Inti definisi:</strong> Geografi melihat <strong>keunikan</strong> (perbedaan) dan <strong>kesamaan</strong> suatu wilayah, serta menghubungkan aktivitas manusia dengan lingkungan alamnya. Definisi ini menjadi acuan utama dalam Kurikulum Geografi di Indonesia.
+                            </p>
+                            <div class="tag-container">
+                                <span class="tag tag-lingkungan">📌 Sudut Pandang Kelingkungan</span>
+                                <span class="tag tag-wilayah">📍 Sudut Pandang Kewilayahan</span>
+                                <span class="tag tag-keruangan">🗺️ Konteks Keruangan</span>
+                            </div>
+                            <!-- Catatan 10 Konsep -->
+                            <div class="konsep-note">
+                                <p>
+                                    <i class="fas fa-lightbulb" style="color:#fdcb6e;"></i> Seminar ini juga merumuskan <strong>10 Konsep Dasar Geografi</strong> yang menjadi alat analisis wilayah (Lokasi, Jarak, Keterjangkauan, Pola, Morfologi, Aglomerasi, Nilai Guna, Interaksi, Diferensiasi Wilayah, dan Keterkaitan Keruangan).
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Definisi Para Ahli -->
+                    <h4 style="color:#a29bfe; font-size:0.95rem; font-weight:700; margin:12px 0 6px;"><i class="fas fa-user-graduate"></i> Definisi Geografi Menurut Para Ahli</h4>
+                    <div class="geo-definition-grid">
+                        <div class="geo-def-card">
+                            <span class="def-number">🌿 Ahli 1</span>
+                            <h4>Eratosthenes</h4>
+                            <div class="def-quote">"Geografi adalah ilmu yang menggambarkan bumi dan hubungannya dengan kehidupan manusia."</div>
+                            <p>Eratosthenes (276–194 SM) adalah ilmuwan Yunani yang pertama kali menggunakan istilah <strong>"geografi"</strong>. Ia juga menghitung keliling bumi dengan metode yang cukup akurat pada zamannya.</p>
+                            <div class="def-source">📌 Dijuluki <strong style="color:#fdcb6e;">"Bapak Geografi"</strong></div>
+                        </div>
+                        <div class="geo-def-card">
+                            <span class="def-number">🏔️ Ahli 2</span>
+                            <h4>Bintarto</h4>
+                            <div class="def-quote">"Geografi adalah ilmu yang mempelajari hubungan kausal (sebab-akibat) antara fenomena alam dan kehidupan manusia."</div>
+                            <p>Bintarto (ahli geografi Indonesia) menekankan bahwa geografi tidak hanya mendeskripsikan, tetapi juga <strong>mencari sebab-akibat</strong> dari fenomena yang terjadi di permukaan bumi.</p>
+                            <div class="def-source">📌 Geografi = <strong style="color:#00cec9;">Hubungan Sebab-Akibat</strong></div>
+                        </div>
+                        <div class="geo-def-card">
+                            <span class="def-number">🌍 Ahli 3</span>
+                            <h4>Nursid Sumaatmadja</h4>
+                            <div class="def-quote">"Geografi adalah ilmu yang mengkaji persamaan dan perbedaan fenomena geosfer dengan sudut pandang kelingkungan dan kewilayahan."</div>
+                            <p>Sumaatmadja (ahli geografi Indonesia) menambahkan bahwa geografi melihat fenomena dari dua sudut: <strong>kelingkungan</strong> (hubungan makhluk hidup dengan alam) dan <strong>kewilayahan</strong> (karakteristik unik suatu wilayah).</p>
+                            <div class="def-source">📌 <strong style="color:#fd79a8;">2 Sudut Pandang:</strong> Kelingkungan &amp; Kewilayahan</div>
+                        </div>
+                        <div class="geo-def-card">
+                            <span class="def-number">🔬 Ahli 4</span>
+                            <h4>Bintarto &amp; Surastopo</h4>
+                            <div class="def-quote">"Geografi adalah ilmu pengetahuan yang menggambarkan, menerangkan, dan menganalisis gejala-gejala dan sifat-sifat permukaan bumi serta penduduknya."</div>
+                            <p>Definisi ini menekankan bahwa geografi memiliki <strong>3 tahapan</strong>: menggambarkan (deskripsi), menerangkan (eksplanasi), dan menganalisis (analisis) fenomena.</p>
+                            <div class="def-source">📌 <strong style="color:#fdcb6e;">Deskripsi → Eksplanasi → Analisis</strong></div>
+                        </div>
+                    </div>
+
+                    <!-- Rangkuman -->
+                    <div style="background:rgba(0,206,201,0.03); border-radius:12px; padding:12px 16px; margin-top:12px; border-left:4px solid #00cec9;">
+                        <p style="font-size:0.95rem; color:rgba(255,255,255,0.8); font-weight:400; line-height:1.8;">
+                            <i class="fas fa-robot" style="color:#00cec9;"></i> <strong style="color:#f0f4fa;">Jadi, secara sederhana:</strong> Geografi adalah ilmu yang mempelajari <span class="highlight">bumi</span>, <span class="highlight">fenomena di dalamnya</span>, dan <span class="highlight">hubungan manusia dengan lingkungannya</span>. Geografi menjawab pertanyaan <strong>"Apa, di mana, mengapa, dan bagaimana"</strong> suatu fenomena terjadi.
                         </p>
                     </div>
                 </div>
             </div>
 
+            <!-- ==========================================================
+            B. HAKIKAT GEOGRAFI – DIPERLUAS
+            ========================================================== -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
                     <h4><i class="fas fa-globe-asia" style="color:#00cec9;"></i> B. Hakikat Geografi <span class="local-badge"><i class="fas fa-tree"></i> Kalimantan</span></h4>
@@ -3048,16 +3243,39 @@
                 <div class="detail-body">
                     <div class="detail-explanation">
                         <span class="emoji-big">🧠</span>
-                        <p>Geografi memiliki dua sudut pandang utama: <span class="highlight">kelingkungan</span> (hubungan makhluk hidup dengan lingkungan) dan <span class="highlight">kewilayahan</span> (karakteristik unik suatu wilayah).</p>
+                        <p>Hakikat geografi adalah <span class="highlight">cara pandang geografi</span> terhadap fenomena yang terjadi di permukaan bumi. Geografi memiliki dua sudut pandang utama: <span class="highlight">kelingkungan</span> dan <span class="highlight">kewilayahan</span>.</p>
                     </div>
-                    <div style="background:rgba(0,206,201,0.03); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #00cec9;">
-                        <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">
-                            <i class="fas fa-tree" style="color:#00cec9;"></i> <strong style="color:rgba(255,255,255,0.7); font-weight:600;">Contoh Katingan:</strong> Wilayah Katingan memiliki lahan gambut luas, sungai besar, dan hutan hujan tropis.
+
+                    <div class="hakikat-grid">
+                        <div class="hakikat-card">
+                            <span class="hakikat-icon">🌿</span>
+                            <h4>1. Sudut Pandang Kelingkungan</h4>
+                            <p>Melihat hubungan <strong>timbal balik</strong> antara makhluk hidup (termasuk manusia) dengan lingkungan alam di sekitarnya. Geografi tidak hanya melihat manusia, tetapi juga <strong>bagaimana manusia memengaruhi alam</strong> dan <strong>bagaimana alam memengaruhi manusia</strong>.</p>
+                            <div class="contoh-lokal">
+                                <strong>Contoh Katingan:</strong> Aktivitas penambangan emas tradisional di Sungai Katingan mempengaruhi kualitas air dan ekosistem sungai. Sebaliknya, musim kemarau mempengaruhi hasil tambang dan mata pencaharian warga.
+                            </div>
+                        </div>
+                        <div class="hakikat-card">
+                            <span class="hakikat-icon">📍</span>
+                            <h4>2. Sudut Pandang Kewilayahan</h4>
+                            <p>Melihat <strong>karakteristik unik</strong> suatu wilayah, baik dari segi fisik (alam) maupun sosial (budaya, ekonomi, politik). Setiap wilayah memiliki <strong>kekhasan</strong> yang membedakannya dari wilayah lain.</p>
+                            <div class="contoh-lokal">
+                                <strong>Contoh Katingan:</strong> Wilayah Katingan memiliki lahan gambut yang luas, sungai besar, dan hutan hujan tropis. Masyarakatnya sebagian besar adalah Suku Dayak Ngaju dengan budaya dan kearifan lokal yang khas.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="background:rgba(108,92,231,0.03); border-radius:12px; padding:12px 16px; margin-top:10px; border-left:4px solid #6c5ce7;">
+                        <p style="font-size:0.95rem; color:rgba(255,255,255,0.8); font-weight:400; line-height:1.8;">
+                            <i class="fas fa-link" style="color:#a29bfe;"></i> <strong style="color:#f0f4fa;">Kedua sudut pandang ini saling melengkapi.</strong> Geografi tidak hanya melihat <em>apa</em> yang ada (kelingkungan), tetapi juga <em>mengapa</em> suatu wilayah berbeda dari wilayah lain (kewilayahan).
                         </p>
                     </div>
                 </div>
             </div>
 
+            <!-- ==========================================================
+            C. LAPISAN GEOSFER – DIPERLUAS
+            ========================================================== -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
                     <h4><i class="fas fa-layer-group" style="color:#fd79a8;"></i> C. 5 Lapisan Geosfer <span class="local-badge"><i class="fas fa-water"></i> Sungai Katingan</span></h4>
@@ -3066,33 +3284,109 @@
                 <div class="detail-body">
                     <div class="detail-explanation">
                         <span class="emoji-big">🌍</span>
-                        <p>Bumi terdiri dari <span class="highlight">5 lapisan</span> yang disebut geosfer: Litosfer (batuan), Atmosfer (udara), Hidrosfer (air), Biosfer (kehidupan), dan Antroposfer (manusia).</p>
+                        <p>Bumi terdiri dari <span class="highlight">5 lapisan</span> yang disebut <strong>geosfer</strong>. Geosfer adalah semua lapisan yang menyusun bumi, mulai dari batuan, air, udara, hingga kehidupan dan manusia. Kelima lapisan ini <strong>saling berinteraksi</strong> dan membentuk sistem bumi yang kompleks.</p>
                     </div>
-                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px;">
-                        <div style="background:rgba(108,92,231,0.04); border-radius:10px; padding:10px 14px; border-left:3px solid #6c5ce7;">
-                            <h4 style="color:#a29bfe; font-size:0.9rem; font-weight:700;">🌋 Litosfer</h4>
-                            <p style="font-size:0.85rem; color:rgba(255,255,255,0.6); font-weight:400;">Lapisan batuan dan tanah. Contoh: Tanah gambut Katingan.</p>
+
+                    <div class="geosfer-grid">
+                        <!-- Litosfer -->
+                        <div class="geosfer-card color-litosfer">
+                            <span class="geosfer-icon">🪨</span>
+                            <h4>1. Litosfer</h4>
+                            <div class="geosfer-desc">
+                                Lapisan <strong>batuan dan tanah</strong> yang menyusun kerak bumi. Litosfer terdiri dari batuan padat, tanah, dan mineral. Ini adalah tempat kita berpijak.
+                            </div>
+                            <div class="geosfer-example" style="color:#6c5ce7;">
+                                <strong>Contoh Katingan:</strong> Tanah gambut yang tebalnya 3–8 meter, batuan sedimen di daerah aliran sungai, dan tanah podsolik di hutan hujan.
+                            </div>
+                            <div style="margin-top:4px; font-size:0.8rem; color:rgba(255,255,255,0.2);">
+                                <i class="fas fa-mountain"></i> Fenomena: Gunung, lembah, tanah longsor, gempa bumi
+                            </div>
                         </div>
-                        <div style="background:rgba(0,206,201,0.04); border-radius:10px; padding:10px 14px; border-left:3px solid #00cec9;">
-                            <h4 style="color:#00cec9; font-size:0.9rem; font-weight:700;">☁️ Atmosfer</h4>
-                            <p style="font-size:0.85rem; color:rgba(255,255,255,0.6); font-weight:400;">Lapisan udara. Contoh: Iklim tropis Katingan.</p>
+
+                        <!-- Atmosfer -->
+                        <div class="geosfer-card color-atmosfer">
+                            <span class="geosfer-icon">☁️</span>
+                            <h4>2. Atmosfer</h4>
+                            <div class="geosfer-desc">
+                                Lapisan <strong>udara</strong> yang menyelimuti bumi. Atmosfer terdiri dari berbagai gas (nitrogen, oksigen, CO₂) dan melindungi bumi dari radiasi matahari berbahaya.
+                            </div>
+                            <div class="geosfer-example" style="color:#00cec9;">
+                                <strong>Contoh Katingan:</strong> Iklim tropis dengan suhu rata-rata 26–30°C, curah hujan tinggi, dan kelembapan udara yang tinggi sepanjang tahun.
+                            </div>
+                            <div style="margin-top:4px; font-size:0.8rem; color:rgba(255,255,255,0.2);">
+                                <i class="fas fa-cloud"></i> Fenomena: Cuaca, iklim, angin, hujan, kabut asap
+                            </div>
                         </div>
-                        <div style="background:rgba(253,121,168,0.04); border-radius:10px; padding:10px 14px; border-left:3px solid #fd79a8;">
-                            <h4 style="color:#fd79a8; font-size:0.9rem; font-weight:700;">💧 Hidrosfer</h4>
-                            <p style="font-size:0.85rem; color:rgba(255,255,255,0.6); font-weight:400;">Lapisan air. Contoh: Sungai Katingan.</p>
+
+                        <!-- Hidrosfer -->
+                        <div class="geosfer-card color-hidrosfer">
+                            <span class="geosfer-icon">🌊</span>
+                            <h4>3. Hidrosfer</h4>
+                            <div class="geosfer-desc">
+                                Lapisan <strong>air</strong> yang mencakup sungai, danau, laut, air tanah, dan es di kutub. Hidrosfer menutupi sekitar 71% permukaan bumi.
+                            </div>
+                            <div class="geosfer-example" style="color:#0984e3;">
+                                <strong>Contoh Katingan:</strong> Sungai Katingan sebagai urat nadi kehidupan, rawa-rawa, danau musiman, serta air tanah yang digunakan warga untuk kebutuhan sehari-hari.
+                            </div>
+                            <div style="margin-top:4px; font-size:0.8rem; color:rgba(255,255,255,0.2);">
+                                <i class="fas fa-water"></i> Fenomena: Sungai, laut, danau, banjir, kekeringan
+                            </div>
                         </div>
-                        <div style="background:rgba(253,203,110,0.04); border-radius:10px; padding:10px 14px; border-left:3px solid #fdcb6e;">
-                            <h4 style="color:#fdcb6e; font-size:0.9rem; font-weight:700;">🌿 Biosfer</h4>
-                            <p style="font-size:0.85rem; color:rgba(255,255,255,0.6); font-weight:400;">Lapisan kehidupan. Contoh: Orangutan Kalimantan.</p>
+
+                        <!-- Biosfer -->
+                        <div class="geosfer-card color-biosfer">
+                            <span class="geosfer-icon">🌿</span>
+                            <h4>4. Biosfer</h4>
+                            <div class="geosfer-desc">
+                                Lapisan <strong>kehidupan</strong> yang mencakup semua makhluk hidup — tumbuhan, hewan, dan mikroorganisme — yang berada di permukaan bumi.
+                            </div>
+                            <div class="geosfer-example" style="color:#00b894;">
+                                <strong>Contoh Katingan:</strong> Hutan hujan tropis dengan flora seperti meranti, ulin, rotan; fauna seperti orangutan, bekantan, burung rangkong, dan berbagai spesies ikan di Sungai Katingan.
+                            </div>
+                            <div style="margin-top:4px; font-size:0.8rem; color:rgba(255,255,255,0.2);">
+                                <i class="fas fa-leaf"></i> Fenomena: Ekosistem, keanekaragaman hayati, rantai makanan
+                            </div>
+                        </div>
+
+                        <!-- Antroposfer -->
+                        <div class="geosfer-card color-antroposfer" style="grid-column:1 / -1; max-width:100%;">
+                            <span class="geosfer-icon">👥</span>
+                            <h4>5. Antroposfer</h4>
+                            <div class="geosfer-desc">
+                                Lapisan <strong>manusia</strong> yang mencakup seluruh aktivitas, budaya, dan interaksi manusia di permukaan bumi. Antroposfer adalah lapisan yang paling dinamis dan sering mengubah lapisan lainnya.
+                            </div>
+                            <div class="geosfer-example" style="color:#fd79a8;">
+                                <strong>Contoh Katingan:</strong> Masyarakat Dayak Ngaju dengan budaya Betang (rumah panjang), sistem pertanian ladang berpindah, penambangan emas tradisional, dan kearifan lokal dalam menjaga hutan.
+                            </div>
+                            <div style="margin-top:4px; font-size:0.8rem; color:rgba(255,255,255,0.2);">
+                                <i class="fas fa-users"></i> Fenomena: Pemukiman, pertanian, industri, budaya, transportasi
+                            </div>
                         </div>
                     </div>
-                    <div style="background:rgba(108,92,231,0.04); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #6c5ce7;">
-                        <h4 style="color:#a29bfe; font-size:0.9rem; font-weight:700;">👥 Antroposfer</h4>
-                        <p style="font-size:0.85rem; color:rgba(255,255,255,0.6); font-weight:400;">Lapisan manusia. Contoh: Masyarakat Dayak Ngaju.</p>
+
+                    <!-- Interaksi antar lapisan -->
+                    <div style="background:rgba(253,121,168,0.03); border-radius:12px; padding:14px 16px; margin-top:12px; border-left:4px solid #fd79a8;">
+                        <h4 style="color:#fd79a8; font-size:0.95rem; font-weight:700;"><i class="fas fa-sync-alt"></i> Interaksi Antar Lapisan Geosfer</h4>
+                        <p style="font-size:0.95rem; color:rgba(255,255,255,0.75); font-weight:400; line-height:1.8;">
+                            Kelima lapisan geosfer <strong>tidak berdiri sendiri</strong>. Mereka saling berinteraksi dan memengaruhi satu sama lain. Contoh di Katingan:
+                        </p>
+                        <ul style="font-size:0.92rem; color:rgba(255,255,255,0.6); font-weight:400; padding-left:20px; line-height:2;">
+                            <li><strong>Litosfer + Hidrosfer:</strong> Tanah gambut menyimpan air hujan yang tinggi → mencegah banjir dan menjaga ketersediaan air di musim kemarau.</li>
+                            <li><strong>Atmosfer + Biosfer:</strong> Curah hujan yang tinggi (atmosfer) membuat hutan Katingan tumbuh lebat dan menjadi habitat bagi orangutan (biosfer).</li>
+                            <li><strong>Antroposfer + Semua Lapisan:</strong> Penambangan emas (antroposfer) menggali tanah (litosfer), mencemari air (hidrosfer), mengganggu habitat (biosfer), dan menghasilkan asap/asam (atmosfer).</li>
+                        </ul>
+                        <div style="background:rgba(253,203,110,0.03); border-radius:8px; padding:8px 12px; margin-top:8px; border-left:3px solid #fdcb6e;">
+                            <p style="font-size:0.9rem; color:rgba(255,255,255,0.4); font-weight:400;">
+                                <i class="fas fa-info-circle" style="color:#fdcb6e;"></i> <strong style="color:rgba(255,255,255,0.5); font-weight:600;">Kesimpulan:</strong> Geografi mempelajari bagaimana kelima lapisan ini saling terhubung dan membentuk sistem bumi yang kompleks.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
 
+            <!-- ==========================================================
+            MINI QUIZ 1
+            ========================================================== -->
             <div class="mini-quiz reveal">
                 <div class="quiz-question">🧠 <strong>Kuis Cepat:</strong> Lapisan geosfer yang terdiri dari batuan dan tanah disebut...</div>
                 <div class="quiz-options">
@@ -3104,6 +3398,37 @@
                 <div class="quiz-feedback"></div>
             </div>
 
+            <!-- ==========================================================
+            MINI QUIZ 2 – PENGERTIAN
+            ========================================================== -->
+            <div class="mini-quiz reveal">
+                <div class="quiz-question">🧠 <strong>Kuis Cepat:</strong> Kata "geografi" berasal dari bahasa Yunani yang berarti...</div>
+                <div class="quiz-options">
+                    <button onclick="checkQuiz(this, false)">Bumi dan langit</button>
+                    <button onclick="checkQuiz(this, true)">Bumi dan menulis/melukis</button>
+                    <button onclick="checkQuiz(this, false)">Alam dan manusia</button>
+                    <button onclick="checkQuiz(this, false)">Wilayah dan peta</button>
+                </div>
+                <div class="quiz-feedback"></div>
+            </div>
+
+            <!-- ==========================================================
+            MINI QUIZ 3 – HAKIKAT
+            ========================================================== -->
+            <div class="mini-quiz reveal">
+                <div class="quiz-question">🧠 <strong>Kuis Cepat:</strong> Sudut pandang geografi yang melihat hubungan timbal balik manusia dengan alam disebut...</div>
+                <div class="quiz-options">
+                    <button onclick="checkQuiz(this, false)">Kewilayahan</button>
+                    <button onclick="checkQuiz(this, true)">Kelingkungan</button>
+                    <button onclick="checkQuiz(this, false)">Keruangan</button>
+                    <button onclick="checkQuiz(this, false)">Korologi</button>
+                </div>
+                <div class="quiz-feedback"></div>
+            </div>
+
+            <!-- ==========================================================
+            NAVIGASI
+            ========================================================== -->
             <div class="nav-buttons">
                 <div class="group">
                     <button onclick="navigateTo('prev')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
@@ -3115,7 +3440,7 @@
         </section>
 
         <!-- ============================================================
-        SECTION 4 : PERTEMUAN 2 – DENGAN GAMBAR PREMIUM
+        SECTION 4 : PERTEMUAN 2 – (tetap seperti aslinya, tidak diubah)
         ============================================================ -->
         <section id="section4" class="section">
             <div style="background:rgba(108,92,231,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(108,92,231,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
@@ -3162,7 +3487,6 @@
                     </span>
                 </div>
                 <div class="grid-3">
-                    <!-- Gambar 1: Tambang Tradisional -->
                     <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/TAMBANGTRADISIONAL.png', '⛏️ Penambangan Emas Tradisional – Contoh interelasi manusia dan lingkungan di Katingan.')" data-index="3">
                         <div class="img-wrap">
                             <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/TAMBANGTRADISIONAL.png" alt="Tambang Emas" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E⛏️ Tambang Emas%3C/text%3E%3C/svg%3E'" />
@@ -3173,8 +3497,6 @@
                         <div class="image-label-premium"><span class="emoji-big">⛏️</span> Tambang Emas Tradisional</div>
                         <div class="image-sub-premium"><i class="fas fa-arrow-right"></i> Interelasi manusia & lingkungan</div>
                     </div>
-
-                    <!-- Gambar 2: Budaya Dayak -->
                     <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/BUDAYA1.png', '🎭 Budaya Dayak Ngaju – Aspek sosial budaya dalam geografi di Katingan.')" data-index="4">
                         <div class="img-wrap">
                             <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/BUDAYA1.png" alt="Budaya Dayak" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🎭 Budaya Dayak%3C/text%3E%3C/svg%3E'" />
@@ -3185,8 +3507,6 @@
                         <div class="image-label-premium"><span class="emoji-big">🎭</span> Budaya Dayak Ngaju</div>
                         <div class="image-sub-premium"><i class="fas fa-arrow-right"></i> Aspek sosial budaya</div>
                     </div>
-
-                    <!-- Gambar 3: Lahan Gambut -->
                     <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/lahangambut.png', '🌿 Lahan Gambut Katingan – Contoh aspek fisik geografi dengan ketebalan 3-8 meter.')" data-index="5">
                         <div class="img-wrap">
                             <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/lahangambut.png" alt="Lahan Gambut" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🌿 Lahan Gambut%3C/text%3E%3C/svg%3E'" />
@@ -3283,7 +3603,7 @@
         </section>
 
         <!-- ============================================================
-        SECTION 5 : PERTEMUAN 3 – DENGAN GAMBAR PREMIUM (sudah ada)
+        SECTION 5 : PERTEMUAN 3 – (tetap seperti aslinya)
         ============================================================ -->
         <section id="section5" class="section">
             <div style="background:rgba(108,92,231,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(108,92,231,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
@@ -3330,7 +3650,6 @@
                     </span>
                 </div>
                 <div class="grid-3">
-                    <!-- Gambar 1: Pembangunan Berkelanjutan -->
                     <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/hidupberkelanjutan.png', '🌱 Pembangunan Berkelanjutan – Geografi membantu merancang tata ruang yang ramah lingkungan.')" data-index="6">
                         <div class="img-wrap">
                             <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/hidupberkelanjutan.png" alt="Pembangunan Berkelanjutan" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🌱 Berkelanjutan%3C/text%3E%3C/svg%3E'" />
@@ -3341,8 +3660,6 @@
                         <div class="image-label-premium"><span class="emoji-big">🌱</span> Pembangunan Berkelanjutan</div>
                         <div class="image-sub-premium"><i class="fas fa-arrow-right"></i> Perencanaan tata ruang ramah lingkungan</div>
                     </div>
-
-                    <!-- Gambar 2: Mitigasi Banjir -->
                     <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/mitigasibanjir.png', '🌊 Mitigasi Bencana Banjir – Geografi mengidentifikasi daerah rawan dan merancang sistem peringatan dini.')" data-index="7">
                         <div class="img-wrap">
                             <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/mitigasibanjir.png" alt="Mitigasi Banjir" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🌊 Mitigasi Banjir%3C/text%3E%3C/svg%3E'" />
@@ -3353,8 +3670,6 @@
                         <div class="image-label-premium"><span class="emoji-big">🌊</span> Mitigasi Bencana Banjir</div>
                         <div class="image-sub-premium"><i class="fas fa-arrow-right"></i> Sistem peringatan dini & infrastruktur</div>
                     </div>
-
-                    <!-- Gambar 3: Ekowisata -->
                     <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/tnsebngau.png', '🦧 Ekowisata Katingan – Potensi wisata alam yang dapat dikembangkan secara berkelanjutan.')" data-index="8">
                         <div class="img-wrap">
                             <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/tnsebngau.png" alt="Ekowisata" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🦧 Ekowisata%3C/text%3E%3C/svg%3E'" />
@@ -3418,7 +3733,7 @@
         </section>
 
         <!-- ============================================================
-        SECTION 6 : ASESMEN (LENGKAP – TIDAK DIUBAH)
+        SECTION 6 : ASESMEN (tetap seperti aslinya)
         ============================================================ -->
         <section id="section6" class="section">
             <div style="background:rgba(108,92,231,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(108,92,231,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
@@ -3900,7 +4215,7 @@
                     this.pulse = 0.005 + Math.random() * 0.015;
                     this.phase = Math.random() * Math.PI * 2;
                     this.color =
-                    `hsl(${220 + Math.random() * 40}, ${60 + Math.random() * 40}%, ${70 + Math.random() * 30}%)`;
+                        `hsl(${220 + Math.random() * 40}, ${60 + Math.random() * 40}%, ${70 + Math.random() * 30}%)`;
                 }
                 update(time) {
                     this.y += this.speed;
