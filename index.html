@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes" />
-    <title>🌍 GeoExplorer – Pengetahuan Dasar Geografi Kelas X</title>
+    <title>GeoExplorer – Pengetahuan Dasar Geografi Kelas X</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
     <style>
@@ -86,7 +86,7 @@
             }
         }
 
-        /* ===== COMET STARS VERTICAL (baru) ===== */
+        /* ===== COMET STARS VERTICAL ===== */
         .comet-star {
             position: fixed;
             pointer-events: none;
@@ -284,10 +284,6 @@
             align-items: center;
             gap: 8px;
         }
-        .mobile-header .brand i {
-            -webkit-text-fill-color: #6c5ce7;
-            font-size: 1.3rem;
-        }
         .mobile-header .menu-toggle {
             color: rgba(255, 255, 255, 0.5);
             font-size: 1.3rem;
@@ -437,14 +433,6 @@
             transform: translateY(-8px) scale(1.02);
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 60px rgba(108, 92, 231, 0.05);
             border-color: rgba(108, 92, 231, 0.2);
-        }
-        .card .icon {
-            font-size: 2rem;
-            background: linear-gradient(135deg, #6c5ce7, #00cec9);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 8px;
-            display: inline-block;
         }
         .card h3 {
             font-size: 1.1rem;
@@ -799,12 +787,11 @@
             transform: scale(1.06) translateY(-4px);
             box-shadow: 0 16px 60px rgba(108, 92, 231, 0.4);
         }
-        .cover-section .start-btn i {
-            font-size: 1.3rem;
-            transition: transform 0.4s ease;
+        .cover-section .start-btn span {
+            /* untuk teks saja, tidak pakai ikon */
         }
-        .cover-section .start-btn:hover i {
-            transform: translateX(6px);
+        .cover-section .start-btn:hover span {
+            /* tidak ada efek ikon */
         }
 
         /* ===== NAV BOX ===== */
@@ -830,12 +817,6 @@
             margin-bottom: 20px;
             letter-spacing: 0.5px;
         }
-        .nav-box .nav-header i {
-            font-size: 1.4rem;
-            background: linear-gradient(135deg, #6c5ce7, #00cec9);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
         .nav-box .nav-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -857,13 +838,14 @@
             font-weight: 600;
         }
         .nav-box .nav-item .num-badge {
-            font-size: 0.7rem;
+            font-size: 1.1rem;
+            font-weight: 800;
             background: rgba(108, 92, 231, 0.08);
-            padding: 2px 14px;
-            border-radius: 20px;
-            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 30px;
             color: #a29bfe;
             transition: 0.3s;
+            min-width: 32px;
         }
         .nav-box .nav-item .nav-label {
             font-size: 0.85rem;
@@ -894,12 +876,12 @@
                 font-size: 0.75rem !important;
             }
             .nav-box .nav-item .num-badge {
-                font-size: 0.6rem !important;
-                padding: 2px 10px !important;
+                font-size: 0.9rem !important;
+                padding: 2px 8px !important;
             }
         }
 
-        /* ===== CP & ATP STYLES ===== */
+        /* ===== CP & ATP STYLES (tetap) ===== */
         .cp-atp-box {
             background: rgba(20, 30, 40, 0.85);
             backdrop-filter: blur(8px);
@@ -1651,8 +1633,8 @@
             border-color: rgba(108, 92, 231, 0.08);
             transform: scale(1.04);
         }
-        .image-card-premium .img-wrap .zoom-badge-premium i {
-            font-size: 0.7rem;
+        .image-card-premium .img-wrap .zoom-badge-premium span {
+            /* teks tanpa ikon */;
         }
         .image-card-premium .img-wrap .image-number {
             position: absolute;
@@ -1687,10 +1669,6 @@
             margin-top: 2px;
             font-weight: 400;
             letter-spacing: 0.3px;
-        }
-        .image-card-premium .image-sub-premium i {
-            color: rgba(255, 255, 255, 0.1);
-            margin: 0 4px;
         }
         @media (max-width:600px) {
             .image-card-premium .img-wrap img {
@@ -1897,10 +1875,6 @@
         .def-block .source {
             font-weight: 700;
             color: #f0f4fa;
-        }
-        .def-block .source i {
-            color: #6c5ce7;
-            margin-right: 8px;
         }
 
         /* ===== INTERAKTIF ===== */
@@ -2140,10 +2114,6 @@
             border: 1px solid rgba(253, 203, 110, 0.06);
             letter-spacing: 0.5px;
             margin-left: 8px;
-        }
-        .local-badge i {
-            margin-right: 4px;
-            color: #fdcb6e;
         }
 
         .img-zoom {
@@ -2523,8 +2493,8 @@
 
     <!-- ===== MOBILE HEADER ===== -->
     <header class="mobile-header">
-        <div class="brand"><i class="fas fa-globe-asia"></i> GeoExplorer</div>
-        <button class="menu-toggle" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button>
+        <div class="brand">GeoExplorer</div>
+        <button class="menu-toggle" onclick="toggleMobileMenu()">☰</button>
     </header>
 
     <!-- ===== PROGRESS BAR ===== -->
@@ -2538,14 +2508,14 @@
                 <div class="loading-shimmer" id="modalShimmer"></div>
                 <img id="modalImage" src="" alt="Gambar" />
                 <span class="image-counter" id="modalCounter">1 / 3</span>
-                <button class="nav-arrow prev" onclick="navigateModal(-1); event.stopPropagation();"><i class="fas fa-chevron-left"></i></button>
-                <button class="nav-arrow next" onclick="navigateModal(1); event.stopPropagation();"><i class="fas fa-chevron-right"></i></button>
+                <button class="nav-arrow prev" onclick="navigateModal(-1); event.stopPropagation();">‹</button>
+                <button class="nav-arrow next" onclick="navigateModal(1); event.stopPropagation();">›</button>
             </div>
             <div class="zoom-controls">
-                <button onclick="zoomImage(-0.2); event.stopPropagation();"><i class="fas fa-minus"></i></button>
+                <button onclick="zoomImage(-0.2); event.stopPropagation();">−</button>
                 <span class="zoom-level" id="zoomLevel">100%</span>
-                <button onclick="zoomImage(0.2); event.stopPropagation();"><i class="fas fa-plus"></i></button>
-                <button onclick="resetZoom(); event.stopPropagation();"><i class="fas fa-undo"></i></button>
+                <button onclick="zoomImage(0.2); event.stopPropagation();">+</button>
+                <button onclick="resetZoom(); event.stopPropagation();">↺</button>
             </div>
             <div class="caption" id="modalCaption">Klik di luar untuk menutup</div>
         </div>
@@ -2562,9 +2532,9 @@
                 <img src="images/LOGOSMAN3KAS.png" alt="Logo SMAN 3 Kasongan" />
             </div>
             <div class="badge-wrap reveal">
-                <span class="badge">🌍 KELAS X / FASE E</span>
-                <span class="badge badge-gold"><i class="fas fa-clock"></i> 3 × 45 Menit</span>
-                <span class="badge" style="background:rgba(0,206,201,0.08); color:#00cec9; border-color:rgba(0,206,201,0.1);"><i class="fas fa-rocket"></i> Kurikulum Merdeka</span>
+                <span class="badge">KELAS X / FASE E</span>
+                <span class="badge badge-gold">3 × 45 Menit</span>
+                <span class="badge" style="background:rgba(0,206,201,0.08); color:#00cec9; border-color:rgba(0,206,201,0.1);">Kurikulum Merdeka</span>
             </div>
             <h1 class="cover-title reveal">PENGETAHUAN DASAR<br />GEOGRAFI</h1>
             <p class="cover-sub reveal">
@@ -2574,26 +2544,25 @@
             <div class="school-wrap reveal">
                 <div class="school-name"><span class="gold">SMAN 3 KASONGAN</span></div>
                 <div class="teacher-info">
-                    <i class="fas fa-chalkboard-teacher" style="color:#a29bfe;"></i>
                     Guru Pengampu: <strong>SYAHRANI, S.Pd</strong> &nbsp;|&nbsp;
                     <span style="color:rgba(255,255,255,0.2);">NIP. 197512172005011016</span>
                 </div>
             </div>
             <div class="start-btn-wrap reveal">
                 <button class="start-btn" onclick="navigateTo('section2')">
-                    <i class="fas fa-play-circle"></i> Mulai Petualangan
+                    <span>Mulai Petualangan</span>
                 </button>
             </div>
             <div class="nav-box reveal">
-                <div class="nav-header"><i class="fas fa-compass"></i> Navigasi Cepat</div>
+                <div class="nav-header">Navigasi Cepat</div>
                 <div class="nav-grid">
-                    <div onclick="navigateTo('section1')" class="nav-item"><span class="num-badge">🏠</span><span class="nav-label">Beranda</span></div>
-                    <div onclick="navigateTo('section2')" class="nav-item"><span class="num-badge">①</span><span class="nav-label">Pertemuan 1</span></div>
-                    <div onclick="navigateTo('section3')" class="nav-item"><span class="num-badge">②</span><span class="nav-label">Pertemuan 2</span></div>
-                    <div onclick="navigateTo('section4')" class="nav-item"><span class="num-badge">③</span><span class="nav-label">Pertemuan 3</span></div>
-                    <div onclick="navigateTo('section5')" class="nav-item"><span class="num-badge">📝</span><span class="nav-label">Asesmen</span></div>
-                    <div onclick="navigateTo('section6')" class="nav-item"><span class="num-badge">💭</span><span class="nav-label">Refleksi</span></div>
-                    <div onclick="navigateTo('section7')" class="nav-item"><span class="num-badge">📚</span><span class="nav-label">Referensi</span></div>
+                    <div onclick="navigateTo('section1')" class="nav-item"><span class="num-badge">1</span><span class="nav-label">Beranda</span></div>
+                    <div onclick="navigateTo('section2')" class="nav-item"><span class="num-badge">2</span><span class="nav-label">Pertemuan 1</span></div>
+                    <div onclick="navigateTo('section3')" class="nav-item"><span class="num-badge">3</span><span class="nav-label">Pertemuan 2</span></div>
+                    <div onclick="navigateTo('section4')" class="nav-item"><span class="num-badge">4</span><span class="nav-label">Pertemuan 3</span></div>
+                    <div onclick="navigateTo('section5')" class="nav-item"><span class="num-badge">5</span><span class="nav-label">Asesmen</span></div>
+                    <div onclick="navigateTo('section6')" class="nav-item"><span class="num-badge">6</span><span class="nav-label">Refleksi</span></div>
+                    <div onclick="navigateTo('section7')" class="nav-item"><span class="num-badge">7</span><span class="nav-label">Referensi</span></div>
                 </div>
             </div>
         </section>
@@ -2602,26 +2571,26 @@
         <section id="section2" class="section">
             <div style="background:rgba(108,92,231,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(108,92,231,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
                 <div style="display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.4); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
-                <button onclick="navigateTo('section1')" style="background:rgba(255,255,255,0.02); color:rgba(255,255,255,0.3); border:1px solid rgba(255,255,255,0.03); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem;"><i class="fas fa-home"></i> Beranda</button>
+                <button onclick="navigateTo('section1')" style="background:rgba(255,255,255,0.02); color:rgba(255,255,255,0.3); border:1px solid rgba(255,255,255,0.03); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem;">⌂ Beranda</button>
             </div>
             <div class="section-header">
                 <div class="num">02</div>
                 <h2>Pertemuan 1 – Fondasi Keilmuan <small>Pengertian, Hakikat, & Ruang Lingkup</small></h2>
-                <span class="badge-pertemuan"><i class="far fa-clock"></i> 3×45'</span>
+                <span class="badge-pertemuan">3×45'</span>
             </div>
             <div class="progress-tracker">
                 <span class="step active">1</span><span class="line"></span>
                 <span class="step">2</span><span class="line"></span>
                 <span class="step">3</span><span class="line"></span>
                 <span class="step">4</span>
-                <span style="color:rgba(255,255,255,0.15); font-size:0.75rem; font-weight:500; margin-left:8px;">⚡ Klik materi untuk eksplorasi!</span>
+                <span style="color:rgba(255,255,255,0.15); font-size:0.75rem; font-weight:500; margin-left:8px;">Klik materi untuk eksplorasi</span>
             </div>
             <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;">
-                <span class="pertemuan-badge"><i class="fas fa-bullseye" style="color:#a29bfe;"></i> TP 1</span>
-                <span class="pertemuan-badge" style="background:rgba(0,206,201,0.08); color:#00cec9; border-color:rgba(0,206,201,0.06);"><i class="fas fa-brain"></i> Penalaran Kritis</span>
-                <span class="pertemuan-badge" style="background:rgba(253,121,168,0.08); color:#fd79a8; border-color:rgba(253,121,168,0.06);"><i class="fas fa-comments"></i> Komunikasi</span>
+                <span class="pertemuan-badge">TP 1</span>
+                <span class="pertemuan-badge" style="background:rgba(0,206,201,0.08); color:#00cec9; border-color:rgba(0,206,201,0.06);">Penalaran Kritis</span>
+                <span class="pertemuan-badge" style="background:rgba(253,121,168,0.08); color:#fd79a8; border-color:rgba(253,121,168,0.06);">Komunikasi</span>
             </div>
-            <h3 style="font-size:1.05rem; color:#f0f4fa; font-weight:700; border-left:4px solid #6c5ce7; padding-left:12px; margin-bottom:6px;"><i class="fas fa-bullseye" style="color:#a29bfe;"></i> Tujuan Pembelajaran</h3>
+            <h3 style="font-size:1.05rem; color:#f0f4fa; font-weight:700; border-left:4px solid #6c5ce7; padding-left:12px; margin-bottom:6px;">Tujuan Pembelajaran</h3>
             <ul style="color:rgba(255,255,255,0.7); font-weight:400; padding-left:20px; margin-bottom:16px; line-height:2; font-size:0.95rem;">
                 <li>Menjelaskan pengertian geografi secara etimologis dan hakikatnya dengan bahasa yang mudah dipahami.</li>
                 <li>Mengidentifikasi definisi geografi menurut para ahli (Eratosthenes, Bintarto, Sumaatmadja).</li>
@@ -2632,51 +2601,49 @@
             <div style="margin:16px 0;">
                 <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:14px;">
                     <h4 style="color:#a29bfe; font-size:0.95rem; font-weight:700; display:flex; align-items:center; gap:10px;">
-                        <i class="fas fa-images" style="color:#6c5ce7;"></i> Galeri Gambar
-                        <span style="background:rgba(108,92,231,0.06); color:#a29bfe; padding:2px 12px; border-radius:20px; font-size:0.65rem; font-weight:700; letter-spacing:0.5px;">✨ 3D Tilt</span>
+                        Galeri Gambar
+                        <span style="background:rgba(108,92,231,0.06); color:#a29bfe; padding:2px 12px; border-radius:20px; font-size:0.65rem; font-weight:700; letter-spacing:0.5px;">3D Tilt</span>
                     </h4>
-                    <span style="color:rgba(255,255,255,0.15); font-size:0.7rem; font-weight:400;">
-                        <i class="fas fa-mouse-pointer"></i> Hover untuk efek 3D · Klik untuk zoom
-                    </span>
+                    <span style="color:rgba(255,255,255,0.15); font-size:0.7rem; font-weight:400;">Hover untuk efek 3D · Klik untuk zoom</span>
                 </div>
                 <div class="grid-3">
-                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/bumi23.png', '🌍 Bumi dari Luar Angkasa')" data-index="0">
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/bumi23.png', 'Bumi dari Luar Angkasa')" data-index="0">
                         <div class="img-wrap">
                             <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/bumi23.png" alt="Bumi" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🌍 Bumi%3C/text%3E%3C/svg%3E'" />
                             <div class="overlay-glow"></div>
-                            <span class="zoom-badge-premium"><i class="fas fa-search-plus"></i> Zoom</span>
+                            <span class="zoom-badge-premium"><span>🔍 Zoom</span></span>
                             <span class="image-number">01 / 03</span>
                         </div>
                         <div class="image-label-premium"><span class="emoji-big">🌍</span> Bumi dari Luar Angkasa</div>
-                        <div class="image-sub-premium"><i class="fas fa-arrow-right"></i> Planet dengan atmosfer pelindung</div>
+                        <div class="image-sub-premium">Planet dengan atmosfer pelindung</div>
                     </div>
-                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/lapisangeosfer.png', '🌋 Lapisan Geosfer Bumi')" data-index="1">
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/lapisangeosfer.png', 'Lapisan Geosfer Bumi')" data-index="1">
                         <div class="img-wrap">
                             <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/lapisangeosfer.png" alt="Lapisan Geosfer" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🌋 Lapisan Bumi%3C/text%3E%3C/svg%3E'" />
                             <div class="overlay-glow"></div>
-                            <span class="zoom-badge-premium"><i class="fas fa-search-plus"></i> Zoom</span>
+                            <span class="zoom-badge-premium"><span>🔍 Zoom</span></span>
                             <span class="image-number">02 / 03</span>
                         </div>
                         <div class="image-label-premium"><span class="emoji-big">🌋</span> Lapisan Geosfer Bumi</div>
-                        <div class="image-sub-premium"><i class="fas fa-arrow-right"></i> 5 lapisan penyusun bumi</div>
+                        <div class="image-sub-premium">5 lapisan penyusun bumi</div>
                     </div>
-                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/sungaikatingan.png', '🏞️ Sungai Katingan')" data-index="2">
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/sungaikatingan.png', 'Sungai Katingan')" data-index="2">
                         <div class="img-wrap">
                             <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/sungaikatingan.png" alt="Sungai Katingan" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🏞️ Sungai Katingan%3C/text%3E%3C/svg%3E'" />
                             <div class="overlay-glow"></div>
-                            <span class="zoom-badge-premium"><i class="fas fa-search-plus"></i> Zoom</span>
+                            <span class="zoom-badge-premium"><span>🔍 Zoom</span></span>
                             <span class="image-number">03 / 03</span>
                         </div>
                         <div class="image-label-premium"><span class="emoji-big">🏞️</span> Sungai Katingan</div>
-                        <div class="image-sub-premium"><i class="fas fa-arrow-right"></i> Contoh hidrosfer lokal</div>
+                        <div class="image-sub-premium">Contoh hidrosfer lokal</div>
                     </div>
                 </div>
             </div>
             <!-- Materi A -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
-                    <h4><i class="fas fa-book-open" style="color:#6c5ce7;"></i> A. Pengertian Geografi <span class="local-badge"><i class="fas fa-map-pin"></i> Asal Kata</span></h4>
-                    <i class="fas fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;"></i>
+                    <h4>A. Pengertian Geografi <span class="local-badge">Asal Kata</span></h4>
+                    <span class="fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;">▼</span>
                 </div>
                 <div class="detail-body">
                     <div class="detail-explanation">
@@ -2688,11 +2655,11 @@
                     </p>
                     <div style="background:rgba(253,203,110,0.03); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #fdcb6e;">
                         <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">
-                            <i class="fas fa-lightbulb" style="color:#fdcb6e;"></i> <strong style="color:rgba(255,255,255,0.7); font-weight:600;">Bayangkan:</strong> Seperti pelukis yang menggambar pemandangan, ahli geografi "melukis" gambaran tentang bumi.
+                            <strong style="color:rgba(255,255,255,0.7); font-weight:600;">Bayangkan:</strong> Seperti pelukis yang menggambar pemandangan, ahli geografi "melukis" gambaran tentang bumi.
                         </p>
                     </div>
                     <div style="margin-top:12px;">
-                        <h5 style="color:#a29bfe; font-weight:700; font-size:0.95rem;"><i class="fas fa-user-graduate"></i> Definisi Menurut Para Ahli</h5>
+                        <h5 style="color:#a29bfe; font-weight:700; font-size:0.95rem;">Definisi Menurut Para Ahli</h5>
                         <ul style="color:rgba(255,255,255,0.7); font-weight:400; padding-left:20px; line-height:2.2; font-size:0.92rem;">
                             <li><strong style="color:#f0f4fa;">Eratosthenes</strong> (Bapak Geografi): Geografi adalah ilmu yang menggambarkan permukaan bumi.</li>
                             <li><strong style="color:#f0f4fa;">Bintarto</strong>: Geografi adalah ilmu yang mempelajari hubungan kausal antara fenomena geosfer dan kehidupan manusia.</li>
@@ -2704,8 +2671,8 @@
             <!-- Materi B -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
-                    <h4><i class="fas fa-globe-asia" style="color:#00cec9;"></i> B. Hakikat Geografi <span class="local-badge"><i class="fas fa-tree"></i> Kalimantan</span></h4>
-                    <i class="fas fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;"></i>
+                    <h4>B. Hakikat Geografi <span class="local-badge">Kalimantan</span></h4>
+                    <span class="fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;">▼</span>
                 </div>
                 <div class="detail-body">
                     <div class="detail-explanation">
@@ -2724,7 +2691,7 @@
                     </div>
                     <div style="background:rgba(253,203,110,0.03); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #fdcb6e;">
                         <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">
-                            <i class="fas fa-tree" style="color:#fdcb6e;"></i> <strong style="color:rgba(255,255,255,0.7); font-weight:600;">Contoh Katingan:</strong> Wilayah Katingan memiliki lahan gambut luas, sungai besar, dan hutan hujan tropis yang menjadi ciri khas wilayahnya.
+                            <strong style="color:rgba(255,255,255,0.7); font-weight:600;">Contoh Katingan:</strong> Wilayah Katingan memiliki lahan gambut luas, sungai besar, dan hutan hujan tropis yang menjadi ciri khas wilayahnya.
                         </p>
                     </div>
                 </div>
@@ -2732,8 +2699,8 @@
             <!-- Materi C -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
-                    <h4><i class="fas fa-layer-group" style="color:#fd79a8;"></i> C. 5 Lapisan Geosfer <span class="local-badge"><i class="fas fa-water"></i> Sungai Katingan</span></h4>
-                    <i class="fas fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;"></i>
+                    <h4>C. 5 Lapisan Geosfer <span class="local-badge">Sungai Katingan</span></h4>
+                    <span class="fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;">▼</span>
                 </div>
                 <div class="detail-body">
                     <div class="detail-explanation">
@@ -2767,8 +2734,8 @@
             <!-- Materi D -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
-                    <h4><i class="fas fa-arrows-alt-h" style="color:#0984e3;"></i> D. Ruang Lingkup Geografi</h4>
-                    <i class="fas fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;"></i>
+                    <h4>D. Ruang Lingkup Geografi</h4>
+                    <span class="fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;">▼</span>
                 </div>
                 <div class="detail-body">
                     <div class="detail-explanation">
@@ -2780,21 +2747,21 @@
                             <h4 style="color:#00cec9; font-size:0.95rem; font-weight:700;">🏔️ Geografi Fisik</h4>
                             <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Mempelajari fenomena alam: litosfer, atmosfer, hidrosfer, biosfer. Contoh: Bentuk lahan, iklim, sungai, flora-fauna.</p>
                             <div style="margin-top:4px; background:rgba(0,0,0,0.1); border-radius:6px; padding:6px 10px;">
-                                <span style="font-size:0.8rem; color:rgba(255,255,255,0.4); font-weight:400;"><i class="fas fa-map-pin" style="color:#00cec9;"></i> Lokal: Lahan gambut Katingan, Sungai Katingan, iklim tropis.</span>
+                                <span style="font-size:0.8rem; color:rgba(255,255,255,0.4); font-weight:400;">Lokal: Lahan gambut Katingan, Sungai Katingan, iklim tropis.</span>
                             </div>
                         </div>
                         <div style="background:rgba(253,121,168,0.03); border-radius:10px; padding:12px 16px; border-left:4px solid #fd79a8;">
                             <h4 style="color:#fd79a8; font-size:0.95rem; font-weight:700;">👥 Geografi Sosial</h4>
                             <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Mempelajari aktivitas manusia: antroposfer, sosial, budaya, ekonomi, politik. Contoh: Persebaran penduduk, budaya, mata pencaharian.</p>
                             <div style="margin-top:4px; background:rgba(0,0,0,0.1); border-radius:6px; padding:6px 10px;">
-                                <span style="font-size:0.8rem; color:rgba(255,255,255,0.4); font-weight:400;"><i class="fas fa-map-pin" style="color:#fd79a8;"></i> Lokal: Masyarakat Dayak Ngaju, penambang emas, petani gambut.</span>
+                                <span style="font-size:0.8rem; color:rgba(255,255,255,0.4); font-weight:400;">Lokal: Masyarakat Dayak Ngaju, penambang emas, petani gambut.</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="mini-quiz reveal">
-                <div class="quiz-question">🧠 <strong>Kuis Cepat:</strong> Lapisan geosfer yang terdiri dari batuan dan tanah disebut...</div>
+                <div class="quiz-question">🧠 Kuis Cepat: Lapisan geosfer yang terdiri dari batuan dan tanah disebut...</div>
                 <div class="quiz-options">
                     <button onclick="checkQuiz(this, true)">Litosfer</button>
                     <button onclick="checkQuiz(this, false)">Atmosfer</button>
@@ -2805,9 +2772,9 @@
             </div>
             <div class="nav-buttons">
                 <div class="group">
-                    <button onclick="navigateTo('prev')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                    <button onclick="navigateTo('prev')">Sebelumnya</button>
                     <span class="page-numbers"></span>
-                    <button onclick="navigateTo('next')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                    <button onclick="navigateTo('next')">Selanjutnya</button>
                     <span class="counter">2 / 7</span>
                 </div>
             </div>
@@ -2817,26 +2784,26 @@
         <section id="section3" class="section">
             <div style="background:rgba(108,92,231,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(108,92,231,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
                 <div style="display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.4); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
-                <button onclick="navigateTo('section1')" style="background:rgba(255,255,255,0.02); color:rgba(255,255,255,0.3); border:1px solid rgba(255,255,255,0.03); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem;"><i class="fas fa-home"></i> Beranda</button>
+                <button onclick="navigateTo('section1')" style="background:rgba(255,255,255,0.02); color:rgba(255,255,255,0.3); border:1px solid rgba(255,255,255,0.03); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem;">⌂ Beranda</button>
             </div>
             <div class="section-header">
                 <div class="num">03</div>
                 <h2>Pertemuan 2 – Inti Kajian <small>Objek, Prinsip, Aspek, & Pendekatan</small></h2>
-                <span class="badge-pertemuan"><i class="far fa-clock"></i> 3×45'</span>
+                <span class="badge-pertemuan">3×45'</span>
             </div>
             <div class="progress-tracker">
                 <span class="step done">1</span><span class="line done"></span>
                 <span class="step active">2</span><span class="line"></span>
                 <span class="step">3</span><span class="line"></span>
                 <span class="step">4</span>
-                <span style="color:rgba(255,255,255,0.15); font-size:0.75rem; font-weight:500; margin-left:8px;">⚡ Klik untuk eksplorasi!</span>
+                <span style="color:rgba(255,255,255,0.15); font-size:0.75rem; font-weight:500; margin-left:8px;">Klik untuk eksplorasi</span>
             </div>
             <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;">
-                <span class="pertemuan-badge"><i class="fas fa-bullseye" style="color:#a29bfe;"></i> TP 2 & 3</span>
-                <span class="pertemuan-badge" style="background:rgba(0,206,201,0.08); color:#00cec9; border-color:rgba(0,206,201,0.06);"><i class="fas fa-users"></i> Kolaborasi</span>
-                <span class="pertemuan-badge" style="background:rgba(253,121,168,0.08); color:#fd79a8; border-color:rgba(253,121,168,0.06);"><i class="fas fa-lightbulb"></i> Kreativitas</span>
+                <span class="pertemuan-badge">TP 2 & 3</span>
+                <span class="pertemuan-badge" style="background:rgba(0,206,201,0.08); color:#00cec9; border-color:rgba(0,206,201,0.06);">Kolaborasi</span>
+                <span class="pertemuan-badge" style="background:rgba(253,121,168,0.08); color:#fd79a8; border-color:rgba(253,121,168,0.06);">Kreativitas</span>
             </div>
-            <h3 style="font-size:1.05rem; color:#f0f4fa; font-weight:700; border-left:4px solid #6c5ce7; padding-left:12px; margin-bottom:6px;"><i class="fas fa-bullseye" style="color:#a29bfe;"></i> Tujuan Pembelajaran</h3>
+            <h3 style="font-size:1.05rem; color:#f0f4fa; font-weight:700; border-left:4px solid #6c5ce7; padding-left:12px; margin-bottom:6px;">Tujuan Pembelajaran</h3>
             <ul style="color:rgba(255,255,255,0.7); font-weight:400; padding-left:20px; margin-bottom:16px; line-height:2; font-size:0.95rem;">
                 <li>Membedakan objek material dan objek formal geografi dengan contoh nyata di Katingan.</li>
                 <li>Menjelaskan 4 prinsip geografi (distribusi, interelasi, deskripsi, korologi) dengan ilustrasi lokal.</li>
@@ -2847,51 +2814,49 @@
             <div style="margin:16px 0;">
                 <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:14px;">
                     <h4 style="color:#a29bfe; font-size:0.95rem; font-weight:700; display:flex; align-items:center; gap:10px;">
-                        <i class="fas fa-images" style="color:#00cec9;"></i> Galeri Gambar
-                        <span style="background:rgba(0,206,201,0.06); color:#00cec9; padding:2px 12px; border-radius:20px; font-size:0.65rem; font-weight:700; letter-spacing:0.5px;">✨ 3D Tilt</span>
+                        Galeri Gambar
+                        <span style="background:rgba(0,206,201,0.06); color:#00cec9; padding:2px 12px; border-radius:20px; font-size:0.65rem; font-weight:700; letter-spacing:0.5px;">3D Tilt</span>
                     </h4>
-                    <span style="color:rgba(255,255,255,0.15); font-size:0.7rem; font-weight:400;">
-                        <i class="fas fa-mouse-pointer"></i> Hover untuk efek 3D · Klik untuk zoom
-                    </span>
+                    <span style="color:rgba(255,255,255,0.15); font-size:0.7rem; font-weight:400;">Hover untuk efek 3D · Klik untuk zoom</span>
                 </div>
                 <div class="grid-3">
-                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/TAMBANGTRADISIONAL.png', '⛏️ Penambangan Emas Tradisional')" data-index="3">
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/TAMBANGTRADISIONAL.png', 'Penambangan Emas Tradisional')" data-index="3">
                         <div class="img-wrap">
                             <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/TAMBANGTRADISIONAL.png" alt="Tambang Emas" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E⛏️ Tambang Emas%3C/text%3E%3C/svg%3E'" />
                             <div class="overlay-glow"></div>
-                            <span class="zoom-badge-premium"><i class="fas fa-search-plus"></i> Zoom</span>
+                            <span class="zoom-badge-premium"><span>🔍 Zoom</span></span>
                             <span class="image-number">01 / 03</span>
                         </div>
                         <div class="image-label-premium"><span class="emoji-big">⛏️</span> Tambang Emas Tradisional</div>
-                        <div class="image-sub-premium"><i class="fas fa-arrow-right"></i> Interelasi manusia & lingkungan</div>
+                        <div class="image-sub-premium">Interelasi manusia & lingkungan</div>
                     </div>
-                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/BUDAYA1.png', '🎭 Budaya Dayak Ngaju')" data-index="4">
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/BUDAYA1.png', 'Budaya Dayak Ngaju')" data-index="4">
                         <div class="img-wrap">
                             <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/BUDAYA1.png" alt="Budaya Dayak" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🎭 Budaya Dayak%3C/text%3E%3C/svg%3E'" />
                             <div class="overlay-glow"></div>
-                            <span class="zoom-badge-premium"><i class="fas fa-search-plus"></i> Zoom</span>
+                            <span class="zoom-badge-premium"><span>🔍 Zoom</span></span>
                             <span class="image-number">02 / 03</span>
                         </div>
                         <div class="image-label-premium"><span class="emoji-big">🎭</span> Budaya Dayak Ngaju</div>
-                        <div class="image-sub-premium"><i class="fas fa-arrow-right"></i> Aspek sosial budaya</div>
+                        <div class="image-sub-premium">Aspek sosial budaya</div>
                     </div>
-                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/lahangambut.png', '🌿 Lahan Gambut Katingan')" data-index="5">
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/lahangambut.png', 'Lahan Gambut Katingan')" data-index="5">
                         <div class="img-wrap">
                             <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/lahangambut.png" alt="Lahan Gambut" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🌿 Lahan Gambut%3C/text%3E%3C/svg%3E'" />
                             <div class="overlay-glow"></div>
-                            <span class="zoom-badge-premium"><i class="fas fa-search-plus"></i> Zoom</span>
+                            <span class="zoom-badge-premium"><span>🔍 Zoom</span></span>
                             <span class="image-number">03 / 03</span>
                         </div>
                         <div class="image-label-premium"><span class="emoji-big">🌿</span> Lahan Gambut Katingan</div>
-                        <div class="image-sub-premium"><i class="fas fa-arrow-right"></i> Aspek fisik geografi</div>
+                        <div class="image-sub-premium">Aspek fisik geografi</div>
                     </div>
                 </div>
             </div>
             <!-- Materi A -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
-                    <h4><i class="fas fa-search" style="color:#6c5ce7;"></i> A. Objek Studi Geografi <span class="local-badge"><i class="fas fa-map-pin"></i> Katingan</span></h4>
-                    <i class="fas fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;"></i>
+                    <h4>A. Objek Studi Geografi <span class="local-badge">Katingan</span></h4>
+                    <span class="fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;">▼</span>
                 </div>
                 <div class="detail-body">
                     <div class="detail-explanation">
@@ -2922,7 +2887,7 @@
                     </div>
                     <div style="background:rgba(253,203,110,0.03); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #fdcb6e;">
                         <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">
-                            <i class="fas fa-lightbulb" style="color:#fdcb6e;"></i> <strong style="color:rgba(255,255,255,0.7); font-weight:600;">Ingat:</strong> Objek material adalah <em>apa</em> yang dipelajari, objek formal adalah <em>bagaimana</em> cara mempelajarinya.
+                            <strong style="color:rgba(255,255,255,0.7); font-weight:600;">Ingat:</strong> Objek material adalah <em>apa</em> yang dipelajari, objek formal adalah <em>bagaimana</em> cara mempelajarinya.
                         </p>
                     </div>
                 </div>
@@ -2930,8 +2895,8 @@
             <!-- Materi B -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
-                    <h4><i class="fas fa-balance-scale" style="color:#fdcb6e;"></i> B. 4 Prinsip Geografi</h4>
-                    <i class="fas fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;"></i>
+                    <h4>B. 4 Prinsip Geografi</h4>
+                    <span class="fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;">▼</span>
                 </div>
                 <div class="detail-body">
                     <div class="detail-explanation">
@@ -2943,28 +2908,28 @@
                             <h4 style="color:#a29bfe; font-size:0.9rem; font-weight:700;">1. Distribusi (Penyebaran)</h4>
                             <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Fenomena geosfer tersebar tidak merata di permukaan bumi.</p>
                             <div style="margin-top:4px; background:rgba(0,0,0,0.1); border-radius:6px; padding:6px 10px;">
-                                <span style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400;"><i class="fas fa-map-pin" style="color:#6c5ce7;"></i> Contoh: Tambang emas tersebar di sepanjang aliran Sungai Katingan.</span>
+                                <span style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400;">Contoh: Tambang emas tersebar di sepanjang aliran Sungai Katingan.</span>
                             </div>
                         </div>
                         <div style="background:rgba(0,206,201,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #00cec9;">
                             <h4 style="color:#00cec9; font-size:0.9rem; font-weight:700;">2. Interelasi (Saling Hubung)</h4>
                             <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Fenomena satu saling memengaruhi fenomena lainnya.</p>
                             <div style="margin-top:4px; background:rgba(0,0,0,0.1); border-radius:6px; padding:6px 10px;">
-                                <span style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400;"><i class="fas fa-map-pin" style="color:#00cec9;"></i> Contoh: Tambang emas → mencemari sungai → ikan mati → nelayan kehilangan pendapatan.</span>
+                                <span style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400;">Contoh: Tambang emas → mencemari sungai → ikan mati → nelayan kehilangan pendapatan.</span>
                             </div>
                         </div>
                         <div style="background:rgba(253,121,168,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #fd79a8;">
                             <h4 style="color:#fd79a8; font-size:0.9rem; font-weight:700;">3. Deskripsi (Penggambaran)</h4>
                             <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Fenomena digambarkan secara detail dan faktual.</p>
                             <div style="margin-top:4px; background:rgba(0,0,0,0.1); border-radius:6px; padding:6px 10px;">
-                                <span style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400;"><i class="fas fa-map-pin" style="color:#fd79a8;"></i> Contoh: Lahan gambut Katingan memiliki ketebalan 3-8 meter dengan vegetasi khas.</span>
+                                <span style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400;">Contoh: Lahan gambut Katingan memiliki ketebalan 3-8 meter dengan vegetasi khas.</span>
                             </div>
                         </div>
                         <div style="background:rgba(253,203,110,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #fdcb6e;">
                             <h4 style="color:#fdcb6e; font-size:0.9rem; font-weight:700;">4. Korologi (Gabungan)</h4>
                             <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Gabungan distribusi + interelasi + deskripsi dalam satu wilayah.</p>
                             <div style="margin-top:4px; background:rgba(0,0,0,0.1); border-radius:6px; padding:6px 10px;">
-                                <span style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400;"><i class="fas fa-map-pin" style="color:#fdcb6e;"></i> Contoh: Analisis komprehensif Katingan sebagai wilayah gambut dengan segala karakteristiknya.</span>
+                                <span style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400;">Contoh: Analisis komprehensif Katingan sebagai wilayah gambut dengan segala karakteristiknya.</span>
                             </div>
                         </div>
                     </div>
@@ -2973,8 +2938,8 @@
             <!-- Materi C -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
-                    <h4><i class="fas fa-cubes" style="color:#0984e3;"></i> C. Aspek Geografi</h4>
-                    <i class="fas fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;"></i>
+                    <h4>C. Aspek Geografi</h4>
+                    <span class="fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;">▼</span>
                 </div>
                 <div class="detail-body">
                     <div class="detail-explanation">
@@ -2992,7 +2957,7 @@
                                 <li>Flora dan fauna</li>
                             </ul>
                             <div style="margin-top:4px; background:rgba(0,0,0,0.1); border-radius:6px; padding:6px 10px;">
-                                <span style="font-size:0.8rem; color:rgba(255,255,255,0.4); font-weight:400;"><i class="fas fa-map-pin" style="color:#00cec9;"></i> Lokal: Lahan gambut, Sungai Katingan, iklim tropis.</span>
+                                <span style="font-size:0.8rem; color:rgba(255,255,255,0.4); font-weight:400;">Lokal: Lahan gambut, Sungai Katingan, iklim tropis.</span>
                             </div>
                         </div>
                         <div style="background:rgba(253,121,168,0.03); border-radius:12px; padding:14px; border-left:4px solid #fd79a8;">
@@ -3005,7 +2970,7 @@
                                 <li>Kelembagaan</li>
                             </ul>
                             <div style="margin-top:4px; background:rgba(0,0,0,0.1); border-radius:6px; padding:6px 10px;">
-                                <span style="font-size:0.8rem; color:rgba(255,255,255,0.4); font-weight:400;"><i class="fas fa-map-pin" style="color:#fd79a8;"></i> Lokal: Masyarakat Dayak Ngaju, penambang emas, budaya rumah betang.</span>
+                                <span style="font-size:0.8rem; color:rgba(255,255,255,0.4); font-weight:400;">Lokal: Masyarakat Dayak Ngaju, penambang emas, budaya rumah betang.</span>
                             </div>
                         </div>
                     </div>
@@ -3014,8 +2979,8 @@
             <!-- Materi D -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
-                    <h4><i class="fas fa-route" style="color:#6c5ce7;"></i> D. Pendekatan Geografi</h4>
-                    <i class="fas fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;"></i>
+                    <h4>D. Pendekatan Geografi</h4>
+                    <span class="fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;">▼</span>
                 </div>
                 <div class="detail-body">
                     <div class="detail-explanation">
@@ -3027,28 +2992,28 @@
                             <h4 style="color:#a29bfe; font-size:0.9rem; font-weight:700;">📍 Pendekatan Keruangan</h4>
                             <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Menganalisis persebaran dan pola fenomena dalam ruang.</p>
                             <div style="margin-top:4px; background:rgba(0,0,0,0.1); border-radius:6px; padding:6px 10px;">
-                                <span style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400;"><i class="fas fa-map-pin" style="color:#6c5ce7;"></i> Contoh: Pemetaan persebaran tambang emas di Katingan.</span>
+                                <span style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400;">Contoh: Pemetaan persebaran tambang emas di Katingan.</span>
                             </div>
                         </div>
                         <div style="background:rgba(0,206,201,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #00cec9;">
                             <h4 style="color:#00cec9; font-size:0.9rem; font-weight:700;">🌿 Pendekatan Kelingkungan</h4>
                             <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Menganalisis interaksi manusia dengan lingkungan.</p>
                             <div style="margin-top:4px; background:rgba(0,0,0,0.1); border-radius:6px; padding:6px 10px;">
-                                <span style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400;"><i class="fas fa-map-pin" style="color:#00cec9;"></i> Contoh: Dampak penambangan emas terhadap ekosistem sungai.</span>
+                                <span style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400;">Contoh: Dampak penambangan emas terhadap ekosistem sungai.</span>
                             </div>
                         </div>
                         <div style="background:rgba(253,121,168,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #fd79a8;">
                             <h4 style="color:#fd79a8; font-size:0.9rem; font-weight:700;">🏛️ Pendekatan Kompleks Wilayah</h4>
                             <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Menganalisis karakteristik unik suatu wilayah secara terpadu.</p>
                             <div style="margin-top:4px; background:rgba(0,0,0,0.1); border-radius:6px; padding:6px 10px;">
-                                <span style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400;"><i class="fas fa-map-pin" style="color:#fd79a8;"></i> Contoh: Analisis komprehensif Katingan sebagai wilayah gambut.</span>
+                                <span style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400;">Contoh: Analisis komprehensif Katingan sebagai wilayah gambut.</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="mini-quiz reveal">
-                <div class="quiz-question">🧠 <strong>Kuis Cepat:</strong> Prinsip geografi yang menekankan fenomena saling memengaruhi adalah...</div>
+                <div class="quiz-question">🧠 Kuis Cepat: Prinsip geografi yang menekankan fenomena saling memengaruhi adalah...</div>
                 <div class="quiz-options">
                     <button onclick="checkQuiz(this, false)">Distribusi</button>
                     <button onclick="checkQuiz(this, true)">Interelasi</button>
@@ -3059,9 +3024,9 @@
             </div>
             <div class="nav-buttons">
                 <div class="group">
-                    <button onclick="navigateTo('prev')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                    <button onclick="navigateTo('prev')">Sebelumnya</button>
                     <span class="page-numbers"></span>
-                    <button onclick="navigateTo('next')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                    <button onclick="navigateTo('next')">Selanjutnya</button>
                     <span class="counter">3 / 7</span>
                 </div>
             </div>
@@ -3071,26 +3036,26 @@
         <section id="section4" class="section">
             <div style="background:rgba(108,92,231,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(108,92,231,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
                 <div style="display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.4); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
-                <button onclick="navigateTo('section1')" style="background:rgba(255,255,255,0.02); color:rgba(255,255,255,0.3); border:1px solid rgba(255,255,255,0.03); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem;"><i class="fas fa-home"></i> Beranda</button>
+                <button onclick="navigateTo('section1')" style="background:rgba(255,255,255,0.02); color:rgba(255,255,255,0.3); border:1px solid rgba(255,255,255,0.03); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem;">⌂ Beranda</button>
             </div>
             <div class="section-header">
                 <div class="num">04</div>
                 <h2>Pertemuan 3 – Aplikasi & Evaluasi <small>Keterampilan, Manfaat, & Studi Kasus</small></h2>
-                <span class="badge-pertemuan"><i class="far fa-clock"></i> 3×45'</span>
+                <span class="badge-pertemuan">3×45'</span>
             </div>
             <div class="progress-tracker">
                 <span class="step done">1</span><span class="line done"></span>
                 <span class="step done">2</span><span class="line done"></span>
                 <span class="step active">3</span><span class="line"></span>
                 <span class="step">4</span>
-                <span style="color:rgba(255,255,255,0.15); font-size:0.75rem; font-weight:500; margin-left:8px;">⚡ Klik untuk eksplorasi!</span>
+                <span style="color:rgba(255,255,255,0.15); font-size:0.75rem; font-weight:500; margin-left:8px;">Klik untuk eksplorasi</span>
             </div>
             <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;">
-                <span class="pertemuan-badge"><i class="fas fa-bullseye" style="color:#a29bfe;"></i> TP 4</span>
-                <span class="pertemuan-badge" style="background:rgba(0,206,201,0.08); color:#00cec9; border-color:rgba(0,206,201,0.06);"><i class="fas fa-lightbulb"></i> Kreativitas</span>
-                <span class="pertemuan-badge" style="background:rgba(253,121,168,0.08); color:#fd79a8; border-color:rgba(253,121,168,0.06);"><i class="fas fa-user-check"></i> Kemandirian</span>
+                <span class="pertemuan-badge">TP 4</span>
+                <span class="pertemuan-badge" style="background:rgba(0,206,201,0.08); color:#00cec9; border-color:rgba(0,206,201,0.06);">Kreativitas</span>
+                <span class="pertemuan-badge" style="background:rgba(253,121,168,0.08); color:#fd79a8; border-color:rgba(253,121,168,0.06);">Kemandirian</span>
             </div>
-            <h3 style="font-size:1.05rem; color:#f0f4fa; font-weight:700; border-left:4px solid #6c5ce7; padding-left:12px; margin-bottom:6px;"><i class="fas fa-bullseye" style="color:#a29bfe;"></i> Tujuan Pembelajaran</h3>
+            <h3 style="font-size:1.05rem; color:#f0f4fa; font-weight:700; border-left:4px solid #6c5ce7; padding-left:12px; margin-bottom:6px;">Tujuan Pembelajaran</h3>
             <ul style="color:rgba(255,255,255,0.7); font-weight:400; padding-left:20px; margin-bottom:16px; line-height:2; font-size:0.95rem;">
                 <li>Menjelaskan manfaat geografi dalam kehidupan dan pembangunan berkelanjutan.</li>
                 <li>Melatih keterampilan dasar geografi (observasi, interpretasi data).</li>
@@ -3101,51 +3066,49 @@
             <div style="margin:16px 0;">
                 <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:14px;">
                     <h4 style="color:#a29bfe; font-size:0.95rem; font-weight:700; display:flex; align-items:center; gap:10px;">
-                        <i class="fas fa-images" style="color:#fd79a8;"></i> Galeri Gambar Premium
-                        <span style="background:rgba(108,92,231,0.06); color:#a29bfe; padding:2px 12px; border-radius:20px; font-size:0.65rem; font-weight:700; letter-spacing:0.5px;">✨ 3D Tilt</span>
+                        Galeri Gambar Premium
+                        <span style="background:rgba(108,92,231,0.06); color:#a29bfe; padding:2px 12px; border-radius:20px; font-size:0.65rem; font-weight:700; letter-spacing:0.5px;">3D Tilt</span>
                     </h4>
-                    <span style="color:rgba(255,255,255,0.15); font-size:0.7rem; font-weight:400;">
-                        <i class="fas fa-mouse-pointer"></i> Hover untuk efek 3D · Klik untuk zoom
-                    </span>
+                    <span style="color:rgba(255,255,255,0.15); font-size:0.7rem; font-weight:400;">Hover untuk efek 3D · Klik untuk zoom</span>
                 </div>
                 <div class="grid-3">
-                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/hidupberkelanjutan.png', '🌱 Pembangunan Berkelanjutan')" data-index="6">
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/hidupberkelanjutan.png', 'Pembangunan Berkelanjutan')" data-index="6">
                         <div class="img-wrap">
                             <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/hidupberkelanjutan.png" alt="Pembangunan Berkelanjutan" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🌱 Berkelanjutan%3C/text%3E%3C/svg%3E'" />
                             <div class="overlay-glow"></div>
-                            <span class="zoom-badge-premium"><i class="fas fa-search-plus"></i> Zoom</span>
+                            <span class="zoom-badge-premium"><span>🔍 Zoom</span></span>
                             <span class="image-number">01 / 03</span>
                         </div>
                         <div class="image-label-premium"><span class="emoji-big">🌱</span> Pembangunan Berkelanjutan</div>
-                        <div class="image-sub-premium"><i class="fas fa-arrow-right"></i> Perencanaan tata ruang ramah lingkungan</div>
+                        <div class="image-sub-premium">Perencanaan tata ruang ramah lingkungan</div>
                     </div>
-                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/mitigasibanjir.png', '🌊 Mitigasi Bencana Banjir')" data-index="7">
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/mitigasibanjir.png', 'Mitigasi Bencana Banjir')" data-index="7">
                         <div class="img-wrap">
                             <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/mitigasibanjir.png" alt="Mitigasi Banjir" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🌊 Mitigasi Banjir%3C/text%3E%3C/svg%3E'" />
                             <div class="overlay-glow"></div>
-                            <span class="zoom-badge-premium"><i class="fas fa-search-plus"></i> Zoom</span>
+                            <span class="zoom-badge-premium"><span>🔍 Zoom</span></span>
                             <span class="image-number">02 / 03</span>
                         </div>
                         <div class="image-label-premium"><span class="emoji-big">🌊</span> Mitigasi Bencana Banjir</div>
-                        <div class="image-sub-premium"><i class="fas fa-arrow-right"></i> Sistem peringatan dini & infrastruktur</div>
+                        <div class="image-sub-premium">Sistem peringatan dini & infrastruktur</div>
                     </div>
-                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/tnsebngau.png', '🦧 Ekowisata Katingan')" data-index="8">
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/tnsebngau.png', 'Ekowisata Katingan')" data-index="8">
                         <div class="img-wrap">
                             <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/tnsebngau.png" alt="Ekowisata" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🦧 Ekowisata%3C/text%3E%3C/svg%3E'" />
                             <div class="overlay-glow"></div>
-                            <span class="zoom-badge-premium"><i class="fas fa-search-plus"></i> Zoom</span>
+                            <span class="zoom-badge-premium"><span>🔍 Zoom</span></span>
                             <span class="image-number">03 / 03</span>
                         </div>
                         <div class="image-label-premium"><span class="emoji-big">🦧</span> Ekowisata Katingan</div>
-                        <div class="image-sub-premium"><i class="fas fa-arrow-right"></i> Wisata alam & ekonomi berkelanjutan</div>
+                        <div class="image-sub-premium">Wisata alam & ekonomi berkelanjutan</div>
                     </div>
                 </div>
             </div>
             <!-- Materi A -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
-                    <h4><i class="fas fa-tools" style="color:#6c5ce7;"></i> A. Keterampilan Dasar Geografi</h4>
-                    <i class="fas fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;"></i>
+                    <h4>A. Keterampilan Dasar Geografi</h4>
+                    <span class="fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;">▼</span>
                 </div>
                 <div class="detail-body">
                     <div class="detail-explanation">
@@ -3175,8 +3138,8 @@
             <!-- Materi B -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
-                    <h4><i class="fas fa-hand-holding-heart" style="color:#fd79a8;"></i> B. Manfaat Geografi</h4>
-                    <i class="fas fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;"></i>
+                    <h4>B. Manfaat Geografi</h4>
+                    <span class="fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;">▼</span>
                 </div>
                 <div class="detail-body">
                     <div class="detail-explanation">
@@ -3206,8 +3169,8 @@
             <!-- Materi C -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
-                    <h4><i class="fas fa-fire" style="color:#e74c3c;"></i> C. Studi Kasus Lokal: Kebakaran Hutan & Lahan <span class="local-badge"><i class="fas fa-tree"></i> Katingan</span></h4>
-                    <i class="fas fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;"></i>
+                    <h4>C. Studi Kasus Lokal: Kebakaran Hutan & Lahan <span class="local-badge">Katingan</span></h4>
+                    <span class="fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;">▼</span>
                 </div>
                 <div class="detail-body">
                     <div class="detail-explanation">
@@ -3215,7 +3178,7 @@
                         <p>Studi kasus <span class="highlight">kebakaran hutan dan lahan</span> di Kabupaten Katingan sebagai fenomena geosfer yang kompleks.</p>
                     </div>
                     <div class="studi-kasus">
-                        <h4><i class="fas fa-map-pin"></i> Fenomena Karhutla Katingan <span class="tag-lokal">Lokal</span></h4>
+                        <h4>Fenomena Karhutla Katingan <span class="tag-lokal">Lokal</span></h4>
                         <p><strong style="color:#f0f4fa;">Deskripsi:</strong> Kebakaran hutan dan lahan terjadi hampir setiap tahun di Katingan, terutama pada musim kemarau. Lahan gambut yang kering mudah terbakar dan sulit dipadamkan.</p>
                         <ul>
                             <li><strong>Distribusi:</strong> Karhutla tersebar di lahan gambut dan hutan di Katingan.</li>
@@ -3238,8 +3201,8 @@
             <!-- Materi D -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
-                    <h4><i class="fas fa-briefcase" style="color:#0984e3;"></i> D. Profesi di Bidang Geografi</h4>
-                    <i class="fas fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;"></i>
+                    <h4>D. Profesi di Bidang Geografi</h4>
+                    <span class="fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;">▼</span>
                 </div>
                 <div class="detail-body">
                     <div class="detail-explanation">
@@ -3257,7 +3220,7 @@
                 </div>
             </div>
             <div class="mini-quiz reveal">
-                <div class="quiz-question">🧠 <strong>Kuis Cepat:</strong> Manfaat geografi untuk mengurangi risiko bencana disebut...</div>
+                <div class="quiz-question">🧠 Kuis Cepat: Manfaat geografi untuk mengurangi risiko bencana disebut...</div>
                 <div class="quiz-options">
                     <button onclick="checkQuiz(this, false)">Memahami budaya</button>
                     <button onclick="checkQuiz(this, false)">Analisis ekonomi</button>
@@ -3268,9 +3231,9 @@
             </div>
             <div class="nav-buttons">
                 <div class="group">
-                    <button onclick="navigateTo('prev')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                    <button onclick="navigateTo('prev')">Sebelumnya</button>
                     <span class="page-numbers"></span>
-                    <button onclick="navigateTo('next')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                    <button onclick="navigateTo('next')">Selanjutnya</button>
                     <span class="counter">4 / 7</span>
                 </div>
             </div>
@@ -3280,32 +3243,32 @@
         <section id="section5" class="section">
             <div style="background:rgba(108,92,231,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(108,92,231,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
                 <div style="display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.4); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
-                <button onclick="navigateTo('section1')" style="background:rgba(255,255,255,0.02); color:rgba(255,255,255,0.3); border:1px solid rgba(255,255,255,0.03); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem;"><i class="fas fa-home"></i> Beranda</button>
+                <button onclick="navigateTo('section1')" style="background:rgba(255,255,255,0.02); color:rgba(255,255,255,0.3); border:1px solid rgba(255,255,255,0.03); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem;">⌂ Beranda</button>
             </div>
             <div class="section-header">
                 <div class="num">05</div>
                 <h2>Asesmen <small>Evaluasi Pemahaman</small></h2>
-                <span class="badge-pertemuan"><i class="fas fa-check-circle"></i> 30 Soal</span>
+                <span class="badge-pertemuan">30 Soal</span>
             </div>
             <!-- Statistik Soal -->
             <div style="background:linear-gradient(145deg, rgba(20,26,46,0.8), rgba(10,16,36,0.8)); backdrop-filter:blur(12px); border-radius:16px; padding:20px 24px; margin-bottom:24px; border:1px solid rgba(255,255,255,0.03);">
                 <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap:12px;">
                     <div style="display:flex; align-items:center; gap:12px; padding:10px 14px; background:rgba(108,92,231,0.04); border-radius:12px; border:1px solid rgba(108,92,231,0.06);">
-                        <div style="width:36px; height:36px; border-radius:50%; background:rgba(108,92,231,0.08); display:flex; align-items:center; justify-content:center;"><i class="fas fa-list-ol" style="color:#a29bfe;"></i></div>
+                        <div style="width:36px; height:36px; border-radius:50%; background:rgba(108,92,231,0.08); display:flex; align-items:center; justify-content:center;">A</div>
                         <div><span style="color:rgba(255,255,255,0.2); font-size:0.6rem; font-weight:600; text-transform:uppercase;">Pilihan Ganda</span><div style="color:#f0f4fa; font-size:1.2rem; font-weight:700;">15</div></div>
                     </div>
                     <div style="display:flex; align-items:center; gap:12px; padding:10px 14px; background:rgba(0,206,201,0.04); border-radius:12px; border:1px solid rgba(0,206,201,0.06);">
-                        <div style="width:36px; height:36px; border-radius:50%; background:rgba(0,206,201,0.08); display:flex; align-items:center; justify-content:center;"><i class="fas fa-check-double" style="color:#00cec9;"></i></div>
+                        <div style="width:36px; height:36px; border-radius:50%; background:rgba(0,206,201,0.08); display:flex; align-items:center; justify-content:center;">B</div>
                         <div><span style="color:rgba(255,255,255,0.2); font-size:0.6rem; font-weight:600; text-transform:uppercase;">Benar/Salah</span><div style="color:#f0f4fa; font-size:1.2rem; font-weight:700;">10</div></div>
                     </div>
                     <div style="display:flex; align-items:center; gap:12px; padding:10px 14px; background:rgba(253,121,168,0.04); border-radius:12px; border:1px solid rgba(253,121,168,0.06);">
-                        <div style="width:36px; height:36px; border-radius:50%; background:rgba(253,121,168,0.08); display:flex; align-items:center; justify-content:center;"><i class="fas fa-pencil-alt" style="color:#fd79a8;"></i></div>
+                        <div style="width:36px; height:36px; border-radius:50%; background:rgba(253,121,168,0.08); display:flex; align-items:center; justify-content:center;">C</div>
                         <div><span style="color:rgba(255,255,255,0.2); font-size:0.6rem; font-weight:600; text-transform:uppercase;">Essay</span><div style="color:#f0f4fa; font-size:1.2rem; font-weight:700;">5</div></div>
                     </div>
                 </div>
                 <div style="margin-top:14px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.02); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
-                    <span style="color:rgba(255,255,255,0.25); font-size:0.85rem; font-weight:400;"><i class="fas fa-info-circle" style="color:#a29bfe;"></i> Total <strong style="color:#f0f4fa; font-weight:700;">30 soal</strong> · Kerjakan dengan jujur</span>
-                    <span style="color:rgba(255,255,255,0.1); font-size:0.75rem; font-weight:400;"><i class="far fa-clock"></i> 60 menit</span>
+                    <span style="color:rgba(255,255,255,0.25); font-size:0.85rem; font-weight:400;">Total <strong style="color:#f0f4fa; font-weight:700;">30 soal</strong> · Kerjakan dengan jujur</span>
+                    <span style="color:rgba(255,255,255,0.1); font-size:0.75rem; font-weight:400;">60 menit</span>
                 </div>
             </div>
             <!-- PILIHAN GANDA -->
@@ -3315,7 +3278,7 @@
                     <h3 style="color:#f0f4fa; font-size:1.05rem; font-weight:700; margin:0;">Pilihan Ganda</h3>
                     <span style="font-size:0.7rem; color:rgba(255,255,255,0.1); font-weight:400; margin-left:auto;">15 Soal</span>
                 </div>
-                <p style="color:rgba(255,255,255,0.2); font-size:0.8rem; font-weight:400; margin-bottom:12px;"><i class="fas fa-arrow-right" style="color:#a29bfe;"></i> Pilih satu jawaban paling tepat!</p>
+                <p style="color:rgba(255,255,255,0.2); font-size:0.8rem; font-weight:400; margin-bottom:12px;">Pilih satu jawaban paling tepat!</p>
                 <div class="soal-pg"><div class="pertanyaan"><span class="nomor">1.</span> Kata "geografi" berasal dari bahasa Yunani "geo" dan "graphien" yang artinya ...</div><div class="opsi"><span>A. Bumi dan langit</span><span>B. Bumi dan menulis/melukis</span><span>C. Alam dan manusia</span><span>D. Wilayah dan peta</span><span>E. Iklim dan cuaca</span></div></div>
                 <div class="soal-pg"><div class="pertanyaan"><span class="nomor">2.</span> Tokoh yang dijuluki "Bapak Geografi" adalah ...</div><div class="opsi"><span>A. Ptolemaeus</span><span>B. Immanuel Kant</span><span>C. Eratosthenes</span><span>D. Humboldt</span><span>E. Carl Ritter</span></div></div>
                 <div class="soal-pg"><div class="pertanyaan"><span class="nomor">3.</span> Objek material geografi adalah ...</div><div class="opsi"><span>A. Cara pandang geografi</span><span>B. Seluruh fenomena geosfer</span><span>C. Metode penelitian</span><span>D. Peta dan data</span><span>E. Hubungan manusia-lingkungan</span></div></div>
@@ -3339,7 +3302,7 @@
                     <h3 style="color:#f0f4fa; font-size:1.05rem; font-weight:700; margin:0;">Benar / Salah</h3>
                     <span style="font-size:0.7rem; color:rgba(255,255,255,0.1); font-weight:400; margin-left:auto;">10 Soal</span>
                 </div>
-                <p style="color:rgba(255,255,255,0.2); font-size:0.8rem; font-weight:400; margin-bottom:12px;"><i class="fas fa-arrow-right" style="color:#00cec9;"></i> Tuliskan B (Benar) atau S (Salah) pada lembar jawaban!</p>
+                <p style="color:rgba(255,255,255,0.2); font-size:0.8rem; font-weight:400; margin-bottom:12px;">Tuliskan B (Benar) atau S (Salah) pada lembar jawaban!</p>
                 <div class="soal-bs"><span class="nomor">1.</span><span class="pertanyaan">Geografi berasal dari bahasa Yunani "geo" yang berarti menulis.</span></div>
                 <div class="soal-bs"><span class="nomor">2.</span><span class="pertanyaan">Eratosthenes dijuluki sebagai "Bapak Geografi".</span></div>
                 <div class="soal-bs"><span class="nomor">3.</span><span class="pertanyaan">Objek formal geografi adalah seluruh fenomena geosfer.</span></div>
@@ -3358,7 +3321,7 @@
                     <h3 style="color:#f0f4fa; font-size:1.05rem; font-weight:700; margin:0;">Essay</h3>
                     <span style="font-size:0.7rem; color:rgba(255,255,255,0.1); font-weight:400; margin-left:auto;">5 Soal</span>
                 </div>
-                <p style="color:rgba(255,255,255,0.2); font-size:0.8rem; font-weight:400; margin-bottom:12px;"><i class="fas fa-arrow-right" style="color:#fdcb6e;"></i> Jawablah dengan jelas dan lengkap!</p>
+                <p style="color:rgba(255,255,255,0.2); font-size:0.8rem; font-weight:400; margin-bottom:12px;">Jawablah dengan jelas dan lengkap!</p>
                 <div class="soal-essay"><div class="pertanyaan"><span class="nomor">1.</span> Jelaskan pengertian geografi secara etimologis dan berikan contohnya dalam kehidupan sehari-hari!</div><div class="petunjuk">(Skor: 0-10) · Jawaban minimal 3 kalimat</div></div>
                 <div class="soal-essay"><div class="pertanyaan"><span class="nomor">2.</span> Sebutkan dan jelaskan 4 prinsip geografi beserta contohnya di Kabupaten Katingan!</div><div class="petunjuk">(Skor: 0-10) · Sebutkan 4 prinsip dengan contoh masing-masing</div></div>
                 <div class="soal-essay"><div class="pertanyaan"><span class="nomor">3.</span> Apa perbedaan antara objek material dan objek formal geografi? Berikan contohnya!</div><div class="petunjuk">(Skor: 0-10) · Jelaskan perbedaan dan berikan contoh konkret</div></div>
@@ -3370,20 +3333,20 @@
                 <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
                     <div style="width:32px; height:32px; border-radius:50%; background:rgba(253,203,110,0.08); display:flex; align-items:center; justify-content:center; font-weight:700; color:#fdcb6e; font-size:0.85rem;">🔑</div>
                     <h3 style="color:#fdcb6e; font-size:1.05rem; font-weight:700; margin:0;">Kunci Jawaban</h3>
-                    <span style="font-size:0.65rem; color:rgba(255,255,255,0.1); font-weight:400; margin-left:auto;"><i class="fas fa-lock"></i> Password</span>
+                    <span style="font-size:0.65rem; color:rgba(255,255,255,0.1); font-weight:400; margin-left:auto;">Password</span>
                 </div>
                 <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:14px;">
                     <input type="password" id="passwordInput" placeholder="Password guru..." style="flex:1; min-width:180px; padding:12px 18px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.04); border-radius:10px; color:#e8e8e8; font-size:0.9rem; outline:none; transition:0.3s; font-weight:400;">
                     <button onclick="checkPassword()" style="background:linear-gradient(145deg,#fdcb6e,#f39c12); color:#1a1a1a; border:none; padding:12px 28px; border-radius:10px; font-weight:700; cursor:pointer; transition:0.3s; display:flex; align-items:center; gap:8px; font-size:0.85rem;">
-                        <i class="fas fa-unlock"></i> Buka
+                        Buka
                     </button>
-                    <button onclick="clearPassword()" style="background:rgba(255,255,255,0.02); color:rgba(255,255,255,0.2); border:1px solid rgba(255,255,255,0.02); padding:12px 18px; border-radius:10px; cursor:pointer; font-weight:400;"><i class="fas fa-times"></i></button>
+                    <button onclick="clearPassword()" style="background:rgba(255,255,255,0.02); color:rgba(255,255,255,0.2); border:1px solid rgba(255,255,255,0.02); padding:12px 18px; border-radius:10px; cursor:pointer; font-weight:400;">✕</button>
                 </div>
                 <div id="answerKey" style="display:none;">
                     <div style="background:rgba(255,255,255,0.01); border-radius:12px; padding:16px;">
                         <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
                             <div>
-                                <h4 style="color:#a29bfe; margin-bottom:8px; font-size:0.85rem; font-weight:700;"><i class="fas fa-check-circle"></i> PG (15 Soal)</h4>
+                                <h4 style="color:#a29bfe; margin-bottom:8px; font-size:0.85rem; font-weight:700;">PG (15 Soal)</h4>
                                 <div style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400; line-height:2.2; display:grid; grid-template-columns:1fr 1fr 1fr; gap:0 15px;">
                                     <div>1. B</div><div>2. C</div><div>3. B</div><div>4. B</div><div>5. C</div>
                                     <div>6. C</div><div>7. A</div><div>8. C</div><div>9. B</div><div>10. B</div>
@@ -3391,7 +3354,7 @@
                                 </div>
                             </div>
                             <div>
-                                <h4 style="color:#00cec9; margin-bottom:8px; font-size:0.85rem; font-weight:700;"><i class="fas fa-check-double"></i> B/S (10 Soal)</h4>
+                                <h4 style="color:#00cec9; margin-bottom:8px; font-size:0.85rem; font-weight:700;">B/S (10 Soal)</h4>
                                 <div style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400; line-height:2.2;">
                                     <div>1. <span style="color:#fd79a8; font-weight:700;">S</span> (geo = bumi)</div>
                                     <div>2. <span style="color:#00cec9; font-weight:700;">B</span></div>
@@ -3407,7 +3370,7 @@
                             </div>
                         </div>
                         <div style="margin-top:14px; border-top:1px solid rgba(255,255,255,0.02); padding-top:12px;">
-                            <h4 style="color:#fdcb6e; margin-bottom:6px; font-size:0.85rem; font-weight:700;"><i class="fas fa-pencil-alt"></i> Essay (5 Soal)</h4>
+                            <h4 style="color:#fdcb6e; margin-bottom:6px; font-size:0.85rem; font-weight:700;">Essay (5 Soal)</h4>
                             <div style="font-size:0.8rem; color:rgba(255,255,255,0.3); font-weight:400; line-height:2;">
                                 <div><strong style="color:rgba(255,255,255,0.5); font-weight:600;">Soal 1-5:</strong> Jawaban sesuai dengan materi yang telah dipelajari di pertemuan 1-3.</div>
                                 <div><strong style="color:rgba(255,255,255,0.5); font-weight:600;">Skor:</strong> 0-10 per soal · Total maksimal 50 (Essay) + 50 (PG & BS) = 100</div>
@@ -3416,14 +3379,14 @@
                     </div>
                 </div>
                 <div id="passwordError" style="display:none; color:#fd79a8; font-size:0.85rem; font-weight:400; margin-top:6px; padding:8px 14px; background:rgba(253,121,168,0.04); border-radius:8px; border-left:3px solid #fd79a8;">
-                    <i class="fas fa-exclamation-triangle"></i> Password salah! Coba lagi.
+                    Password salah! Coba lagi.
                 </div>
             </div>
             <div class="nav-buttons">
                 <div class="group">
-                    <button onclick="navigateTo('prev')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                    <button onclick="navigateTo('prev')">Sebelumnya</button>
                     <span class="page-numbers"></span>
-                    <button onclick="navigateTo('next')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                    <button onclick="navigateTo('next')">Selanjutnya</button>
                     <span class="counter">5 / 7</span>
                 </div>
             </div>
@@ -3433,12 +3396,12 @@
         <section id="section6" class="section">
             <div style="background:rgba(108,92,231,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(108,92,231,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
                 <div style="display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.4); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
-                <button onclick="navigateTo('section1')" style="background:rgba(255,255,255,0.02); color:rgba(255,255,255,0.3); border:1px solid rgba(255,255,255,0.03); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem;"><i class="fas fa-home"></i> Beranda</button>
+                <button onclick="navigateTo('section1')" style="background:rgba(255,255,255,0.02); color:rgba(255,255,255,0.3); border:1px solid rgba(255,255,255,0.03); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem;">⌂ Beranda</button>
             </div>
             <div class="section-header">
                 <div class="num">06</div>
                 <h2>Refleksi <small>Menyimpulkan Perjalanan</small></h2>
-                <span class="badge-pertemuan"><i class="fas fa-heart"></i> Inspirasi</span>
+                <span class="badge-pertemuan">Inspirasi</span>
             </div>
             <div class="card" style="background:rgba(20,40,40,0.7); backdrop-filter:blur(8px); border:1px solid rgba(108,92,231,0.08);">
                 <h3 style="display:flex; align-items:center; gap:10px; color:#f0f4fa; font-weight:700;"><span style="font-size:1.8rem;">🌟</span> Apa yang Kamu Dapatkan?</h3>
@@ -3450,9 +3413,9 @@
                 </ul>
             </div>
             <div class="card" style="background:rgba(20,26,46,0.7); backdrop-filter:blur(8px); margin-top:16px; border-left:6px solid #6c5ce7;">
-                <h3 style="display:flex; align-items:center; gap:10px; color:#f0f4fa; font-weight:700;"><i class="fas fa-pen-fancy" style="color:#a29bfe;"></i> Renungkan</h3>
+                <h3 style="display:flex; align-items:center; gap:10px; color:#f0f4fa; font-weight:700;">Renungkan</h3>
                 <p style="font-size:1.05rem; color:rgba(255,255,255,0.65); font-weight:400; font-style:italic; margin-top:4px;">"Bagaimana geografi dapat membantu menyelesaikan masalah lingkungan di Kabupaten Katingan?"</p>
-                <p style="margin-top:8px; font-size:0.88rem; color:rgba(255,255,255,0.25); font-weight:400;"><i class="fas fa-arrow-right" style="color:#a29bfe;"></i> Tuliskan jawabanmu di buku catatan.</p>
+                <p style="margin-top:8px; font-size:0.88rem; color:rgba(255,255,255,0.25); font-weight:400;">Tuliskan jawabanmu di buku catatan.</p>
             </div>
             <div class="celebration-box">
                 <h3>🎉 Selamat!</h3>
@@ -3461,9 +3424,9 @@
             </div>
             <div class="nav-buttons">
                 <div class="group">
-                    <button onclick="navigateTo('prev')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                    <button onclick="navigateTo('prev')">Sebelumnya</button>
                     <span class="page-numbers"></span>
-                    <button onclick="navigateTo('next')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                    <button onclick="navigateTo('next')">Selanjutnya</button>
                     <span class="counter">6 / 7</span>
                 </div>
             </div>
@@ -3473,34 +3436,32 @@
         <section id="section7" class="section">
             <div style="background:rgba(108,92,231,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(108,92,231,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
                 <div style="display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.4); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
-                <button onclick="navigateTo('section1')" style="background:rgba(255,255,255,0.02); color:rgba(255,255,255,0.3); border:1px solid rgba(255,255,255,0.03); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem;"><i class="fas fa-home"></i> Beranda</button>
+                <button onclick="navigateTo('section1')" style="background:rgba(255,255,255,0.02); color:rgba(255,255,255,0.3); border:1px solid rgba(255,255,255,0.03); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem;">⌂ Beranda</button>
             </div>
             <div class="section-header">
                 <div class="num">07</div>
                 <h2>Referensi <small>Daftar Pustaka</small></h2>
-                <span class="badge-pertemuan"><i class="fas fa-book"></i> 10+ Sumber</span>
+                <span class="badge-pertemuan">10+ Sumber</span>
             </div>
             <ul class="ref-list">
-                <li><i class="fas fa-file-pdf"></i> <strong>Kurikulum Merdeka:</strong> Capaian Pembelajaran IPS Fase E-F, BSKAP Kemendikbudristek (2024).</li>
-                <li><i class="fas fa-book"></i> Bintarto. <em>Metode Penelitian Geografi</em>. UGM Press.</li>
-                <li><i class="fas fa-book"></i> Sumaatmadja, Nursid. <em>Metodologi Pengajaran Geografi</em>. Bumi Aksara.</li>
-                <li><i class="fas fa-book"></i> Haggett, Peter. <em>Geography: A Modern Synthesis</em>. Harper & Row.</li>
-                <li><i class="fas fa-book"></i> de Blij, H.J. &amp; Muller, P.O. <em>Geography: Realms, Regions and Concepts</em>. Wiley.</li>
-                <li><i class="fas fa-book"></i> Muta'ali, Luthfi. (2015). <em>Geografi Pemukiman</em>. UGM Press.</li>
-                <li><i class="fas fa-book"></i> Suharyono &amp; Amien, M. (2013). <em>Pengantar Filsafat Geografi</em>. Ombak.</li>
-                <li><i class="fas fa-book"></i> Daldjoeni, N. (2005). <em>Geografi untuk Indonesia</em>. Alumni.</li>
-                <li><i class="fas fa-globe"></i> BPS Kabupaten Katingan. (2023). <em>Kabupaten Katingan dalam Angka 2023</em>.</li>
+                <li> <strong>Kurikulum Merdeka:</strong> Capaian Pembelajaran IPS Fase E-F, BSKAP Kemendikbudristek (2024).</li>
+                <li> Bintarto. <em>Metode Penelitian Geografi</em>. UGM Press.</li>
+                <li> Sumaatmadja, Nursid. <em>Metodologi Pengajaran Geografi</em>. Bumi Aksara.</li>
+                <li> Haggett, Peter. <em>Geography: A Modern Synthesis</em>. Harper & Row.</li>
+                <li> de Blij, H.J. &amp; Muller, P.O. <em>Geography: Realms, Regions and Concepts</em>. Wiley.</li>
+                <li> Muta'ali, Luthfi. (2015). <em>Geografi Pemukiman</em>. UGM Press.</li>
+                <li> Suharyono &amp; Amien, M. (2013). <em>Pengantar Filsafat Geografi</em>. Ombak.</li>
+                <li> Daldjoeni, N. (2005). <em>Geografi untuk Indonesia</em>. Alumni.</li>
+                <li> BPS Kabupaten Katingan. (2023). <em>Kabupaten Katingan dalam Angka 2023</em>.</li>
             </ul>
             <div class="footer-credit">
-                <i class="fas fa-school" style="color:#a29bfe;"></i>
                 <span class="school-name-gold">SMAN 3 KASONGAN</span> &nbsp;·&nbsp;
-                <i class="fas fa-chalkboard-teacher" style="color:#a29bfe;"></i>
                 Guru Pengampu: <strong style="color:rgba(255,255,255,0.5); font-weight:600;">SYAHRANI, S.Pd</strong> &nbsp;·&nbsp;
                 <span style="color:rgba(255,255,255,0.15); font-weight:400;">NIP. 197512172005011016</span>
             </div>
             <div class="nav-buttons">
                 <div class="group">
-                    <button onclick="navigateTo('prev')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                    <button onclick="navigateTo('prev')">Sebelumnya</button>
                     <span class="page-numbers"></span>
                     <button onclick="navigateTo('next')" disabled>Terakhir</button>
                     <span class="counter">7 / 7</span>
@@ -3614,8 +3575,8 @@
 
         // ===== 50 VERTICAL COMET STARS (Merah, Kuning, Hijau, Biru) =====
         (function() {
-            const colors = ['#ff1744', '#ffea00', '#00e676', '#2979ff']; // merah, kuning, hijau, biru
-            const sizes = [3, 5, 8]; // 3 ukuran
+            const colors = ['#ff1744', '#ffea00', '#00e676', '#2979ff'];
+            const sizes = [3, 5, 8];
             const count = 50;
             const container = document.body;
 
@@ -3843,7 +3804,7 @@
                 document.querySelectorAll('.nav-buttons .group button:last-child').forEach(btn => {
                     if (idx === total - 1) { btn.disabled = true;
                         btn.textContent = 'Terakhir'; } else { btn.disabled = false;
-                        btn.innerHTML = 'Selanjutnya <i class="fas fa-arrow-right"></i>'; }
+                        btn.innerHTML = 'Selanjutnya'; }
                 });
                 document.querySelectorAll('.nav-buttons .group button:first-child').forEach(btn => btn.disabled = idx === 0);
                 renderNumbers();
