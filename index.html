@@ -7,9 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
     <style>
-        /* ============================================================
-                   RESET & BASE – Desain Psikologis Remaja
-                   ============================================================ */
+        /* ===== RESET & BASE ===== */
         * {
             margin: 0;
             padding: 0;
@@ -27,9 +25,7 @@
             min-height: 100vh;
         }
 
-        /* ============================================================
-                   ANIMATED COSMIC BACKGROUND
-                   ============================================================ */
+        /* ===== COSMIC CANVAS ===== */
         #cosmicCanvas {
             position: fixed;
             top: 0;
@@ -40,9 +36,7 @@
             pointer-events: none;
         }
 
-        /* ============================================================
-                   GLOW ORBS
-                   ============================================================ */
+        /* ===== GLOW ORBS ===== */
         .glow-orb {
             position: fixed;
             border-radius: 50%;
@@ -58,7 +52,6 @@
             background: radial-gradient(circle, #6c5ce7, #00cec9);
             top: -200px;
             right: -200px;
-            animation-delay: 0s;
         }
         .glow-orb.orb-2 {
             width: 400px;
@@ -93,97 +86,52 @@
             }
         }
 
-        /* ============================================================
-                   SHOOTING STARS
-                   ============================================================ */
-        .shooting-star {
+        /* ===== COMET STARS VERTICAL (baru) ===== */
+        .comet-star {
             position: fixed;
-            width: 3px;
-            height: 3px;
-            background: #fff;
-            border-radius: 50%;
-            z-index: 0;
             pointer-events: none;
-            box-shadow: 0 0 6px 2px rgba(255, 255, 255, 0.6);
+            z-index: 999;
+            border-radius: 50%;
+            box-shadow: 0 0 10px 2px currentColor;
+            animation: cometFallVertical linear forwards;
         }
-        .shooting-star::before {
+        .comet-star::before {
             content: '';
             position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 80px;
-            height: 2px;
-            background: linear-gradient(to left, rgba(255, 255, 255, 0.8), transparent);
-            right: 3px;
-            border-radius: 2px;
+            top: 100%;
+            left: 50%;
+            width: 1.5px;
+            height: 50px;
+            background: linear-gradient(to bottom, currentColor, transparent);
+            transform: translateX(-50%);
+            border-radius: 1px;
+            opacity: 0.5;
         }
-        .shooting-star::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 40px;
-            height: 1.5px;
-            background: linear-gradient(to left, rgba(255, 255, 255, 0.3), transparent);
-            right: 83px;
-            border-radius: 2px;
-        }
-        .shooting-star.animate {
-            animation: shootingStar linear forwards;
-        }
-        @keyframes shootingStar {
+        @keyframes cometFallVertical {
             0% {
                 opacity: 0;
-                transform: translate(0, 0) scale(0.5);
+                transform: translate(0, 0) scale(0.4);
             }
-            5% {
+            8% {
                 opacity: 1;
-                transform: translate(0, 0) scale(1);
+                transform: translate(0, calc(var(--dy) * 0.08)) scale(1);
             }
-            70% {
+            92% {
                 opacity: 1;
             }
             100% {
                 opacity: 0;
-                transform: translate(-500px, 300px) scale(0.2);
+                transform: translate(0, var(--dy)) scale(0.15);
             }
         }
-        .shooting-star.color-1 {
-            background: #6c5ce7;
-            box-shadow: 0 0 8px 3px rgba(108, 92, 231, 0.6);
-        }
-        .shooting-star.color-1::before {
-            background: linear-gradient(to left, rgba(108, 92, 231, 0.8), transparent);
-        }
-        .shooting-star.color-2 {
-            background: #00cec9;
-            box-shadow: 0 0 8px 3px rgba(0, 206, 201, 0.6);
-        }
-        .shooting-star.color-2::before {
-            background: linear-gradient(to left, rgba(0, 206, 201, 0.8), transparent);
-        }
-        .shooting-star.color-3 {
-            background: #fd79a8;
-            box-shadow: 0 0 8px 3px rgba(253, 121, 168, 0.6);
-        }
-        .shooting-star.color-3::before {
-            background: linear-gradient(to left, rgba(253, 121, 168, 0.8), transparent);
-        }
-        .shooting-star.color-4 {
-            background: #fdcb6e;
-            box-shadow: 0 0 8px 3px rgba(253, 203, 110, 0.6);
-        }
-        .shooting-star.color-4::before {
-            background: linear-gradient(to left, rgba(253, 203, 110, 0.8), transparent);
-        }
 
-        /* ============================================================
-                   LOADER
-                   ============================================================ */
+        /* ===== LOADER ===== */
         #loader {
             position: fixed;
             inset: 0;
-            background: #0a0e1a;
+            background: rgba(10, 14, 26, 0.75);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -308,35 +256,8 @@
             font-weight: 500;
             letter-spacing: 2px;
         }
-        .falling-emoji {
-            position: absolute;
-            font-size: 2rem;
-            user-select: none;
-            pointer-events: none;
-            animation: fallEmoji linear forwards;
-            opacity: 0.5;
-        }
-        @keyframes fallEmoji {
-            0% {
-                transform: translateY(-100px) rotate(0deg) scale(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.8;
-                transform: translateY(10vh) rotate(30deg) scale(1.2);
-            }
-            90% {
-                opacity: 0.8;
-            }
-            100% {
-                transform: translateY(110vh) rotate(360deg) scale(0.2);
-                opacity: 0;
-            }
-        }
 
-        /* ============================================================
-                   MOBILE HEADER
-                   ============================================================ */
+        /* ===== MOBILE HEADER ===== */
         .mobile-header {
             position: fixed;
             top: 0;
@@ -379,9 +300,7 @@
             color: #fff;
         }
 
-        /* ============================================================
-                   MAIN CONTENT
-                   ============================================================ */
+        /* ===== MAIN CONTENT ===== */
         .main-content {
             position: relative;
             z-index: 1;
@@ -390,9 +309,7 @@
             margin: 0 auto;
         }
 
-        /* ============================================================
-                   SECTIONS
-                   ============================================================ */
+        /* ===== SECTIONS ===== */
         .section {
             display: none;
             animation: sectionEnter 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
@@ -413,9 +330,7 @@
             }
         }
 
-        /* ============================================================
-                   SECTION HEADER
-                   ============================================================ */
+        /* ===== SECTION HEADER ===== */
         .section-header {
             display: flex;
             align-items: center;
@@ -495,9 +410,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* ============================================================
-                   CARDS – Modern Glassmorphism
-                   ============================================================ */
+        /* ===== CARDS ===== */
         .card {
             background: rgba(20, 26, 46, 0.75);
             backdrop-filter: blur(12px);
@@ -569,9 +482,7 @@
             pointer-events: none;
         }
 
-        /* ============================================================
-                   GRIDS
-                   ============================================================ */
+        /* ===== GRIDS ===== */
         .grid-2,
         .grid-3,
         .grid-4 {
@@ -589,9 +500,7 @@
             grid-template-columns: 1fr;
         }
 
-        /* ============================================================
-                   PROGRESS BAR
-                   ============================================================ */
+        /* ===== PROGRESS BAR ===== */
         .progress-wrap {
             position: fixed;
             bottom: 0;
@@ -642,9 +551,7 @@
             }
         }
 
-        /* ============================================================
-                   NAVIGATION
-                   ============================================================ */
+        /* ===== NAVIGATION ===== */
         .nav-buttons {
             display: flex;
             justify-content: center;
@@ -731,9 +638,7 @@
             box-shadow: 0 4px 20px rgba(108, 92, 231, 0.3);
         }
 
-        /* ============================================================
-                   COVER SECTION
-                   ============================================================ */
+        /* ===== COVER SECTION ===== */
         .cover-section {
             text-align: center;
             padding: 8px 0 4px;
@@ -902,9 +807,7 @@
             transform: translateX(6px);
         }
 
-        /* ============================================================
-                   NAV BOX
-                   ============================================================ */
+        /* ===== NAV BOX ===== */
         .nav-box {
             background: rgba(255, 255, 255, 0.02);
             backdrop-filter: blur(20px);
@@ -979,7 +882,7 @@
             background: rgba(108, 92, 231, 0.2);
             color: #fff;
         }
-        @media (max-width: 480px) {
+        @media (max-width:480px) {
             .nav-box .nav-grid {
                 grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)) !important;
                 gap: 6px !important;
@@ -996,9 +899,7 @@
             }
         }
 
-        /* ============================================================
-                   CP & ATP STYLES (digunakan di Cover saja, tetap dipertahankan)
-                   ============================================================ */
+        /* ===== CP & ATP STYLES ===== */
         .cp-atp-box {
             background: rgba(20, 30, 40, 0.85);
             backdrop-filter: blur(8px);
@@ -1027,7 +928,6 @@
             color: #a29bfe;
             font-weight: 700;
         }
-
         .flow-diagram {
             background: rgba(20, 26, 46, 0.85);
             backdrop-filter: blur(8px);
@@ -1095,7 +995,6 @@
             flex-shrink: 0;
             opacity: 0.6;
         }
-
         .tp-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -1137,9 +1036,7 @@
             font-weight: 700;
         }
 
-        /* ============================================================
-                   DPL GRID
-                   ============================================================ */
+        /* ===== DPL GRID ===== */
         .dpl-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -1181,50 +1078,7 @@
             font-weight: 400;
         }
 
-        /* ============================================================
-                   PRINSIP GRID
-                   ============================================================ */
-        .prinsip-grid {
-            display: grid;
-            gap: 12px;
-            margin: 10px 0;
-        }
-        .prinsip-card {
-            background: rgba(20, 26, 46, 0.7);
-            backdrop-filter: blur(8px);
-            border-radius: 14px;
-            padding: 16px 18px;
-            border-left: 5px solid #6c5ce7;
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        .prinsip-card:hover {
-            border-left-color: #00cec9;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-            transform: translateX(6px);
-        }
-        .prinsip-card h4 {
-            color: #a29bfe;
-            font-size: 1rem;
-            margin-bottom: 2px;
-        }
-        .prinsip-card p {
-            font-size: 0.92rem;
-            color: rgba(255, 255, 255, 0.75);
-        }
-        .prinsip-card .contoh {
-            font-size: 0.88rem;
-            color: rgba(255, 255, 255, 0.5);
-            margin-top: 4px;
-            padding-top: 4px;
-            border-top: 1px solid rgba(255, 255, 255, 0.03);
-        }
-        .prinsip-card .contoh strong {
-            color: #00cec9;
-        }
-
-        /* ============================================================
-                   INFO CARD
-                   ============================================================ */
+        /* ===== INFO CARD ===== */
         .info-card {
             border-left-color: #00cec9;
             background: rgba(20, 26, 46, 0.7);
@@ -1234,44 +1088,7 @@
             border-left: 6px solid #00cec9;
         }
 
-        /* ============================================================
-                   RUBRIK TABEL (dipertahankan untuk referensi, meski halaman 7 dihapus)
-                   ============================================================ */
-        .rubrik-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.88rem;
-            color: rgba(255, 255, 255, 0.85);
-            margin: 12px 0;
-            border-radius: 16px;
-            overflow: hidden;
-        }
-        .rubrik-table th {
-            background: rgba(108, 92, 231, 0.12);
-            padding: 12px 14px;
-            text-align: left;
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            color: #a29bfe;
-            font-weight: 700;
-        }
-        .rubrik-table td {
-            padding: 12px 14px;
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            vertical-align: top;
-            font-weight: 400;
-        }
-        .rubrik-table tr:hover {
-            background: rgba(255, 255, 255, 0.01);
-        }
-        .rubrik-table .skor {
-            color: #fdcb6e;
-            font-weight: 700;
-            text-align: center;
-        }
-
-        /* ============================================================
-                   TECH GRID
-                   ============================================================ */
+        /* ===== TECH GRID ===== */
         .tech-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
@@ -1309,9 +1126,7 @@
             font-weight: 400;
         }
 
-        /* ============================================================
-                   ISU AKTUAL
-                   ============================================================ */
+        /* ===== ISU AKTUAL ===== */
         .isu-card {
             background: rgba(20, 30, 40, 0.7);
             backdrop-filter: blur(8px);
@@ -1349,69 +1164,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* ============================================================
-                   ASSESSMENT
-                   ============================================================ */
-        .assessment-question {
-            margin-bottom: 16px;
-            padding: 14px 18px;
-            background: rgba(20, 26, 46, 0.6);
-            backdrop-filter: blur(8px);
-            border-radius: 12px;
-            border-left: 4px solid #6c5ce7;
-            transition: all 0.3s ease;
-        }
-        .assessment-question:hover {
-            border-left-color: #00cec9;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            transform: translateX(5px);
-        }
-        .assessment-question .q-text {
-            font-weight: 700;
-            color: #f0f4fa;
-            margin-bottom: 4px;
-            font-size: 0.95rem;
-        }
-        .assessment-question .q-options {
-            padding-left: 20px;
-            color: rgba(255, 255, 255, 0.65);
-            line-height: 2.2;
-            font-weight: 400;
-        }
-        .assessment-question .q-options span {
-            display: block;
-            font-size: 0.9rem;
-        }
-
-        .essay-question {
-            background: rgba(20, 26, 46, 0.6);
-            backdrop-filter: blur(8px);
-            padding: 16px 18px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            margin-bottom: 16px;
-            transition: all 0.3s ease;
-        }
-        .essay-question:hover {
-            border-color: rgba(108, 92, 231, 0.2);
-            transform: translateX(5px);
-        }
-        .essay-question .q-text {
-            font-weight: 700;
-            color: #f0f4fa;
-            margin-bottom: 4px;
-            font-size: 0.95rem;
-        }
-        .essay-question .q-note {
-            font-size: 0.88rem;
-            color: rgba(255, 255, 255, 0.35);
-            font-style: italic;
-            font-weight: 400;
-        }
-
-        /* ============================================================
-                   REFLEKSI
-                   ============================================================ */
+        /* ===== REFLEKSI ===== */
         .refleksi-list {
             list-style: none;
             padding: 0;
@@ -1516,9 +1269,7 @@
             box-shadow: 0 12px 40px rgba(108, 92, 231, 0.3);
         }
 
-        /* ============================================================
-                   REF LIST
-                   ============================================================ */
+        /* ===== REF LIST ===== */
         .ref-list {
             list-style: none;
             padding: 0;
@@ -1546,9 +1297,7 @@
             flex-shrink: 0;
         }
 
-        /* ============================================================
-                   MODAL GAMBAR CANGIH – PREMIUM LIGHTBOX
-                   ============================================================ */
+        /* ===== MODAL PREMIUM ===== */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -1699,7 +1448,7 @@
         .modal-overlay .modal-content .nav-arrow.next {
             right: 16px;
         }
-        @media (max-width: 600px) {
+        @media (max-width:600px) {
             .modal-overlay .modal-content .nav-arrow {
                 width: 36px;
                 height: 36px;
@@ -1790,7 +1539,7 @@
             border-color: rgba(253, 121, 168, 0.1);
             color: #fd79a8;
         }
-        @media (max-width: 600px) {
+        @media (max-width:600px) {
             .modal-overlay .modal-close {
                 top: 4px;
                 right: 4px;
@@ -1811,9 +1560,7 @@
             }
         }
 
-        /* ============================================================
-                   KARTU GAMBAR PREMIUM – UNTUK SEMUA PERTEMUAN
-                   ============================================================ */
+        /* ===== KARTU GAMBAR PREMIUM ===== */
         .image-card-premium {
             background: rgba(20, 26, 46, 0.6);
             backdrop-filter: blur(12px);
@@ -1945,7 +1692,7 @@
             color: rgba(255, 255, 255, 0.1);
             margin: 0 4px;
         }
-        @media (max-width: 600px) {
+        @media (max-width:600px) {
             .image-card-premium .img-wrap img {
                 height: 170px;
             }
@@ -1956,15 +1703,13 @@
                 font-size: 0.75rem;
             }
         }
-        @media (max-width: 400px) {
+        @media (max-width:400px) {
             .image-card-premium .img-wrap img {
                 height: 140px;
             }
         }
 
-        /* ============================================================
-                   REKOMENDASI
-                   ============================================================ */
+        /* ===== REKOMENDASI ===== */
         .rekomendasi-box {
             background: rgba(20, 40, 30, 0.7);
             backdrop-filter: blur(8px);
@@ -1990,9 +1735,7 @@
             font-weight: 700;
         }
 
-        /* ============================================================
-                   PERTEMUAN BADGE
-                   ============================================================ */
+        /* ===== PERTEMUAN BADGE ===== */
         .pertemuan-badge {
             display: inline-block;
             background: rgba(108, 92, 231, 0.08);
@@ -2006,9 +1749,7 @@
             letter-spacing: 0.3px;
         }
 
-        /* ============================================================
-                   FOOTER
-                   ============================================================ */
+        /* ===== FOOTER ===== */
         .footer-credit {
             text-align: center;
             margin-top: 20px;
@@ -2026,10 +1767,8 @@
             color: #fdcb6e;
         }
 
-        /* ============================================================
-                   RESPONSIVE
-                   ============================================================ */
-        @media (min-width: 600px) {
+        /* ===== RESPONSIVE ===== */
+        @media (min-width:600px) {
             .grid-2 {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -2045,14 +1784,11 @@
             .main-content {
                 padding: 20px 24px 80px;
             }
-            .prinsip-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
             .cover-section .start-btn {
                 font-size: 1.2rem;
             }
         }
-        @media (min-width: 900px) {
+        @media (min-width:900px) {
             .mobile-header {
                 display: none;
             }
@@ -2074,11 +1810,8 @@
                 height: 50px;
                 font-size: 1.3rem;
             }
-            .prinsip-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
         }
-        @media (max-width: 400px) {
+        @media (max-width:400px) {
             .section-header h2 {
                 font-size: 1.1rem;
             }
@@ -2094,23 +1827,13 @@
                 padding: 6px 14px;
                 font-size: 0.8rem;
             }
-            .prinsip-grid {
-                grid-template-columns: 1fr;
-            }
         }
-        @media (max-width: 600px) {
+        @media (max-width:600px) {
             .flow-row {
                 flex-direction: column;
             }
             .flow-arrow {
                 transform: rotate(90deg);
-            }
-            .rubrik-table {
-                font-size: 0.75rem;
-            }
-            .rubrik-table th,
-            .rubrik-table td {
-                padding: 6px 8px;
             }
             .tech-grid {
                 grid-template-columns: 1fr 1fr;
@@ -2120,9 +1843,7 @@
             }
         }
 
-        /* ============================================================
-                   UTILITY
-                   ============================================================ */
+        /* ===== UTILITY ===== */
         .text-gradient {
             background: linear-gradient(135deg, #6c5ce7, #00cec9);
             -webkit-background-clip: text;
@@ -2182,11 +1903,7 @@
             margin-right: 8px;
         }
 
-        /* ============================================================
-                   FITUR INTERAKTIF BARU
-                   ============================================================ */
-
-        /* === TOOLTIP === */
+        /* ===== INTERAKTIF ===== */
         .tooltip-trigger {
             position: relative;
             cursor: help;
@@ -2235,7 +1952,6 @@
             border-top-color: rgba(20, 26, 46, 0.95);
         }
 
-        /* === ACCORDION / TAB === */
         .accordion {
             margin: 10px 0;
             border-radius: 14px;
@@ -2293,7 +2009,6 @@
             margin-bottom: 4px;
         }
 
-        /* === MINI QUIZ === */
         .mini-quiz {
             background: rgba(20, 26, 46, 0.6);
             backdrop-filter: blur(8px);
@@ -2362,7 +2077,6 @@
             color: #fd79a8;
         }
 
-        /* === PROGRESS PER PERTEMUAN === */
         .progress-tracker {
             display: flex;
             align-items: center;
@@ -2405,7 +2119,6 @@
             background: #00cec9;
         }
 
-        /* === SCROLL REVEAL === */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -2416,7 +2129,6 @@
             transform: translateY(0);
         }
 
-        /* === LOCAL CONTENT BADGE === */
         .local-badge {
             display: inline-block;
             background: rgba(253, 203, 110, 0.08);
@@ -2434,7 +2146,6 @@
             color: #fdcb6e;
         }
 
-        /* === Image Zoom === */
         .img-zoom {
             cursor: zoom-in;
             transition: transform 0.3s ease;
@@ -2446,9 +2157,7 @@
             transform: scale(1.02);
         }
 
-        /* ============================================================
-                   MATERI DETAIL - EFEK SMOOTH PREMIUM (TERBARU)
-                   ============================================================ */
+        /* ===== MATERI DETAIL ===== */
         .materi-detail {
             margin: 8px 0;
             border-radius: 14px;
@@ -2459,7 +2168,6 @@
         .materi-detail:hover {
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
         }
-
         .materi-detail .detail-header {
             background: rgba(20, 26, 46, 0.5);
             padding: 14px 18px;
@@ -2468,27 +2176,21 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            transition: background 0.4s ease,
-                        border-left-color 0.4s ease,
-                        border-radius 0.4s ease,
-                        padding 0.3s ease;
+            transition: background 0.4s ease, border-left-color 0.4s ease, border-radius 0.4s ease, padding 0.3s ease;
             border-left: 4px solid transparent;
             position: relative;
             z-index: 2;
             user-select: none;
         }
-
         .materi-detail .detail-header:hover {
             background: rgba(108, 92, 231, 0.08);
             border-left-color: rgba(108, 92, 231, 0.3);
         }
-
         .materi-detail .detail-header.active {
             border-left-color: #6c5ce7;
             background: rgba(108, 92, 231, 0.06);
             border-radius: 14px 14px 0 0;
         }
-
         .materi-detail .detail-header h4 {
             margin: 0;
             color: #f0f4fa;
@@ -2502,10 +2204,8 @@
         .materi-detail .detail-header.active h4 {
             color: #ffffff;
         }
-
         .materi-detail .detail-header i.fa-chevron-down {
-            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
-                        color 0.3s ease;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease;
             font-size: 0.9rem;
             color: rgba(255, 255, 255, 0.3);
         }
@@ -2515,14 +2215,10 @@
         .materi-detail .detail-header.active i.fa-chevron-down {
             color: #6c5ce7;
         }
-
         .materi-detail .detail-body {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-                        padding 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-                        opacity 0.5s ease 0.05s,
-                        transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.05s;
+            transition: max-height 0.7s cubic-bezier(0.22, 1, 0.36, 1), padding 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease 0.05s, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.05s;
             padding: 0 18px;
             background: rgba(0, 0, 0, 0.15);
             border-radius: 0 0 14px 14px;
@@ -2530,7 +2226,6 @@
             transform: translateY(-12px) scale(0.98);
             border-top: 1px solid transparent;
         }
-
         .materi-detail .detail-body.open {
             max-height: 5000px;
             padding: 18px 18px 20px;
@@ -2538,7 +2233,6 @@
             transform: translateY(0) scale(1);
             border-top-color: rgba(108, 92, 231, 0.05);
         }
-
         .materi-detail .detail-body .detail-explanation,
         .materi-detail .detail-body .grid-2,
         .materi-detail .detail-body .studi-kasus {
@@ -2549,15 +2243,17 @@
         .materi-detail .detail-body.open .studi-kasus {
             animation: fadeInContent 0.6s ease forwards;
         }
-
         @keyframes fadeInContent {
-            0% { opacity: 0; transform: translateY(10px); }
-            100% { opacity: 1; transform: translateY(0); }
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        /* ============================================================
-                   PENJELASAN DETAIL
-                   ============================================================ */
         .detail-explanation {
             background: rgba(0, 0, 0, 0.15);
             border-radius: 12px;
@@ -2585,140 +2281,7 @@
             font-weight: 700;
         }
 
-        /* ============================================================
-                   TULISAN DI PERJELAS
-                   ============================================================ */
-        .section p,
-        .section li,
-        .section span:not(.badge):not(.num-badge):not(.tag-aktual):not(.local-badge) {
-            font-size: 0.95rem;
-            font-weight: 400;
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.8;
-        }
-
-        .section strong {
-            font-weight: 700;
-            color: rgba(255, 255, 255, 0.92);
-        }
-
-        .section .card p,
-        .section .card li {
-            font-size: 0.95rem;
-            font-weight: 400;
-            color: rgba(255, 255, 255, 0.75);
-            line-height: 1.8;
-        }
-
-        .section .card strong {
-            font-weight: 700;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .detail-body p,
-        .detail-body li,
-        .detail-body span:not(.badge):not(.num-badge):not(.tag-aktual):not(.local-badge) {
-            font-size: 0.95rem !important;
-            font-weight: 400 !important;
-            color: rgba(255, 255, 255, 0.8) !important;
-            line-height: 1.8 !important;
-        }
-
-        .detail-body strong {
-            font-weight: 700 !important;
-            color: rgba(255, 255, 255, 0.92) !important;
-        }
-
-        .tooltip-box {
-            font-size: 0.85rem !important;
-            font-weight: 400 !important;
-            color: #e8f0f8 !important;
-            line-height: 1.6 !important;
-        }
-
-        .flow-box .sub {
-            font-size: 0.8rem !important;
-            font-weight: 500 !important;
-            color: rgba(255, 255, 255, 0.4) !important;
-        }
-
-        .dpl-card p {
-            font-size: 0.85rem !important;
-            font-weight: 400 !important;
-            color: rgba(255, 255, 255, 0.55) !important;
-            line-height: 1.5 !important;
-        }
-
-        .tech-card p {
-            font-size: 0.85rem !important;
-            font-weight: 400 !important;
-            color: rgba(255, 255, 255, 0.45) !important;
-            line-height: 1.5 !important;
-        }
-
-        .rubrik-table td {
-            font-size: 0.88rem !important;
-            font-weight: 400 !important;
-            color: rgba(255, 255, 255, 0.85) !important;
-            line-height: 1.6 !important;
-        }
-
-        .rubrik-table th {
-            font-size: 0.88rem !important;
-            font-weight: 700 !important;
-        }
-
-        .refleksi-list li {
-            font-size: 1rem !important;
-            font-weight: 400 !important;
-            color: rgba(255, 255, 255, 0.75) !important;
-            line-height: 1.8 !important;
-        }
-
-        .quote-block {
-            font-size: 1.1rem !important;
-            font-weight: 400 !important;
-            color: rgba(255, 255, 255, 0.75) !important;
-            line-height: 1.8 !important;
-        }
-
-        .isu-card p {
-            font-size: 0.92rem !important;
-            font-weight: 400 !important;
-            color: rgba(255, 255, 255, 0.75) !important;
-            line-height: 1.8 !important;
-        }
-
-        .assessment-question .q-options span {
-            font-size: 0.9rem !important;
-            font-weight: 400 !important;
-            color: rgba(255, 255, 255, 0.65) !important;
-        }
-
-        .ref-list li {
-            font-size: 0.9rem !important;
-            font-weight: 400 !important;
-            color: rgba(255, 255, 255, 0.65) !important;
-            line-height: 1.6 !important;
-        }
-
-        .rekomendasi-box ul {
-            font-size: 0.92rem !important;
-            font-weight: 400 !important;
-            color: rgba(255, 255, 255, 0.75) !important;
-            line-height: 2 !important;
-        }
-
-        .celebration-box p {
-            font-size: 1.05rem !important;
-            font-weight: 400 !important;
-            color: rgba(255, 255, 255, 0.75) !important;
-            line-height: 1.8 !important;
-        }
-
-        /* ============================================================
-                   ASESMEN - SOAL LENGKAP
-                   ============================================================ */
+        /* ===== ASESMEN - SOAL ===== */
         .soal-pg {
             margin-bottom: 14px;
             padding: 14px 18px;
@@ -2743,7 +2306,6 @@
             font-size: 0.95rem;
             margin-bottom: 4px;
         }
-        /* ===== PILIHAN GANDA 2 KOLOM ===== */
         .soal-pg .opsi {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -2756,8 +2318,7 @@
             color: rgba(255, 255, 255, 0.65);
             line-height: 2;
         }
-
-        @media (max-width: 600px) {
+        @media (max-width:600px) {
             .soal-pg .opsi {
                 grid-template-columns: 1fr;
                 gap: 0;
@@ -2821,9 +2382,6 @@
             font-weight: 400;
         }
 
-        /* ============================================================
-                   PENJELASAN TAMBAHAN PERTEMUAN 2 & 3
-                   ============================================================ */
         .contoh-box {
             background: rgba(0, 206, 201, 0.03);
             border-radius: 12px;
@@ -2861,9 +2419,6 @@
             font-weight: 700;
         }
 
-        /* ============================================================
-                   PROFESI GRID
-                   ============================================================ */
         .profesi-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -2901,9 +2456,6 @@
             font-weight: 400;
         }
 
-        /* ============================================================
-                   STUDI KASUS
-                   ============================================================ */
         .studi-kasus {
             background: rgba(20, 40, 30, 0.7);
             backdrop-filter: blur(8px);
@@ -2952,58 +2504,33 @@
 </head>
 <body>
 
-    <!-- ============================================================
-    COSMIC BACKGROUND CANVAS
-    ============================================================ -->
+    <!-- ===== COSMIC BACKGROUND ===== -->
     <canvas id="cosmicCanvas"></canvas>
 
-    <!-- ============================================================
-    GLOW ORBS
-    ============================================================ -->
+    <!-- ===== GLOW ORBS ===== -->
     <div class="glow-orb orb-1"></div>
     <div class="glow-orb orb-2"></div>
     <div class="glow-orb orb-3"></div>
 
-    <!-- ============================================================
-    SHOOTING STARS
-    ============================================================ -->
-    <div class="shooting-star color-1" id="star1"></div>
-    <div class="shooting-star color-2" id="star2"></div>
-    <div class="shooting-star color-3" id="star3"></div>
-    <div class="shooting-star color-4" id="star4"></div>
-    <div class="shooting-star color-1" id="star5"></div>
-
-    <!-- ============================================================
-    LOADER
-    ============================================================ -->
+    <!-- ===== LOADER ===== -->
     <div id="loader">
-        <div class="loader-ring-container">
-            <div class="loader-ring"></div>
-        </div>
+        <div class="loader-ring-container"><div class="loader-ring"></div></div>
         <div class="loader-title">GeoExplorer</div>
         <div class="loader-sub">Menjelajahi Bumi, Menemukan Inspirasi</div>
-        <div class="loader-bar-track">
-            <div class="loader-bar" id="loaderBar"></div>
-        </div>
+        <div class="loader-bar-track"><div class="loader-bar" id="loaderBar"></div></div>
         <div class="loader-percent" id="loaderPercent">0%</div>
     </div>
 
-    <!-- ============================================================
-    MOBILE HEADER
-    ============================================================ -->
+    <!-- ===== MOBILE HEADER ===== -->
     <header class="mobile-header">
         <div class="brand"><i class="fas fa-globe-asia"></i> GeoExplorer</div>
         <button class="menu-toggle" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button>
     </header>
 
-    <!-- ============================================================
-    PROGRESS BAR
-    ============================================================ -->
+    <!-- ===== PROGRESS BAR ===== -->
     <div class="progress-wrap"><div class="bar" id="progressBar"></div></div>
 
-    <!-- ============================================================
-    MODAL GAMBAR CANGIH – PREMIUM LIGHTBOX
-    ============================================================ -->
+    <!-- ===== MODAL ===== -->
     <div class="modal-overlay" id="imageModal" onclick="closeModal()">
         <div class="modal-content" onclick="event.stopPropagation();">
             <span class="modal-close" onclick="closeModal()">✕</span>
@@ -3011,68 +2538,54 @@
                 <div class="loading-shimmer" id="modalShimmer"></div>
                 <img id="modalImage" src="" alt="Gambar" />
                 <span class="image-counter" id="modalCounter">1 / 3</span>
-                <button class="nav-arrow prev" onclick="navigateModal(-1); event.stopPropagation();">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="nav-arrow next" onclick="navigateModal(1); event.stopPropagation();">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
+                <button class="nav-arrow prev" onclick="navigateModal(-1); event.stopPropagation();"><i class="fas fa-chevron-left"></i></button>
+                <button class="nav-arrow next" onclick="navigateModal(1); event.stopPropagation();"><i class="fas fa-chevron-right"></i></button>
             </div>
             <div class="zoom-controls">
-                <button onclick="zoomImage(-0.2); event.stopPropagation();" title="Perkecil"><i class="fas fa-minus"></i></button>
+                <button onclick="zoomImage(-0.2); event.stopPropagation();"><i class="fas fa-minus"></i></button>
                 <span class="zoom-level" id="zoomLevel">100%</span>
-                <button onclick="zoomImage(0.2); event.stopPropagation();" title="Perbesar"><i class="fas fa-plus"></i></button>
-                <button onclick="resetZoom(); event.stopPropagation();" title="Reset"><i class="fas fa-undo"></i></button>
+                <button onclick="zoomImage(0.2); event.stopPropagation();"><i class="fas fa-plus"></i></button>
+                <button onclick="resetZoom(); event.stopPropagation();"><i class="fas fa-undo"></i></button>
             </div>
             <div class="caption" id="modalCaption">Klik di luar untuk menutup</div>
         </div>
     </div>
 
-    <!-- ============================================================
-    MAIN CONTENT
-    ============================================================ -->
+    <!-- ===== MAIN CONTENT ===== -->
     <main class="main-content">
 
-        <!-- ============================================================
-        SECTION 1 : COVER
-        ============================================================ -->
+        <!-- ===== SECTION 1 : COVER ===== -->
         <section id="section1" class="section active cover-section">
-            <div class="logo-grid">
+            <div class="logo-grid reveal">
                 <img src="images/Logo-Provinsi-Kalimantan-Tengah.png" alt="Logo Provinsi Kalimantan Tengah" />
                 <img src="images/imagesdisdiklogo.png" alt="Logo Dinas Pendidikan" />
                 <img src="images/LOGOSMAN3KAS.png" alt="Logo SMAN 3 Kasongan" />
             </div>
-            <div class="badge-wrap">
+            <div class="badge-wrap reveal">
                 <span class="badge">🌍 KELAS X / FASE E</span>
                 <span class="badge badge-gold"><i class="fas fa-clock"></i> 3 × 45 Menit</span>
                 <span class="badge" style="background:rgba(0,206,201,0.08); color:#00cec9; border-color:rgba(0,206,201,0.1);"><i class="fas fa-rocket"></i> Kurikulum Merdeka</span>
             </div>
-            <h1 class="cover-title">PENGETAHUAN DASAR<br />GEOGRAFI</h1>
-            <p class="cover-sub">
+            <h1 class="cover-title reveal">PENGETAHUAN DASAR<br />GEOGRAFI</h1>
+            <p class="cover-sub reveal">
                 <strong>Pengertian</strong> · <strong>Objek</strong> · <strong>Prinsip</strong> · <strong>Aspek</strong> · <strong>Pendekatan</strong> · <strong>Manfaat</strong>
                 <br />Geografi dalam Kehidupan Sehari-hari
             </p>
-            <div class="school-wrap">
-                <div class="school-name">
-                    <span class="gold">SMAN 3 KASONGAN</span>
-                </div>
+            <div class="school-wrap reveal">
+                <div class="school-name"><span class="gold">SMAN 3 KASONGAN</span></div>
                 <div class="teacher-info">
                     <i class="fas fa-chalkboard-teacher" style="color:#a29bfe;"></i>
                     Guru Pengampu: <strong>SYAHRANI, S.Pd</strong> &nbsp;|&nbsp;
                     <span style="color:rgba(255,255,255,0.2);">NIP. 197512172005011016</span>
                 </div>
             </div>
-            <div class="start-btn-wrap">
+            <div class="start-btn-wrap reveal">
                 <button class="start-btn" onclick="navigateTo('section2')">
                     <i class="fas fa-play-circle"></i> Mulai Petualangan
                 </button>
             </div>
-
-            <!-- Navigasi Cepat -->
-            <div class="nav-box">
-                <div class="nav-header">
-                    <i class="fas fa-compass"></i> Navigasi Cepat
-                </div>
+            <div class="nav-box reveal">
+                <div class="nav-header"><i class="fas fa-compass"></i> Navigasi Cepat</div>
                 <div class="nav-grid">
                     <div onclick="navigateTo('section1')" class="nav-item"><span class="num-badge">🏠</span><span class="nav-label">Beranda</span></div>
                     <div onclick="navigateTo('section2')" class="nav-item"><span class="num-badge">①</span><span class="nav-label">Pertemuan 1</span></div>
@@ -3085,9 +2598,7 @@
             </div>
         </section>
 
-        <!-- ============================================================
-        SECTION 2 : PERTEMUAN 1 – MATERI LENGKAP
-        ============================================================ -->
+        <!-- ===== SECTION 2 : PERTEMUAN 1 ===== -->
         <section id="section2" class="section">
             <div style="background:rgba(108,92,231,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(108,92,231,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
                 <div style="display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.4); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
@@ -3098,7 +2609,6 @@
                 <h2>Pertemuan 1 – Fondasi Keilmuan <small>Pengertian, Hakikat, & Ruang Lingkup</small></h2>
                 <span class="badge-pertemuan"><i class="far fa-clock"></i> 3×45'</span>
             </div>
-
             <div class="progress-tracker">
                 <span class="step active">1</span><span class="line"></span>
                 <span class="step">2</span><span class="line"></span>
@@ -3106,13 +2616,11 @@
                 <span class="step">4</span>
                 <span style="color:rgba(255,255,255,0.15); font-size:0.75rem; font-weight:500; margin-left:8px;">⚡ Klik materi untuk eksplorasi!</span>
             </div>
-
             <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;">
                 <span class="pertemuan-badge"><i class="fas fa-bullseye" style="color:#a29bfe;"></i> TP 1</span>
                 <span class="pertemuan-badge" style="background:rgba(0,206,201,0.08); color:#00cec9; border-color:rgba(0,206,201,0.06);"><i class="fas fa-brain"></i> Penalaran Kritis</span>
                 <span class="pertemuan-badge" style="background:rgba(253,121,168,0.08); color:#fd79a8; border-color:rgba(253,121,168,0.06);"><i class="fas fa-comments"></i> Komunikasi</span>
             </div>
-
             <h3 style="font-size:1.05rem; color:#f0f4fa; font-weight:700; border-left:4px solid #6c5ce7; padding-left:12px; margin-bottom:6px;"><i class="fas fa-bullseye" style="color:#a29bfe;"></i> Tujuan Pembelajaran</h3>
             <ul style="color:rgba(255,255,255,0.7); font-weight:400; padding-left:20px; margin-bottom:16px; line-height:2; font-size:0.95rem;">
                 <li>Menjelaskan pengertian geografi secara etimologis dan hakikatnya dengan bahasa yang mudah dipahami.</li>
@@ -3120,7 +2628,6 @@
                 <li>Menyebutkan ruang lingkup Geografi Fisik dan Geografi Sosial dengan contoh konkret.</li>
                 <li>Mengidentifikasi 5 lapisan geosfer dengan contoh lokal Kalimantan Tengah yang dekat dengan kehidupan sehari-hari.</li>
             </ul>
-
             <!-- Galeri Gambar -->
             <div style="margin:16px 0;">
                 <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:14px;">
@@ -3133,7 +2640,7 @@
                     </span>
                 </div>
                 <div class="grid-3">
-                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/bumi23.png', '🌍 Bumi dari Luar Angkasa – Planet kita yang indah dengan atmosfer yang melindungi kehidupan.')" data-index="0">
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/bumi23.png', '🌍 Bumi dari Luar Angkasa')" data-index="0">
                         <div class="img-wrap">
                             <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/bumi23.png" alt="Bumi" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🌍 Bumi%3C/text%3E%3C/svg%3E'" />
                             <div class="overlay-glow"></div>
@@ -3143,7 +2650,7 @@
                         <div class="image-label-premium"><span class="emoji-big">🌍</span> Bumi dari Luar Angkasa</div>
                         <div class="image-sub-premium"><i class="fas fa-arrow-right"></i> Planet dengan atmosfer pelindung</div>
                     </div>
-                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/lapisangeosfer.png', '🌋 Lapisan Geosfer Bumi – Litosfer, atmosfer, hidrosfer, biosfer, dan antroposfer.')" data-index="1">
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/lapisangeosfer.png', '🌋 Lapisan Geosfer Bumi')" data-index="1">
                         <div class="img-wrap">
                             <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/lapisangeosfer.png" alt="Lapisan Geosfer" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🌋 Lapisan Bumi%3C/text%3E%3C/svg%3E'" />
                             <div class="overlay-glow"></div>
@@ -3153,7 +2660,7 @@
                         <div class="image-label-premium"><span class="emoji-big">🌋</span> Lapisan Geosfer Bumi</div>
                         <div class="image-sub-premium"><i class="fas fa-arrow-right"></i> 5 lapisan penyusun bumi</div>
                     </div>
-                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/sungaikatingan.png', '🏞️ Sungai Katingan – Contoh hidrosfer di Kalimantan Tengah yang menjadi urat nadi kehidupan masyarakat.')" data-index="2">
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/sungaikatingan.png', '🏞️ Sungai Katingan')" data-index="2">
                         <div class="img-wrap">
                             <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/sungaikatingan.png" alt="Sungai Katingan" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🏞️ Sungai Katingan%3C/text%3E%3C/svg%3E'" />
                             <div class="overlay-glow"></div>
@@ -3165,7 +2672,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Materi A -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
@@ -3195,7 +2701,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Materi B -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
@@ -3224,7 +2729,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Materi C -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
@@ -3260,7 +2764,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Materi D -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
@@ -3290,7 +2793,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="mini-quiz reveal">
                 <div class="quiz-question">🧠 <strong>Kuis Cepat:</strong> Lapisan geosfer yang terdiri dari batuan dan tanah disebut...</div>
                 <div class="quiz-options">
@@ -3301,7 +2803,6 @@
                 </div>
                 <div class="quiz-feedback"></div>
             </div>
-
             <div class="nav-buttons">
                 <div class="group">
                     <button onclick="navigateTo('prev')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
@@ -3312,9 +2813,7 @@
             </div>
         </section>
 
-        <!-- ============================================================
-        SECTION 3 : PERTEMUAN 2 – MATERI LENGKAP
-        ============================================================ -->
+        <!-- ===== SECTION 3 : PERTEMUAN 2 ===== -->
         <section id="section3" class="section">
             <div style="background:rgba(108,92,231,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(108,92,231,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
                 <div style="display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.4); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
@@ -3325,7 +2824,6 @@
                 <h2>Pertemuan 2 – Inti Kajian <small>Objek, Prinsip, Aspek, & Pendekatan</small></h2>
                 <span class="badge-pertemuan"><i class="far fa-clock"></i> 3×45'</span>
             </div>
-
             <div class="progress-tracker">
                 <span class="step done">1</span><span class="line done"></span>
                 <span class="step active">2</span><span class="line"></span>
@@ -3333,13 +2831,11 @@
                 <span class="step">4</span>
                 <span style="color:rgba(255,255,255,0.15); font-size:0.75rem; font-weight:500; margin-left:8px;">⚡ Klik untuk eksplorasi!</span>
             </div>
-
             <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;">
                 <span class="pertemuan-badge"><i class="fas fa-bullseye" style="color:#a29bfe;"></i> TP 2 & 3</span>
                 <span class="pertemuan-badge" style="background:rgba(0,206,201,0.08); color:#00cec9; border-color:rgba(0,206,201,0.06);"><i class="fas fa-users"></i> Kolaborasi</span>
                 <span class="pertemuan-badge" style="background:rgba(253,121,168,0.08); color:#fd79a8; border-color:rgba(253,121,168,0.06);"><i class="fas fa-lightbulb"></i> Kreativitas</span>
             </div>
-
             <h3 style="font-size:1.05rem; color:#f0f4fa; font-weight:700; border-left:4px solid #6c5ce7; padding-left:12px; margin-bottom:6px;"><i class="fas fa-bullseye" style="color:#a29bfe;"></i> Tujuan Pembelajaran</h3>
             <ul style="color:rgba(255,255,255,0.7); font-weight:400; padding-left:20px; margin-bottom:16px; line-height:2; font-size:0.95rem;">
                 <li>Membedakan objek material dan objek formal geografi dengan contoh nyata di Katingan.</li>
@@ -3347,7 +2843,6 @@
                 <li>Mengidentifikasi aspek fisik dan nonfisik geografi di sekitar tempat tinggal.</li>
                 <li>Menjelaskan 3 pendekatan geografi (keruangan, kelingkungan, kompleks wilayah) dengan studi kasus.</li>
             </ul>
-
             <!-- Galeri Gambar -->
             <div style="margin:16px 0;">
                 <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:14px;">
@@ -3360,7 +2855,7 @@
                     </span>
                 </div>
                 <div class="grid-3">
-                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/TAMBANGTRADISIONAL.png', '⛏️ Penambangan Emas Tradisional – Contoh interelasi manusia dan lingkungan di Katingan.')" data-index="3">
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/TAMBANGTRADISIONAL.png', '⛏️ Penambangan Emas Tradisional')" data-index="3">
                         <div class="img-wrap">
                             <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/TAMBANGTRADISIONAL.png" alt="Tambang Emas" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E⛏️ Tambang Emas%3C/text%3E%3C/svg%3E'" />
                             <div class="overlay-glow"></div>
@@ -3370,7 +2865,7 @@
                         <div class="image-label-premium"><span class="emoji-big">⛏️</span> Tambang Emas Tradisional</div>
                         <div class="image-sub-premium"><i class="fas fa-arrow-right"></i> Interelasi manusia & lingkungan</div>
                     </div>
-                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/BUDAYA1.png', '🎭 Budaya Dayak Ngaju – Aspek sosial budaya dalam geografi di Katingan.')" data-index="4">
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/BUDAYA1.png', '🎭 Budaya Dayak Ngaju')" data-index="4">
                         <div class="img-wrap">
                             <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/BUDAYA1.png" alt="Budaya Dayak" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🎭 Budaya Dayak%3C/text%3E%3C/svg%3E'" />
                             <div class="overlay-glow"></div>
@@ -3380,7 +2875,7 @@
                         <div class="image-label-premium"><span class="emoji-big">🎭</span> Budaya Dayak Ngaju</div>
                         <div class="image-sub-premium"><i class="fas fa-arrow-right"></i> Aspek sosial budaya</div>
                     </div>
-                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/lahangambut.png', '🌿 Lahan Gambut Katingan – Contoh aspek fisik geografi dengan ketebalan 3-8 meter.')" data-index="5">
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/lahangambut.png', '🌿 Lahan Gambut Katingan')" data-index="5">
                         <div class="img-wrap">
                             <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/lahangambut.png" alt="Lahan Gambut" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🌿 Lahan Gambut%3C/text%3E%3C/svg%3E'" />
                             <div class="overlay-glow"></div>
@@ -3392,7 +2887,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Materi A -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
@@ -3433,7 +2927,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Materi B -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
@@ -3477,7 +2970,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Materi C -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
@@ -3519,7 +3011,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Materi D -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
@@ -3556,7 +3047,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="mini-quiz reveal">
                 <div class="quiz-question">🧠 <strong>Kuis Cepat:</strong> Prinsip geografi yang menekankan fenomena saling memengaruhi adalah...</div>
                 <div class="quiz-options">
@@ -3567,7 +3057,6 @@
                 </div>
                 <div class="quiz-feedback"></div>
             </div>
-
             <div class="nav-buttons">
                 <div class="group">
                     <button onclick="navigateTo('prev')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
@@ -3578,9 +3067,7 @@
             </div>
         </section>
 
-        <!-- ============================================================
-        SECTION 4 : PERTEMUAN 3 – MATERI LENGKAP
-        ============================================================ -->
+        <!-- ===== SECTION 4 : PERTEMUAN 3 ===== -->
         <section id="section4" class="section">
             <div style="background:rgba(108,92,231,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(108,92,231,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
                 <div style="display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.4); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
@@ -3591,7 +3078,6 @@
                 <h2>Pertemuan 3 – Aplikasi & Evaluasi <small>Keterampilan, Manfaat, & Studi Kasus</small></h2>
                 <span class="badge-pertemuan"><i class="far fa-clock"></i> 3×45'</span>
             </div>
-
             <div class="progress-tracker">
                 <span class="step done">1</span><span class="line done"></span>
                 <span class="step done">2</span><span class="line done"></span>
@@ -3599,13 +3085,11 @@
                 <span class="step">4</span>
                 <span style="color:rgba(255,255,255,0.15); font-size:0.75rem; font-weight:500; margin-left:8px;">⚡ Klik untuk eksplorasi!</span>
             </div>
-
             <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;">
                 <span class="pertemuan-badge"><i class="fas fa-bullseye" style="color:#a29bfe;"></i> TP 4</span>
                 <span class="pertemuan-badge" style="background:rgba(0,206,201,0.08); color:#00cec9; border-color:rgba(0,206,201,0.06);"><i class="fas fa-lightbulb"></i> Kreativitas</span>
                 <span class="pertemuan-badge" style="background:rgba(253,121,168,0.08); color:#fd79a8; border-color:rgba(253,121,168,0.06);"><i class="fas fa-user-check"></i> Kemandirian</span>
             </div>
-
             <h3 style="font-size:1.05rem; color:#f0f4fa; font-weight:700; border-left:4px solid #6c5ce7; padding-left:12px; margin-bottom:6px;"><i class="fas fa-bullseye" style="color:#a29bfe;"></i> Tujuan Pembelajaran</h3>
             <ul style="color:rgba(255,255,255,0.7); font-weight:400; padding-left:20px; margin-bottom:16px; line-height:2; font-size:0.95rem;">
                 <li>Menjelaskan manfaat geografi dalam kehidupan dan pembangunan berkelanjutan.</li>
@@ -3613,7 +3097,6 @@
                 <li>Menganalisis studi kasus lokal (kebakaran hutan dan lahan) dengan pendekatan geografi.</li>
                 <li>Mengenal profesi di bidang geografi sebagai motivasi karir.</li>
             </ul>
-
             <!-- Galeri Gambar -->
             <div style="margin:16px 0;">
                 <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:14px;">
@@ -3626,7 +3109,7 @@
                     </span>
                 </div>
                 <div class="grid-3">
-                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/hidupberkelanjutan.png', '🌱 Pembangunan Berkelanjutan – Geografi membantu merancang tata ruang yang ramah lingkungan.')" data-index="6">
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/hidupberkelanjutan.png', '🌱 Pembangunan Berkelanjutan')" data-index="6">
                         <div class="img-wrap">
                             <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/hidupberkelanjutan.png" alt="Pembangunan Berkelanjutan" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🌱 Berkelanjutan%3C/text%3E%3C/svg%3E'" />
                             <div class="overlay-glow"></div>
@@ -3636,7 +3119,7 @@
                         <div class="image-label-premium"><span class="emoji-big">🌱</span> Pembangunan Berkelanjutan</div>
                         <div class="image-sub-premium"><i class="fas fa-arrow-right"></i> Perencanaan tata ruang ramah lingkungan</div>
                     </div>
-                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/mitigasibanjir.png', '🌊 Mitigasi Bencana Banjir – Geografi mengidentifikasi daerah rawan dan merancang sistem peringatan dini.')" data-index="7">
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/mitigasibanjir.png', '🌊 Mitigasi Bencana Banjir')" data-index="7">
                         <div class="img-wrap">
                             <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/mitigasibanjir.png" alt="Mitigasi Banjir" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🌊 Mitigasi Banjir%3C/text%3E%3C/svg%3E'" />
                             <div class="overlay-glow"></div>
@@ -3646,7 +3129,7 @@
                         <div class="image-label-premium"><span class="emoji-big">🌊</span> Mitigasi Bencana Banjir</div>
                         <div class="image-sub-premium"><i class="fas fa-arrow-right"></i> Sistem peringatan dini & infrastruktur</div>
                     </div>
-                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/tnsebngau.png', '🦧 Ekowisata Katingan – Potensi wisata alam yang dapat dikembangkan secara berkelanjutan.')" data-index="8">
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/tnsebngau.png', '🦧 Ekowisata Katingan')" data-index="8">
                         <div class="img-wrap">
                             <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/tnsebngau.png" alt="Ekowisata" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🦧 Ekowisata%3C/text%3E%3C/svg%3E'" />
                             <div class="overlay-glow"></div>
@@ -3658,7 +3141,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Materi A -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
@@ -3690,7 +3172,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Materi B -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
@@ -3722,7 +3203,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Materi C -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
@@ -3755,7 +3235,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Materi D -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
@@ -3777,7 +3256,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="mini-quiz reveal">
                 <div class="quiz-question">🧠 <strong>Kuis Cepat:</strong> Manfaat geografi untuk mengurangi risiko bencana disebut...</div>
                 <div class="quiz-options">
@@ -3788,7 +3266,6 @@
                 </div>
                 <div class="quiz-feedback"></div>
             </div>
-
             <div class="nav-buttons">
                 <div class="group">
                     <button onclick="navigateTo('prev')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
@@ -3799,9 +3276,7 @@
             </div>
         </section>
 
-        <!-- ============================================================
-        SECTION 5 : ASESMEN
-        ============================================================ -->
+        <!-- ===== SECTION 5 : ASESMEN ===== -->
         <section id="section5" class="section">
             <div style="background:rgba(108,92,231,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(108,92,231,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
                 <div style="display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.4); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
@@ -3812,7 +3287,6 @@
                 <h2>Asesmen <small>Evaluasi Pemahaman</small></h2>
                 <span class="badge-pertemuan"><i class="fas fa-check-circle"></i> 30 Soal</span>
             </div>
-
             <!-- Statistik Soal -->
             <div style="background:linear-gradient(145deg, rgba(20,26,46,0.8), rgba(10,16,36,0.8)); backdrop-filter:blur(12px); border-radius:16px; padding:20px 24px; margin-bottom:24px; border:1px solid rgba(255,255,255,0.03);">
                 <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap:12px;">
@@ -3834,8 +3308,7 @@
                     <span style="color:rgba(255,255,255,0.1); font-size:0.75rem; font-weight:400;"><i class="far fa-clock"></i> 60 menit</span>
                 </div>
             </div>
-
-            <!-- PILIHAN GANDA (15 SOAL) -->
+            <!-- PILIHAN GANDA -->
             <div style="background:rgba(20,26,46,0.5); backdrop-filter:blur(8px); border-radius:16px; padding:20px; border:1px solid rgba(255,255,255,0.02); margin-bottom:20px;">
                 <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
                     <div style="width:32px; height:32px; border-radius:50%; background:linear-gradient(145deg,#2a3a5a,#1a2a4a); display:flex; align-items:center; justify-content:center; font-weight:700; color:#a29bfe; font-size:0.85rem;">A</div>
@@ -3843,7 +3316,6 @@
                     <span style="font-size:0.7rem; color:rgba(255,255,255,0.1); font-weight:400; margin-left:auto;">15 Soal</span>
                 </div>
                 <p style="color:rgba(255,255,255,0.2); font-size:0.8rem; font-weight:400; margin-bottom:12px;"><i class="fas fa-arrow-right" style="color:#a29bfe;"></i> Pilih satu jawaban paling tepat!</p>
-
                 <div class="soal-pg"><div class="pertanyaan"><span class="nomor">1.</span> Kata "geografi" berasal dari bahasa Yunani "geo" dan "graphien" yang artinya ...</div><div class="opsi"><span>A. Bumi dan langit</span><span>B. Bumi dan menulis/melukis</span><span>C. Alam dan manusia</span><span>D. Wilayah dan peta</span><span>E. Iklim dan cuaca</span></div></div>
                 <div class="soal-pg"><div class="pertanyaan"><span class="nomor">2.</span> Tokoh yang dijuluki "Bapak Geografi" adalah ...</div><div class="opsi"><span>A. Ptolemaeus</span><span>B. Immanuel Kant</span><span>C. Eratosthenes</span><span>D. Humboldt</span><span>E. Carl Ritter</span></div></div>
                 <div class="soal-pg"><div class="pertanyaan"><span class="nomor">3.</span> Objek material geografi adalah ...</div><div class="opsi"><span>A. Cara pandang geografi</span><span>B. Seluruh fenomena geosfer</span><span>C. Metode penelitian</span><span>D. Peta dan data</span><span>E. Hubungan manusia-lingkungan</span></div></div>
@@ -3860,8 +3332,7 @@
                 <div class="soal-pg"><div class="pertanyaan"><span class="nomor">14.</span> Lapisan udara yang menyelimuti bumi disebut ...</div><div class="opsi"><span>A. Litosfer</span><span>B. Hidrosfer</span><span>C. Atmosfer</span><span>D. Biosfer</span><span>E. Antroposfer</span></div></div>
                 <div class="soal-pg"><div class="pertanyaan"><span class="nomor">15.</span> Contoh aspek nonfisik dalam geografi adalah ...</div><div class="opsi"><span>A. Jenis tanah</span><span>B. Curah hujan</span><span>C. Budaya masyarakat Dayak</span><span>D. Bentuk sungai</span><span>E. Jenis batuan</span></div></div>
             </div>
-
-            <!-- BENAR/SALAH (10 SOAL) -->
+            <!-- BENAR/SALAH -->
             <div style="background:rgba(20,26,46,0.5); backdrop-filter:blur(8px); border-radius:16px; padding:20px; border:1px solid rgba(255,255,255,0.02); margin-bottom:20px;">
                 <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
                     <div style="width:32px; height:32px; border-radius:50%; background:linear-gradient(145deg,#1a3a3a,#0a2a2a); display:flex; align-items:center; justify-content:center; font-weight:700; color:#00cec9; font-size:0.85rem;">B</div>
@@ -3869,7 +3340,6 @@
                     <span style="font-size:0.7rem; color:rgba(255,255,255,0.1); font-weight:400; margin-left:auto;">10 Soal</span>
                 </div>
                 <p style="color:rgba(255,255,255,0.2); font-size:0.8rem; font-weight:400; margin-bottom:12px;"><i class="fas fa-arrow-right" style="color:#00cec9;"></i> Tuliskan B (Benar) atau S (Salah) pada lembar jawaban!</p>
-
                 <div class="soal-bs"><span class="nomor">1.</span><span class="pertanyaan">Geografi berasal dari bahasa Yunani "geo" yang berarti menulis.</span></div>
                 <div class="soal-bs"><span class="nomor">2.</span><span class="pertanyaan">Eratosthenes dijuluki sebagai "Bapak Geografi".</span></div>
                 <div class="soal-bs"><span class="nomor">3.</span><span class="pertanyaan">Objek formal geografi adalah seluruh fenomena geosfer.</span></div>
@@ -3881,8 +3351,7 @@
                 <div class="soal-bs"><span class="nomor">9.</span><span class="pertanyaan">Prinsip korologi hanya membahas distribusi fenomena saja.</span></div>
                 <div class="soal-bs"><span class="nomor">10.</span><span class="pertanyaan">Mitigasi bencana adalah salah satu manfaat geografi.</span></div>
             </div>
-
-            <!-- ESSAY (5 SOAL) -->
+            <!-- ESSAY -->
             <div style="background:rgba(20,26,46,0.5); backdrop-filter:blur(8px); border-radius:16px; padding:20px; border:1px solid rgba(255,255,255,0.02); margin-bottom:20px;">
                 <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
                     <div style="width:32px; height:32px; border-radius:50%; background:linear-gradient(145deg,#3a2a1a,#2a1a0a); display:flex; align-items:center; justify-content:center; font-weight:700; color:#fdcb6e; font-size:0.85rem;">C</div>
@@ -3890,14 +3359,12 @@
                     <span style="font-size:0.7rem; color:rgba(255,255,255,0.1); font-weight:400; margin-left:auto;">5 Soal</span>
                 </div>
                 <p style="color:rgba(255,255,255,0.2); font-size:0.8rem; font-weight:400; margin-bottom:12px;"><i class="fas fa-arrow-right" style="color:#fdcb6e;"></i> Jawablah dengan jelas dan lengkap!</p>
-
                 <div class="soal-essay"><div class="pertanyaan"><span class="nomor">1.</span> Jelaskan pengertian geografi secara etimologis dan berikan contohnya dalam kehidupan sehari-hari!</div><div class="petunjuk">(Skor: 0-10) · Jawaban minimal 3 kalimat</div></div>
                 <div class="soal-essay"><div class="pertanyaan"><span class="nomor">2.</span> Sebutkan dan jelaskan 4 prinsip geografi beserta contohnya di Kabupaten Katingan!</div><div class="petunjuk">(Skor: 0-10) · Sebutkan 4 prinsip dengan contoh masing-masing</div></div>
                 <div class="soal-essay"><div class="pertanyaan"><span class="nomor">3.</span> Apa perbedaan antara objek material dan objek formal geografi? Berikan contohnya!</div><div class="petunjuk">(Skor: 0-10) · Jelaskan perbedaan dan berikan contoh konkret</div></div>
                 <div class="soal-essay"><div class="pertanyaan"><span class="nomor">4.</span> Bagaimana geografi dapat membantu dalam mitigasi bencana kebakaran hutan dan lahan di Katingan?</div><div class="petunjuk">(Skor: 0-10) · Berikan minimal 3 cara atau rekomendasi</div></div>
                 <div class="soal-essay"><div class="pertanyaan"><span class="nomor">5.</span> Menurutmu, mengapa kita perlu mempelajari geografi? Jelaskan manfaatnya dalam kehidupan sehari-hari!</div><div class="petunjuk">(Skor: 0-10) · Jawaban minimal 4 kalimat dengan alasan yang logis</div></div>
             </div>
-
             <!-- Kunci Jawaban -->
             <div style="background:linear-gradient(145deg, rgba(20,26,46,0.8), rgba(10,16,36,0.8)); backdrop-filter:blur(12px); border-radius:16px; padding:20px; border:2px solid rgba(253,203,110,0.08); margin-top:20px;">
                 <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
@@ -3952,7 +3419,6 @@
                     <i class="fas fa-exclamation-triangle"></i> Password salah! Coba lagi.
                 </div>
             </div>
-
             <div class="nav-buttons">
                 <div class="group">
                     <button onclick="navigateTo('prev')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
@@ -3963,9 +3429,7 @@
             </div>
         </section>
 
-        <!-- ============================================================
-        SECTION 6 : REFLEKSI
-        ============================================================ -->
+        <!-- ===== SECTION 6 : REFLEKSI ===== -->
         <section id="section6" class="section">
             <div style="background:rgba(108,92,231,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(108,92,231,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
                 <div style="display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.4); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
@@ -3976,7 +3440,6 @@
                 <h2>Refleksi <small>Menyimpulkan Perjalanan</small></h2>
                 <span class="badge-pertemuan"><i class="fas fa-heart"></i> Inspirasi</span>
             </div>
-
             <div class="card" style="background:rgba(20,40,40,0.7); backdrop-filter:blur(8px); border:1px solid rgba(108,92,231,0.08);">
                 <h3 style="display:flex; align-items:center; gap:10px; color:#f0f4fa; font-weight:700;"><span style="font-size:1.8rem;">🌟</span> Apa yang Kamu Dapatkan?</h3>
                 <ul class="refleksi-list">
@@ -3986,19 +3449,16 @@
                     <li><span class="check">✅</span><span>Mampu menganalisis fenomena lokal Katingan dengan pendekatan geografi.</span></li>
                 </ul>
             </div>
-
             <div class="card" style="background:rgba(20,26,46,0.7); backdrop-filter:blur(8px); margin-top:16px; border-left:6px solid #6c5ce7;">
                 <h3 style="display:flex; align-items:center; gap:10px; color:#f0f4fa; font-weight:700;"><i class="fas fa-pen-fancy" style="color:#a29bfe;"></i> Renungkan</h3>
                 <p style="font-size:1.05rem; color:rgba(255,255,255,0.65); font-weight:400; font-style:italic; margin-top:4px;">"Bagaimana geografi dapat membantu menyelesaikan masalah lingkungan di Kabupaten Katingan?"</p>
                 <p style="margin-top:8px; font-size:0.88rem; color:rgba(255,255,255,0.25); font-weight:400;"><i class="fas fa-arrow-right" style="color:#a29bfe;"></i> Tuliskan jawabanmu di buku catatan.</p>
             </div>
-
             <div class="celebration-box">
                 <h3>🎉 Selamat!</h3>
                 <p>Kamu telah menyelesaikan materi <strong style="color:#f0f4fa; font-weight:700;">Pengetahuan Dasar Geografi</strong> dalam 3 pertemuan!</p>
                 <div style="margin-top:14px;"><span class="next-btn">➡️ Lanjutkan ke Peta dan Pemetaan</span></div>
             </div>
-
             <div class="nav-buttons">
                 <div class="group">
                     <button onclick="navigateTo('prev')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
@@ -4009,9 +3469,7 @@
             </div>
         </section>
 
-        <!-- ============================================================
-        SECTION 7 : REFERENSI
-        ============================================================ -->
+        <!-- ===== SECTION 7 : REFERENSI ===== -->
         <section id="section7" class="section">
             <div style="background:rgba(108,92,231,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(108,92,231,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
                 <div style="display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.4); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
@@ -4022,7 +3480,6 @@
                 <h2>Referensi <small>Daftar Pustaka</small></h2>
                 <span class="badge-pertemuan"><i class="fas fa-book"></i> 10+ Sumber</span>
             </div>
-
             <ul class="ref-list">
                 <li><i class="fas fa-file-pdf"></i> <strong>Kurikulum Merdeka:</strong> Capaian Pembelajaran IPS Fase E-F, BSKAP Kemendikbudristek (2024).</li>
                 <li><i class="fas fa-book"></i> Bintarto. <em>Metode Penelitian Geografi</em>. UGM Press.</li>
@@ -4034,7 +3491,6 @@
                 <li><i class="fas fa-book"></i> Daldjoeni, N. (2005). <em>Geografi untuk Indonesia</em>. Alumni.</li>
                 <li><i class="fas fa-globe"></i> BPS Kabupaten Katingan. (2023). <em>Kabupaten Katingan dalam Angka 2023</em>.</li>
             </ul>
-
             <div class="footer-credit">
                 <i class="fas fa-school" style="color:#a29bfe;"></i>
                 <span class="school-name-gold">SMAN 3 KASONGAN</span> &nbsp;·&nbsp;
@@ -4042,7 +3498,6 @@
                 Guru Pengampu: <strong style="color:rgba(255,255,255,0.5); font-weight:600;">SYAHRANI, S.Pd</strong> &nbsp;·&nbsp;
                 <span style="color:rgba(255,255,255,0.15); font-weight:400;">NIP. 197512172005011016</span>
             </div>
-
             <div class="nav-buttons">
                 <div class="group">
                     <button onclick="navigateTo('prev')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
@@ -4055,37 +3510,13 @@
 
     </main>
 
-    <!-- ============================================================
-    JAVASCRIPT
-    ============================================================ -->
+    <!-- ===== JAVASCRIPT ===== -->
     <script>
-        // ============================================================
-        // LOADER
-        // ============================================================
+        // ===== LOADER =====
         (function() {
             const loader = document.getElementById('loader');
             const bar = document.getElementById('loaderBar');
             const percent = document.getElementById('loaderPercent');
-            const emojis = ['🌍', '🌎', '🌏', '🗺️', '📍', '🧭', '⭐', '✨', '🌟', '🚀', '💫', '🔥', '🌈', '🎯', '💡', '🌊', '🏔️', '🌴', '🪐', '🌙'];
-
-            function createFallingEmoji() {
-                const e = document.createElement('span');
-                e.className = 'falling-emoji';
-                e.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-                e.style.left = Math.random() * 100 + '%';
-                e.style.fontSize = (1.2 + Math.random() * 2.5) + 'rem';
-                e.style.animationDuration = (2.5 + Math.random() * 3) + 's';
-                e.style.animationDelay = (Math.random() * 0.5) + 's';
-                e.style.opacity = 0.3 + Math.random() * 0.4;
-                loader.appendChild(e);
-                setTimeout(() => { if (e.parentNode) e.remove(); }, 6000);
-            }
-            for (let i = 0; i < 25; i++) { setTimeout(() => createFallingEmoji(), i * 120); }
-            let emojiInterval = setInterval(() => {
-                if (!loader.classList.contains('hidden')) createFallingEmoji();
-                else clearInterval(emojiInterval);
-            }, 500);
-
             let progress = 0;
             const start = Date.now();
             const duration = 3200;
@@ -4104,28 +3535,20 @@
                 }
             }
             update();
-
-            new MutationObserver(() => {
-                if (loader.classList.contains('hidden')) { clearInterval(emojiInterval);
-                    observer.disconnect(); }
-            }).observe(loader, { attributes: true, attributeFilter: ['class'] });
         })();
 
-        // ============================================================
-        // COSMIC CANVAS
-        // ============================================================
+        // ===== COSMIC CANVAS =====
         (function() {
             const canvas = document.getElementById('cosmicCanvas');
             const ctx = canvas.getContext('2d');
             let W, H;
             const stars = [];
-            const NUM_STARS = 100;
+            const NUM_STARS = 200;
 
             function resize() { W = canvas.width = window.innerWidth;
                 H = canvas.height = window.innerHeight; }
             window.addEventListener('resize', resize);
             resize();
-
             class Star {
                 constructor() { this.reset();
                     this.y = Math.random() * H; }
@@ -4162,11 +3585,9 @@
                     ctx.fill();
                 }
             }
-
             for (let i = 0; i < NUM_STARS; i++) { const s = new Star();
                 s.y = Math.random() * H;
                 stars.push(s); }
-
             let time = 0;
 
             function animate() {
@@ -4191,52 +3612,54 @@
             animate();
         })();
 
-        // ============================================================
-        // SHOOTING STARS
-        // ============================================================
+        // ===== 50 VERTICAL COMET STARS (Merah, Kuning, Hijau, Biru) =====
         (function() {
-            const stars = [
-                document.getElementById('star1'),
-                document.getElementById('star2'),
-                document.getElementById('star3'),
-                document.getElementById('star4'),
-                document.getElementById('star5')
-            ];
+            const colors = ['#ff1744', '#ffea00', '#00e676', '#2979ff']; // merah, kuning, hijau, biru
+            const sizes = [3, 5, 8]; // 3 ukuran
+            const count = 50;
+            const container = document.body;
 
-            function resetStar(star, index) {
-                const startX = 20 + Math.random() * 80;
+            function createComet() {
+                const star = document.createElement('div');
+                star.className = 'comet-star';
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                star.style.color = color;
+                star.style.background = color;
+                star.style.boxShadow = `0 0 15px 3px ${color}`;
+                const size = sizes[Math.floor(Math.random() * sizes.length)];
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                const startX = Math.random() * 100;
                 const startY = -5 - Math.random() * 20;
-                const angle = 25 + Math.random() * 35;
-                const distance = 400 + Math.random() * 500;
-                const rad = angle * Math.PI / 180;
-                const duration = 6 + Math.random() * 8;
                 star.style.left = startX + '%';
                 star.style.top = startY + '%';
-                star.style.opacity = '0';
-                star.style.transform = 'scale(0.3)';
-                star.style.animation = 'none';
-                star.offsetHeight;
-                star.style.animation = `shootingStar ${duration}s linear forwards`;
+                const distance = 150 + Math.random() * 350;
+                star.style.setProperty('--dx', '0px');
+                star.style.setProperty('--dy', distance + 'px');
+                const duration = 2.5 + Math.random() * 4.5;
+                const delay = Math.random() * 12;
+                star.style.animationDuration = duration + 's';
+                star.style.animationDelay = delay + 's';
+                container.appendChild(star);
                 setTimeout(() => {
-                    if (star.parentNode) { resetStar(star, index); }
-                }, duration * 1000 + 500);
+                    if (star.parentNode) star.remove();
+                }, (duration + delay) * 1000 + 500);
             }
-            stars.forEach((star, index) => {
-                setTimeout(() => { resetStar(star, index); }, index * 2000 + Math.random() * 3000);
-            });
+            for (let i = 0; i < count; i++) {
+                setTimeout(createComet, i * 200 + Math.random() * 300);
+            }
+            setInterval(() => {
+                createComet();
+            }, 1500);
         })();
 
-        // ============================================================
-        // MOBILE MENU
-        // ============================================================
+        // ===== MOBILE MENU =====
         function toggleMobileMenu() {
             const nav = document.querySelector('.nav-box');
             if (nav) { nav.style.display = nav.style.display === 'none' ? 'block' : 'none'; }
         }
 
-        // ============================================================
-        // MODAL PREMIUM
-        // ============================================================
+        // ===== MODAL =====
         let currentZoom = 1;
         const MIN_ZOOM = 0.5;
         const MAX_ZOOM = 3;
@@ -4269,25 +3692,20 @@
             modalImage = document.getElementById('modalImage');
             modalCaption = document.getElementById('modalCaption');
             modalCounter = document.getElementById('modalCounter');
-
             collectGalleryImages();
-
             let foundIndex = galleryImages.findIndex(item => item.src === src);
             if (foundIndex === -1) {
                 const srcBase = src.split('?')[0];
                 foundIndex = galleryImages.findIndex(item => item.src.includes(srcBase) || srcBase.includes(item.src));
             }
             if (foundIndex === -1) foundIndex = 0;
-
             currentImageIndex = foundIndex;
             currentZoom = 1;
             modalImage.style.transform = `scale(${currentZoom})`;
             document.getElementById('zoomLevel').textContent = '100%';
-
             const shimmer = document.getElementById('modalShimmer');
             shimmer.style.display = 'block';
             modalImage.style.opacity = '0.3';
-
             modalImage.src = src;
             modalImage.onload = function() {
                 shimmer.style.display = 'none';
@@ -4298,12 +3716,10 @@
                 shimmer.style.display = 'none';
                 modalImage.style.opacity = '1';
             };
-
             updateModalCaption();
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
             isModalOpen = true;
-
             const navBtns = modal.querySelectorAll('.nav-arrow');
             if (galleryImages.length <= 1) {
                 navBtns.forEach(btn => btn.style.display = 'none');
@@ -4384,9 +3800,7 @@
                 navigateModal(1); }
         });
 
-        // ============================================================
-        // NAVIGATION
-        // ============================================================
+        // ===== NAVIGATION =====
         (function() {
             const sections = document.querySelectorAll('.section');
             let current = 0;
@@ -4434,7 +3848,6 @@
                 document.querySelectorAll('.nav-buttons .group button:first-child').forEach(btn => btn.disabled = idx === 0);
                 renderNumbers();
                 document.querySelector('.main-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
-
                 setTimeout(() => {
                     const firstHeader = document.querySelector('.section.active .materi-detail .detail-header');
                     if (firstHeader) {
@@ -4448,14 +3861,11 @@
                     }
                 }, 500);
             }
-
             renderNumbers();
             updateUI(0);
         })();
 
-        // ============================================================
-        // KUNCI JAWABAN
-        // ============================================================
+        // ===== KUNCI JAWABAN =====
         function checkPassword() {
             const pw = document.getElementById('passwordInput').value;
             const key = document.getElementById('answerKey');
@@ -4482,18 +3892,14 @@
         }
         document.getElementById('passwordInput').addEventListener('keypress', e => { if (e.key === 'Enter') checkPassword(); });
 
-        // ============================================================
-        // ACCORDION / DETAIL
-        // ============================================================
+        // ===== ACCORDION / DETAIL =====
         function toggleDetail(header) {
             const body = header.nextElementSibling;
             const arrow = header.querySelector('.fa-chevron-down');
             const isOpen = body.classList.contains('open');
-
             const parent = header.closest('.materi-detail');
             const allDetails = parent.parentElement.querySelectorAll('.materi-detail .detail-body');
             const allHeaders = parent.parentElement.querySelectorAll('.materi-detail .detail-header');
-
             if (!isOpen) {
                 allDetails.forEach(b => b.classList.remove('open'));
                 allHeaders.forEach(h => h.classList.remove('active'));
@@ -4505,7 +3911,6 @@
                 header.classList.remove('active');
                 if (arrow) arrow.style.transform = 'rotate(0deg)';
             }
-
             document.querySelectorAll('.materi-detail .detail-header').forEach(h => {
                 const a = h.querySelector('.fa-chevron-down');
                 const b = h.nextElementSibling;
@@ -4517,22 +3922,17 @@
             });
         }
 
-        // ============================================================
-        // MINI QUIZ
-        // ============================================================
+        // ===== MINI QUIZ =====
         function checkQuiz(btn, isCorrect) {
             const parent = btn.closest('.mini-quiz');
             const feedback = parent.querySelector('.quiz-feedback');
             const allBtns = parent.querySelectorAll('.quiz-options button');
-
             allBtns.forEach(b => b.disabled = true);
-
             allBtns.forEach(b => {
                 if (b === btn) {
                     b.classList.add(isCorrect ? 'correct' : 'wrong');
                 }
             });
-
             feedback.classList.add('show');
             if (isCorrect) {
                 feedback.className = 'quiz-feedback show success';
@@ -4541,7 +3941,6 @@
                 feedback.className = 'quiz-feedback show fail';
                 feedback.innerHTML = '❌ <strong>Kurang tepat.</strong> Coba baca ulang materinya ya! 💪';
             }
-
             setTimeout(() => {
                 allBtns.forEach(b => {
                     b.disabled = false;
@@ -4551,9 +3950,7 @@
             }, 3000);
         }
 
-        // ============================================================
-        // SCROLL REVEAL
-        // ============================================================
+        // ===== SCROLL REVEAL =====
         (function() {
             const reveals = document.querySelectorAll('.reveal');
             const observer = new IntersectionObserver((entries) => {
@@ -4566,9 +3963,7 @@
             reveals.forEach(el => observer.observe(el));
         })();
 
-        // ============================================================
-        // 3D TILT EFFECT
-        // ============================================================
+        // ===== 3D TILT EFFECT =====
         (function() {
             const cards = document.querySelectorAll('.image-card-premium');
             cards.forEach(card => {
@@ -4584,14 +3979,12 @@
                 });
                 card.addEventListener('mouseleave', function() {
                     this.style.transform = '';
-                    this.style.transition = 'transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                    this.style.transition = 'transform 0.6s cubic-bezier(0.34,1.56,0.64,1)';
                 });
             });
         })();
 
-        // ============================================================
-        // KUMPULKAN GAMBAR SAAT LOAD
-        // ============================================================
+        // ===== KUMPULKAN GAMBAR SAAT LOAD =====
         document.addEventListener('DOMContentLoaded', function() {
             collectGalleryImages();
         });
