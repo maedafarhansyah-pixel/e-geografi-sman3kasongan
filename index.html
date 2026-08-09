@@ -3859,96 +3859,170 @@
                 </div>
             </div>
         </section>
-/* ASESMEN - HEADER & OPTIONS */
-.soal-section-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 16px;
-    padding: 12px 18px;
-    border-radius: 14px;
-    background: rgba(20, 26, 46, 0.3);
-    border-left: 4px solid transparent;
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    cursor: default;
-}
-.soal-section-header:hover {
-    background: rgba(108, 92, 231, 0.06);
-    border-left-color: #6c5ce7;
-    transform: scale(1.01) translateX(6px);
-    box-shadow: 0 8px 30px rgba(108, 92, 231, 0.04);
-}
-.soal-section-header .icon-box {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 0.85rem;
-    flex-shrink: 0;
-}
-.soal-section-header .icon-box.a {
-    background: linear-gradient(145deg, #2a3a5a, #1a2a4a);
-    color: #a29bfe;
-}
-.soal-section-header .icon-box.b {
-    background: linear-gradient(145deg, #1a3a3a, #0a2a2a);
-    color: #00cec9;
-}
-.soal-section-header .icon-box.c {
-    background: linear-gradient(145deg, #3a2a1a, #2a1a0a);
-    color: #fdcb6e;
-}
-.soal-section-header h3 {
-    color: #f0f4fa;
-    font-size: 1.05rem;
-    font-weight: 700;
-    margin: 0;
-    transition: color 0.3s ease;
-}
-.soal-section-header:hover h3 {
-    color: #fff;
-}
-.soal-section-header .badge-count {
-    font-size: 0.7rem;
-    color: rgba(255, 255, 255, 0.1);
-    font-weight: 400;
-    margin-left: auto;
-}
 
-/* OPSI 2 KOLOM: A,B,C di kiri; D,E di kanan */
-.options-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4px 30px;
-    padding-left: 20px;
-    margin-top: 6px;
-}
-.options-grid .opt-item {
-    display: block;
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.65);
-    font-weight: 400;
-    line-height: 2.2;
-    transition: all 0.2s ease;
-}
-.options-grid .opt-item:hover {
-    color: #fff;
-    transform: translateX(4px);
-}
-.options-grid .opt-item strong {
-    color: #a29bfe;
-    font-weight: 700;
-    margin-right: 4px;
-}
-@media (max-width: 600px) {
-    .options-grid {
-        grid-template-columns: 1fr;
-        gap: 2px;
-    }
-}
+        <!-- ============================================================
+        SECTION 6 : ASESMEN (LENGKAP – TIDAK DIUBAH)
+        ============================================================ -->
+        <section id="section6" class="section">
+            <div style="background:rgba(108,92,231,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(108,92,231,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                <div style="display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.4); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
+                <button onclick="navigateTo('section1')" style="background:rgba(255,255,255,0.02); color:rgba(255,255,255,0.3); border:1px solid rgba(255,255,255,0.03); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem;"><i class="fas fa-home"></i> Beranda</button>
+            </div>
+            <div class="section-header">
+                <div class="num">06</div>
+                <h2>Asesmen <small>Evaluasi Pemahaman</small></h2>
+                <span class="badge-pertemuan"><i class="fas fa-check-circle"></i> 30 Soal</span>
+            </div>
+
+            <!-- Statistik Soal -->
+            <div style="background:linear-gradient(145deg, rgba(20,26,46,0.8), rgba(10,16,36,0.8)); backdrop-filter:blur(12px); border-radius:16px; padding:20px 24px; margin-bottom:24px; border:1px solid rgba(255,255,255,0.03);">
+                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap:12px;">
+                    <div style="display:flex; align-items:center; gap:12px; padding:10px 14px; background:rgba(108,92,231,0.04); border-radius:12px; border:1px solid rgba(108,92,231,0.06);">
+                        <div style="width:36px; height:36px; border-radius:50%; background:rgba(108,92,231,0.08); display:flex; align-items:center; justify-content:center;"><i class="fas fa-list-ol" style="color:#a29bfe;"></i></div>
+                        <div><span style="color:rgba(255,255,255,0.2); font-size:0.6rem; font-weight:600; text-transform:uppercase;">Pilihan Ganda</span><div style="color:#f0f4fa; font-size:1.2rem; font-weight:700;">15</div></div>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:12px; padding:10px 14px; background:rgba(0,206,201,0.04); border-radius:12px; border:1px solid rgba(0,206,201,0.06);">
+                        <div style="width:36px; height:36px; border-radius:50%; background:rgba(0,206,201,0.08); display:flex; align-items:center; justify-content:center;"><i class="fas fa-check-double" style="color:#00cec9;"></i></div>
+                        <div><span style="color:rgba(255,255,255,0.2); font-size:0.6rem; font-weight:600; text-transform:uppercase;">Benar/Salah</span><div style="color:#f0f4fa; font-size:1.2rem; font-weight:700;">10</div></div>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:12px; padding:10px 14px; background:rgba(253,121,168,0.04); border-radius:12px; border:1px solid rgba(253,121,168,0.06);">
+                        <div style="width:36px; height:36px; border-radius:50%; background:rgba(253,121,168,0.08); display:flex; align-items:center; justify-content:center;"><i class="fas fa-pencil-alt" style="color:#fd79a8;"></i></div>
+                        <div><span style="color:rgba(255,255,255,0.2); font-size:0.6rem; font-weight:600; text-transform:uppercase;">Essay</span><div style="color:#f0f4fa; font-size:1.2rem; font-weight:700;">5</div></div>
+                    </div>
+                </div>
+                <div style="margin-top:14px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.02); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                    <span style="color:rgba(255,255,255,0.25); font-size:0.85rem; font-weight:400;"><i class="fas fa-info-circle" style="color:#a29bfe;"></i> Total <strong style="color:#f0f4fa; font-weight:700;">30 soal</strong> · Kerjakan dengan jujur</span>
+                    <span style="color:rgba(255,255,255,0.1); font-size:0.75rem; font-weight:400;"><i class="far fa-clock"></i> 60 menit</span>
+                </div>
+            </div>
+
+            <!-- ===== PILIHAN GANDA (15 SOAL) ===== -->
+            <div style="background:rgba(20,26,46,0.5); backdrop-filter:blur(8px); border-radius:16px; padding:20px; border:1px solid rgba(255,255,255,0.02); margin-bottom:20px;">
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+                    <div style="width:32px; height:32px; border-radius:50%; background:linear-gradient(145deg,#2a3a5a,#1a2a4a); display:flex; align-items:center; justify-content:center; font-weight:700; color:#a29bfe; font-size:0.85rem;">A</div>
+                    <h3 style="color:#f0f4fa; font-size:1.05rem; font-weight:700; margin:0;">Pilihan Ganda</h3>
+                    <span style="font-size:0.7rem; color:rgba(255,255,255,0.1); font-weight:400; margin-left:auto;">15 Soal</span>
+                </div>
+                <p style="color:rgba(255,255,255,0.2); font-size:0.8rem; font-weight:400; margin-bottom:12px;"><i class="fas fa-arrow-right" style="color:#a29bfe;"></i> Pilih satu jawaban paling tepat!</p>
+
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">1.</span> Kata "geografi" berasal dari bahasa Yunani "geo" dan "graphien" yang artinya ...</div><div class="opsi"><span>A. Bumi dan langit</span><span>B. Bumi dan menulis/melukis</span><span>C. Alam dan manusia</span><span>D. Wilayah dan peta</span><span>E. Iklim dan cuaca</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">2.</span> Tokoh yang dijuluki "Bapak Geografi" adalah ...</div><div class="opsi"><span>A. Ptolemaeus</span><span>B. Immanuel Kant</span><span>C. Eratosthenes</span><span>D. Humboldt</span><span>E. Carl Ritter</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">3.</span> Objek material geografi adalah ...</div><div class="opsi"><span>A. Cara pandang geografi</span><span>B. Seluruh fenomena geosfer</span><span>C. Metode penelitian</span><span>D. Peta dan data</span><span>E. Hubungan manusia-lingkungan</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">4.</span> Prinsip yang menekankan fenomena geosfer saling memengaruhi adalah ...</div><div class="opsi"><span>A. Distribusi</span><span>B. Interelasi</span><span>C. Deskripsi</span><span>D. Korologi</span><span>E. Keruangan</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">5.</span> Aspek geografi yang mengkaji topografi, iklim, hidrologi adalah ...</div><div class="opsi"><span>A. Aspek sosial</span><span>B. Aspek ekonomi</span><span>C. Aspek fisik</span><span>D. Aspek budaya</span><span>E. Aspek politik</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">6.</span> Lapisan geosfer yang terdiri dari batuan dan tanah disebut ...</div><div class="opsi"><span>A. Atmosfer</span><span>B. Hidrosfer</span><span>C. Litosfer</span><span>D. Biosfer</span><span>E. Antroposfer</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">7.</span> Pendekatan geografi yang menganalisis persebaran dan pola fenomena adalah ...</div><div class="opsi"><span>A. Keruangan</span><span>B. Kelingkungan</span><span>C. Kompleks Wilayah</span><span>D. Deskriptif</span><span>E. Korologi</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">8.</span> Geografi sosial mempelajari tentang ...</div><div class="opsi"><span>A. Bentuk lahan</span><span>B. Iklim dan cuaca</span><span>C. Aktivitas manusia</span><span>D. Jenis tanah</span><span>E. Flora dan fauna</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">9.</span> Prinsip korologi adalah gabungan dari prinsip ...</div><div class="opsi"><span>A. Distribusi dan deskripsi</span><span>B. Distribusi, interelasi, dan deskripsi</span><span>C. Interelasi dan deskripsi</span><span>D. Keruangan dan kelingkungan</span><span>E. Deskripsi dan korologi</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">10.</span> Contoh fenomena antroposfer adalah ...</div><div class="opsi"><span>A. Gunung meletus</span><span>B. Aktivitas penambangan emas</span><span>C. Hujan tropis</span><span>D. Sungai Katingan</span><span>E. Hutan hujan tropis</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">11.</span> Hakikat geografi yang melihat hubungan timbal balik makhluk hidup dengan lingkungan adalah ...</div><div class="opsi"><span>A. Kewilayahan</span><span>B. Keruangan</span><span>C. Kelingkungan</span><span>D. Korologi</span><span>E. Deskripsi</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">12.</span> Yang termasuk objek formal geografi adalah ...</div><div class="opsi"><span>A. Gunung dan sungai</span><span>B. Pendekatan keruangan</span><span>C. Manusia dan hewan</span><span>D. Tanah dan batuan</span><span>E. Iklim dan cuaca</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">13.</span> Manfaat geografi dalam pembangunan berkelanjutan adalah ...</div><div class="opsi"><span>A. Perencanaan tata ruang yang ramah lingkungan</span><span>B. Membangun gedung pencakar langit</span><span>C. Menambah populasi penduduk</span><span>D. Mengurangi jumlah sekolah</span><span>E. Menebang hutan secara liar</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">14.</span> Lapisan udara yang menyelimuti bumi disebut ...</div><div class="opsi"><span>A. Litosfer</span><span>B. Hidrosfer</span><span>C. Atmosfer</span><span>D. Biosfer</span><span>E. Antroposfer</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">15.</span> Contoh aspek nonfisik dalam geografi adalah ...</div><div class="opsi"><span>A. Jenis tanah</span><span>B. Curah hujan</span><span>C. Budaya masyarakat Dayak</span><span>D. Bentuk sungai</span><span>E. Jenis batuan</span></div></div>
+            </div>
+
+            <!-- ===== BENAR/SALAH (10 SOAL) ===== -->
+            <div style="background:rgba(20,26,46,0.5); backdrop-filter:blur(8px); border-radius:16px; padding:20px; border:1px solid rgba(255,255,255,0.02); margin-bottom:20px;">
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+                    <div style="width:32px; height:32px; border-radius:50%; background:linear-gradient(145deg,#1a3a3a,#0a2a2a); display:flex; align-items:center; justify-content:center; font-weight:700; color:#00cec9; font-size:0.85rem;">B</div>
+                    <h3 style="color:#f0f4fa; font-size:1.05rem; font-weight:700; margin:0;">Benar / Salah</h3>
+                    <span style="font-size:0.7rem; color:rgba(255,255,255,0.1); font-weight:400; margin-left:auto;">10 Soal</span>
+                </div>
+                <p style="color:rgba(255,255,255,0.2); font-size:0.8rem; font-weight:400; margin-bottom:12px;"><i class="fas fa-arrow-right" style="color:#00cec9;"></i> Tuliskan B (Benar) atau S (Salah) pada lembar jawaban!</p>
+
+                <div class="soal-bs"><span class="nomor">1.</span><span class="pertanyaan">Geografi berasal dari bahasa Yunani "geo" yang berarti menulis.</span></div>
+                <div class="soal-bs"><span class="nomor">2.</span><span class="pertanyaan">Eratosthenes dijuluki sebagai "Bapak Geografi".</span></div>
+                <div class="soal-bs"><span class="nomor">3.</span><span class="pertanyaan">Objek formal geografi adalah seluruh fenomena geosfer.</span></div>
+                <div class="soal-bs"><span class="nomor">4.</span><span class="pertanyaan">Prinsip distribusi menekankan bahwa fenomena saling memengaruhi.</span></div>
+                <div class="soal-bs"><span class="nomor">5.</span><span class="pertanyaan">Litosfer adalah lapisan udara yang menyelimuti bumi.</span></div>
+                <div class="soal-bs"><span class="nomor">6.</span><span class="pertanyaan">Geografi sosial mempelajari aktivitas manusia seperti budaya Dayak.</span></div>
+                <div class="soal-bs"><span class="nomor">7.</span><span class="pertanyaan">Pendekatan kelingkungan menganalisis interaksi manusia dengan lingkungan.</span></div>
+                <div class="soal-bs"><span class="nomor">8.</span><span class="pertanyaan">Hidrosfer adalah lapisan kehidupan (flora dan fauna).</span></div>
+                <div class="soal-bs"><span class="nomor">9.</span><span class="pertanyaan">Prinsip korologi hanya membahas distribusi fenomena saja.</span></div>
+                <div class="soal-bs"><span class="nomor">10.</span><span class="pertanyaan">Mitigasi bencana adalah salah satu manfaat geografi.</span></div>
+            </div>
+
+            <!-- ===== ESSAY (5 SOAL) ===== -->
+            <div style="background:rgba(20,26,46,0.5); backdrop-filter:blur(8px); border-radius:16px; padding:20px; border:1px solid rgba(255,255,255,0.02); margin-bottom:20px;">
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+                    <div style="width:32px; height:32px; border-radius:50%; background:linear-gradient(145deg,#3a2a1a,#2a1a0a); display:flex; align-items:center; justify-content:center; font-weight:700; color:#fdcb6e; font-size:0.85rem;">C</div>
+                    <h3 style="color:#f0f4fa; font-size:1.05rem; font-weight:700; margin:0;">Essay</h3>
+                    <span style="font-size:0.7rem; color:rgba(255,255,255,0.1); font-weight:400; margin-left:auto;">5 Soal</span>
+                </div>
+                <p style="color:rgba(255,255,255,0.2); font-size:0.8rem; font-weight:400; margin-bottom:12px;"><i class="fas fa-arrow-right" style="color:#fdcb6e;"></i> Jawablah dengan jelas dan lengkap!</p>
+
+                <div class="soal-essay"><div class="pertanyaan"><span class="nomor">1.</span> Jelaskan pengertian geografi secara etimologis dan berikan contohnya dalam kehidupan sehari-hari!</div><div class="petunjuk">(Skor: 0-10) · Jawaban minimal 3 kalimat</div></div>
+                <div class="soal-essay"><div class="pertanyaan"><span class="nomor">2.</span> Sebutkan dan jelaskan 4 prinsip geografi beserta contohnya di Kabupaten Katingan!</div><div class="petunjuk">(Skor: 0-10) · Sebutkan 4 prinsip dengan contoh masing-masing</div></div>
+                <div class="soal-essay"><div class="pertanyaan"><span class="nomor">3.</span> Apa perbedaan antara objek material dan objek formal geografi? Berikan contohnya!</div><div class="petunjuk">(Skor: 0-10) · Jelaskan perbedaan dan berikan contoh konkret</div></div>
+                <div class="soal-essay"><div class="pertanyaan"><span class="nomor">4.</span> Bagaimana geografi dapat membantu dalam mitigasi bencana kebakaran hutan dan lahan di Katingan?</div><div class="petunjuk">(Skor: 0-10) · Berikan minimal 3 cara atau rekomendasi</div></div>
+                <div class="soal-essay"><div class="pertanyaan"><span class="nomor">5.</span> Menurutmu, mengapa kita perlu mempelajari geografi? Jelaskan manfaatnya dalam kehidupan sehari-hari!</div><div class="petunjuk">(Skor: 0-10) · Jawaban minimal 4 kalimat dengan alasan yang logis</div></div>
+            </div>
+
+            <!-- Kunci Jawaban -->
+            <div style="background:linear-gradient(145deg, rgba(20,26,46,0.8), rgba(10,16,36,0.8)); backdrop-filter:blur(12px); border-radius:16px; padding:20px; border:2px solid rgba(253,203,110,0.08); margin-top:20px;">
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+                    <div style="width:32px; height:32px; border-radius:50%; background:rgba(253,203,110,0.08); display:flex; align-items:center; justify-content:center; font-weight:700; color:#fdcb6e; font-size:0.85rem;">🔑</div>
+                    <h3 style="color:#fdcb6e; font-size:1.05rem; font-weight:700; margin:0;">Kunci Jawaban</h3>
+                    <span style="font-size:0.65rem; color:rgba(255,255,255,0.1); font-weight:400; margin-left:auto;"><i class="fas fa-lock"></i> Password</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:14px;">
+                    <input type="password" id="passwordInput" placeholder="Password guru..." style="flex:1; min-width:180px; padding:12px 18px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.04); border-radius:10px; color:#e8e8e8; font-size:0.9rem; outline:none; transition:0.3s; font-weight:400;">
+                    <button onclick="checkPassword()" style="background:linear-gradient(145deg,#fdcb6e,#f39c12); color:#1a1a1a; border:none; padding:12px 28px; border-radius:10px; font-weight:700; cursor:pointer; transition:0.3s; display:flex; align-items:center; gap:8px; font-size:0.85rem;">
+                        <i class="fas fa-unlock"></i> Buka
+                    </button>
+                    <button onclick="clearPassword()" style="background:rgba(255,255,255,0.02); color:rgba(255,255,255,0.2); border:1px solid rgba(255,255,255,0.02); padding:12px 18px; border-radius:10px; cursor:pointer; font-weight:400;"><i class="fas fa-times"></i></button>
+                </div>
+                <div id="answerKey" style="display:none;">
+                    <div style="background:rgba(255,255,255,0.01); border-radius:12px; padding:16px;">
+                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+                            <div>
+                                <h4 style="color:#a29bfe; margin-bottom:8px; font-size:0.85rem; font-weight:700;"><i class="fas fa-check-circle"></i> PG (15 Soal)</h4>
+                                <div style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400; line-height:2.2; display:grid; grid-template-columns:1fr 1fr 1fr; gap:0 15px;">
+                                    <div>1. B</div><div>2. C</div><div>3. B</div><div>4. B</div><div>5. C</div>
+                                    <div>6. C</div><div>7. A</div><div>8. C</div><div>9. B</div><div>10. B</div>
+                                    <div>11. C</div><div>12. B</div><div>13. A</div><div>14. C</div><div>15. C</div>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 style="color:#00cec9; margin-bottom:8px; font-size:0.85rem; font-weight:700;"><i class="fas fa-check-double"></i> B/S (10 Soal)</h4>
+                                <div style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400; line-height:2.2;">
+                                    <div>1. <span style="color:#fd79a8; font-weight:700;">S</span> (geo = bumi)</div>
+                                    <div>2. <span style="color:#00cec9; font-weight:700;">B</span></div>
+                                    <div>3. <span style="color:#fd79a8; font-weight:700;">S</span> (itu objek material)</div>
+                                    <div>4. <span style="color:#fd79a8; font-weight:700;">S</span> (itu interelasi)</div>
+                                    <div>5. <span style="color:#fd79a8; font-weight:700;">S</span> (itu atmosfer)</div>
+                                    <div>6. <span style="color:#00cec9; font-weight:700;">B</span></div>
+                                    <div>7. <span style="color:#00cec9; font-weight:700;">B</span></div>
+                                    <div>8. <span style="color:#fd79a8; font-weight:700;">S</span> (itu biosfer)</div>
+                                    <div>9. <span style="color:#fd79a8; font-weight:700;">S</span> (gabungan semua)</div>
+                                    <div>10. <span style="color:#00cec9; font-weight:700;">B</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin-top:14px; border-top:1px solid rgba(255,255,255,0.02); padding-top:12px;">
+                            <h4 style="color:#fdcb6e; margin-bottom:6px; font-size:0.85rem; font-weight:700;"><i class="fas fa-pencil-alt"></i> Essay (5 Soal)</h4>
+                            <div style="font-size:0.8rem; color:rgba(255,255,255,0.3); font-weight:400; line-height:2;">
+                                <div><strong style="color:rgba(255,255,255,0.5); font-weight:600;">Soal 1-5:</strong> Jawaban sesuai dengan materi yang telah dipelajari di pertemuan 1-3.</div>
+                                <div><strong style="color:rgba(255,255,255,0.5); font-weight:600;">Skor:</strong> 0-10 per soal · Total maksimal 50 (Essay) + 50 (PG & BS) = 100</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="passwordError" style="display:none; color:#fd79a8; font-size:0.85rem; font-weight:400; margin-top:6px; padding:8px 14px; background:rgba(253,121,168,0.04); border-radius:8px; border-left:3px solid #fd79a8;">
+                    <i class="fas fa-exclamation-triangle"></i> Password salah! Coba lagi.
+                </div>
+            </div>
+
+            <div class="nav-buttons">
+                <div class="group">
+                    <button onclick="navigateTo('prev')"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                    <span class="page-numbers"></span>
+                    <button onclick="navigateTo('next')">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                    <span class="counter">6 / 9</span>
+                </div>
+            </div>
+        </section>
 
         <!-- ============================================================
         SECTION 7 : RUBRIK (dirapikan)
