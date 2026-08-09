@@ -2468,6 +2468,46 @@
             border: 1px solid rgba(253, 203, 110, 0.06);
             margin-left: 6px;
         }
+
+        /* tambahan untuk tabel */
+        .table-wrap {
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+        .table-wrap table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.85);
+            background: rgba(0,0,0,0.15);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .table-wrap th, .table-wrap td {
+            padding: 10px 14px;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            text-align: left;
+            vertical-align: top;
+        }
+        .table-wrap th {
+            background: rgba(108,92,231,0.08);
+            color: #a29bfe;
+            font-weight: 700;
+        }
+        .table-wrap tr:last-child td {
+            border-bottom: none;
+        }
+        .table-wrap tr:hover td {
+            background: rgba(108,92,231,0.03);
+        }
+        @media (max-width:600px) {
+            .table-wrap table {
+                font-size: 0.8rem;
+            }
+            .table-wrap th, .table-wrap td {
+                padding: 6px 10px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -2573,7 +2613,7 @@
             </div>
             <div class="section-header">
                 <div class="num">02</div>
-                <h2>Pertemuan 1 – Fondasi Keilmuan <small>Pengertian, Hakikat, & Ruang Lingkup</small></h2>
+                <h2>Pertemuan 1 – Fondasi Keilmuan <small>Pengertian, Hakikat, Ruang Lingkup, dan Sejarah Perkembangan Geografi</small></h2>
                 <span class="badge-pertemuan">3×45'</span>
             </div>
             <div class="progress-tracker">
@@ -2591,9 +2631,12 @@
             <h3 style="font-size:1.05rem; color:#f0f4fa; font-weight:700; border-left:4px solid #6c5ce7; padding-left:12px; margin-bottom:6px;">Tujuan Pembelajaran</h3>
             <ul style="color:rgba(255,255,255,0.7); font-weight:400; padding-left:20px; margin-bottom:16px; line-height:2; font-size:0.95rem;">
                 <li>Menjelaskan pengertian geografi secara etimologis dan hakikatnya dengan bahasa yang mudah dipahami.</li>
-                <li>Mengidentifikasi definisi geografi menurut para ahli (Eratosthenes, Bintarto, Sumaatmadja).</li>
+                <li>Mengidentifikasi definisi geografi menurut para ahli dan hasil Seminar Lokakarya 1988.</li>
+                <li>Menjelaskan sejarah dan perkembangan geografi dari masa klasik hingga kontemporer.</li>
+                <li>Membedakan geografi dengan ilmu-ilmu lain yang serupa.</li>
                 <li>Menyebutkan ruang lingkup Geografi Fisik dan Geografi Sosial dengan contoh konkret.</li>
                 <li>Mengidentifikasi 5 lapisan geosfer dengan contoh lokal Kalimantan Tengah yang dekat dengan kehidupan sehari-hari.</li>
+                <li>Memberikan contoh fenomena geosfer dalam kehidupan sehari-hari.</li>
             </ul>
             <!-- Galeri Gambar -->
             <div style="margin:16px 0;">
@@ -2637,127 +2680,265 @@
                     </div>
                 </div>
             </div>
-            <!-- Materi A -->
+
+            <!-- MATERI A. PENGERTIAN GEOGRAFI -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
-                    <h4>A. Pengertian Geografi <span class="local-badge">Asal Kata</span></h4>
+                    <h4>A. Pengertian Geografi <span class="local-badge">Etimologi & Definisi</span></h4>
                     <span class="fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;">▼</span>
                 </div>
                 <div class="detail-body">
                     <div class="detail-explanation">
-                        <span class="emoji-big">📖</span>
-                        <p><strong>Apa itu Geografi?</strong> Geografi adalah ilmu yang mempelajari tentang <span class="highlight">bumi dan segala isinya</span>, termasuk manusia, hewan, tumbuhan, dan fenomena alam yang terjadi di dalamnya.</p>
+                        <p><strong>Pengertian Secara Etimologis</strong><br />Kata <strong>"geografi"</strong> berasal dari bahasa Yunani Kuno: <strong style="color:#6c5ce7;">Geo</strong> (Bumi) dan <strong style="color:#00cec9;">Graphien</strong> (Menulis/Melukis). Jadi secara harfiah geografi berarti <span class="highlight">"lukisan bumi"</span> atau <span class="highlight">"tulisan tentang bumi"</span>. Seperti seorang pelukis yang menggambarkan pemandangan alam, ahli geografi pun "melukis" gambaran tentang permukaan bumi beserta segala isinya.</p>
                     </div>
-                    <p style="color:rgba(255,255,255,0.85); font-size:0.95rem; font-weight:400;">
-                        Kata <strong>"geografi"</strong> berasal dari bahasa Yunani Kuno: <strong style="color:#6c5ce7;">Geo</strong> (Bumi) dan <strong style="color:#00cec9;">Graphien</strong> (Menulis/Melukis). Jadi geografi berarti <span style="color:#fdcb6e; font-weight:700;">"lukisan bumi"</span>.
+                    <p style="color:rgba(255,255,255,0.85); font-size:0.95rem; font-weight:400; margin-top:6px;">
+                        <strong>Pengertian Secara Umum:</strong> Geografi adalah ilmu yang mempelajari tentang <span style="color:#fdcb6e; font-weight:700;">bumi dan segala isinya</span>, termasuk manusia, hewan, tumbuhan, dan fenomena alam yang terjadi di dalamnya. Geografi tidak hanya mempelajari letak dan bentuk fisik bumi, tetapi juga bagaimana manusia berinteraksi dengan lingkungan sekitarnya.
                     </p>
                     <div style="background:rgba(253,203,110,0.03); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #fdcb6e;">
                         <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">
-                            <strong style="color:rgba(255,255,255,0.7); font-weight:600;">Bayangkan:</strong> Seperti pelukis yang menggambar pemandangan, ahli geografi "melukis" gambaran tentang bumi.
+                            <strong style="color:rgba(255,255,255,0.7); font-weight:600;">Pertanyaan Dasar Geografi:</strong> Di mana? Mengapa di sana? Bagaimana interaksinya? Apa dampaknya?
                         </p>
                     </div>
                     <div style="margin-top:12px;">
                         <h5 style="color:#a29bfe; font-weight:700; font-size:0.95rem;">Definisi Menurut Para Ahli</h5>
-                        <ul style="color:rgba(255,255,255,0.7); font-weight:400; padding-left:20px; line-height:2.2; font-size:0.92rem;">
-                            <li><strong style="color:#f0f4fa;">Eratosthenes</strong> (Bapak Geografi): Geografi adalah ilmu yang menggambarkan permukaan bumi.</li>
-                            <li><strong style="color:#f0f4fa;">Bintarto</strong>: Geografi adalah ilmu yang mempelajari hubungan kausal antara fenomena geosfer dan kehidupan manusia.</li>
-                            <li><strong style="color:#f0f4fa;">Sumaatmadja</strong>: Geografi adalah ilmu yang mempelajari persamaan dan perbedaan fenomena geosfer dengan sudut pandang kelingkungan dan kewilayahan.</li>
-                        </ul>
+                        <div class="table-wrap">
+                            <table>
+                                <thead><tr><th>Ahli</th><th>Definisi</th></tr></thead>
+                                <tbody>
+                                    <tr><td><strong>Eratosthenes</strong> (Bapak Geografi)</td><td>“Geografi adalah ilmu yang menggambarkan permukaan bumi.” Beliau pertama kali menggunakan istilah “geografi” dan menghitung keliling bumi dengan akurat pada abad ke-3 SM.</td></tr>
+                                    <tr><td><strong>Bintarto</strong></td><td>“Geografi adalah ilmu yang mempelajari hubungan kausal (sebab-akibat) antara fenomena geosfer dan kehidupan manusia.”</td></tr>
+                                    <tr><td><strong>Sumaatmadja</strong></td><td>“Geografi adalah ilmu yang mempelajari persamaan dan perbedaan fenomena geosfer dengan sudut pandang kelingkungan dan kewilayahan.”</td></tr>
+                                    <tr><td><strong>Bintarto &amp; Hadisumarno</strong></td><td>“Geografi adalah ilmu yang mempelajari hubungan timbal balik antara manusia dan lingkungannya, serta persebaran fenomena di permukaan bumi.”</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div style="background:rgba(108,92,231,0.04); border-radius:10px; padding:12px 16px; margin-top:10px; border-left:4px solid #6c5ce7;">
+                            <h5 style="color:#6c5ce7; font-weight:700; font-size:0.95rem;">Seminar Lokakarya Geografi 1988</h5>
+                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.8); font-weight:400; line-height:1.8;">
+                                <strong>Rumusan:</strong> “Geografi adalah ilmu yang mempelajari persamaan dan perbedaan fenomena geosfer dengan sudut pandang kelingkungan dan kewilayahan dalam konteks keruangan.”
+                                <br /><span style="color:rgba(255,255,255,0.5);">Penekanan: persamaan &amp; perbedaan, fenomena geosfer, sudut pandang kelingkungan &amp; kewilayahan, konteks keruangan.</span>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- Materi B -->
+
+            <!-- MATERI B. SEJARAH DAN PERKEMBANGAN GEOGRAFI -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
-                    <h4>B. Hakikat Geografi <span class="local-badge">Kalimantan</span></h4>
+                    <h4>B. Sejarah dan Perkembangan Geografi <span class="local-badge">Dari Klasik hingga Digital</span></h4>
                     <span class="fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;">▼</span>
                 </div>
                 <div class="detail-body">
                     <div class="detail-explanation">
-                        <span class="emoji-big">🧠</span>
-                        <p>Geografi memiliki dua sudut pandang utama: <span class="highlight">kelingkungan</span> (hubungan makhluk hidup dengan lingkungan) dan <span class="highlight">kewilayahan</span> (karakteristik unik suatu wilayah).</p>
+                        <p>Geografi telah berkembang selama ribuan tahun. Berikut periodisasi penting dalam sejarah geografi.</p>
+                    </div>
+
+                    <h5 style="color:#a29bfe; font-weight:700; font-size:0.95rem; margin:8px 0 4px;">1. Masa Klasik (Yunani Kuno, ± 500 SM – 500 M)</h5>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Tokoh</th><th>Kontribusi</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Eratosthenes</strong></td><td>Menciptakan istilah “geografi”, menghitung keliling bumi, membuat peta dunia pertama.</td></tr>
+                                <tr><td><strong>Herodotus</strong></td><td>“Bapak Sejarah”, menggambarkan budaya dan lingkungan di dunia kuno.</td></tr>
+                                <tr><td><strong>Ptolemaeus</strong></td><td>Menulis <em>Geographia</em>, mengembangkan sistem koordinat lintang-bujur.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h5 style="color:#a29bfe; font-weight:700; font-size:0.95rem; margin:8px 0 4px;">2. Abad Pertengahan &amp; Keemasan Islam (500–1500 M)</h5>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Tokoh</th><th>Kontribusi</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Al-Idrisi</strong></td><td>Membuat peta dunia terbaik pada zamannya (<em>Tabula Rogeriana</em>).</td></tr>
+                                <tr><td><strong>Ibnu Battuta</strong></td><td>Perjalanan 30 tahun ke 44 negara, mencatat fenomena geografi dan budaya.</td></tr>
+                                <tr><td><strong>Ibnu Khaldun</strong></td><td>Mengembangkan konsep interaksi manusia-lingkungan, pengaruh iklim terhadap peradaban.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h5 style="color:#a29bfe; font-weight:700; font-size:0.95rem; margin:8px 0 4px;">3. Masa Penjelajahan &amp; Renaisans (1500–1800 M)</h5>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Tokoh</th><th>Kontribusi</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Columbus, Magellan, Vasco da Gama</strong></td><td>Pelayaran global, membuktikan bumi bulat, membuka jalur perdagangan.</td></tr>
+                                <tr><td><strong>Gerardus Mercator</strong></td><td>Mengembangkan proyeksi peta (Proyeksi Mercator) untuk navigasi.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h5 style="color:#a29bfe; font-weight:700; font-size:0.95rem; margin:8px 0 4px;">4. Masa Modern &amp; Ilmiah (1800–1900 M)</h5>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Tokoh</th><th>Kontribusi</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Alexander von Humboldt</strong></td><td>Bapak Geografi Modern, pendekatan ilmiah dan sistematis, hubungan iklim-vegetasi.</td></tr>
+                                <tr><td><strong>Carl Ritter</strong></td><td>Mengembangkan geografi sebagai ilmu akademis, pendekatan regional dan komparatif.</td></tr>
+                                <tr><td><strong>Friedrich Ratzel</strong></td><td>Konsep <em>Lebensraum</em> (ruang hidup), hubungan negara dengan wilayah.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h5 style="color:#a29bfe; font-weight:700; font-size:0.95rem; margin:8px 0 4px;">5. Masa Kontemporer (1900–sekarang)</h5>
+                    <ul style="color:rgba(255,255,255,0.7); font-weight:400; padding-left:20px; line-height:2.2; font-size:0.92rem;">
+                        <li><strong>Pendekatan Kuantitatif:</strong> Penggunaan statistik dan matematika (1950–1970).</li>
+                        <li><strong>Revolusi Teknologi:</strong> SIG, penginderaan jauh, GPS (1970–sekarang).</li>
+                        <li><strong>Geografi Lingkungan:</strong> Fokus pada perubahan iklim, deforestasi, pembangunan berkelanjutan (1980–sekarang).</li>
+                        <li><strong>Geografi Digital:</strong> Big data, drone, kecerdasan buatan untuk analisis spasial (2000–sekarang).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- MATERI C. PERBEDAAN GEOGRAFI DENGAN ILMU LAIN -->
+            <div class="materi-detail reveal">
+                <div class="detail-header" onclick="toggleDetail(this)">
+                    <h4>C. Perbedaan Geografi dengan Ilmu Lain</h4>
+                    <span class="fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;">▼</span>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-explanation">
+                        <p>Geografi sering disamakan dengan ilmu lain. Tabel berikut menjelaskan perbedaan mendasarnya.</p>
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Ilmu</th><th>Fokus Kajian</th><th>Perbedaan dengan Geografi</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Geologi</strong></td><td>Batuan, struktur bumi, proses pembentukannya</td><td>Lebih spesifik pada litosfer, kurang memperhatikan aspek manusia dan interaksi lingkungan.</td></tr>
+                                <tr><td><strong>Meteorologi</strong></td><td>Atmosfer, cuaca, iklim</td><td>Fokus hanya pada atmosfer, tidak pada fenomena lain (sungai, tanah, manusia).</td></tr>
+                                <tr><td><strong>Ekologi</strong></td><td>Hubungan makhluk hidup dengan lingkungan</td><td>Fokus pada interaksi biologis, kurang memperhatikan aspek spasial dan kewilayahan.</td></tr>
+                                <tr><td><strong>Sejarah</strong></td><td>Peristiwa masa lalu dan perkembangannya</td><td>Fokus pada waktu (kronologi), bukan pada ruang (lokasi) dan interaksi manusia-lingkungan.</td></tr>
+                                <tr><td><strong>Antropologi</strong></td><td>Budaya dan masyarakat manusia</td><td>Fokus pada aspek sosial-budaya, kurang memperhatikan dimensi fisik dan spasial.</td></tr>
+                                <tr><td><strong>Sosiologi</strong></td><td>Hubungan antar manusia dan struktur sosial</td><td>Tidak memperhatikan aspek fisik dan spasial seperti geografi.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MATERI D. HAKIKAT GEOGRAFI -->
+            <div class="materi-detail reveal">
+                <div class="detail-header" onclick="toggleDetail(this)">
+                    <h4>D. Hakikat Geografi <span class="local-badge">Kelingkungan &amp; Kewilayahan</span></h4>
+                    <span class="fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;">▼</span>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-explanation">
+                        <p>Geografi memiliki dua sudut pandang utama: <span class="highlight">kelingkungan</span> dan <span class="highlight">kewilayahan</span>.</p>
                     </div>
                     <div style="display:grid; gap:10px; margin-top:8px;">
                         <div style="background:rgba(108,92,231,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #6c5ce7;">
                             <h4 style="color:#a29bfe; font-size:0.95rem; font-weight:700;">• Hakikat Kelingkungan</h4>
-                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Mempelajari hubungan timbal balik antara manusia dan lingkungan. Contoh: Masyarakat Katingan memanfaatkan sungai untuk transportasi dan ekonomi.</p>
+                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Mempelajari hubungan timbal balik antara makhluk hidup (terutama manusia) dengan lingkungan alam. Manusia beradaptasi, memanfaatkan, dan mengubah lingkungan, serta sebaliknya.</p>
+                            <div style="margin-top:4px; background:rgba(0,0,0,0.1); border-radius:6px; padding:6px 10px;">
+                                <span style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400;">Contoh lokal: Masyarakat Katingan memanfaatkan Sungai Katingan untuk transportasi, sumber air, dan ekonomi.</span>
+                            </div>
                         </div>
                         <div style="background:rgba(0,206,201,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #00cec9;">
                             <h4 style="color:#00cec9; font-size:0.95rem; font-weight:700;">• Hakikat Kewilayahan</h4>
-                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Mempelajari karakteristik khas suatu wilayah. Contoh: Katingan memiliki lahan gambut, sungai besar, dan hutan hujan tropis yang membedakannya dari daerah lain.</p>
+                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Mempelajari karakteristik khas suatu wilayah yang membedakannya dengan wilayah lain. Setiap wilayah memiliki kombinasi unik antara kondisi fisik dan sosial.</p>
+                            <div style="margin-top:4px; background:rgba(0,0,0,0.1); border-radius:6px; padding:6px 10px;">
+                                <span style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400;">Contoh lokal: Katingan memiliki lahan gambut tebal, Sungai Katingan, hutan hujan tropis, budaya Dayak Ngaju.</span>
+                            </div>
                         </div>
                     </div>
                     <div style="background:rgba(253,203,110,0.03); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #fdcb6e;">
                         <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">
-                            <strong style="color:rgba(255,255,255,0.7); font-weight:600;">Contoh Katingan:</strong> Wilayah Katingan memiliki lahan gambut luas, sungai besar, dan hutan hujan tropis yang menjadi ciri khas wilayahnya.
+                            <strong style="color:rgba(255,255,255,0.7); font-weight:600;">Inti:</strong> Geografi tidak hanya melihat “di mana” suatu fenomena terjadi, tetapi juga “mengapa” dan “bagaimana” fenomena tersebut berinteraksi dengan lingkungan dan manusia.
                         </p>
                     </div>
                 </div>
             </div>
-            <!-- Materi C -->
+
+            <!-- MATERI E. 5 LAPISAN GEOSFER -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
-                    <h4>C. 5 Lapisan Geosfer <span class="local-badge">Sungai Katingan</span></h4>
+                    <h4>E. 5 Lapisan Geosfer <span class="local-badge">Bumi &amp; Isinya</span></h4>
                     <span class="fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;">▼</span>
                 </div>
                 <div class="detail-body">
                     <div class="detail-explanation">
-                        <span class="emoji-big">🌍</span>
-                        <p>Bumi terdiri dari <span class="highlight">5 lapisan</span> yang disebut geosfer: Litosfer (batuan), Atmosfer (udara), Hidrosfer (air), Biosfer (kehidupan), dan Antroposfer (manusia).</p>
+                        <p>Bumi tersusun atas lima lapisan utama yang disebut <span class="highlight">geosfer</span>. Kelima lapisan saling berinteraksi.</p>
                     </div>
-                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px;">
-                        <div style="background:rgba(108,92,231,0.04); border-radius:10px; padding:12px 14px; border-left:3px solid #6c5ce7;">
-                            <h4 style="color:#a29bfe; font-size:0.9rem; font-weight:700;">• Litosfer</h4>
-                            <p style="font-size:0.85rem; color:rgba(255,255,255,0.6); font-weight:400;">Lapisan batuan dan tanah. Contoh: Tanah gambut Katingan yang tebal 3-8 meter.</p>
-                        </div>
-                        <div style="background:rgba(0,206,201,0.04); border-radius:10px; padding:12px 14px; border-left:3px solid #00cec9;">
-                            <h4 style="color:#00cec9; font-size:0.9rem; font-weight:700;">• Atmosfer</h4>
-                            <p style="font-size:0.85rem; color:rgba(255,255,255,0.6); font-weight:400;">Lapisan udara. Contoh: Iklim tropis Katingan dengan curah hujan tinggi.</p>
-                        </div>
-                        <div style="background:rgba(253,121,168,0.04); border-radius:10px; padding:12px 14px; border-left:3px solid #fd79a8;">
-                            <h4 style="color:#fd79a8; font-size:0.9rem; font-weight:700;">• Hidrosfer</h4>
-                            <p style="font-size:0.85rem; color:rgba(255,255,255,0.6); font-weight:400;">Lapisan air. Contoh: Sungai Katingan yang mengalir sepanjang tahun.</p>
-                        </div>
-                        <div style="background:rgba(253,203,110,0.04); border-radius:10px; padding:12px 14px; border-left:3px solid #fdcb6e;">
-                            <h4 style="color:#fdcb6e; font-size:0.9rem; font-weight:700;">• Biosfer</h4>
-                            <p style="font-size:0.85rem; color:rgba(255,255,255,0.6); font-weight:400;">Lapisan kehidupan. Contoh: Orangutan Kalimantan dan flora hutan tropis.</p>
-                        </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Lapisan</th><th>Penjelasan</th><th>Contoh Lokal (Katingan)</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>1. Litosfer</strong></td><td>Lapisan batuan dan tanah yang membentuk kerak bumi.</td><td>Tanah gambut Katingan tebal 3–8 meter.</td></tr>
+                                <tr><td><strong>2. Atmosfer</strong></td><td>Lapisan udara yang menyelimuti bumi, terdiri dari berbagai gas.</td><td>Iklim tropis dengan curah hujan tinggi sepanjang tahun.</td></tr>
+                                <tr><td><strong>3. Hidrosfer</strong></td><td>Lapisan air, meliputi sungai, danau, laut, dan air tanah.</td><td>Sungai Katingan sebagai urat nadi kehidupan.</td></tr>
+                                <tr><td><strong>4. Biosfer</strong></td><td>Lapisan kehidupan, seluruh makhluk hidup.</td><td>Orangutan Kalimantan, flora hutan tropis.</td></tr>
+                                <tr><td><strong>5. Antroposfer</strong></td><td>Lapisan manusia, aktivitas, budaya, dan persebaran penduduk.</td><td>Masyarakat Dayak Ngaju dengan adat dan budaya khas.</td></tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <div style="background:rgba(108,92,231,0.04); border-radius:10px; padding:12px 14px; margin-top:8px; border-left:3px solid #6c5ce7;">
-                        <h4 style="color:#a29bfe; font-size:0.9rem; font-weight:700;">• Antroposfer</h4>
-                        <p style="font-size:0.85rem; color:rgba(255,255,255,0.6); font-weight:400;">Lapisan manusia. Contoh: Masyarakat Dayak Ngaju yang tinggal di sepanjang Sungai Katingan.</p>
+                    <div style="background:rgba(0,206,201,0.03); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #00cec9;">
+                        <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">
+                            <strong style="color:rgba(255,255,255,0.7); font-weight:600;">Interaksi:</strong> Perubahan pada satu lapisan memengaruhi lapisan lain. Contoh: penebangan hutan (biosfer) → erosi (litosfer) → banjir (hidrosfer) → dampak sosial (antroposfer).
+                        </p>
                     </div>
                 </div>
             </div>
-            <!-- Materi D -->
+
+            <!-- MATERI F. RUANG LINGKUP GEOGRAFI + CONTOH FENOMENA -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
-                    <h4>D. Ruang Lingkup Geografi</h4>
+                    <h4>F. Ruang Lingkup Geografi <span class="local-badge">Fisik &amp; Sosial</span></h4>
                     <span class="fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;">▼</span>
                 </div>
                 <div class="detail-body">
                     <div class="detail-explanation">
-                        <span class="emoji-big">📚</span>
                         <p>Geografi terbagi menjadi dua ruang lingkup utama: <span class="highlight">Geografi Fisik</span> dan <span class="highlight">Geografi Sosial</span>.</p>
                     </div>
                     <div style="display:grid; gap:10px; margin-top:8px;">
                         <div style="background:rgba(0,206,201,0.03); border-radius:10px; padding:12px 16px; border-left:4px solid #00cec9;">
                             <h4 style="color:#00cec9; font-size:0.95rem; font-weight:700;">• Geografi Fisik</h4>
-                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Mempelajari fenomena alam: litosfer, atmosfer, hidrosfer, biosfer. Contoh: Bentuk lahan, iklim, sungai, flora-fauna.</p>
+                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Mempelajari fenomena alam: litosfer, atmosfer, hidrosfer, biosfer.</p>
+                            <ul style="font-size:0.88rem; padding-left:16px; color:rgba(255,255,255,0.5); line-height:2.2;">
+                                <li><strong>Geomorfologi</strong> – bentuk lahan</li>
+                                <li><strong>Klimatologi</strong> – iklim dan cuaca</li>
+                                <li><strong>Hidrologi</strong> – siklus air, sungai</li>
+                                <li><strong>Pedologi</strong> – tanah</li>
+                                <li><strong>Biogeografi</strong> – persebaran flora-fauna</li>
+                            </ul>
                             <div style="margin-top:4px; background:rgba(0,0,0,0.1); border-radius:6px; padding:6px 10px;">
-                                <span style="font-size:0.8rem; color:rgba(255,255,255,0.4); font-weight:400;">Lokal: Lahan gambut Katingan, Sungai Katingan, iklim tropis.</span>
+                                <span style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400;">Contoh lokal: Lahan gambut, Sungai Katingan, iklim tropis, hutan hujan.</span>
                             </div>
                         </div>
                         <div style="background:rgba(253,121,168,0.03); border-radius:10px; padding:12px 16px; border-left:4px solid #fd79a8;">
-                            <h4 style="color:#fd79a8; font-size:0.95rem; font-weight:700;">• Geografi Sosial</h4>
-                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Mempelajari aktivitas manusia: antroposfer, sosial, budaya, ekonomi, politik. Contoh: Persebaran penduduk, budaya, mata pencaharian.</p>
+                            <h4 style="color:#fd79a8; font-size:0.95rem; font-weight:700;">• Geografi Sosial (Geografi Manusia)</h4>
+                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Mempelajari aktivitas manusia dan interaksinya dengan lingkungan.</p>
+                            <ul style="font-size:0.88rem; padding-left:16px; color:rgba(255,255,255,0.5); line-height:2.2;">
+                                <li><strong>Geografi Penduduk</strong> – persebaran, kepadatan</li>
+                                <li><strong>Geografi Ekonomi</strong> – mata pencaharian</li>
+                                <li><strong>Geografi Sosial Budaya</strong> – adat istiadat</li>
+                                <li><strong>Geografi Politik</strong> – batas wilayah, tata ruang</li>
+                                <li><strong>Geografi Pemukiman</strong> – pola permukiman</li>
+                            </ul>
                             <div style="margin-top:4px; background:rgba(0,0,0,0.1); border-radius:6px; padding:6px 10px;">
-                                <span style="font-size:0.8rem; color:rgba(255,255,255,0.4); font-weight:400;">Lokal: Masyarakat Dayak Ngaju, penambang emas, petani gambut.</span>
+                                <span style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400;">Contoh lokal: Masyarakat Dayak Ngaju, penambang emas, budaya rumah betang.</span>
                             </div>
                         </div>
                     </div>
+
+                    <h5 style="color:#a29bfe; font-weight:700; font-size:0.95rem; margin:12px 0 4px;">Contoh Fenomena Geosfer dalam Kehidupan Sehari-hari</h5>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Lapisan</th><th>Contoh Fenomena</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Litosfer</strong></td><td>Tanah longsor, pembuatan batu bata, penambangan pasir, gempa bumi</td></tr>
+                                <tr><td><strong>Atmosfer</strong></td><td>Perubahan cuaca, angin muson, kabut asap, badai</td></tr>
+                                <tr><td><strong>Hidrosfer</strong></td><td>Pasang surut, banjir, mata air, irigasi</td></tr>
+                                <tr><td><strong>Biosfer</strong></td><td>Migrasi burung, musim panen, persebaran hewan endemik</td></tr>
+                                <tr><td><strong>Antroposfer</strong></td><td>Pembangunan permukiman, tradisi gotong royong, urbanisasi</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
+
+            <!-- MINI QUIZ -->
             <div class="mini-quiz reveal">
                 <div class="quiz-question">Kuis Cepat: Lapisan geosfer yang terdiri dari batuan dan tanah disebut...</div>
                 <div class="quiz-options">
@@ -2768,6 +2949,7 @@
                 </div>
                 <div class="quiz-feedback"></div>
             </div>
+
             <div class="nav-buttons">
                 <div class="group">
                     <button onclick="navigateTo('prev')">Sebelumnya</button>
