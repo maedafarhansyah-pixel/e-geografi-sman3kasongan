@@ -1,0 +1,3094 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes" />
+    <title>Peta dan Pemetaan – Kelas X (3 Pertemuan)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            background: #0a0e1a;
+            color: #e8f0f8;
+            line-height: 1.7;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* ===== COSMIC CANVAS ===== */
+        #cosmicCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* ===== GLOW ORBS ===== */
+        .glow-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.3;
+            animation: orbFloat 8s ease-in-out infinite alternate;
+        }
+        .glow-orb.orb-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, #6c5ce7, #00cec9);
+            top: -200px;
+            right: -200px;
+        }
+        .glow-orb.orb-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #fd79a8, #fdcb6e);
+            bottom: -150px;
+            left: -150px;
+            animation-delay: 2s;
+        }
+        .glow-orb.orb-3 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, #00b894, #0984e3);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: 4s;
+            opacity: 0.15;
+        }
+        @keyframes orbFloat {
+            0% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(40px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 40px) scale(0.9); }
+            100% { transform: translate(30px, -10px) scale(1.05); }
+        }
+
+        /* ===== COMET STARS ===== */
+        .comet-star {
+            position: fixed;
+            pointer-events: none;
+            z-index: 999;
+            border-radius: 50%;
+            box-shadow: 0 0 10px 2px currentColor;
+            animation: cometFallVertical linear forwards;
+        }
+        .comet-star::before {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            width: 1.5px;
+            height: 50px;
+            background: linear-gradient(to bottom, currentColor, transparent);
+            transform: translateX(-50%);
+            border-radius: 1px;
+            opacity: 0.5;
+        }
+        @keyframes cometFallVertical {
+            0% { opacity: 0; transform: translate(0, 0) scale(0.4); }
+            8% { opacity: 1; transform: translate(0, calc(var(--dy) * 0.08)) scale(1); }
+            92% { opacity: 1; }
+            100% { opacity: 0; transform: translate(0, var(--dy)) scale(0.15); }
+        }
+
+        /* ===== LOADER ===== */
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 14, 26, 0.75);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+        #loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .loader-ring-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+        }
+        .loader-ring {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid transparent;
+            border-top-color: #6c5ce7;
+            border-right-color: #00cec9;
+            border-bottom-color: #fd79a8;
+            border-left-color: #fdcb6e;
+            animation: spinRing 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+        }
+        .loader-ring::after {
+            content: '';
+            position: absolute;
+            inset: 16px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-bottom-color: #00b894;
+            border-left-color: #0984e3;
+            animation: spinRing 0.8s linear infinite reverse;
+        }
+        .loader-ring::before {
+            content: '🗺️';
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            animation: pulseGlow 1.5s ease-in-out infinite alternate;
+        }
+        @keyframes spinRing {
+            to { transform: rotate(360deg); }
+        }
+        @keyframes pulseGlow {
+            0% { transform: scale(0.8); opacity: 0.6; }
+            100% { transform: scale(1.2); opacity: 1; }
+        }
+        .loader-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            margin-top: 20px;
+            background: linear-gradient(135deg, #6c5ce7, #00cec9, #fd79a8, #fdcb6e);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientMove 3s ease-in-out infinite;
+            letter-spacing: 2px;
+        }
+        @keyframes gradientMove {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        .loader-sub {
+            color: rgba(255,255,255,0.3);
+            font-size: 0.9rem;
+            letter-spacing: 4px;
+            font-weight: 300;
+            margin-top: 4px;
+        }
+        .loader-bar-track {
+            width: clamp(200px, 40vw, 400px);
+            height: 6px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            margin-top: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+        .loader-bar {
+            height: 100%;
+            width: 0%;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #6c5ce7, #00cec9, #fd79a8, #fdcb6e, #00b894);
+            background-size: 300% 100%;
+            animation: barShine 2s linear infinite;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 30px rgba(108,92,231,0.3);
+        }
+        @keyframes barShine {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 300% 0%; }
+        }
+        .loader-percent {
+            color: rgba(255,255,255,0.2);
+            font-size: 0.7rem;
+            margin-top: 6px;
+            font-weight: 500;
+            letter-spacing: 2px;
+        }
+
+        /* ===== MOBILE HEADER ===== */
+        .mobile-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 56px;
+            background: rgba(10,14,26,0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            z-index: 1001;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        .mobile-header .brand {
+            font-weight: 800;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, #6c5ce7, #00cec9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .mobile-header .menu-toggle {
+            color: rgba(255,255,255,0.5);
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: 0.3s;
+            background: none;
+            border: none;
+        }
+        .mobile-header .menu-toggle:hover {
+            color: #fff;
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        .main-content {
+            position: relative;
+            z-index: 1;
+            padding: 16px 16px 80px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* ===== SECTIONS ===== */
+        .section {
+            display: none;
+            animation: sectionEnter 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            padding: 16px 0 8px;
+            position: relative;
+        }
+        .section.active {
+            display: block;
+        }
+        @keyframes sectionEnter {
+            0% { opacity: 0; transform: translateY(60px) scale(0.95) rotateX(5deg); }
+            100% { opacity: 1; transform: translateY(0) scale(1) rotateX(0); }
+        }
+
+        /* ===== SECTION HEADER ===== */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding-bottom: 14px;
+            flex-wrap: wrap;
+            border-bottom: 2px solid rgba(255,255,255,0.04);
+            position: relative;
+        }
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #6c5ce7, #00cec9, #fd79a8);
+            border-radius: 10px;
+        }
+        .section-header .num {
+            background: linear-gradient(145deg, #6c5ce7, #0984e3);
+            color: #fff;
+            font-weight: 800;
+            font-size: 1.1rem;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 8px 30px rgba(108,92,231,0.35);
+            position: relative;
+        }
+        .section-header .num::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 2px solid rgba(108,92,231,0.2);
+            animation: ringPulse 2s ease-in-out infinite;
+        }
+        @keyframes ringPulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.3); opacity: 0; }
+        }
+        .section-header h2 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #f0f4fa;
+            letter-spacing: -0.5px;
+            flex: 1;
+        }
+        .section-header h2 small {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+            display: block;
+            margin-top: 2px;
+        }
+        .section-header .badge-pertemuan {
+            background: rgba(108,92,231,0.12);
+            color: #a29bfe;
+            padding: 4px 16px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            border: 1px solid rgba(108,92,231,0.15);
+            letter-spacing: 0.5px;
+        }
+
+        /* ===== CARDS ===== */
+        .card {
+            background: rgba(20,26,46,0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 18px;
+            padding: 20px 18px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.04);
+            transition: all 0.5s cubic-bezier(0.34,1.56,0.64,1);
+            border: 1px solid rgba(255,255,255,0.04);
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 20%, rgba(108,92,231,0.03), transparent 60%);
+            pointer-events: none;
+        }
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 60px rgba(108,92,231,0.05);
+            border-color: rgba(108,92,231,0.2);
+        }
+        .card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #f0f4fa;
+            margin-bottom: 4px;
+        }
+        .card h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #dfe6e9;
+        }
+        .card p, .card li {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.75);
+            line-height: 1.8;
+            font-weight: 400;
+        }
+        .card ul {
+            padding-left: 18px;
+            margin: 6px 0;
+        }
+        .card ul li {
+            list-style-type: disc;
+        }
+
+        /* ===== GRIDS ===== */
+        .grid-2, .grid-3, .grid-4 {
+            display: grid;
+            gap: 16px;
+            margin: 14px 0 8px;
+        }
+        .grid-2 { grid-template-columns: 1fr; }
+        .grid-3 { grid-template-columns: 1fr; }
+        .grid-4 { grid-template-columns: 1fr; }
+
+        /* ===== PROGRESS BAR ===== */
+        .progress-wrap {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: rgba(255,255,255,0.03);
+            z-index: 999;
+            backdrop-filter: blur(4px);
+            overflow: hidden;
+        }
+        .progress-wrap .bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #6c5ce7, #00cec9, #fd79a8, #fdcb6e, #00b894);
+            background-size: 300% 100%;
+            transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1);
+            border-radius: 0 4px 4px 0;
+            box-shadow: 0 0 40px rgba(108,92,231,0.3);
+            animation: barGlow 3s ease-in-out infinite;
+            position: relative;
+        }
+        @keyframes barGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(108,92,231,0.2); }
+            50% { box-shadow: 0 0 50px rgba(0,206,201,0.3); }
+        }
+        .progress-wrap .bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: sweepBar 2s infinite;
+        }
+        @keyframes sweepBar {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* ===== NAVIGATION ===== */
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 36px;
+            padding-top: 18px;
+            border-top: 1px solid rgba(255,255,255,0.04);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .nav-buttons button {
+            background: rgba(108,92,231,0.08);
+            color: #a29bfe;
+            border: 1px solid rgba(108,92,231,0.12);
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(4px);
+        }
+        .nav-buttons button:hover:not(:disabled) {
+            background: rgba(108,92,231,0.2);
+            border-color: #6c5ce7;
+            transform: scale(1.08) translateY(-2px);
+            box-shadow: 0 8px 30px rgba(108,92,231,0.2);
+            color: #fff;
+        }
+        .nav-buttons button:disabled {
+            opacity: 0.2;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        .nav-buttons .counter {
+            font-weight: 500;
+            color: rgba(255,255,255,0.3);
+            font-size: 0.85rem;
+            padding: 0 12px;
+            font-variant-numeric: tabular-nums;
+        }
+        .nav-buttons .group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .page-numbers {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .page-numbers a {
+            display: inline-block;
+            min-width: 32px;
+            height: 32px;
+            line-height: 32px;
+            text-align: center;
+            border-radius: 50%;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: rgba(255,255,255,0.4);
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.03);
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+            cursor: pointer;
+        }
+        .page-numbers a:hover {
+            background: rgba(108,92,231,0.15);
+            border-color: #6c5ce7;
+            color: #fff;
+            transform: scale(1.1);
+        }
+        .page-numbers a.active {
+            background: linear-gradient(145deg, #6c5ce7, #0984e3);
+            color: #fff;
+            border-color: #6c5ce7;
+            box-shadow: 0 4px 20px rgba(108,92,231,0.3);
+        }
+
+        /* ===== COVER SECTION ===== */
+        .cover-section {
+            text-align: center;
+            padding: 8px 0 4px;
+        }
+        .cover-section .logo-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: clamp(20px, 5vw, 50px);
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .cover-section .logo-grid img {
+            height: clamp(55px, 9vw, 120px);
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 8px 30px rgba(0,0,0,0.5));
+            transition: transform 0.5s cubic-bezier(0.34,1.56,0.64,1);
+        }
+        .cover-section .logo-grid img:hover {
+            transform: scale(1.08) rotate(-2deg);
+        }
+        .cover-section .badge-wrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+        .cover-section .badge {
+            display: inline-block;
+            background: rgba(108,92,231,0.12);
+            backdrop-filter: blur(4px);
+            color: #a29bfe;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 5px 20px;
+            border-radius: 40px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border: 1px solid rgba(108,92,231,0.15);
+        }
+        .cover-section .badge-gold {
+            background: rgba(253,203,110,0.08);
+            color: #fdcb6e;
+            border-color: rgba(253,203,110,0.12);
+        }
+        .cover-title {
+            font-size: clamp(2.2rem, 8vw, 4.5rem);
+            font-weight: 900;
+            margin: 6px 0 4px;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #f0f4fa 0%, #a29bfe 25%, #00cec9 50%, #fd79a8 75%, #fdcb6e 100%);
+            background-size: 400% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: cosmicShimmer 6s ease-in-out infinite;
+            display: inline-block;
+            line-height: 1.1;
+            text-shadow: 0 0 80px rgba(108,92,231,0.1);
+        }
+        @keyframes cosmicShimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        .cover-sub {
+            font-size: clamp(1rem, 1.6vw, 1.3rem);
+            color: rgba(255,255,255,0.65);
+            max-width: 680px;
+            margin: 4px auto 0;
+            padding: 0 12px;
+            line-height: 2;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+        .cover-sub strong {
+            color: rgba(255,255,255,0.85);
+            font-weight: 700;
+        }
+        .cover-section .school-wrap {
+            margin-top: 18px;
+        }
+        .cover-section .school-name {
+            background: rgba(255,255,255,0.02);
+            backdrop-filter: blur(16px);
+            padding: 10px 32px;
+            border-radius: 60px;
+            display: inline-block;
+            font-weight: 800;
+            font-size: clamp(1.2rem, 2.8vw, 2.2rem);
+            box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.04);
+            letter-spacing: 2px;
+        }
+        .cover-section .school-name .gold {
+            background: linear-gradient(135deg, #fdcb6e, #f39c12);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .cover-section .teacher-info {
+            margin-top: 6px;
+            font-size: clamp(0.75rem, 0.9vw, 0.9rem);
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+        .cover-section .teacher-info strong {
+            color: #fdcb6e;
+            font-weight: 700;
+            text-shadow: 0 0 20px rgba(253,203,110,0.4);
+        }
+        .cover-section .teacher-info .nip {
+            color: #00cec9;
+            font-weight: 600;
+            text-shadow: 0 0 15px rgba(0,206,201,0.3);
+        }
+        .cover-section .start-btn-wrap {
+            display: flex;
+            justify-content: center;
+            margin: 24px 0 12px;
+        }
+        .cover-section .start-btn {
+            background: linear-gradient(145deg, #6c5ce7, #0984e3);
+            color: #fff;
+            border: none;
+            padding: clamp(14px, 2.2vw, 22px) clamp(36px, 6vw, 70px);
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.34,1.56,0.64,1);
+            box-shadow: 0 8px 50px rgba(108,92,231,0.25);
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.5px;
+        }
+        .cover-section .start-btn::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 60px;
+            padding: 2px;
+            background: linear-gradient(135deg, #6c5ce7, #00cec9, #fd79a8, #fdcb6e);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        .cover-section .start-btn:hover::before {
+            opacity: 1;
+        }
+        .cover-section .start-btn:hover {
+            transform: scale(1.06) translateY(-4px);
+            box-shadow: 0 16px 60px rgba(108,92,231,0.4);
+        }
+
+        /* ===== NAV BOX ===== */
+        .nav-box {
+            background: rgba(255,255,255,0.02);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 28px;
+            padding: clamp(20px, 3vw, 36px) clamp(16px, 2.5vw, 32px);
+            margin-top: 24px;
+            border: 1px solid rgba(255,255,255,0.04);
+            box-shadow: 0 16px 60px rgba(0,0,0,0.3);
+        }
+        .nav-box .nav-header {
+            color: #a29bfe;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: clamp(1rem, 1.2vw, 1.2rem);
+            font-weight: 700;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+            padding-bottom: 14px;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+        .nav-box .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+        }
+        .nav-box .nav-item {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 14px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            font-weight: 700;
+        }
+        .nav-box .nav-item .num-badge {
+            font-size: 1.3rem;
+            font-weight: 900;
+            background: linear-gradient(145deg, #6c5ce7, #0984e3);
+            color: #fff;
+            padding: 4px 14px;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(108,92,231,0.3);
+            min-width: 36px;
+            line-height: 1.6;
+        }
+        .nav-box .nav-item .nav-label {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: #f0f4fa;
+            letter-spacing: 0.5px;
+        }
+        .nav-box .nav-item:hover {
+            background: rgba(108,92,231,0.2);
+            transform: translateY(-6px) scale(1.04);
+            border-color: #6c5ce7;
+            box-shadow: 0 8px 30px rgba(108,92,231,0.15);
+        }
+        .nav-box .nav-item:hover .num-badge {
+            background: linear-gradient(145deg, #fd79a8, #fdcb6e);
+            box-shadow: 0 4px 20px rgba(253,121,168,0.3);
+        }
+        @media (max-width:480px) {
+            .nav-box .nav-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+                gap: 6px;
+            }
+            .nav-box .nav-item {
+                padding: 10px 6px;
+            }
+            .nav-box .nav-item .nav-label {
+                font-size: 0.75rem;
+            }
+            .nav-box .nav-item .num-badge {
+                font-size: 1.0rem;
+                padding: 2px 10px;
+                min-width: 30px;
+            }
+        }
+
+        /* ===== MATERI DETAIL (ACCORDION) ===== */
+        .materi-detail {
+            margin: 8px 0;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: box-shadow 0.4s ease;
+        }
+        .materi-detail:hover {
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+        .materi-detail .detail-header {
+            background: rgba(20,26,46,0.5);
+            padding: 14px 18px;
+            border-radius: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background 0.4s ease, border-left-color 0.4s ease, border-radius 0.4s ease;
+            border-left: 4px solid transparent;
+            position: relative;
+            z-index: 2;
+            user-select: none;
+        }
+        .materi-detail .detail-header:hover {
+            background: rgba(108,92,231,0.08);
+            border-left-color: rgba(108,92,231,0.3);
+        }
+        .materi-detail .detail-header.active {
+            border-left-color: #6c5ce7;
+            background: rgba(108,92,231,0.06);
+            border-radius: 14px 14px 0 0;
+        }
+        .materi-detail .detail-header h4 {
+            margin: 0;
+            color: #f0f4fa;
+            font-size: 0.95rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s ease;
+        }
+        .materi-detail .detail-header.active h4 {
+            color: #ffffff;
+        }
+        .materi-detail .detail-header i.fa-chevron-down {
+            transition: transform 0.6s cubic-bezier(0.34,1.56,0.64,1), color 0.3s ease;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.3);
+        }
+        .materi-detail .detail-header:hover i.fa-chevron-down {
+            color: #a29bfe;
+        }
+        .materi-detail .detail-header.active i.fa-chevron-down {
+            color: #6c5ce7;
+        }
+        .materi-detail .detail-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.7s cubic-bezier(0.22,1,0.36,1), padding 0.6s cubic-bezier(0.22,1,0.36,1), opacity 0.5s ease 0.05s, transform 0.5s cubic-bezier(0.22,1,0.36,1) 0.05s;
+            padding: 0 18px;
+            background: rgba(0,0,0,0.15);
+            border-radius: 0 0 14px 14px;
+            opacity: 0;
+            transform: translateY(-12px) scale(0.98);
+            border-top: 1px solid transparent;
+        }
+        .materi-detail .detail-body.open {
+            max-height: 5000px;
+            padding: 18px 18px 20px;
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            border-top-color: rgba(108,92,231,0.05);
+        }
+
+        .detail-explanation {
+            background: rgba(0,0,0,0.15);
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin: 10px 0;
+            border-left: 4px solid #6c5ce7;
+        }
+        .detail-explanation .emoji-big {
+            font-size: 1.8rem;
+            display: block;
+            margin-bottom: 6px;
+        }
+        .detail-explanation p {
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.8;
+        }
+        .detail-explanation strong {
+            color: #a29bfe;
+            font-weight: 700;
+        }
+        .detail-explanation .highlight {
+            color: #fdcb6e;
+            font-weight: 700;
+        }
+
+        .local-badge {
+            display: inline-block;
+            background: rgba(253,203,110,0.08);
+            color: #fdcb6e;
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 2px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(253,203,110,0.06);
+            letter-spacing: 0.5px;
+            margin-left: 8px;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+        .table-wrap table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.85);
+            background: rgba(0,0,0,0.15);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .table-wrap th, .table-wrap td {
+            padding: 10px 14px;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            text-align: left;
+            vertical-align: top;
+        }
+        .table-wrap th {
+            background: rgba(108,92,231,0.08);
+            color: #a29bfe;
+            font-weight: 700;
+        }
+        .table-wrap tr:last-child td {
+            border-bottom: none;
+        }
+        .table-wrap tr:hover td {
+            background: rgba(108,92,231,0.03);
+        }
+
+        /* ===== GALERI GAMBAR (IMAGE CARD PREMIUM) ===== */
+        .image-card-premium {
+            background: rgba(20,26,46,0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 12px;
+            border: 1px solid rgba(255,255,255,0.03);
+            transition: all 0.6s cubic-bezier(0.34,1.56,0.64,1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            transform-style: preserve-3d;
+            perspective: 800px;
+        }
+        .image-card-premium::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            padding: 1.5px;
+            background: linear-gradient(135deg, rgba(108,92,231,0.1), rgba(0,206,201,0.05), rgba(253,121,168,0.08));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+        .image-card-premium:hover::before {
+            opacity: 1;
+        }
+        .image-card-premium:hover {
+            transform: translateY(-12px) scale(1.02) rotateX(2deg) rotateY(4deg);
+            border-color: rgba(108,92,231,0.12);
+            box-shadow: 0 24px 80px rgba(0,0,0,0.5), 0 0 60px rgba(108,92,231,0.04);
+        }
+        .image-card-premium .img-wrap {
+            position: relative;
+            overflow: hidden;
+            border-radius: 14px;
+            background: rgba(0,0,0,0.2);
+        }
+        .image-card-premium .img-wrap img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 14px;
+            transition: transform 0.8s cubic-bezier(0.34,1.56,0.64,1);
+            display: block;
+            background: rgba(255,255,255,0.02);
+        }
+        .image-card-premium:hover .img-wrap img {
+            transform: scale(1.04);
+        }
+        .image-card-premium .img-wrap .overlay-glow {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.2) 100%);
+            border-radius: 14px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .image-card-premium:hover .img-wrap .overlay-glow {
+            opacity: 1;
+        }
+        .image-card-premium .img-wrap .zoom-badge-premium {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(12px);
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: rgba(255,255,255,0.4);
+            border: 1px solid rgba(255,255,255,0.03);
+            transition: all 0.4s ease;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .image-card-premium:hover .img-wrap .zoom-badge-premium {
+            background: rgba(108,92,231,0.15);
+            color: #a29bfe;
+            border-color: rgba(108,92,231,0.08);
+            transform: scale(1.04);
+        }
+        .image-card-premium .img-wrap .image-number {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(8px);
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.3);
+            border: 1px solid rgba(255,255,255,0.02);
+            letter-spacing: 0.5px;
+        }
+        .image-card-premium .image-label-premium {
+            margin-top: 12px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #f0f4fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .image-card-premium .image-label-premium .emoji-big {
+            font-size: 1.4rem;
+        }
+        .image-card-premium .image-sub-premium {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.35);
+            margin-top: 2px;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+        }
+
+        /* ===== MODAL PREMIUM ===== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.92);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.5s cubic-bezier(0.34,1.56,0.64,1);
+        }
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+            animation: modalFadeIn 0.6s cubic-bezier(0.34,1.56,0.64,1);
+        }
+        @keyframes modalFadeIn {
+            0% { opacity: 0; transform: scale(0.92); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        .modal-overlay .modal-content {
+            max-width: 92vw;
+            max-height: 92vh;
+            background: rgba(20,26,46,0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 28px;
+            padding: 24px;
+            border: 1px solid rgba(255,255,255,0.06);
+            box-shadow: 0 40px 120px rgba(0,0,0,0.9), 0 0 80px rgba(108,92,231,0.06);
+            position: relative;
+            text-align: center;
+            cursor: default;
+            transition: all 0.4s ease;
+            overflow: hidden;
+        }
+        .modal-overlay .modal-content::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 28px;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(108,92,231,0.15), rgba(0,206,201,0.05), rgba(253,121,168,0.1));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+        .modal-overlay .modal-content .image-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            background: rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+            max-height: 75vh;
+        }
+        .modal-overlay .modal-content .image-wrapper img {
+            max-width: 100%;
+            max-height: 75vh;
+            border-radius: 16px;
+            display: block;
+            margin: 0 auto;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+            transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+        .modal-overlay .modal-content .image-wrapper .loading-shimmer {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.02), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 16px;
+            pointer-events: none;
+        }
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        .modal-overlay .modal-content .image-counter {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(12px);
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.6);
+            border: 1px solid rgba(255,255,255,0.04);
+            letter-spacing: 0.5px;
+            z-index: 5;
+        }
+        .modal-overlay .modal-content .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.04);
+            color: rgba(255,255,255,0.6);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            opacity: 0;
+        }
+        .modal-overlay .modal-content:hover .nav-arrow {
+            opacity: 1;
+        }
+        .modal-overlay .modal-content .nav-arrow:hover {
+            background: rgba(108,92,231,0.25);
+            border-color: rgba(108,92,231,0.15);
+            color: #fff;
+            transform: translateY(-50%) scale(1.08);
+        }
+        .modal-overlay .modal-content .nav-arrow.prev { left: 16px; }
+        .modal-overlay .modal-content .nav-arrow.next { right: 16px; }
+        .modal-overlay .modal-content .zoom-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 16px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(255,255,255,0.03);
+        }
+        .modal-overlay .modal-content .zoom-controls button {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.04);
+            color: rgba(255,255,255,0.4);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-overlay .modal-content .zoom-controls button:hover {
+            background: rgba(108,92,231,0.12);
+            border-color: rgba(108,92,231,0.15);
+            color: #fff;
+            transform: scale(1.08);
+        }
+        .modal-overlay .modal-content .zoom-controls .zoom-level {
+            color: rgba(255,255,255,0.3);
+            font-size: 0.85rem;
+            font-weight: 700;
+            min-width: 56px;
+            text-align: center;
+            font-variant-numeric: tabular-nums;
+        }
+        .modal-overlay .modal-content .caption {
+            color: rgba(255,255,255,0.35);
+            font-size: 0.9rem;
+            margin-top: 12px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255,255,255,0.02);
+            letter-spacing: 0.5px;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+        .modal-overlay .modal-close {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(16px);
+            color: rgba(255,255,255,0.6);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.04);
+            transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+            z-index: 20;
+        }
+        .modal-overlay .modal-close:hover {
+            background: rgba(253,121,168,0.12);
+            transform: rotate(90deg) scale(1.08);
+            border-color: rgba(253,121,168,0.1);
+            color: #fd79a8;
+        }
+
+        /* ===== MINI QUIZ ===== */
+        .mini-quiz {
+            background: rgba(20,26,46,0.6);
+            backdrop-filter: blur(8px);
+            border-radius: 16px;
+            padding: 18px 20px;
+            border: 1px solid rgba(255,255,255,0.04);
+            margin: 12px 0;
+        }
+        .mini-quiz .quiz-question {
+            font-weight: 700;
+            color: #f0f4fa;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+        .mini-quiz .quiz-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .mini-quiz .quiz-options button {
+            background: rgba(255,255,255,0.02);
+            border: 2px solid rgba(255,255,255,0.04);
+            color: rgba(255,255,255,0.65);
+            padding: 8px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.88rem;
+            font-weight: 600;
+            font-family: inherit;
+        }
+        .mini-quiz .quiz-options button:hover {
+            background: rgba(108,92,231,0.08);
+            border-color: #6c5ce7;
+            color: #fff;
+        }
+        .mini-quiz .quiz-options button.correct {
+            background: rgba(0,206,201,0.15);
+            border-color: #00cec9;
+            color: #00cec9;
+        }
+        .mini-quiz .quiz-options button.wrong {
+            background: rgba(253,121,168,0.15);
+            border-color: #fd79a8;
+            color: #fd79a8;
+        }
+        .mini-quiz .quiz-feedback {
+            margin-top: 10px;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-size: 0.92rem;
+            display: none;
+            font-weight: 500;
+        }
+        .mini-quiz .quiz-feedback.show { display: block; }
+        .mini-quiz .quiz-feedback.success {
+            background: rgba(0,206,201,0.05);
+            border-left: 4px solid #00cec9;
+            color: #00cec9;
+        }
+        .mini-quiz .quiz-feedback.fail {
+            background: rgba(253,121,168,0.05);
+            border-left: 4px solid #fd79a8;
+            color: #fd79a8;
+        }
+
+        /* ===== SOAL ASESMEN ===== */
+        .soal-pg {
+            margin-bottom: 14px;
+            padding: 14px 18px;
+            background: rgba(20,26,46,0.5);
+            border-radius: 12px;
+            border-left: 4px solid #6c5ce7;
+            transition: all 0.3s ease;
+        }
+        .soal-pg:hover {
+            border-left-color: #00cec9;
+            background: rgba(20,26,46,0.7);
+        }
+        .soal-pg .nomor {
+            color: #a29bfe;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-right: 8px;
+        }
+        .soal-pg .pertanyaan {
+            color: #f0f4fa;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+        .soal-pg .opsi {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px 20px;
+            padding-left: 20px;
+        }
+        .soal-pg .opsi span {
+            display: inline-block;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.65);
+            line-height: 2;
+        }
+        @media (max-width:600px) {
+            .soal-pg .opsi { grid-template-columns: 1fr; gap: 0; }
+        }
+
+        .soal-bs {
+            margin-bottom: 10px;
+            padding: 12px 16px;
+            background: rgba(20,26,46,0.4);
+            border-radius: 10px;
+            border-left: 4px solid #00cec9;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .soal-bs:hover {
+            background: rgba(20,26,46,0.6);
+        }
+        .soal-bs .nomor {
+            color: #00cec9;
+            font-weight: 700;
+            font-size: 0.85rem;
+            min-width: 30px;
+        }
+        .soal-bs .pertanyaan {
+            color: #f0f4fa;
+            font-weight: 500;
+            font-size: 0.92rem;
+            flex: 1;
+        }
+
+        .soal-essay {
+            margin-bottom: 14px;
+            padding: 14px 18px;
+            background: rgba(20,26,46,0.4);
+            border-radius: 12px;
+            border-left: 4px solid #fdcb6e;
+            transition: all 0.3s ease;
+        }
+        .soal-essay:hover {
+            background: rgba(20,26,46,0.6);
+        }
+        .soal-essay .nomor {
+            color: #fdcb6e;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-right: 8px;
+        }
+        .soal-essay .pertanyaan {
+            color: #f0f4fa;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+        .soal-essay .petunjuk {
+            color: rgba(255,255,255,0.3);
+            font-size: 0.85rem;
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        /* ===== REFLEKSI ===== */
+        .refleksi-list {
+            list-style: none;
+            padding: 0;
+            margin: 8px 0;
+        }
+        .refleksi-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 10px 0;
+            font-size: 1rem;
+            color: rgba(255,255,255,0.75);
+            border-bottom: 1px solid rgba(255,255,255,0.02);
+            font-weight: 400;
+        }
+        .refleksi-list li:last-child { border-bottom: none; }
+        .refleksi-list li .check {
+            font-size: 1.2rem;
+            color: #00cec9;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .celebration-box {
+            background: linear-gradient(145deg, rgba(20,40,40,0.9), rgba(10,26,26,0.9));
+            backdrop-filter: blur(8px);
+            border: 2px solid #6c5ce7;
+            border-radius: 20px;
+            padding: 28px 24px;
+            text-align: center;
+            margin-top: 12px;
+            animation: celebPulse 3s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+        @keyframes celebPulse {
+            0%, 100% { border-color: #6c5ce7; box-shadow: 0 0 40px rgba(108,92,231,0.05); }
+            50% { border-color: #00cec9; box-shadow: 0 0 60px rgba(0,206,201,0.08); }
+        }
+        .celebration-box h3 {
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, #6c5ce7, #00cec9, #fd79a8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            font-weight: 900;
+        }
+        .celebration-box p {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.75);
+            font-weight: 400;
+        }
+        .celebration-box .next-btn {
+            display: inline-block;
+            background: linear-gradient(145deg, #6c5ce7, #0984e3);
+            color: #fff;
+            padding: 14px 40px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
+            margin-top: 16px;
+            border: none;
+            cursor: default;
+            box-shadow: 0 8px 30px rgba(108,92,231,0.2);
+        }
+        .celebration-box .next-btn:hover {
+            transform: scale(1.06);
+            box-shadow: 0 12px 40px rgba(108,92,231,0.3);
+        }
+
+        .ref-list {
+            list-style: none;
+            padding: 0;
+        }
+        .ref-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.02);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            color: rgba(255,255,255,0.65);
+            transition: all 0.3s ease;
+            font-weight: 400;
+        }
+        .ref-list li:hover {
+            color: #fff;
+            padding-left: 8px;
+            border-color: #6c5ce7;
+        }
+        .ref-list li strong {
+            font-weight: 600;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .footer-credit {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(255,255,255,0.02);
+            font-size: 0.88rem;
+            color: rgba(255,255,255,0.25);
+            font-weight: 400;
+        }
+        .footer-credit strong {
+            color: #fdcb6e;
+            font-weight: 700;
+            text-shadow: 0 0 20px rgba(253,203,110,0.3);
+        }
+        .footer-credit .nip {
+            color: #00cec9;
+            font-weight: 500;
+            text-shadow: 0 0 12px rgba(0,206,201,0.2);
+        }
+        .school-name-gold {
+            background: linear-gradient(135deg, #fdcb6e, #f39c12);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (min-width:600px) {
+            .grid-2 { grid-template-columns: repeat(2,1fr); }
+            .grid-3 { grid-template-columns: repeat(2,1fr); }
+            .grid-4 { grid-template-columns: repeat(2,1fr); }
+            .section-header h2 { font-size: 1.6rem; }
+            .main-content { padding: 20px 24px 80px; }
+        }
+        @media (min-width:900px) {
+            .mobile-header { display: none; }
+            .main-content { padding: 28px 40px 80px; max-width: 1100px; }
+            .grid-3 { grid-template-columns: repeat(3,1fr); }
+            .grid-4 { grid-template-columns: repeat(4,1fr); }
+            .section-header h2 { font-size: 1.9rem; }
+            .section-header .num { width: 50px; height: 50px; font-size: 1.3rem; }
+        }
+        @media (max-width:400px) {
+            .section-header h2 { font-size: 1.1rem; }
+            .section-header .num { width: 36px; height: 36px; font-size: 0.9rem; }
+            .card { padding: 14px 12px; }
+            .nav-buttons button { padding: 6px 14px; font-size: 0.8rem; }
+        }
+        @media (max-width:600px) {
+            .flow-row { flex-direction: column; }
+            .flow-arrow { transform: rotate(90deg); }
+            .image-card-premium .img-wrap img { height: 170px; }
+        }
+        @media (max-width:400px) {
+            .image-card-premium .img-wrap img { height: 140px; }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.34,1.56,0.64,1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .pertemuan-badge {
+            display: inline-block;
+            background: rgba(108,92,231,0.08);
+            color: #a29bfe;
+            padding: 2px 18px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border: 1px solid rgba(108,92,231,0.06);
+            margin-bottom: 8px;
+            letter-spacing: 0.3px;
+        }
+        .progress-tracker {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 8px 0 12px;
+            flex-wrap: wrap;
+        }
+        .progress-tracker .step {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.02);
+            border: 2px solid rgba(255,255,255,0.04);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: rgba(255,255,255,0.2);
+            transition: all 0.4s ease;
+        }
+        .progress-tracker .step.done {
+            background: rgba(0,206,201,0.1);
+            border-color: #00cec9;
+            color: #00cec9;
+        }
+        .progress-tracker .step.active {
+            background: rgba(108,92,231,0.15);
+            border-color: #6c5ce7;
+            color: #a29bfe;
+            box-shadow: 0 0 20px rgba(108,92,231,0.1);
+        }
+        .progress-tracker .line {
+            flex: 1;
+            min-width: 20px;
+            height: 2px;
+            background: rgba(255,255,255,0.04);
+        }
+        .progress-tracker .line.done {
+            background: #00cec9;
+        }
+
+        .def-block {
+            background: rgba(20,26,46,0.7);
+            backdrop-filter: blur(8px);
+            border-radius: 16px;
+            padding: 18px 20px;
+            border-left: 6px solid #6c5ce7;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            margin: 12px 0;
+            transition: border-color 0.4s ease;
+        }
+        .def-block:hover {
+            border-color: #00cec9;
+        }
+        .def-block .source {
+            font-weight: 700;
+            color: #f0f4fa;
+        }
+
+        .text-gold { color: #fdcb6e; }
+        .mt-8 { margin-top: 8px; }
+        .mb-8 { margin-bottom: 8px; }
+        .flex-wrap { flex-wrap: wrap; }
+        .flex-center { display: flex; align-items: center; justify-content: center; }
+
+        /* ===== KUNCI JAWABAN ===== */
+        #answerKey {
+            display: none;
+        }
+        #passwordError {
+            display: none;
+        }
+        .kunci-box {
+            background: linear-gradient(145deg, rgba(20,26,46,0.8), rgba(10,16,36,0.8));
+            backdrop-filter: blur(12px);
+            border-radius: 16px;
+            padding: 20px;
+            border: 2px solid rgba(253,203,110,0.08);
+            margin-top: 20px;
+        }
+        .kunci-box .kunci-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .kunci-box .kunci-header .icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(253,203,110,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #fdcb6e;
+            font-size: 0.85rem;
+        }
+        .kunci-box .kunci-header h3 {
+            color: #fdcb6e;
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin: 0;
+        }
+        .kunci-box .kunci-header span {
+            font-size: 0.65rem;
+            color: rgba(255,255,255,0.1);
+            font-weight: 400;
+            margin-left: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== COSMIC CANVAS ===== -->
+    <canvas id="cosmicCanvas"></canvas>
+
+    <!-- ===== GLOW ORBS ===== -->
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-orb orb-3"></div>
+
+    <!-- ===== LOADER ===== -->
+    <div id="loader">
+        <div class="loader-ring-container"><div class="loader-ring"></div></div>
+        <div class="loader-title">Peta &amp; Pemetaan</div>
+        <div class="loader-sub">Menjelajahi Bumi, Membaca Ruang</div>
+        <div class="loader-bar-track"><div class="loader-bar" id="loaderBar"></div></div>
+        <div class="loader-percent" id="loaderPercent">0%</div>
+    </div>
+
+    <!-- ===== MOBILE HEADER ===== -->
+    <header class="mobile-header">
+        <div class="brand">🗺️ Peta</div>
+        <button class="menu-toggle" onclick="toggleMobileMenu()">☰</button>
+    </header>
+
+    <!-- ===== PROGRESS BAR ===== -->
+    <div class="progress-wrap"><div class="bar" id="progressBar"></div></div>
+
+    <!-- ===== MODAL ===== -->
+    <div class="modal-overlay" id="imageModal" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <span class="modal-close" onclick="closeModal()">✕</span>
+            <div class="image-wrapper">
+                <div class="loading-shimmer" id="modalShimmer"></div>
+                <img id="modalImage" src="" alt="Gambar" />
+                <span class="image-counter" id="modalCounter">1 / 3</span>
+                <button class="nav-arrow prev" onclick="navigateModal(-1); event.stopPropagation();">‹</button>
+                <button class="nav-arrow next" onclick="navigateModal(1); event.stopPropagation();">›</button>
+            </div>
+            <div class="zoom-controls">
+                <button onclick="zoomImage(-0.2); event.stopPropagation();">−</button>
+                <span class="zoom-level" id="zoomLevel">100%</span>
+                <button onclick="zoomImage(0.2); event.stopPropagation();">+</button>
+                <button onclick="resetZoom(); event.stopPropagation();">↺</button>
+            </div>
+            <div class="caption" id="modalCaption">Klik di luar untuk menutup</div>
+        </div>
+    </div>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="main-content">
+
+        <!-- ============================================================ -->
+        <!-- SECTION 1 : COVER                                              -->
+        <!-- ============================================================ -->
+        <section id="section1" class="section active cover-section">
+            <div class="logo-grid reveal">
+                <img src="images/Logo-Provinsi-Kalimantan-Tengah.png" alt="Logo Provinsi Kalimantan Tengah" />
+                <img src="images/imagesdisdiklogo.png" alt="Logo Dinas Pendidikan" />
+                <img src="images/LOGOSMAN3KAS.png" alt="Logo SMAN 3 Kasongan" />
+            </div>
+            <div class="badge-wrap reveal">
+                <span class="badge">KELAS X / FASE E</span>
+                <span class="badge badge-gold">3 × 45 Menit</span>
+                <span class="badge" style="background:rgba(0,206,201,0.08); color:#00cec9; border-color:rgba(0,206,201,0.1);">Kurikulum Merdeka</span>
+            </div>
+            <h1 class="cover-title reveal">PETA &amp;<br />PEMETAAN</h1>
+            <p class="cover-sub reveal">
+                <strong>Pengertian</strong> · <strong>Komponen</strong> · <strong>Jenis</strong> · <strong>Proyeksi</strong> · <strong>Simbol</strong> · <strong>Manfaat</strong>
+                <br />Peta sebagai Jendela Dunia
+            </p>
+            <div class="school-wrap reveal">
+                <div class="school-name"><span class="gold">SMAN 3 KASONGAN</span></div>
+                <div class="teacher-info">
+                    Guru Pengampu: <strong>SYAHRANI, S.Pd</strong> &nbsp;|&nbsp;
+                    <span class="nip">NIP. 197512172005011016</span>
+                </div>
+            </div>
+            <div class="start-btn-wrap reveal">
+                <button class="start-btn" onclick="navigateTo('section2')">
+                    <span>Mulai Petualangan</span>
+                </button>
+            </div>
+            <div class="nav-box reveal">
+                <div class="nav-header"><i class="fas fa-compass"></i> Navigasi Cepat</div>
+                <div class="nav-grid">
+                    <div onclick="navigateTo('section1')" class="nav-item"><span class="num-badge">1</span><span class="nav-label">Beranda</span></div>
+                    <div onclick="navigateTo('section2')" class="nav-item"><span class="num-badge">2</span><span class="nav-label">Pertemuan 1</span></div>
+                    <div onclick="navigateTo('section3')" class="nav-item"><span class="num-badge">3</span><span class="nav-label">Pertemuan 2</span></div>
+                    <div onclick="navigateTo('section4')" class="nav-item"><span class="num-badge">4</span><span class="nav-label">Pertemuan 3</span></div>
+                    <div onclick="navigateTo('section5')" class="nav-item"><span class="num-badge">5</span><span class="nav-label">Asesmen</span></div>
+                    <div onclick="navigateTo('section6')" class="nav-item"><span class="num-badge">6</span><span class="nav-label">Refleksi</span></div>
+                    <div onclick="navigateTo('section7')" class="nav-item"><span class="num-badge">7</span><span class="nav-label">Referensi</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 2 : PERTEMUAN 1 – PENGERTIAN, KOMPONEN, JENIS PETA   -->
+        <!-- ============================================================ -->
+        <section id="section2" class="section">
+            <div style="background:rgba(108,92,231,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(108,92,231,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                <div style="display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.4); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
+                <button onclick="navigateTo('section1')" style="background:rgba(255,255,255,0.02); color:rgba(255,255,255,0.3); border:1px solid rgba(255,255,255,0.03); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem;">⌂ Beranda</button>
+            </div>
+            <div class="section-header">
+                <div class="num">02</div>
+                <h2>Pertemuan 1 – Pengertian, Komponen &amp; Jenis Peta <small>Dasar-Dasar Pemetaan</small></h2>
+                <span class="badge-pertemuan">3×45'</span>
+            </div>
+            <div class="progress-tracker">
+                <span class="step active">1</span><span class="line"></span>
+                <span class="step">2</span><span class="line"></span>
+                <span class="step">3</span>
+                <span style="color:rgba(255,255,255,0.15); font-size:0.75rem; font-weight:500; margin-left:8px;">Klik materi untuk eksplorasi</span>
+            </div>
+            <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;">
+                <span class="pertemuan-badge">TP 1</span>
+                <span class="pertemuan-badge" style="background:rgba(0,206,201,0.08); color:#00cec9; border-color:rgba(0,206,201,0.06);">Penalaran Kritis</span>
+            </div>
+            <h3 style="font-size:1.05rem; color:#f0f4fa; font-weight:700; border-left:4px solid #6c5ce7; padding-left:12px; margin-bottom:6px;">Tujuan Pembelajaran</h3>
+            <ul style="color:rgba(255,255,255,0.7); font-weight:400; padding-left:20px; margin-bottom:16px; line-height:2; font-size:0.95rem;">
+                <li>Menjelaskan pengertian peta secara etimologis dan umum.</li>
+                <li>Mengidentifikasi 8 komponen utama peta beserta fungsinya.</li>
+                <li>Membedakan peta umum dan peta tematik dengan contoh.</li>
+            </ul>
+
+            <!-- Galeri Gambar -->
+            <div style="margin:16px 0;">
+                <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:14px;">
+                    <h4 style="color:#a29bfe; font-size:0.95rem; font-weight:700; display:flex; align-items:center; gap:10px;">
+                        Galeri Gambar
+                        <span style="background:rgba(108,92,231,0.06); color:#a29bfe; padding:2px 12px; border-radius:20px; font-size:0.65rem; font-weight:700; letter-spacing:0.5px;">3D Tilt</span>
+                    </h4>
+                    <span style="color:rgba(255,255,255,0.15); font-size:0.7rem; font-weight:400;">Hover untuk efek 3D · Klik untuk zoom</span>
+                </div>
+                <div class="grid-3">
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/mapsborneo.png', 'Peta Kalimantan – Representasi permukaan bumi dalam bidang datar.')" data-index="0">
+                        <div class="img-wrap">
+                            <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/mapsborneo.png" alt="Peta Kalimantan" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🗺️ Peta Kalimantan%3C/text%3E%3C/svg%3E'" />
+                            <div class="overlay-glow"></div>
+                            <span class="zoom-badge-premium"><span>🔍 Zoom</span></span>
+                            <span class="image-number">01 / 04</span>
+                        </div>
+                        <div class="image-label-premium"><span class="emoji-big">🗺️</span> Peta Kalimantan</div>
+                        <div class="image-sub-premium">Representasi permukaan bumi</div>
+                    </div>
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/skalapeta.png', 'Skala Peta – Perbandingan jarak di peta dengan jarak sebenarnya.')" data-index="1">
+                        <div class="img-wrap">
+                            <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/skalapeta.png" alt="Skala Peta" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E📏 Skala Peta%3C/text%3E%3C/svg%3E'" />
+                            <div class="overlay-glow"></div>
+                            <span class="zoom-badge-premium"><span>🔍 Zoom</span></span>
+                            <span class="image-number">02 / 04</span>
+                        </div>
+                        <div class="image-label-premium"><span class="emoji-big">📏</span> Skala Peta</div>
+                        <div class="image-sub-premium">Perbandingan jarak</div>
+                    </div>
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/petatematik.png', 'Peta Tematik – Menyajikan tema tertentu seperti kepadatan penduduk.')" data-index="2">
+                        <div class="img-wrap">
+                            <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/petatematik.png" alt="Peta Tematik" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E📊 Peta Tematik%3C/text%3E%3C/svg%3E'" />
+                            <div class="overlay-glow"></div>
+                            <span class="zoom-badge-premium"><span>🔍 Zoom</span></span>
+                            <span class="image-number">03 / 04</span>
+                        </div>
+                        <div class="image-label-premium"><span class="emoji-big">📊</span> Peta Tematik</div>
+                        <div class="image-sub-premium">Tema tertentu (kepadatan penduduk)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MATERI A. PENGERTIAN PETA -->
+            <div class="materi-detail reveal">
+                <div class="detail-header" onclick="toggleDetail(this)">
+                    <h4>A. Pengertian Peta <span class="local-badge">Etimologi &amp; Definisi</span></h4>
+                    <span class="fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;">▼</span>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-explanation">
+                        <p><strong>Secara etimologis:</strong> Kata "peta" berasal dari bahasa Inggris <strong>"map"</strong> yang berarti gambaran permukaan bumi.</p>
+                        <p><strong>Secara umum:</strong> Peta adalah <span class="highlight">representasi atau gambaran permukaan bumi pada bidang datar</span> yang diperkecil dengan skala tertentu, dilengkapi simbol untuk menyampaikan informasi geografis.</p>
+                    </div>
+                    <div style="background:rgba(253,203,110,0.03); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #fdcb6e;">
+                        <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">
+                            <strong style="color:rgba(255,255,255,0.7); font-weight:600;">Karakteristik Peta:</strong> Representasi, skala, bidang datar, simbol.
+                        </p>
+                    </div>
+                    <h5 style="color:#a29bfe; font-weight:700; font-size:0.95rem; margin-top:12px;">Definisi Menurut Para Ahli</h5>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Ahli</th><th>Definisi</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>ICA</strong></td><td>Peta adalah representasi unsur-unsur kenampakan abstrak yang dipilih dari permukaan bumi, digambarkan pada bidang datar dengan skala tertentu.</td></tr>
+                                <tr><td><strong>Erwin Raisz</strong></td><td>Peta adalah gambaran konvensional dari permukaan bumi yang diperkecil, dilengkapi simbol dan tulisan.</td></tr>
+                                <tr><td><strong>Bintarto</strong></td><td>Peta adalah gambaran permukaan bumi pada bidang datar dengan skala tertentu, menggunakan simbol-simbol.</td></tr>
+                                <tr><td><strong>Suharyono &amp; Amien</strong></td><td>Peta adalah alat penyampaian informasi tentang keruangan dengan simbol terstandar.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MATERI B. KOMPONEN PETA -->
+            <div class="materi-detail reveal">
+                <div class="detail-header" onclick="toggleDetail(this)">
+                    <h4>B. Komponen Peta <span class="local-badge">8 Unsur Utama</span></h4>
+                    <span class="fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;">▼</span>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-explanation">
+                        <p>Peta yang baik memiliki <span class="highlight">8 komponen</span> berikut:</p>
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Komponen</th><th>Fungsi</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>1. Judul</strong></td><td>Memberikan informasi tentang isi atau tema peta.</td></tr>
+                                <tr><td><strong>2. Skala</strong></td><td>Perbandingan jarak di peta dengan jarak sebenarnya.</td></tr>
+                                <tr><td><strong>3. Legenda</strong></td><td>Keterangan simbol-simbol yang digunakan.</td></tr>
+                                <tr><td><strong>4. Orientasi</strong></td><td>Menunjukkan arah utara pada peta.</td></tr>
+                                <tr><td><strong>5. Inset</strong></td><td>Peta kecil yang menunjukkan lokasi peta utama dalam konteks lebih luas.</td></tr>
+                                <tr><td><strong>6. Simbol</strong></td><td>Tanda yang mewakili kenampakan (titik, garis, area).</td></tr>
+                                <tr><td><strong>7. Tahun Pembuatan</strong></td><td>Menunjukkan kapan peta dibuat/diperbarui.</td></tr>
+                                <tr><td><strong>8. Sumber</strong></td><td>Lembaga/penulis pembuat peta.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MATERI C. JENIS PETA -->
+            <div class="materi-detail reveal">
+                <div class="detail-header" onclick="toggleDetail(this)">
+                    <h4>C. Jenis Peta <span class="local-badge">Umum &amp; Tematik</span></h4>
+                    <span class="fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;">▼</span>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-explanation">
+                        <p>Berdasarkan isinya, peta dibagi menjadi <span class="highlight">peta umum</span> dan <span class="highlight">peta tematik</span>.</p>
+                    </div>
+                    <div style="display:grid; gap:10px; margin-top:8px;">
+                        <div style="background:rgba(0,206,201,0.03); border-radius:10px; padding:12px 16px; border-left:4px solid #00cec9;">
+                            <h4 style="color:#00cec9; font-size:0.95rem; font-weight:700;">• Peta Umum</h4>
+                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Menggambarkan kenampakan umum permukaan bumi.</p>
+                            <ul style="font-size:0.88rem; padding-left:16px; color:rgba(255,255,255,0.5); line-height:2.2;">
+                                <li><strong>Peta Topografi</strong> – relief dan kontur</li>
+                                <li><strong>Peta Dunia</strong> – skala kecil</li>
+                                <li><strong>Peta Chorografi</strong> – wilayah luas skala sedang</li>
+                                <li><strong>Peta Kadaster</strong> – kepemilikan tanah skala besar</li>
+                            </ul>
+                        </div>
+                        <div style="background:rgba(253,121,168,0.03); border-radius:10px; padding:12px 16px; border-left:4px solid #fd79a8;">
+                            <h4 style="color:#fd79a8; font-size:0.95rem; font-weight:700;">• Peta Tematik</h4>
+                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Menggambarkan tema tertentu.</p>
+                            <ul style="font-size:0.88rem; padding-left:16px; color:rgba(255,255,255,0.5); line-height:2.2;">
+                                <li><strong>Peta Kepadatan Penduduk</strong></li>
+                                <li><strong>Peta Iklim</strong></li>
+                                <li><strong>Peta Tanah</strong></li>
+                                <li><strong>Peta Pariwisata</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MINI QUIZ -->
+            <div class="mini-quiz reveal">
+                <div class="quiz-question">Kuis Cepat: Komponen peta yang berisi keterangan simbol adalah ...</div>
+                <div class="quiz-options">
+                    <button onclick="checkQuiz(this, false)">Judul</button>
+                    <button onclick="checkQuiz(this, false)">Skala</button>
+                    <button onclick="checkQuiz(this, true)">Legenda</button>
+                    <button onclick="checkQuiz(this, false)">Inset</button>
+                </div>
+                <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="nav-buttons">
+                <div class="group">
+                    <button onclick="navigateTo('prev')">Sebelumnya</button>
+                    <span class="page-numbers"></span>
+                    <button onclick="navigateTo('next')">Selanjutnya</button>
+                    <span class="counter">2 / 7</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 3 : PERTEMUAN 2 – PROYEKSI, SKALA, SIMBOL PETA       -->
+        <!-- ============================================================ -->
+        <section id="section3" class="section">
+            <div style="background:rgba(108,92,231,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(108,92,231,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                <div style="display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.4); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
+                <button onclick="navigateTo('section1')" style="background:rgba(255,255,255,0.02); color:rgba(255,255,255,0.3); border:1px solid rgba(255,255,255,0.03); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem;">⌂ Beranda</button>
+            </div>
+            <div class="section-header">
+                <div class="num">03</div>
+                <h2>Pertemuan 2 – Proyeksi, Skala &amp; Simbol Peta <small>Teknik Pemetaan Dasar</small></h2>
+                <span class="badge-pertemuan">3×45'</span>
+            </div>
+            <div class="progress-tracker">
+                <span class="step done">1</span><span class="line done"></span>
+                <span class="step active">2</span><span class="line"></span>
+                <span class="step">3</span>
+                <span style="color:rgba(255,255,255,0.15); font-size:0.75rem; font-weight:500; margin-left:8px;">Klik untuk eksplorasi</span>
+            </div>
+            <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;">
+                <span class="pertemuan-badge">TP 2</span>
+                <span class="pertemuan-badge" style="background:rgba(0,206,201,0.08); color:#00cec9; border-color:rgba(0,206,201,0.06);">Literasi</span>
+            </div>
+            <h3 style="font-size:1.05rem; color:#f0f4fa; font-weight:700; border-left:4px solid #6c5ce7; padding-left:12px; margin-bottom:6px;">Tujuan Pembelajaran</h3>
+            <ul style="color:rgba(255,255,255,0.7); font-weight:400; padding-left:20px; margin-bottom:16px; line-height:2; font-size:0.95rem;">
+                <li>Menjelaskan konsep proyeksi peta (silinder, kerucut, azimuthal).</li>
+                <li>Memahami skala peta (angka dan garis).</li>
+                <li>Mengidentifikasi simbol titik, garis, dan area beserta contohnya.</li>
+            </ul>
+
+            <!-- Galeri Gambar -->
+            <div style="margin:16px 0;">
+                <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:14px;">
+                    <h4 style="color:#a29bfe; font-size:0.95rem; font-weight:700; display:flex; align-items:center; gap:10px;">
+                        Galeri Gambar
+                        <span style="background:rgba(0,206,201,0.06); color:#00cec9; padding:2px 12px; border-radius:20px; font-size:0.65rem; font-weight:700; letter-spacing:0.5px;">3D Tilt</span>
+                    </h4>
+                    <span style="color:rgba(255,255,255,0.15); font-size:0.7rem; font-weight:400;">Hover untuk efek 3D · Klik untuk zoom</span>
+                </div>
+                <div class="grid-3">
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/proyeksisilinder.png', 'Proyeksi Silinder – Tabung, cocok untuk ekuator.')" data-index="3">
+                        <div class="img-wrap">
+                            <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/proyeksisilinder.png" alt="Proyeksi Silinder" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🔵 Silinder%3C/text%3E%3C/svg%3E'" />
+                            <div class="overlay-glow"></div>
+                            <span class="zoom-badge-premium"><span>🔍 Zoom</span></span>
+                            <span class="image-number">01 / 04</span>
+                        </div>
+                        <div class="image-label-premium"><span class="emoji-big">🔵</span> Proyeksi Silinder</div>
+                        <div class="image-sub-premium">Cocok untuk ekuator</div>
+                    </div>
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/proyeksi_kerucut.png', 'Proyeksi Kerucut – Cocok untuk lintang sedang.')" data-index="4">
+                        <div class="img-wrap">
+                            <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/proyeksi_kerucut.png" alt="Proyeksi Kerucut" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🟢 Kerucut%3C/text%3E%3C/svg%3E'" />
+                            <div class="overlay-glow"></div>
+                            <span class="zoom-badge-premium"><span>🔍 Zoom</span></span>
+                            <span class="image-number">02 / 04</span>
+                        </div>
+                        <div class="image-label-premium"><span class="emoji-big">🟢</span> Proyeksi Kerucut</div>
+                        <div class="image-sub-premium">Lintang sedang</div>
+                    </div>
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/proyeksiazimuthal.png', 'Proyeksi Azimuthal – Bidang datar, cocok untuk kutub.')" data-index="5">
+                        <div class="img-wrap">
+                            <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/proyeksiazimuthal.png" alt="Proyeksi Azimuthal" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🟠 Azimuthal%3C/text%3E%3C/svg%3E'" />
+                            <div class="overlay-glow"></div>
+                            <span class="zoom-badge-premium"><span>🔍 Zoom</span></span>
+                            <span class="image-number">03 / 04</span>
+                        </div>
+                        <div class="image-label-premium"><span class="emoji-big">🟠</span> Proyeksi Azimuthal</div>
+                        <div class="image-sub-premium">Cocok untuk kutub</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MATERI A. PROYEKSI -->
+            <div class="materi-detail reveal">
+                <div class="detail-header" onclick="toggleDetail(this)">
+                    <h4>A. Proyeksi Peta <span class="local-badge">3 Jenis Utama</span></h4>
+                    <span class="fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;">▼</span>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-explanation">
+                        <p>Proyeksi peta adalah <span class="highlight">cara memindahkan permukaan bumi yang bulat ke bidang datar</span>. Tidak ada proyeksi sempurna; setiap proyeksi memiliki distorsi.</p>
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Jenis Proyeksi</th><th>Bidang</th><th>Cocok untuk</th><th>Contoh</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Silinder</strong></td><td>Tabung</td><td>Ekuator</td><td>Proyeksi Mercator</td></tr>
+                                <tr><td><strong>Kerucut</strong></td><td>Kerucut</td><td>Lintang sedang (30°–60°)</td><td>Proyeksi Lambert</td></tr>
+                                <tr><td><strong>Azimuthal</strong></td><td>Bidang datar</td><td>Kutub</td><td>Proyeksi Gnomonic</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div style="background:rgba(253,203,110,0.03); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #fdcb6e;">
+                        <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">
+                            <strong style="color:rgba(255,255,255,0.7); font-weight:600;">Tujuan Proyeksi:</strong> Mempertahankan bentuk (conform), luas (equivalent), atau jarak (equidistance).
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MATERI B. SKALA -->
+            <div class="materi-detail reveal">
+                <div class="detail-header" onclick="toggleDetail(this)">
+                    <h4>B. Skala Peta <span class="local-badge">Angka &amp; Garis</span></h4>
+                    <span class="fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;">▼</span>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-explanation">
+                        <p>Skala adalah <span class="highlight">perbandingan jarak di peta dengan jarak sebenarnya</span>.</p>
+                    </div>
+                    <div style="display:grid; gap:10px; margin-top:8px;">
+                        <div style="background:rgba(0,206,201,0.03); border-radius:10px; padding:12px 16px; border-left:4px solid #00cec9;">
+                            <h4 style="color:#00cec9; font-size:0.9rem; font-weight:700;">Skala Angka</h4>
+                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Contoh: <strong>1:100.000</strong> (1 cm di peta = 1 km di lapangan).</p>
+                        </div>
+                        <div style="background:rgba(253,203,110,0.03); border-radius:10px; padding:12px 16px; border-left:4px solid #fdcb6e;">
+                            <h4 style="color:#fdcb6e; font-size:0.9rem; font-weight:700;">Skala Garis</h4>
+                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Garis dengan ukuran yang menunjukkan jarak sebenarnya.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MATERI C. SIMBOL -->
+            <div class="materi-detail reveal">
+                <div class="detail-header" onclick="toggleDetail(this)">
+                    <h4>C. Simbol Peta <span class="local-badge">Titik, Garis, Area</span></h4>
+                    <span class="fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;">▼</span>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-explanation">
+                        <p>Simbol adalah <span class="highlight">tanda yang mewakili kenampakan</span> di permukaan bumi.</p>
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Jenis Simbol</th><th>Contoh</th><th>Fungsi</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Titik</strong></td><td>Kota (●), gunung (▲), bandara (✈)</td><td>Menunjukkan lokasi pasti</td></tr>
+                                <tr><td><strong>Garis</strong></td><td>Jalan (═), sungai (≈), rel (┅)</td><td>Menunjukkan arah, rute, batas</td></tr>
+                                <tr><td><strong>Area</strong></td><td>Hutan (🌳), danau (💧), permukiman (🏘️)</td><td>Menunjukkan sebaran/luas wilayah</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MINI QUIZ -->
+            <div class="mini-quiz reveal">
+                <div class="quiz-question">Kuis Cepat: Proyeksi yang paling cocok untuk daerah kutub adalah ...</div>
+                <div class="quiz-options">
+                    <button onclick="checkQuiz(this, false)">Silinder</button>
+                    <button onclick="checkQuiz(this, false)">Kerucut</button>
+                    <button onclick="checkQuiz(this, true)">Azimuthal</button>
+                    <button onclick="checkQuiz(this, false)">Mercator</button>
+                </div>
+                <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="nav-buttons">
+                <div class="group">
+                    <button onclick="navigateTo('prev')">Sebelumnya</button>
+                    <span class="page-numbers"></span>
+                    <button onclick="navigateTo('next')">Selanjutnya</button>
+                    <span class="counter">3 / 7</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 4 : PERTEMUAN 3 – KETERAMPILAN & MANFAAT PETA        -->
+        <!-- ============================================================ -->
+        <section id="section4" class="section">
+            <div style="background:rgba(108,92,231,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(108,92,231,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                <div style="display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.4); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
+                <button onclick="navigateTo('section1')" style="background:rgba(255,255,255,0.02); color:rgba(255,255,255,0.3); border:1px solid rgba(255,255,255,0.03); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem;">⌂ Beranda</button>
+            </div>
+            <div class="section-header">
+                <div class="num">04</div>
+                <h2>Pertemuan 3 – Keterampilan &amp; Manfaat Peta <small>Life Skills &amp; Pembangunan Wilayah</small></h2>
+                <span class="badge-pertemuan">3×45'</span>
+            </div>
+            <div class="progress-tracker">
+                <span class="step done">1</span><span class="line done"></span>
+                <span class="step done">2</span><span class="line done"></span>
+                <span class="step active">3</span>
+                <span style="color:rgba(255,255,255,0.15); font-size:0.75rem; font-weight:500; margin-left:8px;">Klik untuk eksplorasi</span>
+            </div>
+            <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;">
+                <span class="pertemuan-badge">TP 3</span>
+                <span class="pertemuan-badge" style="background:rgba(0,206,201,0.08); color:#00cec9; border-color:rgba(0,206,201,0.06);">Kreativitas</span>
+                <span class="pertemuan-badge" style="background:rgba(253,121,168,0.08); color:#fd79a8; border-color:rgba(253,121,168,0.06);">Kemandirian</span>
+            </div>
+            <h3 style="font-size:1.05rem; color:#f0f4fa; font-weight:700; border-left:4px solid #6c5ce7; padding-left:12px; margin-bottom:6px;">Tujuan Pembelajaran</h3>
+            <ul style="color:rgba(255,255,255,0.7); font-weight:400; padding-left:20px; margin-bottom:16px; line-height:2; font-size:0.95rem;">
+                <li>Melatih keterampilan membaca peta (orientasi, skala, simbol).</li>
+                <li>Menjelaskan manfaat peta dalam kehidupan sehari-hari, perencanaan wilayah, dan mitigasi bencana.</li>
+                <li>Menganalisis studi kasus pemanfaatan peta di Kabupaten Katingan.</li>
+            </ul>
+
+            <!-- Galeri Gambar -->
+            <div style="margin:16px 0;">
+                <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:14px;">
+                    <h4 style="color:#a29bfe; font-size:0.95rem; font-weight:700; display:flex; align-items:center; gap:10px;">
+                        Galeri Gambar
+                        <span style="background:rgba(108,92,231,0.06); color:#a29bfe; padding:2px 12px; border-radius:20px; font-size:0.65rem; font-weight:700; letter-spacing:0.5px;">3D Tilt</span>
+                    </h4>
+                    <span style="color:rgba(255,255,255,0.15); font-size:0.7rem; font-weight:400;">Hover untuk efek 3D · Klik untuk zoom</span>
+                </div>
+                <div class="grid-3">
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/mitigasibanjir.png', 'Mitigasi Bencana – Peta rawan banjir untuk perencanaan evakuasi.')" data-index="6">
+                        <div class="img-wrap">
+                            <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/mitigasibanjir.png" alt="Mitigasi Banjir" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🌊 Mitigasi Banjir%3C/text%3E%3C/svg%3E'" />
+                            <div class="overlay-glow"></div>
+                            <span class="zoom-badge-premium"><span>🔍 Zoom</span></span>
+                            <span class="image-number">01 / 04</span>
+                        </div>
+                        <div class="image-label-premium"><span class="emoji-big">🌊</span> Mitigasi Bencana</div>
+                        <div class="image-sub-premium">Perencanaan evakuasi</div>
+                    </div>
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/hidupberkelanjutan.png', 'Pembangunan Berkelanjutan – Peran peta dalam perencanaan tata ruang.')" data-index="7">
+                        <div class="img-wrap">
+                            <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/hidupberkelanjutan.png" alt="Pembangunan Berkelanjutan" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🌱 Berkelanjutan%3C/text%3E%3C/svg%3E'" />
+                            <div class="overlay-glow"></div>
+                            <span class="zoom-badge-premium"><span>🔍 Zoom</span></span>
+                            <span class="image-number">02 / 04</span>
+                        </div>
+                        <div class="image-label-premium"><span class="emoji-big">🌱</span> Pembangunan Berkelanjutan</div>
+                        <div class="image-sub-premium">Tata ruang &amp; lingkungan</div>
+                    </div>
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/tnsebngau.png', 'Ekowisata Katingan – Potensi wisata berbasis peta.')" data-index="8">
+                        <div class="img-wrap">
+                            <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/tnsebngau.png" alt="Ekowisata Katingan" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🦧 Ekowisata%3C/text%3E%3C/svg%3E'" />
+                            <div class="overlay-glow"></div>
+                            <span class="zoom-badge-premium"><span>🔍 Zoom</span></span>
+                            <span class="image-number">03 / 04</span>
+                        </div>
+                        <div class="image-label-premium"><span class="emoji-big">🦧</span> Ekowisata Katingan</div>
+                        <div class="image-sub-premium">Potensi wisata berbasis peta</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MATERI A. KETERAMPILAN MEMBACA PETA -->
+            <div class="materi-detail reveal">
+                <div class="detail-header" onclick="toggleDetail(this)">
+                    <h4>A. Keterampilan Membaca Peta <span class="local-badge">Orientasi, Skala, Simbol</span></h4>
+                    <span class="fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;">▼</span>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-explanation">
+                        <p>Ada 3 keterampilan dasar dalam membaca peta:</p>
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Keterampilan</th><th>Penjelasan</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Orientasi</strong></td><td>Membaca arah mata angin dan menghubungkan dengan kondisi lapangan.</td></tr>
+                                <tr><td><strong>Interpretasi Skala</strong></td><td>Mengukur jarak sebenarnya berdasarkan skala peta.</td></tr>
+                                <tr><td><strong>Membaca Simbol &amp; Legenda</strong></td><td>Memahami arti simbol melalui legenda.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div style="background:rgba(0,206,201,0.03); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #00cec9;">
+                        <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">
+                            <strong style="color:rgba(255,255,255,0.7); font-weight:600;">Aktivitas:</strong> Coba tentukan jarak dari rumah ke sekolah menggunakan peta digital (Google Maps)!
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MATERI B. MANFAAT PETA -->
+            <div class="materi-detail reveal">
+                <div class="detail-header" onclick="toggleDetail(this)">
+                    <h4>B. Manfaat Peta <span class="local-badge">4 Bidang Utama</span></h4>
+                    <span class="fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;">▼</span>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-explanation">
+                        <p>Peta memiliki banyak manfaat dalam kehidupan:</p>
+                    </div>
+                    <div class="grid-2">
+                        <div style="background:rgba(108,92,231,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #6c5ce7;">
+                            <h4 style="color:#a29bfe; font-size:0.9rem; font-weight:700;">Navigasi &amp; Orientasi</h4>
+                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Menentukan lokasi dan arah tujuan (Google Maps, peta laut).</p>
+                        </div>
+                        <div style="background:rgba(0,206,201,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #00cec9;">
+                            <h4 style="color:#00cec9; font-size:0.9rem; font-weight:700;">Analisis Spasial</h4>
+                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Menganalisis pola persebaran fenomena (kerawanan banjir, kepadatan penduduk).</p>
+                        </div>
+                        <div style="background:rgba(253,121,168,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #fd79a8;">
+                            <h4 style="color:#fd79a8; font-size:0.9rem; font-weight:700;">Perencanaan Wilayah</h4>
+                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Tata ruang, zonasi, infrastruktur.</p>
+                        </div>
+                        <div style="background:rgba(253,203,110,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #fdcb6e;">
+                            <h4 style="color:#fdcb6e; font-size:0.9rem; font-weight:700;">Mitigasi Bencana</h4>
+                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Peta rawan bencana untuk identifikasi zona risiko dan evakuasi.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MATERI C. STUDI KASUS -->
+            <div class="materi-detail reveal">
+                <div class="detail-header" onclick="toggleDetail(this)">
+                    <h4>C. Studi Kasus: Peta untuk Katingan <span class="local-badge">Aplikasi Lokal</span></h4>
+                    <span class="fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;">▼</span>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-explanation">
+                        <p>Bagaimana peta membantu pembangunan dan keselamatan di Kabupaten Katingan?</p>
+                    </div>
+                    <ul style="color:rgba(255,255,255,0.7); font-weight:400; padding-left:20px; line-height:2.2; font-size:0.92rem;">
+                        <li><strong>Peta Rawa/Banjir:</strong> Mengidentifikasi daerah rawan genangan saat musim hujan.</li>
+                        <li><strong>Peta Tata Guna Lahan:</strong> Mengatur zona permukiman, pertanian, dan konservasi gambut.</li>
+                        <li><strong>Peta Jalur Transportasi:</strong> Menentukan rute sungai dan jalan darat untuk distribusi logistik.</li>
+                        <li><strong>Peta Wisata:</strong> Memetakan potensi ekowisata (Taman Nasional Sebangau) untuk ekonomi lokal.</li>
+                    </ul>
+                    <div style="background:rgba(253,203,110,0.03); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #fdcb6e;">
+                        <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">
+                            <strong style="color:rgba(255,255,255,0.7); font-weight:600;">Pesan:</strong> Peta bukan sekadar gambar, tapi <span class="highlight">alat untuk mengambil keputusan</span> yang lebih baik.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MINI QUIZ -->
+            <div class="mini-quiz reveal">
+                <div class="quiz-question">Kuis Cepat: Salah satu manfaat peta dalam kehidupan sehari-hari adalah ...</div>
+                <div class="quiz-options">
+                    <button onclick="checkQuiz(this, true)">Menentukan rute perjalanan</button>
+                    <button onclick="checkQuiz(this, false)">Menghitung jumlah penduduk</button>
+                    <button onclick="checkQuiz(this, false)">Memprediksi cuaca</button>
+                    <button onclick="checkQuiz(this, false)">Membuat patung</button>
+                </div>
+                <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="nav-buttons">
+                <div class="group">
+                    <button onclick="navigateTo('prev')">Sebelumnya</button>
+                    <span class="page-numbers"></span>
+                    <button onclick="navigateTo('next')">Selanjutnya</button>
+                    <span class="counter">4 / 7</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 5 : ASESMEN                                            -->
+        <!-- ============================================================ -->
+        <section id="section5" class="section">
+            <div style="background:rgba(108,92,231,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(108,92,231,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                <div style="display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.4); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
+                <button onclick="navigateTo('section1')" style="background:rgba(255,255,255,0.02); color:rgba(255,255,255,0.3); border:1px solid rgba(255,255,255,0.03); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem;">⌂ Beranda</button>
+            </div>
+            <div class="section-header">
+                <div class="num">05</div>
+                <h2>Asesmen <small>Evaluasi 3 Pertemuan</small></h2>
+                <span class="badge-pertemuan">30 Soal</span>
+            </div>
+            <!-- Statistik -->
+            <div style="background:linear-gradient(145deg, rgba(20,26,46,0.8), rgba(10,16,36,0.8)); backdrop-filter:blur(12px); border-radius:16px; padding:20px 24px; margin-bottom:24px; border:1px solid rgba(255,255,255,0.03);">
+                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap:12px;">
+                    <div style="display:flex; align-items:center; gap:12px; padding:10px 14px; background:rgba(108,92,231,0.04); border-radius:12px; border:1px solid rgba(108,92,231,0.06);">
+                        <div style="width:36px; height:36px; border-radius:50%; background:rgba(108,92,231,0.08); display:flex; align-items:center; justify-content:center;">A</div>
+                        <div><span style="color:rgba(255,255,255,0.2); font-size:0.6rem; font-weight:600; text-transform:uppercase;">Pilihan Ganda</span><div style="color:#f0f4fa; font-size:1.2rem; font-weight:700;">15</div></div>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:12px; padding:10px 14px; background:rgba(0,206,201,0.04); border-radius:12px; border:1px solid rgba(0,206,201,0.06);">
+                        <div style="width:36px; height:36px; border-radius:50%; background:rgba(0,206,201,0.08); display:flex; align-items:center; justify-content:center;">B</div>
+                        <div><span style="color:rgba(255,255,255,0.2); font-size:0.6rem; font-weight:600; text-transform:uppercase;">Benar/Salah</span><div style="color:#f0f4fa; font-size:1.2rem; font-weight:700;">10</div></div>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:12px; padding:10px 14px; background:rgba(253,121,168,0.04); border-radius:12px; border:1px solid rgba(253,121,168,0.06);">
+                        <div style="width:36px; height:36px; border-radius:50%; background:rgba(253,121,168,0.08); display:flex; align-items:center; justify-content:center;">C</div>
+                        <div><span style="color:rgba(255,255,255,0.2); font-size:0.6rem; font-weight:600; text-transform:uppercase;">Essay</span><div style="color:#f0f4fa; font-size:1.2rem; font-weight:700;">5</div></div>
+                    </div>
+                </div>
+                <div style="margin-top:14px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.02); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                    <span style="color:rgba(255,255,255,0.25); font-size:0.85rem; font-weight:400;">Total <strong style="color:#f0f4fa; font-weight:700;">30 soal</strong> · Kerjakan dengan jujur</span>
+                    <span style="color:rgba(255,255,255,0.1); font-size:0.75rem; font-weight:400;">60 menit</span>
+                </div>
+            </div>
+            <!-- PG -->
+            <div style="background:rgba(20,26,46,0.5); backdrop-filter:blur(8px); border-radius:16px; padding:20px; border:1px solid rgba(255,255,255,0.02); margin-bottom:20px;">
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+                    <div style="width:32px; height:32px; border-radius:50%; background:linear-gradient(145deg,#2a3a5a,#1a2a4a); display:flex; align-items:center; justify-content:center; font-weight:700; color:#a29bfe; font-size:0.85rem;">A</div>
+                    <h3 style="color:#f0f4fa; font-size:1.05rem; font-weight:700; margin:0;">Pilihan Ganda</h3>
+                    <span style="font-size:0.7rem; color:rgba(255,255,255,0.1); font-weight:400; margin-left:auto;">15 Soal</span>
+                </div>
+                <p style="color:rgba(255,255,255,0.2); font-size:0.8rem; font-weight:400; margin-bottom:12px;">Pilih satu jawaban paling tepat!</p>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">1.</span> Peta adalah gambaran permukaan bumi pada bidang datar yang diperkecil dengan ...</div><div class="opsi"><span>A. Warna tertentu</span><span>B. Skala tertentu</span><span>C. Orientasi tertentu</span><span>D. Jenis huruf tertentu</span><span>E. Garis tepi tertentu</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">2.</span> Komponen peta yang berisi keterangan simbol adalah ...</div><div class="opsi"><span>A. Judul</span><span>B. Skala</span><span>C. Legenda</span><span>D. Orientasi</span><span>E. Inset</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">3.</span> Peta yang menggambarkan tema tertentu seperti kepadatan penduduk disebut ...</div><div class="opsi"><span>A. Peta umum</span><span>B. Peta tematik</span><span>C. Peta topografi</span><span>D. Peta chorografi</span><span>E. Peta kadaster</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">4.</span> Proyeksi peta yang paling cocok untuk daerah kutub adalah ...</div><div class="opsi"><span>A. Silinder</span><span>B. Kerucut</span><span>C. Azimuthal</span><span>D. Mercator</span><span>E. Sinusoidal</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">5.</span> Simbol yang digunakan untuk mewakili jalan dan sungai adalah simbol ...</div><div class="opsi"><span>A. Titik</span><span>B. Garis</span><span>C. Area</span><span>D. Warna</span><span>E. Pola</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">6.</span> Skala 1:100.000 termasuk skala ...</div><div class="opsi"><span>A. Sangat kecil</span><span>B. Kecil</span><span>C. Sedang</span><span>D. Besar</span><span>E. Sangat besar</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">7.</span> Fungsi inset pada peta adalah ...</div><div class="opsi"><span>A. Menampilkan legenda</span><span>B. Menunjukkan skala</span><span>C. Menunjukkan lokasi peta utama dalam konteks lebih luas</span><span>D. Menampilkan tahun pembuatan</span><span>E. Menampilkan sumber</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">8.</span> Manfaat peta dalam perencanaan wilayah adalah ...</div><div class="opsi"><span>A. Menentukan arah perjalanan</span><span>B. Menganalisis pola persebaran penduduk</span><span>C. Merancang tata ruang dan infrastruktur</span><span>D. Mengenal daerah rawan bencana</span><span>E. Mengetahui jenis tanah</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">9.</span> Menurut ICA, peta adalah representasi unsur-unsur kenampakan abstrak yang dipilih dari permukaan bumi yang digambarkan pada bidang datar dengan ...</div><div class="opsi"><span>A. Warna tertentu</span><span>B. Skala tertentu</span><span>C. Orientasi tertentu</span><span>D. Jenis huruf tertentu</span><span>E. Garis tepi tertentu</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">10.</span> Contoh peta tematik adalah ...</div><div class="opsi"><span>A. Peta dunia</span><span>B. Peta topografi</span><span>C. Peta kepadatan penduduk</span><span>D. Peta chorografi</span><span>E. Peta kadaster</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">11.</span> Simbol area pada peta biasanya digunakan untuk menggambarkan ...</div><div class="opsi"><span>A. Kota dan gunung</span><span>B. Jalan dan sungai</span><span>C. Hutan, danau, permukiman</span><span>D. Pelabuhan dan bandara</span><span>E. Batas administrasi</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">12.</span> Proyeksi kerucut paling cocok untuk wilayah ...</div><div class="opsi"><span>A. Ekuator</span><span>B. Lintang sedang (30°–60°)</span><span>C. Kutub</span><span>D. Gurun</span><span>E. Lautan</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">13.</span> Badan yang mengatur standar simbol peta di Indonesia adalah ...</div><div class="opsi"><span>A. BMKG</span><span>B. BIG</span><span>C. BPS</span><span>D. Kementerian PUPR</span><span>E. LAPAN</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">14.</span> Tokoh yang mengembangkan proyeksi silinder untuk navigasi laut adalah ...</div><div class="opsi"><span>A. Ptolemaeus</span><span>B. Erwin Raisz</span><span>C. Gerardus Mercator</span><span>D. Bintarto</span><span>E. Suharyono</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">15.</span> Manfaat peta dalam mitigasi bencana adalah ...</div><div class="opsi"><span>A. Menentukan lokasi wisata</span><span>B. Menganalisis kepadatan penduduk</span><span>C. Mengenali zona rawan bencana</span><span>D. Memetakan jalur perdagangan</span><span>E. Mengetahui jenis tanah</span></div></div>
+            </div>
+            <!-- Benar/Salah -->
+            <div style="background:rgba(20,26,46,0.5); backdrop-filter:blur(8px); border-radius:16px; padding:20px; border:1px solid rgba(255,255,255,0.02); margin-bottom:20px;">
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+                    <div style="width:32px; height:32px; border-radius:50%; background:linear-gradient(145deg,#1a3a3a,#0a2a2a); display:flex; align-items:center; justify-content:center; font-weight:700; color:#00cec9; font-size:0.85rem;">B</div>
+                    <h3 style="color:#f0f4fa; font-size:1.05rem; font-weight:700; margin:0;">Benar / Salah</h3>
+                    <span style="font-size:0.7rem; color:rgba(255,255,255,0.1); font-weight:400; margin-left:auto;">10 Soal</span>
+                </div>
+                <p style="color:rgba(255,255,255,0.2); font-size:0.8rem; font-weight:400; margin-bottom:12px;">Tuliskan B (Benar) atau S (Salah)!</p>
+                <div class="soal-bs"><span class="nomor">1.</span><span class="pertanyaan">Peta selalu digambarkan pada bidang datar dengan skala tertentu.</span></div>
+                <div class="soal-bs"><span class="nomor">2.</span><span class="pertanyaan">Proyeksi Mercator adalah contoh proyeksi kerucut.</span></div>
+                <div class="soal-bs"><span class="nomor">3.</span><span class="pertanyaan">Simbol titik digunakan untuk objek memanjang seperti sungai.</span></div>
+                <div class="soal-bs"><span class="nomor">4.</span><span class="pertanyaan">Legenda berisi keterangan simbol-simbol pada peta.</span></div>
+                <div class="soal-bs"><span class="nomor">5.</span><span class="pertanyaan">Peta tematik menggambarkan kenampakan umum seperti relief.</span></div>
+                <div class="soal-bs"><span class="nomor">6.</span><span class="pertanyaan">Proyeksi azimuthal paling cocok untuk daerah ekuator.</span></div>
+                <div class="soal-bs"><span class="nomor">7.</span><span class="pertanyaan">Skala 1:100.000 termasuk skala besar.</span></div>
+                <div class="soal-bs"><span class="nomor">8.</span><span class="pertanyaan">Inset berfungsi menunjukkan lokasi peta utama dalam konteks lebih luas.</span></div>
+                <div class="soal-bs"><span class="nomor">9.</span><span class="pertanyaan">BIG adalah Badan Informasi Geospasial di Indonesia.</span></div>
+                <div class="soal-bs"><span class="nomor">10.</span><span class="pertanyaan">Proyeksi equivalent mempertahankan bentuk, tetapi mengorbankan luas.</span></div>
+            </div>
+            <!-- Essay -->
+            <div style="background:rgba(20,26,46,0.5); backdrop-filter:blur(8px); border-radius:16px; padding:20px; border:1px solid rgba(255,255,255,0.02); margin-bottom:20px;">
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+                    <div style="width:32px; height:32px; border-radius:50%; background:linear-gradient(145deg,#3a2a1a,#2a1a0a); display:flex; align-items:center; justify-content:center; font-weight:700; color:#fdcb6e; font-size:0.85rem;">C</div>
+                    <h3 style="color:#f0f4fa; font-size:1.05rem; font-weight:700; margin:0;">Essay</h3>
+                    <span style="font-size:0.7rem; color:rgba(255,255,255,0.1); font-weight:400; margin-left:auto;">5 Soal</span>
+                </div>
+                <p style="color:rgba(255,255,255,0.2); font-size:0.8rem; font-weight:400; margin-bottom:12px;">Jawab dengan jelas!</p>
+                <div class="soal-essay"><div class="pertanyaan"><span class="nomor">1.</span> Jelaskan perbedaan peta umum dan peta tematik! Berikan masing-masing 2 contoh!</div><div class="petunjuk">(Skor: 0-10)</div></div>
+                <div class="soal-essay"><div class="pertanyaan"><span class="nomor">2.</span> Sebutkan dan jelaskan 3 jenis proyeksi peta berdasarkan bidang proyeksinya!</div><div class="petunjuk">(Skor: 0-10)</div></div>
+                <div class="soal-essay"><div class="pertanyaan"><span class="nomor">3.</span> Apa yang dimaksud simbol peta? Jelaskan 3 jenis simbol berdasarkan bentuknya!</div><div class="petunjuk">(Skor: 0-10)</div></div>
+                <div class="soal-essay"><div class="pertanyaan"><span class="nomor">4.</span> Mengapa tidak ada proyeksi peta yang sempurna? Jelaskan dengan contoh!</div><div class="petunjuk">(Skor: 0-10)</div></div>
+                <div class="soal-essay"><div class="pertanyaan"><span class="nomor">5.</span> Bagaimana manfaat peta dalam mitigasi bencana? Berikan contoh konkret!</div><div class="petunjuk">(Skor: 0-10)</div></div>
+            </div>
+            <!-- Kunci Jawaban -->
+            <div class="kunci-box">
+                <div class="kunci-header">
+                    <div class="icon">🔑</div>
+                    <h3>Kunci Jawaban</h3>
+                    <span>Password</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:14px;">
+                    <input type="password" id="passwordInput" placeholder="Password guru..." style="flex:1; min-width:180px; padding:12px 18px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.04); border-radius:10px; color:#e8e8e8; font-size:0.9rem; outline:none; transition:0.3s; font-weight:400;">
+                    <button onclick="checkPassword()" style="background:linear-gradient(145deg,#fdcb6e,#f39c12); color:#1a1a1a; border:none; padding:12px 28px; border-radius:10px; font-weight:700; cursor:pointer; transition:0.3s; display:flex; align-items:center; gap:8px; font-size:0.85rem;">
+                        Buka
+                    </button>
+                    <button onclick="clearPassword()" style="background:rgba(255,255,255,0.02); color:rgba(255,255,255,0.2); border:1px solid rgba(255,255,255,0.02); padding:12px 18px; border-radius:10px; cursor:pointer; font-weight:400;">✕</button>
+                </div>
+                <div id="answerKey">
+                    <div style="background:rgba(255,255,255,0.01); border-radius:12px; padding:16px;">
+                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+                            <div>
+                                <h4 style="color:#a29bfe; margin-bottom:8px; font-size:0.85rem; font-weight:700;">PG (15 Soal)</h4>
+                                <div style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400; line-height:2.2; display:grid; grid-template-columns:1fr 1fr 1fr; gap:0 15px;">
+                                    <div>1. B</div><div>2. C</div><div>3. B</div><div>4. C</div><div>5. B</div>
+                                    <div>6. D</div><div>7. C</div><div>8. C</div><div>9. B</div><div>10. C</div>
+                                    <div>11. C</div><div>12. B</div><div>13. B</div><div>14. C</div><div>15. C</div>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 style="color:#00cec9; margin-bottom:8px; font-size:0.85rem; font-weight:700;">B/S (10 Soal)</h4>
+                                <div style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400; line-height:2.2;">
+                                    <div>1. <span style="color:#00cec9; font-weight:700;">B</span></div>
+                                    <div>2. <span style="color:#fd79a8; font-weight:700;">S</span> (silinder)</div>
+                                    <div>3. <span style="color:#fd79a8; font-weight:700;">S</span> (garis)</div>
+                                    <div>4. <span style="color:#00cec9; font-weight:700;">B</span></div>
+                                    <div>5. <span style="color:#fd79a8; font-weight:700;">S</span> (umum)</div>
+                                    <div>6. <span style="color:#fd79a8; font-weight:700;">S</span> (kutub)</div>
+                                    <div>7. <span style="color:#fd79a8; font-weight:700;">S</span> (skala besar: 1:10.000)</div>
+                                    <div>8. <span style="color:#00cec9; font-weight:700;">B</span></div>
+                                    <div>9. <span style="color:#00cec9; font-weight:700;">B</span></div>
+                                    <div>10. <span style="color:#fd79a8; font-weight:700;">S</span> (mempertahankan luas)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin-top:14px; border-top:1px solid rgba(255,255,255,0.02); padding-top:12px;">
+                            <h4 style="color:#fdcb6e; margin-bottom:6px; font-size:0.85rem; font-weight:700;">Essay (5 Soal)</h4>
+                            <div style="font-size:0.8rem; color:rgba(255,255,255,0.3); font-weight:400; line-height:2;">
+                                <div><strong style="color:rgba(255,255,255,0.5); font-weight:600;">Soal 1-5:</strong> Jawaban sesuai dengan materi pertemuan 1-3.</div>
+                                <div><strong style="color:rgba(255,255,255,0.5); font-weight:600;">Skor:</strong> 0-10 per soal · Total maksimal 50 (Essay) + 50 (PG & BS) = 100</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="passwordError" style="display:none; color:#fd79a8; font-size:0.85rem; font-weight:400; margin-top:6px; padding:8px 14px; background:rgba(253,121,168,0.04); border-radius:8px; border-left:3px solid #fd79a8;">
+                    Password salah! Coba lagi.
+                </div>
+            </div>
+            <div class="nav-buttons">
+                <div class="group">
+                    <button onclick="navigateTo('prev')">Sebelumnya</button>
+                    <span class="page-numbers"></span>
+                    <button onclick="navigateTo('next')">Selanjutnya</button>
+                    <span class="counter">5 / 7</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 6 : REFLEKSI                                            -->
+        <!-- ============================================================ -->
+        <section id="section6" class="section">
+            <div style="background:rgba(108,92,231,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(108,92,231,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                <div style="display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.4); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
+                <button onclick="navigateTo('section1')" style="background:rgba(255,255,255,0.02); color:rgba(255,255,255,0.3); border:1px solid rgba(255,255,255,0.03); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem;">⌂ Beranda</button>
+            </div>
+            <div class="section-header">
+                <div class="num">06</div>
+                <h2>Refleksi <small>Menyimpulkan Perjalanan 3 Pertemuan</small></h2>
+                <span class="badge-pertemuan">Inspirasi</span>
+            </div>
+            <div class="card" style="background:rgba(20,40,40,0.7); backdrop-filter:blur(8px); border:1px solid rgba(108,92,231,0.08);">
+                <h3 style="display:flex; align-items:center; gap:10px; color:#f0f4fa; font-weight:700;"><span style="font-size:1.8rem;">🌟</span> Apa yang Kamu Dapatkan?</h3>
+                <ul class="refleksi-list">
+                    <li><span class="check">✓</span><span>Memahami pengertian peta dan komponennya.</span></li>
+                    <li><span class="check">✓</span><span>Mengenal proyeksi, skala, dan simbol peta.</span></li>
+                    <li><span class="check">✓</span><span>Menyadari manfaat peta dalam kehidupan dan pembangunan.</span></li>
+                    <li><span class="check">✓</span><span>Mampu membaca peta sederhana.</span></li>
+                </ul>
+            </div>
+            <div class="card" style="background:rgba(20,26,46,0.7); backdrop-filter:blur(8px); margin-top:16px; border-left:6px solid #6c5ce7;">
+                <h3 style="display:flex; align-items:center; gap:10px; color:#f0f4fa; font-weight:700;">Renungkan</h3>
+                <p style="font-size:1.05rem; color:rgba(255,255,255,0.65); font-weight:400; font-style:italic; margin-top:4px;">"Menurutmu, mengapa kemampuan membaca peta penting di era digital saat ini?"</p>
+                <p style="margin-top:8px; font-size:0.88rem; color:rgba(255,255,255,0.25); font-weight:400;">Tulis jawabanmu di buku catatan.</p>
+            </div>
+            <div class="celebration-box">
+                <h3>🎉 Selamat!</h3>
+                <p>Kamu telah menyelesaikan <strong style="color:#f0f4fa; font-weight:700;">3 Pertemuan</strong> materi Peta dan Pemetaan!</p>
+                <div style="margin-top:14px;"><span class="next-btn">➡️ Lanjutkan ke Penginderaan Jauh &amp; SIG</span></div>
+            </div>
+            <div class="nav-buttons">
+                <div class="group">
+                    <button onclick="navigateTo('prev')">Sebelumnya</button>
+                    <span class="page-numbers"></span>
+                    <button onclick="navigateTo('next')">Selanjutnya</button>
+                    <span class="counter">6 / 7</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 7 : REFERENSI                                          -->
+        <!-- ============================================================ -->
+        <section id="section7" class="section">
+            <div style="background:rgba(108,92,231,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(108,92,231,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                <div style="display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.4); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
+                <button onclick="navigateTo('section1')" style="background:rgba(255,255,255,0.02); color:rgba(255,255,255,0.3); border:1px solid rgba(255,255,255,0.03); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem;">⌂ Beranda</button>
+            </div>
+            <div class="section-header">
+                <div class="num">07</div>
+                <h2>Referensi <small>Daftar Pustaka</small></h2>
+                <span class="badge-pertemuan">10+ Sumber</span>
+            </div>
+            <ul class="ref-list">
+                <li> <strong>Kurikulum Merdeka:</strong> CP IPS Fase E-F, BSKAP Kemendikbudristek (2024).</li>
+                <li> Bintarto. <em>Metode Penelitian Geografi</em>. UGM Press.</li>
+                <li> Sumaatmadja, Nursid. <em>Metodologi Pengajaran Geografi</em>. Bumi Aksara.</li>
+                <li> Raisz, Erwin. <em>General Cartography</em>. McGraw-Hill.</li>
+                <li> Suharyono &amp; Amien. <em>Pengantar Filsafat Geografi</em>. Ombak.</li>
+                <li> Daldjoeni, N. <em>Geografi untuk Indonesia</em>. Alumni.</li>
+                <li> I Made Sandy. <em>Republik Indonesia: Geografi Regional</em>. UI Press.</li>
+                <li> Haggett, Peter. <em>Geography: A Modern Synthesis</em>. Harper & Row.</li>
+                <li> de Blij, H.J. &amp; Muller, P.O. <em>Geography: Realms, Regions and Concepts</em>. Wiley.</li>
+                <li> BIG. <em>Pedoman Teknis Standar Peta</em>. Badan Informasi Geospasial.</li>
+            </ul>
+            <div class="footer-credit">
+                <span class="school-name-gold">SMAN 3 KASONGAN</span> &nbsp;·&nbsp;
+                Guru Pengampu: <strong>SYAHRANI, S.Pd</strong> &nbsp;·&nbsp;
+                <span class="nip">NIP. 197512172005011016</span>
+            </div>
+            <div class="nav-buttons">
+                <div class="group">
+                    <button onclick="navigateTo('prev')">Sebelumnya</button>
+                    <span class="page-numbers"></span>
+                    <button onclick="navigateTo('next')" disabled>Terakhir</button>
+                    <span class="counter">7 / 7</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // ===== LOADER =====
+        (function() {
+            const loader = document.getElementById('loader');
+            const bar = document.getElementById('loaderBar');
+            const percent = document.getElementById('loaderPercent');
+            let progress = 0;
+            const start = Date.now();
+            const duration = 3200;
+
+            function update() {
+                const elapsed = Date.now() - start;
+                progress = Math.min((elapsed / duration) * 100, 100);
+                bar.style.width = progress + '%';
+                percent.textContent = Math.round(progress) + '%';
+                if (progress < 100) requestAnimationFrame(update);
+                else {
+                    setTimeout(() => {
+                        loader.classList.add('hidden');
+                        setTimeout(() => loader.style.display = 'none', 800);
+                    }, 400);
+                }
+            }
+            update();
+        })();
+
+        // ===== COSMIC CANVAS =====
+        (function() {
+            const canvas = document.getElementById('cosmicCanvas');
+            const ctx = canvas.getContext('2d');
+            let W, H;
+            const stars = [];
+            const NUM_STARS = 200;
+
+            function resize() { W = canvas.width = window.innerWidth;
+                H = canvas.height = window.innerHeight; }
+            window.addEventListener('resize', resize);
+            resize();
+            class Star {
+                constructor() { this.reset();
+                    this.y = Math.random() * H; }
+                reset() {
+                    this.x = Math.random() * W;
+                    this.y = -20;
+                    this.radius = 0.5 + Math.random() * 1.5;
+                    this.speed = 0.2 + Math.random() * 0.5;
+                    this.opacity = 0.2 + Math.random() * 0.6;
+                    this.pulse = 0.005 + Math.random() * 0.015;
+                    this.phase = Math.random() * Math.PI * 2;
+                    this.color =
+                        `hsl(${220 + Math.random() * 40}, ${60 + Math.random() * 40}%, ${70 + Math.random() * 30}%)`;
+                }
+                update(time) {
+                    this.y += this.speed;
+                    if (this.y > H + 20) this.reset();
+                    this.opacity = (0.2 + Math.random() * 0.3) + 0.3 * Math.sin(time * this.pulse + this.phase);
+                }
+                draw(time) {
+                    const glow = this.radius * 4 + 2 * Math.sin(time * this.pulse * 0.5 + this.phase);
+                    const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, glow);
+                    const c = this.color;
+                    grad.addColorStop(0, `rgba(255,255,255,${this.opacity * 0.8})`);
+                    grad.addColorStop(0.2, `rgba(180,200,255,${this.opacity * 0.4})`);
+                    grad.addColorStop(1, `rgba(100,150,255,0)`);
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, glow, 0, Math.PI * 2);
+                    ctx.fillStyle = grad;
+                    ctx.fill();
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius * 0.6, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255,255,255,${this.opacity * 0.9})`;
+                    ctx.fill();
+                }
+            }
+            for (let i = 0; i < NUM_STARS; i++) { const s = new Star();
+                s.y = Math.random() * H;
+                stars.push(s); }
+            let time = 0;
+
+            function animate() {
+                time++;
+                ctx.clearRect(0, 0, W, H);
+                stars.forEach(s => { s.update(time);
+                    s.draw(time); });
+                const grd = ctx.createRadialGradient(W * 0.7, H * 0.2, 0, W * 0.7, H * 0.2, W * 0.7);
+                grd.addColorStop(0, 'rgba(108,92,231,0.02)');
+                grd.addColorStop(0.5, 'rgba(0,206,201,0.015)');
+                grd.addColorStop(1, 'rgba(0,0,0,0)');
+                ctx.fillStyle = grd;
+                ctx.fillRect(0, 0, W, H);
+                const grd2 = ctx.createRadialGradient(W * 0.2, H * 0.8, 0, W * 0.2, H * 0.8, W * 0.6);
+                grd2.addColorStop(0, 'rgba(253,121,168,0.015)');
+                grd2.addColorStop(0.5, 'rgba(253,203,110,0.01)');
+                grd2.addColorStop(1, 'rgba(0,0,0,0)');
+                ctx.fillStyle = grd2;
+                ctx.fillRect(0, 0, W, H);
+                requestAnimationFrame(animate);
+            }
+            animate();
+        })();
+
+        // ===== VERTICAL COMET STARS =====
+        (function() {
+            const colors = ['#ff1744', '#ffea00', '#00e676', '#2979ff'];
+            const sizes = [3, 5, 8];
+            const count = 40;
+            const container = document.body;
+
+            function createComet() {
+                const star = document.createElement('div');
+                star.className = 'comet-star';
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                star.style.color = color;
+                star.style.background = color;
+                star.style.boxShadow = `0 0 15px 3px ${color}`;
+                const size = sizes[Math.floor(Math.random() * sizes.length)];
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                const startX = Math.random() * 100;
+                const startY = -5 - Math.random() * 20;
+                star.style.left = startX + '%';
+                star.style.top = startY + '%';
+                const distance = 150 + Math.random() * 350;
+                star.style.setProperty('--dx', '0px');
+                star.style.setProperty('--dy', distance + 'px');
+                const duration = 2.5 + Math.random() * 4.5;
+                const delay = Math.random() * 12;
+                star.style.animationDuration = duration + 's';
+                star.style.animationDelay = delay + 's';
+                container.appendChild(star);
+                setTimeout(() => {
+                    if (star.parentNode) star.remove();
+                }, (duration + delay) * 1000 + 500);
+            }
+            for (let i = 0; i < count; i++) {
+                setTimeout(createComet, i * 200 + Math.random() * 300);
+            }
+            setInterval(() => {
+                createComet();
+            }, 1500);
+        })();
+
+        // ===== MOBILE MENU =====
+        function toggleMobileMenu() {
+            const nav = document.querySelector('.nav-box');
+            if (nav) { nav.style.display = nav.style.display === 'none' ? 'block' : 'none'; }
+        }
+
+        // ===== MODAL =====
+        let currentZoom = 1;
+        const MIN_ZOOM = 0.5;
+        const MAX_ZOOM = 3;
+        let modalImage = null;
+        let modalCaption = null;
+        let modalCounter = null;
+        let currentImageIndex = 0;
+        let galleryImages = [];
+        let isModalOpen = false;
+
+        function collectGalleryImages() {
+            const cards = document.querySelectorAll('.image-card-premium');
+            galleryImages = [];
+            cards.forEach((card, index) => {
+                const img = card.querySelector('img');
+                const label = card.querySelector('.image-label-premium')?.textContent?.trim() || 'Gambar';
+                const sub = card.querySelector('.image-sub-premium')?.textContent?.trim() || '';
+                const caption = card.getAttribute('data-caption') || `${label} — ${sub}`;
+                galleryImages.push({
+                    src: img?.src || '',
+                    caption: caption || `Gambar ${index + 1}`,
+                    label: label || `Gambar ${index + 1}`
+                });
+                card.dataset.index = index;
+            });
+        }
+
+        function openModal(src, caption) {
+            const modal = document.getElementById('imageModal');
+            modalImage = document.getElementById('modalImage');
+            modalCaption = document.getElementById('modalCaption');
+            modalCounter = document.getElementById('modalCounter');
+            collectGalleryImages();
+            let foundIndex = galleryImages.findIndex(item => item.src === src);
+            if (foundIndex === -1) {
+                const srcBase = src.split('?')[0];
+                foundIndex = galleryImages.findIndex(item => item.src.includes(srcBase) || srcBase.includes(item.src));
+            }
+            if (foundIndex === -1) foundIndex = 0;
+            currentImageIndex = foundIndex;
+            currentZoom = 1;
+            modalImage.style.transform = `scale(${currentZoom})`;
+            document.getElementById('zoomLevel').textContent = '100%';
+            const shimmer = document.getElementById('modalShimmer');
+            shimmer.style.display = 'block';
+            modalImage.style.opacity = '0.3';
+            modalImage.src = src;
+            modalImage.onload = function() {
+                shimmer.style.display = 'none';
+                modalImage.style.opacity = '1';
+            };
+            modalImage.onerror = function() {
+                this.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%231a1a2e' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' fill='%236c5ce7' font-family='Poppins' font-size='24' dy='.3em'%3E🖼️ Gambar tidak tersedia%3C/text%3E%3C/svg%3E";
+                shimmer.style.display = 'none';
+                modalImage.style.opacity = '1';
+            };
+            updateModalCaption();
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            isModalOpen = true;
+            const navBtns = modal.querySelectorAll('.nav-arrow');
+            if (galleryImages.length <= 1) {
+                navBtns.forEach(btn => btn.style.display = 'none');
+            } else {
+                navBtns.forEach(btn => btn.style.display = 'flex');
+            }
+        }
+
+        function updateModalCaption() {
+            if (!modalCaption || !modalCounter) return;
+            const data = galleryImages[currentImageIndex];
+            if (data) {
+                modalCaption.innerHTML = data.caption || data.label || 'Klik di luar untuk menutup';
+                modalCounter.textContent = `${currentImageIndex + 1} / ${galleryImages.length}`;
+            }
+        }
+
+        function navigateModal(direction) {
+            if (!galleryImages.length) return;
+            const newIndex = currentImageIndex + direction;
+            if (newIndex < 0 || newIndex >= galleryImages.length) return;
+            currentImageIndex = newIndex;
+            const data = galleryImages[currentImageIndex];
+            if (data && data.src) {
+                const shimmer = document.getElementById('modalShimmer');
+                shimmer.style.display = 'block';
+                modalImage.style.opacity = '0.3';
+                modalImage.src = data.src;
+                modalImage.onload = function() {
+                    shimmer.style.display = 'none';
+                    modalImage.style.opacity = '1';
+                };
+                updateModalCaption();
+                currentZoom = 1;
+                modalImage.style.transform = 'scale(1)';
+                document.getElementById('zoomLevel').textContent = '100%';
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').classList.remove('active');
+            document.body.style.overflow = '';
+            currentZoom = 1;
+            if (modalImage) modalImage.style.transform = 'scale(1)';
+            isModalOpen = false;
+        }
+
+        function zoomImage(delta) {
+            currentZoom = Math.min(Math.max(currentZoom + delta, MIN_ZOOM), MAX_ZOOM);
+            if (modalImage) {
+                modalImage.style.transform = `scale(${currentZoom})`;
+                modalImage.style.transition = 'transform 0.2s ease';
+            }
+            document.getElementById('zoomLevel').textContent = Math.round(currentZoom * 100) + '%';
+        }
+
+        function resetZoom() {
+            currentZoom = 1;
+            if (modalImage) {
+                modalImage.style.transform = 'scale(1)';
+                modalImage.style.transition = 'transform 0.3s ease';
+            }
+            document.getElementById('zoomLevel').textContent = '100%';
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (!isModalOpen) return;
+            if (e.key === 'Escape') closeModal();
+            if (e.key === '+' || e.key === '=') { e.preventDefault();
+                zoomImage(0.2); }
+            if (e.key === '-') { e.preventDefault();
+                zoomImage(-0.2); }
+            if (e.key === '0') { e.preventDefault();
+                resetZoom(); }
+            if (e.key === 'ArrowLeft') { e.preventDefault();
+                navigateModal(-1); }
+            if (e.key === 'ArrowRight') { e.preventDefault();
+                navigateModal(1); }
+        });
+
+        // ===== NAVIGATION =====
+        (function() {
+            const sections = document.querySelectorAll('.section');
+            let current = 0;
+            const total = sections.length;
+            const map = {};
+            sections.forEach((el, i) => map[el.id] = i);
+
+            function renderNumbers() {
+                document.querySelectorAll('.page-numbers').forEach(c => {
+                    let html = '';
+                    for (let i = 1; i <= total; i++) {
+                        const active = i === current + 1 ? 'active' : '';
+                        html += `<a href="#" class="${active}" onclick="navigateToPage(${i}); return false;">${i}</a>`;
+                    }
+                    c.innerHTML = html;
+                });
+            }
+
+            window.navigateToPage = function(num) {
+                const idx = num - 1;
+                if (idx >= 0 && idx < total && idx !== current) { current = idx;
+                    updateUI(current); }
+            };
+
+            window.navigateTo = function(dir) {
+                if (dir === 'prev' && current > 0) current--;
+                else if (dir === 'next' && current < total - 1) current++;
+                else if (typeof dir === 'string' && dir.startsWith('section')) {
+                    const idx = map[dir];
+                    if (idx !== undefined && idx !== current) current = idx;
+                    else return;
+                } else return;
+                updateUI(current);
+            };
+
+            function updateUI(idx) {
+                sections.forEach((el, i) => el.classList.toggle('active', i === idx));
+                document.getElementById('progressBar').style.width = ((idx + 1) / total * 100) + '%';
+                document.querySelectorAll('.counter').forEach(el => el.textContent = `${idx+1} / ${total}`);
+                document.querySelectorAll('.nav-buttons .group button:last-child').forEach(btn => {
+                    if (idx === total - 1) { btn.disabled = true;
+                        btn.textContent = 'Terakhir'; } else { btn.disabled = false;
+                        btn.innerHTML = 'Selanjutnya'; }
+                });
+                document.querySelectorAll('.nav-buttons .group button:first-child').forEach(btn => btn.disabled = idx === 0);
+                renderNumbers();
+                document.querySelector('.main-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                setTimeout(() => {
+                    const firstHeader = document.querySelector('.section.active .materi-detail .detail-header');
+                    if (firstHeader) {
+                        const body = firstHeader.nextElementSibling;
+                        const arrow = firstHeader.querySelector('.fa-chevron-down');
+                        if (body && !body.classList.contains('open')) {
+                            body.classList.add('open');
+                            firstHeader.classList.add('active');
+                            if (arrow) arrow.style.transform = 'rotate(180deg)';
+                        }
+                    }
+                }, 500);
+            }
+            renderNumbers();
+            updateUI(0);
+        })();
+
+        // ===== KUNCI JAWABAN =====
+        function checkPassword() {
+            const pw = document.getElementById('passwordInput').value;
+            const key = document.getElementById('answerKey');
+            const err = document.getElementById('passwordError');
+            if (pw === '1234567890') {
+                key.style.display = 'block';
+                err.style.display = 'none';
+                document.getElementById('passwordInput').style.borderColor = '#00cec9';
+            } else {
+                err.style.display = 'block';
+                key.style.display = 'none';
+                document.getElementById('passwordInput').style.borderColor = '#fd79a8';
+                setTimeout(() => {
+                    document.getElementById('passwordInput').style.borderColor = 'rgba(255,255,255,0.04)';
+                }, 2000);
+            }
+        }
+
+        function clearPassword() {
+            document.getElementById('passwordInput').value = '';
+            document.getElementById('answerKey').style.display = 'none';
+            document.getElementById('passwordError').style.display = 'none';
+            document.getElementById('passwordInput').style.borderColor = 'rgba(255,255,255,0.04)';
+        }
+        document.getElementById('passwordInput').addEventListener('keypress', e => { if (e.key === 'Enter') checkPassword(); });
+
+        // ===== ACCORDION / DETAIL =====
+        function toggleDetail(header) {
+            const body = header.nextElementSibling;
+            const arrow = header.querySelector('.fa-chevron-down');
+            const isOpen = body.classList.contains('open');
+            const parent = header.closest('.materi-detail');
+            const allDetails = parent.parentElement.querySelectorAll('.materi-detail .detail-body');
+            const allHeaders = parent.parentElement.querySelectorAll('.materi-detail .detail-header');
+            if (!isOpen) {
+                allDetails.forEach(b => b.classList.remove('open'));
+                allHeaders.forEach(h => h.classList.remove('active'));
+                body.classList.add('open');
+                header.classList.add('active');
+                if (arrow) arrow.style.transform = 'rotate(180deg)';
+            } else {
+                body.classList.remove('open');
+                header.classList.remove('active');
+                if (arrow) arrow.style.transform = 'rotate(0deg)';
+            }
+            document.querySelectorAll('.materi-detail .detail-header').forEach(h => {
+                const a = h.querySelector('.fa-chevron-down');
+                const b = h.nextElementSibling;
+                if (b && b.classList.contains('open')) {
+                    if (a) a.style.transform = 'rotate(180deg)';
+                } else {
+                    if (a) a.style.transform = 'rotate(0deg)';
+                }
+            });
+        }
+
+        // ===== MINI QUIZ =====
+        function checkQuiz(btn, isCorrect) {
+            const parent = btn.closest('.mini-quiz');
+            const feedback = parent.querySelector('.quiz-feedback');
+            const allBtns = parent.querySelectorAll('.quiz-options button');
+            allBtns.forEach(b => b.disabled = true);
+            allBtns.forEach(b => {
+                if (b === btn) {
+                    b.classList.add(isCorrect ? 'correct' : 'wrong');
+                }
+            });
+            feedback.classList.add('show');
+            if (isCorrect) {
+                feedback.className = 'quiz-feedback show success';
+                feedback.innerHTML = '✓ <strong>Benar!</strong> Kamu hebat! 🎉';
+            } else {
+                feedback.className = 'quiz-feedback show fail';
+                feedback.innerHTML = '✗ <strong>Kurang tepat.</strong> Coba baca ulang materinya ya! 💪';
+            }
+            setTimeout(() => {
+                allBtns.forEach(b => {
+                    b.disabled = false;
+                    b.classList.remove('correct', 'wrong');
+                });
+                feedback.classList.remove('show');
+            }, 3000);
+        }
+
+        // ===== SCROLL REVEAL =====
+        (function() {
+            const reveals = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+            reveals.forEach(el => observer.observe(el));
+        })();
+
+        // ===== 3D TILT EFFECT =====
+        (function() {
+            const cards = document.querySelectorAll('.image-card-premium');
+            cards.forEach(card => {
+                card.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = (e.clientX - rect.left) / rect.width - 0.5;
+                    const y = (e.clientY - rect.top) / rect.height - 0.5;
+                    const rotateX = y * -8;
+                    const rotateY = x * 8;
+                    this.style.transform =
+                        `translateY(-8px) scale(1.02) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                    this.style.transition = 'transform 0.1s ease';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                    this.style.transition = 'transform 0.6s cubic-bezier(0.34,1.56,0.64,1)';
+                });
+            });
+        })();
+
+        // ===== KUMPULKAN GAMBAR SAAT LOAD =====
+        document.addEventListener('DOMContentLoaded', function() {
+            collectGalleryImages();
+        });
+    </script>
+
+</body>
+</html>
