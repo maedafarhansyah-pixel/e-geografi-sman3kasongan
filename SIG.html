@@ -1,0 +1,2239 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes" />
+    <title>Modul Ajar Deep Learning – Kerajaan Islam di Indonesia (Kelas X)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        /* ============================================================
+           RESET & VARIABEL — WARNA ACCENT MODERN (EMAS & HIJAU ZAMRUD)
+           ============================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --bg-primary: #0c0f14;
+            --bg-secondary: #16202a;
+            --bg-card: #1e2a38;
+            --bg-card-hover: #2a3a4a;
+            --text-primary: #eef2f0;
+            --text-secondary: #b0c0b8;
+            --accent: #C49B3D;
+            --accent-light: #E8C872;
+            --accent-dark: #8B6914;
+            --accent-secondary: #2D6A4F;
+            --accent-secondary-light: #409F7A;
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.7);
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --radius: 16px;
+            --glow-accent: 0 0 30px rgba(196, 155, 61, 0.12);
+        }
+        .light-mode {
+            --bg-primary: #f5f0eb;
+            --bg-secondary: #e8e0d8;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f0ece4;
+            --text-primary: #1a1a2e;
+            --text-secondary: #3a3a4a;
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            --glow-accent: 0 0 30px rgba(196, 155, 61, 0.08);
+        }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background var(--transition), color var(--transition);
+            padding-top: 56px;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ============================================================
+           LOADER — dengan judul HISTOEXPLORER dan warna emas
+           ============================================================ */
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(ellipse at center, #16202a 0%, #070a12 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+            overflow: hidden;
+        }
+        #loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .loader-cube-wrapper {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            perspective: 600px;
+            margin-bottom: 20px;
+            z-index: 2;
+        }
+        .loader-cube {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: spinCube 4s infinite linear;
+        }
+        .loader-cube .face {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            top: 50%;
+            left: 50%;
+            margin: -40px 0 0 -40px;
+            border-radius: 12px;
+            background: rgba(196, 155, 61, 0.10);
+            border: 2px solid var(--accent);
+            box-shadow: 0 0 30px rgba(196, 155, 61, 0.15), inset 0 0 30px rgba(196, 155, 61, 0.04);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--accent);
+            backface-visibility: visible;
+        }
+        .loader-cube .face-front { transform: rotateY(0deg) translateZ(40px); }
+        .loader-cube .face-back { transform: rotateY(180deg) translateZ(40px); }
+        .loader-cube .face-right { transform: rotateY(90deg) translateZ(40px); }
+        .loader-cube .face-left { transform: rotateY(-90deg) translateZ(40px); }
+        .loader-cube .face-top { transform: rotateX(90deg) translateZ(40px); }
+        .loader-cube .face-bottom { transform: rotateX(-90deg) translateZ(40px); }
+        @keyframes spinCube {
+            0% { transform: rotateX(-20deg) rotateY(0deg); }
+            100% { transform: rotateX(-20deg) rotateY(360deg); }
+        }
+        .loader-ring-glow {
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            top: 50%;
+            left: 50%;
+            margin: -80px 0 0 -80px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            background: conic-gradient(from 0deg, transparent, var(--accent), transparent, var(--accent-light), transparent);
+            animation: rotateGlow 3s linear infinite;
+            filter: blur(8px);
+            opacity: 0.3;
+            z-index: 1;
+        }
+        @keyframes rotateGlow {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        .loader-title {
+            color: var(--accent);
+            font-size: clamp(2.8rem, 6vw, 4.8rem);
+            font-weight: 900;
+            letter-spacing: 6px;
+            z-index: 2;
+            background: linear-gradient(135deg, #E8C872 0%, #C49B3D 40%, #8B6914 70%, #C49B3D 100%);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 40px rgba(196, 155, 61, 0.3));
+            animation: titlePulse 2.5s ease-in-out infinite;
+            position: relative;
+            display: inline-block;
+        }
+        .loader-title::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 10%;
+            width: 80%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-light), transparent);
+            border-radius: 4px;
+            animation: titleUnderline 2s ease-in-out infinite;
+        }
+        @keyframes titlePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+        @keyframes titleUnderline {
+            0%, 100% { width: 20%; left: 40%; opacity: 0.4; }
+            50% { width: 80%; left: 10%; opacity: 1; }
+        }
+        .loader-percent {
+            color: var(--accent-light);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 8px;
+            z-index: 2;
+            letter-spacing: 2px;
+            opacity: 0.9;
+            font-variant-numeric: tabular-nums;
+        }
+        .loader-tagline {
+            margin-top: 24px;
+            z-index: 2;
+            text-align: center;
+            padding: 0 20px;
+            opacity: 0;
+            animation: taglineReveal 1.2s cubic-bezier(0.23, 1, 0.32, 1) 0.4s forwards;
+        }
+        .loader-tagline .tagline-line {
+            display: block;
+            font-size: clamp(0.9rem, 1.4vw, 1.3rem);
+            font-weight: 400;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.7);
+            text-shadow: 0 0 20px rgba(196, 155, 61, 0.10);
+        }
+        .loader-tagline .tagline-line .highlight {
+            color: var(--accent-light);
+            font-weight: 600;
+            text-shadow: 0 0 30px rgba(196, 155, 61, 0.2);
+        }
+        .loader-tagline .tagline-line .highlight-gold {
+            color: var(--accent);
+            font-weight: 600;
+            text-shadow: 0 0 30px rgba(196, 155, 61, 0.3);
+        }
+        .loader-tagline .tagline-divider {
+            display: inline-block;
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            margin: 8px auto;
+            border-radius: 4px;
+            opacity: 0.5;
+        }
+        @keyframes taglineReveal {
+            0% { opacity: 0; transform: translateY(20px) scale(0.96); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .loader-tagline .tagline-ornament {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 4px;
+        }
+        .loader-tagline .tagline-ornament i {
+            color: var(--accent);
+            font-size: 0.7rem;
+            opacity: 0.4;
+        }
+        .loader-sparkles {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+        .loader-sparkles span {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent), 0 0 30px var(--accent);
+            animation: sparkleFloat 3s infinite alternate ease-in-out;
+            opacity: 0;
+        }
+        @keyframes sparkleFloat {
+            0% { opacity: 0; transform: translate(0,0) scale(0.5); }
+            50% { opacity: 1; transform: translate(var(--tx), var(--ty)) scale(1.5); }
+            100% { opacity: 0; transform: translate(var(--tx2), var(--ty2)) scale(0.3); }
+        }
+        .loader-stars {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .loader-stars i {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.07);
+            font-size: 1rem;
+            animation: starTwinkle 4s infinite alternate;
+        }
+        @keyframes starTwinkle {
+            0% { opacity: 0.05; transform: scale(0.8); }
+            100% { opacity: 0.2; transform: scale(1.2); }
+        }
+
+        /* ============================================================
+           PARTIKEL BINTANG
+           ============================================================ */
+        .particle-container {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .star-particle {
+            position: absolute;
+            font-size: 1rem;
+            user-select: none;
+            pointer-events: none;
+            opacity: 0;
+            animation: floatStar 25s infinite alternate ease-in-out;
+            text-shadow: 0 0 15px currentColor, 0 0 30px currentColor;
+            will-change: transform, opacity;
+        }
+        @keyframes floatStar {
+            0% { opacity: 0.15; transform: translate(0,0) scale(0.5) rotate(0deg); }
+            25% { opacity: 0.7; transform: translate(var(--tx1), var(--ty1)) scale(1.2) rotate(120deg); }
+            50% { opacity: 0.4; transform: translate(var(--tx2), var(--ty2)) scale(0.8) rotate(240deg); }
+            75% { opacity: 0.7; transform: translate(var(--tx3), var(--ty3)) scale(1.4) rotate(360deg); }
+            100% { opacity: 0.15; transform: translate(var(--tx4), var(--ty4)) scale(0.4) rotate(480deg); }
+        }
+
+        /* ============================================================
+           MOBILE HEADER
+           ============================================================ */
+        .mobile-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 56px;
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            z-index: 1001;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.5);
+            backdrop-filter: blur(8px);
+            transition: background var(--transition);
+        }
+        .mobile-header .brand {
+            color: var(--accent);
+            font-weight: 900;
+            font-size: 1.4rem;
+            letter-spacing: 1.5px;
+        }
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .header-actions button {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            padding: 4px 8px;
+            border-radius: 8px;
+        }
+        .header-actions button:hover {
+            color: var(--accent);
+            background: rgba(196, 155, 61, 0.1);
+        }
+        .home-btn-mobile {
+            background: none;
+            border: none;
+            color: var(--accent);
+            font-size: 1.6rem;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+        .home-btn-mobile:hover {
+            background: rgba(196, 155, 61, 0.1);
+        }
+
+        /* ============================================================
+           MAIN CONTENT
+           ============================================================ */
+        .main-content {
+            padding: 16px 16px 80px 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ============================================================
+           COVER
+           ============================================================ */
+        .cover-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(30px, 5vw, 70px);
+            min-height: 70vh;
+            padding: 20px 0 10px;
+            flex-wrap: wrap;
+        }
+        .cover-left {
+            flex: 1 1 50%;
+            min-width: 320px;
+            max-width: 560px;
+            padding: 10px 0;
+        }
+        .cover-right {
+            flex: 1 1 45%;
+            min-width: 280px;
+            max-width: 480px;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .cover-right .image-placeholder {
+            width: 100%;
+            aspect-ratio: 4/3;
+            background: var(--bg-secondary);
+            border: 3px dashed var(--accent);
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            transition: border-color var(--transition), box-shadow var(--transition);
+        }
+        .cover-right .image-placeholder:hover {
+            border-color: var(--accent-light);
+            box-shadow: 0 0 40px rgba(196, 155, 61, 0.12), var(--shadow);
+        }
+        .cover-right .image-placeholder img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 22px;
+        }
+        .cover-right .image-placeholder .fallback-content {
+            display: none;
+            z-index: 2;
+            flex-direction: column;
+            align-items: center;
+        }
+        .cover-logo-group {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: clamp(14px, 2vw, 24px);
+            flex-wrap: wrap;
+            margin-bottom: 14px;
+        }
+        .cover-logo-group img {
+            height: clamp(40px, 4.5vw, 60px);
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
+            transition: transform var(--transition);
+        }
+        .cover-logo-group img:hover {
+            transform: scale(1.05);
+        }
+        .cover-title {
+            font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin: 6px 0 10px;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, #C49B3D, #E8C872, #8B6914, #C49B3D);
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientMove 5s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(196, 155, 61, 0.15);
+        }
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .cover-school {
+            font-size: clamp(1.4rem, 2.6vw, 2.4rem);
+            font-weight: 700;
+            letter-spacing: 4px;
+            background: linear-gradient(135deg, #E8C872, #C49B3D, #8B6914);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(196, 155, 61, 0.2);
+            margin-bottom: 14px;
+            display: inline-block;
+        }
+        .cover-teacher {
+            font-size: 1rem;
+            color: var(--text-primary);
+            padding: 4px 0;
+            margin-bottom: 8px;
+            text-align: left;
+            width: 100%;
+            max-width: 480px;
+        }
+        .cover-teacher .teacher-label {
+            color: var(--text-secondary);
+            font-weight: 400;
+            opacity: 0.8;
+        }
+        .cover-teacher .teacher-name {
+            color: var(--accent-light);
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 0.5px;
+        }
+        .cover-teacher .teacher-nip {
+            color: #b8d4e3;
+            font-weight: 500;
+            font-size: 0.95rem;
+            display: block;
+            margin-top: 3px;
+            letter-spacing: 0.5px;
+        }
+        .cover-teacher .teacher-nip i {
+            color: var(--accent-light);
+            opacity: 0.7;
+            margin-right: 6px;
+        }
+        .cover-sub {
+            font-size: clamp(0.95rem, 1.1vw, 1.15rem);
+            color: var(--text-secondary);
+            max-width: 500px;
+            line-height: 1.6;
+            margin-bottom: 14px;
+        }
+        .cover-nav-hint {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 10px;
+        }
+        .start-btn {
+            background: var(--accent);
+            color: #121212;
+            border: none;
+            padding: 14px 42px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 6px 20px rgba(196, 155, 61, 0.35);
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            position: relative;
+            overflow: hidden;
+        }
+        .start-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.15) 50%, transparent 60%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+        .start-btn:hover::before {
+            transform: translateX(100%);
+        }
+        .start-btn:hover {
+            background: var(--accent-light);
+            transform: scale(1.04);
+            box-shadow: 0 8px 28px rgba(196, 155, 61, 0.5);
+        }
+        .start-btn-wrapper {
+            margin: 14px 0 10px;
+        }
+
+        /* ============================================================
+           QUICK NAV
+           ============================================================ */
+        .quick-nav {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 16px;
+            margin: 30px 0 16px;
+            padding: 6px 0;
+        }
+        .quick-nav-card {
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: var(--radius);
+            padding: 18px 12px 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.23,1,0.32,1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(40px) scale(0.96);
+            animation: cardReveal 0.6s cubic-bezier(0.23,1,0.32,1) forwards;
+            animation-delay: calc(0.04s * var(--i, 0));
+        }
+        .quick-nav-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: var(--radius);
+            padding: 2px;
+            background: conic-gradient(from var(--angle, 0deg), transparent 0%, var(--accent) 30%, var(--accent-light) 60%, transparent 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            transition: --angle 0.6s ease;
+        }
+        .quick-nav-card:hover::before {
+            --angle: 360deg;
+        }
+        .quick-nav-card:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(196, 155, 61, 0.15), var(--shadow);
+            border-color: var(--accent);
+            background: rgba(255,255,255,0.05);
+        }
+        .quick-nav-card .card-number {
+            display: block;
+            font-size: 2.6rem;
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--accent);
+            text-shadow: 0 0 20px rgba(196, 155, 61, 0.2);
+            transition: all 0.4s ease;
+            margin-bottom: 4px;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, var(--accent-light), var(--accent-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .quick-nav-card:hover .card-number {
+            transform: scale(1.1) rotate(-2deg);
+            text-shadow: 0 0 40px rgba(196, 155, 61, 0.4);
+        }
+        .quick-nav-card .card-title {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+        .quick-nav-card .card-desc {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            opacity: 0.7;
+            line-height: 1.3;
+        }
+        .quick-nav-card .card-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: #121212;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3), inset 0 -2px 0 rgba(0,0,0,0.2);
+            border: 2px solid var(--accent-dark);
+            transition: all 0.3s ease;
+            z-index: 2;
+            font-weight: 700;
+        }
+        .quick-nav-card .card-badge i {
+            font-size: 0.9rem;
+            color: #121212;
+            transition: transform 0.3s ease;
+        }
+        .quick-nav-card:hover .card-badge {
+            transform: scale(1.1) rotate(90deg);
+            box-shadow: 0 0 20px rgba(196, 155, 61, 0.4), inset 0 -2px 0 rgba(0,0,0,0.2);
+        }
+        @property --angle {
+            syntax: '<angle>';
+            initial-value: 0deg;
+            inherits: false;
+        }
+        @keyframes cardReveal {
+            0% { opacity: 0; transform: translateY(40px) scale(0.96); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* ============================================================
+           SECTIONS
+           ============================================================ */
+        .section {
+            display: none;
+            animation: fadeSlide 0.6s cubic-bezier(0.23,1,0.32,1);
+            padding: 20px 0 12px;
+            opacity: 0;
+            transform: translateY(30px) scale(0.98);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .section.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        @keyframes fadeSlide {
+            0% { opacity: 0; transform: translateY(40px) scale(0.96); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 24px;
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 12px;
+            flex-wrap: wrap;
+            position: relative;
+        }
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--accent-light);
+            animation: headerGlow 2s ease-in-out infinite;
+        }
+        @keyframes headerGlow {
+            0%, 100% { opacity: 0.5; width: 60px; }
+            50% { opacity: 1; width: 120px; }
+        }
+        .section-header .num {
+            background: var(--accent);
+            color: #121212;
+            font-weight: 700;
+            font-size: 1.1rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 4px 16px rgba(196, 155, 61, 0.25);
+        }
+        .section-header h2 {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            flex: 1;
+        }
+        .section-header h2 small {
+            font-weight: 400;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            display: block;
+            margin-top: 2px;
+        }
+        .meeting-badge {
+            display: inline-block;
+            background: var(--bg-card);
+            color: var(--accent);
+            padding: 2px 14px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            border: 1px solid var(--accent);
+            margin-left: 10px;
+            white-space: nowrap;
+            animation: badgePulse 3s ease-in-out infinite;
+        }
+        @keyframes badgePulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(196, 155, 61, 0.15); }
+            50% { box-shadow: 0 0 20px rgba(196, 155, 61, 0.10); }
+        }
+
+        /* ============================================================
+           KARTU, GRID, ACCORDION, DLL
+           ============================================================ */
+        .card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 18px 16px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255,255,255,0.04);
+            transition: all var(--transition);
+            cursor: default;
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light), var(--accent));
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
+        .card:hover::before {
+            opacity: 1;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+            border-color: var(--accent);
+        }
+        .card .icon {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+        .card h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+        .card p, .card li {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        .card ul {
+            padding-left: 18px;
+            margin: 6px 0;
+        }
+        .card ul li {
+            list-style-type: disc;
+        }
+        .card.highlight {
+            background: var(--bg-card-hover);
+            border-color: var(--accent);
+        }
+        .card.merdeka-badge {
+            border-left: 6px solid var(--accent);
+        }
+        .card.emerald-badge {
+            border-left: 6px solid var(--accent-secondary);
+        }
+        .interactive-card {
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.23,1,0.32,1);
+        }
+        .interactive-card .back {
+            display: none;
+            padding-top: 12px;
+            border-top: 2px dashed rgba(196, 155, 61, 0.2);
+            margin-top: 12px;
+            animation: fadeSlide 0.4s ease;
+        }
+        .interactive-card.open .back {
+            display: block;
+        }
+        .interactive-card.open {
+            background: var(--bg-card-hover);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+        .interactive-card.open::before {
+            opacity: 1;
+        }
+
+        .grid-2, .grid-3, .grid-4 {
+            display: grid;
+            gap: 16px;
+            margin: 14px 0 8px;
+        }
+        .grid-2 { grid-template-columns: 1fr; }
+        .grid-3 { grid-template-columns: 1fr; }
+        .grid-4 { grid-template-columns: 1fr; }
+
+        .accordion-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 8px 0;
+        }
+        .accordion-item {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            border: 1px solid rgba(255,255,255,0.05);
+            overflow: hidden;
+            transition: all var(--transition);
+        }
+        .accordion-item:hover {
+            border-color: var(--accent);
+            box-shadow: var(--glow-accent);
+        }
+        .accordion-item.open {
+            border-color: var(--accent);
+            box-shadow: 0 4px 24px rgba(196, 155, 61, 0.06);
+        }
+        .accordion-header {
+            background: var(--bg-secondary);
+            padding: 16px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+        .accordion-header:hover {
+            background: var(--bg-card-hover);
+        }
+        .accordion-header h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0;
+        }
+        .accordion-header h3 i {
+            color: var(--accent);
+        }
+        .accordion-header .toggle-icon {
+            font-size: 1.2rem;
+            color: var(--accent);
+            transition: transform 0.4s cubic-bezier(0.23,1,0.32,1);
+        }
+        .accordion-item.open .accordion-header .toggle-icon {
+            transform: rotate(180deg);
+        }
+        .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.23,1,0.32,1), padding 0.4s ease;
+            padding: 0 20px;
+            background: var(--bg-primary);
+        }
+        .accordion-item.open .accordion-body {
+            max-height: 3000px;
+            padding: 18px 20px 20px;
+        }
+
+        .def-block {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 16px 18px;
+            border-left: 6px solid var(--accent);
+            margin: 12px 0;
+            transition: all var(--transition);
+        }
+        .def-block:hover {
+            box-shadow: var(--glow-accent);
+            border-left-width: 8px;
+        }
+        .def-block .source {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .def-block .source i {
+            color: var(--accent);
+            margin-right: 6px;
+        }
+
+        .activity-box {
+            background: var(--bg-secondary);
+            border-radius: var(--radius);
+            padding: 20px 18px;
+            border: 2px dashed var(--accent);
+            margin: 14px 0 6px;
+            transition: all var(--transition);
+        }
+        .activity-box:hover {
+            border-color: var(--accent-light);
+            box-shadow: var(--glow-accent);
+        }
+        .activity-box h3 {
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .activity-box h3 i {
+            color: var(--accent);
+        }
+
+        .assessment-question {
+            margin-bottom: 16px;
+            padding: 12px 16px;
+            background: var(--bg-card);
+            border-radius: 10px;
+            border-left: 4px solid var(--accent);
+            transition: all var(--transition);
+        }
+        .assessment-question:hover {
+            transform: translateX(4px);
+            box-shadow: var(--glow-accent);
+        }
+        .assessment-question .q-text {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+        .assessment-question .q-options {
+            padding-left: 20px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+        .assessment-question .q-options span {
+            display: inline-block;
+            margin-right: 16px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            transition: all var(--transition);
+        }
+        .assessment-question .q-options span:hover {
+            background: rgba(196, 155, 61, 0.08);
+            color: var(--accent);
+        }
+
+        .refleksi-list {
+            list-style: none;
+            padding: 0;
+            margin: 8px 0;
+        }
+        .refleksi-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 8px 0;
+            font-size: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            transition: all var(--transition);
+        }
+        .refleksi-list li:hover {
+            padding-left: 8px;
+        }
+        .refleksi-list li:last-child {
+            border-bottom: none;
+        }
+        .refleksi-list li .check {
+            font-size: 1.4rem;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .quote-block {
+            background: var(--bg-secondary);
+            border-left: 6px solid var(--accent);
+            padding: 16px 20px;
+            border-radius: 10px;
+            margin: 12px 0;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            transition: all var(--transition);
+        }
+        .quote-block:hover {
+            box-shadow: var(--glow-accent);
+            border-left-width: 8px;
+        }
+        .quote-block .author {
+            display: block;
+            margin-top: 8px;
+            font-style: normal;
+            font-weight: 600;
+            color: var(--accent);
+            text-align: right;
+        }
+
+        .celebration-box {
+            background: linear-gradient(145deg, var(--bg-secondary), var(--bg-primary));
+            border: 2px solid var(--accent);
+            border-radius: var(--radius);
+            padding: 24px 20px;
+            text-align: center;
+            margin-top: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+        .celebration-box::before {
+            content: '';
+            position: absolute;
+            inset: -50%;
+            background: conic-gradient(from 0deg, transparent, rgba(196, 155, 61, 0.04), transparent, rgba(196, 155, 61, 0.04), transparent);
+            animation: rotateGlow 10s linear infinite;
+        }
+        .celebration-box * {
+            position: relative;
+            z-index: 1;
+        }
+        .celebration-box h3 {
+            font-size: 1.6rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .ref-list {
+            list-style: none;
+            padding: 0;
+        }
+        .ref-list li {
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            font-size: 0.88rem;
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            color: var(--text-secondary);
+            transition: all var(--transition);
+        }
+        .ref-list li:hover {
+            padding-left: 8px;
+            color: var(--text-primary);
+        }
+        .ref-list li i {
+            color: var(--accent);
+            width: 20px;
+            flex-shrink: 0;
+        }
+
+        .method-step {
+            background: var(--bg-card);
+            padding: 14px 16px;
+            border-radius: 12px;
+            border-left: 6px solid var(--accent);
+            margin-bottom: 12px;
+            transition: all var(--transition);
+        }
+        .method-step:hover {
+            transform: translateX(6px);
+            box-shadow: var(--glow-accent);
+        }
+        .method-step h4 {
+            color: var(--accent);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .method-step p {
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+        .method-step ul {
+            color: var(--text-secondary);
+            padding-left: 20px;
+            margin-top: 4px;
+        }
+
+        .pillar-icon {
+            font-size: 2.4rem;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 4px;
+        }
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            backdrop-filter: blur(8px);
+        }
+        .modal-overlay.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        .modal-overlay .modal-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 16px;
+            border: 2px solid var(--accent);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.9);
+            position: relative;
+            text-align: center;
+            animation: modalZoom 0.4s cubic-bezier(0.23,1,0.32,1);
+        }
+        @keyframes modalZoom {
+            0% { transform: scale(0.9); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .modal-overlay .modal-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 10px;
+            display: block;
+        }
+        .modal-overlay .modal-content .caption {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 10px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        .modal-overlay .modal-close {
+            position: absolute;
+            top: -14px;
+            right: -14px;
+            background: var(--accent);
+            color: #121212;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            font-weight: 700;
+            cursor: pointer;
+            border: 2px solid #121212;
+            transition: all var(--transition);
+        }
+        .modal-overlay .modal-close:hover {
+            transform: scale(1.1) rotate(90deg);
+            background: var(--accent-light);
+        }
+
+        .badge-modern {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: #121212;
+            padding: 4px 16px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* ============================================================
+           NAVIGATION BUTTONS
+           ============================================================ */
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 32px;
+            padding-top: 14px;
+            border-top: 2px solid rgba(255,255,255,0.05);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .nav-buttons.hidden {
+            display: none;
+        }
+        .nav-buttons .nav-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .nav-buttons button {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid transparent;
+        }
+        .nav-buttons button:hover:not(:disabled) {
+            background: var(--accent);
+            color: #121212;
+            transform: scale(1.04);
+            border-color: var(--accent);
+            box-shadow: 0 4px 20px rgba(196, 155, 61, 0.25);
+        }
+        .nav-buttons button:disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+        }
+        .nav-buttons .counter {
+            font-weight: 500;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            padding: 0 8px;
+        }
+        .page-numbers {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .page-numbers a {
+            display: inline-block;
+            min-width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 50%;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            text-decoration: none;
+            transition: all var(--transition);
+            cursor: pointer;
+        }
+        .page-numbers a:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--accent);
+            color: var(--text-primary);
+            transform: scale(1.1);
+        }
+        .page-numbers a.active {
+            background: var(--accent);
+            color: #121212;
+            border-color: var(--accent);
+            box-shadow: 0 2px 12px rgba(196, 155, 61, 0.35);
+        }
+
+        .progress-wrap {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--bg-secondary);
+            z-index: 999;
+        }
+        .progress-wrap .bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light), var(--accent));
+            transition: width 0.6s cubic-bezier(0.23,1,0.32,1);
+            border-radius: 0 4px 4px 0;
+            position: relative;
+        }
+        .progress-wrap .bar::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: -2px;
+            width: 10px;
+            height: 9px;
+            background: var(--accent-light);
+            border-radius: 50%;
+            filter: blur(4px);
+            animation: progressDot 1.5s ease-in-out infinite;
+        }
+        @keyframes progressDot {
+            0%, 100% { opacity: 0.4; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 899px) {
+            .cover-wrapper {
+                flex-direction: column;
+                min-height: auto;
+                gap: 20px;
+                padding: 10px 0;
+            }
+            .cover-left {
+                flex: 1 1 100%;
+                max-width: 100%;
+                text-align: center;
+                padding: 10px 5px;
+            }
+            .cover-left .cover-logo-group {
+                justify-content: center;
+            }
+            .cover-left .cover-sub {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .cover-right {
+                flex: 1 1 100%;
+                max-width: 100%;
+                padding: 10px 5px;
+            }
+            .cover-right .image-placeholder {
+                max-width: 100%;
+                aspect-ratio: 16/10;
+            }
+            .cover-title {
+                font-size: clamp(1.8rem, 6vw, 2.8rem);
+            }
+            .cover-school {
+                font-size: clamp(1.2rem, 4vw, 1.8rem);
+            }
+            .cover-teacher {
+                text-align: center;
+                max-width: 100%;
+            }
+            .start-btn {
+                padding: 12px 32px;
+                font-size: 1rem;
+            }
+            .main-content {
+                padding: 16px 12px 80px;
+            }
+            .quick-nav {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                gap: 14px;
+                margin: 24px 0 16px;
+                padding: 6px 0;
+            }
+            .quick-nav-card {
+                padding: 14px 10px 12px;
+                border-radius: 12px;
+            }
+            .quick-nav-card .card-number {
+                font-size: 2rem;
+                margin-bottom: 2px;
+            }
+            .quick-nav-card .card-title {
+                font-size: 0.8rem;
+            }
+            .quick-nav-card .card-desc {
+                font-size: 0.65rem;
+            }
+            .quick-nav-card .card-badge {
+                width: 24px;
+                height: 24px;
+                font-size: 0.8rem;
+                top: 6px;
+                right: 6px;
+            }
+            .quick-nav-card .card-badge i {
+                font-size: 0.7rem;
+            }
+            .loader-title {
+                font-size: clamp(2rem, 8vw, 3.2rem) !important;
+                letter-spacing: 4px !important;
+            }
+            .loader-tagline .tagline-line {
+                font-size: clamp(0.75rem, 2.5vw, 1rem) !important;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .grid-2 { grid-template-columns: repeat(2, 1fr); }
+            .grid-3 { grid-template-columns: repeat(2, 1fr); }
+            .grid-4 { grid-template-columns: repeat(2, 1fr); }
+            .section-header h2 {
+                font-size: clamp(1.2rem, 2.2vw, 1.5rem);
+            }
+            .main-content {
+                padding: 20px 24px 80px;
+            }
+        }
+
+        @media (min-width: 900px) {
+            .grid-3 { grid-template-columns: repeat(3, 1fr); }
+            .grid-4 { grid-template-columns: repeat(4, 1fr); }
+            body {
+                padding-top: 0;
+            }
+            .mobile-header {
+                display: none;
+            }
+            .main-content {
+                padding: 28px 48px 80px;
+                max-width: 1200px;
+            }
+            .quick-nav {
+                grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+                gap: 22px;
+                margin: 28px 0 16px;
+            }
+            .quick-nav-card .card-number {
+                font-size: 2.6rem;
+            }
+            .cover-left {
+                padding: 10px 20px 10px 0;
+            }
+            .cover-right {
+                padding: 10px 0 10px 20px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .main-content {
+                padding: 36px 60px 80px;
+            }
+            .cover-left {
+                padding: 10px 30px 10px 0;
+            }
+            .cover-right {
+                padding: 10px 0 10px 30px;
+            }
+            .quick-nav {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 24px;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 10px;
+            transition: all var(--transition);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-light);
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== LOADER ===== -->
+    <div id="loader">
+        <div class="loader-stars" id="loaderStars"></div>
+        <div class="loader-sparkles" id="loaderSparkles"></div>
+        <div class="loader-cube-wrapper">
+            <div class="loader-ring-glow"></div>
+            <div class="loader-cube" id="loaderCube">
+                <div class="face face-front">🕌</div>
+                <div class="face face-back">🌙</div>
+                <div class="face face-right">⚔️</div>
+                <div class="face face-left">⛵</div>
+                <div class="face face-top">📖</div>
+                <div class="face face-bottom">✨</div>
+            </div>
+        </div>
+        <div class="loader-title">HISTOEXPLORER</div>
+        <div class="loader-percent" id="loaderPercent">0%</div>
+        <div class="loader-tagline">
+            <div class="tagline-divider"></div>
+            <span class="tagline-line">
+                <span class="highlight">Menelusuri</span> Jejak Peradaban Islam,
+                <span class="highlight-gold">Memahami</span> Akar Toleransi,
+                <span class="highlight">Membangun</span> Harmoni Bangsa
+            </span>
+            <div class="tagline-ornament">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-circle" style="font-size:0.3rem;"></i>
+                <i class="fas fa-star"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== PARTIKEL BINTANG ===== -->
+    <div class="particle-container" id="particleContainer"></div>
+
+    <!-- ===== MODAL ===== -->
+    <div class="modal-overlay" id="imageModal" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <span class="modal-close" onclick="closeModal()">✕</span>
+            <img id="modalImage" src="" alt="Gambar besar" />
+            <div class="caption" id="modalCaption">Klik di luar gambar untuk menutup</div>
+        </div>
+    </div>
+
+    <!-- ===== MOBILE HEADER ===== -->
+    <header class="mobile-header">
+        <div style="display:flex;align-items:center;gap:8px;">
+            <button class="home-btn-mobile" onclick="navigateTo(0)" title="Beranda">
+                <i class="fas fa-home"></i>
+            </button>
+            <div class="brand">SEJARAH</div>
+        </div>
+        <div class="header-actions">
+            <button onclick="toggleTheme()" title="Ganti tema">
+                <i class="fas fa-moon" id="themeIcon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- ===== HOME FLOAT ===== -->
+    <button class="home-float" onclick="navigateTo(0)" title="Kembali ke Beranda" style="position:fixed;bottom:80px;right:20px;z-index:999;width:50px;height:50px;border-radius:50%;background:var(--accent);color:#121212;display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 4px 20px rgba(196,155,61,0.4);border:none;cursor:pointer;transition:var(--transition);">
+        <i class="fas fa-home"></i>
+    </button>
+
+    <!-- ===== PROGRESS BAR ===== -->
+    <div class="progress-wrap"><div class="bar" id="progressBar"></div></div>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="main-content" id="mainContent">
+
+        <!-- ========== SECTION 0 : COVER ========== -->
+        <section id="section0" class="section active">
+            <div class="cover-wrapper">
+                <div class="cover-left">
+                    <div class="cover-logo-group">
+                        <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/E-SEJARAH-SMAN3-KASONGAN/main/images/Logo-Provinsi-Kalimantan-Tengah.png" alt="Logo Provinsi" onerror="this.style.display='none'">
+                        <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/E-SEJARAH-SMAN3-KASONGAN/main/images/imagesdisdiklogo.png" alt="Logo Dinas" onerror="this.style.display='none'">
+                        <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/E-SEJARAH-SMAN3-KASONGAN/main/images/LOGOSMAN3KAS.png" alt="Logo SMAN" onerror="this.style.display='none'">
+                    </div>
+                    <div style="margin-bottom:12px;">
+                        <span class="badge-modern">KELAS X / FASE E</span>
+                        <span style="background:var(--accent-dark);color:#fff;padding:5px 16px;border-radius:40px;font-size:0.85rem;display:inline-block;margin-left:8px;"><i class="fas fa-brain"></i> Deep Learning</span>
+                    </div>
+                    <h1 class="cover-title">KERAJAAN ISLAM DI INDONESIA</h1>
+                    <p class="cover-sub">Modul Ajar Deep Learning – Jejak Peradaban Islam dari Sabang sampai Merauke</p>
+                    <div class="cover-school">SMAN 3 KASONGAN</div>
+                    <div class="start-btn-wrapper">
+                        <button class="start-btn" onclick="navigateTo(1)">
+                            <i class="fas fa-play-circle"></i> Mulai Belajar
+                        </button>
+                    </div>
+                    <div class="cover-teacher">
+                        <div>
+                            <i class="fas fa-chalkboard-teacher" style="color:var(--accent-light);margin-right:8px;"></i>
+                            <span class="teacher-label">Guru Pengampu :</span>
+                            <span class="teacher-name">SYAHRANI, S.Pd</span>
+                        </div>
+                        <div class="teacher-nip">
+                            <i class="fas fa-id-card"></i>
+                            NIP. 197512172005011016
+                        </div>
+                    </div>
+                    <div class="cover-nav-hint">
+                        <i class="fas fa-chevron-down" style="color:#555;margin-right:4px;"></i>
+                        Pilih materi di bawah atau gunakan tombol navigasi
+                    </div>
+                    <div class="quick-nav" id="quickNav"></div>
+                </div>
+                <div class="cover-right">
+                    <div class="image-placeholder">
+                        <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/E-SEJARAH-SMAN3-KASONGAN/main/images/coversejarahbab7.png" alt="Ilustrasi Kerajaan Islam" onerror="this.style.display='none';this.parentElement.querySelector('.fallback-content').style.display='flex';">
+                        <div class="fallback-content">
+                            <i class="fas fa-mosque" style="font-size:3rem;color:var(--accent);margin-bottom:10px;"></i>
+                            <p style="color:var(--text-secondary);">Unggah Gambar Ilustrasi</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTION 1 : KOMPONEN ========== -->
+        <section id="section1" class="section">
+            <div class="section-header"><div class="num">01</div><h2>Komponen Pembelajaran <small>CP · ATP · Tujuan · DPL · Deep Learning</small></h2></div>
+            <div class="accordion-wrap">
+                <div class="accordion-item open">
+                    <div class="accordion-header" onclick="toggleAccordion(this)"><h3><i class="fas fa-flag-checkered"></i> Capaian & Alur Tujuan</h3><span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></div>
+                    <div class="accordion-body">
+                        <div class="def-block"><div class="source"><i class="fas fa-flag-checkered"></i> Capaian Pembelajaran (CP) – Fase E</div><p style="color:var(--text-secondary);">Peserta didik memahami konsep dasar ilmu sejarah serta <strong>mengenali penelitian sejarah</strong> untuk menganalisis keterhubungan antara masa lampau, masa kini, dan masa yang akan datang ketika mempelajari berbagai peristiwa atau kejadian penting dalam lingkup lokal, nasional dan global mulai dari masa kerajaan Hindu-Buddha hingga <strong>masa kerajaan Islam</strong>.</p></div>
+                        <div class="grid-2">
+                            <div class="card merdeka-badge"><div class="icon"><i class="fas fa-route"></i></div><h3>Alur Tujuan Pembelajaran (ATP)</h3><ul><li><strong>TP 1:</strong> Menjelaskan 4 teori masuknya Islam ke Nusantara beserta bukti-buktinya.</li><li><strong>TP 2:</strong> Menganalisis peran Samudera Pasai dan Kesultanan Aceh dalam peradaban Islam.</li><li><strong>TP 3:</strong> Mengkaji peran Walisongo dan Kerajaan Demak dalam Islamisasi Jawa.</li><li><strong>TP 4:</strong> Membandingkan karakteristik Cirebon, Banten, dan Mataram Islam.</li><li><strong>TP 5:</strong> Menganalisis kejayaan Gowa-Tallo, Ternate-Tidore, dan Jalur Rempah.</li><li><strong>TP 6:</strong> Mengidentifikasi peninggalan budaya & akulturasi Islam di Nusantara.</li><li><strong>TP 7:</strong> Menjelaskan kerajaan Islam lain (Banjar, Palembang, Pontianak, Bima, Buton).</li></ul></div>
+                            <div class="card merdeka-badge"><div class="icon"><i class="fas fa-user-graduate"></i></div><h3>Dimensi Profil Lulusan (DPL)</h3><ul style="list-style:none;padding-left:0;"><li><strong>Keimanan & Ketakwaan</strong> — Menghargai toleransi beragama.</li><li><strong>Kewargaan</strong> — Memahami gotong royong & keberagaman.</li><li><strong>Penalaran Kritis</strong> — Menganalisis dampak sosial-budaya.</li><li><strong>Kreativitas</strong> — Menyajikan informasi inovatif.</li><li><strong>Kolaborasi</strong> — Bekerja sama memahami sejarah.</li><li><strong>Kemandirian</strong> — Mencari informasi mandiri.</li><li><strong>Komunikasi</strong> — Menyampaikan narasi efektif.</li></ul></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTION 2 : PERTEMUAN 1 (DETAIL) ========== -->
+        <section id="section2" class="section">
+            <div class="section-header"><div class="num">02</div><h2>Pertemuan 1: Teori Masuk & Peradaban Sumatera <small>3 x 45 menit <span class="meeting-badge">Pertemuan 1</span></small></h2></div>
+
+            <!-- Sub A: Teori Masuk -->
+            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--accent);margin-bottom:20px;">
+                <h3 style="color:var(--accent);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-search"></i> A. Teori Masuknya Islam ke Nusantara (Pendalaman 45')</h3>
+                <p style="color:var(--text-secondary);margin-top:4px;">Para sejarawan memiliki 4 teori utama tentang masuknya Islam ke Nusantara. Berikut perbandingan mendalam dengan bukti arkeologis:</p>
+
+                <div style="background:var(--bg-card);border-radius:10px;padding:14px;margin-top:12px;border-left:4px solid var(--accent-secondary);">
+                    <h4 style="color:var(--accent-secondary);"><i class="fas fa-table"></i> Tabel Perbandingan 4 Teori Masuknya Islam</h4>
+                    <div style="overflow-x:auto;margin-top:8px;">
+                        <table style="width:100%;border-collapse:collapse;font-size:0.85rem;color:var(--text-secondary);">
+                            <thead><tr style="background:var(--bg-primary);">
+                                <th style="padding:8px;border:1px solid rgba(255,255,255,0.1);text-align:left;color:var(--accent);">Teori</th>
+                                <th style="padding:8px;border:1px solid rgba(255,255,255,0.1);text-align:left;color:var(--accent);">Pendukung</th>
+                                <th style="padding:8px;border:1px solid rgba(255,255,255,0.1);text-align:left;color:var(--accent);">Bukti Arkeologis</th>
+                                <th style="padding:8px;border:1px solid rgba(255,255,255,0.1);text-align:left;color:var(--accent);">Kelemahan</th>
+                            </tr></thead>
+                            <tbody>
+                                <tr><td style="padding:8px;border:1px solid rgba(255,255,255,0.05);"><strong>Gujarat</strong></td><td style="padding:8px;border:1px solid rgba(255,255,255,0.05);">Snouck Hurgronje, Krom</td><td style="padding:8px;border:1px solid rgba(255,255,255,0.05);">Batu nisan Sultan Malik as-Saleh (1297) mirip nisan Gujarat</td><td style="padding:8px;border:1px solid rgba(255,255,255,0.05);">Tidak menjelaskan peran Arab di wilayah lain</td></tr>
+                                <tr><td style="padding:8px;border:1px solid rgba(255,255,255,0.05);"><strong>Mekkah (Arab)</strong></td><td style="padding:8px;border:1px solid rgba(255,255,255,0.05);">Hamka, Arnold</td><td style="padding:8px;border:1px solid rgba(255,255,255,0.05);">Pengaruh kuat budaya Arab dalam tradisi Islam Nusantara</td><td style="padding:8px;border:1px solid rgba(255,255,255,0.05);">Minim bukti arkeologis abad ke-7</td></tr>
+                                <tr><td style="padding:8px;border:1px solid rgba(255,255,255,0.05);"><strong>Persia (Iran)</strong></td><td style="padding:8px;border:1px solid rgba(255,255,255,0.05);">Hoesein Djajadiningrat</td><td style="padding:8px;border:1px solid rgba(255,255,255,0.05);">Pengaruh budaya Persia dalam kesenian Islam (wayang, gamelan)</td><td style="padding:8px;border:1px solid rgba(255,255,255,0.05);">Kurang bukti primer kuat</td></tr>
+                                <tr><td style="padding:8px;border:1px solid rgba(255,255,255,0.05);"><strong>Tiongkok</strong></td><td style="padding:8px;border:1px solid rgba(255,255,255,0.05);">Sejarawan modern</td><td style="padding:8px;border:1px solid rgba(255,255,255,0.05);">Catatan pelayaran Cheng Ho (abad 15)</td><td style="padding:8px;border:1px solid rgba(255,255,255,0.05);">Masih diperdebatkan</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div style="background:var(--bg-card);border-radius:8px;padding:12px;margin-top:12px;border-left:4px solid var(--accent-light);">
+                    <p style="color:var(--text-secondary);"><i class="fas fa-lightbulb" style="color:var(--accent);"></i> <strong>Kesimpulan:</strong> Tidak ada satu teori yang sepenuhnya benar. Proses masuknya Islam adalah <strong>akumulasi</strong> dari berbagai jalur — perdagangan, perkawinan, pendidikan, dan dakwah — yang saling melengkapi selama berabad-abad.</p>
+                </div>
+            </div>
+
+            <!-- Sub B: Jalur Rempah -->
+            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--accent-secondary);margin-bottom:20px;">
+                <h3 style="color:var(--accent-secondary);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-map-marked-alt"></i> B. Jalur Rempah sebagai Media Penyebaran (30')</h3>
+                <p style="color:var(--text-secondary);margin-top:4px;">Jalur rempah (Maluku — Sumatera — Jawa — Kalimantan) menjadi <strong>urutan nadi</strong> penyebaran Islam karena:</p>
+                <div class="grid-2" style="margin-top:8px;">
+                    <div class="card emerald-badge"><span class="pillar-icon">⛵</span><h4>1. Jaringan Perdagangan</h4><p>Para pedagang Muslim singgah di pelabuhan-pelabuhan strategis sambil berdakwah.</p></div>
+                    <div class="card emerald-badge"><span class="pillar-icon">👥</span><h4>2. Perkawinan Campuran</h4><p>Pedagang Muslim menikah dengan bangsawan lokal, mempercepat Islamisasi di kalangan elit.</p></div>
+                    <div class="card emerald-badge"><span class="pillar-icon">📚</span><h4>3. Pendidikan</h4><p>Berdirinya pesantren dan pusat-pusat pendidikan Islam di pelabuhan-pelabuhan utama.</p></div>
+                    <div class="card emerald-badge"><span class="pillar-icon">🕌</span><h4>4. Pendirian Kerajaan</h4><p>Para pedagang yang kaya mendirikan kerajaan Islam (Samudera Pasai, Demak, Gowa).</p></div>
+                </div>
+                <div style="background:var(--bg-card);border-radius:8px;padding:12px;margin-top:10px;border-left:4px solid var(--accent);">
+                    <p style="color:var(--text-secondary);"><i class="fas fa-info-circle" style="color:var(--accent);"></i> <strong>Wilayah Kunci:</strong> Maluku (Ternate, Tidore) → Sulawesi (Gowa) → Kalimantan (Banjar) → Sumatera (Palembang, Aceh) → Jawa (Demak, Cirebon, Banten).</p>
+                </div>
+            </div>
+
+            <!-- Sub C: Samudera Pasai & Aceh -->
+            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--accent);margin-bottom:20px;">
+                <h3 style="color:var(--accent);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-flag"></i> C. Kerajaan Samudera Pasai & Kesultanan Aceh (45')</h3>
+                <div class="grid-2">
+                    <div class="card highlight">
+                        <span class="pillar-icon">🕌</span><h3>Samudera Pasai (1267-1521)</h3>
+                        <ul>
+                            <li><strong>Pendiri:</strong> Sultan Malik as-Saleh (meninggal 1297).</li>
+                            <li><strong>Silsilah:</strong> Malik as-Saleh → Malik az-Zahir → Malik al-Mansur.</li>
+                            <li><strong>Peran:</strong> Kerajaan Islam pertama di Nusantara; pusat pendidikan dan perdagangan.</li>
+                            <li><strong>Peninggalan:</strong> Batu nisan bergaya Gujarat, mata uang emas, naskah Hikayat Raja-raja Pasai.</li>
+                            <li><strong>Kemunduran:</strong> Dikuasai oleh Portugis (1521) dan kemudian Kesultanan Aceh.</li>
+                        </ul>
+                    </div>
+                    <div class="card highlight">
+                        <span class="pillar-icon">🏛️</span><h3>Kesultanan Aceh Darussalam (1496-1903)</h3>
+                        <ul>
+                            <li><strong>Pendiri:</strong> Sultan Ali Mughayat Syah.</li>
+                            <li><strong>Puncak Kejayaan:</strong> Sultan Iskandar Muda (1607-1636) — memperluas wilayah, membangun infrastruktur, mengusir Portugis.</li>
+                            <li><strong>Kebijakan:</strong> Memajukan perdagangan lada, menciptakan armada laut yang kuat.</li>
+                            <li><strong>Peninggalan:</strong> Masjid Raya Baiturrahman, makam raja-raja, naskah Bustan as-Salatin.</li>
+                            <li><strong>Nilai:</strong> Perlawanan terhadap penjajahan (Perang Aceh 1873-1903).</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="background:var(--bg-card);border-radius:8px;padding:12px;margin-top:10px;border-left:4px solid var(--accent-light);">
+                    <p style="color:var(--text-secondary);"><i class="fas fa-lightbulb" style="color:var(--accent);"></i> <strong>Keterkaitan:</strong> Samudera Pasai adalah <strong>cikal bakal</strong> Kesultanan Aceh. Ketika Pasai runtuh, pusat peradaban Islam di Sumatera bergeser ke Aceh yang lebih kuat dan modern.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTION 3 : PERTEMUAN 2 (DETAIL) ========== -->
+        <section id="section3" class="section">
+            <div class="section-header"><div class="num">03</div><h2>Pertemuan 2: Jawa, Walisongo, & Mataram Islam <small>3 x 45 menit <span class="meeting-badge">Pertemuan 2</span></small></h2></div>
+
+            <!-- Sub A: Walisongo — DIPERBAIKI: "Sunan Makanan" diganti "Sunan Gresik" -->
+            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--accent);margin-bottom:20px;">
+                <h3 style="color:var(--accent);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-users"></i> A. Profil Lengkap 9 Wali Songo (60')</h3>
+                <p style="color:var(--text-secondary);margin-top:4px;">Walisongo (9 wali) adalah <strong>tokoh sentral</strong> dalam Islamisasi Jawa. Mereka menggunakan pendekatan budaya yang damai dan adaptif.</p>
+                <div class="grid-3">
+                    <!-- PERBAIKAN: Sunan Gresik sebagai pengganti "Sunan Makanan" -->
+                    <div class="card emerald-badge"><span class="pillar-icon">🕌</span><h4>Sunan Gresik (Maulana Malik Ibrahim)</h4><p><strong>Lokasi:</strong> Gresik, Jawa Timur. <strong>Pendekatan:</strong> Wali pertama yang menyebarkan Islam di Jawa. Mendirikan pesantren pertama di Gresik, mengajarkan Islam dengan pendekatan damai dan adaptif.</p></div>
+                    <div class="card emerald-badge"><span class="pillar-icon">🕌</span><h4>Sunan Ampel</h4><p><strong>Lokasi:</strong> Surabaya. <strong>Pendekatan:</strong> Mendirikan pesantren pertama di Jawa (Ampel Denta). Muridnya menjadi wali lainnya.</p></div>
+                    <div class="card emerald-badge"><span class="pillar-icon">🎭</span><h4>Sunan Kalijaga</h4><p><strong>Lokasi:</strong> Kadilangu, Demak. <strong>Pendekatan:</strong> Wayang kulit, gamelan, tembang dolanan. Menciptakan "Ilmu Sejati".</p></div>
+                    <div class="card emerald-badge"><span class="pillar-icon">📚</span><h4>Sunan Giri</h4><p><strong>Lokasi:</strong> Gresik. <strong>Pendekatan:</strong> Pendidikan Islam melalui pesantren. Menciptakan permainan tradisional (jaranan, gending).</p></div>
+                    <div class="card emerald-badge"><span class="pillar-icon">⚔️</span><h4>Sunan Bonang</h4><p><strong>Lokasi:</strong> Tuban. <strong>Pendekatan:</strong> Gamelan dan tembang untuk dakwah. Guru Sunan Kalijaga.</p></div>
+                    <div class="card emerald-badge"><span class="pillar-icon">🏛️</span><h4>Sunan Kudus</h4><p><strong>Lokasi:</strong> Kudus. <strong>Pendekatan:</strong> Menara Kudus bergaya Hindu-Buddha sebagai simbol akulturasi.</p></div>
+                    <div class="card emerald-badge"><span class="pillar-icon">🌾</span><h4>Sunan Drajat</h4><p><strong>Lokasi:</strong> Lamongan. <strong>Pendekatan:</strong> Kepedulian sosial terhadap fakir miskin, gotong royong.</p></div>
+                    <div class="card emerald-badge"><span class="pillar-icon">🕊️</span><h4>Sunan Muria</h4><p><strong>Lokasi:</strong> Gunung Muria. <strong>Pendekatan:</strong> Dakwah di kalangan masyarakat pedalaman dengan kesenian lokal.</p></div>
+                    <div class="card emerald-badge"><span class="pillar-icon">📜</span><h4>Sunan Gunung Jati</h4><p><strong>Lokasi:</strong> Cirebon. <strong>Pendekatan:</strong> Pendiri Kerajaan Cirebon, memadukan budaya Sunda dan Islam.</p></div>
+                </div>
+                <div style="background:var(--bg-card);border-radius:8px;padding:12px;margin-top:10px;border-left:4px solid var(--accent);">
+                    <p style="color:var(--text-secondary);"><i class="fas fa-lightbulb" style="color:var(--accent);"></i> <strong>Inti Dakwah Walisongo:</strong> "Memuliakan tamu, menghormati orang tua, dan menyayangi sesama" — nilai-nilai universal yang diterima masyarakat Jawa.</p>
+                </div>
+            </div>
+
+            <!-- Sub B: Kerajaan Demak, Cirebon, Banten -->
+            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--accent-secondary);margin-bottom:20px;">
+                <h3 style="color:var(--accent-secondary);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-mosque"></i> B. Kerajaan Demak, Cirebon, dan Banten (45')</h3>
+                <div class="grid-3">
+                    <div class="card highlight"><span class="pillar-icon">⚔️</span><h4>Kerajaan Demak</h4><ul><li><strong>Pendiri:</strong> Raden Patah (1478).</li><li><strong>Peran:</strong> Pelopor Islam di Jawa, pusat dakwah Walisongo.</li><li><strong>Puncak:</strong> Sultan Trenggono (1521-1546) — perlawanan terhadap Portugis.</li><li><strong>Peninggalan:</strong> Masjid Agung Demak (atap tumpang).</li><li><strong>Runtuh:</strong> Perebutan kekuasaan internal.</li></ul></div>
+                    <div class="card highlight"><span class="pillar-icon">🏛️</span><h4>Kerajaan Cirebon</h4><ul><li><strong>Pendiri:</strong> Sunan Gunung Jati (1479).</li><li><strong>Peran:</strong> Pusat akulturasi Islam-Sunda.</li><li><strong>Peninggalan:</strong> Keraton Kasepuhan, Masjid Sang Cipta Rasa.</li><li><strong>Keunikan:</strong> Perpaduan budaya Jawa, Sunda, dan Islam.</li></ul></div>
+                    <div class="card highlight"><span class="pillar-icon">⛵</span><h4>Kerajaan Banten</h4><ul><li><strong>Pendiri:</strong> Sultan Maulana Hasanuddin (1552).</li><li><strong>Peran:</strong> Pusat perdagangan internasional.</li><li><strong>Puncak:</strong> Sultan Ageng Tirtayasa (1651-1683).</li><li><strong>Peninggalan:</strong> Masjid Agung Banten, Benteng Speelwijk.</li></ul></div>
+                </div>
+                <div style="background:var(--bg-card);border-radius:8px;padding:12px;margin-top:10px;border-left:4px solid var(--accent-light);">
+                    <p style="color:var(--text-secondary);"><i class="fas fa-arrow-right" style="color:var(--accent-secondary);"></i> <strong>Kesimpulan:</strong> Kerajaan-kerajaan pesisir ini menjadi <strong>simpul penyebaran Islam</strong> yang memanfaatkan perdagangan dan pendidikan.</p>
+                </div>
+            </div>
+
+            <!-- Sub C: Mataram Islam & VOC -->
+            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--accent);margin-bottom:20px;">
+                <h3 style="color:var(--accent);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-crown"></i> C. Mataram Islam & Konflik dengan VOC (30')</h3>
+                <div class="grid-2">
+                    <div class="card">
+                        <span class="pillar-icon">👑</span><h4>Sultan Agung (1613-1645)</h4>
+                        <ul>
+                            <li>Penyerangan ke Batavia (1628 & 1629) — meski gagal, menunjukkan perlawanan gigih.</li>
+                            <li>Menyatukan Jawa Tengah dan Jawa Timur.</li>
+                            <li>Membangun infrastruktur dan sistem pemerintahan.</li>
+                            <li>Menggagas <strong>Kalender Jawa</strong> berbasis Islam.</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <span class="pillar-icon">📜</span><h4>Perjanjian Giyanti (1755)</h4>
+                        <ul>
+                            <li>Pembagian Mataram menjadi <strong>Kasunanan Surakarta</strong> dan <strong>Kesultanan Yogyakarta</strong>.</li>
+                            <li>Diakibatkan konflik internal (Perang Saudara) dan intervensi VOC.</li>
+                            <li>Menandai <strong>melemahnya kekuasaan Mataram</strong> dan dominasi VOC.</li>
+                            <li>Dampak: Mulai masuknya pengaruh Eropa di Jawa.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="background:var(--bg-card);border-radius:8px;padding:12px;margin-top:10px;border-left:4px solid var(--accent);">
+                    <p style="color:var(--text-secondary);"><i class="fas fa-info-circle" style="color:var(--accent);"></i> <strong>Nilai Perlawanan:</strong> Sultan Agung mengajarkan bahwa <strong>persatuan dan keberanian</strong> adalah kunci melawan penjajahan.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTION 4 : PERTEMUAN 3 (DETAIL) ========== -->
+        <section id="section4" class="section">
+            <div class="section-header"><div class="num">04</div><h2>Pertemuan 3: Luar Jawa, Jalur Rempah & Peninggalan <small>3 x 45 menit <span class="meeting-badge">Pertemuan 3</span></small></h2></div>
+
+            <!-- Sub A: Gowa-Tallo -->
+            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--accent);margin-bottom:20px;">
+                <h3 style="color:var(--accent);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-ship"></i> A. Kerajaan Gowa-Tallo (Makassar) — "Ayam Jantan dari Timur" (45')</h3>
+                <div class="grid-2">
+                    <div class="card highlight">
+                        <span class="pillar-icon">⚓</span><h4>Karakteristik</h4>
+                        <ul>
+                            <li><strong>Lokasi:</strong> Sulawesi Selatan (Makassar).</li>
+                            <li><strong>Puncak Kejayaan:</strong> Sultan Hasanuddin (1653-1669).</li>
+                            <li><strong>Kekuatan:</strong> Pelaut ulung, armada laut yang tangguh.</li>
+                            <li><strong>Peran:</strong> Pusat perdagangan rempah-rempah dan penyebaran Islam di Sulawesi.</li>
+                        </ul>
+                    </div>
+                    <div class="card highlight">
+                        <span class="pillar-icon">⚔️</span><h4>Perang Makassar (1666-1669)</h4>
+                        <ul>
+                            <li>Konflik antara Gowa dengan VOC (Belanda) dan sekutu Bugis.</li>
+                            <li>Sultan Hasanuddin melakukan <strong>perlawanan sengit</strong>.</li>
+                            <li>Berakhir dengan <strong>Perjanjian Bongaya</strong> (1667) yang melemahkan Gowa.</li>
+                            <li>Julukan "Ayam Jantan dari Timur" sebagai simbol keberanian.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="background:var(--bg-card);border-radius:8px;padding:12px;margin-top:10px;border-left:4px solid var(--accent-light);">
+                    <p style="color:var(--text-secondary);"><i class="fas fa-flag" style="color:var(--accent);"></i> <strong>Peninggalan:</strong> Benteng Somba Opu, Masjid Tua Gowa, Makam Sultan Hasanuddin, Naskah Lontara'.</p>
+                </div>
+            </div>
+
+            <!-- Sub B: Ternate & Tidore -->
+            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--accent-secondary);margin-bottom:20px;">
+                <h3 style="color:var(--accent-secondary);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-island"></i> B. Kesultanan Ternate dan Tidore — Pusat Rempah (45')</h3>
+                <div class="grid-2">
+                    <div class="card highlight">
+                        <span class="pillar-icon">🌋</span><h4>Kesultanan Ternate</h4>
+                        <ul>
+                            <li><strong>Lokasi:</strong> Maluku Utara.</li>
+                            <li><strong>Puncak:</strong> Sultan Baabullah (1570-1583) — berhasil mengusir Portugis dari Maluku.</li>
+                            <li><strong>Peran:</strong> Pusat perdagangan cengkeh dan pala.</li>
+                            <li><strong>Peninggalan:</strong> Benteng Tolukko, Masjid Sultan Ternate.</li>
+                        </ul>
+                    </div>
+                    <div class="card highlight">
+                        <span class="pillar-icon">🌋</span><h4>Kesultanan Tidore</h4>
+                        <ul>
+                            <li><strong>Lokasi:</strong> Maluku Utara.</li>
+                            <li><strong>Puncak:</strong> Sultan Nuku (1780-1805) — menjalin aliansi dengan Tiongkok dan Arab.</li>
+                            <li><strong>Peran:</strong> Saingan Ternate dalam perdagangan rempah.</li>
+                            <li><strong>Peninggalan:</strong> Benteng dan makam sultan.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="background:var(--bg-card);border-radius:8px;padding:12px;margin-top:10px;border-left:4px solid var(--accent);">
+                    <p style="color:var(--text-secondary);"><i class="fas fa-handshake" style="color:var(--accent-secondary);"></i> <strong>Rivalitas dan Persatuan:</strong> Ternate dan Tidore sering bersaing, tetapi pernah bersatu melawan penjajah Portugis dan Spanyol.</p>
+                </div>
+            </div>
+
+            <!-- Sub C: Peninggalan & Akulturasi -->
+            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--accent);margin-bottom:20px;">
+                <h3 style="color:var(--accent);font-size:1.2rem;display:flex;align-items:center;gap:10px;"><i class="fas fa-palette"></i> C. Peninggalan Budaya & Akulturasi (45')</h3>
+                <div class="grid-4">
+                    <div class="card"><span class="pillar-icon">🏛️</span><h4>Arsitektur</h4><ul style="font-size:0.8rem;"><li>Masjid Demak (atap tumpang)</li><li>Menara Kudus (gaya candi)</li><li>Masjid Tua Gowa</li></ul><p style="font-size:0.7rem;color:var(--text-secondary);"><strong>Akulturasi:</strong> Perpaduan Hindu-Jawa-Islam.</p></div>
+                    <div class="card"><span class="pillar-icon">📜</span><h4>Sastra & Aksara</h4><ul style="font-size:0.8rem;"><li>Hikayat Raja-raja Pasai</li><li>Babad Tanah Jawi</li><li>Lontara' (Bugis)</li></ul><p style="font-size:0.7rem;color:var(--text-secondary);"><strong>Akulturasi:</strong> Pegon, Jawi, Lontara'.</p></div>
+                    <div class="card"><span class="pillar-icon">🎭</span><h4>Seni & Tradisi</h4><ul style="font-size:0.8rem;"><li>Wayang Kulit</li><li>Tari Saman (Aceh)</li><li>Sekaten (Yogyakarta)</li></ul><p style="font-size:0.7rem;color:var(--text-secondary);"><strong>Akulturasi:</strong> Cerita epik dengan nilai Islam.</p></div>
+                    <div class="card"><span class="pillar-icon">🌾</span><h4>Sistem Sosial</h4><ul style="font-size:0.8rem;"><li>Pesantren</li><li>Gotong royong</li><li>Sistem kekerabatan</li></ul><p style="font-size:0.7rem;color:var(--text-secondary);"><strong>Akulturasi:</strong> Nilai-nilai Islam masuk ke adat lokal.</p></div>
+                </div>
+                <div style="background:var(--bg-card);border-radius:8px;padding:12px;margin-top:10px;border-left:4px solid var(--accent-light);">
+                    <p style="color:var(--text-secondary);"><i class="fas fa-mosque" style="color:var(--accent);"></i> <strong>Contoh Akulturasi Terbaik:</strong> Masjid Demak memiliki arsitektur yang merupakan perpaduan antara budaya <strong>Jawa-Hindu</strong> dan <strong>Islam</strong>. Menara Kudus menyerupai bangunan candi. Wayang kulit digunakan untuk menyampaikan ajaran Islam.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTION 5 : PENGAYAAN ========== -->
+        <section id="section5" class="section">
+            <div class="section-header"><div class="num">05</div><h2>Pengayaan: Kerajaan Islam Lainnya <small>Kalimantan, Sumatera, Nusa Tenggara <span class="meeting-badge">Pertemuan 4</span></small></h2></div>
+            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--accent-secondary);margin-bottom:20px;"><p style="color:var(--text-secondary);"><i class="fas fa-globe-asia" style="color:var(--accent-secondary);"></i> Berikut kerajaan Islam lain yang berperan penting dalam sejarah lokal dan nasional:</p></div>
+            <div class="grid-2">
+                <div class="card highlight emerald-badge"><span class="pillar-icon">🌳</span><h3>Kesultanan Banjar</h3><p><strong>Lokasi:</strong> Kalimantan Selatan (1526 M). <strong>Tokoh:</strong> Sultan Suriansyah. <strong>Peran:</strong> Penyebaran Islam di Kalimantan. <strong>Nilai:</strong> Perlawanan terhadap VOC (Perang Banjar 1859-1905).</p></div>
+                <div class="card highlight emerald-badge"><span class="pillar-icon">🏛️</span><h3>Kesultanan Palembang</h3><p><strong>Lokasi:</strong> Sumatera Selatan (1659 M). <strong>Pendiri:</strong> Sultan Abdurrahman. <strong>Peran:</strong> Pusat perdagangan, penerus Sriwijaya versi Islam. <strong>Nilai:</strong> Melawan VOC & Inggris.</p></div>
+                <div class="card highlight emerald-badge"><span class="pillar-icon">🏝️</span><h3>Kesultanan Pontianak</h3><p><strong>Lokasi:</strong> Kalimantan Barat (1771 M). <strong>Pendiri:</strong> Sultan Syarif Abdurrahman. <strong>Peran:</strong> Pusat perdagangan & penyebaran Islam. <strong>Akulturasi:</strong> Campuran Melayu, Tiongkok, Dayak.</p></div>
+                <div class="card highlight emerald-badge"><span class="pillar-icon">🌊</span><h3>Kesultanan Bima</h3><p><strong>Lokasi:</strong> Nusa Tenggara Barat (1640 M). <strong>Pendiri:</strong> Sultan Abdul Kahir. <strong>Peran:</strong> Pintu masuk Islam di Nusa Tenggara. <strong>Nilai:</strong> Toleransi antarumat beragama.</p></div>
+                <div class="card highlight emerald-badge"><span class="pillar-icon">🏯</span><h3>Kesultanan Buton</h3><p><strong>Lokasi:</strong> Sulawesi Tenggara (1542 M). <strong>Pendiri:</strong> Sultan Murhum. <strong>Keunikan:</strong> Undang-undang Martabat Tujuh. <strong>Peninggalan:</strong> Masjid Keraton Buton.</p></div>
+                <div class="card highlight emerald-badge"><span class="pillar-icon">🌋</span><h3>Ternate & Tidore</h3><p><strong>Lokasi:</strong> Maluku. <strong>Tokoh:</strong> Sultan Baabullah, Sultan Nuku. <strong>Peran:</strong> Rivalitas & persatuan melawan Portugis/Spanyol. <strong>Peninggalan:</strong> Benteng Tolukko.</p></div>
+            </div>
+        </section>
+
+        <!-- ========== SECTION 6 : ASESMEN HOTS ========== -->
+        <section id="section6" class="section">
+            <div class="section-header"><div class="num">06</div><h2>Asesmen Sumatif HOTS <small>Evaluasi Akhir Bab 7 <span class="meeting-badge">Pertemuan 5</span></small></h2></div>
+            <div style="background:var(--bg-secondary);border-radius:14px;padding:16px 18px;border-left:6px solid var(--accent);margin-bottom:20px;">
+                <p style="color:var(--text-secondary);"><i class="fas fa-clipboard-list" style="color:var(--accent);"></i> Soal terdiri dari <strong>30 Pilihan Ganda (ABCDE)</strong>, <strong>15 Benar-Salah</strong>, dan <strong>5 Essay HOTS</strong>. Waktu: 90 menit.</p>
+            </div>
+
+            <!-- A. 30 PG HOTS -->
+            <div style="background:var(--bg-card);border-radius:16px;padding:20px 18px;margin-bottom:24px;border-left:6px solid var(--accent);">
+                <h3 style="color:var(--accent);display:flex;align-items:center;gap:12px;font-size:1.3rem;border-bottom:2px solid var(--accent);padding-bottom:10px;margin-bottom:16px;">
+                    <span style="background:var(--accent);color:#121212;padding:4px 14px;border-radius:30px;font-size:0.9rem;font-weight:700;">A</span> Pilihan Ganda (30 Soal)
+                </h3>
+                <div class="assessment-question"><div class="q-text">1. (C4) Perbedaan utama strategi dakwah Sunan Kalijaga dibandingkan Sunan Giri adalah ...</div><div class="q-options"><span>A. Kalijaga menggunakan wayang, Giri menggunakan gamelan</span><span>B. Kalijaga menggunakan wayang, Giri mendirikan pesantren</span><span>C. Kalijaga berdakwah di pesisir, Giri di pedalaman</span><span>D. Kalijaga menggunakan pendekatan militer, Giri pendekatan ekonomi</span><span>E. Kalijaga menolak budaya lokal, Giri menerima budaya lokal</span></div></div>
+                <div class="assessment-question"><div class="q-text">2. (C5) Jika Sultan Agung tidak menyerang Batavia pada 1629, kemungkinan besar ...</div><div class="q-options"><span>A. VOC akan meninggalkan Indonesia</span><span>B. Mataram akan lebih cepat runtuh</span><span>C. VOC akan menguasai seluruh Jawa tanpa perlawanan</span><span>D. Mataram akan bersekutu dengan VOC</span><span>E. Belanda tidak akan menjajah Indonesia</span></div></div>
+                <div class="assessment-question"><div class="q-text">3. (C4) Mengapa Kesultanan Ternate dan Tidore sangat rentan terhadap intervensi bangsa Eropa?</div><div class="q-options"><span>A. Karena kekayaan rempah-rempah yang melimpah</span><span>B. Karena konflik internal yang berkepanjangan</span><span>C. Karena tidak memiliki angkatan laut yang kuat</span><span>D. Karena lokasinya yang terisolasi</span><span>E. Karena tidak memiliki pemimpin yang baik</span></div></div>
+                <div class="assessment-question"><div class="q-text">4. (C4) Keberadaan Menara Kudus yang menyerupai bangunan candi menunjukkan ...</div><div class="q-options"><span>A. Penghapusan budaya Hindu-Buddha</span><span>B. Akulturasi budaya Islam dengan budaya lokal</span><span>C. Dominasi arsitektur India</span><span>D. Pengaruh budaya Tiongkok</span><span>E. Penolakan terhadap tradisi lokal</span></div></div>
+                <div class="assessment-question"><div class="q-text">5. (C5) Perjanjian Giyanti (1755) paling berdampak pada ...</div><div class="q-options"><span>A. Persatuan Mataram semakin kuat</span><span>B. VOC mendapatkan kekuasaan penuh atas Mataram</span><span>C. Mataram terpecah menjadi dua kesultanan</span><span>D. Jawa Timur merdeka dari Mataram</span><span>E. Sultan Agung kembali berkuasa</span></div></div>
+                <div class="assessment-question"><div class="q-text">6. (C4) Faktor utama yang menyebabkan runtuhnya Kerajaan Demak adalah ...</div><div class="q-options"><span>A. Serangan VOC</span><span>B. Perebutan kekuasaan internal</span><span>C. Letusan Gunung Merapi</span><span>D. Invasi Portugis</span><span>E. Pergeseran jalur perdagangan</span></div></div>
+                <div class="assessment-question"><div class="q-text">7. (C4) Jika dilihat dari jalur perdagangan, penyebaran Islam di Nusantara sangat erat kaitannya dengan ...</div><div class="q-options"><span>A. Jalur sutra darat</span><span>B. Jalur rempah</span><span>C. Jalur sutra laut</span><span>D. Jalur kuda</span><span>E. Jalur emas</span></div></div>
+                <div class="assessment-question"><div class="q-text">8. (C5) "Kesultanan Aceh adalah penerus peradaban Samudera Pasai." Pernyataan ini dapat dibuktikan dengan ...</div><div class="q-options"><span>A. Keduanya terletak di Sumatera Utara</span><span>B. Keduanya menjadi pusat pendidikan dan perdagangan</span><span>C. Keduanya didirikan oleh Sultan Malik as-Saleh</span><span>D. Keduanya beraliran Islam Syiah</span><span>E. Keduanya ditaklukkan oleh Portugis</span></div></div>
+                <div class="assessment-question"><div class="q-text">9. (C4) Perbedaan mendasar antara Kerajaan Mataram Islam dengan Kerajaan Demak dalam hal politik adalah ...</div><div class="q-options"><span>A. Mataram berbasis maritim, Demak berbasis agraris</span><span>B. Mataram berbasis agraris, Demak berbasis maritim</span><span>C. Mataram tidak memiliki militer, Demak memiliki militer kuat</span><span>D. Mataram bersekutu dengan VOC, Demak melawan VOC</span><span>E. Mataram menghapus budaya lokal, Demak melestarikannya</span></div></div>
+                <div class="assessment-question"><div class="q-text">10. (C4) Penggunaan aksara Pegon dalam penulisan bahasa Jawa menunjukkan ...</div><div class="q-options"><span>A. Pengaruh budaya Arab yang dominan</span><span>B. Proses akulturasi antara Islam dan budaya lokal</span><span>C. Penghapusan aksara Jawa asli</span><span>D. Pengaruh budaya Eropa</span><span>E. Dominasi bahasa Sanskerta</span></div></div>
+                <div class="assessment-question"><div class="q-text">11. (C5) Jika Kesultanan Banjar tidak melawan VOC, kemungkinan besar ...</div><div class="q-options"><span>A. Kalimantan akan menjadi pusat Islam</span><span>B. VOC akan menguasai Kalimantan tanpa perlawanan</span><span>C. Kalimantan akan merdeka lebih awal</span><span>D. Belanda tidak akan masuk Kalimantan</span><span>E. Islam akan hilang dari Kalimantan</span></div></div>
+                <div class="assessment-question"><div class="q-text">12. (C4) Tokoh Walisongo yang paling dikenal dengan pendekatan sosial melalui kepedulian terhadap fakir miskin adalah ...</div><div class="q-options"><span>A. Sunan Kalijaga</span><span>B. Sunan Giri</span><span>C. Sunan Drajat</span><span>D. Sunan Kudus</span><span>E. Sunan Bonang</span></div></div>
+                <div class="assessment-question"><div class="q-text">13. (C4) Mengapa Kerajaan Gowa-Tallo dijuluki sebagai "Ayam Jantan dari Timur"?</div><div class="q-options"><span>A. Karena kekayaan alamnya melimpah</span><span>B. Karena keberanian melawan VOC</span><span>C. Karena menjadi pusat perdagangan</span><span>D. Karena memiliki angkatan laut terbesar</span><span>E. Karena menjadi pelopor Islam di Sulawesi</span></div></div>
+                <div class="assessment-question"><div class="q-text">14. (C5) "Masjid Agung Demak memiliki arsitektur yang mencerminkan akulturasi." Bukti yang paling mendukung adalah ...</div><div class="q-options"><span>A. Adanya kubah besar seperti di Timur Tengah</span><span>B. Atap tumpang yang mirip dengan bangunan Hindu-Buddha</span><span>C. Penggunaan marmer dari Eropa</span><span>D. Adanya lonceng seperti di gereja</span><span>E. Tidak adanya ornamen sama sekali</span></div></div>
+                <div class="assessment-question"><div class="q-text">15. (C4) Peran utama Sultan Hasanuddin dalam sejarah Indonesia adalah ...</div><div class="q-options"><span>A. Menyebarkan Islam di Jawa</span><span>B. Memimpin perlawanan terhadap VOC di Makassar</span><span>C. Mendirikan Kerajaan Demak</span><span>D. Menulis Kitab Negarakertagama</span><span>E. Menjalin hubungan dengan Tiongkok</span></div></div>
+                <div class="assessment-question"><div class="q-text">16. (C4) Kesultanan Palembang memiliki nilai strategis karena ...</div><div class="q-options"><span>A. Terletak di jalur perdagangan Selat Malaka</span><span>B. Menghasilkan rempah-rempah terbanyak</span><span>C. Menjadi pusat pendidikan Islam terbesar</span><span>D. Mampu mengusir Portugis</span><span>E. Menjalin hubungan dengan Jepang</span></div></div>
+                <div class="assessment-question"><div class="q-text">17. (C5) Jika Sunan Kudus tidak membangun Menara Kudus dengan gaya Hindu-Buddha, kemungkinan besar ...</div><div class="q-options"><span>A. Islam akan ditolak oleh masyarakat Jawa</span><span>B. Proses akulturasi akan berjalan lebih lambat</span><span>C. Menara tersebut akan runtuh lebih cepat</span><span>D. VOC akan menghancurkannya</span><span>E. Tidak ada pengaruh terhadap masyarakat</span></div></div>
+                <div class="assessment-question"><div class="q-text">18. (C4) Faktor yang paling dominan dalam penyebaran Islam di Nusantara abad 13-16 adalah ...</div><div class="q-options"><span>A. Penaklukan militer</span><span>B. Perdagangan dan perkawinan</span><span>C. Misi dari Eropa</span><span>D. Kolonialisasi</span><span>E. Bencana alam</span></div></div>
+                <div class="assessment-question"><div class="q-text">19. (C4) Sistem pemerintahan Kesultanan Buton yang tertulis dalam "Martabat Tujuh" menunjukkan ...</div><div class="q-options"><span>A. Pengaruh budaya Hindu yang kuat</span><span>B. Adanya hukum adat yang tertulis</span><span>C. Dominasi pemerintahan militer</span><span>D. Penghapusan budaya lokal</span><span>E. Keterpengaruhan budaya Eropa</span></div></div>
+                <div class="assessment-question"><div class="q-text">20. (C5) "Jalur rempah adalah urat nadi penyebaran Islam di Indonesia Timur." Ini karena ...</div><div class="q-options"><span>A. Rempah-rempah hanya ada di Indonesia Timur</span><span>B. Para pedagang Muslim singgah dan berdakwah di pelabuhan rempah</span><span>C. Indonesia Timur tidak memiliki budaya lokal</span><span>D. Penjajah Eropa membawa Islam ke Timur</span><span>E. Penduduk Timur lebih mudah menerima agama baru</span></div></div>
+                <div class="assessment-question"><div class="q-text">21. (C4) Perbedaan strategi dakwah antara Walisongo di Jawa dengan penyebaran Islam di Aceh adalah ...</div><div class="q-options"><span>A. Jawa melalui pendekatan budaya, Aceh melalui perdagangan</span><span>B. Jawa melalui perdagangan, Aceh melalui pendekatan budaya</span><span>C. Keduanya sama-sama melalui militer</span><span>D. Aceh melalui kesenian, Jawa melalui pendidikan</span><span>E. Tidak ada perbedaan signifikan</span></div></div>
+                <div class="assessment-question"><div class="q-text">22. (C4) Mengapa Kerajaan Banten menjadi pusat perdagangan internasional pada masa kejayaannya?</div><div class="q-options"><span>A. Karena menghasilkan rempah-rempah terbanyak</span><span>B. Karena letaknya yang strategis di Selat Sunda</span><span>C. Karena memiliki angkatan laut terkuat</span><span>D. Karena bersekutu dengan Portugis</span><span>E. Karena memiliki tambang emas</span></div></div>
+                <div class="assessment-question"><div class="q-text">23. (C5) Jika Kesultanan Ternate berhasil mengusir Portugis sepenuhnya pada abad ke-16, dampaknya adalah ...</div><div class="q-options"><span>A. Maluku akan menjadi pusat Kristen</span><span>B. Kekuasaan Spanyol akan menggantikan Portugis</span><span>C. Perdagangan rempah akan lebih dikuasai oleh Ternate</span><span>D. VOC tidak akan masuk ke Maluku</span><span>E. Belanda akan langsung menjajah</span></div></div>
+                <div class="assessment-question"><div class="q-text">24. (C4) Penggunaan wayang kulit sebagai media dakwah oleh Sunan Kalijaga termasuk dalam kategori ...</div><div class="q-options"><span>A. Akulturasi horizontal</span><span>B. Sinkretisme budaya</span><span>C. Dominasi budaya asing</span><span>D. Penghapusan budaya lama</span><span>E. Isolasi budaya</span></div></div>
+                <div class="assessment-question"><div class="q-text">25. (C4) Kerajaan Pontianak didirikan oleh keturunan Arab yang menikah dengan bangsawan lokal. Ini menunjukkan ...</div><div class="q-options"><span>A. Dominasi budaya Arab sepenuhnya</span><span>B. Proses akulturasi melalui perkawinan</span><span>C. Penghapusan budaya Melayu</span><span>D. Keterpengaruhan budaya Tiongkok</span><span>E. Isolasi budaya lokal</span></div></div>
+                <div class="assessment-question"><div class="q-text">26. (C5) "Nilai toleransi yang terjadi di masa kerajaan Islam sangat relevan dengan kehidupan berbangsa saat ini." Bukti yang paling mendukung adalah ...</div><div class="q-options"><span>A. Adanya perang saudara antar kerajaan</span><span>B. Akulturasi budaya yang harmonis tanpa menghilangkan budaya lokal</span><span>C. Penghapusan semua tradisi Hindu-Buddha</span><span>D. Dominasi agama tertentu atas yang lain</span><span>E. Tidak adanya interaksi antarumat beragama</span></div></div>
+                <div class="assessment-question"><div class="q-text">27. (C4) Mengapa Sultan Agung melakukan penyerangan ke Batavia meskipun berakhir gagal?</div><div class="q-options"><span>A. Untuk memperluas wilayah kekuasaan</span><span>B. Untuk mengusir VOC dari Jawa</span><span>C. Untuk mencari rempah-rempah</span><span>D. Untuk membangun aliansi dengan Portugis</span><span>E. Untuk menghancurkan Kerajaan Demak</span></div></div>
+                <div class="assessment-question"><div class="q-text">28. (C4) Perubahan dari Samudera Pasai ke Kesultanan Aceh menunjukkan adanya ...</div><div class="q-options"><span>A. Penurunan peradaban Islam di Sumatera</span><span>B. Perpindahan pusat kekuasaan yang berkelanjutan</span><span>C. Penghapusan budaya Islam</span><span>D. Dominasi budaya Hindu</span><span>E. Keterpengaruhan budaya Eropa</span></div></div>
+                <div class="assessment-question"><div class="q-text">29. (C5) Jika Perjanjian Giyanti tidak terjadi, kemungkinan besar Mataram Islam akan ...</div><div class="q-options"><span>A. Tetap bersatu namun di bawah VOC</span><span>B. Hancur total akibat perang saudara</span><span>C. Berhasil mengusir VOC</span><span>D. Menjadi kerajaan maritim terbesar</span><span>E. Bergabung dengan Kerajaan Gowa</span></div></div>
+                <div class="assessment-question"><div class="q-text">30. (C4) Inti dari dakwah Walisongo yang paling efektif dalam Islamisasi Jawa adalah ...</div><div class="q-options"><span>A. Kekuatan militer</span><span>B. Pendekatan budaya dan pendidikan</span><span>C. Ancaman hukuman</span><span>D. Imbalan ekonomi</span><span>E. Isolasi sosial</span></div></div>
+            </div>
+
+            <!-- B. 15 Benar-Salah -->
+            <div style="background:var(--bg-card);border-radius:16px;padding:20px 18px;margin-bottom:24px;border-left:6px solid var(--accent);">
+                <h3 style="color:var(--accent);display:flex;align-items:center;gap:12px;font-size:1.3rem;border-bottom:2px solid var(--accent);padding-bottom:10px;margin-bottom:16px;">
+                    <span style="background:var(--accent);color:#121212;padding:4px 14px;border-radius:30px;font-size:0.9rem;font-weight:700;">B</span> Benar-Salah (15 Soal)
+                </h3>
+                <div class="assessment-question"><div class="q-text">1. (S) Sunan Kalijaga adalah satu-satunya Wali Songo yang menggunakan wayang kulit untuk berdakwah.</div><div class="q-options"><span>A. Benar</span><span>B. Salah</span></div></div>
+                <div class="assessment-question"><div class="q-text">2. (B) Kerajaan Samudera Pasai terletak di Aceh Utara dan merupakan kerajaan Islam pertama di Nusantara.</div><div class="q-options"><span>A. Benar</span><span>B. Salah</span></div></div>
+                <div class="assessment-question"><div class="q-text">3. (S) Masjid Agung Demak memiliki kubah besar seperti masjid di Timur Tengah tanpa pengaruh lokal.</div><div class="q-options"><span>A. Benar</span><span>B. Salah</span></div></div>
+                <div class="assessment-question"><div class="q-text">4. (B) Sultan Hasanuddin dari Gowa-Tallo dikenal dengan julukan "Ayam Jantan dari Timur" karena keberaniannya melawan VOC.</div><div class="q-options"><span>A. Benar</span><span>B. Salah</span></div></div>
+                <div class="assessment-question"><div class="q-text">5. (S) Perjanjian Giyanti (1755) memperkuat persatuan Kerajaan Mataram Islam.</div><div class="q-options"><span>A. Benar</span><span>B. Salah</span></div></div>
+                <div class="assessment-question"><div class="q-text">6. (B) Jalur rempah sangat berperan dalam penyebaran Islam di Indonesia bagian timur seperti Maluku dan Sulawesi.</div><div class="q-options"><span>A. Benar</span><span>B. Salah</span></div></div>
+                <div class="assessment-question"><div class="q-text">7. (S) Kesultanan Banjar didirikan oleh Sultan Hasanuddin di Kalimantan Selatan.</div><div class="q-options"><span>A. Benar</span><span>B. Salah</span></div></div>
+                <div class="assessment-question"><div class="q-text">8. (B) Sunan Kudus membangun menara masjid yang menyerupai bangunan candi sebagai bentuk akulturasi budaya.</div><div class="q-options"><span>A. Benar</span><span>B. Salah</span></div></div>
+                <div class="assessment-question"><div class="q-text">9. (S) Sultan Iskandar Muda adalah raja dari Kesultanan Samudera Pasai yang membawa kejayaan.</div><div class="q-options"><span>A. Benar</span><span>B. Salah</span></div></div>
+                <div class="assessment-question"><div class="q-text">10. (B) Tari Saman dari Aceh merupakan salah satu bentuk akulturasi budaya Islam dengan budaya lokal.</div><div class="q-options"><span>A. Benar</span><span>B. Salah</span></div></div>
+                <div class="assessment-question"><div class="q-text">11. (S) Kerajaan Ternate dan Tidore selalu bersatu dan tidak pernah berselisih.</div><div class="q-options"><span>A. Benar</span><span>B. Salah</span></div></div>
+                <div class="assessment-question"><div class="q-text">12. (B) Sistem penulisan Arab Pegon digunakan untuk menuliskan bahasa Jawa dalam aksara Arab.</div><div class="q-options"><span>A. Benar</span><span>B. Salah</span></div></div>
+                <div class="assessment-question"><div class="q-text">13. (S) Kesultanan Palembang terletak di Kalimantan dan berperan penting dalam penyebaran Islam di sana.</div><div class="q-options"><span>A. Benar</span><span>B. Salah</span></div></div>
+                <div class="assessment-question"><div class="q-text">14. (B) Sunan Drajat dikenal dengan pendekatan sosialnya yang peduli terhadap kaum fakir miskin.</div><div class="q-options"><span>A. Benar</span><span>B. Salah</span></div></div>
+                <div class="assessment-question"><div class="q-text">15. (S) Kerajaan Buton terletak di Nusa Tenggara dan memiliki sistem hukum lisan tanpa catatan tertulis.</div><div class="q-options"><span>A. Benar</span><span>B. Salah</span></div></div>
+            </div>
+
+            <!-- C. 5 Essay HOTS -->
+            <div style="background:var(--bg-card);border-radius:16px;padding:20px 18px;margin-bottom:24px;border-left:6px solid var(--accent);">
+                <h3 style="color:var(--accent);display:flex;align-items:center;gap:12px;font-size:1.3rem;border-bottom:2px solid var(--accent);padding-bottom:10px;margin-bottom:16px;">
+                    <span style="background:var(--accent);color:#121212;padding:4px 14px;border-radius:30px;font-size:0.9rem;font-weight:700;">C</span> Essay HOTS (5 Soal)
+                </h3>
+                <div class="assessment-question"><div class="q-text">1. (C4 - Analisis) Bandingkan strategi penyebaran Islam yang dilakukan oleh Walisongo di Jawa dengan strategi yang dilakukan oleh para pedagang Muslim di Aceh dan Maluku. Apa perbedaan mendasar yang mempengaruhi kecepatan dan karakteristik Islam di masing-masing wilayah?</div></div>
+                <div class="assessment-question"><div class="q-text">2. (C5 - Evaluasi) "Perjanjian Giyanti (1755) adalah awal dari kehancuran kekuasaan Mataram Islam." Setujukah Anda dengan pernyataan ini? Jelaskan dengan minimal 3 argumen berbasis sejarah!</div></div>
+                <div class="assessment-question"><div class="q-text">3. (C6 - Kreativitas) Jika Anda menjadi seorang penasihat di Kesultanan Ternate pada abad ke-16, strategi apa yang akan Anda rekomendasikan untuk menghadapi persaingan dengan Portugis dan Tidore, serta mempertahankan kedaulatan rempah-rempah? Buatlah rekomendasi strategi jangka pendek dan jangka panjang!</div></div>
+                <div class="assessment-question"><div class="q-text">4. (C4 - Analisis) Analisislah bagaimana akulturasi budaya Islam dengan budaya lokal menciptakan keunikan budaya Indonesia. Berikan 4 contoh konkret (di bidang arsitektur, seni, tradisi, dan sistem sosial) yang masih bertahan hingga kini!</div></div>
+                <div class="assessment-question"><div class="q-text">5. (C5 - Evaluasi) "Nilai-nilai toleransi yang berkembang pada masa kerajaan Islam di Nusantara adalah fondasi penting bagi semangat Bhinneka Tunggal Ika." Berikan argumen Anda dengan merujuk pada contoh-contoh spesifik dari sejarah (misalnya: Walisongo, Kesultanan Banjar, atau Gowa-Tallo)!</div></div>
+            </div>
+
+            <!-- KUNCI JAWABAN -->
+            <div style="background:var(--bg-primary);border-radius:16px;padding:20px 18px;border:2px solid var(--accent);text-align:center;">
+                <p style="color:var(--text-secondary);margin-bottom:12px;"><i class="fas fa-lock" style="color:var(--accent);margin-right:8px;"></i> <strong style="color:var(--text-primary);">Kunci Jawaban</strong> dilindungi password.</p>
+                <div style="display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;">
+                    <input type="password" id="passwordInput" placeholder="Masukkan password" style="background:var(--bg-card);border:1px solid rgba(255,255,255,0.1);padding:8px 16px;border-radius:40px;color:var(--text-primary);font-size:0.9rem;width:200px;outline:none;transition:0.3s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <button onclick="toggleKunci()" style="background:var(--accent);color:#121212;border:none;padding:8px 24px;border-radius:40px;font-weight:700;font-size:0.9rem;cursor:pointer;transition:0.3s;">Lihat Kunci Jawaban</button>
+                </div>
+                <div id="kunciContainer" style="display:none;margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.05);text-align:left;">
+                    <div style="background:var(--bg-card);border-radius:10px;padding:16px;max-height:400px;overflow-y:auto;">
+                        <p style="color:var(--accent);font-weight:700;margin-bottom:8px;"><i class="fas fa-key"></i> KUNCI JAWABAN</p>
+                        <p style="color:var(--text-secondary);font-size:0.9rem;"><strong style="color:var(--accent);">A. Pilihan Ganda (30 Soal):</strong></p>
+                        <p style="color:var(--text-secondary);font-size:0.85rem;line-height:1.8;">1.B 2.C 3.A 4.B 5.C 6.B 7.B 8.B 9.B 10.B<br>11.B 12.C 13.B 14.B 15.B 16.A 17.B 18.B 19.B 20.B<br>21.A 22.B 23.C 24.B 25.B 26.B 27.B 28.B 29.B 30.B</p>
+                        <p style="color:var(--text-secondary);font-size:0.9rem;margin-top:12px;"><strong style="color:var(--accent);">B. Benar-Salah (15 Soal):</strong></p>
+                        <p style="color:var(--text-secondary);font-size:0.85rem;line-height:1.8;">1.Salah (Sunan Bonang juga) 2.Benar 3.Salah (atap tumpang) 4.Benar 5.Salah (memecah) 6.Benar 7.Salah (Sultan Suriansyah) 8.Benar 9.Salah (Aceh) 10.Benar 11.Salah (sering bersaing) 12.Benar 13.Salah (Sumatera) 14.Benar 15.Salah (ada Martabat Tujuh)</p>
+                        <p style="color:var(--text-secondary);font-size:0.9rem;margin-top:12px;"><strong style="color:var(--accent);">C. Essay HOTS — Rubrik:</strong></p>
+                        <div style="font-size:0.85rem;color:var(--text-secondary);line-height:1.8;">
+                            <p><strong>Soal 1:</strong> Bandingkan strategi (Jawa: budaya/pendidikan; Aceh/Maluku: perdagangan/perkawinan).</p>
+                            <p><strong>Soal 2:</strong> Setuju — bukti: pemecahan wilayah, melemahnya militer, intervensi VOC.</p>
+                            <p><strong>Soal 3:</strong> Strategi: aliansi lokal, benteng, diplomasi Arab/Tiongkok.</p>
+                            <p><strong>Soal 4:</strong> Contoh: atap tumpang, wayang, sekaten, pesantren.</p>
+                            <p><strong>Soal 5:</strong> Toleransi: Walisongo dengan Hindu, Banjar dengan Dayak, Gowa dengan berbagai etnis.</p>
+                        </div>
+                    </div>
+                </div>
+                <p id="passwordError" style="color:#e74c3c;font-size:0.85rem;margin-top:8px;display:none;">Password salah!</p>
+            </div>
+            <script> function toggleKunci(){ var p=document.getElementById('passwordInput').value; var c=document.getElementById('kunciContainer'); var e=document.getElementById('passwordError'); if(p==='1234567890'){c.style.display='block';e.style.display='none';document.getElementById('passwordInput').value='';}else{e.style.display='block';c.style.display='none';}} document.getElementById('passwordInput').addEventListener('keypress',function(e){if(e.key==='Enter')toggleKunci();}); </script>
+        </section>
+
+        <!-- ========== SECTION 7 : REFLEKSI ========== -->
+        <section id="section7" class="section">
+            <div class="section-header"><div class="num">07</div><h2>Refleksi Pembelajaran <small>Menyimpulkan Perjalanan Sejarah Islam</small></h2></div>
+            <div class="card" style="background:var(--bg-secondary);border:1px solid var(--accent);">
+                <h3 style="display:flex;align-items:center;gap:10px;color:var(--text-primary);"><span style="font-size:1.8rem;">🌟</span> Apa yang Kamu Dapatkan?</h3>
+                <ul class="refleksi-list">
+                    <li><span class="check">✅</span><span>Memahami 4 teori masuknya Islam dan bukti-buktinya.</span></li>
+                    <li><span class="check">✅</span><span>Mengenal peran Samudera Pasai dan Kesultanan Aceh.</span></li>
+                    <li><span class="check">✅</span><span>Mengetahui profil 9 Wali Songo dan strategi dakwahnya.</span></li>
+                    <li><span class="check">✅</span><span>Menganalisis Kerajaan Demak, Cirebon, Banten, dan Mataram.</span></li>
+                    <li><span class="check">✅</span><span>Menghargai kejayaan Gowa-Tallo, Ternate-Tidore & Jalur Rempah.</span></li>
+                    <li><span class="check">✅</span><span>Mengidentifikasi peninggalan & akulturasi Islam di Nusantara.</span></li>
+                </ul>
+            </div>
+            <div class="quote-block"><i class="fas fa-book-open" style="color:var(--accent);margin-right:10px;"></i> 📖 Pesan Hari Ini
+                <blockquote style="margin:8px 0 0 0;padding:0;border:none;background:transparent;color:var(--text-secondary);">"Sejarah peradaban Islam di Indonesia adalah bukti bahwa keberagaman adalah rahmat, toleransi adalah kekuatan, dan persatuan adalah kunci kejayaan bangsa."<span class="author">— Refleksi Sejarawan</span></blockquote>
+            </div>
+            <div class="celebration-box"><h3>🎉 Selamat!</h3><p>Kamu telah menyelesaikan modul <strong>Perkembangan Kerajaan Islam di Indonesia</strong>.</p></div>
+        </section>
+
+        <!-- ========== SECTION 8 : REFERENSI ========== -->
+        <section id="section8" class="section">
+            <div class="section-header"><div class="num">08</div><h2>Referensi <small>Daftar Pustaka & Sumber Belajar</small></h2></div>
+            <ul class="ref-list">
+                <li><i class="fas fa-book"></i> <strong>Ricklefs, M.C.</strong> <em>Sejarah Indonesia Modern 1200-2008</em>. Jakarta: Serambi, 2008.</li>
+                <li><i class="fas fa-book"></i> <strong>Poesponegoro & Notosusanto.</strong> <em>Sejarah Nasional Indonesia Jilid II & III</em>. Jakarta: Balai Pustaka, 2008.</li>
+                <li><i class="fas fa-book"></i> <strong>Lombard, Denys.</strong> <em>Nusa Jawa: Silang Budaya</em>. Jakarta: Gramedia, 1996.</li>
+                <li><i class="fas fa-book"></i> <strong>Zuhdi, Susanto.</strong> <em>Sejarah Peradaban Islam di Nusantara</em>. Yogyakarta: Pustaka Pelajar, 2018.</li>
+                <li><i class="fas fa-file-pdf"></i> <strong>Kurikulum Merdeka:</strong> CP Sejarah Fase E-F, BSKAP Kemendikbudristek (2022).</li>
+                <li><i class="fas fa-globe"></i> <strong>Arsip Nasional RI</strong> – anri.go.id</li>
+                <li><i class="fas fa-globe"></i> <strong>Perpustakaan Nasional Digital</strong> – digital.perpusnas.go.id</li>
+            </ul>
+            <div class="footer-credit" style="text-align:center;margin-top:24px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.05);color:var(--text-secondary);">
+                <i class="fas fa-school" style="color:var(--accent);"></i> <strong style="color:var(--text-primary);">SMAN 3 KASONGAN</strong> &nbsp;·&nbsp;
+                <i class="fas fa-chalkboard-teacher" style="color:var(--accent);"></i> <strong style="color:var(--text-primary);">SYAHRANI, S.Pd</strong> &nbsp;·&nbsp; NIP. 197512172005011016
+            </div>
+        </section>
+
+        <!-- ===== NAVIGATION BUTTONS ===== -->
+        <div class="nav-buttons hidden" id="navButtons">
+            <div class="nav-group">
+                <button id="prevBtn" disabled><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                <div class="page-numbers" id="pageNumbers"></div>
+                <button id="nextBtn">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                <span class="counter" id="slideCounter">1 / 9</span>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        (function() {
+            const loader = document.getElementById('loader');
+            const percentText = document.getElementById('loaderPercent');
+            const starsContainer = document.getElementById('loaderStars');
+            for (let i = 0; i < 40; i++) {
+                const star = document.createElement('i');
+                star.className = 'fas fa-star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.fontSize = (0.4 + Math.random() * 0.8) + 'rem';
+                star.style.animationDelay = (Math.random() * 4) + 's';
+                star.style.animationDuration = (3 + Math.random() * 4) + 's';
+                starsContainer.appendChild(star);
+            }
+            const sparklesContainer = document.getElementById('loaderSparkles');
+            for (let i = 0; i < 20; i++) {
+                const sp = document.createElement('span');
+                const size = 2 + Math.random() * 5;
+                sp.style.width = size + 'px';
+                sp.style.height = size + 'px';
+                sp.style.left = Math.random() * 100 + '%';
+                sp.style.top = Math.random() * 100 + '%';
+                const tx = (Math.random() - 0.5) * 200;
+                const ty = (Math.random() - 0.5) * 200;
+                sp.style.setProperty('--tx', tx + 'px');
+                sp.style.setProperty('--ty', ty + 'px');
+                sp.style.setProperty('--tx2', (tx * 1.5) + 'px');
+                sp.style.setProperty('--ty2', (ty * 1.5) + 'px');
+                sp.style.animationDelay = (Math.random() * 2) + 's';
+                sp.style.animationDuration = (2 + Math.random() * 3) + 's';
+                sparklesContainer.appendChild(sp);
+            }
+            let progress = 0;
+            const step = 100 / (3200 / 30);
+            let intervalId = setInterval(function() {
+                progress += step;
+                if (progress > 100) progress = 100;
+                percentText.textContent = Math.round(progress) + '%';
+                if (progress >= 100) {
+                    clearInterval(intervalId);
+                    percentText.textContent = '100%';
+                    setTimeout(function() {
+                        loader.classList.add('hidden');
+                        setTimeout(function() { loader.style.display = 'none'; }, 800);
+                    }, 400);
+                }
+            }, 30);
+
+            const starContainer = document.getElementById('particleContainer');
+            const colors = ['#FF6B6B', '#FFD93D', '#6BCB77', '#4D96FF', '#FF6BD6', '#845EC2', '#FF9671', '#00C9A7', '#F9ED69',
+                '#FF5E5B', '#3B9C9C', '#B83B5E', '#2C73D2', '#FFC75F', '#00B4D8', '#F28482'
+            ];
+            const starSymbols = ['★', '✦', '✧', '⭐', '✨', '💫', '🌟'];
+            for (let i = 0; i < 30; i++) {
+                const star = document.createElement('span');
+                star.className = 'star-particle';
+                star.textContent = starSymbols[Math.floor(Math.random() * starSymbols.length)];
+                star.style.color = colors[Math.floor(Math.random() * colors.length)];
+                star.style.fontSize = (0.5 + Math.random() * 1.2) + 'rem';
+                star.style.left = (Math.random() * 100) + '%';
+                star.style.top = (Math.random() * 100) + '%';
+                const tx1 = (Math.random() - 0.5) * 600,
+                    ty1 = (Math.random() - 0.5) * 400;
+                const tx2 = (Math.random() - 0.5) * 700,
+                    ty2 = (Math.random() - 0.5) * 500;
+                const tx3 = (Math.random() - 0.5) * 500,
+                    ty3 = (Math.random() - 0.5) * 600;
+                const tx4 = (Math.random() - 0.5) * 800,
+                    ty4 = (Math.random() - 0.5) * 500;
+                star.style.setProperty('--tx1', tx1 + 'px');
+                star.style.setProperty('--ty1', ty1 + 'px');
+                star.style.setProperty('--tx2', tx2 + 'px');
+                star.style.setProperty('--ty2', ty2 + 'px');
+                star.style.setProperty('--tx3', tx3 + 'px');
+                star.style.setProperty('--ty3', ty3 + 'px');
+                star.style.setProperty('--tx4', tx4 + 'px');
+                star.style.setProperty('--ty4', ty4 + 'px');
+                star.style.animationDuration = (18 + Math.random() * 20) + 's';
+                star.style.animationDelay = (Math.random() * 8) + 's';
+                starContainer.appendChild(star);
+            }
+
+            window.openModal = function(src, caption) {
+                const modal = document.getElementById('imageModal');
+                const img = document.getElementById('modalImage');
+                const cap = document.getElementById('modalCaption');
+                img.src = src;
+                cap.textContent = caption || 'Klik di luar gambar untuk menutup';
+                modal.classList.add('active');
+            };
+            window.closeModal = function() {
+                document.getElementById('imageModal').classList.remove('active');
+            };
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeModal();
+            });
+
+            window.toggleTheme = function() {
+                document.body.classList.toggle('light-mode');
+                const icon = document.getElementById('themeIcon');
+                icon.className = document.body.classList.contains('light-mode') ? 'fas fa-sun' : 'fas fa-moon';
+            };
+
+            const total = 9;
+            let current = 0;
+            const navData = [
+                { label: 'Beranda', desc: 'Cover Modul' },
+                { label: 'Komponen', desc: 'CP, ATP, DPL, Deep Learning' },
+                { label: 'Pertemuan 1', desc: 'Teori & Sumatera' },
+                { label: 'Pertemuan 2', desc: 'Jawa & Walisongo' },
+                { label: 'Pertemuan 3', desc: 'Luar Jawa & Peninggalan' },
+                { label: 'Pengayaan', desc: 'Kerajaan Lainnya' },
+                { label: 'Asesmen HOTS', desc: '30 PG, 15 BS, 5 Essay' },
+                { label: 'Refleksi', desc: 'Menyimpulkan Materi' },
+                { label: 'Referensi', desc: 'Daftar Pustaka' }
+            ];
+
+            const quickNav = document.getElementById('quickNav');
+            navData.forEach((item, i) => {
+                const card = document.createElement('div');
+                card.className = 'quick-nav-card';
+                card.style.setProperty('--i', i);
+                card.innerHTML = `
+                    <span class="card-badge"><i class="fas fa-plus"></i></span>
+                    <span class="card-number">${i+1}</span>
+                    <div class="card-title">${item.label}</div>
+                    <div class="card-desc">${item.desc}</div>
+                `;
+                card.addEventListener('click', () => navigateTo(i));
+                quickNav.appendChild(card);
+            });
+
+            const sections = document.querySelectorAll('.section');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const counter = document.getElementById('slideCounter');
+            const progressBar = document.getElementById('progressBar');
+            const navButtons = document.getElementById('navButtons');
+            const pageNumbers = document.getElementById('pageNumbers');
+
+            function updateUI(index) {
+                sections.forEach((el, i) => el.classList.toggle('active', i === index));
+                current = index;
+                pageNumbers.innerHTML = '';
+                for (let i = 0; i < total; i++) {
+                    const a = document.createElement('a');
+                    a.href = '#';
+                    a.textContent = i + 1;
+                    a.classList.toggle('active', i === index);
+                    a.addEventListener('click', (e) => { e.preventDefault();
+                        navigateTo(i); });
+                    pageNumbers.appendChild(a);
+                }
+                prevBtn.disabled = index === 0;
+                nextBtn.disabled = index === total - 1;
+                counter.textContent = (index + 1) + ' / ' + total;
+                progressBar.style.width = ((index + 1) / total * 100) + '%';
+                if (index === 0) navButtons.classList.add('hidden');
+                else navButtons.classList.remove('hidden');
+                if (index === total - 1) nextBtn.style.display = 'none';
+                else nextBtn.style.display = 'flex';
+                document.getElementById('mainContent').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            window.navigateTo = function(index) {
+                if (index >= 0 && index < total && index !== current) updateUI(index);
+            };
+
+            prevBtn.addEventListener('click', () => { if (current > 0) updateUI(current - 1); });
+            nextBtn.addEventListener('click', () => { if (current < total - 1) updateUI(current + 1); });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); if (current < total -
+                        1) updateUI(current + 1); }
+                if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); if (current > 0) updateUI(
+                        current - 1); }
+                if (e.key === 'Home' && !e.ctrlKey && !e.metaKey) { e.preventDefault();
+                    navigateTo(0); }
+                if (e.key === 'End' && !e.ctrlKey && !e.metaKey) { e.preventDefault();
+                    navigateTo(total - 1); }
+            });
+
+            window.toggleAccordion = function(header) {
+                const item = header.closest('.accordion-item');
+                if (item) item.classList.toggle('open');
+            };
+
+            updateUI(0);
+        })();
+    </script>
+</body>
+</html>
