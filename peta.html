@@ -2102,7 +2102,7 @@
                     </div>
                 </div>
             </div>
-            <!-- ===== AKHIR TAMBAHAN MATERI ===== -->
+            <!-- ===== AKHIR TAMBAHAN MATERI PERTEMUAN 1 ===== -->
 
             <!-- MINI QUIZ -->
             <div class="mini-quiz reveal">
@@ -2199,7 +2199,7 @@
                 </div>
             </div>
 
-            <!-- MATERI A. PROYEKSI -->
+            <!-- MATERI A. PROYEKSI (PENJELASAN LENGKAP) -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
                     <h4>A. Proyeksi Peta <span class="local-badge">3 Jenis Utama</span></h4>
@@ -2207,27 +2207,52 @@
                 </div>
                 <div class="detail-body">
                     <div class="detail-explanation">
-                        <p>Proyeksi peta adalah <span class="highlight">cara memindahkan permukaan bumi yang bulat ke bidang datar</span>. Tidak ada proyeksi sempurna; setiap proyeksi memiliki distorsi.</p>
+                        <p><strong>Proyeksi peta</strong> adalah <span class="highlight">teknik memindahkan permukaan bumi yang bulat (3D) ke bidang datar (2D)</span>. Karena bumi berbentuk bola (geoid), memindahkannya ke bidang datar selalu menyebabkan <strong>distorsi (kesalahan)</strong> pada bentuk, luas, jarak, atau arah.</p>
+                        <p>Tidak ada proyeksi yang sempurna. Oleh karena itu, pembuat peta harus memilih jenis proyeksi berdasarkan <strong>tujuan</strong> penggunaan peta.</p>
                     </div>
-                    <div class="table-wrap">
-                        <table>
-                            <thead><tr><th>Jenis Proyeksi</th><th>Bidang</th><th>Cocok untuk</th><th>Contoh</th></tr></thead>
-                            <tbody>
-                                <tr><td><strong>Silinder</strong></td><td>Tabung</td><td>Ekuator</td><td>Proyeksi Mercator</td></tr>
-                                <tr><td><strong>Kerucut</strong></td><td>Kerucut</td><td>Lintang sedang (30°–60°)</td><td>Proyeksi Lambert</td></tr>
-                                <tr><td><strong>Azimuthal</strong></td><td>Bidang datar</td><td>Kutub</td><td>Proyeksi Gnomonic</td></tr>
-                            </tbody>
-                        </table>
+
+                    <h5 style="color:#a29bfe; font-weight:700; font-size:0.95rem; margin-top:12px;">1. Proyeksi Silinder (Cylindrical)</h5>
+                    <div style="background:rgba(0,206,201,0.03); border-radius:10px; padding:12px 16px; border-left:4px solid #00cec9; margin-bottom:10px;">
+                        <p style="font-size:0.92rem; color:rgba(255,255,255,0.8); font-weight:400;">
+                            <strong>Bidang proyeksi:</strong> Tabung (silinder) yang melingkupi bumi dan menyentuh di garis ekuator.<br>
+                            <strong>Cocok untuk:</strong> Daerah di sekitar <strong>ekuator (khatulistiwa)</strong>, karena distorsi minimum di ekuator dan membesar ke arah kutub.<br>
+                            <strong>Contoh terkenal:</strong> <em>Proyeksi Mercator</em> – digunakan untuk navigasi laut karena sudut/arahnya akurat (conform), tetapi luas di kutub sangat membesar (Greenland terlihat sebesar Afrika).<br>
+                            <strong>Kelebihan:</strong> Arah (azimuth) dan bentuk tetap di sekitar ekuator.<br>
+                            <strong>Kekurangan:</strong> Distorsi luas yang parah di lintang tinggi.
+                        </p>
                     </div>
-                    <div style="background:rgba(253,203,110,0.03); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #fdcb6e;">
+
+                    <h5 style="color:#a29bfe; font-weight:700; font-size:0.95rem; margin-top:12px;">2. Proyeksi Kerucut (Conical)</h5>
+                    <div style="background:rgba(253,121,168,0.03); border-radius:10px; padding:12px 16px; border-left:4px solid #fd79a8; margin-bottom:10px;">
+                        <p style="font-size:0.92rem; color:rgba(255,255,255,0.8); font-weight:400;">
+                            <strong>Bidang proyeksi:</strong> Kerucut yang ditempelkan pada bumi di satu atau dua garis paralel (lintang standar).<br>
+                            <strong>Cocok untuk:</strong> Wilayah <strong>lintang sedang (30°–60° LU/LS)</strong>, seperti Amerika Serikat, Eropa, dan sebagian besar Indonesia bagian utara.<br>
+                            <strong>Contoh:</strong> <em>Proyeksi Lambert (Conformal Conic)</em> – sering digunakan untuk peta penerbangan dan peta negara di lintang sedang.<br>
+                            <strong>Kelebihan:</strong> Distorsi kecil di area lintang sedang.<br>
+                            <strong>Kekurangan:</strong> Tidak cocok untuk wilayah ekuator atau kutub.
+                        </p>
+                    </div>
+
+                    <h5 style="color:#a29bfe; font-weight:700; font-size:0.95rem; margin-top:12px;">3. Proyeksi Azimuthal (Zenithal / Planar)</h5>
+                    <div style="background:rgba(253,203,110,0.03); border-radius:10px; padding:12px 16px; border-left:4px solid #fdcb6e;">
+                        <p style="font-size:0.92rem; color:rgba(255,255,255,0.8); font-weight:400;">
+                            <strong>Bidang proyeksi:</strong> Bidang datar yang menyentuh bumi di satu titik (biasanya kutub).<br>
+                            <strong>Cocok untuk:</strong> Daerah <strong>kutub (Arktik dan Antarktika)</strong> serta peta hemisfer (belahan bumi).<br>
+                            <strong>Contoh:</strong> <em>Proyeksi Gnomonic</em> – semua garis lurus adalah jalur terpendek (great circle), digunakan untuk navigasi jarak jauh.<br>
+                            <strong>Kelebihan:</strong> Arah dari titik pusat sangat akurat.<br>
+                            <strong>Kekurangan:</strong> Distorsi besar di luar titik pusat.
+                        </p>
+                    </div>
+
+                    <div style="background:rgba(108,92,231,0.03); border-radius:10px; padding:10px 14px; margin-top:12px; border-left:3px solid #6c5ce7;">
                         <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">
-                            <strong style="color:rgba(255,255,255,0.7); font-weight:600;">Tujuan Proyeksi:</strong> Mempertahankan bentuk (conform), luas (equivalent), atau jarak (equidistance).
+                            <strong>💡 Catatan Guru:</strong> Tanyakan kepada siswa, "Menurut kalian, proyeksi apa yang digunakan oleh Google Maps?" (Jawaban: Web Mercator – varian silinder yang mengutamakan bentuk untuk kenyamanan navigasi digital).
                         </p>
                     </div>
                 </div>
             </div>
 
-            <!-- MATERI B. SKALA -->
+            <!-- MATERI B. SKALA (PENJELASAN LENGKAP) -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
                     <h4>B. Skala Peta <span class="local-badge">Angka &amp; Garis</span></h4>
@@ -2235,22 +2260,24 @@
                 </div>
                 <div class="detail-body">
                     <div class="detail-explanation">
-                        <p>Skala adalah <span class="highlight">perbandingan jarak di peta dengan jarak sebenarnya</span>.</p>
+                        <p><strong>Skala</strong> adalah <span class="highlight">perbandingan jarak di peta dengan jarak sebenarnya di permukaan bumi</span>. Skala menentukan tingkat detail informasi yang disajikan.</p>
                     </div>
-                    <div style="display:grid; gap:10px; margin-top:8px;">
-                        <div style="background:rgba(0,206,201,0.03); border-radius:10px; padding:12px 16px; border-left:4px solid #00cec9;">
-                            <h4 style="color:#00cec9; font-size:0.9rem; font-weight:700;">Skala Angka</h4>
-                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Contoh: <strong>1:100.000</strong> (1 cm di peta = 1 km di lapangan).</p>
-                        </div>
-                        <div style="background:rgba(253,203,110,0.03); border-radius:10px; padding:12px 16px; border-left:4px solid #fdcb6e;">
-                            <h4 style="color:#fdcb6e; font-size:0.9rem; font-weight:700;">Skala Garis</h4>
-                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Garis dengan ukuran yang menunjukkan jarak sebenarnya.</p>
-                        </div>
+
+                    <h5 style="color:#a29bfe; font-weight:700; font-size:0.95rem; margin-top:8px;">A. Skala Angka (Numerik)</h5>
+                    <p style="font-size:0.92rem; color:rgba(255,255,255,0.75); font-weight:400;">Ditulis dalam bentuk pecahan atau rasio, misalnya <strong>1 : 100.000</strong>. Artinya <strong>1 cm di peta = 100.000 cm (1 km) di lapangan</strong>.</p>
+
+                    <h5 style="color:#a29bfe; font-weight:700; font-size:0.95rem; margin-top:12px;">B. Skala Garis (Grafis)</h5>
+                    <p style="font-size:0.92rem; color:rgba(255,255,255,0.75); font-weight:400;">Berupa garis lurus yang dibagi menjadi segmen-segmen, masing-masing mewakili jarak tertentu di lapangan. Kelebihannya: tetap berlaku meskipun peta diperbesar/diperkecil (fotokopi).</p>
+
+                    <div style="background:rgba(253,203,110,0.03); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #fdcb6e;">
+                        <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">
+                            <strong>🔑 Kunci:</strong> Semakin besar angka skala (misal 1:10.000), semakin kecil area yang digambarkan, tetapi detailnya lebih tinggi (peta kota). Semakin kecil angka skala (1:1.000.000), semakin luas area, tetapi detailnya berkurang (peta dunia).
+                        </p>
                     </div>
                 </div>
             </div>
 
-            <!-- MATERI C. SIMBOL -->
+            <!-- MATERI C. SIMBOL (PENJELASAN LENGKAP) -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
                     <h4>C. Simbol Peta <span class="local-badge">Titik, Garis, Area</span></h4>
@@ -2258,20 +2285,201 @@
                 </div>
                 <div class="detail-body">
                     <div class="detail-explanation">
-                        <p>Simbol adalah <span class="highlight">tanda yang mewakili kenampakan</span> di permukaan bumi.</p>
+                        <p><strong>Simbol peta</strong> adalah <span class="highlight">tanda-tanda grafis yang mewakili kenampakan alam atau buatan manusia</span> di permukaan bumi. Simbol membantu pembaca peta memahami informasi secara cepat tanpa harus membaca teks panjang.</p>
                     </div>
-                    <div class="table-wrap">
-                        <table>
-                            <thead><tr><th>Jenis Simbol</th><th>Contoh</th><th>Fungsi</th></tr></thead>
-                            <tbody>
-                                <tr><td><strong>Titik</strong></td><td>Kota (●), gunung (▲), bandara (✈)</td><td>Menunjukkan lokasi pasti</td></tr>
-                                <tr><td><strong>Garis</strong></td><td>Jalan (═), sungai (≈), rel (┅)</td><td>Menunjukkan arah, rute, batas</td></tr>
-                                <tr><td><strong>Area</strong></td><td>Hutan (🌳), danau (💧), permukiman (🏘️)</td><td>Menunjukkan sebaran/luas wilayah</td></tr>
-                            </tbody>
-                        </table>
+
+                    <div style="display:grid; gap:10px; margin-top:8px;">
+                        <div style="background:rgba(0,206,201,0.03); border-radius:10px; padding:12px 16px; border-left:4px solid #00cec9;">
+                            <h4 style="color:#00cec9; font-size:0.9rem; font-weight:700;">Simbol Titik (Point Symbols)</h4>
+                            <ul style="font-size:0.88rem; padding-left:16px; color:rgba(255,255,255,0.6); line-height:2.2;">
+                                <li><strong>Contoh:</strong> 🌋 Gunung, 🏙️ Kota, ✈️ Bandara, ⚓ Pelabuhan.</li>
+                                <li><strong>Fungsi:</strong> Menunjukkan lokasi yang bersifat spesifik dan tidak memanjang.</li>
+                            </ul>
+                        </div>
+                        <div style="background:rgba(253,121,168,0.03); border-radius:10px; padding:12px 16px; border-left:4px solid #fd79a8;">
+                            <h4 style="color:#fd79a8; font-size:0.9rem; font-weight:700;">Simbol Garis (Line Symbols)</h4>
+                            <ul style="font-size:0.88rem; padding-left:16px; color:rgba(255,255,255,0.6); line-height:2.2;">
+                                <li><strong>Contoh:</strong> 🛣️ Jalan, 🌊 Sungai, 🚂 Rel Kereta Api, 📏 Batas Wilayah.</li>
+                                <li><strong>Fungsi:</strong> Menunjukkan objek yang memiliki dimensi memanjang dan menghubungkan dua titik.</li>
+                            </ul>
+                        </div>
+                        <div style="background:rgba(253,203,110,0.03); border-radius:10px; padding:12px 16px; border-left:4px solid #fdcb6e;">
+                            <h4 style="color:#fdcb6e; font-size:0.9rem; font-weight:700;">Simbol Area (Area/Polygon Symbols)</h4>
+                            <ul style="font-size:0.88rem; padding-left:16px; color:rgba(255,255,255,0.6); line-height:2.2;">
+                                <li><strong>Contoh:</strong> 🌳 Hutan, 🏞️ Danau, 🏘️ Pemukiman, 🏭 Kawasan Industri.</li>
+                                <li><strong>Fungsi:</strong> Menunjukkan sebaran atau luasan suatu fenomena di permukaan bumi.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <!-- ===== TAMBAHAN MATERI PERTEMUAN 2 (REKOMENDASI) ===== -->
+            <!-- D. SISTEM KOORDINAT PETA -->
+            <div class="materi-detail reveal">
+                <div class="detail-header" onclick="toggleDetail(this)">
+                    <h4>D. Sistem Koordinat Peta <span class="local-badge">Lintang &amp; Bujur</span></h4>
+                    <span class="fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;">▼</span>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-explanation">
+                        <p><strong>Sistem koordinat</strong> adalah <span class="highlight">jaring-jaring garis khayal</span> yang memudahkan penentuan posisi absolut suatu tempat di bumi. Dua komponen utamanya adalah garis lintang dan garis bujur.</p>
+                    </div>
+
+                    <h5 style="color:#a29bfe; font-weight:700; font-size:0.95rem; margin-top:8px;">A. Garis Lintang (Latitude / Paralel)</h5>
+                    <p style="font-size:0.92rem; color:rgba(255,255,255,0.75); font-weight:400;">
+                        Garis horizontal yang melingkari bumi sejajar dengan ekuator. <strong>Ekuator (0°)</strong> membagi bumi menjadi Belahan Bumi Utara (LU) dan Belahan Bumi Selatan (LS). Nilai lintang berkisar dari <strong>0° hingga 90° LU/LS</strong>.
+                    </p>
+                    <ul style="font-size:0.88rem; padding-left:20px; color:rgba(255,255,255,0.5); line-height:2.2;">
+                        <li><strong>Garis Balik Utara (23,5° LU)</strong> dan <strong>Garis Balik Selatan (23,5° LS)</strong> – batas wilayah tropis.</li>
+                        <li><strong>Lingkar Arktik (66,5° LU)</strong> dan <strong>Lingkar Antarktik (66,5° LS)</strong> – batas wilayah kutub.</li>
+                    </ul>
+
+                    <h5 style="color:#a29bfe; font-weight:700; font-size:0.95rem; margin-top:12px;">B. Garis Bujur (Longitude / Meridian)</h5>
+                    <p style="font-size:0.92rem; color:rgba(255,255,255,0.75); font-weight:400;">
+                        Garis vertikal yang menghubungkan Kutub Utara dan Kutub Selatan. <strong>Greenwich (0°)</strong> di Inggris ditetapkan sebagai garis bujur utama (Prime Meridian). Nilai bujur berkisar dari <strong>0° hingga 180° BT (Bujur Timur)</strong> dan <strong>0° hingga 180° BB (Bujur Barat)</strong>.
+                    </p>
+                    <ul style="font-size:0.88rem; padding-left:20px; color:rgba(255,255,255,0.5); line-height:2.2;">
+                        <li><strong>Garis Tanggal Internasional</strong> terletak di sekitar 180° BT/BB.</li>
+                        <li>Setiap perbedaan 15° bujur = perbedaan waktu 1 jam.</li>
+                    </ul>
+
+                    <div style="background:rgba(108,92,231,0.03); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #6c5ce7;">
+                        <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">
+                            <strong>💡 Aplikasi:</strong> Koordinat GPS menggunakan lintang dan bujur (misal: -1.500° LU, 112.500° BT) untuk menunjukkan lokasi persis di peta digital seperti Google Maps.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- E. PERHITUNGAN SKALA -->
+            <div class="materi-detail reveal">
+                <div class="detail-header" onclick="toggleDetail(this)">
+                    <h4>E. Perhitungan Skala <span class="local-badge">Rumus &amp; Konversi</span></h4>
+                    <span class="fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;">▼</span>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-explanation">
+                        <p>Kemampuan menghitung skala adalah keterampilan <span class="highlight">numerik dasar</span> yang wajib dikuasai dalam geografi. Berikut 3 rumus utama:</p>
+                    </div>
+
+                    <div style="display:grid; gap:12px; margin-top:8px;">
+                        <div style="background:rgba(20,26,46,0.5); border-radius:10px; padding:14px 16px; border-left:4px solid #fdcb6e;">
+                            <h4 style="color:#fdcb6e; font-size:0.9rem; font-weight:700;">Rumus 1: Mencari Jarak Sebenarnya</h4>
+                            <p style="font-size:0.95rem; color:rgba(255,255,255,0.85); font-weight:500; font-family: monospace; background:rgba(0,0,0,0.3); padding:8px 12px; border-radius:6px;">
+                                Jarak Sebenarnya = Jarak pada Peta ÷ Skala
+                            </p>
+                            <p style="font-size:0.85rem; color:rgba(255,255,255,0.6); font-weight:400; margin-top:4px;">
+                                <strong>Contoh:</strong> Jarak kota A-B di peta = 4 cm, skala 1:250.000.<br>
+                                → 4 ÷ (1/250.000) = 4 × 250.000 = 1.000.000 cm = <strong>10 km</strong>.
+                            </p>
+                        </div>
+                        <div style="background:rgba(20,26,46,0.5); border-radius:10px; padding:14px 16px; border-left:4px solid #00cec9;">
+                            <h4 style="color:#00cec9; font-size:0.9rem; font-weight:700;">Rumus 2: Mencari Skala</h4>
+                            <p style="font-size:0.95rem; color:rgba(255,255,255,0.85); font-weight:500; font-family: monospace; background:rgba(0,0,0,0.3); padding:8px 12px; border-radius:6px;">
+                                Skala = Jarak pada Peta ÷ Jarak Sebenarnya
+                            </p>
+                            <p style="font-size:0.85rem; color:rgba(255,255,255,0.6); font-weight:400; margin-top:4px;">
+                                <strong>Contoh:</strong> Jarak pada peta = 5 cm, jarak sebenarnya = 15 km (1.500.000 cm).<br>
+                                → 5 : 1.500.000 (bagi 5) = <strong>1 : 300.000</strong>.
+                            </p>
+                        </div>
+                        <div style="background:rgba(20,26,46,0.5); border-radius:10px; padding:14px 16px; border-left:4px solid #fd79a8;">
+                            <h4 style="color:#fd79a8; font-size:0.9rem; font-weight:700;">Rumus 3: Mencari Jarak pada Peta</h4>
+                            <p style="font-size:0.95rem; color:rgba(255,255,255,0.85); font-weight:500; font-family: monospace; background:rgba(0,0,0,0.3); padding:8px 12px; border-radius:6px;">
+                                Jarak Peta = Jarak Sebenarnya × Skala
+                            </p>
+                            <p style="font-size:0.85rem; color:rgba(255,255,255,0.6); font-weight:400; margin-top:4px;">
+                                <strong>Contoh:</strong> Jarak sebenarnya = 12 km (1.200.000 cm), skala 1:200.000.<br>
+                                → 1.200.000 × (1/200.000) = <strong>6 cm</strong>.
+                            </p>
+                        </div>
+                    </div>
+                    <div style="background:rgba(253,121,168,0.03); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #fd79a8;">
+                        <p style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400;">
+                            <strong>⚠️ Perhatikan satuan!</strong> Pastikan jarak sebenarnya dalam satuan cm sebelum menghitung. <br>1 km = 100.000 cm.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- F. WARNA DAN TIPOGRAFI PETA -->
+            <div class="materi-detail reveal">
+                <div class="detail-header" onclick="toggleDetail(this)">
+                    <h4>F. Warna &amp; Tipografi Peta <span class="local-badge">Simbol Visual</span></h4>
+                    <span class="fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;">▼</span>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-explanation">
+                        <p><span class="highlight">Warna dan jenis huruf (tipografi)</span> adalah elemen estetika sekaligus fungsional yang membuat peta mudah dibaca dan informatif.</p>
+                    </div>
+
+                    <h5 style="color:#a29bfe; font-weight:700; font-size:0.95rem; margin-top:8px;">A. Makna Warna pada Peta Umum</h5>
+                    <ul style="font-size:0.9rem; padding-left:20px; color:rgba(255,255,255,0.7); line-height:2.4;">
+                        <li><span style="color:#3498db; font-weight:700;">🔵 Biru</span> – perairan (laut, danau, sungai, waduk).</li>
+                        <li><span style="color:#2ecc71; font-weight:700;">🟢 Hijau</span> – dataran rendah, vegetasi, hutan, lahan basah.</li>
+                        <li><span style="color:#e67e22; font-weight:700;">🟠 Cokelat / Oranye</span> – dataran tinggi, perbukitan, pegunungan (biasanya digunakan pada peta kontur).</li>
+                        <li><span style="color:#e74c3c; font-weight:700;">🔴 Merah</span> – jalan utama, pemukiman padat, batas administrasi, objek penting.</li>
+                        <li><span style="color:#f1c40f; font-weight:700;">🟡 Kuning</span> – lahan pertanian, padang rumput, gurun, atau daerah dengan vegetasi jarang.</li>
+                    </ul>
+
+                    <h5 style="color:#a29bfe; font-weight:700; font-size:0.95rem; margin-top:12px;">B. Tipografi (Jenis Huruf)</h5>
+                    <ul style="font-size:0.9rem; padding-left:20px; color:rgba(255,255,255,0.7); line-height:2.4;">
+                        <li><strong>🔤 Huruf Kapital (BESAR)</strong> – biasanya untuk nama kota besar, ibu kota negara, atau provinsi (hierarki tertinggi).</li>
+                        <li><strong>🔤 Huruf Miring (Italic)</strong> – digunakan untuk nama objek alam seperti gunung, sungai, dan danau.</li>
+                        <li><strong>🔤 Huruf Tegak (Roman)</strong> – untuk nama jalan, wilayah administratif, dan objek buatan manusia.</li>
+                        <li><strong>📏 Ukuran Huruf</strong> – semakin besar huruf, semakin penting objek tersebut.</li>
+                    </ul>
+                    <div style="background:rgba(0,206,201,0.03); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #00cec9;">
+                        <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">
+                            <strong>💡 Aktivitas:</strong> Amati peta di dinding kelas. Identifikasi 3 warna dan 3 jenis huruf yang kalian temukan! Diskusikan maknanya.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- G. SIFAT PROYEKSI -->
+            <div class="materi-detail reveal">
+                <div class="detail-header" onclick="toggleDetail(this)">
+                    <h4>G. Sifat Proyeksi Peta <span class="local-badge">Conform, Equivalent, Equidistant, Azimuthal</span></h4>
+                    <span class="fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;">▼</span>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-explanation">
+                        <p>Setiap proyeksi peta memiliki <span class="highlight">sifat (properti)</span> yang dipertahankan, tetapi mengorbankan sifat lainnya. Pemahaman ini penting agar kita bisa memilih peta yang tepat untuk kebutuhan tertentu.</p>
+                    </div>
+
+                    <div style="display:grid; gap:10px; margin-top:8px;">
+                        <div style="background:rgba(108,92,231,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #6c5ce7;">
+                            <h4 style="color:#a29bfe; font-size:0.9rem; font-weight:700;">1. Conform (Bentuk Tetap)</h4>
+                            <p style="font-size:0.88rem; color:rgba(255,255,255,0.7); font-weight:400;">Mempertahankan <strong>bentuk dan sudut</strong> suatu wilayah. Sangat baik untuk navigasi (arah akurat). Contoh: <strong>Proyeksi Mercator</strong>.<br>
+                            <span style="color:#fd79a8;">Kekurangan:</span> Luas wilayah menjadi sangat terdistorsi (Greenland terlihat lebih besar dari Afrika).</p>
+                        </div>
+                        <div style="background:rgba(0,206,201,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #00cec9;">
+                            <h4 style="color:#00cec9; font-size:0.9rem; font-weight:700;">2. Equivalent (Luas Tetap)</h4>
+                            <p style="font-size:0.88rem; color:rgba(255,255,255,0.7); font-weight:400;">Mempertahankan <strong>perbandingan luas</strong> yang proporsional. Sangat baik untuk peta tematik (persebaran penduduk, sumber daya alam). Contoh: <strong>Proyeksi Peters</strong>.<br>
+                            <span style="color:#fd79a8;">Kekurangan:</span> Bentuk wilayah menjadi tidak proporsional (memanjang/melebar).</p>
+                        </div>
+                        <div style="background:rgba(253,203,110,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #fdcb6e;">
+                            <h4 style="color:#fdcb6e; font-size:0.9rem; font-weight:700;">3. Equidistant (Jarak Tetap)</h4>
+                            <p style="font-size:0.88rem; color:rgba(255,255,255,0.7); font-weight:400;">Mempertahankan <strong>jarak dari titik pusat</strong> yang benar. Contoh: Peta navigasi yang menghitung jarak dari stasiun radio.<br>
+                            <span style="color:#fd79a8;">Kekurangan:</span> Bentuk dan luas terdistorsi di luar titik pusat.</p>
+                        </div>
+                        <div style="background:rgba(253,121,168,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #fd79a8;">
+                            <h4 style="color:#fd79a8; font-size:0.9rem; font-weight:700;">4. Azimuthal (Arah Tetap)</h4>
+                            <p style="font-size:0.88rem; color:rgba(255,255,255,0.7); font-weight:400;">Mempertahankan <strong>arah (azimuth) dari titik pusat</strong>. Sangat baik untuk peta komunikasi dan navigasi kutub. Contoh: <strong>Proyeksi Gnomonic</strong>.<br>
+                            <span style="color:#fd79a8;">Kekurangan:</span> Distorsi besar pada jarak dan luas saat menjauh dari pusat.</p>
+                        </div>
+                    </div>
+
+                    <div style="background:rgba(253,203,110,0.03); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #fdcb6e;">
+                        <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">
+                            <strong>🧠 Tantangan Berpikir:</strong> Mengapa peta dunia yang kita lihat di sekolah biasanya menggunakan proyeksi Mercator (Conform) padahal luasnya salah? (Jawaban: karena secara historis digunakan untuk navigasi laut, dan bentuknya yang familiar membuatnya tetap populer, meskipun saat ini banyak kritik).
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- ===== AKHIR TAMBAHAN MATERI PERTEMUAN 2 ===== -->
 
             <!-- MINI QUIZ -->
             <div class="mini-quiz reveal">
