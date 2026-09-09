@@ -18,18 +18,12 @@
 
         :root {
             --primary: #1e7a4a;
-            /* hijau tua segar */
             --primary-light: #3aaa6a;
-            /* hijau sedang */
             --primary-dark: #145b34;
-            /* hijau gelap */
             --secondary: #e67e22;
             --accent: #2ecc71;
-            /* hijau terang */
             --gold: #f1c40f;
-            /* kuning cerah */
             --bg: #f0f7f2;
-            /* latar hijau sangat pucat */
             --card-bg: #ffffff;
             --text: #1a2a1f;
             --text-light: #2d4a38;
@@ -262,13 +256,14 @@
             align-items: center;
             gap: 10px;
             font-weight: 800;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             color: var(--primary);
             text-decoration: none;
+            letter-spacing: -0.5px;
         }
         .site-header .brand i {
             color: var(--gold);
-            font-size: 1.3rem;
+            font-size: 1.5rem;
         }
         .site-header .brand span {
             color: var(--gold);
@@ -706,40 +701,44 @@
         }
 
         /* ============================================================
-                   QUICK NAV (compass-style)
+                   QUICK NAV – tampilan "buah apel" tanpa ikon
                    ============================================================ */
         .quick-nav {
-            background: var(--card-bg);
+            background: transparent;
             border-radius: var(--radius);
-            padding: 24px 20px;
-            box-shadow: var(--shadow);
+            padding: 0;
+            box-shadow: none;
             margin-top: 20px;
-            border: 1px solid rgba(0, 0, 0, 0.02);
+            border: none;
         }
         .quick-nav .nav-title {
             display: flex;
             align-items: center;
             gap: 12px;
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 1.2rem;
             color: var(--text);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            border-bottom: none;
             padding-bottom: 14px;
             margin-bottom: 18px;
+            justify-content: center;
         }
         .quick-nav .nav-title i {
             color: var(--gold);
+            font-size: 1.8rem;
         }
+
         .quick-nav .nav-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-            gap: 8px;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 20px 16px;
         }
+
+        /* Kartu apel – bentuk bulat dengan lekukan atas */
         .quick-nav .nav-item {
-            background: rgba(30, 122, 74, 0.02);
-            border: 1px solid rgba(30, 122, 74, 0.04);
-            border-radius: var(--radius-sm);
-            padding: 12px 8px;
+            background: linear-gradient(145deg, #f0f9f0, #d4e8d4);
+            border-radius: 40% 40% 30% 30% / 60% 60% 30% 30%;
+            padding: 28px 12px 20px;
             text-align: center;
             cursor: pointer;
             transition: all var(--transition);
@@ -748,25 +747,119 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4px;
-            font-weight: 600;
-            font-size: 0.85rem;
+            justify-content: center;
+            gap: 6px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            border: 2px solid rgba(30, 122, 74, 0.08);
+            box-shadow: 0 8px 24px rgba(30, 122, 74, 0.06);
+            position: relative;
+            min-height: 120px;
+            /* efek kilap seperti apel */
+            background-image: radial-gradient(circle at 30% 10%, rgba(255, 255, 255, 0.5) 0%, transparent 50%),
+                linear-gradient(145deg, #d4f0d4, #a8d8a8);
+            background-blend-mode: overlay, normal;
+            border-top: 3px solid rgba(255, 200, 200, 0.3);
+            border-bottom: 3px solid rgba(30, 122, 74, 0.15);
+        }
+        /* Tangkai apel (pseudo) */
+        .quick-nav .nav-item::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 18px;
+            background: linear-gradient(135deg, #6b4f3c, #4d3425);
+            border-radius: 40% 40% 20% 20% / 60% 60% 20% 20%;
+            opacity: 0.5;
+            transition: all 0.3s ease;
+        }
+        .quick-nav .nav-item::after {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 10px;
+            background: radial-gradient(circle, #8bc34a, #558b2f);
+            border-radius: 50%;
+            opacity: 0.2;
+            filter: blur(2px);
+            transition: all 0.3s ease;
+        }
+
+        .quick-nav .nav-item .label {
+            position: relative;
+            z-index: 2;
+            font-weight: 800;
+            color: var(--text);
+            letter-spacing: 0.5px;
+            font-size: 0.9rem;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+            margin-top: 4px;
         }
         .quick-nav .nav-item .num {
-            font-size: 1.2rem;
+            position: absolute;
+            top: 12px;
+            right: 14px;
+            font-size: 0.75rem;
             font-weight: 900;
-            color: var(--primary);
-            background: rgba(30, 122, 74, 0.06);
-            padding: 0 12px;
+            color: rgba(30, 122, 74, 0.4);
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(4px);
+            padding: 2px 12px;
             border-radius: 30px;
-            line-height: 1.8;
-            min-width: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 2;
+            letter-spacing: 0.5px;
         }
+
+        /* Warna berbeda tiap kartu (gradasi apel) */
+        .quick-nav .nav-item:nth-child(1) {
+            background-image: radial-gradient(circle at 30% 10%, rgba(255, 255, 255, 0.6) 0%, transparent 50%),
+                linear-gradient(145deg, #c8e6c9, #81c784);
+        }
+        .quick-nav .nav-item:nth-child(2) {
+            background-image: radial-gradient(circle at 30% 10%, rgba(255, 255, 255, 0.5) 0%, transparent 50%),
+                linear-gradient(145deg, #dcedc8, #aed581);
+        }
+        .quick-nav .nav-item:nth-child(3) {
+            background-image: radial-gradient(circle at 30% 10%, rgba(255, 255, 255, 0.5) 0%, transparent 50%),
+                linear-gradient(145deg, #e1f5fe, #81d4fa);
+        }
+        .quick-nav .nav-item:nth-child(4) {
+            background-image: radial-gradient(circle at 30% 10%, rgba(255, 255, 255, 0.5) 0%, transparent 50%),
+                linear-gradient(145deg, #f3e5f5, #ce93d8);
+        }
+        .quick-nav .nav-item:nth-child(5) {
+            background-image: radial-gradient(circle at 30% 10%, rgba(255, 255, 255, 0.5) 0%, transparent 50%),
+                linear-gradient(145deg, #fff3e0, #ffb74d);
+        }
+        .quick-nav .nav-item:nth-child(6) {
+            background-image: radial-gradient(circle at 30% 10%, rgba(255, 255, 255, 0.5) 0%, transparent 50%),
+                linear-gradient(145deg, #fbe9e7, #ef9a9a);
+        }
+        .quick-nav .nav-item:nth-child(7) {
+            background-image: radial-gradient(circle at 30% 10%, rgba(255, 255, 255, 0.5) 0%, transparent 50%),
+                linear-gradient(145deg, #e8eaf6, #9fa8da);
+        }
+
         .quick-nav .nav-item:hover {
-            background: rgba(30, 122, 74, 0.06);
-            transform: translateY(-4px);
-            border-color: var(--primary);
-            box-shadow: 0 8px 24px rgba(30, 122, 74, 0.06);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 48px rgba(30, 122, 74, 0.15);
+            border-color: var(--primary-light);
+            background-blend-mode: overlay, normal;
+            filter: brightness(1.05);
+        }
+        .quick-nav .nav-item:hover::before {
+            opacity: 0.8;
+            transform: translateX(-50%) rotate(-10deg) scale(1.1);
+        }
+        .quick-nav .nav-item:active {
+            transform: scale(0.94);
         }
 
         /* ============================================================
@@ -1613,6 +1706,14 @@
             .soal-pg .opsi {
                 grid-template-columns: 1fr 1fr;
             }
+            .quick-nav .nav-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 24px 18px;
+            }
+            .quick-nav .nav-item {
+                min-height: 140px;
+                padding: 32px 12px 24px;
+            }
         }
 
         @media (min-width: 900px) {
@@ -1638,7 +1739,12 @@
                 font-size: 2rem;
             }
             .quick-nav .nav-grid {
-                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 28px 20px;
+            }
+            .quick-nav .nav-item {
+                min-height: 160px;
+                padding: 36px 12px 28px;
             }
         }
 
@@ -1666,6 +1772,21 @@
                 height: 36px;
                 font-size: 1rem;
             }
+            .quick-nav .nav-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+                gap: 16px 12px;
+            }
+            .quick-nav .nav-item {
+                min-height: 110px;
+                padding: 24px 8px 16px;
+                font-size: 0.8rem;
+            }
+            .quick-nav .nav-item .num {
+                font-size: 0.65rem;
+                top: 8px;
+                right: 10px;
+                padding: 1px 10px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1682,15 +1803,24 @@
             }
             .quick-nav .nav-grid {
                 grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+                gap: 12px 8px;
             }
             .quick-nav .nav-item {
+                min-height: 90px;
+                padding: 18px 4px 12px;
                 font-size: 0.7rem;
-                padding: 8px 4px;
+                border-radius: 35% 35% 25% 25% / 50% 50% 25% 25%;
             }
             .quick-nav .nav-item .num {
-                font-size: 0.9rem;
-                min-width: 26px;
-                line-height: 1.6;
+                font-size: 0.55rem;
+                top: 6px;
+                right: 6px;
+                padding: 1px 8px;
+            }
+            .quick-nav .nav-item::before {
+                width: 8px;
+                height: 12px;
+                top: -4px;
             }
             .gallery-item .img-wrap img {
                 height: 150px;
@@ -1772,7 +1902,6 @@
     ============================================================ -->
     <div id="loader">
         <div class="loader-compass">
-            <!-- Lingkaran besar tambahan yang berputar -->
             <div class="loader-ring-big"></div>
             <svg viewBox="0 0 100 100">
                 <circle cx="50" cy="50" r="44" fill="none" stroke="#f1c40f" stroke-width="2.5" stroke-dasharray="8 6" opacity="0.6"/>
@@ -1790,11 +1919,11 @@
     </div>
 
     <!-- ============================================================
-    HEADER
+    HEADER – brand "GEOGRAFI"
     ============================================================ -->
     <header class="site-header" id="siteHeader">
         <a href="#" class="brand" onclick="navigateTo('section1'); return false;">
-            <i class="fas fa-map-marked-alt"></i> Peta<span>Geo</span>
+            <i class="fas fa-globe-asia"></i> GEOGRAFI
         </a>
         <nav class="nav-links" id="navLinks">
             <a onclick="navigateTo('section1')" class="active">Beranda</a>
@@ -1891,17 +2020,38 @@
                 </button>
             </div>
 
-            <!-- Quick Nav -->
+            <!-- Quick Nav – tampilan "buah apel" tanpa ikon -->
             <div class="quick-nav reveal">
-                <div class="nav-title"><i class="fas fa-compass"></i> Navigasi Cepat</div>
+                <div class="nav-title"><i class="fas fa-compass"></i> Jelajahi Materi</div>
                 <div class="nav-grid">
-                    <div class="nav-item" onclick="navigateTo('section1')"><span class="num">1</span>Beranda</div>
-                    <div class="nav-item" onclick="navigateTo('section2')"><span class="num">2</span>Pert. 1</div>
-                    <div class="nav-item" onclick="navigateTo('section3')"><span class="num">3</span>Pert. 2</div>
-                    <div class="nav-item" onclick="navigateTo('section4')"><span class="num">4</span>Pert. 3</div>
-                    <div class="nav-item" onclick="navigateTo('section5')"><span class="num">5</span>Asesmen</div>
-                    <div class="nav-item" onclick="navigateTo('section6')"><span class="num">6</span>Refleksi</div>
-                    <div class="nav-item" onclick="navigateTo('section7')"><span class="num">7</span>Referensi</div>
+                    <div class="nav-item" onclick="navigateTo('section1')">
+                        <span class="label">Beranda</span>
+                        <span class="num">01</span>
+                    </div>
+                    <div class="nav-item" onclick="navigateTo('section2')">
+                        <span class="label">Pert. 1</span>
+                        <span class="num">02</span>
+                    </div>
+                    <div class="nav-item" onclick="navigateTo('section3')">
+                        <span class="label">Pert. 2</span>
+                        <span class="num">03</span>
+                    </div>
+                    <div class="nav-item" onclick="navigateTo('section4')">
+                        <span class="label">Pert. 3</span>
+                        <span class="num">04</span>
+                    </div>
+                    <div class="nav-item" onclick="navigateTo('section5')">
+                        <span class="label">Asesmen</span>
+                        <span class="num">05</span>
+                    </div>
+                    <div class="nav-item" onclick="navigateTo('section6')">
+                        <span class="label">Refleksi</span>
+                        <span class="num">06</span>
+                    </div>
+                    <div class="nav-item" onclick="navigateTo('section7')">
+                        <span class="label">Referensi</span>
+                        <span class="num">07</span>
+                    </div>
                 </div>
             </div>
         </section>
