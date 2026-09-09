@@ -1,138 +1,2783 @@
-<!-- ===== TAMBAHAN MATERI C ===== -->
-<div class="materi-detail reveal">
-    <div class="detail-header" onclick="toggleDetail(this)">
-        <h4>C. Perbandingan Penginderaan Jauh dengan Observasi Langsung</h4>
-        <span class="fa-chevron-down" style="color:var(--text-muted); transition:transform 0.3s;">▼</span>
-    </div>
-    <div class="detail-body">
-        <div class="def-block">
-            <p style="color:var(--text-dark); font-weight:400; font-size:0.95rem;">
-                <strong style="color:var(--primary);">Observasi langsung</strong> adalah pengamatan dengan kontak fisik atau berada di lokasi objek. Sedangkan <strong style="color:var(--secondary);">penginderaan jauh</strong> dilakukan dari kejauhan tanpa kontak langsung.
-            </p>
-        </div>
-        <div class="table-wrap">
-            <table>
-                <thead><tr><th>Aspek</th><th>Penginderaan Jauh</th><th>Observasi Lapangan</th></tr></thead>
-                <tbody>
-                    <tr><td><strong>Kontak dengan Objek</strong></td><td>Tanpa kontak langsung</td><td>Kontak langsung (terjangkau)</td></tr>
-                    <tr><td><strong>Cakupan Area</strong></td><td>Luas (global hingga lokal)</td><td>Terbatas (lokal)</td></tr>
-                    <tr><td><strong>Waktu</strong></td><td>Dapat dilakukan berulang (temporal)</td><td>Bergantung pada akses lapangan</td></tr>
-                    <tr><td><strong>Biaya</strong></td><td>Mahal untuk akuisisi data awal, tetapi efisien untuk area luas</td><td>Relatif murah untuk area kecil, tetapi mahal jika luas</td></tr>
-                    <tr><td><strong>Keterbatasan</strong></td><td>Terpengaruh cuaca (citra optik), perlu interpretasi</td><td>Terbatas pada akses fisik, subjektif</td></tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="example-box">
-            <span class="label-example">📌 Contoh Kasus</span>
-            <p>Untuk memantau deforestasi di Kalimantan, penginderaan jauh (Landsat/Sentinel) lebih efektif karena area luas dan akses sulit. Observasi lapangan digunakan untuk <strong>validasi</strong> (misal: cek langsung apakah area itu benar-benar hutan atau bukan).</p>
-        </div>
-        <div style="background:var(--orange-soft); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid var(--orange);">
-            <p style="font-size:0.9rem; color:var(--text-dark); font-weight:400;">
-                <strong style="color:var(--text-dark); font-weight:600;">💡 Inti:</strong> Penginderaan jauh dan observasi lapangan adalah <strong>mitra</strong>, bukan pesaing. Keduanya saling melengkapi!
-            </p>
-        </div>
-    </div>
-</div>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes" />
+    <title>Penginderaan Jauh – Kelas X (4 Pertemuan + HOTS)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            background: #f4f9ff;
+            color: #1e293b;
+            line-height: 1.7;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
 
-<!-- ===== TAMBAHAN MATERI D ===== -->
-<div class="materi-detail reveal">
-    <div class="detail-header" onclick="toggleDetail(this)">
-        <h4>D. Kelebihan dan Kekurangan Penginderaan Jauh</h4>
-        <span class="fa-chevron-down" style="color:var(--text-muted); transition:transform 0.3s;">▼</span>
+        :root {
+            --primary: #2563eb;
+            --primary-light: #3b82f6;
+            --primary-soft: #dbeafe;
+            --secondary: #0ea5e9;
+            --accent: #8b5cf6;
+            --accent-soft: #ede9fe;
+            --green: #10b981;
+            --green-soft: #d1fae5;
+            --orange: #f59e0b;
+            --orange-soft: #fef3c7;
+            --rose: #f43f5e;
+            --rose-soft: #ffe4e6;
+            --bg-card: #ffffff;
+            --bg-soft: #f0f7ff;
+            --text-dark: #0f172a;
+            --text-muted: #475569;
+            --border-light: #e2e8f0;
+            --shadow: 0 12px 40px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(0, 0, 0, 0.02);
+            --shadow-hover: 0 20px 60px rgba(37, 99, 235, 0.08), 0 8px 24px rgba(0, 0, 0, 0.02);
+        }
+
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+            background: radial-gradient(ellipse at 20% 50%, rgba(37, 99, 235, 0.03) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 50%, rgba(139, 92, 246, 0.03) 0%, transparent 60%),
+                radial-gradient(ellipse at 50% 100%, rgba(16, 185, 129, 0.02) 0%, transparent 50%);
+        }
+
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: rgba(244, 249, 255, 0.92);
+            backdrop-filter: blur(8px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+        #loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .loader-ring {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 5px solid var(--border-light);
+            border-top-color: var(--primary);
+            border-right-color: var(--accent);
+            border-bottom-color: var(--green);
+            border-left-color: var(--secondary);
+            animation: spin 1s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        .loader-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-top: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--accent), var(--green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .loader-sub {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 400;
+            margin-top: 4px;
+        }
+        .loader-bar-track {
+            width: 240px;
+            height: 4px;
+            background: var(--border-light);
+            border-radius: 10px;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+        .loader-bar {
+            height: 100%;
+            width: 0%;
+            border-radius: 10px;
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--green));
+            transition: width 0.3s ease;
+        }
+        .loader-percent {
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            margin-top: 6px;
+            font-weight: 500;
+        }
+
+        .mobile-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(20px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 1001;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .mobile-header .brand {
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .mobile-header .brand span {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .mobile-header .menu-toggle {
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 8px;
+            transition: 0.2s;
+        }
+        .mobile-header .menu-toggle:hover {
+            background: var(--bg-soft);
+            color: var(--text-dark);
+        }
+
+        .main-content {
+            position: relative;
+            z-index: 1;
+            padding: 80px 16px 60px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section {
+            display: none;
+            animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            padding: 8px 0;
+        }
+        .section.active {
+            display: block;
+        }
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid var(--border-light);
+            flex-wrap: wrap;
+        }
+        .section-header .num {
+            background: linear-gradient(145deg, var(--primary), var(--accent));
+            color: #fff;
+            font-weight: 800;
+            font-size: 1.1rem;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.2);
+        }
+        .section-header h2 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            flex: 1;
+            letter-spacing: -0.3px;
+        }
+        .section-header h2 small {
+            font-weight: 500;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            display: block;
+            margin-top: 2px;
+        }
+        .section-header .badge-pertemuan {
+            background: var(--primary-soft);
+            color: var(--primary);
+            padding: 4px 16px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 18px;
+            padding: 20px 22px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-light);
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary-light);
+        }
+        .card h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+        .card h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        .card p,
+        .card li {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+        .card ul {
+            padding-left: 20px;
+            margin: 6px 0;
+        }
+        .card ul li {
+            list-style-type: disc;
+        }
+
+        .grid-2,
+        .grid-3,
+        .grid-4 {
+            display: grid;
+            gap: 16px;
+            margin: 14px 0 8px;
+        }
+        .grid-2 {
+            grid-template-columns: 1fr;
+        }
+        .grid-3 {
+            grid-template-columns: 1fr;
+        }
+        .grid-4 {
+            grid-template-columns: 1fr;
+        }
+        @media (min-width: 600px) {
+            .grid-2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .grid-3 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 900px) {
+            .grid-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .grid-4 {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .progress-wrap {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--border-light);
+            z-index: 999;
+            overflow: hidden;
+        }
+        .progress-wrap .bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--green));
+            transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+            border-radius: 0 4px 4px 0;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 36px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-light);
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .nav-buttons button {
+            background: var(--bg-card);
+            color: var(--text-dark);
+            border: 1px solid var(--border-light);
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: var(--shadow);
+        }
+        .nav-buttons button:hover:not(:disabled) {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.15);
+        }
+        .nav-buttons button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        .nav-buttons .counter {
+            font-weight: 500;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            padding: 0 12px;
+        }
+        .nav-buttons .group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .page-numbers {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .page-numbers a {
+            display: inline-block;
+            min-width: 34px;
+            height: 34px;
+            line-height: 34px;
+            text-align: center;
+            border-radius: 50%;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+            cursor: pointer;
+        }
+        .page-numbers a:hover {
+            background: var(--primary-soft);
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: scale(1.05);
+        }
+        .page-numbers a.active {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+            box-shadow: 0 4px 16px rgba(37, 99, 235, 0.2);
+        }
+
+        .cover-section {
+            text-align: center;
+            padding: 12px 0 8px;
+        }
+        .cover-section .logo-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: clamp(20px, 5vw, 50px);
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+        .cover-section .logo-grid img {
+            height: clamp(50px, 8vw, 100px);
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.04));
+            transition: transform 0.4s ease;
+        }
+        .cover-section .logo-grid img:hover {
+            transform: scale(1.04);
+        }
+        .cover-section .badge-wrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+        .cover-section .badge {
+            display: inline-block;
+            background: var(--primary-soft);
+            color: var(--primary);
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 5px 18px;
+            border-radius: 40px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            border: 1px solid transparent;
+        }
+        .cover-section .badge-gold {
+            background: var(--orange-soft);
+            color: var(--orange);
+        }
+        .cover-title {
+            font-size: clamp(2.2rem, 8vw, 4.2rem);
+            font-weight: 900;
+            margin: 6px 0 4px;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, var(--primary), var(--accent), var(--green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+        }
+        .cover-sub {
+            font-size: clamp(1rem, 1.6vw, 1.2rem);
+            color: var(--text-muted);
+            max-width: 680px;
+            margin: 4px auto 0;
+            padding: 0 12px;
+            line-height: 2;
+            font-weight: 400;
+        }
+        .cover-sub strong {
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+        .cover-section .school-wrap {
+            margin-top: 18px;
+        }
+        .cover-section .school-name {
+            background: var(--bg-card);
+            padding: 10px 32px;
+            border-radius: 60px;
+            display: inline-block;
+            font-weight: 800;
+            font-size: clamp(1.2rem, 2.8vw, 2rem);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-light);
+            letter-spacing: 1px;
+            color: var(--text-dark);
+        }
+        .cover-section .school-name .gold {
+            background: linear-gradient(135deg, var(--orange), #d97706);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .cover-section .teacher-info {
+            margin-top: 6px;
+            font-size: clamp(0.75rem, 0.9vw, 0.9rem);
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        .cover-section .teacher-info strong {
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+        .cover-section .teacher-info .nip {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+        .cover-section .start-btn-wrap {
+            display: flex;
+            justify-content: center;
+            margin: 28px 0 16px;
+        }
+        .cover-section .start-btn {
+            background: linear-gradient(145deg, var(--primary), var(--accent));
+            color: #fff;
+            border: none;
+            padding: clamp(14px, 2vw, 20px) clamp(36px, 6vw, 60px);
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: clamp(1rem, 1.6vw, 1.2rem);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            box-shadow: 0 8px 32px rgba(37, 99, 235, 0.2);
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .cover-section .start-btn:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 16px 48px rgba(37, 99, 235, 0.25);
+        }
+
+        .nav-box {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: clamp(20px, 3vw, 32px) clamp(16px, 2.5vw, 28px);
+            margin-top: 24px;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow);
+        }
+        .nav-box .nav-header {
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: clamp(1rem, 1.2vw, 1.1rem);
+            font-weight: 700;
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 14px;
+            margin-bottom: 20px;
+        }
+        .nav-box .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+        }
+        .nav-box .nav-item {
+            background: var(--bg-soft);
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            padding: 14px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+            color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            font-weight: 700;
+        }
+        .nav-box .nav-item .num-badge {
+            font-size: 1.2rem;
+            font-weight: 900;
+            background: linear-gradient(145deg, var(--primary), var(--accent));
+            color: #fff;
+            padding: 2px 14px;
+            border-radius: 30px;
+            min-width: 36px;
+            line-height: 1.6;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
+        }
+        .nav-box .nav-item .nav-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+        .nav-box .nav-item:hover {
+            background: var(--primary-soft);
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+        .nav-box .nav-item:hover .num-badge {
+            background: linear-gradient(145deg, var(--green), var(--secondary));
+        }
+        @media (max-width: 480px) {
+            .nav-box .nav-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+                gap: 6px;
+            }
+            .nav-box .nav-item {
+                padding: 10px 6px;
+            }
+            .nav-box .nav-item .nav-label {
+                font-size: 0.7rem;
+            }
+            .nav-box .nav-item .num-badge {
+                font-size: 1rem;
+                padding: 0 10px;
+                min-width: 30px;
+            }
+        }
+
+        .materi-detail {
+            margin: 10px 0;
+            border-radius: 14px;
+            overflow: hidden;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            transition: box-shadow 0.3s ease;
+        }
+        .materi-detail:hover {
+            box-shadow: var(--shadow-hover);
+        }
+        .materi-detail .detail-header {
+            padding: 16px 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background 0.3s ease, border-left-color 0.3s ease;
+            border-left: 4px solid transparent;
+            user-select: none;
+        }
+        .materi-detail .detail-header:hover {
+            background: var(--bg-soft);
+        }
+        .materi-detail .detail-header.active {
+            border-left-color: var(--primary);
+            background: var(--primary-soft);
+        }
+        .materi-detail .detail-header h4 {
+            margin: 0;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .materi-detail .detail-header .fa-chevron-down {
+            transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .materi-detail .detail-header.active .fa-chevron-down {
+            transform: rotate(180deg);
+            color: var(--primary);
+        }
+        .materi-detail .detail-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s cubic-bezier(0.22, 1, 0.36, 1), padding 0.5s ease, opacity 0.4s ease;
+            padding: 0 20px;
+            background: var(--bg-soft);
+            opacity: 0;
+            border-top: 1px solid transparent;
+        }
+        .materi-detail .detail-body.open {
+            max-height: 8000px;
+            padding: 20px 20px 28px;
+            opacity: 1;
+            border-top-color: var(--border-light);
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+        .table-wrap table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+        }
+        .table-wrap th,
+        .table-wrap td {
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--border-light);
+            text-align: left;
+            vertical-align: top;
+        }
+        .table-wrap th {
+            background: var(--bg-soft);
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+        .table-wrap tr:last-child td {
+            border-bottom: none;
+        }
+        .table-wrap tr:hover td {
+            background: rgba(37, 99, 235, 0.02);
+        }
+        @media (max-width: 600px) {
+            .table-wrap table {
+                font-size: 0.8rem;
+            }
+            .table-wrap th,
+            .table-wrap td {
+                padding: 6px 10px;
+            }
+        }
+
+        .mini-quiz {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 18px 22px;
+            border: 1px solid var(--border-light);
+            margin: 12px 0;
+            box-shadow: var(--shadow);
+        }
+        .mini-quiz .quiz-question {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+        .mini-quiz .quiz-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .mini-quiz .quiz-options button {
+            background: var(--bg-soft);
+            border: 2px solid var(--border-light);
+            color: var(--text-dark);
+            padding: 8px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+            font-weight: 600;
+            font-family: inherit;
+        }
+        .mini-quiz .quiz-options button:hover {
+            background: var(--primary-soft);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        .mini-quiz .quiz-options button.correct {
+            background: var(--green-soft);
+            border-color: var(--green);
+            color: var(--green);
+        }
+        .mini-quiz .quiz-options button.wrong {
+            background: var(--rose-soft);
+            border-color: var(--rose);
+            color: var(--rose);
+        }
+        .mini-quiz .quiz-feedback {
+            margin-top: 10px;
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            display: none;
+            font-weight: 500;
+        }
+        .mini-quiz .quiz-feedback.show {
+            display: block;
+        }
+        .mini-quiz .quiz-feedback.success {
+            background: var(--green-soft);
+            color: var(--green);
+        }
+        .mini-quiz .quiz-feedback.fail {
+            background: var(--rose-soft);
+            color: var(--rose);
+        }
+
+        .local-badge {
+            display: inline-block;
+            background: var(--orange-soft);
+            color: var(--orange);
+            font-size: 0.6rem;
+            font-weight: 700;
+            padding: 2px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(245, 158, 11, 0.1);
+            letter-spacing: 0.3px;
+            margin-left: 8px;
+        }
+        .hots-tag {
+            display: inline-block;
+            background: var(--rose-soft);
+            color: var(--rose);
+            font-size: 0.6rem;
+            font-weight: 700;
+            padding: 2px 10px;
+            border-radius: 20px;
+            border: 1px solid rgba(244, 63, 94, 0.08);
+            margin-left: 6px;
+        }
+        .pertemuan-badge {
+            display: inline-block;
+            background: var(--primary-soft);
+            color: var(--primary);
+            padding: 2px 18px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            border: 1px solid transparent;
+            margin-bottom: 4px;
+            letter-spacing: 0.3px;
+        }
+
+        .progress-tracker {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin: 8px 0 14px;
+            flex-wrap: wrap;
+        }
+        .progress-tracker .step {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 2px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+        .progress-tracker .step.done {
+            background: var(--green-soft);
+            border-color: var(--green);
+            color: var(--green);
+        }
+        .progress-tracker .step.active {
+            background: var(--primary-soft);
+            border-color: var(--primary);
+            color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.08);
+        }
+        .progress-tracker .line {
+            flex: 1;
+            min-width: 16px;
+            height: 2px;
+            background: var(--border-light);
+        }
+        .progress-tracker .line.done {
+            background: var(--green);
+        }
+
+        .def-block {
+            background: var(--bg-card);
+            border-radius: 14px;
+            padding: 16px 20px;
+            border-left: 6px solid var(--primary);
+            box-shadow: var(--shadow);
+            margin: 10px 0;
+        }
+        .def-block .source {
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .example-box {
+            background: var(--bg-soft);
+            border-radius: 10px;
+            padding: 12px 16px;
+            border-left: 4px solid var(--secondary);
+            margin: 8px 0;
+        }
+        .example-box .label-example {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--secondary);
+            font-weight: 700;
+        }
+        .example-box p {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+        .example-box strong {
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        .enrichment-box {
+            background: var(--orange-soft);
+            border-radius: 14px;
+            padding: 18px 20px;
+            border-left: 6px solid var(--orange);
+            margin: 14px 0;
+        }
+        .enrichment-box h4 {
+            color: var(--orange);
+            font-size: 1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .enrichment-box p,
+        .enrichment-box li {
+            color: var(--text-dark);
+            font-size: 0.92rem;
+            font-weight: 400;
+            line-height: 1.8;
+        }
+        .enrichment-box ul {
+            padding-left: 20px;
+            margin: 6px 0;
+        }
+        .enrichment-box ul li {
+            list-style-type: circle;
+        }
+
+        .deep-dive {
+            background: var(--accent-soft);
+            border-radius: 14px;
+            padding: 18px 20px;
+            border-left: 6px solid var(--accent);
+            margin: 14px 0;
+        }
+        .deep-dive h4 {
+            color: var(--accent);
+            font-size: 1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .deep-dive p,
+        .deep-dive li {
+            color: var(--text-dark);
+            font-size: 0.92rem;
+            font-weight: 400;
+            line-height: 1.8;
+        }
+        .deep-dive ul {
+            padding-left: 20px;
+            margin: 6px 0;
+        }
+        .deep-dive ul li {
+            list-style-type: square;
+        }
+
+        .image-card-premium {
+            background: var(--bg-card);
+            border-radius: 18px;
+            padding: 12px;
+            border: 1px solid var(--border-light);
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            cursor: pointer;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+        .image-card-premium:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary-light);
+            box-shadow: var(--shadow-hover);
+        }
+        .image-card-premium .img-wrap {
+            overflow: hidden;
+            border-radius: 14px;
+            background: var(--bg-soft);
+        }
+        .image-card-premium .img-wrap img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 14px;
+            transition: transform 0.6s ease;
+            display: block;
+            background: var(--bg-soft);
+        }
+        .image-card-premium:hover .img-wrap img {
+            transform: scale(1.03);
+        }
+        .image-card-premium .image-label-premium {
+            margin-top: 12px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .image-card-premium .image-sub-premium {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+            font-weight: 400;
+        }
+        @media (max-width: 600px) {
+            .image-card-premium .img-wrap img {
+                height: 140px;
+            }
+        }
+
+        .soal-pg {
+            margin-bottom: 12px;
+            padding: 14px 18px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        .soal-pg:hover {
+            border-left-color: var(--accent);
+            box-shadow: var(--shadow-hover);
+        }
+        .soal-pg .nomor {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-right: 6px;
+        }
+        .soal-pg .pertanyaan {
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+        .soal-pg .opsi {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px 20px;
+            padding-left: 20px;
+        }
+        .soal-pg .opsi span {
+            display: inline-block;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 2;
+        }
+        @media (max-width: 600px) {
+            .soal-pg .opsi {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+        }
+
+        .soal-bs {
+            margin-bottom: 8px;
+            padding: 12px 16px;
+            background: var(--bg-card);
+            border-radius: 10px;
+            border-left: 4px solid var(--secondary);
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            transition: all 0.3s ease;
+        }
+        .soal-bs:hover {
+            box-shadow: var(--shadow-hover);
+        }
+        .soal-bs .nomor {
+            color: var(--secondary);
+            font-weight: 700;
+            font-size: 0.85rem;
+            min-width: 30px;
+        }
+        .soal-bs .pertanyaan {
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.92rem;
+            flex: 1;
+        }
+
+        .soal-essay {
+            margin-bottom: 12px;
+            padding: 14px 18px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border-left: 4px solid var(--orange);
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        .soal-essay:hover {
+            box-shadow: var(--shadow-hover);
+        }
+        .soal-essay .nomor {
+            color: var(--orange);
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-right: 6px;
+        }
+        .soal-essay .pertanyaan {
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+        .soal-essay .petunjuk {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        .refleksi-list {
+            list-style: none;
+            padding: 0;
+            margin: 8px 0;
+        }
+        .refleksi-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 8px 0;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            border-bottom: 1px solid var(--border-light);
+            font-weight: 400;
+        }
+        .refleksi-list li:last-child {
+            border-bottom: none;
+        }
+        .refleksi-list li .check {
+            font-size: 1.2rem;
+            color: var(--green);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .celebration-box {
+            background: linear-gradient(145deg, var(--bg-card), var(--bg-soft));
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            padding: 28px 24px;
+            text-align: center;
+            margin-top: 12px;
+            box-shadow: var(--shadow);
+        }
+        .celebration-box h3 {
+            font-size: 1.6rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            font-weight: 900;
+        }
+        .celebration-box p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+        .celebration-box .next-btn {
+            display: inline-block;
+            background: linear-gradient(145deg, var(--primary), var(--accent));
+            color: #fff;
+            padding: 12px 36px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            margin-top: 16px;
+            border: none;
+            cursor: default;
+            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.15);
+        }
+
+        .ref-list {
+            list-style: none;
+            padding: 0;
+        }
+        .ref-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-light);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+            font-weight: 400;
+        }
+        .ref-list li:hover {
+            color: var(--text-dark);
+            padding-left: 8px;
+            border-color: var(--primary-light);
+        }
+        .ref-list li strong {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .footer-credit {
+            text-align: center;
+            margin-top: 24px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-light);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+        .footer-credit strong {
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+        .footer-credit .nip {
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        .school-name-gold {
+            background: linear-gradient(135deg, var(--orange), #d97706);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(24px);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+        .modal-overlay .modal-content {
+            max-width: 92vw;
+            max-height: 92vh;
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 24px;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.3);
+            position: relative;
+            text-align: center;
+            cursor: default;
+        }
+        .modal-overlay .modal-content .image-wrapper {
+            overflow: hidden;
+            border-radius: 16px;
+            background: var(--bg-soft);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+            max-height: 75vh;
+        }
+        .modal-overlay .modal-content .image-wrapper img {
+            max-width: 100%;
+            max-height: 75vh;
+            border-radius: 16px;
+            display: block;
+            margin: 0 auto;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+        .modal-overlay .modal-close {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--bg-card);
+            color: var(--text-muted);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            cursor: pointer;
+            border: 1px solid var(--border-light);
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+            z-index: 20;
+        }
+        .modal-overlay .modal-close:hover {
+            background: var(--rose-soft);
+            color: var(--rose);
+            transform: rotate(90deg);
+        }
+        .modal-overlay .modal-content .caption {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 12px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border-light);
+            font-weight: 400;
+        }
+        @media (max-width: 600px) {
+            .modal-overlay .modal-close {
+                top: 4px;
+                right: 4px;
+                width: 32px;
+                height: 32px;
+                font-size: 0.9rem;
+            }
+            .modal-overlay .modal-content {
+                padding: 16px;
+                border-radius: 18px;
+            }
+            .modal-overlay .modal-content .image-wrapper {
+                min-height: 150px;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .section-header h2 {
+                font-size: 1.5rem;
+            }
+            .main-content {
+                padding: 84px 24px 60px;
+            }
+        }
+        @media (min-width: 900px) {
+            .mobile-header {
+                display: none;
+            }
+            .main-content {
+                padding: 40px 40px 60px;
+                max-width: 1100px;
+            }
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+            .section-header .num {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+            }
+        }
+        @media (max-width: 400px) {
+            .section-header h2 {
+                font-size: 1.1rem;
+            }
+            .section-header .num {
+                width: 36px;
+                height: 36px;
+                font-size: 0.9rem;
+            }
+            .card {
+                padding: 14px 14px;
+            }
+            .nav-buttons button {
+                padding: 6px 14px;
+                font-size: 0.8rem;
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-pattern"></div>
+
+    <!-- LOADER -->
+    <div id="loader">
+        <div class="loader-ring"></div>
+        <div class="loader-title">Penginderaan Jauh</div>
+        <div class="loader-sub">Remote Sensing · Kelas X</div>
+        <div class="loader-bar-track"><div class="loader-bar" id="loaderBar"></div></div>
+        <div class="loader-percent" id="loaderPercent">0%</div>
     </div>
-    <div class="detail-body">
-        <div class="grid-2">
-            <div class="card" style="border-left:4px solid var(--green);">
-                <h4 style="color:var(--green);">✅ Kelebihan</h4>
-                <ul style="font-size:0.9rem; color:var(--text-muted); padding-left:18px;">
-                    <li>Jangkauan area luas dalam satu waktu.</li>
-                    <li>Dapat mengulang perekaman secara periodik (monitoring).</li>
-                    <li>Akses ke daerah terpencil/berbahaya (gunung, hutan, laut).</li>
-                    <li>Data multispektral & hiperspektral untuk analisis detail.</li>
-                    <li>Objek yang tidak terlihat mata (inframerah, radar) dapat dideteksi.</li>
+
+    <!-- MOBILE HEADER -->
+    <header class="mobile-header">
+        <div class="brand">🛰️ <span>Penginderaan Jauh</span></div>
+        <button class="menu-toggle" onclick="toggleMobileMenu()">☰</button>
+    </header>
+
+    <!-- PROGRESS BAR -->
+    <div class="progress-wrap"><div class="bar" id="progressBar"></div></div>
+
+    <!-- MODAL -->
+    <div class="modal-overlay" id="imageModal" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <span class="modal-close" onclick="closeModal()">✕</span>
+            <div class="image-wrapper">
+                <img id="modalImage" src="" alt="Gambar" />
+            </div>
+            <div class="caption" id="modalCaption">Klik di luar untuk menutup</div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- ===== SECTION 1 : COVER ===== -->
+        <section id="section1" class="section active cover-section">
+            <div class="logo-grid reveal">
+                <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/Logo-Provinsi-Kalimantan-Tengah.png" alt="Logo Provinsi Kalimantan Tengah" />
+                <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/imagesdisdiklogo.png" alt="Logo Dinas Pendidikan" />
+                <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/LOGOSMAN3KAS.png" alt="Logo SMAN 3 Kasongan" />
+            </div>
+            <div class="badge-wrap reveal">
+                <span class="badge">KELAS X / FASE E</span>
+                <span class="badge badge-gold">4 × 45 Menit</span>
+                <span class="badge" style="background:#d1fae5; color:#059669;">Kurikulum Merdeka</span>
+                <span class="badge" style="background:#ffe4e6; color:#e11d48;">HOTS</span>
+            </div>
+            <h1 class="cover-title reveal">PENGINDERAAN JAUH</h1>
+            <p class="cover-sub reveal">
+                <strong>Pengertian</strong> · <strong>Komponen</strong> · <strong>Jenis Citra</strong> · <strong>Interpretasi</strong> · <strong>Pemanfaatan</strong>
+                <br />Melihat Bumi dari Angkasa dengan Analisis Mendalam
+            </p>
+            <div class="school-wrap reveal">
+                <div class="school-name"><span class="gold">SMAN 3 KASONGAN</span></div>
+                <div class="teacher-info">
+                    Guru Pengampu: <strong>SYAHRANI, S.Pd</strong> &nbsp;|&nbsp;
+                    <span class="nip">NIP. 197512172005011016</span>
+                </div>
+            </div>
+            <div class="start-btn-wrap reveal">
+                <button class="start-btn" onclick="navigateTo('section2')">
+                    <span>Mulai Petualangan</span>
+                </button>
+            </div>
+            <div class="nav-box reveal">
+                <div class="nav-header">Navigasi Cepat</div>
+                <div class="nav-grid">
+                    <div onclick="navigateTo('section1')" class="nav-item"><span class="num-badge">1</span><span class="nav-label">Beranda</span></div>
+                    <div onclick="navigateTo('section2')" class="nav-item"><span class="num-badge">2</span><span class="nav-label">Pertemuan 1</span></div>
+                    <div onclick="navigateTo('section3')" class="nav-item"><span class="num-badge">3</span><span class="nav-label">Pertemuan 2</span></div>
+                    <div onclick="navigateTo('section4')" class="nav-item"><span class="num-badge">4</span><span class="nav-label">Pertemuan 3</span></div>
+                    <div onclick="navigateTo('section5')" class="nav-item"><span class="num-badge">5</span><span class="nav-label">Pertemuan 4</span></div>
+                    <div onclick="navigateTo('section6')" class="nav-item"><span class="num-badge">6</span><span class="nav-label">Asesmen</span></div>
+                    <div onclick="navigateTo('section7')" class="nav-item"><span class="num-badge">7</span><span class="nav-label">Refleksi</span></div>
+                    <div onclick="navigateTo('section8')" class="nav-item"><span class="num-badge">8</span><span class="nav-label">Referensi</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SECTION 2 : PERTEMUAN 1 (LENGKAP) ===== -->
+        <section id="section2" class="section">
+            <div style="background:var(--bg-soft); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid var(--primary); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                <div style="display:flex; align-items:center; gap:8px; color:var(--text-muted); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
+                <button onclick="navigateTo('section1')" style="background:var(--bg-card); color:var(--text-muted); border:1px solid var(--border-light); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem; box-shadow:var(--shadow);">⌂ Beranda</button>
+            </div>
+            <div class="section-header">
+                <div class="num">02</div>
+                <h2>Pertemuan 1 – Pengertian &amp; Prinsip Dasar <small>Mengenal Remote Sensing</small></h2>
+                <span class="badge-pertemuan">3×45'</span>
+            </div>
+            <div class="progress-tracker">
+                <span class="step active">1</span><span class="line"></span>
+                <span class="step">2</span><span class="line"></span>
+                <span class="step">3</span><span class="line"></span>
+                <span class="step">4</span>
+                <span style="color:var(--text-muted); font-size:0.7rem; font-weight:500; margin-left:8px;">Klik untuk eksplorasi</span>
+            </div>
+            <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;">
+                <span class="pertemuan-badge">TP 1</span>
+                <span class="pertemuan-badge" style="background:#d1fae5; color:#059669;">Penalaran Kritis</span>
+                <span class="pertemuan-badge" style="background:#ffe4e6; color:#e11d48;">Komunikasi</span>
+            </div>
+            <h3 style="font-size:1rem; color:var(--text-dark); font-weight:700; border-left:4px solid var(--primary); padding-left:12px; margin-bottom:6px;">Tujuan Pembelajaran</h3>
+            <ul style="color:var(--text-muted); font-weight:400; padding-left:20px; margin-bottom:16px; line-height:2; font-size:0.95rem;">
+                <li>Menjelaskan pengertian penginderaan jauh secara etimologis dan menurut para ahli dengan bahasa sendiri.</li>
+                <li>Mengidentifikasi 5 prinsip dasar penginderaan jauh (sumber energi, atmosfer, interaksi objek, sensor, data).</li>
+                <li>Membedakan penginderaan jauh dengan observasi langsung di lapangan melalui contoh konkret.</li>
+                <li>Menganalisis kelebihan dan kekurangan penginderaan jauh dibandingkan metode lain.</li>
+            </ul>
+
+            <!-- Galeri -->
+            <div style="margin:16px 0;">
+                <div class="grid-3">
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/bumi23.png', 'Bumi dari Luar Angkasa – Planet kita yang indah dengan atmosfer sebagai media perambatan gelombang.')">
+                        <div class="img-wrap"><img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/bumi23.png" alt="Bumi" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23f0f7ff%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%232563eb%22 font-family=%22Inter%22 font-size=%2220%22 dy=%22.3em%22%3E🌍 Bumi%3C/text%3E%3C/svg%3E'" /></div>
+                        <div class="image-label-premium">🌍 Bumi dari Luar Angkasa</div>
+                        <div class="image-sub-premium">Atmosfer sebagai media perambatan</div>
+                    </div>
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/satelit.png', 'Satelit Penginderaan Jauh – Wahana yang membawa sensor untuk merekam permukaan bumi dari orbit.')">
+                        <div class="img-wrap"><img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/satelit.png" alt="Satelit" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23f0f7ff%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%232563eb%22 font-family=%22Inter%22 font-size=%2220%22 dy=%22.3em%22%3E🛰️ Satelit%3C/text%3E%3C/svg%3E'" /></div>
+                        <div class="image-label-premium">🛰️ Satelit Penginderaan Jauh</div>
+                        <div class="image-sub-premium">Wahana pembawa sensor di orbit</div>
+                    </div>
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/sungai.png', 'Sungai dari Citra Satelit – Contoh objek alam yang terekam jelas oleh sensor penginderaan jauh.')">
+                        <div class="img-wrap"><img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/sungai.png" alt="Sungai" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23f0f7ff%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%232563eb%22 font-family=%22Inter%22 font-size=%2220%22 dy=%22.3em%22%3E🏞️ Sungai%3C/text%3E%3C/svg%3E'" /></div>
+                        <div class="image-label-premium">🏞️ Citra Sungai dari Satelit</div>
+                        <div class="image-sub-premium">Objek hidrosfer terekam sensor</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MATERI A -->
+            <div class="materi-detail reveal">
+                <div class="detail-header" onclick="toggleDetail(this)">
+                    <h4>A. Pengertian Penginderaan Jauh <span class="local-badge">Remote Sensing</span></h4>
+                    <span class="fa-chevron-down" style="color:var(--text-muted); transition:transform 0.3s;">▼</span>
+                </div>
+                <div class="detail-body">
+                    <div class="def-block">
+                        <p style="color:var(--text-dark); font-weight:400; font-size:0.95rem;">
+                            <strong style="color:var(--primary);">Penginderaan jauh</strong> atau <em>remote sensing</em> adalah ilmu dan seni untuk memperoleh informasi tentang objek, area, atau fenomena melalui analisis data yang diperoleh dengan menggunakan alat <strong>tanpa kontak langsung</strong> dengan objek yang dikaji.
+                        </p>
+                        <div style="margin-top:8px; background:var(--bg-soft); border-radius:8px; padding:8px 12px; border-left:3px solid var(--secondary);">
+                            <p style="font-size:0.85rem; color:var(--text-muted); font-weight:400;">
+                                <strong style="color:var(--text-dark); font-weight:600;">Etimologi:</strong> <em>Remote</em> = jauh, <em>Sensing</em> = penginderaan/deteksi. Jadi, "mengindera dari jarak jauh".
+                            </p>
+                        </div>
+                    </div>
+                    <div class="example-box">
+                        <span class="label-example">📌 Contoh Mudah</span>
+                        <p>Saat kamu melihat foto satelit cuaca di TV, kamu sedang melihat hasil penginderaan jauh. Kamu tidak perlu naik ke langit untuk tahu bahwa ada awan siklon — sensor di satelit yang melakukannya untukmu!</p>
+                    </div>
+                    <h5 style="color:var(--text-dark); font-weight:700; font-size:0.95rem; margin-top:12px;">Definisi Menurut Para Ahli</h5>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Ahli</th><th>Definisi</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Lillesand &amp; Kiefer</strong></td><td>Ilmu dan seni untuk memperoleh informasi tentang objek, area, atau fenomena melalui analisis data yang diperoleh dengan alat tanpa kontak langsung.</td></tr>
+                                <tr><td><strong>Sutanto</strong></td><td>Teknik untuk mendapatkan informasi tentang permukaan bumi tanpa kontak langsung dengan objek, menggunakan sensor pada wahana.</td></tr>
+                                <tr><td><strong>Avery &amp; Berlin</strong></td><td>Pengukuran atau akuisisi data dari objek di permukaan bumi menggunakan sensor yang dipasang pada wahana (pesawat, satelit, drone).</td></tr>
+                                <tr><td><strong>Campbell</strong></td><td>Praktek untuk memperoleh informasi tentang permukaan bumi dengan menggunakan sensor yang tidak melakukan kontak langsung.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div style="background:var(--orange-soft); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid var(--orange);">
+                        <p style="font-size:0.9rem; color:var(--text-dark); font-weight:400;">
+                            <strong style="color:var(--text-dark); font-weight:600;">💡 Inti:</strong> Penginderaan jauh = melihat dari jauh tanpa menyentuh. Seperti kamu melihat gunung dari kejauhan, tapi dengan teknologi yang jauh lebih canggih!
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MATERI B -->
+            <div class="materi-detail reveal">
+                <div class="detail-header" onclick="toggleDetail(this)">
+                    <h4>B. Prinsip Dasar Penginderaan Jauh</h4>
+                    <span class="fa-chevron-down" style="color:var(--text-muted); transition:transform 0.3s;">▼</span>
+                </div>
+                <div class="detail-body">
+                    <div class="def-block">
+                        <p style="color:var(--text-dark); font-weight:400; font-size:0.95rem;">
+                            Penginderaan jauh bekerja berdasarkan prinsip <strong style="color:var(--secondary);">interaksi antara gelombang elektromagnetik dengan objek</strong> di permukaan bumi. Sensor merekam energi yang dipantulkan atau dipancarkan oleh objek.
+                        </p>
+                    </div>
+                    <div class="example-box">
+                        <span class="label-example">📌 Analogi Sederhana</span>
+                        <p>Bayangkan kamu menyenter dinding. Cahaya senter (energi) mengenai dinding (objek), lalu memantul kembali ke matamu (sensor). Kamu bisa melihat warna dan tekstur dinding dari pantulan cahaya. Penginderaan jauh bekerja dengan prinsip yang sama, tapi dengan gelombang elektromagnetik yang lebih kompleks dan sensor di satelit!</p>
+                    </div>
+                    <div style="display:grid; gap:10px; margin-top:8px;">
+                        <div style="background:var(--primary-soft); border-radius:10px; padding:12px 16px; border-left:4px solid var(--primary);">
+                            <h4 style="color:var(--primary); font-size:0.9rem; font-weight:700;">1. Sumber Energi</h4>
+                            <p style="font-size:0.92rem; color:var(--text-dark); font-weight:400;">Matahari (sistem pasif) atau sumber buatan seperti radar (sistem aktif).</p>
+                            <div style="background:var(--bg-card); border-radius:6px; padding:4px 10px; margin-top:4px;"><span style="font-size:0.8rem; color:var(--text-muted);">Contoh: Landsat menggunakan sinar matahari (pasif), SAR menggunakan gelombang mikronya sendiri (aktif).</span></div>
+                        </div>
+                        <div style="background:#d1fae5; border-radius:10px; padding:12px 16px; border-left:4px solid var(--green);">
+                            <h4 style="color:var(--green); font-size:0.9rem; font-weight:700;">2. Atmosfer</h4>
+                            <p style="font-size:0.92rem; color:var(--text-dark); font-weight:400;">Tempat gelombang elektromagnetik merambat. Memengaruhi kualitas data melalui serapan, hamburan, dan pantulan.</p>
+                            <div style="background:var(--bg-card); border-radius:6px; padding:4px 10px; margin-top:4px;"><span style="font-size:0.8rem; color:var(--text-muted);">Contoh: Awan tebal bisa menghalangi sensor melihat permukaan bumi (efek hamburan).</span></div>
+                        </div>
+                        <div style="background:#ffe4e6; border-radius:10px; padding:12px 16px; border-left:4px solid var(--rose);">
+                            <h4 style="color:var(--rose); font-size:0.9rem; font-weight:700;">3. Interaksi Objek</h4>
+                            <p style="font-size:0.92rem; color:var(--text-dark); font-weight:400;">Objek memantulkan, menyerap, atau memancarkan energi. Setiap objek memiliki karakteristik spektral yang berbeda.</p>
+                            <div style="background:var(--bg-card); border-radius:6px; padding:4px 10px; margin-top:4px;"><span style="font-size:0.8rem; color:var(--text-muted);">Contoh: Daun hijau memantulkan inframerah dengan kuat, air memantulkan lebih sedikit.</span></div>
+                        </div>
+                        <div style="background:var(--orange-soft); border-radius:10px; padding:12px 16px; border-left:4px solid var(--orange);">
+                            <h4 style="color:var(--orange); font-size:0.9rem; font-weight:700;">4. Sensor</h4>
+                            <p style="font-size:0.92rem; color:var(--text-dark); font-weight:400;">Alat perekam data (pasif atau aktif) yang dipasang pada wahana.</p>
+                            <div style="background:var(--bg-card); border-radius:6px; padding:4px 10px; margin-top:4px;"><span style="font-size:0.8rem; color:var(--text-muted);">Contoh: Kamera di pesawat (pasif), LIDAR di drone (aktif).</span></div>
+                        </div>
+                        <div style="background:var(--accent-soft); border-radius:10px; padding:12px 16px; border-left:4px solid var(--accent);">
+                            <h4 style="color:var(--accent); font-size:0.9rem; font-weight:700;">5. Data &amp; Informasi</h4>
+                            <p style="font-size:0.92rem; color:var(--text-dark); font-weight:400;">Citra yang dihasilkan untuk diinterpretasi dan dianalisis.</p>
+                            <div style="background:var(--bg-card); border-radius:6px; padding:4px 10px; margin-top:4px;"><span style="font-size:0.8rem; color:var(--text-muted);">Contoh: Citra Landsat yang diolah menjadi peta tutupan lahan.</span></div>
+                        </div>
+                    </div>
+                    <div style="background:var(--orange-soft); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid var(--orange);">
+                        <p style="font-size:0.9rem; color:var(--text-dark); font-weight:400;">
+                            <strong style="color:var(--text-dark); font-weight:600;">🔑 Kunci:</strong> Semua prinsip ini bekerja bersama-sama. Tanpa salah satu, penginderaan jauh tidak akan berhasil!
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== MATERI C: PERBANDINGAN DENGAN OBSERVASI ===== -->
+            <div class="materi-detail reveal">
+                <div class="detail-header" onclick="toggleDetail(this)">
+                    <h4>C. Perbandingan Penginderaan Jauh dengan Observasi Langsung</h4>
+                    <span class="fa-chevron-down" style="color:var(--text-muted); transition:transform 0.3s;">▼</span>
+                </div>
+                <div class="detail-body">
+                    <div class="def-block">
+                        <p style="color:var(--text-dark); font-weight:400; font-size:0.95rem;">
+                            <strong style="color:var(--primary);">Observasi langsung</strong> adalah pengamatan dengan kontak fisik atau berada di lokasi objek. Sedangkan <strong style="color:var(--secondary);">penginderaan jauh</strong> dilakukan dari kejauhan tanpa kontak langsung.
+                        </p>
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Aspek</th><th>Penginderaan Jauh</th><th>Observasi Lapangan</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Kontak dengan Objek</strong></td><td>Tanpa kontak langsung</td><td>Kontak langsung (terjangkau)</td></tr>
+                                <tr><td><strong>Cakupan Area</strong></td><td>Luas (global hingga lokal)</td><td>Terbatas (lokal)</td></tr>
+                                <tr><td><strong>Waktu</strong></td><td>Dapat dilakukan berulang (temporal)</td><td>Bergantung pada akses lapangan</td></tr>
+                                <tr><td><strong>Biaya</strong></td><td>Mahal untuk akuisisi data awal, tetapi efisien untuk area luas</td><td>Relatif murah untuk area kecil, tetapi mahal jika luas</td></tr>
+                                <tr><td><strong>Keterbatasan</strong></td><td>Terpengaruh cuaca (citra optik), perlu interpretasi</td><td>Terbatas pada akses fisik, subjektif</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="example-box">
+                        <span class="label-example">📌 Contoh Kasus</span>
+                        <p>Untuk memantau deforestasi di Kalimantan, penginderaan jauh (Landsat/Sentinel) lebih efektif karena area luas dan akses sulit. Observasi lapangan digunakan untuk <strong>validasi</strong> (misal: cek langsung apakah area itu benar-benar hutan atau bukan).</p>
+                    </div>
+                    <div style="background:var(--orange-soft); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid var(--orange);">
+                        <p style="font-size:0.9rem; color:var(--text-dark); font-weight:400;">
+                            <strong style="color:var(--text-dark); font-weight:600;">💡 Inti:</strong> Penginderaan jauh dan observasi lapangan adalah <strong>mitra</strong>, bukan pesaing. Keduanya saling melengkapi!
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== MATERI D: KELEBIHAN & KEKURANGAN ===== -->
+            <div class="materi-detail reveal">
+                <div class="detail-header" onclick="toggleDetail(this)">
+                    <h4>D. Kelebihan dan Kekurangan Penginderaan Jauh</h4>
+                    <span class="fa-chevron-down" style="color:var(--text-muted); transition:transform 0.3s;">▼</span>
+                </div>
+                <div class="detail-body">
+                    <div class="grid-2">
+                        <div class="card" style="border-left:4px solid var(--green);">
+                            <h4 style="color:var(--green);">✅ Kelebihan</h4>
+                            <ul style="font-size:0.9rem; color:var(--text-muted); padding-left:18px;">
+                                <li>Jangkauan area luas dalam satu waktu.</li>
+                                <li>Dapat mengulang perekaman secara periodik (monitoring).</li>
+                                <li>Akses ke daerah terpencil/berbahaya (gunung, hutan, laut).</li>
+                                <li>Data multispektral & hiperspektral untuk analisis detail.</li>
+                                <li>Objek yang tidak terlihat mata (inframerah, radar) dapat dideteksi.</li>
+                            </ul>
+                        </div>
+                        <div class="card" style="border-left:4px solid var(--rose);">
+                            <h4 style="color:var(--rose);">❌ Kekurangan</h4>
+                            <ul style="font-size:0.9rem; color:var(--text-muted); padding-left:18px;">
+                                <li>Biaya akuisisi data tinggi (satelit, sensor).</li>
+                                <li>Terbatas oleh cuaca (awan) untuk citra optik.</li>
+                                <li>Interpretasi membutuhkan keahlian khusus.</li>
+                                <li>Data mentah perlu diolah dan dikalibrasi.</li>
+                                <li>Resolusi temporal/spasial terbatas untuk beberapa satelit.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="example-box" style="margin-top:12px;">
+                        <span class="label-example">📌 Studi Kasus</span>
+                        <p>Di Kalimantan, penginderaan jauh <strong>unggul</strong> untuk memantau kebakaran hutan secara real-time (MODIS, VIIRS), tetapi <strong>kelemahan</strong>nya adalah citra optik terganggu asap tebal. Solusi: gunakan radar (SAR) yang tembus asap!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== PENGAYAAN 1: PERKEMBANGAN TEKNOLOGI ===== -->
+            <div class="enrichment-box reveal" style="margin-top:16px;">
+                <h4><i class="fas fa-rocket" style="color:var(--orange);"></i> Pengayaan: Perkembangan Teknologi Penginderaan Jauh</h4>
+                <ul>
+                    <li><strong>1858 – Balon Udara:</strong> Foto udara pertama dari balon di Paris oleh Gaspard-Félix Tournachon.</li>
+                    <li><strong>1903 – Merpati Berfoto:</strong> Julius Neubronner menggunakan merpati dengan kamera otomatis untuk pemetaan.</li>
+                    <li><strong>1930-an – Pesawat Terbang:</strong> Penggunaan pesawat untuk fotogrametri dan pemetaan militer.</li>
+                    <li><strong>1957 – Sputnik 1:</strong> Satelit buatan pertama, membuka era satelit untuk penginderaan jauh.</li>
+                    <li><strong>1972 – Landsat 1:</strong> Satelit pertama yang didedikasikan untuk sumber daya bumi. Resolusi 80 meter.</li>
+                    <li><strong>1986 – SPOT 1:</strong> Resolusi 10 meter, lebih tajam.</li>
+                    <li><strong>1999 – IKONOS:</strong> Satelit komersial resolusi 1 meter.</li>
+                    <li><strong>2014 – WorldView-3:</strong> Resolusi 0.31 meter (31 cm) — bisa melihat objek sekecil mobil!</li>
+                    <li><strong>Sekarang:</strong> <strong>Satelit mikro (CubeSat)</strong> dengan biaya lebih murah, <strong>AI</strong> untuk interpretasi otomatis, dan <strong>drone</strong> untuk resolusi sangat tinggi (cm).</li>
+                </ul>
+                <p style="margin-top:6px; font-size:0.85rem; color:var(--text-muted);">💡 Perkembangan pesat: dari merpati ke kecerdasan buatan!</p>
+            </div>
+
+            <!-- ===== PENGAYAAN 2: TOKOH PENTING ===== -->
+            <div class="enrichment-box reveal" style="background:var(--primary-soft); border-left-color:var(--primary);">
+                <h4 style="color:var(--primary);"><i class="fas fa-user-graduate" style="color:var(--primary);"></i> Tokoh Penting dalam Penginderaan Jauh</h4>
+                <ul>
+                    <li><strong>Gaspard-Félix Tournachon (Nadar):</strong> Fotografer pertama dari balon udara (1858).</li>
+                    <li><strong>Evelyn L. Pruitt:</strong> Ahli geografi yang mempopulerkan istilah "remote sensing" pada 1950-an.</li>
+                    <li><strong>William T. Pecora:</strong> Direktur USGS yang mendorong program Landsat.</li>
+                    <li><strong>Ralph B. Hoover:</strong> Perintis penggunaan inframerah untuk deteksi vegetasi.</li>
+                    <li><strong>Sutanto (Indonesia):</strong> Bapak Penginderaan Jauh Indonesia, penulis buku klasik yang digunakan di berbagai universitas.</li>
+                </ul>
+                <p style="margin-top:6px; font-size:0.85rem; color:var(--text-muted);">📚 Banyak ilmuwan Indonesia yang berkontribusi dalam penginderaan jauh, terutama untuk mitigasi bencana dan pemetaan sumber daya.</p>
+            </div>
+
+            <!-- ===== PENDALAMAN 1: SPEKTRUM ELEKTROMAGNETIK ===== -->
+            <div class="deep-dive reveal">
+                <h4><i class="fas fa-wave-square" style="color:var(--accent);"></i> Pendalaman: Spektrum Elektromagnetik untuk Penginderaan Jauh</h4>
+                <p>Penginderaan jauh memanfaatkan berbagai panjang gelombang. Berikut rincian kegunaannya:</p>
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr><th>Jenis Gelombang</th><th>Panjang Gelombang</th><th>Kegunaan</th><th>Contoh Objek</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>Ultraviolet (UV)</strong></td><td>0.01 – 0.4 μm</td><td>Deteksi mineral, polusi atmosfer (ozon)</td><td>Mineral tertentu berpendar UV</td></tr>
+                            <tr><td><strong>Tampak (Visible)</strong></td><td>0.4 – 0.7 μm</td><td>Mata manusia, fotografi, klasifikasi dasar</td><td>Lahan, air, vegetasi (warna)</td></tr>
+                            <tr><td><strong>Inframerah Dekat (NIR)</strong></td><td>0.7 – 1.3 μm</td><td>Kesehatan vegetasi (NDVI), biomassa</td><td>Daun hijau memantulkan kuat</td></tr>
+                            <tr><td><strong>Inframerah Termal (TIR)</strong></td><td>3 – 14 μm</td><td>Suhu permukaan, deteksi kebakaran</td><td>Gunung berapi, kebakaran hutan</td></tr>
+                            <tr><td><strong>Gelombang Mikro (Radar)</strong></td><td>0.1 – 100 cm</td><td>Tembus awan, malam hari, deteksi kelembaban</td><td>Lahan gambut, banjir, struktur tanah</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="background:var(--bg-card); border-radius:8px; padding:8px 12px; margin-top:6px; border:1px solid var(--border-light);">
+                    <span style="font-size:0.85rem; color:var(--text-muted);">💡 <strong>Contoh Aplikasi:</strong> Inframerah termal digunakan untuk mendeteksi <strong>kebakaran hutan</strong> (hotspot) dan memantau <strong>suhu permukaan laut</strong> untuk nelayan.</span>
+                </div>
+            </div>
+
+            <!-- ===== PENDALAMAN 2: SIGNATUR SPEKTRAL ===== -->
+            <div class="deep-dive reveal" style="background:var(--accent-soft); border-left-color:var(--accent);">
+                <h4 style="color:var(--accent);"><i class="fas fa-chart-line" style="color:var(--accent);"></i> Pendalaman: Signatur Spektral Objek</h4>
+                <p>Setiap objek memiliki <strong>pola pantulan</strong> yang unik (signatur spektral). Ini yang membedakan objek satu dengan lainnya di citra.</p>
+                <ul>
+                    <li><strong>Vegetasi sehat:</strong> Memantulkan NIR sangat kuat, merah rendah → NDVI tinggi.</li>
+                    <li><strong>Vegetasi stres/kering:</strong> Pantulan NIR menurun, merah meningkat → NDVI rendah.</li>
+                    <li><strong>Air jernih:</strong> Menyerap hampir semua gelombang tampak dan inframerah → tampak gelap di citra.</li>
+                    <li><strong>Lahan kosong/beton:</strong> Memantulkan semua gelombang tampak dengan cukup merata → tampak cerah.</li>
+                    <li><strong>Hutan vs sawah:</strong> Hutan memiliki tekstur kasar dan pantulan NIR tinggi; sawah lebih halus dan pantulan NIR lebih bervariasi (tergantung fase tanam).</li>
+                </ul>
+                <div style="background:var(--bg-card); border-radius:8px; padding:8px 12px; margin-top:6px; border:1px solid var(--border-light);">
+                    <span style="font-size:0.85rem; color:var(--text-muted);">💡 Dengan memahami signatur spektral, kita bisa <strong>mengklasifikasikan</strong> tutupan lahan secara otomatis menggunakan algoritma machine learning!</span>
+                </div>
+            </div>
+
+            <!-- ===== MINI QUIZ ===== -->
+            <div class="mini-quiz reveal">
+                <div class="quiz-question">Kuis Cepat: Penginderaan jauh disebut juga dengan istilah ...</div>
+                <div class="quiz-options">
+                    <button onclick="checkQuiz(this, false)">Field sensing</button>
+                    <button onclick="checkQuiz(this, true)">Remote sensing</button>
+                    <button onclick="checkQuiz(this, false)">Direct sensing</button>
+                    <button onclick="checkQuiz(this, false)">Ground sensing</button>
+                </div>
+                <div class="quiz-feedback"></div>
+            </div>
+
+            <!-- ===== NAVIGASI ===== -->
+            <div class="nav-buttons">
+                <div class="group">
+                    <button onclick="navigateTo('prev')">Sebelumnya</button>
+                    <span class="page-numbers"></span>
+                    <button onclick="navigateTo('next')">Selanjutnya</button>
+                    <span class="counter">2 / 8</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SECTION 3 : PERTEMUAN 2 ===== -->
+        <section id="section3" class="section">
+            <div style="background:var(--bg-soft); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid var(--primary); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                <div style="display:flex; align-items:center; gap:8px; color:var(--text-muted); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
+                <button onclick="navigateTo('section1')" style="background:var(--bg-card); color:var(--text-muted); border:1px solid var(--border-light); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem; box-shadow:var(--shadow);">⌂ Beranda</button>
+            </div>
+            <div class="section-header">
+                <div class="num">03</div>
+                <h2>Pertemuan 2 – Komponen &amp; Jenis Citra <small>Sistem &amp; Klasifikasi</small></h2>
+                <span class="badge-pertemuan">3×45'</span>
+            </div>
+            <div class="progress-tracker">
+                <span class="step done">1</span><span class="line done"></span>
+                <span class="step active">2</span><span class="line"></span>
+                <span class="step">3</span><span class="line"></span>
+                <span class="step">4</span>
+                <span style="color:var(--text-muted); font-size:0.7rem; font-weight:500; margin-left:8px;">Klik untuk eksplorasi</span>
+            </div>
+            <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;">
+                <span class="pertemuan-badge">TP 2</span>
+                <span class="pertemuan-badge" style="background:#d1fae5; color:#059669;">Literasi</span>
+                <span class="pertemuan-badge" style="background:#ffe4e6; color:#e11d48;">Kolaborasi</span>
+            </div>
+            <h3 style="font-size:1rem; color:var(--text-dark); font-weight:700; border-left:4px solid var(--primary); padding-left:12px; margin-bottom:6px;">Tujuan Pembelajaran</h3>
+            <ul style="color:var(--text-muted); font-weight:400; padding-left:20px; margin-bottom:16px; line-height:2; font-size:0.95rem;">
+                <li>Mengidentifikasi 6 komponen sistem penginderaan jauh dengan contoh nyata.</li>
+                <li>Membedakan citra pasif dan citra aktif serta memberikan contoh masing-masing.</li>
+                <li>Menjelaskan 4 jenis resolusi (spasial, spektral, temporal, radiometrik) dengan contoh.</li>
+            </ul>
+
+            <div style="margin:16px 0;">
+                <div class="grid-3">
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/satelit.png', 'Satelit Landsat – Wahana penginderaan jauh dengan sensor multispektral resolusi 30 m.')">
+                        <div class="img-wrap"><img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/satelit.png" alt="Landsat" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23f0f7ff%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%232563eb%22 font-family=%22Inter%22 font-size=%2220%22 dy=%22.3em%22%3E🛰️ Landsat%3C/text%3E%3C/svg%3E'" /></div>
+                        <div class="image-label-premium">🛰️ Satelit Landsat</div>
+                        <div class="image-sub-premium">Resolusi spasial 30 meter</div>
+                    </div>
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/drone.png', 'Drone – Wahana modern dengan sensor resolusi tinggi untuk pemetaan detail.')">
+                        <div class="img-wrap"><img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/drone.png" alt="Drone" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23f0f7ff%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%232563eb%22 font-family=%22Inter%22 font-size=%2220%22 dy=%22.3em%22%3E🚁 Drone%3C/text%3E%3C/svg%3E'" /></div>
+                        <div class="image-label-premium">🚁 Drone</div>
+                        <div class="image-sub-premium">Resolusi tinggi untuk detail lokal</div>
+                    </div>
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/citra.png', 'Citra Digital – Hasil rekaman sensor yang diolah menjadi citra siap interpretasi.')">
+                        <div class="img-wrap"><img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/citra.png" alt="Citra" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23f0f7ff%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%232563eb%22 font-family=%22Inter%22 font-size=%2220%22 dy=%22.3em%22%3E🖼️ Citra%3C/text%3E%3C/svg%3E'" /></div>
+                        <div class="image-label-premium">🖼️ Citra Digital</div>
+                        <div class="image-sub-premium">Data siap interpretasi</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="materi-detail reveal">
+                <div class="detail-header" onclick="toggleDetail(this)">
+                    <h4>A. Komponen Sistem Penginderaan Jauh</h4>
+                    <span class="fa-chevron-down" style="color:var(--text-muted); transition:transform 0.3s;">▼</span>
+                </div>
+                <div class="detail-body">
+                    <div class="def-block">
+                        <p style="color:var(--text-dark); font-weight:400; font-size:0.95rem;">
+                            Sistem penginderaan jauh terdiri dari <strong style="color:var(--primary);">6 komponen</strong> yang saling terkait. Setiap komponen memiliki peran penting.
+                        </p>
+                    </div>
+                    <div class="example-box">
+                        <span class="label-example">📌 Analogi: Memotret dengan Kamera</span>
+                        <p>Sumber energi = cahaya matahari (atau flash). Atmosfer = udara di antara kamu dan objek. Interaksi objek = pantulan cahaya dari objek. Sensor = sensor kamera. Wahana = tanganmu (atau tripod). Data = foto yang dihasilkan.</p>
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Komponen</th><th>Penjelasan</th><th>Contoh Konkret</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>1. Sumber Energi</strong></td><td>Matahari (pasif) atau sumber buatan (radar, lidar) — aktif.</td><td>Landsat (pasif) menggunakan sinar matahari; Sentinel-1 (aktif) menggunakan radar.</td></tr>
+                                <tr><td><strong>2. Atmosfer</strong></td><td>Media perambatan gelombang, memengaruhi kualitas data.</td><td>Awan tebal menghalangi citra optik; radar menembus awan.</td></tr>
+                                <tr><td><strong>3. Interaksi Objek</strong></td><td>Objek memantulkan/menyerap/memancarkan energi sesuai karakteristik.</td><td>Vegetasi memantulkan inframerah; air menyerap inframerah.</td></tr>
+                                <tr><td><strong>4. Sensor</strong></td><td>Alat perekam data (pasif: kamera, scanner; aktif: radar, lidar).</td><td>Sensor OLI di Landsat 8 (pasif); SAR di Sentinel-1 (aktif).</td></tr>
+                                <tr><td><strong>5. Wahana</strong></td><td>Platform pembawa sensor (satelit, pesawat, drone, balon).</td><td>Satelit Landsat di orbit 705 km; drone di ketinggian 100 m.</td></tr>
+                                <tr><td><strong>6. Data &amp; Informasi</strong></td><td>Citra digital yang diolah dan diinterpretasi.</td><td>Citra Landsat yang diolah menjadi peta deforestasi.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="materi-detail reveal">
+                <div class="detail-header" onclick="toggleDetail(this)">
+                    <h4>B. Jenis-Jenis Citra Penginderaan Jauh</h4>
+                    <span class="fa-chevron-down" style="color:var(--text-muted); transition:transform 0.3s;">▼</span>
+                </div>
+                <div class="detail-body">
+                    <h5 style="color:var(--text-dark); font-weight:700; font-size:0.95rem;">Berdasarkan Sumber Energi</h5>
+                    <div class="grid-2">
+                        <div class="card" style="border-left:4px solid var(--green);">
+                            <h4 style="color:var(--green);">Citra Pasif</h4>
+                            <p style="font-size:0.9rem; color:var(--text-muted);">Merekam energi alami yang dipantulkan atau dipancarkan objek. Contoh: foto udara, Landsat, Sentinel-2, MODIS.</p>
+                            <div style="background:var(--bg-soft); border-radius:6px; padding:4px 10px; margin-top:4px;"><span style="font-size:0.8rem; color:var(--text-muted);">Kelebihan: Sederhana, murah. Kekurangan: Terbatas pada siang hari dan cuaca cerah.</span></div>
+                        </div>
+                        <div class="card" style="border-left:4px solid var(--rose);">
+                            <h4 style="color:var(--rose);">Citra Aktif</h4>
+                            <p style="font-size:0.9rem; color:var(--text-muted);">Sensor memancarkan energi dan merekam pantulannya. Contoh: Radar (SAR), LIDAR, sonar.</p>
+                            <div style="background:var(--bg-soft); border-radius:6px; padding:4px 10px; margin-top:4px;"><span style="font-size:0.8rem; color:var(--text-muted);">Kelebihan: 24 jam, tembus awan. Kekurangan: Mahal, data lebih kompleks.</span></div>
+                        </div>
+                    </div>
+                    <div class="example-box" style="margin-top:12px;">
+                        <span class="label-example">📌 Contoh Nyata</span>
+                        <p>Citra pasif: Foto yang kamu ambil dengan HP di siang hari (mengandalkan sinar matahari). Citra aktif: Lampu senter yang kamu nyalakan di malam hari untuk melihat jalan (memancarkan energi sendiri).</p>
+                    </div>
+                    <h5 style="color:var(--text-dark); font-weight:700; font-size:0.95rem; margin-top:16px;">Berdasarkan Resolusi</h5>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Resolusi</th><th>Penjelasan</th><th>Contoh</th><th>Dampak pada Analisis</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Spasial</strong></td><td>Ukuran piksel di permukaan bumi</td><td>Landsat 30 m, Sentinel 10 m, WorldView 0.3 m</td><td>Semakin kecil piksel → detail lebih tinggi → objek kecil terlihat</td></tr>
+                                <tr><td><strong>Spektral</strong></td><td>Jumlah saluran gelombang yang direkam</td><td>Multispektral (4-10), Hiperspektral (&gt;100)</td><td>Lebih banyak saluran → identifikasi objek lebih akurat</td></tr>
+                                <tr><td><strong>Temporal</strong></td><td>Frekuensi perekaman ulang</td><td>Landsat 16 hari, Sentinel 5 hari, MODIS 1 hari</td><td>Lebih sering → pemantauan perubahan lebih baik</td></tr>
+                                <tr><td><strong>Radiometrik</strong></td><td>Kedalaman bit (jumlah nilai digital)</td><td>8-bit (0-255), 16-bit (0-65535)</td><td>Lebih banyak bit → gradasi warna lebih halus → detail lebih kaya</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="enrichment-box reveal">
+                <h4><i class="fas fa-star" style="color:var(--orange);"></i> Pengayaan: Satelit Terkenal</h4>
+                <ul>
+                    <li><strong>Landsat (NASA/USGS):</strong> Seri satelit tertua (1972–sekarang). Resolusi 30 m, 16 hari. Digunakan untuk pemetaan tutupan lahan global.</li>
+                    <li><strong>Sentinel (ESA):</strong> Program Copernicus. Sentinel-2 resolusi 10 m, 5 hari. Gratis untuk publik.</li>
+                    <li><strong>MODIS (NASA):</strong> Resolusi 250–1000 m, 1–2 hari. Untuk pemantauan iklim dan kebakaran global.</li>
+                    <li><strong>WorldView (Maxar):</strong> Resolusi 0.3 m (komersial). Bisa melihat objek sekecil 30 cm!</li>
+                </ul>
+                <p style="margin-top:6px; font-size:0.85rem; color:var(--text-muted);">💡 Data Landsat dan Sentinel gratis! Kamu bisa mengunduhnya untuk proyek sekolah.</p>
+            </div>
+
+            <div class="deep-dive reveal">
+                <h4><i class="fas fa-microscope" style="color:var(--accent);"></i> Pendalaman: Kombinasi Resolusi</h4>
+                <p>Dalam praktik, para ahli menggunakan <strong>kombinasi resolusi</strong> untuk analisis yang lebih baik:</p>
+                <ul>
+                    <li><strong>Resolusi spasial tinggi + temporal rendah:</strong> Untuk peta detail yang tidak perlu sering diperbarui (misal: peta RTRW).</li>
+                    <li><strong>Resolusi spasial rendah + temporal tinggi:</strong> Untuk pemantauan perubahan cepat (misal: kebakaran hutan, banjir).</li>
+                    <li><strong>Resolusi spektral tinggi + spasial sedang:</strong> Untuk identifikasi material (misal: mineral, jenis vegetasi).</li>
+                </ul>
+                <div style="background:var(--bg-card); border-radius:8px; padding:8px 12px; margin-top:6px; border:1px solid var(--border-light);">
+                    <span style="font-size:0.85rem; color:var(--text-muted);">💡 Contoh: Untuk mendeteksi kebakaran hutan, gunakan MODIS (temporal tinggi) untuk deteksi awal, lalu Landsat/Sentinel (spasial sedang) untuk verifikasi luas area.</span>
+                </div>
+            </div>
+
+            <div class="mini-quiz reveal">
+                <div class="quiz-question">Kuis Cepat: Citra yang dihasilkan dari sensor yang memancarkan energinya sendiri disebut ...</div>
+                <div class="quiz-options">
+                    <button onclick="checkQuiz(this, false)">Citra pasif</button>
+                    <button onclick="checkQuiz(this, true)">Citra aktif</button>
+                    <button onclick="checkQuiz(this, false)">Citra foto</button>
+                    <button onclick="checkQuiz(this, false)">Citra nonfoto</button>
+                </div>
+                <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="nav-buttons">
+                <div class="group">
+                    <button onclick="navigateTo('prev')">Sebelumnya</button>
+                    <span class="page-numbers"></span>
+                    <button onclick="navigateTo('next')">Selanjutnya</button>
+                    <span class="counter">3 / 8</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SECTION 4 : PERTEMUAN 3 ===== -->
+        <section id="section4" class="section">
+            <div style="background:var(--bg-soft); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid var(--primary); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                <div style="display:flex; align-items:center; gap:8px; color:var(--text-muted); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
+                <button onclick="navigateTo('section1')" style="background:var(--bg-card); color:var(--text-muted); border:1px solid var(--border-light); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem; box-shadow:var(--shadow);">⌂ Beranda</button>
+            </div>
+            <div class="section-header">
+                <div class="num">04</div>
+                <h2>Pertemuan 3 – Interpretasi Citra &amp; Resolusi <small>Membaca &amp; Menganalisis</small></h2>
+                <span class="badge-pertemuan">3×45'</span>
+            </div>
+            <div class="progress-tracker">
+                <span class="step done">1</span><span class="line done"></span>
+                <span class="step done">2</span><span class="line done"></span>
+                <span class="step active">3</span><span class="line"></span>
+                <span class="step">4</span>
+                <span style="color:var(--text-muted); font-size:0.7rem; font-weight:500; margin-left:8px;">Klik untuk eksplorasi</span>
+            </div>
+            <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;">
+                <span class="pertemuan-badge">TP 3</span>
+                <span class="pertemuan-badge" style="background:#d1fae5; color:#059669;">Penalaran Kritis</span>
+                <span class="pertemuan-badge" style="background:#ffe4e6; color:#e11d48;">Kreativitas</span>
+            </div>
+            <h3 style="font-size:1rem; color:var(--text-dark); font-weight:700; border-left:4px solid var(--primary); padding-left:12px; margin-bottom:6px;">Tujuan Pembelajaran</h3>
+            <ul style="color:var(--text-muted); font-weight:400; padding-left:20px; margin-bottom:16px; line-height:2; font-size:0.95rem;">
+                <li>Menjelaskan teknik interpretasi citra (visual dan digital) dengan contoh.</li>
+                <li>Mengidentifikasi 6 unsur interpretasi citra (rona, warna, bentuk, tekstur, pola, situs/asosiasi).</li>
+                <li>Menganalisis pengaruh tingkat resolusi terhadap kualitas interpretasi melalui studi kasus.</li>
+            </ul>
+
+            <div style="margin:16px 0;">
+                <div class="grid-3">
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/citra.png', 'Citra Resolusi Tinggi – Detail objek sangat jelas, dapat membedakan rumah, pohon, dan kendaraan.')">
+                        <div class="img-wrap"><img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/citra.png" alt="Resolusi Tinggi" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23f0f7ff%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%232563eb%22 font-family=%22Inter%22 font-size=%2220%22 dy=%22.3em%22%3E🖼️ Resolusi Tinggi%3C/text%3E%3C/svg%3E'" /></div>
+                        <div class="image-label-premium">🖼️ Citra Resolusi Tinggi</div>
+                        <div class="image-sub-premium">Detail objek sangat jelas</div>
+                    </div>
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/sungai.png', 'Interpretasi Citra – Mengidentifikasi sungai (biru), hutan (hijau), dan permukiman (abu-abu) dari citra.')">
+                        <div class="img-wrap"><img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/sungai.png" alt="Interpretasi" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23f0f7ff%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%232563eb%22 font-family=%22Inter%22 font-size=%2220%22 dy=%22.3em%22%3E🔍 Interpretasi%3C/text%3E%3C/svg%3E'" /></div>
+                        <div class="image-label-premium">🔍 Interpretasi Citra</div>
+                        <div class="image-sub-premium">Identifikasi objek: sungai, hutan, permukiman</div>
+                    </div>
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/bumi23.png', 'Citra Satelit Cuaca – Resolusi temporal tinggi untuk memantau perubahan atmosfer dan cuaca.')">
+                        <div class="img-wrap"><img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/bumi23.png" alt="Cuaca" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23f0f7ff%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%232563eb%22 font-family=%22Inter%22 font-size=%2220%22 dy=%22.3em%22%3E☁️ Cuaca%3C/text%3E%3C/svg%3E'" /></div>
+                        <div class="image-label-premium">☁️ Citra Satelit Cuaca</div>
+                        <div class="image-sub-premium">Resolusi temporal tinggi</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="materi-detail reveal">
+                <div class="detail-header" onclick="toggleDetail(this)">
+                    <h4>A. Interpretasi Citra Penginderaan Jauh</h4>
+                    <span class="fa-chevron-down" style="color:var(--text-muted); transition:transform 0.3s;">▼</span>
+                </div>
+                <div class="detail-body">
+                    <div class="def-block">
+                        <p style="color:var(--text-dark); font-weight:400; font-size:0.95rem;">
+                            <strong style="color:var(--primary);">Interpretasi citra</strong> adalah proses mengidentifikasi objek dan fenomena pada citra untuk menghasilkan informasi yang bermakna. Ada dua cara: <strong style="color:var(--secondary);">visual (manual)</strong> dan <strong style="color:var(--rose);">digital (komputerisasi)</strong>.
+                        </p>
+                    </div>
+                    <div class="example-box">
+                        <span class="label-example">📌 Analogi</span>
+                        <p>Interpretasi citra seperti kamu melihat foto dan mencoba mengenali apa yang ada di dalamnya — "ini pohon, ini sungai, ini rumah." Tapi dengan citra satelit, objeknya lebih banyak dan lebih kecil.</p>
+                    </div>
+                    <h5 style="color:var(--text-dark); font-weight:700; font-size:0.95rem; margin-top:8px;">6 Unsur Interpretasi Citra</h5>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Unsur</th><th>Penjelasan</th><th>Contoh</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Rona &amp; Warna</strong></td><td>Tingkat kecerahan (rona) dan warna pada citra</td><td>Vegetasi: hijau; air: biru gelap; lahan kosong: cokelat</td></tr>
+                                <tr><td><strong>Bentuk</strong></td><td>Geometri objek (alamiah atau buatan manusia)</td><td>Lapangan sepak bola: oval; sawah: persegi; gunung: kerucut</td></tr>
+                                <tr><td><strong>Ukuran</strong></td><td>Dimensi objek (panjang, lebar, luas)</td><td>Rumah: kecil; stadion: besar; danau: luas</td></tr>
+                                <tr><td><strong>Tekstur</strong></td><td>Kekasaran permukaan (halus/kasar)</td><td>Hutan: kasar; lahan pertanian: halus; air: sangat halus</td></tr>
+                                <tr><td><strong>Pola</strong></td><td>Susunan spasial objek (teratur/tidak)</td><td>Permukiman: teratur; hutan: tidak teratur; sawah: berpola</td></tr>
+                                <tr><td><strong>Situs &amp; Asosiasi</strong></td><td>Lokasi dan hubungan dengan objek lain</td><td>Masjid dekat permukiman; sungai di lembah; sekolah di pusat kota</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div style="background:var(--primary-soft); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid var(--primary);">
+                        <p style="font-size:0.9rem; color:var(--text-dark); font-weight:400;">
+                            <strong style="color:var(--text-dark); font-weight:600;">💡 Tips:</strong> Gunakan semua unsur bersama-sama! Jangan hanya mengandalkan warna atau bentuk saja.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="materi-detail reveal">
+                <div class="detail-header" onclick="toggleDetail(this)">
+                    <h4>B. Resolusi dan Pengaruhnya terhadap Interpretasi</h4>
+                    <span class="fa-chevron-down" style="color:var(--text-muted); transition:transform 0.3s;">▼</span>
+                </div>
+                <div class="detail-body">
+                    <div class="def-block">
+                        <p style="color:var(--text-dark); font-weight:400; font-size:0.95rem;">
+                            <strong style="color:var(--primary);">Resolusi</strong> menentukan <strong style="color:var(--secondary);">seberapa detail</strong> kita bisa melihat objek di citra. Semakin tinggi resolusi, semakin detail objek yang terlihat.
+                        </p>
+                    </div>
+                    <div class="grid-2">
+                        <div class="card" style="border-left:4px solid var(--green);">
+                            <h4 style="color:var(--green);">Resolusi Spasial Tinggi</h4>
+                            <ul style="font-size:0.9rem; color:var(--text-muted); padding-left:18px;">
+                                <li>Detail objek sangat jelas</li>
+                                <li>Dapat membedakan objek kecil (rumah, kendaraan, pohon)</li>
+                                <li>Contoh: WorldView (0.3 m), Drone (0.05–0.5 m)</li>
+                                <li><span style="color:var(--text-muted);">Kekurangan: cakupan area kecil, data besar</span></li>
+                            </ul>
+                        </div>
+                        <div class="card" style="border-left:4px solid var(--rose);">
+                            <h4 style="color:var(--rose);">Resolusi Spasial Rendah</h4>
+                            <ul style="font-size:0.9rem; color:var(--text-muted); padding-left:18px;">
+                                <li>Detail objek kurang jelas (piksel besar)</li>
+                                <li>Hanya objek besar yang terlihat</li>
+                                <li>Contoh: MODIS (250–1000 m), AVHRR (1 km)</li>
+                                <li><span style="color:var(--text-muted);">Kelebihan: cakupan area luas, sering</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="example-box" style="margin-top:12px;">
+                        <span class="label-example">📌 Studi Kasus: Memantau Kebakaran Hutan</span>
+                        <p>Untuk <strong>deteksi awal</strong> kebakaran, gunakan MODIS (resolusi rendah, temporal tinggi) karena bisa memindai area luas setiap hari. Setelah titik api terdeteksi, gunakan Landsat/Sentinel (resolusi sedang) untuk <strong>memverifikasi luas</strong> dan dampaknya secara detail.</p>
+                    </div>
+                    <div style="background:var(--orange-soft); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid var(--orange);">
+                        <p style="font-size:0.9rem; color:var(--text-dark); font-weight:400;">
+                            <strong style="color:var(--text-dark); font-weight:600;">🔑 Prinsip:</strong> Tidak ada resolusi "terbaik". Pilih resolusi yang sesuai dengan <strong>tujuan analisis</strong> dan <strong>skala</strong> yang ingin dipelajari.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="enrichment-box reveal">
+                <h4><i class="fas fa-star" style="color:var(--orange);"></i> Pengayaan: Interpretasi Digital (Machine Learning)</h4>
+                <ul>
+                    <li><strong>Klasifikasi Terbimbing (Supervised):</strong> Ahli memberi contoh area (misal: "ini hutan", "ini sawah"), lalu komputer belajar dan mengklasifikasikan seluruh citra.</li>
+                    <li><strong>Klasifikasi Tak Terbimbing (Unsupervised):</strong> Komputer mengelompokkan piksel berdasarkan kemiripan spektral tanpa bimbingan manusia.</li>
+                    <li><strong>Deep Learning (AI):</strong> Jaringan saraf tiruan dapat mendeteksi objek dengan akurasi tinggi — seperti mengenali rumah, mobil, atau kapal di citra.</li>
+                </ul>
+                <p style="margin-top:6px; font-size:0.85rem; color:var(--text-muted);">💡 Platform seperti Google Earth Engine menggunakan AI untuk memproses ribuan citra secara otomatis!</p>
+            </div>
+
+            <div class="deep-dive reveal">
+                <h4><i class="fas fa-microscope" style="color:var(--accent);"></i> Pendalaman: Indeks Vegetasi (NDVI)</h4>
+                <p><strong>NDVI (Normalized Difference Vegetation Index)</strong> adalah salah satu aplikasi interpretasi digital yang paling terkenal. Rumusnya:</p>
+                <div style="background:var(--bg-card); border-radius:8px; padding:12px; text-align:center; font-size:1.1rem; color:var(--text-dark); margin:6px 0; border:1px solid var(--border-light);">
+                    NDVI = (NIR – Red) / (NIR + Red)
+                </div>
+                <ul>
+                    <li><strong>NIR</strong> = pantulan inframerah dekat (vegetasi sehat memantulkan banyak NIR)</li>
+                    <li><strong>Red</strong> = pantulan merah (vegetasi menyerap banyak merah)</li>
+                    <li>Nilai NDVI berkisar antara -1 sampai +1. <strong>+1 = vegetasi sangat sehat</strong>, <strong>0 = lahan kosong</strong>, <strong>-1 = air</strong>.</li>
+                </ul>
+                <div style="background:var(--bg-card); border-radius:8px; padding:8px 12px; margin-top:6px; border:1px solid var(--border-light);">
+                    <span style="font-size:0.85rem; color:var(--text-muted);">💡 Aplikasi: Petani menggunakan NDVI untuk mengetahui area mana yang perlu dipupuk. Pemerintah memantau deforestasi dengan NDVI.</span>
+                </div>
+            </div>
+
+            <div class="mini-quiz reveal">
+                <div class="quiz-question">Kuis Cepat: Unsur interpretasi yang menunjukkan tingkat kecerahan pada citra adalah ...</div>
+                <div class="quiz-options">
+                    <button onclick="checkQuiz(this, false)">Bentuk</button>
+                    <button onclick="checkQuiz(this, true)">Rona</button>
+                    <button onclick="checkQuiz(this, false)">Tekstur</button>
+                    <button onclick="checkQuiz(this, false)">Pola</button>
+                </div>
+                <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="nav-buttons">
+                <div class="group">
+                    <button onclick="navigateTo('prev')">Sebelumnya</button>
+                    <span class="page-numbers"></span>
+                    <button onclick="navigateTo('next')">Selanjutnya</button>
+                    <span class="counter">4 / 8</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SECTION 5 : PERTEMUAN 4 ===== -->
+        <section id="section5" class="section">
+            <div style="background:var(--bg-soft); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid var(--primary); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                <div style="display:flex; align-items:center; gap:8px; color:var(--text-muted); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
+                <button onclick="navigateTo('section1')" style="background:var(--bg-card); color:var(--text-muted); border:1px solid var(--border-light); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem; box-shadow:var(--shadow);">⌂ Beranda</button>
+            </div>
+            <div class="section-header">
+                <div class="num">05</div>
+                <h2>Pertemuan 4 – Pemanfaatan Penginderaan Jauh <small>Aplikasi dalam Kehidupan</small></h2>
+                <span class="badge-pertemuan">3×45'</span>
+            </div>
+            <div class="progress-tracker">
+                <span class="step done">1</span><span class="line done"></span>
+                <span class="step done">2</span><span class="line done"></span>
+                <span class="step done">3</span><span class="line done"></span>
+                <span class="step active">4</span>
+                <span style="color:var(--text-muted); font-size:0.7rem; font-weight:500; margin-left:8px;">Klik untuk eksplorasi</span>
+            </div>
+            <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;">
+                <span class="pertemuan-badge">TP 4</span>
+                <span class="pertemuan-badge" style="background:#d1fae5; color:#059669;">Kreativitas</span>
+                <span class="pertemuan-badge" style="background:#ffe4e6; color:#e11d48;">Kemandirian</span>
+            </div>
+            <h3 style="font-size:1rem; color:var(--text-dark); font-weight:700; border-left:4px solid var(--primary); padding-left:12px; margin-bottom:6px;">Tujuan Pembelajaran</h3>
+            <ul style="color:var(--text-muted); font-weight:400; padding-left:20px; margin-bottom:16px; line-height:2; font-size:0.95rem;">
+                <li>Menganalisis 6 bidang pemanfaatan penginderaan jauh dalam kehidupan sehari-hari.</li>
+                <li>Menghubungkan penginderaan jauh dengan pembangunan wilayah dan mitigasi bencana melalui studi kasus lokal.</li>
+                <li>Menyusun gagasan kreatif pemanfaatan penginderaan jauh untuk masalah lingkungan di daerah sendiri.</li>
+            </ul>
+
+            <div style="margin:16px 0;">
+                <div class="grid-3">
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/mitigasibanjir.png', 'Mitigasi Banjir – Pemetaan daerah rawan banjir menggunakan citra satelit untuk perencanaan evakuasi.')">
+                        <div class="img-wrap"><img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/mitigasibanjir.png" alt="Mitigasi" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23f0f7ff%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%232563eb%22 font-family=%22Inter%22 font-size=%2220%22 dy=%22.3em%22%3E🌊 Mitigasi%3C/text%3E%3C/svg%3E'" /></div>
+                        <div class="image-label-premium">🌊 Mitigasi Bencana</div>
+                        <div class="image-sub-premium">Pemetaan daerah rawan banjir</div>
+                    </div>
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/hidupberkelanjutan.png', 'Pembangunan Berkelanjutan – Perencanaan tata ruang berbasis data penginderaan jauh.')">
+                        <div class="img-wrap"><img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/hidupberkelanjutan.png" alt="Berkelanjutan" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23f0f7ff%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%232563eb%22 font-family=%22Inter%22 font-size=%2220%22 dy=%22.3em%22%3E🌱 Berkelanjutan%3C/text%3E%3C/svg%3E'" /></div>
+                        <div class="image-label-premium">🌱 Pembangunan Berkelanjutan</div>
+                        <div class="image-sub-premium">Perencanaan tata ruang</div>
+                    </div>
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/tnsebngau.png', 'Ekowisata – Potensi wisata alam berbasis data penginderaan jauh untuk ekonomi lokal.')">
+                        <div class="img-wrap"><img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/tnsebngau.png" alt="Ekowisata" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23f0f7ff%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%232563eb%22 font-family=%22Inter%22 font-size=%2220%22 dy=%22.3em%22%3E🦧 Ekowisata%3C/text%3E%3C/svg%3E'" /></div>
+                        <div class="image-label-premium">🦧 Ekowisata</div>
+                        <div class="image-sub-premium">Wisata alam berbasis data spasial</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="materi-detail reveal">
+                <div class="detail-header" onclick="toggleDetail(this)">
+                    <h4>A. 6 Bidang Pemanfaatan Penginderaan Jauh</h4>
+                    <span class="fa-chevron-down" style="color:var(--text-muted); transition:transform 0.3s;">▼</span>
+                </div>
+                <div class="detail-body">
+                    <div class="def-block">
+                        <p style="color:var(--text-dark); font-weight:400; font-size:0.95rem;">
+                            Penginderaan jauh memiliki <strong style="color:var(--primary);">banyak manfaat</strong> dalam berbagai bidang. Berikut 6 bidang utama beserta contoh konkret.
+                        </p>
+                    </div>
+                    <div class="grid-3">
+                        <div class="card" style="border-left:4px solid var(--primary);">
+                            <div style="font-size:2rem; color:var(--primary);"><i class="fas fa-tree"></i></div>
+                            <h4 style="color:var(--text-dark);">Inventarisasi SDA</h4>
+                            <p style="font-size:0.9rem; color:var(--text-muted);">Memetakan hutan, lahan pertanian, tambang, dan sumber daya air. Contoh: Pemantauan deforestasi di Kalimantan menggunakan Landsat.</p>
+                        </div>
+                        <div class="card" style="border-left:4px solid var(--secondary);">
+                            <div style="font-size:2rem; color:var(--secondary);"><i class="fas fa-cloud-sun-rain"></i></div>
+                            <h4 style="color:var(--text-dark);">Cuaca &amp; Iklim</h4>
+                            <p style="font-size:0.9rem; color:var(--text-muted);">Menganalisis pola cuaca, prakiraan hujan, dan perubahan iklim. Contoh: Citra satelit Himawari untuk prediksi siklon.</p>
+                        </div>
+                        <div class="card" style="border-left:4px solid var(--rose);">
+                            <div style="font-size:2rem; color:var(--rose);"><i class="fas fa-water"></i></div>
+                            <h4 style="color:var(--text-dark);">Mitigasi Bencana</h4>
+                            <p style="font-size:0.9rem; color:var(--text-muted);">Memetakan daerah rawan banjir, longsor, gempa, dan tsunami. Contoh: Pemetaan DAS untuk prediksi banjir.</p>
+                        </div>
+                        <div class="card" style="border-left:4px solid var(--orange);">
+                            <div style="font-size:2rem; color:var(--orange);"><i class="fas fa-city"></i></div>
+                            <h4 style="color:var(--text-dark);">Perencanaan Wilayah</h4>
+                            <p style="font-size:0.9rem; color:var(--text-muted);">Membantu perencanaan tata ruang dan pembangunan infrastruktur. Contoh: Analisis kesesuaian lahan untuk RTRW.</p>
+                        </div>
+                        <div class="card" style="border-left:4px solid #0ea5e9;">
+                            <div style="font-size:2rem; color:#0ea5e9;"><i class="fas fa-ship"></i></div>
+                            <h4 style="color:var(--text-dark);">Kelautan &amp; Perikanan</h4>
+                            <p style="font-size:0.9rem; color:var(--text-muted);">Memantau suhu permukaan laut, arus, dan potensi ikan. Contoh: Pemetaan SST untuk nelayan.</p>
+                        </div>
+                        <div class="card" style="border-left:4px solid var(--accent);">
+                            <div style="font-size:2rem; color:var(--accent);"><i class="fas fa-map-marked-alt"></i></div>
+                            <h4 style="color:var(--text-dark);">Pemetaan &amp; Navigasi</h4>
+                            <p style="font-size:0.9rem; color:var(--text-muted);">Membantu pemetaan digital dan navigasi (Google Maps, GPS, Waze).</p>
+                        </div>
+                    </div>
+                    <div class="example-box" style="margin-top:12px;">
+                        <span class="label-example">📌 Contoh dalam Kehidupan Sehari-hari</span>
+                        <p>Kamu menggunakan Google Maps untuk mencari rute tercepat — itu adalah aplikasi dari penginderaan jauh! Kamu juga melihat prakiraan cuaca di HP — itu dari citra satelit cuaca.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="materi-detail reveal">
+                <div class="detail-header" onclick="toggleDetail(this)">
+                    <h4>B. Studi Kasus: Karhutla Katingan <span class="local-badge">Lokal</span></h4>
+                    <span class="fa-chevron-down" style="color:var(--text-muted); transition:transform 0.3s;">▼</span>
+                </div>
+                <div class="detail-body">
+                    <div class="def-block">
+                        <p style="color:var(--text-dark); font-weight:400; font-size:0.95rem;">
+                            <strong style="color:var(--orange);">Kebakaran Hutan dan Lahan (Karhutla)</strong> di Kabupaten Katingan, Kalimantan Tengah, adalah masalah serius. Penginderaan jauh menjadi <strong style="color:var(--secondary);">alat utama</strong> untuk memantau dan mengatasinya.
+                        </p>
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Aspek</th><th>Peran Penginderaan Jauh</th><th>Contoh Data/Satelit</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Deteksi Titik Api</strong></td><td>Mendeteksi hotspot (titik api) secara real-time untuk respons cepat.</td><td>MODIS (NASA), VIIRS (NOAA) — deteksi panas anomali.</td></tr>
+                                <tr><td><strong>Pemetaan Lahan Gambut</strong></td><td>Memetakan sebaran lahan gambut yang rentan terbakar.</td><td>Landsat, Sentinel-2 — klasifikasi tutupan lahan.</td></tr>
+                                <tr><td><strong>Analisis Kabut Asap</strong></td><td>Memantau sebaran asap dan kualitas udara.</td><td>Satelit cuaca (Himawari) — deteksi aerosol.</td></tr>
+                                <tr><td><strong>Evaluasi Dampak</strong></td><td>Membandingkan citra sebelum-sesudah kebakaran untuk mengukur luas area terdampak.</td><td>Landsat, Sentinel — perbedaan NDVI.</td></tr>
+                                <tr><td><strong>Prediksi Risiko</strong></td><td>Menggabungkan data curah hujan, kelembaban, dan vegetasi untuk prediksi risiko karhutla.</td><td>Data cuaca + citra — pemodelan risiko.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div style="background:var(--orange-soft); border-radius:10px; padding:12px 16px; margin-top:8px; border-left:4px solid var(--orange);">
+                        <h4 style="color:var(--orange); font-size:0.95rem; font-weight:700;">💡 Peran Aktif Siswa</h4>
+                        <ul style="font-size:0.9rem; color:var(--text-dark); padding-left:20px; line-height:2.2;">
+                            <li><strong>Melaporkan</strong> kepulan asap mencurigakan ke BPBD setempat.</li>
+                            <li><strong>Menyebarkan</strong> informasi pencegahan karhutla di lingkungan sekitar (sekolah, rumah).</li>
+                            <li><strong>Mengakses</strong> data citra gratis (Landsat, Sentinel) untuk memantau kondisi hutan di daerah masing-masing.</li>
+                            <li><strong>Membuat</strong> peta sederhana dari citra untuk tugas sekolah tentang lingkungan.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="enrichment-box reveal">
+                <h4><i class="fas fa-star" style="color:var(--orange);"></i> Pengayaan: Pemanfaatan di Bidang Lain</h4>
+                <ul>
+                    <li><strong>Pertanian Presisi (Precision Agriculture):</strong> Petani menggunakan NDVI untuk mengetahui area mana yang perlu pupuk atau irigasi. Menghemat biaya dan meningkatkan hasil panen.</li>
+                    <li><strong>Arkeologi:</strong> Citra satelit dapat mendeteksi struktur kuno yang tersembunyi di bawah tanah (misal: reruntuhan candi, jalan kuno).</li>
+                    <li><strong>Pengawasan Perbatasan:</strong> Satelit memantau aktivitas di perbatasan negara, termasuk pergerakan kapal dan ilegal logging.</li>
+                    <li><strong>Perubahan Iklim:</strong> Satelit mengukur pencairan es di kutub, naiknya permukaan laut, dan konsentrasi gas rumah kaca di atmosfer.</li>
+                </ul>
+                <p style="margin-top:6px; font-size:0.85rem; color:var(--text-muted);">💡 Penginderaan jauh membantu kita memahami bumi secara holistik — dari bawah tanah sampai atmosfer!</p>
+            </div>
+
+            <div class="deep-dive reveal">
+                <h4><i class="fas fa-microscope" style="color:var(--accent);"></i> Pendalaman: Analisis Spasial Berbasis Citra</h4>
+                <p>Penginderaan jauh tidak hanya menghasilkan citra, tetapi juga dapat digunakan untuk melakukan <strong>analisis spasial</strong> seperti:</p>
+                <ul>
+                    <li><strong>Deteksi Perubahan (Change Detection):</strong> Membandingkan dua citra dari waktu berbeda untuk melihat perubahan tutupan lahan, deforestasi, atau perluasan kota.</li>
+                    <li><strong>Klasifikasi Tutupan Lahan:</strong> Mengelompokkan area berdasarkan jenis penutupnya (hutan, sawah, permukiman, air, dll.) menggunakan algoritma machine learning.</li>
+                    <li><strong>Pemodelan Spasial:</strong> Menggabungkan citra dengan data lain (curah hujan, kemiringan lereng) untuk memprediksi risiko banjir atau longsor.</li>
+                </ul>
+                <div style="background:var(--bg-card); border-radius:8px; padding:8px 12px; margin-top:6px; border:1px solid var(--border-light);">
+                    <span style="font-size:0.85rem; color:var(--text-muted);">💡 Aplikasi: Pemerintah daerah menggunakan analisis perubahan untuk memantau pembangunan infrastruktur dan mengendalikan alih fungsi lahan.</span>
+                </div>
+            </div>
+
+            <div class="mini-quiz reveal">
+                <div class="quiz-question">Kuis Cepat: Salah satu manfaat penginderaan jauh dalam mitigasi bencana adalah ...</div>
+                <div class="quiz-options">
+                    <button onclick="checkQuiz(this, false)">Memetakan persebaran penduduk</button>
+                    <button onclick="checkQuiz(this, true)">Memetakan daerah rawan banjir</button>
+                    <button onclick="checkQuiz(this, false)">Memprediksi harga komoditas</button>
+                    <button onclick="checkQuiz(this, false)">Menentukan lokasi sekolah</button>
+                </div>
+                <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="nav-buttons">
+                <div class="group">
+                    <button onclick="navigateTo('prev')">Sebelumnya</button>
+                    <span class="page-numbers"></span>
+                    <button onclick="navigateTo('next')">Selanjutnya</button>
+                    <span class="counter">5 / 8</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SECTION 6 : ASESMEN ===== -->
+        <section id="section6" class="section">
+            <div style="background:var(--bg-soft); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid var(--primary); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                <div style="display:flex; align-items:center; gap:8px; color:var(--text-muted); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
+                <button onclick="navigateTo('section1')" style="background:var(--bg-card); color:var(--text-muted); border:1px solid var(--border-light); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem; box-shadow:var(--shadow);">⌂ Beranda</button>
+            </div>
+            <div class="section-header">
+                <div class="num">06</div>
+                <h2>Asesmen HOTS <small>Evaluasi Pemahaman 4 Pertemuan</small></h2>
+                <span class="badge-pertemuan">25 PG · 10 BS · 5 Essay</span>
+            </div>
+            <div style="background:var(--bg-card); border-radius:16px; padding:20px 24px; margin-bottom:24px; border:1px solid var(--border-light); box-shadow:var(--shadow);">
+                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap:12px;">
+                    <div style="display:flex; align-items:center; gap:12px; padding:10px 14px; background:var(--primary-soft); border-radius:12px;">
+                        <div style="width:32px; height:32px; border-radius:50%; background:var(--primary); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.8rem;">A</div>
+                        <div><span style="color:var(--text-muted); font-size:0.6rem; font-weight:600; text-transform:uppercase;">Pilihan Ganda</span><div style="color:var(--text-dark); font-size:1.1rem; font-weight:700;">25</div></div>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:12px; padding:10px 14px; background:#d1fae5; border-radius:12px;">
+                        <div style="width:32px; height:32px; border-radius:50%; background:var(--green); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.8rem;">B</div>
+                        <div><span style="color:var(--text-muted); font-size:0.6rem; font-weight:600; text-transform:uppercase;">Benar/Salah</span><div style="color:var(--text-dark); font-size:1.1rem; font-weight:700;">10</div></div>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:12px; padding:10px 14px; background:#ffe4e6; border-radius:12px;">
+                        <div style="width:32px; height:32px; border-radius:50%; background:var(--rose); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.8rem;">C</div>
+                        <div><span style="color:var(--text-muted); font-size:0.6rem; font-weight:600; text-transform:uppercase;">Essay</span><div style="color:var(--text-dark); font-size:1.1rem; font-weight:700;">5</div></div>
+                    </div>
+                </div>
+                <div style="margin-top:12px; padding-top:12px; border-top:1px solid var(--border-light); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+                    <span style="color:var(--text-muted); font-size:0.85rem; font-weight:400;">Total <strong style="color:var(--text-dark); font-weight:700;">40 soal</strong> · HOTS (Higher Order Thinking Skills)</span>
+                    <span style="color:var(--text-muted); font-size:0.75rem; font-weight:400;">60 menit</span>
+                </div>
+            </div>
+
+            <!-- PG (ringkas) -->
+            <div style="background:var(--bg-card); border-radius:16px; padding:20px; border:1px solid var(--border-light); margin-bottom:20px; box-shadow:var(--shadow);">
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+                    <div style="width:32px; height:32px; border-radius:50%; background:var(--primary); display:flex; align-items:center; justify-content:center; font-weight:700; color:#fff; font-size:0.85rem;">A</div>
+                    <h3 style="color:var(--text-dark); font-size:1.05rem; font-weight:700; margin:0;">Pilihan Ganda <span class="hots-tag">HOTS</span></h3>
+                    <span style="font-size:0.7rem; color:var(--text-muted); font-weight:400; margin-left:auto;">25 Soal</span>
+                </div>
+                <p style="color:var(--text-muted); font-size:0.8rem; font-weight:400; margin-bottom:12px;">Pilih satu jawaban paling tepat!</p>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">1.</span> Penginderaan jauh disebut juga dengan istilah ... <span class="hots-tag">C1</span></div><div class="opsi"><span>A. Field sensing</span><span>B. Remote sensing</span><span>C. Direct sensing</span><span>D. Ground sensing</span><span>E. In-situ sensing</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">2.</span> Menurut Lillesand &amp; Kiefer, penginderaan jauh adalah ilmu dan seni untuk memperoleh informasi dengan alat ... <span class="hots-tag">C1</span></div><div class="opsi"><span>A. Kontak langsung</span><span>B. Tanpa kontak langsung</span><span>C. Pengamatan lapangan</span><span>D. Wawancara</span><span>E. Studi literatur</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">3.</span> Sumber energi pada sistem penginderaan jauh pasif adalah ... <span class="hots-tag">C1</span></div><div class="opsi"><span>A. Radar</span><span>B. LIDAR</span><span>C. Matahari</span><span>D. Sensor aktif</span><span>E. Gelombang mikro</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">4.</span> Contoh citra penginderaan jauh aktif adalah ... <span class="hots-tag">C2</span></div><div class="opsi"><span>A. Foto udara</span><span>B. Citra Landsat</span><span>C. Citra Sentinel</span><span>D. Citra Radar (SAR)</span><span>E. Citra MODIS</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">5.</span> Resolusi spasial pada citra Landsat adalah ... <span class="hots-tag">C1</span></div><div class="opsi"><span>A. 0,5 meter</span><span>B. 10 meter</span><span>C. 30 meter</span><span>D. 100 meter</span><span>E. 500 meter</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">6.</span> Sensor yang memancarkan energinya sendiri untuk merekam objek disebut sensor ... <span class="hots-tag">C1</span></div><div class="opsi"><span>A. Pasif</span><span>B. Aktif</span><span>C. Termal</span><span>D. Optik</span><span>E. Multispektral</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">7.</span> Unsur interpretasi yang menggambarkan tingkat kecerahan pada citra adalah ... <span class="hots-tag">C1</span></div><div class="opsi"><span>A. Bentuk</span><span>B. Tekstur</span><span>C. Pola</span><span>D. Rona</span><span>E. Ukuran</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">8.</span> Wahana yang digunakan untuk membawa sensor penginderaan jauh adalah ... <span class="hots-tag">C1</span></div><div class="opsi"><span>A. Satelit, pesawat, drone</span><span>B. Hanya satelit</span><span>C. Hanya pesawat</span><span>D. Hanya drone</span><span>E. Balon udara saja</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">9.</span> Pemanfaatan penginderaan jauh dalam bidang mitigasi bencana adalah ... <span class="hots-tag">C2</span></div><div class="opsi"><span>A. Pemetaan daerah rawan banjir</span><span>B. Pemantauan cuaca</span><span>C. Inventarisasi hutan</span><span>D. Pemetaan penggunaan lahan</span><span>E. Analisis kepadatan penduduk</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">10.</span> Menurut Sutanto, penginderaan jauh adalah teknik untuk mendapatkan informasi tanpa ... <span class="hots-tag">C1</span></div><div class="opsi"><span>A. Menggunakan sensor</span><span>B. Kontak langsung dengan objek</span><span>C. Menggunakan wahana</span><span>D. Analisis data</span><span>E. Interpretasi citra</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">11.</span> Citra yang dihasilkan dari sensor pasif disebut juga ... <span class="hots-tag">C1</span></div><div class="opsi"><span>A. Citra radar</span><span>B. Citra aktif</span><span>C. Citra optik</span><span>D. Citra LIDAR</span><span>E. Citra SAR</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">12.</span> Contoh pemanfaatan penginderaan jauh dalam perencanaan wilayah adalah ... <span class="hots-tag">C2</span></div><div class="opsi"><span>A. Pemantauan suhu laut</span><span>B. Pemetaan tutupan lahan untuk RTRW</span><span>C. Prakiraan cuaca</span><span>D. Pemantauan deforestasi</span><span>E. Identifikasi potensi ikan</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">13.</span> Resolusi temporal pada satelit Landsat adalah ... <span class="hots-tag">C1</span></div><div class="opsi"><span>A. 1 hari</span><span>B. 5 hari</span><span>C. 16 hari</span><span>D. 30 hari</span><span>E. 365 hari</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">14.</span> Unsur interpretasi yang menunjukkan susunan spasial objek (teratur/tidak) adalah ... <span class="hots-tag">C1</span></div><div class="opsi"><span>A. Rona</span><span>B. Bentuk</span><span>C. Tekstur</span><span>D. Pola</span><span>E. Ukuran</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">15.</span> Satelit yang digunakan untuk deteksi titik api (hotspot) adalah ... <span class="hots-tag">C2</span></div><div class="opsi"><span>A. Landsat</span><span>B. Sentinel</span><span>C. MODIS</span><span>D. WorldView</span><span>E. SPOT</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">16.</span> Jika sebuah citra memiliki resolusi spasial 0.5 meter, artinya ... <span class="hots-tag">C3</span></div><div class="opsi"><span>A. Satu piksel mewakili 0.5 meter di permukaan bumi</span><span>B. Satu piksel mewakili 0.5 kilometer</span><span>C. Citra direkam setiap 0.5 hari</span><span>D. Citra memiliki 0.5 saluran spektral</span><span>E. Citra memiliki kedalaman bit 0.5</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">17.</span> Mengapa citra radar (SAR) dapat digunakan pada malam hari dan saat berawan? <span class="hots-tag">C3</span></div><div class="opsi"><span>A. Karena menggunakan sinar matahari</span><span>B. Karena memancarkan gelombang mikronya sendiri</span><span>C. Karena menggunakan sinar ultraviolet</span><span>D. Karena menggunakan sinar-X</span><span>E. Karena menggunakan gelombang suara</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">18.</span> Seorang petani ingin mengetahui area sawahnya yang kurang subur. Teknologi penginderaan jauh yang paling tepat adalah ... <span class="hots-tag">C4</span></div><div class="opsi"><span>A. Analisis NDVI dari citra multispektral</span><span>B. Foto udara hitam-putih</span><span>C. Citra radar untuk melihat kelembaban</span><span>D. Citra termal untuk suhu tanah</span><span>E. Pengukuran langsung di lapangan</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">19.</span> Jika ingin memantau perubahan tutupan hutan di Kalimantan selama 10 tahun terakhir, satelit yang paling tepat digunakan adalah ... <span class="hots-tag">C4</span></div><div class="opsi"><span>A. MODIS (resolusi rendah, temporal tinggi)</span><span>B. Landsat (resolusi sedang, data historis panjang)</span><span>C. WorldView (resolusi tinggi, data mahal)</span><span>D. Satelit cuaca (Himawari)</span><span>E. Drone (resolusi sangat tinggi)</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">20.</span> Apa kelemahan utama dari citra dengan resolusi spasial sangat tinggi (misal: 0.3 meter)? <span class="hots-tag">C3</span></div><div class="opsi"><span>A. Cakupan area kecil dan data besar</span><span>B. Tidak dapat digunakan pada siang hari</span><span>C. Hanya tersedia untuk militer</span><span>D. Tidak dapat mendeteksi objek kecil</span><span>E. Resolusi temporalnya sangat rendah</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">21.</span> Dalam interpretasi citra, jika kamu melihat objek berbentuk persegi panjang dengan pola teratur dan atap berwarna merah, kemungkinan besar objek tersebut adalah ... <span class="hots-tag">C3</span></div><div class="opsi"><span>A. Hutan</span><span>B. Sungai</span><span>C. Permukiman/perumahan</span><span>D. Lahan pertanian</span><span>E. Gunung</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">22.</span> Mengapa lahan gambut sulit dipadamkan jika terbakar dan sering memicu karhutla besar? <span class="hots-tag">C4</span></div><div class="opsi"><span>A. Karena gambut mengandung banyak air</span><span>B. Karena gambut adalah bahan organik yang bisa terbakar di bawah permukaan</span><span>C. Karena gambut sangat tipis</span><span>D. Karena gambut tidak mengandung karbon</span><span>E. Karena gambut selalu basah</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">23.</span> Satelit yang digunakan untuk memantau kualitas udara dan sebaran asap kebakaran hutan adalah ... <span class="hots-tag">C2</span></div><div class="opsi"><span>A. Landsat</span><span>B. Sentinel</span><span>C. MODIS</span><span>D. Himawari</span><span>E. WorldView</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">24.</span> Jika seorang peneliti ingin mengidentifikasi jenis mineral di suatu daerah, resolusi apa yang paling penting? <span class="hots-tag">C4</span></div><div class="opsi"><span>A. Resolusi spasial</span><span>B. Resolusi spektral</span><span>C. Resolusi temporal</span><span>D. Resolusi radiometrik</span><span>E. Semua sama penting</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">25.</span> Dalam konteks penginderaan jauh, apa yang dimaksud dengan "atmospheric correction"? <span class="hots-tag">C3</span></div><div class="opsi"><span>A. Proses menghilangkan efek awan dan hamburan atmosfer dari citra</span><span>B. Proses menambahkan awan ke citra</span><span>C. Proses mengubah citra menjadi hitam-putih</span><span>D. Proses meningkatkan resolusi spasial</span><span>E. Proses mengurangi jumlah saluran spektral</span></div></div>
+            </div>
+
+            <!-- BS ringkas -->
+            <div style="background:var(--bg-card); border-radius:16px; padding:20px; border:1px solid var(--border-light); margin-bottom:20px; box-shadow:var(--shadow);">
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+                    <div style="width:32px; height:32px; border-radius:50%; background:var(--green); display:flex; align-items:center; justify-content:center; font-weight:700; color:#fff; font-size:0.85rem;">B</div>
+                    <h3 style="color:var(--text-dark); font-size:1.05rem; font-weight:700; margin:0;">Benar / Salah <span class="hots-tag">HOTS</span></h3>
+                    <span style="font-size:0.7rem; color:var(--text-muted); font-weight:400; margin-left:auto;">10 Soal</span>
+                </div>
+                <div class="soal-bs"><span class="nomor">1.</span><span class="pertanyaan">Penginderaan jauh berasal dari bahasa Inggris "remote sensing". <span class="hots-tag">C1</span></span></div>
+                <div class="soal-bs"><span class="nomor">2.</span><span class="pertanyaan">Citra pasif menggunakan sensor yang memancarkan energinya sendiri. <span class="hots-tag">C1</span></span></div>
+                <div class="soal-bs"><span class="nomor">3.</span><span class="pertanyaan">Landsat adalah contoh satelit penginderaan jauh dengan resolusi spasial 30 meter. <span class="hots-tag">C1</span></span></div>
+                <div class="soal-bs"><span class="nomor">4.</span><span class="pertanyaan">Rona adalah unsur interpretasi yang menunjukkan bentuk objek. <span class="hots-tag">C1</span></span></div>
+                <div class="soal-bs"><span class="nomor">5.</span><span class="pertanyaan">Resolusi spasial tinggi menghasilkan detail objek yang lebih jelas. <span class="hots-tag">C1</span></span></div>
+                <div class="soal-bs"><span class="nomor">6.</span><span class="pertanyaan">Penginderaan jauh hanya dapat digunakan untuk memantau bencana alam. <span class="hots-tag">C2</span></span></div>
+                <div class="soal-bs"><span class="nomor">7.</span><span class="pertanyaan">Sensor aktif merekam energi yang dipancarkan oleh matahari. <span class="hots-tag">C1</span></span></div>
+                <div class="soal-bs"><span class="nomor">8.</span><span class="pertanyaan">SIG (Sistem Informasi Geografis) tidak terkait dengan penginderaan jauh. <span class="hots-tag">C2</span></span></div>
+                <div class="soal-bs"><span class="nomor">9.</span><span class="pertanyaan">NDVI (Normalized Difference Vegetation Index) digunakan untuk mengukur kesehatan vegetasi. <span class="hots-tag">C2</span></span></div>
+                <div class="soal-bs"><span class="nomor">10.</span><span class="pertanyaan">Satelit MODIS memiliki resolusi temporal yang lebih tinggi daripada Landsat. <span class="hots-tag">C2</span></span></div>
+            </div>
+
+            <!-- ESSAY ringkas -->
+            <div style="background:var(--bg-card); border-radius:16px; padding:20px; border:1px solid var(--border-light); margin-bottom:20px; box-shadow:var(--shadow);">
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+                    <div style="width:32px; height:32px; border-radius:50%; background:var(--orange); display:flex; align-items:center; justify-content:center; font-weight:700; color:#fff; font-size:0.85rem;">C</div>
+                    <h3 style="color:var(--text-dark); font-size:1.05rem; font-weight:700; margin:0;">Essay <span class="hots-tag">HOTS</span></h3>
+                    <span style="font-size:0.7rem; color:var(--text-muted); font-weight:400; margin-left:auto;">5 Soal</span>
+                </div>
+                <div class="soal-essay"><div class="pertanyaan"><span class="nomor">1.</span> Jelaskan perbedaan antara citra pasif dan citra aktif dalam penginderaan jauh! Berikan masing-masing 2 contoh dan analisis kelebihan serta kekurangannya! <span class="hots-tag">C4</span></div><div class="petunjuk">(Skor: 0-10) · Minimal 5 kalimat dengan contoh konkret</div></div>
+                <div class="soal-essay"><div class="pertanyaan"><span class="nomor">2.</span> Seorang kepala desa ingin memetakan daerah rawan banjir di wilayahnya. Jelaskan secara rinci bagaimana penginderaan jauh dapat membantu, mulai dari pemilihan citra, interpretasi, hingga pembuatan peta! <span class="hots-tag">C5</span></div><div class="petunjuk">(Skor: 0-10) · Uraian minimal 6 langkah dengan alasan logis</div></div>
+                <div class="soal-essay"><div class="pertanyaan"><span class="nomor">3.</span> Analisislah dampak kebakaran hutan dan lahan (karhutla) di Kalimantan Tengah menggunakan pendekatan penginderaan jauh! Jelaskan bagaimana citra satelit dapat digunakan untuk mendeteksi, memantau, dan mengevaluasi dampak karhutla! <span class="hots-tag">C5</span></div><div class="petunjuk">(Skor: 0-10) · Minimal 4 paragraf dengan data pendukung</div></div>
+                <div class="soal-essay"><div class="pertanyaan"><span class="nomor">4.</span> Bandingkan dan kontraskan 4 jenis resolusi dalam penginderaan jauh (spasial, spektral, temporal, radiometrik). Berikan contoh kasus di mana masing-masing resolusi menjadi prioritas utama! <span class="hots-tag">C4</span></div><div class="petunjuk">(Skor: 0-10) · Uraian minimal 4 paragraf dengan contoh kasus berbeda</div></div>
+                <div class="soal-essay"><div class="pertanyaan"><span class="nomor">5.</span> Sebagai generasi muda, bagaimana kamu dapat memanfaatkan teknologi penginderaan jauh untuk berkontribusi dalam pelestarian lingkungan di daerahmu? Berikan minimal 3 gagasan kreatif dan jelaskan implementasinya! <span class="hots-tag">C6</span></div><div class="petunjuk">(Skor: 0-10) · Minimal 5 kalimat dengan gagasan inovatif</div></div>
+            </div>
+
+            <!-- KUNCI JAWABAN -->
+            <div style="background:var(--bg-card); border-radius:16px; padding:20px; border:2px solid var(--orange); box-shadow:var(--shadow); margin-top:20px;">
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+                    <div style="width:32px; height:32px; border-radius:50%; background:var(--orange-soft); display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--orange); font-size:0.85rem;">🔑</div>
+                    <h3 style="color:var(--orange); font-size:1.05rem; font-weight:700; margin:0;">Kunci Jawaban Tersembunyi</h3>
+                    <span style="font-size:0.65rem; color:var(--text-muted); font-weight:400; margin-left:auto;">Password</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:14px;">
+                    <input type="password" id="passwordInput" placeholder="Masukkan password..." style="flex:1; min-width:180px; padding:12px 18px; background:var(--bg-soft); border:1px solid var(--border-light); border-radius:10px; color:var(--text-dark); font-size:0.9rem; outline:none; transition:0.3s; font-weight:400;">
+                    <button onclick="checkPassword()" style="background:linear-gradient(145deg, var(--orange), #d97706); color:#fff; border:none; padding:12px 28px; border-radius:10px; font-weight:700; cursor:pointer; transition:0.3s; display:flex; align-items:center; gap:8px; font-size:0.85rem; box-shadow:0 4px 16px rgba(245,158,11,0.2);">Buka Kunci</button>
+                    <button onclick="clearPassword()" style="background:var(--bg-soft); color:var(--text-muted); border:1px solid var(--border-light); padding:12px 18px; border-radius:10px; cursor:pointer; font-weight:400;">✕</button>
+                </div>
+                <div id="answerKey" style="display:none;">
+                    <div style="background:var(--bg-soft); border-radius:12px; padding:16px;">
+                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+                            <div>
+                                <h4 style="color:var(--primary); margin-bottom:8px; font-size:0.85rem; font-weight:700;">PG (25 Soal)</h4>
+                                <div style="font-size:0.85rem; color:var(--text-muted); font-weight:400; line-height:2.2; display:grid; grid-template-columns:1fr 1fr 1fr; gap:0 15px;">
+                                    <div>1. B</div><div>2. B</div><div>3. C</div><div>4. D</div><div>5. C</div>
+                                    <div>6. B</div><div>7. D</div><div>8. A</div><div>9. A</div><div>10. B</div>
+                                    <div>11. C</div><div>12. B</div><div>13. C</div><div>14. D</div><div>15. C</div>
+                                    <div>16. A</div><div>17. B</div><div>18. A</div><div>19. B</div><div>20. A</div>
+                                    <div>21. C</div><div>22. B</div><div>23. D</div><div>24. B</div><div>25. A</div>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 style="color:var(--green); margin-bottom:8px; font-size:0.85rem; font-weight:700;">B/S (10 Soal)</h4>
+                                <div style="font-size:0.85rem; color:var(--text-muted); font-weight:400; line-height:2.2;">
+                                    <div>1. <span style="color:var(--green); font-weight:700;">B</span></div>
+                                    <div>2. <span style="color:var(--rose); font-weight:700;">S</span> (Citra aktif yang memancarkan sendiri)</div>
+                                    <div>3. <span style="color:var(--green); font-weight:700;">B</span></div>
+                                    <div>4. <span style="color:var(--rose); font-weight:700;">S</span> (Rona = tingkat kecerahan)</div>
+                                    <div>5. <span style="color:var(--green); font-weight:700;">B</span></div>
+                                    <div>6. <span style="color:var(--rose); font-weight:700;">S</span> (Banyak bidang: pertanian, lingkungan, dll)</div>
+                                    <div>7. <span style="color:var(--rose); font-weight:700;">S</span> (Sensor pasif yang merekam energi matahari)</div>
+                                    <div>8. <span style="color:var(--rose); font-weight:700;">S</span> (SIG sangat terkait dengan data penginderaan jauh)</div>
+                                    <div>9. <span style="color:var(--green); font-weight:700;">B</span></div>
+                                    <div>10. <span style="color:var(--green); font-weight:700;">B</span> (MODIS 1-2 hari, Landsat 16 hari)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin-top:14px; border-top:1px solid var(--border-light); padding-top:12px;">
+                            <h4 style="color:var(--orange); margin-bottom:6px; font-size:0.85rem; font-weight:700;">Essay (5 Soal) – Pedoman Penskoran</h4>
+                            <div style="font-size:0.8rem; color:var(--text-muted); font-weight:400; line-height:2;">
+                                <div><strong style="color:var(--text-dark); font-weight:600;">Soal 1:</strong> Perbedaan citra pasif vs aktif, 2 contoh masing-masing, kelebihan &amp; kekurangan. (Skor 0-10)</div>
+                                <div><strong style="color:var(--text-dark); font-weight:600;">Soal 2:</strong> Langkah-langkah pemetaan banjir: pemilihan citra, interpretasi, pembuatan peta. (Skor 0-10)</div>
+                                <div><strong style="color:var(--text-dark); font-weight:600;">Soal 3:</strong> Analisis dampak karhutla dengan pendekatan penginderaan jauh. (Skor 0-10)</div>
+                                <div><strong style="color:var(--text-dark); font-weight:600;">Soal 4:</strong> Perbandingan 4 resolusi dengan contoh kasus masing-masing. (Skor 0-10)</div>
+                                <div><strong style="color:var(--text-dark); font-weight:600;">Soal 5:</strong> 3 gagasan kreatif untuk pelestarian lingkungan dengan penginderaan jauh. (Skor 0-10)</div>
+                                <div style="margin-top:6px; color:var(--text-muted);">Total skor maksimal: 25 + 10 + 50 = 85 · Nilai = (skor/85) × 100</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="passwordError" style="display:none; color:var(--rose); font-size:0.85rem; font-weight:400; margin-top:6px; padding:8px 14px; background:var(--rose-soft); border-radius:8px; border-left:3px solid var(--rose);">
+                    Password salah! Coba lagi.
+                </div>
+            </div>
+
+            <div class="nav-buttons">
+                <div class="group">
+                    <button onclick="navigateTo('prev')">Sebelumnya</button>
+                    <span class="page-numbers"></span>
+                    <button onclick="navigateTo('next')">Selanjutnya</button>
+                    <span class="counter">6 / 8</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SECTION 7 : REFLEKSI ===== -->
+        <section id="section7" class="section">
+            <div style="background:var(--bg-soft); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid var(--primary); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                <div style="display:flex; align-items:center; gap:8px; color:var(--text-muted); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
+                <button onclick="navigateTo('section1')" style="background:var(--bg-card); color:var(--text-muted); border:1px solid var(--border-light); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem; box-shadow:var(--shadow);">⌂ Beranda</button>
+            </div>
+            <div class="section-header">
+                <div class="num">07</div>
+                <h2>Refleksi <small>Menyimpulkan 4 Pertemuan</small></h2>
+                <span class="badge-pertemuan">Inspirasi</span>
+            </div>
+            <div class="card" style="background:var(--bg-card); border:1px solid var(--border-light);">
+                <h3 style="display:flex; align-items:center; gap:10px; color:var(--text-dark); font-weight:700;">🌟 Apa yang Kamu Dapatkan?</h3>
+                <ul class="refleksi-list">
+                    <li><span class="check">✓</span><span>Memahami pengertian dan 5 prinsip dasar penginderaan jauh.</span></li>
+                    <li><span class="check">✓</span><span>Mengenal 6 komponen sistem dan 2 jenis citra (pasif &amp; aktif).</span></li>
+                    <li><span class="check">✓</span><span>Mampu menginterpretasi citra dengan 6 unsur interpretasi.</span></li>
+                    <li><span class="check">✓</span><span>Mengetahui 6 bidang pemanfaatan penginderaan jauh.</span></li>
+                    <li><span class="check">✓</span><span>Menganalisis kasus karhutla Katingan dengan pendekatan penginderaan jauh.</span></li>
+                    <li><span class="check">✓</span><span>Memahami hubungan penginderaan jauh dengan analisis spasial modern.</span></li>
                 </ul>
             </div>
-            <div class="card" style="border-left:4px solid var(--rose);">
-                <h4 style="color:var(--rose);">❌ Kekurangan</h4>
-                <ul style="font-size:0.9rem; color:var(--text-muted); padding-left:18px;">
-                    <li>Biaya akuisisi data tinggi (satelit, sensor).</li>
-                    <li>Terbatas oleh cuaca (awan) untuk citra optik.</li>
-                    <li>Interpretasi membutuhkan keahlian khusus.</li>
-                    <li>Data mentah perlu diolah dan dikalibrasi.</li>
-                    <li>Resolusi temporal/spasial terbatas untuk beberapa satelit.</li>
-                </ul>
+            <div class="card" style="background:var(--bg-card); margin-top:16px; border-left:6px solid var(--primary); border:1px solid var(--border-light);">
+                <h3 style="display:flex; align-items:center; gap:10px; color:var(--text-dark); font-weight:700;">Renungkan</h3>
+                <p style="font-size:1.05rem; color:var(--text-muted); font-weight:400; font-style:italic; margin-top:4px;">"Bagaimana penginderaan jauh dapat membantu kita menjaga kelestarian hutan dan lingkungan di Kalimantan Tengah?"</p>
+                <p style="margin-top:8px; font-size:0.88rem; color:var(--text-muted); font-weight:400;">Tuliskan jawabanmu di buku catatan sebagai bentuk refleksi pribadi.</p>
             </div>
-        </div>
-        <div class="example-box" style="margin-top:12px;">
-            <span class="label-example">📌 Studi Kasus</span>
-            <p>Di Kalimantan, penginderaan jauh <strong>unggul</strong> untuk memantau kebakaran hutan secara real-time (MODIS, VIIRS), tetapi <strong>kelemahan</strong>nya adalah citra optik terganggu asap tebal. Solusi: gunakan radar (SAR) yang tembus asap!</p>
-        </div>
-    </div>
-</div>
+            <div class="celebration-box">
+                <h3>🎉 Selamat!</h3>
+                <p>Kamu telah menyelesaikan <strong style="color:var(--text-dark); font-weight:700;">4 Pertemuan</strong> materi Penginderaan Jauh dengan <strong style="color:var(--orange);">pengayaan, pendalaman, dan HOTS!</strong></p>
+                <div style="margin-top:14px;"><span class="next-btn">➡️ Lanjutkan ke Materi SIG</span></div>
+            </div>
+            <div class="nav-buttons">
+                <div class="group">
+                    <button onclick="navigateTo('prev')">Sebelumnya</button>
+                    <span class="page-numbers"></span>
+                    <button onclick="navigateTo('next')">Selanjutnya</button>
+                    <span class="counter">7 / 8</span>
+                </div>
+            </div>
+        </section>
 
-<!-- ===== PENGAYAAN: PERKEMBANGAN TEKNOLOGI ===== -->
-<div class="enrichment-box reveal" style="margin-top:16px;">
-    <h4><i class="fas fa-rocket" style="color:var(--orange);"></i> Pengayaan: Perkembangan Teknologi Penginderaan Jauh</h4>
-    <ul>
-        <li><strong>1858 – Balon Udara:</strong> Foto udara pertama dari balon di Paris oleh Gaspard-Félix Tournachon.</li>
-        <li><strong>1903 – Merpati Berfoto:</strong> Julius Neubronner menggunakan merpati dengan kamera otomatis untuk pemetaan.</li>
-        <li><strong>1930-an – Pesawat Terbang:</strong> Penggunaan pesawat untuk fotogrametri dan pemetaan militer.</li>
-        <li><strong>1957 – Sputnik 1:</strong> Satelit buatan pertama, membuka era satelit untuk penginderaan jauh.</li>
-        <li><strong>1972 – Landsat 1:</strong> Satelit pertama yang didedikasikan untuk sumber daya bumi. Resolusi 80 meter.</li>
-        <li><strong>1986 – SPOT 1:</strong> Resolusi 10 meter, lebih tajam.</li>
-        <li><strong>1999 – IKONOS:</strong> Satelit komersial resolusi 1 meter.</li>
-        <li><strong>2014 – WorldView-3:</strong> Resolusi 0.31 meter (31 cm) — bisa melihat objek sekecil mobil!</li>
-        <li><strong>Sekarang:</strong> <strong>Satelit mikro (CubeSat)</strong> dengan biaya lebih murah, <strong>AI</strong> untuk interpretasi otomatis, dan <strong>drone</strong> untuk resolusi sangat tinggi (cm).</li>
-    </ul>
-    <p style="margin-top:6px; font-size:0.85rem; color:var(--text-muted);">💡 Perkembangan pesat: dari merpati ke kecerdasan buatan!</p>
-</div>
+        <!-- ===== SECTION 8 : REFERENSI ===== -->
+        <section id="section8" class="section">
+            <div style="background:var(--bg-soft); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid var(--primary); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                <div style="display:flex; align-items:center; gap:8px; color:var(--text-muted); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
+                <button onclick="navigateTo('section1')" style="background:var(--bg-card); color:var(--text-muted); border:1px solid var(--border-light); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem; box-shadow:var(--shadow);">⌂ Beranda</button>
+            </div>
+            <div class="section-header">
+                <div class="num">08</div>
+                <h2>Referensi <small>Daftar Pustaka</small></h2>
+                <span class="badge-pertemuan">12+ Sumber</span>
+            </div>
+            <ul class="ref-list">
+                <li><strong>Kurikulum Merdeka:</strong> Capaian Pembelajaran IPS Fase E-F, BSKAP Kemendikbudristek (2024).</li>
+                <li>Lillesand, T.M. &amp; Kiefer, R.W. (2015). <em>Remote Sensing and Image Interpretation</em>. New York: Wiley.</li>
+                <li>Sutanto. (2002). <em>Penginderaan Jauh Jilid 1 &amp; 2</em>. Yogyakarta: Gadjah Mada University Press.</li>
+                <li>Avery, T.E. &amp; Berlin, G.L. (1992). <em>Fundamentals of Remote Sensing and Airphoto Interpretation</em>. New York: Macmillan.</li>
+                <li>Campbell, J.B. (2011). <em>Introduction to Remote Sensing</em>. New York: Guilford Press.</li>
+                <li>Danoedoro, P. (2012). <em>Pengantar Penginderaan Jauh Digital</em>. Yogyakarta: Andi.</li>
+                <li>Nurwadjedi. (2018). <em>Penginderaan Jauh untuk Mitigasi Bencana</em>. Jakarta: BIG Press.</li>
+                <li>Lo, C.P. &amp; Yeung, A.K.W. (2007). <em>Concepts and Techniques in Geographic Information Systems</em>. New Jersey: Prentice Hall.</li>
+                <li>BPS Kabupaten Katingan. (2023). <em>Kabupaten Katingan dalam Angka 2023</em>.</li>
+                <li>Kementerian LHK. (2022). <em>Data Karhutla Indonesia</em>.</li>
+                <li>NASA Earth Observatory. (2024). <em>Earth Observation Data</em>.</li>
+                <li>ESA Copernicus. (2024). <em>Sentinel Satellite Data</em>.</li>
+            </ul>
+            <div class="footer-credit">
+                <span class="school-name-gold">SMAN 3 KASONGAN</span> &nbsp;·&nbsp;
+                Guru Pengampu: <strong>SYAHRANI, S.Pd</strong> &nbsp;·&nbsp;
+                <span class="nip">NIP. 197512172005011016</span>
+            </div>
+            <div class="nav-buttons">
+                <div class="group">
+                    <button onclick="navigateTo('prev')">Sebelumnya</button>
+                    <span class="page-numbers"></span>
+                    <button onclick="navigateTo('next')" disabled>Terakhir</button>
+                    <span class="counter">8 / 8</span>
+                </div>
+            </div>
+        </section>
 
-<!-- ===== PENGAYAAN: TOKOH PENTING ===== -->
-<div class="enrichment-box reveal" style="background:var(--primary-soft); border-left-color:var(--primary);">
-    <h4 style="color:var(--primary);"><i class="fas fa-user-graduate" style="color:var(--primary);"></i> Tokoh Penting dalam Penginderaan Jauh</h4>
-    <ul>
-        <li><strong>Gaspard-Félix Tournachon (Nadar):</strong> Fotografer pertama dari balon udara (1858).</li>
-        <li><strong>Evelyn L. Pruitt:</strong> Ahli geografi yang mempopulerkan istilah "remote sensing" pada 1950-an.</li>
-        <li><strong>William T. Pecora:</strong> Direktur USGS yang mendorong program Landsat.</li>
-        <li><strong>Ralph B. Hoover:</strong> Perintis penggunaan inframerah untuk deteksi vegetasi.</li>
-        <li><strong>Sutanto (Indonesia):</strong> Bapak Penginderaan Jauh Indonesia, penulis buku klasik yang digunakan di berbagai universitas.</li>
-    </ul>
-    <p style="margin-top:6px; font-size:0.85rem; color:var(--text-muted);">📚 Banyak ilmuwan Indonesia yang berkontribusi dalam penginderaan jauh, terutama untuk mitigasi bencana dan pemetaan sumber daya.</p>
-</div>
+    </main>
 
-<!-- ===== PENDALAMAN: SPEKTRUM ELEKTROMAGNETIK DETAIL ===== -->
-<div class="deep-dive reveal">
-    <h4><i class="fas fa-wave-square" style="color:var(--accent);"></i> Pendalaman: Spektrum Elektromagnetik untuk Penginderaan Jauh</h4>
-    <p>Penginderaan jauh memanfaatkan berbagai panjang gelombang. Berikut rincian kegunaannya:</p>
-    <div class="table-wrap">
-        <table>
-            <thead><tr><th>Jenis Gelombang</th><th>Panjang Gelombang</th><th>Kegunaan</th><th>Contoh Objek</th></tr></thead>
-            <tbody>
-                <tr><td><strong>Ultraviolet (UV)</strong></td><td>0.01 – 0.4 μm</td><td>Deteksi mineral, polusi atmosfer (ozon)</td><td>Mineral tertentu berpendar UV</td></tr>
-                <tr><td><strong>Tampak (Visible)</strong></td><td>0.4 – 0.7 μm</td><td>Mata manusia, fotografi, klasifikasi dasar</td><td>Lahan, air, vegetasi (warna)</td></tr>
-                <tr><td><strong>Inframerah Dekat (NIR)</strong></td><td>0.7 – 1.3 μm</td><td>Kesehatan vegetasi (NDVI), biomassa</td><td>Daun hijau memantulkan kuat</td></tr>
-                <tr><td><strong>Inframerah Termal (TIR)</strong></td><td>3 – 14 μm</td><td>Suhu permukaan, deteksi kebakaran</td><td>Gunung berapi, kebakaran hutan</td></tr>
-                <tr><td><strong>Gelombang Mikro (Radar)</strong></td><td>0.1 – 100 cm</td><td>Tembus awan, malam hari, deteksi kelembaban</td><td>Lahan gambut, banjir, struktur tanah</td></tr>
-            </tbody>
-        </table>
-    </div>
-    <div style="background:var(--bg-card); border-radius:8px; padding:8px 12px; margin-top:6px; border:1px solid var(--border-light);">
-        <span style="font-size:0.85rem; color:var(--text-muted);">💡 <strong>Contoh Aplikasi:</strong> Inframerah termal digunakan untuk mendeteksi <strong>kebakaran hutan</strong> (hotspot) dan memantau <strong>suhu permukaan laut</strong> untuk nelayan.</span>
-    </div>
-</div>
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // LOADER
+        (function() {
+            const loader = document.getElementById('loader');
+            const bar = document.getElementById('loaderBar');
+            const percent = document.getElementById('loaderPercent');
+            let progress = 0;
+            const start = Date.now();
+            const duration = 2800;
 
-<!-- ===== PENDALAMAN: INTERAKSI OBJEK (SIGNA TUR SPECTRAL) ===== -->
-<div class="deep-dive reveal" style="background:var(--accent-soft); border-left-color:var(--accent);">
-    <h4 style="color:var(--accent);"><i class="fas fa-chart-line" style="color:var(--accent);"></i> Pendalaman: Signatur Spektral Objek</h4>
-    <p>Setiap objek memiliki <strong>pola pantulan</strong> yang unik (signatur spektral). Ini yang membedakan objek satu dengan lainnya di citra.</p>
-    <ul>
-        <li><strong>Vegetasi sehat:</strong> Memantulkan NIR sangat kuat, merah rendah → NDVI tinggi.</li>
-        <li><strong>Vegetasi stres/kering:</strong> Pantulan NIR menurun, merah meningkat → NDVI rendah.</li>
-        <li><strong>Air jernih:</strong> Menyerap hampir semua gelombang tampak dan inframerah → tampak gelap di citra.</li>
-        <li><strong>Lahan kosong/beton:</strong> Memantulkan semua gelombang tampak dengan cukup merata → tampak cerah.</li>
-        <li><strong>Hutan vs sawah:</strong> Hutan memiliki tekstur kasar dan pantulan NIR tinggi; sawah lebih halus dan pantulan NIR lebih bervariasi (tergantung fase tanam).</li>
-    </ul>
-    <div style="background:var(--bg-card); border-radius:8px; padding:8px 12px; margin-top:6px; border:1px solid var(--border-light);">
-        <span style="font-size:0.85rem; color:var(--text-muted);">💡 Dengan memahami signatur spektral, kita bisa <strong>mengklasifikasikan</strong> tutupan lahan secara otomatis menggunakan algoritma machine learning!</span>
-    </div>
-</div>
+            function update() {
+                const elapsed = Date.now() - start;
+                progress = Math.min((elapsed / duration) * 100, 100);
+                bar.style.width = progress + '%';
+                percent.textContent = Math.round(progress) + '%';
+                if (progress < 100) requestAnimationFrame(update);
+                else {
+                    setTimeout(() => {
+                        loader.classList.add('hidden');
+                        setTimeout(() => loader.style.display = 'none', 600);
+                    }, 300);
+                }
+            }
+            update();
+        })();
+
+        function toggleMobileMenu() {
+            const nav = document.querySelector('.nav-box');
+            if (nav) { nav.style.display = nav.style.display === 'none' ? 'block' : 'none'; }
+        }
+
+        let isModalOpen = false;
+
+        function openModal(src, caption) {
+            const modal = document.getElementById('imageModal');
+            const img = document.getElementById('modalImage');
+            const cap = document.getElementById('modalCaption');
+            img.src = src;
+            img.onerror = function() {
+                this.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%23f0f7ff' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' fill='%232563eb' font-family='Inter' font-size='24' dy='.3em'%3E🖼️ Gambar tidak tersedia%3C/text%3E%3C/svg%3E";
+            };
+            cap.innerHTML = caption || 'Klik di luar untuk menutup';
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            isModalOpen = true;
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').classList.remove('active');
+            document.body.style.overflow = '';
+            isModalOpen = false;
+        }
+        document.addEventListener('keydown', e => { if (isModalOpen && e.key === 'Escape') closeModal(); });
+
+        // NAVIGATION
+        (function() {
+            const sections = document.querySelectorAll('.section');
+            let current = 0;
+            const total = sections.length;
+            const map = {};
+            sections.forEach((el, i) => map[el.id] = i);
+
+            function renderNumbers() {
+                document.querySelectorAll('.page-numbers').forEach(c => {
+                    let html = '';
+                    for (let i = 1; i <= total; i++) {
+                        const active = i === current + 1 ? 'active' : '';
+                        html += `<a href="#" class="${active}" onclick="navigateToPage(${i}); return false;">${i}</a>`;
+                    }
+                    c.innerHTML = html;
+                });
+            }
+
+            window.navigateToPage = function(num) {
+                const idx = num - 1;
+                if (idx >= 0 && idx < total && idx !== current) { current = idx;
+                    updateUI(current); }
+            };
+
+            window.navigateTo = function(dir) {
+                if (dir === 'prev' && current > 0) current--;
+                else if (dir === 'next' && current < total - 1) current++;
+                else if (typeof dir === 'string' && dir.startsWith('section')) {
+                    const idx = map[dir];
+                    if (idx !== undefined && idx !== current) current = idx;
+                    else return;
+                } else return;
+                updateUI(current);
+            };
+
+            function updateUI(idx) {
+                sections.forEach((el, i) => el.classList.toggle('active', i === idx));
+                document.getElementById('progressBar').style.width = ((idx + 1) / total * 100) + '%';
+                document.querySelectorAll('.counter').forEach(el => el.textContent = `${idx+1} / ${total}`);
+                document.querySelectorAll('.nav-buttons .group button:last-child').forEach(btn => {
+                    if (idx === total - 1) { btn.disabled = true;
+                        btn.textContent = 'Terakhir'; } else { btn.disabled = false;
+                        btn.innerHTML = 'Selanjutnya'; }
+                });
+                document.querySelectorAll('.nav-buttons .group button:first-child').forEach(btn => btn.disabled = idx === 0);
+                renderNumbers();
+                document.querySelector('.main-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                setTimeout(() => {
+                    const firstHeader = document.querySelector('.section.active .materi-detail .detail-header');
+                    if (firstHeader) {
+                        const body = firstHeader.nextElementSibling;
+                        const arrow = firstHeader.querySelector('.fa-chevron-down');
+                        if (body && !body.classList.contains('open')) {
+                            body.classList.add('open');
+                            firstHeader.classList.add('active');
+                            if (arrow) arrow.style.transform = 'rotate(180deg)';
+                        }
+                    }
+                }, 500);
+            }
+            renderNumbers();
+            updateUI(0);
+        })();
+
+        // KUNCI JAWABAN
+        function checkPassword() {
+            const pw = document.getElementById('passwordInput').value;
+            const key = document.getElementById('answerKey');
+            const err = document.getElementById('passwordError');
+            if (pw === '1234567890') { key.style.display = 'block';
+                err.style.display = 'none';
+                document.getElementById('passwordInput').style.borderColor = 'var(--green)'; } else { err.style.display =
+                    'block';
+                key.style.display = 'none';
+                document.getElementById('passwordInput').style.borderColor = 'var(--rose)';
+                setTimeout(() => { document.getElementById('passwordInput').style.borderColor =
+                    'var(--border-light)'; }, 2000); }
+        }
+
+        function clearPassword() {
+            document.getElementById('passwordInput').value = '';
+            document.getElementById('answerKey').style.display = 'none';
+            document.getElementById('passwordError').style.display = 'none';
+            document.getElementById('passwordInput').style.borderColor = 'var(--border-light)';
+        }
+        document.getElementById('passwordInput').addEventListener('keypress', e => { if (e.key === 'Enter') checkPassword(); });
+
+        // ACCORDION
+        function toggleDetail(header) {
+            const body = header.nextElementSibling;
+            const arrow = header.querySelector('.fa-chevron-down');
+            const isOpen = body.classList.contains('open');
+            const parent = header.closest('.materi-detail');
+            const allDetails = parent.parentElement.querySelectorAll('.materi-detail .detail-body');
+            const allHeaders = parent.parentElement.querySelectorAll('.materi-detail .detail-header');
+            if (!isOpen) {
+                allDetails.forEach(b => b.classList.remove('open'));
+                allHeaders.forEach(h => h.classList.remove('active'));
+                body.classList.add('open');
+                header.classList.add('active');
+                if (arrow) arrow.style.transform = 'rotate(180deg)';
+            } else {
+                body.classList.remove('open');
+                header.classList.remove('active');
+                if (arrow) arrow.style.transform = 'rotate(0deg)';
+            }
+            document.querySelectorAll('.materi-detail .detail-header').forEach(h => {
+                const a = h.querySelector('.fa-chevron-down');
+                const b = h.nextElementSibling;
+                if (b && b.classList.contains('open')) { if (a) a.style.transform = 'rotate(180deg)'; } else { if (a) a
+                        .style.transform = 'rotate(0deg)'; }
+            });
+        }
+
+        // MINI QUIZ
+        function checkQuiz(btn, isCorrect) {
+            const parent = btn.closest('.mini-quiz');
+            const feedback = parent.querySelector('.quiz-feedback');
+            const allBtns = parent.querySelectorAll('.quiz-options button');
+            allBtns.forEach(b => b.disabled = true);
+            allBtns.forEach(b => { if (b === btn) { b.classList.add(isCorrect ? 'correct' : 'wrong'); } });
+            feedback.classList.add('show');
+            if (isCorrect) { feedback.className = 'quiz-feedback show success';
+                feedback.innerHTML = '✓ <strong>Benar!</strong> Kamu hebat! 🎉'; } else { feedback.className =
+                    'quiz-feedback show fail';
+                feedback.innerHTML = '✗ <strong>Kurang tepat.</strong> Coba baca ulang materinya ya! 💪'; }
+            setTimeout(() => {
+                allBtns.forEach(b => { b.disabled = false;
+                    b.classList.remove('correct', 'wrong'); });
+                feedback.classList.remove('show');
+            }, 3000);
+        }
+
+        // SCROLL REVEAL
+        (function() {
+            const reveals = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } });
+            }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+            reveals.forEach(el => observer.observe(el));
+        })();
+
+        // 3D TILT
+        (function() {
+            const cards = document.querySelectorAll('.image-card-premium');
+            cards.forEach(card => {
+                card.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = (e.clientX - rect.left) / rect.width - 0.5;
+                    const y = (e.clientY - rect.top) / rect.height - 0.5;
+                    const rotateX = y * -6;
+                    const rotateY = x * 6;
+                    this.style.transform =
+                        `translateY(-6px) scale(1.02) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                    this.style.transition = 'transform 0.08s ease';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                    this.style.transition = 'transform 0.5s cubic-bezier(0.22,1,0.36,1)';
+                });
+            });
+        })();
+    </script>
+
+</body>
+</html>
