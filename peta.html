@@ -48,9 +48,6 @@
             min-height: 100vh;
         }
 
-        /* ============================================================
-                   MAP BACKGROUND (subtle topographic pattern)
-                   ============================================================ */
         .map-bg {
             position: fixed;
             inset: 0;
@@ -73,9 +70,6 @@
             background-size: 100% 100%, 100% 100%, 80px 80px, 80px 80px;
         }
 
-        /* ============================================================
-                   LOADER
-                   ============================================================ */
         #loader {
             position: fixed;
             inset: 0;
@@ -155,9 +149,6 @@
             letter-spacing: 1px;
         }
 
-        /* ============================================================
-                   HEADER
-                   ============================================================ */
         .site-header {
             position: fixed;
             top: 0;
@@ -233,9 +224,6 @@
             padding: 4px 8px;
         }
 
-        /* ============================================================
-                   MOBILE NAV DRAWER
-                   ============================================================ */
         .mobile-drawer {
             position: fixed;
             top: 0;
@@ -302,9 +290,6 @@
             visibility: visible;
         }
 
-        /* ============================================================
-                   PROGRESS BAR (top)
-                   ============================================================ */
         .progress-rail {
             position: fixed;
             top: 64px;
@@ -322,9 +307,6 @@
             border-radius: 0 3px 3px 0;
         }
 
-        /* ============================================================
-                   MAIN LAYOUT
-                   ============================================================ */
         .main-wrap {
             position: relative;
             z-index: 1;
@@ -336,9 +318,6 @@
             padding-bottom: 60px;
         }
 
-        /* ============================================================
-                   SECTIONS
-                   ============================================================ */
         .section {
             display: none;
             animation: fadeUp 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
@@ -359,9 +338,6 @@
             }
         }
 
-        /* ============================================================
-                   SECTION HEADER
-                   ============================================================ */
         .section-header {
             display: flex;
             align-items: flex-start;
@@ -413,9 +389,6 @@
             align-self: center;
         }
 
-        /* ============================================================
-                   CARDS
-                   ============================================================ */
         .card {
             background: var(--card-bg);
             border-radius: var(--radius);
@@ -455,9 +428,6 @@
             list-style-type: disc;
         }
 
-        /* ============================================================
-                   GRIDS
-                   ============================================================ */
         .grid-2,
         .grid-3,
         .grid-4 {
@@ -475,9 +445,6 @@
             grid-template-columns: 1fr;
         }
 
-        /* ============================================================
-                   COVER / HERO
-                   ============================================================ */
         .hero-section {
             text-align: center;
             padding: 12px 0 8px;
@@ -614,9 +581,6 @@
             box-shadow: 0 16px 48px rgba(42, 92, 122, 0.3);
         }
 
-        /* ============================================================
-                   QUICK NAV (compass-style)
-                   ============================================================ */
         .quick-nav {
             background: var(--card-bg);
             border-radius: var(--radius);
@@ -678,9 +642,6 @@
             box-shadow: 0 8px 24px rgba(42, 92, 122, 0.06);
         }
 
-        /* ============================================================
-                   ACCORDION (materi)
-                   ============================================================ */
         .materi-box {
             background: var(--card-bg);
             border-radius: var(--radius);
@@ -831,9 +792,6 @@
             line-height: 2.2;
         }
 
-        /* ============================================================
-                   IMAGE GALLERY
-                   ============================================================ */
         .gallery-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -914,9 +872,6 @@
             margin-top: 2px;
         }
 
-        /* ============================================================
-                   MODAL
-                   ============================================================ */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -1059,9 +1014,6 @@
             text-align: center;
         }
 
-        /* ============================================================
-                   MINI QUIZ
-                   ============================================================ */
         .mini-quiz {
             background: rgba(42, 92, 122, 0.02);
             border-radius: var(--radius-sm);
@@ -1129,9 +1081,6 @@
             color: #e74c3c;
         }
 
-        /* ============================================================
-                   SOAL ASESMEN
-                   ============================================================ */
         .soal-pg {
             margin-bottom: 12px;
             padding: 14px 18px;
@@ -1215,9 +1164,6 @@
             font-style: italic;
         }
 
-        /* ============================================================
-                   KUNCI JAWABAN
-                   ============================================================ */
         .kunci-box {
             background: var(--card-bg);
             border-radius: var(--radius);
@@ -1314,9 +1260,6 @@
             margin-top: 6px;
         }
 
-        /* ============================================================
-                   REFLEKSI
-                   ============================================================ */
         .refleksi-list {
             list-style: none;
             padding: 0;
@@ -1373,9 +1316,6 @@
             box-shadow: 0 8px 24px rgba(42, 92, 122, 0.15);
         }
 
-        /* ============================================================
-                   NAVIGATION BUTTONS
-                   ============================================================ */
         .nav-buttons {
             display: flex;
             justify-content: center;
@@ -1453,9 +1393,6 @@
             box-shadow: 0 4px 16px rgba(42, 92, 122, 0.15);
         }
 
-        /* ============================================================
-                   REFERENSI
-                   ============================================================ */
         .ref-list {
             list-style: none;
             padding: 0;
@@ -1496,9 +1433,6 @@
             font-weight: 700;
         }
 
-        /* ============================================================
-                   RESPONSIVE
-                   ============================================================ */
         @media (min-width: 600px) {
             .grid-2 {
                 grid-template-columns: repeat(2, 1fr);
@@ -1625,9 +1559,6 @@
             }
         }
 
-        /* ============================================================
-                   UTILITY
-                   ============================================================ */
         .mt-8 {
             margin-top: 8px;
         }
@@ -1674,19 +1605,19 @@
 </head>
 <body>
 
-    <!-- ============================================================
-    MAP BACKGROUND
-    ============================================================ -->
     <div class="map-bg"></div>
 
     <!-- ============================================================
-    LOADER
+    LOADER DENGAN LINGKARAN WARNA-WARNI
     ============================================================ -->
     <div id="loader">
         <div class="loader-compass">
             <svg viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="44" fill="none" stroke="#2a5c7a" stroke-width="2" opacity="0.08"/>
-                <circle cx="50" cy="50" r="34" fill="none" stroke="#2a5c7a" stroke-width="1.5" opacity="0.04"/>
+                <!-- Lingkaran warna-warni (gold, teal, biru) seperti di Bab 1 -->
+                <circle cx="50" cy="50" r="44" fill="none" stroke="#f39c12" stroke-width="2" stroke-dasharray="8 6" opacity="0.6"/>
+                <circle cx="50" cy="50" r="38" fill="none" stroke="#1abc9c" stroke-width="2" stroke-dasharray="6 4" opacity="0.7"/>
+                <circle cx="50" cy="50" r="32" fill="none" stroke="#2a5c7a" stroke-width="2" stroke-dasharray="4 4" opacity="0.8"/>
+                <!-- Jarum kompas -->
                 <polygon points="50,10 58,46 50,90 42,46" fill="#2a5c7a" opacity="0.9"/>
                 <polygon points="50,10 50,46 42,46" fill="#f39c12" opacity="0.9"/>
                 <circle cx="50" cy="50" r="6" fill="#fff" stroke="#2a5c7a" stroke-width="2"/>
@@ -1698,9 +1629,6 @@
         <div class="loader-percent" id="loaderPercent">0%</div>
     </div>
 
-    <!-- ============================================================
-    HEADER
-    ============================================================ -->
     <header class="site-header" id="siteHeader">
         <a href="#" class="brand" onclick="navigateTo('section1'); return false;">
             <i class="fas fa-map-marked-alt"></i> Peta<span>Geo</span>
@@ -1719,14 +1647,8 @@
         </button>
     </header>
 
-    <!-- ============================================================
-    PROGRESS RAIL
-    ============================================================ -->
     <div class="progress-rail"><div class="thumb" id="progressThumb"></div></div>
 
-    <!-- ============================================================
-    MOBILE DRAWER
-    ============================================================ -->
     <div class="drawer-overlay" id="drawerOverlay" onclick="toggleDrawer()"></div>
     <div class="mobile-drawer" id="mobileDrawer">
         <button class="close-btn" onclick="toggleDrawer()"><i class="fas fa-times"></i></button>
@@ -1739,9 +1661,6 @@
         <a onclick="navigateTo('section7'); toggleDrawer();">📚 Referensi</a>
     </div>
 
-    <!-- ============================================================
-    IMAGE MODAL
-    ============================================================ -->
     <div class="modal-overlay" id="imageModal" onclick="closeModalOutside(event)">
         <div class="modal-box" onclick="event.stopPropagation();">
             <button class="close-btn" onclick="closeModal()"><i class="fas fa-times"></i></button>
@@ -1761,14 +1680,9 @@
         </div>
     </div>
 
-    <!-- ============================================================
-    MAIN CONTENT
-    ============================================================ -->
     <main class="main-wrap">
 
-        <!-- ============================================================
-        SECTION 1 : COVER
-        ============================================================ -->
+        <!-- SECTION 1 : COVER -->
         <section id="section1" class="section active hero-section">
             <div class="logo-row reveal">
                 <img src="images/Logo-Provinsi-Kalimantan-Tengah.png" alt="Logo Provinsi Kalimantan Tengah" onerror="this.style.display='none'" />
@@ -1799,8 +1713,6 @@
                     <span>Mulai Petualangan</span> <i class="fas fa-arrow-right"></i>
                 </button>
             </div>
-
-            <!-- Quick Nav -->
             <div class="quick-nav reveal">
                 <div class="nav-title"><i class="fas fa-compass"></i> Navigasi Cepat</div>
                 <div class="nav-grid">
@@ -1815,22 +1727,17 @@
             </div>
         </section>
 
-        <!-- ============================================================
-        SECTION 2 : PERTEMUAN 1
-        ============================================================ -->
+        <!-- SECTION 2 : PERTEMUAN 1 -->
         <section id="section2" class="section">
             <div class="section-header">
                 <div class="num">02</div>
                 <h2>Pertemuan 1 – Pengertian, Komponen &amp; Jenis Peta <small>Dasar-Dasar Pemetaan</small></h2>
                 <span class="badge">3×45'</span>
             </div>
-
             <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px;">
                 <span class="badge" style="background:rgba(42,92,122,0.04); color:var(--primary-light); border:1px solid rgba(42,92,122,0.04);">TP 1</span>
                 <span class="badge" style="background:rgba(26,188,156,0.04); color:var(--accent); border:1px solid rgba(26,188,156,0.04);">Penalaran Kritis</span>
             </div>
-
-            <!-- Tujuan Pembelajaran Pertemuan 1 (diperluas) -->
             <div class="card">
                 <h3>Tujuan Pembelajaran</h3>
                 <ul>
@@ -1841,8 +1748,6 @@
                     <li>Mengenal peran BIG dan Peta Rupa Bumi Indonesia.</li>
                 </ul>
             </div>
-
-            <!-- Galeri Pertemuan 1 (hanya 3 gambar: peta Kalimantan, skala, tematik) -->
             <div style="margin:8px 0 16px;">
                 <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; margin-bottom:12px;">
                     <h4 style="color:var(--primary); font-size:0.95rem; font-weight:700; display:flex; align-items:center; gap:8px;">
@@ -1886,8 +1791,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Materi Accordion (tidak berubah) -->
             <div class="materi-box reveal">
                 <div class="header active" onclick="toggleMateri(this)">
                     <h4>A. Pengertian Peta <span class="tag-sm">Etimologi &amp; Definisi</span></h4>
@@ -1915,7 +1818,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="materi-box reveal">
                 <div class="header" onclick="toggleMateri(this)">
                     <h4>B. Komponen Peta <span class="tag-sm">8 Unsur Utama</span></h4>
@@ -1942,7 +1844,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="materi-box reveal">
                 <div class="header" onclick="toggleMateri(this)">
                     <h4>C. Jenis Peta <span class="tag-sm">Umum &amp; Tematik</span></h4>
@@ -1976,7 +1877,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="materi-box reveal">
                 <div class="header" onclick="toggleMateri(this)">
                     <h4>D. Fungsi Peta <span class="tag-sm">7 Peran Penting</span></h4>
@@ -1997,7 +1897,6 @@
                     </ul>
                 </div>
             </div>
-
             <div class="materi-box reveal">
                 <div class="header" onclick="toggleMateri(this)">
                     <h4>E. Jenis Peta Berdasarkan Skala <span class="tag-sm">5 Kelas</span></h4>
@@ -2024,7 +1923,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="materi-box reveal">
                 <div class="header" onclick="toggleMateri(this)">
                     <h4>F. Perbedaan Peta, Atlas, dan Globe <span class="tag-sm">Konsep Dasar</span></h4>
@@ -2048,7 +1946,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="materi-box reveal">
                 <div class="header" onclick="toggleMateri(this)">
                     <h4>G. Peta di Indonesia <span class="tag-sm">BIG &amp; RBI</span></h4>
@@ -2069,8 +1966,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Mini Quiz -->
             <div class="mini-quiz reveal">
                 <div class="question">Kuis Cepat: Komponen peta yang berisi keterangan simbol adalah ...</div>
                 <div class="options">
@@ -2081,7 +1976,6 @@
                 </div>
                 <div class="feedback"></div>
             </div>
-
             <div class="nav-buttons">
                 <div class="group" style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:center;">
                     <button onclick="navigateTo('prev')">Sebelumnya</button>
@@ -2092,22 +1986,17 @@
             </div>
         </section>
 
-        <!-- ============================================================
-        SECTION 3 : PERTEMUAN 2
-        ============================================================ -->
+        <!-- SECTION 3 : PERTEMUAN 2 -->
         <section id="section3" class="section">
             <div class="section-header">
                 <div class="num">03</div>
                 <h2>Pertemuan 2 – Proyeksi, Skala &amp; Simbol Peta <small>Teknik Pemetaan Dasar</small></h2>
                 <span class="badge">3×45'</span>
             </div>
-
             <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px;">
                 <span class="badge" style="background:rgba(42,92,122,0.04); color:var(--primary-light); border:1px solid rgba(42,92,122,0.04);">TP 2</span>
                 <span class="badge" style="background:rgba(26,188,156,0.04); color:var(--accent); border:1px solid rgba(26,188,156,0.04);">Literasi</span>
             </div>
-
-            <!-- Tujuan Pembelajaran Pertemuan 2 (diperluas) -->
             <div class="card">
                 <h3>Tujuan Pembelajaran</h3>
                 <ul>
@@ -2118,8 +2007,6 @@
                     <li>Mengenal makna warna dan tipografi pada peta.</li>
                 </ul>
             </div>
-
-            <!-- Galeri Pertemuan 2 (3 gambar proyeksi) -->
             <div style="margin:8px 0 16px;">
                 <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; margin-bottom:12px;">
                     <h4 style="color:var(--primary); font-size:0.95rem; font-weight:700; display:flex; align-items:center; gap:8px;">
@@ -2163,8 +2050,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Materi Accordion - Pertemuan 2 (tidak berubah) -->
             <div class="materi-box reveal">
                 <div class="header active" onclick="toggleMateri(this)">
                     <h4>A. Proyeksi Peta <span class="tag-sm">3 Jenis Utama</span></h4>
@@ -2175,7 +2060,6 @@
                         <p><strong>Proyeksi peta</strong> adalah <span class="gold-text">teknik memindahkan permukaan bumi yang bulat (3D) ke bidang datar (2D)</span>. Karena bumi berbentuk bola (geoid), memindahkannya ke bidang datar selalu menyebabkan <strong>distorsi (kesalahan)</strong> pada bentuk, luas, jarak, atau arah.</p>
                         <p>Tidak ada proyeksi yang sempurna. Oleh karena itu, pembuat peta harus memilih jenis proyeksi berdasarkan <strong>tujuan</strong> penggunaan peta.</p>
                     </div>
-
                     <h5 style="color:var(--primary); font-weight:700; font-size:0.95rem; margin-top:12px;">1. Proyeksi Silinder (Cylindrical)</h5>
                     <div style="background:rgba(26,188,156,0.02); border-radius:var(--radius-sm); padding:12px 16px; border-left:4px solid var(--accent); margin-bottom:10px;">
                         <p style="font-size:0.92rem; color:var(--text-light);"><strong>Bidang proyeksi:</strong> Tabung (silinder) yang melingkupi bumi dan menyentuh di garis ekuator.<br>
@@ -2185,7 +2069,6 @@
                             <strong>Kekurangan:</strong> Distorsi luas yang parah di lintang tinggi.
                         </p>
                     </div>
-
                     <h5 style="color:var(--primary); font-weight:700; font-size:0.95rem; margin-top:12px;">2. Proyeksi Kerucut (Conical)</h5>
                     <div style="background:rgba(243,156,18,0.02); border-radius:var(--radius-sm); padding:12px 16px; border-left:4px solid var(--gold); margin-bottom:10px;">
                         <p style="font-size:0.92rem; color:var(--text-light);"><strong>Bidang proyeksi:</strong> Kerucut yang ditempelkan pada bumi di satu atau dua garis paralel (lintang standar).<br>
@@ -2195,7 +2078,6 @@
                             <strong>Kekurangan:</strong> Tidak cocok untuk wilayah ekuator atau kutub.
                         </p>
                     </div>
-
                     <h5 style="color:var(--primary); font-weight:700; font-size:0.95rem; margin-top:12px;">3. Proyeksi Azimuthal (Zenithal / Planar)</h5>
                     <div style="background:rgba(42,92,122,0.02); border-radius:var(--radius-sm); padding:12px 16px; border-left:4px solid var(--primary);">
                         <p style="font-size:0.92rem; color:var(--text-light);"><strong>Bidang proyeksi:</strong> Bidang datar yang menyentuh bumi di satu titik (biasanya kutub).<br>
@@ -2205,13 +2087,11 @@
                             <strong>Kekurangan:</strong> Distorsi besar di luar titik pusat.
                         </p>
                     </div>
-
                     <div style="background:rgba(42,92,122,0.02); border-radius:var(--radius-sm); padding:10px 14px; margin-top:12px; border-left:3px solid var(--primary);">
                         <p style="font-size:0.9rem; color:var(--text-light);"><strong>💡 Catatan Guru:</strong> Tanyakan kepada siswa, "Menurut kalian, proyeksi apa yang digunakan oleh Google Maps?" (Jawaban: Web Mercator – varian silinder yang mengutamakan bentuk untuk kenyamanan navigasi digital).</p>
                     </div>
                 </div>
             </div>
-
             <div class="materi-box reveal">
                 <div class="header" onclick="toggleMateri(this)">
                     <h4>B. Skala Peta <span class="tag-sm">Angka &amp; Garis</span></h4>
@@ -2223,16 +2103,13 @@
                     </div>
                     <h5 style="color:var(--primary); font-weight:700; font-size:0.95rem; margin-top:8px;">A. Skala Angka (Numerik)</h5>
                     <p style="font-size:0.92rem; color:var(--text-light);">Ditulis dalam bentuk pecahan atau rasio, misalnya <strong>1 : 100.000</strong>. Artinya <strong>1 cm di peta = 100.000 cm (1 km) di lapangan</strong>.</p>
-
                     <h5 style="color:var(--primary); font-weight:700; font-size:0.95rem; margin-top:12px;">B. Skala Garis (Grafis)</h5>
                     <p style="font-size:0.92rem; color:var(--text-light);">Berupa garis lurus yang dibagi menjadi segmen-segmen, masing-masing mewakili jarak tertentu di lapangan. Kelebihannya: tetap berlaku meskipun peta diperbesar/diperkecil (fotokopi).</p>
-
                     <div style="background:rgba(243,156,18,0.02); border-radius:var(--radius-sm); padding:10px 14px; margin-top:8px; border-left:3px solid var(--gold);">
                         <p style="font-size:0.9rem; color:var(--text-light);"><strong>🔑 Kunci:</strong> Semakin besar angka skala (misal 1:10.000), semakin kecil area yang digambarkan, tetapi detailnya lebih tinggi (peta kota). Semakin kecil angka skala (1:1.000.000), semakin luas area, tetapi detailnya berkurang (peta dunia).</p>
                     </div>
                 </div>
             </div>
-
             <div class="materi-box reveal">
                 <div class="header" onclick="toggleMateri(this)">
                     <h4>C. Simbol Peta <span class="tag-sm">Titik, Garis, Area</span></h4>
@@ -2267,7 +2144,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="materi-box reveal">
                 <div class="header" onclick="toggleMateri(this)">
                     <h4>D. Sistem Koordinat Peta <span class="tag-sm">Lintang &amp; Bujur</span></h4>
@@ -2294,7 +2170,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="materi-box reveal">
                 <div class="header" onclick="toggleMateri(this)">
                     <h4>E. Perhitungan Skala <span class="tag-sm">Rumus &amp; Konversi</span></h4>
@@ -2326,7 +2201,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="materi-box reveal">
                 <div class="header" onclick="toggleMateri(this)">
                     <h4>F. Warna &amp; Tipografi Peta <span class="tag-sm">Simbol Visual</span></h4>
@@ -2356,7 +2230,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="materi-box reveal">
                 <div class="header" onclick="toggleMateri(this)">
                     <h4>G. Sifat Proyeksi Peta <span class="tag-sm">Conform, Equivalent, Equidistant, Azimuthal</span></h4>
@@ -2393,8 +2266,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Mini Quiz -->
             <div class="mini-quiz reveal">
                 <div class="question">Kuis Cepat: Proyeksi yang paling cocok untuk daerah kutub adalah ...</div>
                 <div class="options">
@@ -2405,7 +2276,6 @@
                 </div>
                 <div class="feedback"></div>
             </div>
-
             <div class="nav-buttons">
                 <div class="group" style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:center;">
                     <button onclick="navigateTo('prev')">Sebelumnya</button>
@@ -2416,23 +2286,18 @@
             </div>
         </section>
 
-        <!-- ============================================================
-        SECTION 4 : PERTEMUAN 3
-        ============================================================ -->
+        <!-- SECTION 4 : PERTEMUAN 3 -->
         <section id="section4" class="section">
             <div class="section-header">
                 <div class="num">04</div>
                 <h2>Pertemuan 3 – Keterampilan &amp; Manfaat Peta <small>Life Skills &amp; Pembangunan</small></h2>
                 <span class="badge">3×45'</span>
             </div>
-
             <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px;">
                 <span class="badge" style="background:rgba(42,92,122,0.04); color:var(--primary-light); border:1px solid rgba(42,92,122,0.04);">TP 3</span>
                 <span class="badge" style="background:rgba(26,188,156,0.04); color:var(--accent); border:1px solid rgba(26,188,156,0.04);">Kreativitas</span>
                 <span class="badge" style="background:rgba(243,156,18,0.04); color:var(--gold); border:1px solid rgba(243,156,18,0.04);">Kemandirian</span>
             </div>
-
-            <!-- Tujuan Pembelajaran Pertemuan 3 (diperluas) -->
             <div class="card">
                 <h3>Tujuan Pembelajaran</h3>
                 <ul>
@@ -2442,8 +2307,6 @@
                     <li>Menganalisis studi kasus pemanfaatan peta di Kabupaten Katingan.</li>
                 </ul>
             </div>
-
-            <!-- Materi Accordion - Pertemuan 3 (tidak berubah) -->
             <div class="materi-box reveal">
                 <div class="header active" onclick="toggleMateri(this)">
                     <h4>A. Keterampilan Membaca Peta <span class="tag-sm">Orientasi, Skala, Simbol, Kontur</span></h4>
@@ -2476,7 +2339,6 @@
                     </ul>
                 </div>
             </div>
-
             <div class="materi-box reveal">
                 <div class="header" onclick="toggleMateri(this)">
                     <h4>B. Manfaat Peta <span class="tag-sm">8 Bidang Utama</span></h4>
@@ -2522,7 +2384,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="materi-box reveal">
                 <div class="header" onclick="toggleMateri(this)">
                     <h4>C. Peta Digital, SIG, dan GPS <span class="tag-sm">Teknologi Pemetaan Modern</span></h4>
@@ -2534,13 +2395,11 @@
                     </div>
                     <h5 style="color:var(--primary); font-weight:700; font-size:0.95rem; margin-top:8px;">1. Peta Digital</h5>
                     <p style="font-size:0.92rem; color:var(--text-light);">Peta yang disajikan dalam format digital, dapat diakses melalui perangkat elektronik. Contoh: Google Maps, OpenStreetMap, peta interaktif di website. Kelebihan: mudah diperbarui, interaktif, dan dapat diintegrasikan dengan data lain.</p>
-
                     <h5 style="color:var(--primary); font-weight:700; font-size:0.95rem; margin-top:12px;">2. SIG (Sistem Informasi Geografis)</h5>
                     <div style="background:rgba(42,92,122,0.02); border-radius:var(--radius-sm); padding:12px 16px; border-left:4px solid var(--primary); margin-bottom:10px;">
                         <p style="font-size:0.92rem; color:var(--text-light);"><strong>SIG</strong> adalah sistem komputer yang digunakan untuk <span class="gold-text">mengumpulkan, menyimpan, menganalisis, dan menyajikan data geografis</span>. Komponen utama SIG: perangkat keras, perangkat lunak (ArcGIS, QGIS), data spasial, dan sumber daya manusia.<br>
                             <strong>Kegunaan:</strong> analisis overlay (tumpang susun) untuk menentukan lokasi optimal, pemodelan banjir, pemetaan perubahan lahan, dan lain-lain.</p>
                     </div>
-
                     <h5 style="color:var(--primary); font-weight:700; font-size:0.95rem; margin-top:12px;">3. GPS (Global Positioning System)</h5>
                     <div style="background:rgba(26,188,156,0.02); border-radius:var(--radius-sm); padding:12px 16px; border-left:4px solid var(--accent);">
                         <p style="font-size:0.92rem; color:var(--text-light);"><strong>GPS</strong> adalah sistem satelit yang memberikan informasi posisi (lintang, bujur, dan ketinggian) secara akurat di seluruh dunia. Digunakan untuk navigasi, survei, pemetaan, dan pelacakan. Aplikasi sehari-hari: Google Maps, Waze, dan aplikasi olahraga (Strava).</p>
@@ -2550,7 +2409,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="materi-box reveal">
                 <div class="header" onclick="toggleMateri(this)">
                     <h4>D. Aplikasi Peta dalam Kesehatan &amp; Lingkungan <span class="tag-sm">Contoh Konkret</span></h4>
@@ -2579,7 +2437,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="materi-box reveal">
                 <div class="header" onclick="toggleMateri(this)">
                     <h4>E. Studi Kasus: Peta untuk Katingan <span class="tag-sm">Aplikasi Lokal</span></h4>
@@ -2601,8 +2458,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Aktivitas -->
             <div style="background:rgba(243,156,18,0.02); border-radius:var(--radius); padding:18px 20px; border-left:6px solid var(--gold); margin:12px 0;">
                 <h4 style="color:var(--gold); font-weight:700; font-size:1rem; display:flex; align-items:center; gap:10px;"><span>🧩</span> Aktivitas Siswa – Terapkan Keterampilanmu!</h4>
                 <p style="font-size:0.92rem; color:var(--text-light); margin-top:4px;">Pilih salah satu tugas di bawah ini, kerjakan di buku catatan, dan diskusikan dengan teman sekelas.</p>
@@ -2613,8 +2468,6 @@
                     <li><strong>4. Diskusi Kelompok:</strong> Bagaimana peta dapat membantu mengurangi risiko bencana banjir di Katingan? Berikan minimal 3 usulan.</li>
                 </ul>
             </div>
-
-            <!-- Mini Quiz -->
             <div class="mini-quiz reveal">
                 <div class="question">Kuis Cepat: Salah satu manfaat peta dalam kehidupan sehari-hari adalah ...</div>
                 <div class="options">
@@ -2625,7 +2478,6 @@
                 </div>
                 <div class="feedback"></div>
             </div>
-
             <div class="nav-buttons">
                 <div class="group" style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:center;">
                     <button onclick="navigateTo('prev')">Sebelumnya</button>
@@ -2636,25 +2488,23 @@
             </div>
         </section>
 
-        <!-- ============================================================
-        SECTION 5 : ASESMEN
-        ============================================================ -->
+        <!-- SECTION 5 : ASESMEN (30 PG, 20 B/S, 5 Essay) -->
         <section id="section5" class="section">
             <div class="section-header">
                 <div class="num">05</div>
                 <h2>Asesmen <small>Evaluasi 3 Pertemuan</small></h2>
-                <span class="badge">30 Soal</span>
+                <span class="badge">55 Soal</span>
             </div>
 
             <div style="background:var(--card-bg); border-radius:var(--radius); padding:20px 24px; margin-bottom:24px; box-shadow:var(--shadow); border:1px solid rgba(0,0,0,0.02);">
                 <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(120px,1fr)); gap:12px;">
                     <div style="display:flex; align-items:center; gap:12px; padding:10px 14px; background:rgba(42,92,122,0.02); border-radius:var(--radius-sm);">
                         <div style="width:32px; height:32px; border-radius:50%; background:rgba(42,92,122,0.04); display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--primary);">A</div>
-                        <div><span style="color:var(--text-muted); font-size:0.6rem; font-weight:600; text-transform:uppercase;">PG</span><div style="color:var(--text); font-size:1.2rem; font-weight:700;">15</div></div>
+                        <div><span style="color:var(--text-muted); font-size:0.6rem; font-weight:600; text-transform:uppercase;">PG</span><div style="color:var(--text); font-size:1.2rem; font-weight:700;">30</div></div>
                     </div>
                     <div style="display:flex; align-items:center; gap:12px; padding:10px 14px; background:rgba(26,188,156,0.02); border-radius:var(--radius-sm);">
                         <div style="width:32px; height:32px; border-radius:50%; background:rgba(26,188,156,0.04); display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--accent);">B</div>
-                        <div><span style="color:var(--text-muted); font-size:0.6rem; font-weight:600; text-transform:uppercase;">B/S</span><div style="color:var(--text); font-size:1.2rem; font-weight:700;">10</div></div>
+                        <div><span style="color:var(--text-muted); font-size:0.6rem; font-weight:600; text-transform:uppercase;">B/S</span><div style="color:var(--text); font-size:1.2rem; font-weight:700;">20</div></div>
                     </div>
                     <div style="display:flex; align-items:center; gap:12px; padding:10px 14px; background:rgba(243,156,18,0.02); border-radius:var(--radius-sm);">
                         <div style="width:32px; height:32px; border-radius:50%; background:rgba(243,156,18,0.04); display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--gold);">C</div>
@@ -2662,64 +2512,90 @@
                     </div>
                 </div>
                 <div style="margin-top:12px; padding-top:10px; border-top:1px solid rgba(0,0,0,0.02); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
-                    <span style="color:var(--text-muted); font-size:0.85rem;">Total <strong style="color:var(--text);">30 soal</strong> · Kerjakan dengan jujur</span>
-                    <span style="color:var(--text-muted); font-size:0.75rem;">60 menit</span>
+                    <span style="color:var(--text-muted); font-size:0.85rem;">Total <strong style="color:var(--text);">55 soal</strong> · Kerjakan dengan jujur</span>
+                    <span style="color:var(--text-muted); font-size:0.75rem;">90 menit</span>
                 </div>
             </div>
 
-            <!-- PG -->
+            <!-- PILIHAN GANDA (30 Soal) -->
             <div style="background:var(--card-bg); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow); border:1px solid rgba(0,0,0,0.02); margin-bottom:20px;">
                 <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
                     <div style="width:32px; height:32px; border-radius:50%; background:rgba(42,92,122,0.04); display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--primary);">A</div>
                     <h3 style="color:var(--text); font-size:1.05rem; font-weight:700; margin:0;">Pilihan Ganda</h3>
-                    <span style="font-size:0.7rem; color:var(--text-muted); margin-left:auto;">15 Soal</span>
+                    <span style="font-size:0.7rem; color:var(--text-muted); margin-left:auto;">30 Soal</span>
                 </div>
-                <p style="color:var(--text-muted); font-size:0.8rem; margin-bottom:12px;">Pilih satu jawaban paling tepat!</p>
-                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">1.</span> Peta adalah gambaran permukaan bumi pada bidang datar yang diperkecil dengan ...</div><div class="opsi"><span>A. Warna tertentu</span><span>B. Skala tertentu</span><span>C. Orientasi tertentu</span><span>D. Jenis huruf tertentu</span><span>E. Garis tepi tertentu</span></div></div>
-                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">2.</span> Komponen peta yang berisi keterangan simbol adalah ...</div><div class="opsi"><span>A. Judul</span><span>B. Skala</span><span>C. Legenda</span><span>D. Orientasi</span><span>E. Inset</span></div></div>
-                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">3.</span> Peta yang menggambarkan tema tertentu seperti kepadatan penduduk disebut ...</div><div class="opsi"><span>A. Peta umum</span><span>B. Peta tematik</span><span>C. Peta topografi</span><span>D. Peta chorografi</span><span>E. Peta kadaster</span></div></div>
-                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">4.</span> Proyeksi peta yang paling cocok untuk daerah kutub adalah ...</div><div class="opsi"><span>A. Silinder</span><span>B. Kerucut</span><span>C. Azimuthal</span><span>D. Mercator</span><span>E. Sinusoidal</span></div></div>
-                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">5.</span> Simbol yang digunakan untuk mewakili jalan dan sungai adalah simbol ...</div><div class="opsi"><span>A. Titik</span><span>B. Garis</span><span>C. Area</span><span>D. Warna</span><span>E. Pola</span></div></div>
-                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">6.</span> Skala 1:100.000 termasuk skala ...</div><div class="opsi"><span>A. Sangat kecil</span><span>B. Kecil</span><span>C. Sedang</span><span>D. Besar</span><span>E. Sangat besar</span></div></div>
-                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">7.</span> Fungsi inset pada peta adalah ...</div><div class="opsi"><span>A. Menampilkan legenda</span><span>B. Menunjukkan skala</span><span>C. Menunjukkan lokasi peta utama dalam konteks lebih luas</span><span>D. Menampilkan tahun pembuatan</span><span>E. Menampilkan sumber</span></div></div>
-                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">8.</span> Manfaat peta dalam perencanaan wilayah adalah ...</div><div class="opsi"><span>A. Menentukan arah perjalanan</span><span>B. Menganalisis pola persebaran penduduk</span><span>C. Merancang tata ruang dan infrastruktur</span><span>D. Mengenal daerah rawan bencana</span><span>E. Mengetahui jenis tanah</span></div></div>
-                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">9.</span> Menurut ICA, peta adalah representasi unsur-unsur kenampakan abstrak yang dipilih dari permukaan bumi yang digambarkan pada bidang datar dengan ...</div><div class="opsi"><span>A. Warna tertentu</span><span>B. Skala tertentu</span><span>C. Orientasi tertentu</span><span>D. Jenis huruf tertentu</span><span>E. Garis tepi tertentu</span></div></div>
-                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">10.</span> Contoh peta tematik adalah ...</div><div class="opsi"><span>A. Peta dunia</span><span>B. Peta topografi</span><span>C. Peta kepadatan penduduk</span><span>D. Peta chorografi</span><span>E. Peta kadaster</span></div></div>
-                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">11.</span> Simbol area pada peta biasanya digunakan untuk menggambarkan ...</div><div class="opsi"><span>A. Kota dan gunung</span><span>B. Jalan dan sungai</span><span>C. Hutan, danau, permukiman</span><span>D. Pelabuhan dan bandara</span><span>E. Batas administrasi</span></div></div>
-                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">12.</span> Proyeksi kerucut paling cocok untuk wilayah ...</div><div class="opsi"><span>A. Ekuator</span><span>B. Lintang sedang (30°–60°)</span><span>C. Kutub</span><span>D. Gurun</span><span>E. Lautan</span></div></div>
-                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">13.</span> Badan yang mengatur standar simbol peta di Indonesia adalah ...</div><div class="opsi"><span>A. BMKG</span><span>B. BIG</span><span>C. BPS</span><span>D. Kementerian PUPR</span><span>E. LAPAN</span></div></div>
-                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">14.</span> Tokoh yang mengembangkan proyeksi silinder untuk navigasi laut adalah ...</div><div class="opsi"><span>A. Ptolemaeus</span><span>B. Erwin Raisz</span><span>C. Gerardus Mercator</span><span>D. Bintarto</span><span>E. Suharyono</span></div></div>
-                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">15.</span> Manfaat peta dalam mitigasi bencana adalah ...</div><div class="opsi"><span>A. Menentukan lokasi wisata</span><span>B. Menganalisis kepadatan penduduk</span><span>C. Mengenali zona rawan bencana</span><span>D. Memetakan jalur perdagangan</span><span>E. Mengetahui jenis tanah</span></div></div>
+                <p style="color:var(--text-muted); font-size:0.8rem; margin-bottom:12px;">Pilih satu jawaban paling tepat (A, B, C, atau D)!</p>
+                
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">1.</span> Berdasarkan ICA, peta adalah representasi unsur-unsur kenampakan abstrak yang dipilih dari permukaan bumi, digambarkan pada bidang datar dengan ...</div><div class="opsi"><span>A. Warna tertentu</span><span>B. Skala tertentu</span><span>C. Orientasi tertentu</span><span>D. Garis tepi tertentu</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">2.</span> Komponen peta yang berisi keterangan simbol-simbol yang digunakan adalah ...</div><div class="opsi"><span>A. Judul</span><span>B. Skala</span><span>C. Legenda</span><span>D. Inset</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">3.</span> Peta yang menggambarkan tema tertentu seperti kepadatan penduduk disebut ...</div><div class="opsi"><span>A. Peta umum</span><span>B. Peta tematik</span><span>C. Peta topografi</span><span>D. Peta kadaster</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">4.</span> Proyeksi peta yang paling cocok untuk daerah kutub adalah ...</div><div class="opsi"><span>A. Silinder</span><span>B. Kerucut</span><span>C. Azimuthal</span><span>D. Mercator</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">5.</span> Simbol yang digunakan untuk mewakili jalan dan sungai pada peta adalah simbol ...</div><div class="opsi"><span>A. Titik</span><span>B. Garis</span><span>C. Area</span><span>D. Warna</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">6.</span> Skala 1:100.000 termasuk ke dalam jenis skala ...</div><div class="opsi"><span>A. Sangat besar</span><span>B. Besar</span><span>C. Sedang</span><span>D. Kecil</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">7.</span> Fungsi inset pada peta adalah ...</div><div class="opsi"><span>A. Menampilkan legenda</span><span>B. Menunjukkan skala</span><span>C. Menunjukkan lokasi peta utama dalam konteks lebih luas</span><span>D. Menampilkan tahun pembuatan</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">8.</span> Manfaat peta dalam perencanaan wilayah adalah ...</div><div class="opsi"><span>A. Menentukan arah perjalanan</span><span>B. Menganalisis persebaran penduduk</span><span>C. Merancang tata ruang dan infrastruktur</span><span>D. Mengenal jenis tanah</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">9.</span> Tokoh yang mengembangkan proyeksi silinder (Mercator) untuk navigasi laut adalah ...</div><div class="opsi"><span>A. Ptolemaeus</span><span>B. Erwin Raisz</span><span>C. Bintarto</span><span>D. Gerardus Mercator</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">10.</span> Contoh peta tematik adalah ...</div><div class="opsi"><span>A. Peta dunia</span><span>B. Peta kepadatan penduduk</span><span>C. Peta topografi</span><span>D. Peta chorografi</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">11.</span> Simbol area pada peta biasanya digunakan untuk menggambarkan ...</div><div class="opsi"><span>A. Kota dan gunung</span><span>B. Jalan dan sungai</span><span>C. Hutan, danau, dan permukiman</span><span>D. Pelabuhan dan bandara</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">12.</span> Proyeksi kerucut paling cocok digunakan untuk wilayah ...</div><div class="opsi"><span>A. Ekuator</span><span>B. Lintang sedang (30°–60°)</span><span>C. Kutub</span><span>D. Gurun</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">13.</span> Badan yang mengatur standar dan informasi geospasial di Indonesia adalah ...</div><div class="opsi"><span>A. BMKG</span><span>B. BIG</span><span>C. BPS</span><span>D. LAPAN</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">14.</span> Menurut Erwin Raisz, peta adalah gambaran konvensional permukaan bumi yang diperkecil, dilengkapi dengan ...</div><div class="opsi"><span>A. Judul dan skala</span><span>B. Warna dan garis</span><span>C. Simbol dan tulisan</span><span>D. Orientasi dan inset</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">15.</span> Manfaat peta dalam mitigasi bencana adalah ...</div><div class="opsi"><span>A. Menentukan lokasi wisata</span><span>B. Menganalisis kepadatan penduduk</span><span>C. Mengenali zona rawan bencana</span><span>D. Memetakan jalur perdagangan</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">16.</span> Perbedaan utama antara skala angka dan skala garis adalah ...</div><div class="opsi"><span>A. Skala angka lebih akurat</span><span>B. Skala garis lebih rumit</span><span>C. Skala garis tetap berlaku meskipun diperbesar/diperkecil</span><span>D. Skala angka menggunakan satuan meter</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">17.</span> Garis lintang yang membagi bumi menjadi belahan utara dan selatan adalah ...</div><div class="opsi"><span>A. Ekuator (0°)</span><span>B. Garis Balik Utara</span><span>C. Garis Balik Selatan</span><span>D. Lingkar Arktik</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">18.</span> Warna hijau pada peta umum biasanya menunjukkan ...</div><div class="opsi"><span>A. Perairan dalam</span><span>B. Dataran rendah atau vegetasi</span><span>C. Dataran tinggi</span><span>D. Jalan raya</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">19.</span> Komponen utama SIG (Sistem Informasi Geografis) adalah perangkat keras, perangkat lunak, data spasial, dan ...</div><div class="opsi"><span>A. Peta cetak</span><span>B. GPS</span><span>C. Sumber daya manusia</span><span>D. Citra satelit</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">20.</span> Kepanjangan dari GPS adalah ...</div><div class="opsi"><span>A. Geographic Positioning System</span><span>B. Global Position Standard</span><span>C. General Positioning Service</span><span>D. Global Positioning System</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">21.</span> Pada peta kontur, garis kontur yang rapat menandakan ...</div><div class="opsi"><span>A. Lereng curam</span><span>B. Lereng landai</span><span>C. Dataran rendah</span><span>D. Puncak gunung</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">22.</span> Sifat proyeksi yang mempertahankan perbandingan luas wilayah adalah ...</div><div class="opsi"><span>A. Conform</span><span>B. Equidistant</span><span>C. Equivalent</span><span>D. Azimuthal</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">23.</span> Contoh peta umum adalah ...</div><div class="opsi"><span>A. Peta topografi</span><span>B. Peta kepadatan penduduk</span><span>C. Peta pariwisata</span><span>D. Peta tanah</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">24.</span> Skala 1:5.000 termasuk jenis skala ...</div><div class="opsi"><span>A. Kadaster</span><span>B. Sedang</span><span>C. Kecil</span><span>D. Geografis</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">25.</span> Peta Rupa Bumi Indonesia (RBI) dikelola oleh lembaga ...</div><div class="opsi"><span>A. BMKG</span><span>B. BIG</span><span>C. BPS</span><span>D. Kementerian PUPR</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">26.</span> Proyeksi Mercator termasuk ke dalam jenis proyeksi ...</div><div class="opsi"><span>A. Silinder</span><span>B. Kerucut</span><span>C. Azimuthal</span><span>D. Planar</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">27.</span> Contoh simbol titik pada peta adalah ...</div><div class="opsi"><span>A. Jalan</span><span>B. Sungai</span><span>C. Bandara</span><span>D. Hutan</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">28.</span> Manfaat peta dalam bidang kesehatan adalah ...</div><div class="opsi"><span>A. Menentukan rute penerbangan</span><span>B. Memetakan potensi wisata</span><span>C. Memetakan sebaran penyakit</span><span>D. Menghitung curah hujan</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">29.</span> Salah satu studi kasus pemanfaatan peta di Kabupaten Katingan adalah untuk ...</div><div class="opsi"><span>A. Memetakan jalur kereta api</span><span>B. Mengidentifikasi daerah rawan banjir</span><span>C. Menentukan jenis tanah</span><span>D. Memantau lalu lintas udara</span></div></div>
+                <div class="soal-pg"><div class="pertanyaan"><span class="nomor">30.</span> Perbedaan utama antara peta dan globe adalah ...</div><div class="opsi"><span>A. Peta berbentuk datar, globe berbentuk bulat</span><span>B. Peta lebih akurat bentuknya</span><span>C. Globe menggunakan skala yang lebih besar</span><span>D. Peta tidak memiliki skala</span></div></div>
             </div>
 
-            <!-- B/S -->
+            <!-- BENAR / SALAH (20 Soal) -->
             <div style="background:var(--card-bg); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow); border:1px solid rgba(0,0,0,0.02); margin-bottom:20px;">
                 <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
                     <div style="width:32px; height:32px; border-radius:50%; background:rgba(26,188,156,0.04); display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--accent);">B</div>
                     <h3 style="color:var(--text); font-size:1.05rem; font-weight:700; margin:0;">Benar / Salah</h3>
-                    <span style="font-size:0.7rem; color:var(--text-muted); margin-left:auto;">10 Soal</span>
+                    <span style="font-size:0.7rem; color:var(--text-muted); margin-left:auto;">20 Soal</span>
                 </div>
-                <p style="color:var(--text-muted); font-size:0.8rem; margin-bottom:12px;">Tuliskan B (Benar) atau S (Salah)!</p>
+                <p style="color:var(--text-muted); font-size:0.8rem; margin-bottom:12px;">Tuliskan B (Benar) atau S (Salah) pada lembar jawaban!</p>
                 <div class="soal-bs"><span class="nomor">1.</span><span class="pertanyaan">Peta selalu digambarkan pada bidang datar dengan skala tertentu.</span></div>
-                <div class="soal-bs"><span class="nomor">2.</span><span class="pertanyaan">Proyeksi Mercator adalah contoh proyeksi kerucut.</span></div>
-                <div class="soal-bs"><span class="nomor">3.</span><span class="pertanyaan">Simbol titik digunakan untuk objek memanjang seperti sungai.</span></div>
-                <div class="soal-bs"><span class="nomor">4.</span><span class="pertanyaan">Legenda berisi keterangan simbol-simbol pada peta.</span></div>
-                <div class="soal-bs"><span class="nomor">5.</span><span class="pertanyaan">Peta tematik menggambarkan kenampakan umum seperti relief.</span></div>
-                <div class="soal-bs"><span class="nomor">6.</span><span class="pertanyaan">Proyeksi azimuthal paling cocok untuk daerah ekuator.</span></div>
-                <div class="soal-bs"><span class="nomor">7.</span><span class="pertanyaan">Skala 1:100.000 termasuk skala besar.</span></div>
-                <div class="soal-bs"><span class="nomor">8.</span><span class="pertanyaan">Inset berfungsi menunjukkan lokasi peta utama dalam konteks lebih luas.</span></div>
-                <div class="soal-bs"><span class="nomor">9.</span><span class="pertanyaan">BIG adalah Badan Informasi Geospasial di Indonesia.</span></div>
-                <div class="soal-bs"><span class="nomor">10.</span><span class="pertanyaan">Proyeksi equivalent mempertahankan bentuk, tetapi mengorbankan luas.</span></div>
+                <div class="soal-bs"><span class="nomor">2.</span><span class="pertanyaan">Proyeksi Mercator adalah contoh dari proyeksi kerucut.</span></div>
+                <div class="soal-bs"><span class="nomor">3.</span><span class="pertanyaan">Simbol titik digunakan untuk objek yang memanjang seperti sungai.</span></div>
+                <div class="soal-bs"><span class="nomor">4.</span><span class="pertanyaan">Legenda berisi keterangan simbol-simbol yang digunakan pada peta.</span></div>
+                <div class="soal-bs"><span class="nomor">5.</span><span class="pertanyaan">Peta tematik menggambarkan kenampakan umum seperti relief dan bentuk muka bumi.</span></div>
+                <div class="soal-bs"><span class="nomor">6.</span><span class="pertanyaan">Proyeksi azimuthal paling cocok digunakan untuk daerah ekuator.</span></div>
+                <div class="soal-bs"><span class="nomor">7.</span><span class="pertanyaan">Skala 1:100.000 termasuk ke dalam skala besar.</span></div>
+                <div class="soal-bs"><span class="nomor">8.</span><span class="pertanyaan">Inset berfungsi untuk menunjukkan lokasi peta utama dalam konteks yang lebih luas.</span></div>
+                <div class="soal-bs"><span class="nomor">9.</span><span class="pertanyaan">BIG adalah singkatan dari Badan Informasi Geospasial.</span></div>
+                <div class="soal-bs"><span class="nomor">10.</span><span class="pertanyaan">Proyeksi equivalent mempertahankan bentuk wilayah, tetapi mengorbankan luas.</span></div>
+                <div class="soal-bs"><span class="nomor">11.</span><span class="pertanyaan">Garis bujur 0° atau Prime Meridian terletak di Greenwich, Inggris.</span></div>
+                <div class="soal-bs"><span class="nomor">12.</span><span class="pertanyaan">Warna biru pada peta umum biasanya digunakan untuk menggambarkan perairan.</span></div>
+                <div class="soal-bs"><span class="nomor">13.</span><span class="pertanyaan">SIG (Sistem Informasi Geografis) hanya digunakan untuk membuat peta kertas manual.</span></div>
+                <div class="soal-bs"><span class="nomor">14.</span><span class="pertanyaan">GPS dapat memberikan informasi posisi lintang, bujur, dan ketinggian secara akurat.</span></div>
+                <div class="soal-bs"><span class="nomor">15.</span><span class="pertanyaan">Garis kontur yang renggang menandakan lereng yang curam.</span></div>
+                <div class="soal-bs"><span class="nomor">16.</span><span class="pertanyaan">Peta kadaster memiliki rentang skala 1:100 hingga 1:5.000.</span></div>
+                <div class="soal-bs"><span class="nomor">17.</span><span class="pertanyaan">Peta umum menggambarkan tema tertentu seperti persebaran penduduk.</span></div>
+                <div class="soal-bs"><span class="nomor">18.</span><span class="pertanyaan">Proyeksi kerucut paling cocok digunakan untuk wilayah lintang sedang (30°–60°).</span></div>
+                <div class="soal-bs"><span class="nomor">19.</span><span class="pertanyaan">Atlas adalah kumpulan dari beberapa peta yang dijilid menjadi satu buku.</span></div>
+                <div class="soal-bs"><span class="nomor">20.</span><span class="pertanyaan">Peta tidak memiliki manfaat dalam upaya mitigasi bencana alam.</span></div>
             </div>
 
-            <!-- Essay -->
+            <!-- ESSAY (5 Soal) -->
             <div style="background:var(--card-bg); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow); border:1px solid rgba(0,0,0,0.02); margin-bottom:20px;">
                 <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
                     <div style="width:32px; height:32px; border-radius:50%; background:rgba(243,156,18,0.04); display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--gold);">C</div>
                     <h3 style="color:var(--text); font-size:1.05rem; font-weight:700; margin:0;">Essay</h3>
                     <span style="font-size:0.7rem; color:var(--text-muted); margin-left:auto;">5 Soal</span>
                 </div>
-                <p style="color:var(--text-muted); font-size:0.8rem; margin-bottom:12px;">Jawab dengan jelas!</p>
+                <p style="color:var(--text-muted); font-size:0.8rem; margin-bottom:12px;">Jawab dengan jelas dan ringkas!</p>
                 <div class="soal-essay"><div class="pertanyaan"><span class="nomor">1.</span> Jelaskan perbedaan peta umum dan peta tematik! Berikan masing-masing 2 contoh!</div><div class="petunjuk">(Skor: 0-10)</div></div>
                 <div class="soal-essay"><div class="pertanyaan"><span class="nomor">2.</span> Sebutkan dan jelaskan 3 jenis proyeksi peta berdasarkan bidang proyeksinya!</div><div class="petunjuk">(Skor: 0-10)</div></div>
                 <div class="soal-essay"><div class="pertanyaan"><span class="nomor">3.</span> Apa yang dimaksud simbol peta? Jelaskan 3 jenis simbol berdasarkan bentuknya!</div><div class="petunjuk">(Skor: 0-10)</div></div>
@@ -2727,7 +2603,7 @@
                 <div class="soal-essay"><div class="pertanyaan"><span class="nomor">5.</span> Bagaimana manfaat peta dalam mitigasi bencana? Berikan contoh konkret!</div><div class="petunjuk">(Skor: 0-10)</div></div>
             </div>
 
-            <!-- Kunci Jawaban -->
+            <!-- KUNCI JAWABAN -->
             <div class="kunci-box">
                 <div class="head">
                     <div class="icon">🔑</div>
@@ -2743,15 +2619,18 @@
                     <div style="background:rgba(0,0,0,0.01); border-radius:var(--radius-sm); padding:16px;">
                         <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
                             <div>
-                                <h4 style="color:var(--primary); margin-bottom:8px; font-size:0.85rem; font-weight:700;">PG (15 Soal)</h4>
+                                <h4 style="color:var(--primary); margin-bottom:8px; font-size:0.85rem; font-weight:700;">PG (30 Soal)</h4>
                                 <div style="font-size:0.85rem; color:var(--text-muted); line-height:2.2; display:grid; grid-template-columns:1fr 1fr 1fr; gap:0 15px;">
                                     <div>1. B</div><div>2. C</div><div>3. B</div><div>4. C</div><div>5. B</div>
-                                    <div>6. D</div><div>7. C</div><div>8. C</div><div>9. B</div><div>10. C</div>
+                                    <div>6. C</div><div>7. C</div><div>8. C</div><div>9. D</div><div>10. B</div>
                                     <div>11. C</div><div>12. B</div><div>13. B</div><div>14. C</div><div>15. C</div>
+                                    <div>16. C</div><div>17. A</div><div>18. B</div><div>19. C</div><div>20. D</div>
+                                    <div>21. A</div><div>22. C</div><div>23. A</div><div>24. A</div><div>25. B</div>
+                                    <div>26. A</div><div>27. C</div><div>28. C</div><div>29. B</div><div>30. A</div>
                                 </div>
                             </div>
                             <div>
-                                <h4 style="color:var(--accent); margin-bottom:8px; font-size:0.85rem; font-weight:700;">B/S (10 Soal)</h4>
+                                <h4 style="color:var(--accent); margin-bottom:8px; font-size:0.85rem; font-weight:700;">B/S (20 Soal)</h4>
                                 <div style="font-size:0.85rem; color:var(--text-muted); line-height:2.2;">
                                     <div>1. <span style="color:var(--accent); font-weight:700;">B</span></div>
                                     <div>2. <span style="color:#e74c3c; font-weight:700;">S</span> (silinder)</div>
@@ -2759,18 +2638,28 @@
                                     <div>4. <span style="color:var(--accent); font-weight:700;">B</span></div>
                                     <div>5. <span style="color:#e74c3c; font-weight:700;">S</span> (umum)</div>
                                     <div>6. <span style="color:#e74c3c; font-weight:700;">S</span> (kutub)</div>
-                                    <div>7. <span style="color:#e74c3c; font-weight:700;">S</span> (skala besar: 1:10.000)</div>
+                                    <div>7. <span style="color:#e74c3c; font-weight:700;">S</span> (sedang)</div>
                                     <div>8. <span style="color:var(--accent); font-weight:700;">B</span></div>
                                     <div>9. <span style="color:var(--accent); font-weight:700;">B</span></div>
                                     <div>10. <span style="color:#e74c3c; font-weight:700;">S</span> (mempertahankan luas)</div>
+                                    <div>11. <span style="color:var(--accent); font-weight:700;">B</span></div>
+                                    <div>12. <span style="color:var(--accent); font-weight:700;">B</span></div>
+                                    <div>13. <span style="color:#e74c3c; font-weight:700;">S</span> (digital/spasial)</div>
+                                    <div>14. <span style="color:var(--accent); font-weight:700;">B</span></div>
+                                    <div>15. <span style="color:#e74c3c; font-weight:700;">S</span> (landai)</div>
+                                    <div>16. <span style="color:var(--accent); font-weight:700;">B</span></div>
+                                    <div>17. <span style="color:#e74c3c; font-weight:700;">S</span> (tematik)</div>
+                                    <div>18. <span style="color:var(--accent); font-weight:700;">B</span></div>
+                                    <div>19. <span style="color:var(--accent); font-weight:700;">B</span></div>
+                                    <div>20. <span style="color:#e74c3c; font-weight:700;">S</span> (memiliki manfaat)</div>
                                 </div>
                             </div>
                         </div>
                         <div style="margin-top:14px; border-top:1px solid rgba(0,0,0,0.02); padding-top:12px;">
                             <h4 style="color:var(--gold); margin-bottom:6px; font-size:0.85rem; font-weight:700;">Essay (5 Soal)</h4>
                             <div style="font-size:0.8rem; color:var(--text-muted); line-height:2;">
-                                <div><strong style="color:var(--text);">Soal 1-5:</strong> Jawaban sesuai dengan materi pertemuan 1-3.</div>
-                                <div><strong style="color:var(--text);">Skor:</strong> 0-10 per soal · Total maksimal 50 (Essay) + 50 (PG & BS) = 100</div>
+                                <div><strong style="color:var(--text);">Soal 1-5:</strong> Jawaban sesuai dengan materi pertemuan 1-3 (pengertian, proyeksi, simbol, distorsi, mitigasi).</div>
+                                <div><strong style="color:var(--text);">Skor:</strong> 0-10 per soal · Total maksimal 50 (Essay) + 30 (PG) + 20 (B/S) = 100</div>
                             </div>
                         </div>
                     </div>
@@ -2788,16 +2677,13 @@
             </div>
         </section>
 
-        <!-- ============================================================
-        SECTION 6 : REFLEKSI
-        ============================================================ -->
+        <!-- SECTION 6 : REFLEKSI -->
         <section id="section6" class="section">
             <div class="section-header">
                 <div class="num">06</div>
                 <h2>Refleksi <small>Menyimpulkan Perjalanan 3 Pertemuan</small></h2>
                 <span class="badge">Inspirasi</span>
             </div>
-
             <div class="card" style="background:rgba(26,188,156,0.02); border:1px solid rgba(26,188,156,0.04);">
                 <h3 style="display:flex; align-items:center; gap:10px;"><span style="font-size:1.8rem;">🌟</span> Apa yang Kamu Dapatkan?</h3>
                 <ul class="refleksi-list">
@@ -2808,19 +2694,16 @@
                     <li><span class="check">✓</span><span>Mengenal teknologi peta digital, SIG, dan GPS.</span></li>
                 </ul>
             </div>
-
             <div class="card" style="border-left:6px solid var(--primary);">
                 <h3 style="display:flex; align-items:center; gap:10px;">Renungkan</h3>
                 <p style="font-size:1.05rem; color:var(--text-light); font-style:italic; margin-top:4px;">"Menurutmu, mengapa kemampuan membaca peta penting di era digital saat ini?"</p>
                 <p style="margin-top:8px; font-size:0.85rem; color:var(--text-muted);">Tulis jawabanmu di buku catatan.</p>
             </div>
-
             <div class="celebration-box">
                 <h3>🎉 Selamat!</h3>
                 <p>Kamu telah menyelesaikan <strong style="color:var(--text);">3 Pertemuan</strong> materi Peta dan Pemetaan!</p>
                 <div style="margin-top:14px;"><span class="next-btn">➡️ Lanjutkan ke Penginderaan Jauh &amp; SIG</span></div>
             </div>
-
             <div class="nav-buttons">
                 <div class="group" style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:center;">
                     <button onclick="navigateTo('prev')">Sebelumnya</button>
@@ -2831,16 +2714,13 @@
             </div>
         </section>
 
-        <!-- ============================================================
-        SECTION 7 : REFERENSI
-        ============================================================ -->
+        <!-- SECTION 7 : REFERENSI -->
         <section id="section7" class="section">
             <div class="section-header">
                 <div class="num">07</div>
                 <h2>Referensi <small>Daftar Pustaka</small></h2>
                 <span class="badge">10+ Sumber</span>
             </div>
-
             <ul class="ref-list">
                 <li><strong>Kurikulum Merdeka:</strong> CP IPS Fase E-F, BSKAP Kemendikbudristek (2024).</li>
                 <li>Bintarto. <em>Metode Penelitian Geografi</em>. UGM Press.</li>
@@ -2853,13 +2733,11 @@
                 <li>de Blij, H.J. &amp; Muller, P.O. <em>Geography: Realms, Regions and Concepts</em>. Wiley.</li>
                 <li>BIG. <em>Pedoman Teknis Standar Peta</em>. Badan Informasi Geospasial.</li>
             </ul>
-
             <div class="footer-credit">
                 <span class="gold">SMAN 3 KASONGAN</span> &nbsp;·&nbsp;
                 Guru Pengampu: <strong>SYAHRANI, S.Pd</strong> &nbsp;·&nbsp;
                 <span style="color:var(--primary-light); font-weight:600;">NIP. 197512172005011016</span>
             </div>
-
             <div class="nav-buttons">
                 <div class="group" style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:center;">
                     <button onclick="navigateTo('prev')">Sebelumnya</button>
@@ -2936,7 +2814,6 @@
                     }
                     c.innerHTML = html;
                 });
-                // Update nav links in header
                 document.querySelectorAll('#navLinks a').forEach((a, idx) => {
                     a.classList.toggle('active', idx === current);
                 });
@@ -2971,7 +2848,6 @@
                 document.querySelectorAll('.nav-buttons .group button:first-child').forEach(btn => btn.disabled = idx === 0);
                 renderNumbers();
                 document.querySelector('.main-wrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
-                // Auto-open first materi in section
                 setTimeout(() => {
                     const firstHeader = document.querySelector('.section.active .materi-box .header:first-child');
                     if (firstHeader && !firstHeader.classList.contains('active')) {
@@ -2991,7 +2867,6 @@
             const parent = header.closest('.materi-box');
 
             if (!isOpen) {
-                // Close all siblings
                 const container = parent.parentElement;
                 container.querySelectorAll('.materi-box .body').forEach(b => b.classList.remove('open'));
                 container.querySelectorAll('.materi-box .header').forEach(h => h.classList.remove('active'));
@@ -3003,7 +2878,6 @@
                 header.classList.remove('active');
                 if (icon) icon.className = 'fas fa-chevron-down';
             }
-            // Fix icons
             document.querySelectorAll('.materi-box .header').forEach(h => {
                 const i = h.querySelector('.icon i');
                 const b = h.nextElementSibling;
@@ -3214,13 +3088,6 @@
         // ===== COLLECT GALLERY ON LOAD =====
         document.addEventListener('DOMContentLoaded', function() {
             collectGalleryImages();
-            // Auto-open first materi in section 1
-            setTimeout(() => {
-                const first = document.querySelector('#section2 .materi-box .header:first-child');
-                if (first && !first.classList.contains('active')) {
-                    // Already open by default from HTML
-                }
-            }, 500);
         });
     </script>
 
