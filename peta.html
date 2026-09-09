@@ -23,7 +23,8 @@
             --secondary: #e67e22;
             --accent: #1abc9c;
             --gold: #f39c12;
-            --bg: #f0f4f8;
+            /* Warna latar diubah menjadi netral terang */
+            --bg: #f5f6f8;
             --card-bg: #ffffff;
             --text: #1a2a3a;
             --text-light: #4a5a6a;
@@ -48,32 +49,38 @@
             min-height: 100vh;
         }
 
+        /* ============================================================
+                   MAP BACKGROUND (subtle topographic pattern) - warna netral hangat
+                   ============================================================ */
         .map-bg {
             position: fixed;
             inset: 0;
             z-index: 0;
             pointer-events: none;
-            opacity: 0.04;
+            opacity: 0.03;
             background-image:
-                radial-gradient(circle at 20% 30%, rgba(42, 92, 122, 0.3) 0%, transparent 60%),
-                radial-gradient(circle at 80% 70%, rgba(26, 188, 156, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 20% 30%, rgba(42, 92, 122, 0.08) 0%, transparent 60%),
+                radial-gradient(circle at 80% 70%, rgba(26, 188, 156, 0.05) 0%, transparent 50%),
                 repeating-linear-gradient(45deg,
                     transparent,
                     transparent 40px,
-                    rgba(42, 92, 122, 0.06) 40px,
-                    rgba(42, 92, 122, 0.06) 41px),
+                    rgba(42, 92, 122, 0.03) 40px,
+                    rgba(42, 92, 122, 0.03) 41px),
                 repeating-linear-gradient(-45deg,
                     transparent,
                     transparent 40px,
-                    rgba(42, 92, 122, 0.06) 40px,
-                    rgba(42, 92, 122, 0.06) 41px);
+                    rgba(42, 92, 122, 0.03) 40px,
+                    rgba(42, 92, 122, 0.03) 41px);
             background-size: 100% 100%, 100% 100%, 80px 80px, 80px 80px;
         }
 
+        /* ============================================================
+                   LOADER - latar putih bersih
+                   ============================================================ */
         #loader {
             position: fixed;
             inset: 0;
-            background: rgba(240, 244, 248, 0.92);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             display: flex;
@@ -149,6 +156,9 @@
             letter-spacing: 1px;
         }
 
+        /* ============================================================
+                   HEADER
+                   ============================================================ */
         .site-header {
             position: fixed;
             top: 0;
@@ -224,6 +234,9 @@
             padding: 4px 8px;
         }
 
+        /* ============================================================
+                   MOBILE NAV DRAWER
+                   ============================================================ */
         .mobile-drawer {
             position: fixed;
             top: 0;
@@ -290,6 +303,9 @@
             visibility: visible;
         }
 
+        /* ============================================================
+                   PROGRESS BAR (top)
+                   ============================================================ */
         .progress-rail {
             position: fixed;
             top: 64px;
@@ -307,6 +323,9 @@
             border-radius: 0 3px 3px 0;
         }
 
+        /* ============================================================
+                   MAIN LAYOUT
+                   ============================================================ */
         .main-wrap {
             position: relative;
             z-index: 1;
@@ -318,6 +337,9 @@
             padding-bottom: 60px;
         }
 
+        /* ============================================================
+                   SECTIONS
+                   ============================================================ */
         .section {
             display: none;
             animation: fadeUp 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
@@ -338,6 +360,9 @@
             }
         }
 
+        /* ============================================================
+                   SECTION HEADER
+                   ============================================================ */
         .section-header {
             display: flex;
             align-items: flex-start;
@@ -389,6 +414,9 @@
             align-self: center;
         }
 
+        /* ============================================================
+                   CARDS
+                   ============================================================ */
         .card {
             background: var(--card-bg);
             border-radius: var(--radius);
@@ -428,6 +456,9 @@
             list-style-type: disc;
         }
 
+        /* ============================================================
+                   GRIDS
+                   ============================================================ */
         .grid-2,
         .grid-3,
         .grid-4 {
@@ -445,6 +476,9 @@
             grid-template-columns: 1fr;
         }
 
+        /* ============================================================
+                   COVER / HERO
+                   ============================================================ */
         .hero-section {
             text-align: center;
             padding: 12px 0 8px;
@@ -581,6 +615,9 @@
             box-shadow: 0 16px 48px rgba(42, 92, 122, 0.3);
         }
 
+        /* ============================================================
+                   QUICK NAV (compass-style)
+                   ============================================================ */
         .quick-nav {
             background: var(--card-bg);
             border-radius: var(--radius);
@@ -642,6 +679,9 @@
             box-shadow: 0 8px 24px rgba(42, 92, 122, 0.06);
         }
 
+        /* ============================================================
+                   ACCORDION (materi)
+                   ============================================================ */
         .materi-box {
             background: var(--card-bg);
             border-radius: var(--radius);
@@ -792,6 +832,9 @@
             line-height: 2.2;
         }
 
+        /* ============================================================
+                   IMAGE GALLERY
+                   ============================================================ */
         .gallery-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -872,6 +915,9 @@
             margin-top: 2px;
         }
 
+        /* ============================================================
+                   MODAL
+                   ============================================================ */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -1014,6 +1060,9 @@
             text-align: center;
         }
 
+        /* ============================================================
+                   MINI QUIZ
+                   ============================================================ */
         .mini-quiz {
             background: rgba(42, 92, 122, 0.02);
             border-radius: var(--radius-sm);
@@ -1081,6 +1130,9 @@
             color: #e74c3c;
         }
 
+        /* ============================================================
+                   SOAL ASESMEN
+                   ============================================================ */
         .soal-pg {
             margin-bottom: 12px;
             padding: 14px 18px;
@@ -1164,6 +1216,9 @@
             font-style: italic;
         }
 
+        /* ============================================================
+                   KUNCI JAWABAN
+                   ============================================================ */
         .kunci-box {
             background: var(--card-bg);
             border-radius: var(--radius);
@@ -1260,6 +1315,9 @@
             margin-top: 6px;
         }
 
+        /* ============================================================
+                   REFLEKSI
+                   ============================================================ */
         .refleksi-list {
             list-style: none;
             padding: 0;
@@ -1316,6 +1374,9 @@
             box-shadow: 0 8px 24px rgba(42, 92, 122, 0.15);
         }
 
+        /* ============================================================
+                   NAVIGATION BUTTONS
+                   ============================================================ */
         .nav-buttons {
             display: flex;
             justify-content: center;
@@ -1393,6 +1454,9 @@
             box-shadow: 0 4px 16px rgba(42, 92, 122, 0.15);
         }
 
+        /* ============================================================
+                   REFERENSI
+                   ============================================================ */
         .ref-list {
             list-style: none;
             padding: 0;
@@ -1433,6 +1497,9 @@
             font-weight: 700;
         }
 
+        /* ============================================================
+                   RESPONSIVE
+                   ============================================================ */
         @media (min-width: 600px) {
             .grid-2 {
                 grid-template-columns: repeat(2, 1fr);
@@ -1559,6 +1626,9 @@
             }
         }
 
+        /* ============================================================
+                   UTILITY
+                   ============================================================ */
         .mt-8 {
             margin-top: 8px;
         }
@@ -1608,16 +1678,15 @@
     <div class="map-bg"></div>
 
     <!-- ============================================================
-    LOADER DENGAN LINGKARAN WARNA-WARNI
+    LOADER
     ============================================================ -->
     <div id="loader">
         <div class="loader-compass">
             <svg viewBox="0 0 100 100">
-                <!-- Lingkaran warna-warni (gold, teal, biru) seperti di Bab 1 -->
+                <!-- Lingkaran warna-warni -->
                 <circle cx="50" cy="50" r="44" fill="none" stroke="#f39c12" stroke-width="2" stroke-dasharray="8 6" opacity="0.6"/>
                 <circle cx="50" cy="50" r="38" fill="none" stroke="#1abc9c" stroke-width="2" stroke-dasharray="6 4" opacity="0.7"/>
                 <circle cx="50" cy="50" r="32" fill="none" stroke="#2a5c7a" stroke-width="2" stroke-dasharray="4 4" opacity="0.8"/>
-                <!-- Jarum kompas -->
                 <polygon points="50,10 58,46 50,90 42,46" fill="#2a5c7a" opacity="0.9"/>
                 <polygon points="50,10 50,46 42,46" fill="#f39c12" opacity="0.9"/>
                 <circle cx="50" cy="50" r="6" fill="#fff" stroke="#2a5c7a" stroke-width="2"/>
@@ -1629,6 +1698,9 @@
         <div class="loader-percent" id="loaderPercent">0%</div>
     </div>
 
+    <!-- ============================================================
+    HEADER
+    ============================================================ -->
     <header class="site-header" id="siteHeader">
         <a href="#" class="brand" onclick="navigateTo('section1'); return false;">
             <i class="fas fa-map-marked-alt"></i> Peta<span>Geo</span>
@@ -1647,8 +1719,14 @@
         </button>
     </header>
 
+    <!-- ============================================================
+    PROGRESS RAIL
+    ============================================================ -->
     <div class="progress-rail"><div class="thumb" id="progressThumb"></div></div>
 
+    <!-- ============================================================
+    MOBILE DRAWER
+    ============================================================ -->
     <div class="drawer-overlay" id="drawerOverlay" onclick="toggleDrawer()"></div>
     <div class="mobile-drawer" id="mobileDrawer">
         <button class="close-btn" onclick="toggleDrawer()"><i class="fas fa-times"></i></button>
@@ -1661,6 +1739,9 @@
         <a onclick="navigateTo('section7'); toggleDrawer();">📚 Referensi</a>
     </div>
 
+    <!-- ============================================================
+    IMAGE MODAL
+    ============================================================ -->
     <div class="modal-overlay" id="imageModal" onclick="closeModalOutside(event)">
         <div class="modal-box" onclick="event.stopPropagation();">
             <button class="close-btn" onclick="closeModal()"><i class="fas fa-times"></i></button>
@@ -1680,9 +1761,14 @@
         </div>
     </div>
 
+    <!-- ============================================================
+    MAIN CONTENT
+    ============================================================ -->
     <main class="main-wrap">
 
-        <!-- SECTION 1 : COVER -->
+        <!-- ============================================================
+        SECTION 1 : COVER
+        ============================================================ -->
         <section id="section1" class="section active hero-section">
             <div class="logo-row reveal">
                 <img src="images/Logo-Provinsi-Kalimantan-Tengah.png" alt="Logo Provinsi Kalimantan Tengah" onerror="this.style.display='none'" />
@@ -1713,6 +1799,8 @@
                     <span>Mulai Petualangan</span> <i class="fas fa-arrow-right"></i>
                 </button>
             </div>
+
+            <!-- Quick Nav -->
             <div class="quick-nav reveal">
                 <div class="nav-title"><i class="fas fa-compass"></i> Navigasi Cepat</div>
                 <div class="nav-grid">
@@ -1727,17 +1815,21 @@
             </div>
         </section>
 
-        <!-- SECTION 2 : PERTEMUAN 1 -->
+        <!-- ============================================================
+        SECTION 2 : PERTEMUAN 1
+        ============================================================ -->
         <section id="section2" class="section">
             <div class="section-header">
                 <div class="num">02</div>
                 <h2>Pertemuan 1 – Pengertian, Komponen &amp; Jenis Peta <small>Dasar-Dasar Pemetaan</small></h2>
                 <span class="badge">3×45'</span>
             </div>
+
             <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px;">
                 <span class="badge" style="background:rgba(42,92,122,0.04); color:var(--primary-light); border:1px solid rgba(42,92,122,0.04);">TP 1</span>
                 <span class="badge" style="background:rgba(26,188,156,0.04); color:var(--accent); border:1px solid rgba(26,188,156,0.04);">Penalaran Kritis</span>
             </div>
+
             <div class="card">
                 <h3>Tujuan Pembelajaran</h3>
                 <ul>
@@ -1748,6 +1840,8 @@
                     <li>Mengenal peran BIG dan Peta Rupa Bumi Indonesia.</li>
                 </ul>
             </div>
+
+            <!-- Galeri Pertemuan 1 -->
             <div style="margin:8px 0 16px;">
                 <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; margin-bottom:12px;">
                     <h4 style="color:var(--primary); font-size:0.95rem; font-weight:700; display:flex; align-items:center; gap:8px;">
@@ -1791,6 +1885,8 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Materi Accordion - Pertemuan 1 -->
             <div class="materi-box reveal">
                 <div class="header active" onclick="toggleMateri(this)">
                     <h4>A. Pengertian Peta <span class="tag-sm">Etimologi &amp; Definisi</span></h4>
@@ -1818,6 +1914,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="materi-box reveal">
                 <div class="header" onclick="toggleMateri(this)">
                     <h4>B. Komponen Peta <span class="tag-sm">8 Unsur Utama</span></h4>
@@ -1844,6 +1941,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="materi-box reveal">
                 <div class="header" onclick="toggleMateri(this)">
                     <h4>C. Jenis Peta <span class="tag-sm">Umum &amp; Tematik</span></h4>
@@ -1877,6 +1975,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="materi-box reveal">
                 <div class="header" onclick="toggleMateri(this)">
                     <h4>D. Fungsi Peta <span class="tag-sm">7 Peran Penting</span></h4>
@@ -1897,6 +1996,7 @@
                     </ul>
                 </div>
             </div>
+
             <div class="materi-box reveal">
                 <div class="header" onclick="toggleMateri(this)">
                     <h4>E. Jenis Peta Berdasarkan Skala <span class="tag-sm">5 Kelas</span></h4>
@@ -1923,6 +2023,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="materi-box reveal">
                 <div class="header" onclick="toggleMateri(this)">
                     <h4>F. Perbedaan Peta, Atlas, dan Globe <span class="tag-sm">Konsep Dasar</span></h4>
@@ -1946,6 +2047,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="materi-box reveal">
                 <div class="header" onclick="toggleMateri(this)">
                     <h4>G. Peta di Indonesia <span class="tag-sm">BIG &amp; RBI</span></h4>
@@ -1966,6 +2068,8 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Mini Quiz -->
             <div class="mini-quiz reveal">
                 <div class="question">Kuis Cepat: Komponen peta yang berisi keterangan simbol adalah ...</div>
                 <div class="options">
@@ -1976,6 +2080,7 @@
                 </div>
                 <div class="feedback"></div>
             </div>
+
             <div class="nav-buttons">
                 <div class="group" style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:center;">
                     <button onclick="navigateTo('prev')">Sebelumnya</button>
@@ -1986,17 +2091,21 @@
             </div>
         </section>
 
-        <!-- SECTION 3 : PERTEMUAN 2 -->
+        <!-- ============================================================
+        SECTION 3 : PERTEMUAN 2
+        ============================================================ -->
         <section id="section3" class="section">
             <div class="section-header">
                 <div class="num">03</div>
                 <h2>Pertemuan 2 – Proyeksi, Skala &amp; Simbol Peta <small>Teknik Pemetaan Dasar</small></h2>
                 <span class="badge">3×45'</span>
             </div>
+
             <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px;">
                 <span class="badge" style="background:rgba(42,92,122,0.04); color:var(--primary-light); border:1px solid rgba(42,92,122,0.04);">TP 2</span>
                 <span class="badge" style="background:rgba(26,188,156,0.04); color:var(--accent); border:1px solid rgba(26,188,156,0.04);">Literasi</span>
             </div>
+
             <div class="card">
                 <h3>Tujuan Pembelajaran</h3>
                 <ul>
@@ -2007,6 +2116,8 @@
                     <li>Mengenal makna warna dan tipografi pada peta.</li>
                 </ul>
             </div>
+
+            <!-- Galeri Pertemuan 2 (3 gambar proyeksi) -->
             <div style="margin:8px 0 16px;">
                 <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; margin-bottom:12px;">
                     <h4 style="color:var(--primary); font-size:0.95rem; font-weight:700; display:flex; align-items:center; gap:8px;">
@@ -2050,6 +2161,8 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Materi Accordion - Pertemuan 2 -->
             <div class="materi-box reveal">
                 <div class="header active" onclick="toggleMateri(this)">
                     <h4>A. Proyeksi Peta <span class="tag-sm">3 Jenis Utama</span></h4>
@@ -2092,6 +2205,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="materi-box reveal">
                 <div class="header" onclick="toggleMateri(this)">
                     <h4>B. Skala Peta <span class="tag-sm">Angka &amp; Garis</span></h4>
@@ -2110,6 +2224,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="materi-box reveal">
                 <div class="header" onclick="toggleMateri(this)">
                     <h4>C. Simbol Peta <span class="tag-sm">Titik, Garis, Area</span></h4>
@@ -2144,6 +2259,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="materi-box reveal">
                 <div class="header" onclick="toggleMateri(this)">
                     <h4>D. Sistem Koordinat Peta <span class="tag-sm">Lintang &amp; Bujur</span></h4>
@@ -2170,6 +2286,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="materi-box reveal">
                 <div class="header" onclick="toggleMateri(this)">
                     <h4>E. Perhitungan Skala <span class="tag-sm">Rumus &amp; Konversi</span></h4>
@@ -2201,6 +2318,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="materi-box reveal">
                 <div class="header" onclick="toggleMateri(this)">
                     <h4>F. Warna &amp; Tipografi Peta <span class="tag-sm">Simbol Visual</span></h4>
@@ -2230,6 +2348,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="materi-box reveal">
                 <div class="header" onclick="toggleMateri(this)">
                     <h4>G. Sifat Proyeksi Peta <span class="tag-sm">Conform, Equivalent, Equidistant, Azimuthal</span></h4>
@@ -2266,6 +2385,8 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Mini Quiz -->
             <div class="mini-quiz reveal">
                 <div class="question">Kuis Cepat: Proyeksi yang paling cocok untuk daerah kutub adalah ...</div>
                 <div class="options">
@@ -2276,6 +2397,7 @@
                 </div>
                 <div class="feedback"></div>
             </div>
+
             <div class="nav-buttons">
                 <div class="group" style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:center;">
                     <button onclick="navigateTo('prev')">Sebelumnya</button>
@@ -2286,18 +2408,22 @@
             </div>
         </section>
 
-        <!-- SECTION 4 : PERTEMUAN 3 -->
+        <!-- ============================================================
+        SECTION 4 : PERTEMUAN 3
+        ============================================================ -->
         <section id="section4" class="section">
             <div class="section-header">
                 <div class="num">04</div>
                 <h2>Pertemuan 3 – Keterampilan &amp; Manfaat Peta <small>Life Skills &amp; Pembangunan</small></h2>
                 <span class="badge">3×45'</span>
             </div>
+
             <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px;">
                 <span class="badge" style="background:rgba(42,92,122,0.04); color:var(--primary-light); border:1px solid rgba(42,92,122,0.04);">TP 3</span>
                 <span class="badge" style="background:rgba(26,188,156,0.04); color:var(--accent); border:1px solid rgba(26,188,156,0.04);">Kreativitas</span>
                 <span class="badge" style="background:rgba(243,156,18,0.04); color:var(--gold); border:1px solid rgba(243,156,18,0.04);">Kemandirian</span>
             </div>
+
             <div class="card">
                 <h3>Tujuan Pembelajaran</h3>
                 <ul>
@@ -2307,6 +2433,8 @@
                     <li>Menganalisis studi kasus pemanfaatan peta di Kabupaten Katingan.</li>
                 </ul>
             </div>
+
+            <!-- Materi Accordion - Pertemuan 3 -->
             <div class="materi-box reveal">
                 <div class="header active" onclick="toggleMateri(this)">
                     <h4>A. Keterampilan Membaca Peta <span class="tag-sm">Orientasi, Skala, Simbol, Kontur</span></h4>
@@ -2339,6 +2467,7 @@
                     </ul>
                 </div>
             </div>
+
             <div class="materi-box reveal">
                 <div class="header" onclick="toggleMateri(this)">
                     <h4>B. Manfaat Peta <span class="tag-sm">8 Bidang Utama</span></h4>
@@ -2384,6 +2513,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="materi-box reveal">
                 <div class="header" onclick="toggleMateri(this)">
                     <h4>C. Peta Digital, SIG, dan GPS <span class="tag-sm">Teknologi Pemetaan Modern</span></h4>
@@ -2409,6 +2539,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="materi-box reveal">
                 <div class="header" onclick="toggleMateri(this)">
                     <h4>D. Aplikasi Peta dalam Kesehatan &amp; Lingkungan <span class="tag-sm">Contoh Konkret</span></h4>
@@ -2437,6 +2568,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="materi-box reveal">
                 <div class="header" onclick="toggleMateri(this)">
                     <h4>E. Studi Kasus: Peta untuk Katingan <span class="tag-sm">Aplikasi Lokal</span></h4>
@@ -2458,6 +2590,8 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Aktivitas -->
             <div style="background:rgba(243,156,18,0.02); border-radius:var(--radius); padding:18px 20px; border-left:6px solid var(--gold); margin:12px 0;">
                 <h4 style="color:var(--gold); font-weight:700; font-size:1rem; display:flex; align-items:center; gap:10px;"><span>🧩</span> Aktivitas Siswa – Terapkan Keterampilanmu!</h4>
                 <p style="font-size:0.92rem; color:var(--text-light); margin-top:4px;">Pilih salah satu tugas di bawah ini, kerjakan di buku catatan, dan diskusikan dengan teman sekelas.</p>
@@ -2468,6 +2602,8 @@
                     <li><strong>4. Diskusi Kelompok:</strong> Bagaimana peta dapat membantu mengurangi risiko bencana banjir di Katingan? Berikan minimal 3 usulan.</li>
                 </ul>
             </div>
+
+            <!-- Mini Quiz -->
             <div class="mini-quiz reveal">
                 <div class="question">Kuis Cepat: Salah satu manfaat peta dalam kehidupan sehari-hari adalah ...</div>
                 <div class="options">
@@ -2478,6 +2614,7 @@
                 </div>
                 <div class="feedback"></div>
             </div>
+
             <div class="nav-buttons">
                 <div class="group" style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:center;">
                     <button onclick="navigateTo('prev')">Sebelumnya</button>
@@ -2488,7 +2625,9 @@
             </div>
         </section>
 
-        <!-- SECTION 5 : ASESMEN (30 PG, 20 B/S, 5 Essay) -->
+        <!-- ============================================================
+        SECTION 5 : ASESMEN (30 PG, 20 B/S, 5 Essay)
+        ============================================================ -->
         <section id="section5" class="section">
             <div class="section-header">
                 <div class="num">05</div>
@@ -2677,13 +2816,16 @@
             </div>
         </section>
 
-        <!-- SECTION 6 : REFLEKSI -->
+        <!-- ============================================================
+        SECTION 6 : REFLEKSI
+        ============================================================ -->
         <section id="section6" class="section">
             <div class="section-header">
                 <div class="num">06</div>
                 <h2>Refleksi <small>Menyimpulkan Perjalanan 3 Pertemuan</small></h2>
                 <span class="badge">Inspirasi</span>
             </div>
+
             <div class="card" style="background:rgba(26,188,156,0.02); border:1px solid rgba(26,188,156,0.04);">
                 <h3 style="display:flex; align-items:center; gap:10px;"><span style="font-size:1.8rem;">🌟</span> Apa yang Kamu Dapatkan?</h3>
                 <ul class="refleksi-list">
@@ -2694,16 +2836,19 @@
                     <li><span class="check">✓</span><span>Mengenal teknologi peta digital, SIG, dan GPS.</span></li>
                 </ul>
             </div>
+
             <div class="card" style="border-left:6px solid var(--primary);">
                 <h3 style="display:flex; align-items:center; gap:10px;">Renungkan</h3>
                 <p style="font-size:1.05rem; color:var(--text-light); font-style:italic; margin-top:4px;">"Menurutmu, mengapa kemampuan membaca peta penting di era digital saat ini?"</p>
                 <p style="margin-top:8px; font-size:0.85rem; color:var(--text-muted);">Tulis jawabanmu di buku catatan.</p>
             </div>
+
             <div class="celebration-box">
                 <h3>🎉 Selamat!</h3>
                 <p>Kamu telah menyelesaikan <strong style="color:var(--text);">3 Pertemuan</strong> materi Peta dan Pemetaan!</p>
                 <div style="margin-top:14px;"><span class="next-btn">➡️ Lanjutkan ke Penginderaan Jauh &amp; SIG</span></div>
             </div>
+
             <div class="nav-buttons">
                 <div class="group" style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:center;">
                     <button onclick="navigateTo('prev')">Sebelumnya</button>
@@ -2714,13 +2859,16 @@
             </div>
         </section>
 
-        <!-- SECTION 7 : REFERENSI -->
+        <!-- ============================================================
+        SECTION 7 : REFERENSI
+        ============================================================ -->
         <section id="section7" class="section">
             <div class="section-header">
                 <div class="num">07</div>
                 <h2>Referensi <small>Daftar Pustaka</small></h2>
                 <span class="badge">10+ Sumber</span>
             </div>
+
             <ul class="ref-list">
                 <li><strong>Kurikulum Merdeka:</strong> CP IPS Fase E-F, BSKAP Kemendikbudristek (2024).</li>
                 <li>Bintarto. <em>Metode Penelitian Geografi</em>. UGM Press.</li>
@@ -2733,11 +2881,13 @@
                 <li>de Blij, H.J. &amp; Muller, P.O. <em>Geography: Realms, Regions and Concepts</em>. Wiley.</li>
                 <li>BIG. <em>Pedoman Teknis Standar Peta</em>. Badan Informasi Geospasial.</li>
             </ul>
+
             <div class="footer-credit">
                 <span class="gold">SMAN 3 KASONGAN</span> &nbsp;·&nbsp;
                 Guru Pengampu: <strong>SYAHRANI, S.Pd</strong> &nbsp;·&nbsp;
                 <span style="color:var(--primary-light); font-weight:600;">NIP. 197512172005011016</span>
             </div>
+
             <div class="nav-buttons">
                 <div class="group" style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:center;">
                     <button onclick="navigateTo('prev')">Sebelumnya</button>
