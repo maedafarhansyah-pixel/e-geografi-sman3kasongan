@@ -109,6 +109,21 @@
             }
         }
 
+        /* Lingkaran warna-warni tambahan yang berputar berlawanan */
+        .loader-compass .rainbow-ring {
+            animation: spinReverse 3s linear infinite;
+            transform-origin: 50px 50px;
+        }
+
+        @keyframes spinReverse {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(-360deg);
+            }
+        }
+
         .loader-title {
             font-size: clamp(2.4rem, 6vw, 3.6rem);
             font-weight: 900;
@@ -1609,14 +1624,27 @@
     <div class="map-bg"></div>
 
     <!-- ============================================================
-    LOADER (diperbarui)
+    LOADER (dengan lingkaran warna-warni tambahan yang berputar berlawanan)
     ============================================================ -->
     <div id="loader">
         <div class="loader-compass">
             <svg viewBox="0 0 100 100">
+                <defs>
+                    <linearGradient id="rainbow" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#e74c3c" />
+                        <stop offset="25%" stop-color="#f39c12" />
+                        <stop offset="50%" stop-color="#2ecc71" />
+                        <stop offset="75%" stop-color="#3498db" />
+                        <stop offset="100%" stop-color="#9b59b6" />
+                    </linearGradient>
+                </defs>
+                <!-- Lingkaran yang sudah ada -->
                 <circle cx="50" cy="50" r="44" fill="none" stroke="#f39c12" stroke-width="2" stroke-dasharray="8 6" opacity="0.6"/>
                 <circle cx="50" cy="50" r="38" fill="none" stroke="#1abc9c" stroke-width="2" stroke-dasharray="6 4" opacity="0.7"/>
                 <circle cx="50" cy="50" r="32" fill="none" stroke="#2a5c7a" stroke-width="2" stroke-dasharray="4 4" opacity="0.8"/>
+                <!-- Lingkaran warna-warni tambahan (berputar berlawanan) -->
+                <circle cx="50" cy="50" r="26" fill="none" stroke="url(#rainbow)" stroke-width="2.5" stroke-dasharray="12 8" opacity="0.9" class="rainbow-ring" />
+                <!-- Jarum kompas -->
                 <polygon points="50,10 58,46 50,90 42,46" fill="#2a5c7a" opacity="0.9"/>
                 <polygon points="50,10 50,46 42,46" fill="#f39c12" opacity="0.9"/>
                 <circle cx="50" cy="50" r="6" fill="#fff" stroke="#2a5c7a" stroke-width="2"/>
@@ -2529,7 +2557,6 @@
                     <span style="font-size:0.7rem; color:var(--text-muted); margin-left:auto;">30 Soal</span>
                 </div>
                 <p style="color:var(--text-muted); font-size:0.8rem; margin-bottom:12px;">Pilih satu jawaban paling tepat (A, B, C, atau D)!</p>
-                <!-- Soal PG 1-30 -->
                 <div class="soal-pg"><div class="pertanyaan"><span class="nomor">1.</span> Berdasarkan ICA, peta adalah representasi unsur-unsur kenampakan abstrak yang dipilih dari permukaan bumi, digambarkan pada bidang datar dengan ...</div><div class="opsi"><span>A. Warna tertentu</span><span>B. Skala tertentu</span><span>C. Orientasi tertentu</span><span>D. Garis tepi tertentu</span></div></div>
                 <div class="soal-pg"><div class="pertanyaan"><span class="nomor">2.</span> Komponen peta yang berisi keterangan simbol-simbol yang digunakan adalah ...</div><div class="opsi"><span>A. Judul</span><span>B. Skala</span><span>C. Legenda</span><span>D. Inset</span></div></div>
                 <div class="soal-pg"><div class="pertanyaan"><span class="nomor">3.</span> Peta yang menggambarkan tema tertentu seperti kepadatan penduduk disebut ...</div><div class="opsi"><span>A. Peta umum</span><span>B. Peta tematik</span><span>C. Peta topografi</span><span>D. Peta kadaster</span></div></div>
@@ -2702,7 +2729,7 @@
             </div>
         </section>
 
-        <!-- ===== SECTION 7 : REFERENSI (diperbarui) ===== -->
+        <!-- ===== SECTION 7 : REFERENSI ===== -->
         <section id="section7" class="section">
             <div class="section-header">
                 <div class="num">07</div>
@@ -2748,7 +2775,7 @@
     </main>
 
     <!-- ============================================================
-    JAVASCRIPT
+    JAVASCRIPT (tidak berubah)
     ============================================================ -->
     <script>
         // ===== LOADER =====
