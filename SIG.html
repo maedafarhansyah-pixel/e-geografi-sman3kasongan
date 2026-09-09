@@ -137,7 +137,7 @@
             }
         }
 
-        /* ===== LOADER – GOLDEN ===== */
+        /* ===== LOADER – GOLDEN dengan GeoExplorer ===== */
         #loader {
             position: fixed;
             inset: 0;
@@ -183,7 +183,7 @@
             animation: spinRing 0.8s linear infinite reverse;
         }
         .loader-ring::before {
-            content: '🗺️';
+            content: '🌍'; /* Bola dunia jelas */
             position: absolute;
             inset: 0;
             display: flex;
@@ -228,11 +228,12 @@
             }
         }
         .loader-sub {
-            color: rgba(255, 240, 210, 0.25);
-            font-size: 0.9rem;
-            letter-spacing: 4px;
-            font-weight: 300;
+            color: rgba(255, 240, 210, 0.35);
+            font-size: 1.0rem;
+            letter-spacing: 2px;
+            font-weight: 400;
             margin-top: 4px;
+            text-align: center;
         }
         .loader-bar-track {
             width: clamp(200px, 40vw, 400px);
@@ -1855,8 +1856,8 @@
     <!-- ===== LOADER ===== -->
     <div id="loader">
         <div class="loader-ring-container"><div class="loader-ring"></div></div>
-        <div class="loader-title">SIG</div>
-        <div class="loader-sub">Sistem Informasi Geografi · Kelas X</div>
+        <div class="loader-title">GeoExplorer</div>
+        <div class="loader-sub">Menjelajahi Bumi, Menemukan Inspirasi</div>
         <div class="loader-bar-track"><div class="loader-bar" id="loaderBar"></div></div>
         <div class="loader-percent" id="loaderPercent">0%</div>
     </div>
