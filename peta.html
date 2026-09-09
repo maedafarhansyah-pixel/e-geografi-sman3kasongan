@@ -1735,6 +1735,23 @@
             font-weight: 400;
             margin-left: auto;
         }
+        /* Aktivitas siswa */
+        .aktivitas-box {
+            background: rgba(20,26,46,0.6);
+            backdrop-filter: blur(8px);
+            border-radius: 16px;
+            padding: 18px 20px;
+            border-left: 6px solid #fdcb6e;
+            margin: 12px 0;
+        }
+        .aktivitas-box h4 {
+            color: #fdcb6e;
+            font-weight: 700;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
     </style>
 </head>
 <body>
@@ -2001,7 +2018,6 @@
                 </div>
             </div>
 
-            <!-- ===== TAMBAHAN MATERI PERTEMUAN 1 (REKOMENDASI) ===== -->
             <!-- D. FUNGSI PETA -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
@@ -2102,7 +2118,6 @@
                     </div>
                 </div>
             </div>
-            <!-- ===== AKHIR TAMBAHAN MATERI PERTEMUAN 1 ===== -->
 
             <!-- MINI QUIZ -->
             <div class="mini-quiz reveal">
@@ -2199,7 +2214,7 @@
                 </div>
             </div>
 
-            <!-- MATERI A. PROYEKSI (PENJELASAN LENGKAP) -->
+            <!-- MATERI A. PROYEKSI -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
                     <h4>A. Proyeksi Peta <span class="local-badge">3 Jenis Utama</span></h4>
@@ -2252,7 +2267,7 @@
                 </div>
             </div>
 
-            <!-- MATERI B. SKALA (PENJELASAN LENGKAP) -->
+            <!-- MATERI B. SKALA -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
                     <h4>B. Skala Peta <span class="local-badge">Angka &amp; Garis</span></h4>
@@ -2277,7 +2292,7 @@
                 </div>
             </div>
 
-            <!-- MATERI C. SIMBOL (PENJELASAN LENGKAP) -->
+            <!-- MATERI C. SIMBOL -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
                     <h4>C. Simbol Peta <span class="local-badge">Titik, Garis, Area</span></h4>
@@ -2314,8 +2329,7 @@
                 </div>
             </div>
 
-            <!-- ===== TAMBAHAN MATERI PERTEMUAN 2 (REKOMENDASI) ===== -->
-            <!-- D. SISTEM KOORDINAT PETA -->
+            <!-- D. SISTEM KOORDINAT -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
                     <h4>D. Sistem Koordinat Peta <span class="local-badge">Lintang &amp; Bujur</span></h4>
@@ -2403,7 +2417,7 @@
                 </div>
             </div>
 
-            <!-- F. WARNA DAN TIPOGRAFI PETA -->
+            <!-- F. WARNA DAN TIPOGRAFI -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
                     <h4>F. Warna &amp; Tipografi Peta <span class="local-badge">Simbol Visual</span></h4>
@@ -2479,7 +2493,6 @@
                     </div>
                 </div>
             </div>
-            <!-- ===== AKHIR TAMBAHAN MATERI PERTEMUAN 2 ===== -->
 
             <!-- MINI QUIZ -->
             <div class="mini-quiz reveal">
@@ -2529,12 +2542,13 @@
             </div>
             <h3 style="font-size:1.05rem; color:#f0f4fa; font-weight:700; border-left:4px solid #6c5ce7; padding-left:12px; margin-bottom:6px;">Tujuan Pembelajaran</h3>
             <ul style="color:rgba(255,255,255,0.7); font-weight:400; padding-left:20px; margin-bottom:16px; line-height:2; font-size:0.95rem;">
-                <li>Melatih keterampilan membaca peta (orientasi, skala, simbol).</li>
-                <li>Menjelaskan manfaat peta dalam kehidupan sehari-hari, perencanaan wilayah, dan mitigasi bencana.</li>
+                <li>Melatih keterampilan membaca peta (orientasi, skala, simbol, kontur).</li>
+                <li>Menjelaskan manfaat peta dalam kehidupan sehari-hari, perencanaan wilayah, mitigasi bencana, kesehatan, dan lingkungan.</li>
+                <li>Mengenal peta digital, SIG, dan GPS sebagai teknologi modern.</li>
                 <li>Menganalisis studi kasus pemanfaatan peta di Kabupaten Katingan.</li>
             </ul>
 
-            <!-- Galeri Gambar -->
+            <!-- Galeri Gambar (diperluas) -->
             <div style="margin:16px 0;">
                 <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:14px;">
                     <h4 style="color:#a29bfe; font-size:0.95rem; font-weight:700; display:flex; align-items:center; gap:10px;">
@@ -2549,7 +2563,7 @@
                             <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/mitigasibanjir.png" alt="Mitigasi Banjir" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🌊 Mitigasi Banjir%3C/text%3E%3C/svg%3E'" />
                             <div class="overlay-glow"></div>
                             <span class="zoom-badge-premium"><span>🔍 Zoom</span></span>
-                            <span class="image-number">01 / 04</span>
+                            <span class="image-number">01 / 06</span>
                         </div>
                         <div class="image-label-premium"><span class="emoji-big">🌊</span> Mitigasi Bencana</div>
                         <div class="image-sub-premium">Perencanaan evakuasi</div>
@@ -2559,7 +2573,7 @@
                             <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/hidupberkelanjutan.png" alt="Pembangunan Berkelanjutan" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🌱 Berkelanjutan%3C/text%3E%3C/svg%3E'" />
                             <div class="overlay-glow"></div>
                             <span class="zoom-badge-premium"><span>🔍 Zoom</span></span>
-                            <span class="image-number">02 / 04</span>
+                            <span class="image-number">02 / 06</span>
                         </div>
                         <div class="image-label-premium"><span class="emoji-big">🌱</span> Pembangunan Berkelanjutan</div>
                         <div class="image-sub-premium">Tata ruang &amp; lingkungan</div>
@@ -2569,95 +2583,228 @@
                             <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/tnsebngau.png" alt="Ekowisata Katingan" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🦧 Ekowisata%3C/text%3E%3C/svg%3E'" />
                             <div class="overlay-glow"></div>
                             <span class="zoom-badge-premium"><span>🔍 Zoom</span></span>
-                            <span class="image-number">03 / 04</span>
+                            <span class="image-number">03 / 06</span>
                         </div>
                         <div class="image-label-premium"><span class="emoji-big">🦧</span> Ekowisata Katingan</div>
                         <div class="image-sub-premium">Potensi wisata berbasis peta</div>
                     </div>
+                    <!-- Tambahan gambar untuk materi baru -->
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/sig.png', 'SIG (Sistem Informasi Geografis) – Mengolah data spasial secara digital.')" data-index="9">
+                        <div class="img-wrap">
+                            <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/sig.png" alt="SIG" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🖥️ SIG%3C/text%3E%3C/svg%3E'" />
+                            <div class="overlay-glow"></div>
+                            <span class="zoom-badge-premium"><span>🔍 Zoom</span></span>
+                            <span class="image-number">04 / 06</span>
+                        </div>
+                        <div class="image-label-premium"><span class="emoji-big">🖥️</span> Sistem Informasi Geografis</div>
+                        <div class="image-sub-premium">Analisis spasial digital</div>
+                    </div>
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/kontur.png', 'Garis Kontur – Menunjukkan ketinggian dan bentuk relief.')" data-index="10">
+                        <div class="img-wrap">
+                            <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/kontur.png" alt="Kontur" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🗻 Kontur%3C/text%3E%3C/svg%3E'" />
+                            <div class="overlay-glow"></div>
+                            <span class="zoom-badge-premium"><span>🔍 Zoom</span></span>
+                            <span class="image-number">05 / 06</span>
+                        </div>
+                        <div class="image-label-premium"><span class="emoji-big">🗻</span> Garis Kontur</div>
+                        <div class="image-sub-premium">Ketinggian dan relief</div>
+                    </div>
+                    <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/gps.png', 'GPS – Penentuan posisi secara global.')" data-index="11">
+                        <div class="img-wrap">
+                            <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/gps.png" alt="GPS" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%236c5ce7%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🛰️ GPS%3C/text%3E%3C/svg%3E'" />
+                            <div class="overlay-glow"></div>
+                            <span class="zoom-badge-premium"><span>🔍 Zoom</span></span>
+                            <span class="image-number">06 / 06</span>
+                        </div>
+                        <div class="image-label-premium"><span class="emoji-big">🛰️</span> GPS</div>
+                        <div class="image-sub-premium">Navigasi satelit</div>
+                    </div>
                 </div>
             </div>
 
-            <!-- MATERI A. KETERAMPILAN MEMBACA PETA -->
+            <!-- MATERI A. KETERAMPILAN MEMBACA PETA (diperluas) -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
-                    <h4>A. Keterampilan Membaca Peta <span class="local-badge">Orientasi, Skala, Simbol</span></h4>
+                    <h4>A. Keterampilan Membaca Peta <span class="local-badge">Orientasi, Skala, Simbol, Kontur</span></h4>
                     <span class="fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;">▼</span>
                 </div>
                 <div class="detail-body">
                     <div class="detail-explanation">
-                        <p>Ada 3 keterampilan dasar dalam membaca peta:</p>
+                        <p>Ada 4 keterampilan utama dalam membaca peta secara komprehensif:</p>
                     </div>
                     <div class="table-wrap">
                         <table>
                             <thead><tr><th>Keterampilan</th><th>Penjelasan</th></tr></thead>
                             <tbody>
-                                <tr><td><strong>Orientasi</strong></td><td>Membaca arah mata angin dan menghubungkan dengan kondisi lapangan.</td></tr>
-                                <tr><td><strong>Interpretasi Skala</strong></td><td>Mengukur jarak sebenarnya berdasarkan skala peta.</td></tr>
-                                <tr><td><strong>Membaca Simbol &amp; Legenda</strong></td><td>Memahami arti simbol melalui legenda.</td></tr>
+                                <tr><td><strong>Orientasi</strong></td><td>Membaca arah mata angin (utara, selatan, timur, barat) dan menghubungkan dengan kondisi lapangan menggunakan kompas atau penunjuk arah.</td></tr>
+                                <tr><td><strong>Interpretasi Skala</strong></td><td>Mengukur jarak sebenarnya berdasarkan skala peta, baik angka maupun garis.</td></tr>
+                                <tr><td><strong>Membaca Simbol &amp; Legenda</strong></td><td>Memahami arti simbol titik, garis, dan area melalui legenda, serta warna dan tipografi.</td></tr>
+                                <tr><td><strong>Membaca Garis Kontur</strong></td><td>Menentukan ketinggian, kemiringan lereng, dan bentuk relief (misal: puncak, lembah, punggungan) dari pola kontur.</td></tr>
                             </tbody>
                         </table>
                     </div>
                     <div style="background:rgba(0,206,201,0.03); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #00cec9;">
                         <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">
-                            <strong style="color:rgba(255,255,255,0.7); font-weight:600;">Aktivitas:</strong> Coba tentukan jarak dari rumah ke sekolah menggunakan peta digital (Google Maps)!
+                            <strong style="color:rgba(255,255,255,0.7); font-weight:600;">Aktivitas:</strong> Ambil peta RBI skala 1:50.000 di daerahmu. Temukan titik tertinggi dan terendah, lalu hitung jarak antara dua desa!
                         </p>
                     </div>
+                    <h5 style="color:#a29bfe; font-weight:700; font-size:0.95rem; margin-top:12px;">Cara Membaca Garis Kontur</h5>
+                    <ul style="color:rgba(255,255,255,0.7); padding-left:20px; line-height:2.2; font-size:0.92rem;">
+                        <li><strong>Interval kontur</strong> – selisih ketinggian antar dua garis kontur (biasanya tercantum di peta).</li>
+                        <li><strong>Kontur rapat</strong> – lereng curam; <strong>kontur renggang</strong> – lereng landai.</li>
+                        <li><strong>Kontur berbentuk V</strong> – menunjukkan lembah (mengarah ke hulu) atau punggungan (mengarah ke hilir).</li>
+                        <li>Rumus kemiringan lereng: <strong>Kemiringan (%) = (Beda tinggi / Jarak horizontal) × 100%</strong>.</li>
+                    </ul>
                 </div>
             </div>
 
-            <!-- MATERI B. MANFAAT PETA -->
+            <!-- MATERI B. MANFAAT PETA (diperluas) -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
-                    <h4>B. Manfaat Peta <span class="local-badge">4 Bidang Utama</span></h4>
+                    <h4>B. Manfaat Peta <span class="local-badge">8 Bidang Utama</span></h4>
                     <span class="fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;">▼</span>
                 </div>
                 <div class="detail-body">
                     <div class="detail-explanation">
-                        <p>Peta memiliki banyak manfaat dalam kehidupan:</p>
+                        <p>Peta memiliki banyak manfaat dalam kehidupan, mulai dari sehari-hari hingga pembangunan nasional.</p>
                     </div>
                     <div class="grid-2">
                         <div style="background:rgba(108,92,231,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #6c5ce7;">
                             <h4 style="color:#a29bfe; font-size:0.9rem; font-weight:700;">Navigasi &amp; Orientasi</h4>
-                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Menentukan lokasi dan arah tujuan (Google Maps, peta laut).</p>
+                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Menentukan lokasi, arah, dan rute perjalanan (Google Maps, peta laut, GPS).</p>
                         </div>
                         <div style="background:rgba(0,206,201,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #00cec9;">
                             <h4 style="color:#00cec9; font-size:0.9rem; font-weight:700;">Analisis Spasial</h4>
-                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Menganalisis pola persebaran fenomena (kerawanan banjir, kepadatan penduduk).</p>
+                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Menganalisis pola persebaran fenomena (kerawanan banjir, kepadatan penduduk, sebaran penyakit).</p>
                         </div>
                         <div style="background:rgba(253,121,168,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #fd79a8;">
                             <h4 style="color:#fd79a8; font-size:0.9rem; font-weight:700;">Perencanaan Wilayah</h4>
-                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Tata ruang, zonasi, infrastruktur.</p>
+                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Tata ruang, zonasi, infrastruktur, dan pengembangan kawasan.</p>
                         </div>
                         <div style="background:rgba(253,203,110,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #fdcb6e;">
                             <h4 style="color:#fdcb6e; font-size:0.9rem; font-weight:700;">Mitigasi Bencana</h4>
-                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Peta rawan bencana untuk identifikasi zona risiko dan evakuasi.</p>
+                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Peta rawan bencana untuk identifikasi zona risiko dan jalur evakuasi.</p>
+                        </div>
+                        <div style="background:rgba(46,204,113,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #2ecc71;">
+                            <h4 style="color:#2ecc71; font-size:0.9rem; font-weight:700;">Pertanian &amp; SDA</h4>
+                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Peta kesesuaian lahan, irigasi, dan pengelolaan sumber daya alam.</p>
+                        </div>
+                        <div style="background:rgba(52,152,219,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #3498db;">
+                            <h4 style="color:#3498db; font-size:0.9rem; font-weight:700;">Kesehatan</h4>
+                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Peta sebaran penyakit (malaria, DBD) dan akses fasilitas kesehatan.</p>
+                        </div>
+                        <div style="background:rgba(155,89,182,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #9b59b6;">
+                            <h4 style="color:#9b59b6; font-size:0.9rem; font-weight:700;">Lingkungan</h4>
+                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Pemetaan deforestasi, lahan gambut, emisi karbon, dan konservasi.</p>
+                        </div>
+                        <div style="background:rgba(241,196,15,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #f1c40f;">
+                            <h4 style="color:#f1c40f; font-size:0.9rem; font-weight:700;">Pendidikan &amp; Penelitian</h4>
+                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Sumber belajar dan alat analisis untuk skripsi, tesis, dan riset geografi.</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- MATERI C. STUDI KASUS -->
+            <!-- MATERI C. PETA DIGITAL, SIG, DAN GPS (BARU) -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
-                    <h4>C. Studi Kasus: Peta untuk Katingan <span class="local-badge">Aplikasi Lokal</span></h4>
+                    <h4>C. Peta Digital, SIG, dan GPS <span class="local-badge">Teknologi Pemetaan Modern</span></h4>
                     <span class="fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;">▼</span>
                 </div>
                 <div class="detail-body">
                     <div class="detail-explanation">
-                        <p>Bagaimana peta membantu pembangunan dan keselamatan di Kabupaten Katingan?</p>
+                        <p>Perkembangan teknologi telah mengubah cara kita membuat dan menggunakan peta. Berikut tiga teknologi utama:</p>
                     </div>
-                    <ul style="color:rgba(255,255,255,0.7); font-weight:400; padding-left:20px; line-height:2.2; font-size:0.92rem;">
-                        <li><strong>Peta Rawa/Banjir:</strong> Mengidentifikasi daerah rawan genangan saat musim hujan.</li>
-                        <li><strong>Peta Tata Guna Lahan:</strong> Mengatur zona permukiman, pertanian, dan konservasi gambut.</li>
-                        <li><strong>Peta Jalur Transportasi:</strong> Menentukan rute sungai dan jalan darat untuk distribusi logistik.</li>
-                        <li><strong>Peta Wisata:</strong> Memetakan potensi ekowisata (Taman Nasional Sebangau) untuk ekonomi lokal.</li>
-                    </ul>
+                    <h5 style="color:#a29bfe; font-weight:700; font-size:0.95rem; margin-top:8px;">1. Peta Digital</h5>
+                    <p style="font-size:0.92rem; color:rgba(255,255,255,0.75); font-weight:400;">Peta yang disajikan dalam format digital, dapat diakses melalui perangkat elektronik. Contoh: Google Maps, OpenStreetMap, peta interaktif di website. Kelebihan: mudah diperbarui, interaktif, dan dapat diintegrasikan dengan data lain.</p>
+
+                    <h5 style="color:#a29bfe; font-weight:700; font-size:0.95rem; margin-top:12px;">2. SIG (Sistem Informasi Geografis)</h5>
+                    <div style="background:rgba(108,92,231,0.03); border-radius:10px; padding:12px 16px; border-left:4px solid #6c5ce7; margin-bottom:10px;">
+                        <p style="font-size:0.92rem; color:rgba(255,255,255,0.8); font-weight:400;">
+                            <strong>SIG</strong> adalah sistem komputer yang digunakan untuk <span class="highlight">mengumpulkan, menyimpan, menganalisis, dan menyajikan data geografis</span>. Komponen utama SIG: perangkat keras, perangkat lunak (ArcGIS, QGIS), data spasial, dan sumber daya manusia.<br>
+                            <strong>Kegunaan:</strong> analisis overlay (tumpang susun) untuk menentukan lokasi optimal, pemodelan banjir, pemetaan perubahan lahan, dan lain-lain.
+                        </p>
+                    </div>
+
+                    <h5 style="color:#a29bfe; font-weight:700; font-size:0.95rem; margin-top:12px;">3. GPS (Global Positioning System)</h5>
+                    <div style="background:rgba(0,206,201,0.03); border-radius:10px; padding:12px 16px; border-left:4px solid #00cec9;">
+                        <p style="font-size:0.92rem; color:rgba(255,255,255,0.8); font-weight:400;">
+                            <strong>GPS</strong> adalah sistem satelit yang memberikan informasi posisi (lintang, bujur, dan ketinggian) secara akurat di seluruh dunia. Digunakan untuk navigasi, survei, pemetaan, dan pelacakan. Aplikasi sehari-hari: Google Maps, Waze, dan aplikasi olahraga (Strava).
+                        </p>
+                    </div>
                     <div style="background:rgba(253,203,110,0.03); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #fdcb6e;">
                         <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">
-                            <strong style="color:rgba(255,255,255,0.7); font-weight:600;">Pesan:</strong> Peta bukan sekadar gambar, tapi <span class="highlight">alat untuk mengambil keputusan</span> yang lebih baik.
+                            <strong>💡 Tantangan:</strong> Coba cari koordinat GPS sekolahmu menggunakan smartphone! Bandingkan dengan koordinat dari Google Maps.
                         </p>
                     </div>
                 </div>
+            </div>
+
+            <!-- MATERI D. APLIKASI PETA DALAM BIDANG KESEHATAN & LINGKUNGAN -->
+            <div class="materi-detail reveal">
+                <div class="detail-header" onclick="toggleDetail(this)">
+                    <h4>D. Aplikasi Peta dalam Kesehatan &amp; Lingkungan <span class="local-badge">Contoh Konkret</span></h4>
+                    <span class="fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;">▼</span>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-explanation">
+                        <p>Dua bidang yang semakin sering menggunakan peta untuk pengambilan keputusan:</p>
+                    </div>
+                    <div style="display:grid; gap:12px; margin-top:8px;">
+                        <div style="background:rgba(52,152,219,0.03); border-radius:10px; padding:12px 16px; border-left:4px solid #3498db;">
+                            <h4 style="color:#3498db; font-size:0.9rem; font-weight:700;">Kesehatan</h4>
+                            <ul style="font-size:0.88rem; padding-left:16px; color:rgba(255,255,255,0.6); line-height:2.2;">
+                                <li><strong>Peta Sebaran Penyakit:</strong> Memetakan kasus DBD, malaria, atau COVID-19 untuk menentukan daerah prioritas intervensi.</li>
+                                <li><strong>Peta Akses Kesehatan:</strong> Menunjukkan jarak ke puskesmas, rumah sakit, dan fasilitas kesehatan, membantu perencanaan ambulans.</li>
+                            </ul>
+                        </div>
+                        <div style="background:rgba(46,204,113,0.03); border-radius:10px; padding:12px 16px; border-left:4px solid #2ecc71;">
+                            <h4 style="color:#2ecc71; font-size:0.9rem; font-weight:700;">Lingkungan</h4>
+                            <ul style="font-size:0.88rem; padding-left:16px; color:rgba(255,255,255,0.6); line-height:2.2;">
+                                <li><strong>Peta Deforestasi:</strong> Memantau perubahan tutupan hutan secara tahunan menggunakan citra satelit.</li>
+                                <li><strong>Peta Lahan Gambut:</strong> Mengidentifikasi kedalaman gambut dan zona konservasi untuk mencegah kebakaran.</li>
+                                <li><strong>Peta Emisi Karbon:</strong> Menghitung jejak karbon dari berbagai sektor dan merencanakan pengurangan.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MATERI E. STUDI KASUS KATINGAN (diperluas) -->
+            <div class="materi-detail reveal">
+                <div class="detail-header" onclick="toggleDetail(this)">
+                    <h4>E. Studi Kasus: Peta untuk Katingan <span class="local-badge">Aplikasi Lokal</span></h4>
+                    <span class="fa-chevron-down" style="color:#a29bfe; transition:transform 0.3s;">▼</span>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-explanation">
+                        <p>Bagaimana peta membantu pembangunan dan keselamatan di Kabupaten Katingan? Berikut beberapa contoh nyata:</p>
+                    </div>
+                    <ul style="color:rgba(255,255,255,0.7); font-weight:400; padding-left:20px; line-height:2.2; font-size:0.92rem;">
+                        <li><strong>Peta Rawa/Banjir:</strong> Mengidentifikasi daerah rawan genangan saat musim hujan, membantu BPBD dalam peringatan dini dan evakuasi.</li>
+                        <li><strong>Peta Tata Guna Lahan:</strong> Mengatur zona permukiman, pertanian, dan konservasi gambut, mencegah konflik lahan.</li>
+                        <li><strong>Peta Jalur Transportasi:</strong> Menentukan rute sungai dan jalan darat untuk distribusi logistik, terutama saat banjir.</li>
+                        <li><strong>Peta Wisata:</strong> Memetakan potensi ekowisata (Taman Nasional Sebangau, Danau Sembuluh) untuk ekonomi lokal dan konservasi.</li>
+                        <li><strong>Peta Kebakaran:</strong> Memantau titik api (hotspot) dan mengarahkan pemadaman secara cepat.</li>
+                    </ul>
+                    <div style="background:rgba(253,203,110,0.03); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #fdcb6e;">
+                        <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">
+                            <strong style="color:rgba(255,255,255,0.7); font-weight:600;">Pesan:</strong> Peta bukan sekadar gambar, tapi <span class="highlight">alat untuk mengambil keputusan</span> yang lebih baik dan menyelamatkan lingkungan.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AKTIVITAS SISWA (BARU) -->
+            <div class="aktivitas-box reveal">
+                <h4><span>🧩</span> Aktivitas Siswa – Terapkan Keterampilanmu!</h4>
+                <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400; margin-top:6px;">Pilih salah satu tugas di bawah ini, kerjakan di buku catatan, dan diskusikan dengan teman sekelas.</p>
+                <ul style="color:rgba(255,255,255,0.7); padding-left:20px; line-height:2.2; font-size:0.92rem; margin-top:8px;">
+                    <li><strong>1. Mengukur Jarak:</strong> Gunakan peta RBI skala 1:50.000 (atau peta digital) untuk mengukur jarak antara dua titik di daerahmu. Hitung waktu tempuh dengan kecepatan rata-rata 40 km/jam.</li>
+                    <li><strong>2. Membuat Peta Sederhana:</strong> Buatlah peta lingkungan sekolah atau rumah dengan menggambar simbol titik (gerbang, pos satpam), garis (jalan, saluran air), dan area (lapangan, taman). Beri judul, skala, dan legenda.</li>
+                    <li><strong>3. Analisis Peta RBI:</strong> Ambil selembar peta RBI (bisa dari internet). Identifikasi pola pemukiman, jaringan sungai, dan penggunaan lahan. Tuliskan hasil pengamatanmu.</li>
+                    <li><strong>4. Diskusi Kelompok:</strong> Bagaimana peta dapat membantu mengurangi risiko bencana banjir di Katingan? Berikan minimal 3 usulan.</li>
+                </ul>
             </div>
 
             <!-- MINI QUIZ -->
@@ -2856,7 +3003,8 @@
                     <li><span class="check">✓</span><span>Memahami pengertian peta dan komponennya.</span></li>
                     <li><span class="check">✓</span><span>Mengenal proyeksi, skala, dan simbol peta.</span></li>
                     <li><span class="check">✓</span><span>Menyadari manfaat peta dalam kehidupan dan pembangunan.</span></li>
-                    <li><span class="check">✓</span><span>Mampu membaca peta sederhana.</span></li>
+                    <li><span class="check">✓</span><span>Mampu membaca peta sederhana dan garis kontur.</span></li>
+                    <li><span class="check">✓</span><span>Mengenal teknologi peta digital, SIG, dan GPS.</span></li>
                 </ul>
             </div>
             <div class="card" style="background:rgba(20,26,46,0.7); backdrop-filter:blur(8px); margin-top:16px; border-left:6px solid #6c5ce7;">
