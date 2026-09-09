@@ -60,11 +60,11 @@
                 radial-gradient(ellipse at 50% 100%, rgba(16, 185, 129, 0.02) 0%, transparent 50%);
         }
 
-        /* ===== LOADER GEOPLOERER ===== */
+        /* ===== LOADER ===== */
         #loader {
             position: fixed;
             inset: 0;
-            background: rgba(10, 14, 30, 0.95);
+            background: rgba(244, 249, 255, 0.96);
             backdrop-filter: blur(12px);
             display: flex;
             flex-direction: column;
@@ -79,7 +79,6 @@
             pointer-events: none;
         }
 
-        /* Tiga Lingkaran Berputar Berlawanan */
         .loader-ring-container {
             position: relative;
             width: 140px;
@@ -127,17 +126,6 @@
             }
         }
 
-        /* Efek kilau/pulse pada lingkaran */
-        .loader-ring::after {
-            content: '';
-            position: absolute;
-            inset: -6px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.05), transparent 60%);
-            pointer-events: none;
-        }
-
-        /* Judul GeoExplorer dengan efek pelangi berkilau */
         .loader-title {
             font-size: clamp(2.8rem, 8vw, 5.5rem);
             font-weight: 900;
@@ -148,8 +136,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: rainbowShimmer 4s ease-in-out infinite;
-            text-shadow: 0 0 60px rgba(139, 92, 246, 0.15), 0 0 120px rgba(37, 99, 235, 0.05);
-            filter: drop-shadow(0 0 30px rgba(139, 92, 246, 0.1));
+            filter: drop-shadow(0 0 40px rgba(37, 99, 235, 0.06));
         }
         @keyframes rainbowShimmer {
             0% {
@@ -166,10 +153,9 @@
         .loader-sub {
             font-size: clamp(1rem, 1.8vw, 1.5rem);
             font-weight: 400;
-            color: rgba(255, 255, 255, 0.5);
+            color: var(--text-muted);
             letter-spacing: 4px;
             margin-top: 6px;
-            text-shadow: 0 0 40px rgba(37, 99, 235, 0.05);
         }
         .loader-sub span {
             display: inline-block;
@@ -190,11 +176,10 @@
         .loader-bar-track {
             width: clamp(200px, 40vw, 400px);
             height: 4px;
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--border-light);
             border-radius: 10px;
             margin-top: 28px;
             overflow: hidden;
-            box-shadow: 0 0 30px rgba(37, 99, 235, 0.05);
         }
         .loader-bar {
             height: 100%;
@@ -204,7 +189,7 @@
             background-size: 300% 100%;
             animation: barShine 2s linear infinite;
             transition: width 0.3s ease;
-            box-shadow: 0 0 30px rgba(139, 92, 246, 0.2);
+            box-shadow: 0 0 30px rgba(37, 99, 235, 0.08);
         }
         @keyframes barShine {
             0% {
@@ -215,11 +200,12 @@
             }
         }
         .loader-percent {
-            color: rgba(255, 255, 255, 0.15);
+            color: var(--text-muted);
             font-size: 0.7rem;
             margin-top: 6px;
             font-weight: 500;
             letter-spacing: 2px;
+            opacity: 0.5;
         }
 
         /* ===== MOBILE HEADER ===== */
@@ -1505,7 +1491,7 @@
 
     <div class="bg-pattern"></div>
 
-    <!-- ===== LOADER GEOPLOERER ===== -->
+    <!-- ===== LOADER ===== -->
     <div id="loader">
         <div class="loader-ring-container">
             <div class="loader-ring"></div>
@@ -1586,7 +1572,7 @@
             </div>
         </section>
 
-        <!-- ===== SECTION 2 : PERTEMUAN 1 (LENGKAP) ===== -->
+        <!-- ===== SECTION 2 : PERTEMUAN 1 ===== -->
         <section id="section2" class="section">
             <div style="background:var(--bg-soft); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid var(--primary); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
                 <div style="display:flex; align-items:center; gap:8px; color:var(--text-muted); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
@@ -1891,7 +1877,9 @@
             </div>
         </section>
 
-        <!-- ===== SECTION 3 : PERTEMUAN 2 ===== -->
+        <!-- ================================================================ -->
+        <!-- ===== SECTION 3 : PERTEMUAN 2 (LENGKAP DENGAN SEMUA TAMBAHAN) ===== -->
+        <!-- ================================================================ -->
         <section id="section3" class="section">
             <div style="background:var(--bg-soft); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid var(--primary); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
                 <div style="display:flex; align-items:center; gap:8px; color:var(--text-muted); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
@@ -1899,7 +1887,7 @@
             </div>
             <div class="section-header">
                 <div class="num">03</div>
-                <h2>Pertemuan 2 – Komponen &amp; Jenis Citra <small>Sistem &amp; Klasifikasi</small></h2>
+                <h2>Pertemuan 2 – Komponen, Jenis Citra &amp; Resolusi <small>Sistem, Klasifikasi &amp; Aplikasi</small></h2>
                 <span class="badge-pertemuan">3×45'</span>
             </div>
             <div class="progress-tracker">
@@ -1913,14 +1901,18 @@
                 <span class="pertemuan-badge">TP 2</span>
                 <span class="pertemuan-badge" style="background:#d1fae5; color:#059669;">Literasi</span>
                 <span class="pertemuan-badge" style="background:#ffe4e6; color:#e11d48;">Kolaborasi</span>
+                <span class="pertemuan-badge" style="background:var(--accent-soft); color:var(--accent); border-color:rgba(139,92,246,0.1);">HOTS</span>
             </div>
             <h3 style="font-size:1rem; color:var(--text-dark); font-weight:700; border-left:4px solid var(--primary); padding-left:12px; margin-bottom:6px;">Tujuan Pembelajaran</h3>
             <ul style="color:var(--text-muted); font-weight:400; padding-left:20px; margin-bottom:16px; line-height:2; font-size:0.95rem;">
                 <li>Mengidentifikasi 6 komponen sistem penginderaan jauh dengan contoh nyata.</li>
                 <li>Membedakan citra pasif dan citra aktif serta memberikan contoh masing-masing.</li>
-                <li>Menjelaskan 4 jenis resolusi (spasial, spektral, temporal, radiometrik) dengan contoh.</li>
+                <li>Menjelaskan 4 jenis resolusi (spasial, spektral, temporal, radiometrik) dengan contoh aplikasi.</li>
+                <li>Mengklasifikasikan citra berdasarkan wahana, spektrum, dan jenis sensor.</li>
+                <li>Menganalisis kombinasi resolusi untuk berbagai kasus kebencanaan.</li>
             </ul>
 
+            <!-- Galeri Gambar -->
             <div style="margin:16px 0;">
                 <div class="grid-3">
                     <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/satelit.png', 'Satelit Landsat – Wahana penginderaan jauh dengan sensor multispektral resolusi 30 m.')">
@@ -1941,6 +1933,7 @@
                 </div>
             </div>
 
+            <!-- ===== MATERI A: KOMPONEN SISTEM ===== -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
                     <h4>A. Komponen Sistem Penginderaan Jauh</h4>
@@ -1949,7 +1942,7 @@
                 <div class="detail-body">
                     <div class="def-block">
                         <p style="color:var(--text-dark); font-weight:400; font-size:0.95rem;">
-                            Sistem penginderaan jauh terdiri dari <strong style="color:var(--primary);">6 komponen</strong> yang saling terkait. Setiap komponen memiliki peran penting.
+                            Sistem penginderaan jauh terdiri dari <strong style="color:var(--primary);">6 komponen</strong> yang saling terkait. Setiap komponen memiliki peran penting dalam menghasilkan citra yang berkualitas.
                         </p>
                     </div>
                     <div class="example-box">
@@ -1969,16 +1962,47 @@
                             </tbody>
                         </table>
                     </div>
+
+                    <!-- SUB MATERI: PERBEDAAN SENSOR PASIF & AKTIF -->
+                    <h5 style="color:var(--text-dark); font-weight:700; font-size:0.95rem; margin-top:16px;">Detail: Sensor Pasif vs Sensor Aktif</h5>
+                    <div class="grid-2">
+                        <div class="card" style="border-left:4px solid var(--green);">
+                            <h4 style="color:var(--green);">📡 Sensor Pasif</h4>
+                            <ul style="font-size:0.9rem; color:var(--text-muted); padding-left:18px;">
+                                <li>Merekam energi alami (matahari) yang dipantulkan objek</li>
+                                <li>Contoh: Kamera, OLI (Landsat), MSI (Sentinel-2)</li>
+                                <li>Kelebihan: Sederhana, biaya lebih murah</li>
+                                <li>Kekurangan: Terbatas cuaca &amp; waktu (siang hari)</li>
+                            </ul>
+                        </div>
+                        <div class="card" style="border-left:4px solid var(--rose);">
+                            <h4 style="color:var(--rose);">📡 Sensor Aktif</h4>
+                            <ul style="font-size:0.9rem; color:var(--text-muted); padding-left:18px;">
+                                <li>Memancarkan energi sendiri dan merekam pantulannya</li>
+                                <li>Contoh: SAR, LIDAR, Radar</li>
+                                <li>Kelebihan: 24 jam, tembus awan, malam hari</li>
+                                <li>Kekurangan: Mahal, data lebih kompleks</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="background:var(--orange-soft); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid var(--orange);">
+                        <p style="font-size:0.9rem; color:var(--text-dark); font-weight:400;">
+                            <strong style="color:var(--text-dark); font-weight:600;">💡 Catatan:</strong> Sensor pasif seperti "mata" yang melihat cahaya, sedangkan sensor aktif seperti "senter" yang menerangi objek sendiri.
+                        </p>
+                    </div>
                 </div>
             </div>
 
+            <!-- ===== MATERI B: KLASIFIKASI CITRA ===== -->
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
-                    <h4>B. Jenis-Jenis Citra Penginderaan Jauh</h4>
+                    <h4>B. Klasifikasi Citra Penginderaan Jauh</h4>
                     <span class="fa-chevron-down" style="color:var(--text-muted); transition:transform 0.3s;">▼</span>
                 </div>
                 <div class="detail-body">
-                    <h5 style="color:var(--text-dark); font-weight:700; font-size:0.95rem;">Berdasarkan Sumber Energi</h5>
+
+                    <!-- B1: Berdasarkan Sumber Energi -->
+                    <h5 style="color:var(--text-dark); font-weight:700; font-size:0.95rem;">1. Berdasarkan Sumber Energi</h5>
                     <div class="grid-2">
                         <div class="card" style="border-left:4px solid var(--green);">
                             <h4 style="color:var(--green);">Citra Pasif</h4>
@@ -1991,11 +2015,67 @@
                             <div style="background:var(--bg-soft); border-radius:6px; padding:4px 10px; margin-top:4px;"><span style="font-size:0.8rem; color:var(--text-muted);">Kelebihan: 24 jam, tembus awan. Kekurangan: Mahal, data lebih kompleks.</span></div>
                         </div>
                     </div>
-                    <div class="example-box" style="margin-top:12px;">
+                    <div class="example-box" style="margin-top:8px;">
                         <span class="label-example">📌 Contoh Nyata</span>
                         <p>Citra pasif: Foto yang kamu ambil dengan HP di siang hari (mengandalkan sinar matahari). Citra aktif: Lampu senter yang kamu nyalakan di malam hari untuk melihat jalan (memancarkan energi sendiri).</p>
                     </div>
-                    <h5 style="color:var(--text-dark); font-weight:700; font-size:0.95rem; margin-top:16px;">Berdasarkan Resolusi</h5>
+
+                    <!-- B2: Berdasarkan Wahana -->
+                    <h5 style="color:var(--text-dark); font-weight:700; font-size:0.95rem; margin-top:16px;">2. Berdasarkan Wahana</h5>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Wahana</th><th>Ketinggian</th><th>Contoh</th><th>Kelebihan</th><th>Kekurangan</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Satelit</strong></td><td>&gt; 100 km</td><td>Landsat, Sentinel, MODIS</td><td>Cakupan luas, periodik</td><td>Resolusi terbatas, mahal</td></tr>
+                                <tr><td><strong>Pesawat Terbang</strong></td><td>1–10 km</td><td>Foto udara, LIDAR udara</td><td>Resolusi tinggi, fleksibel</td><td>Biaya operasional tinggi</td></tr>
+                                <tr><td><strong>Drone/UAV</strong></td><td>0–500 m</td><td>Drone mapping</td><td>Resolusi sangat tinggi, murah</td><td>Cakupan kecil, regulasi</td></tr>
+                                <tr><td><strong>Balon Udara</strong></td><td>0–5 km</td><td>Foto udara historis</td><td>Stabil, murah</td><td>Terbatas cuaca</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- B3: Berdasarkan Spektrum -->
+                    <h5 style="color:var(--text-dark); font-weight:700; font-size:0.95rem; margin-top:16px;">3. Berdasarkan Spektrum</h5>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Jenis Citra</th><th>Spektrum</th><th>Kegunaan</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Citra Pankromatik</strong></td><td>Hitam-putih (satu saluran)</td><td>Deteksi bentuk, tekstur, resolusi tinggi</td></tr>
+                                <tr><td><strong>Citra Multispektral</strong></td><td>4–10 saluran (RGB + NIR)</td><td>Klasifikasi tutupan lahan, vegetasi</td></tr>
+                                <tr><td><strong>Citra Hiperspektral</strong></td><td>&gt; 100 saluran</td><td>Identifikasi mineral, material spesifik</td></tr>
+                                <tr><td><strong>Citra Termal</strong></td><td>Inframerah termal</td><td>Suhu permukaan, kebakaran</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- B4: Citra Foto vs Non-Foto -->
+                    <h5 style="color:var(--text-dark); font-weight:700; font-size:0.95rem; margin-top:16px;">4. Citra Foto vs Citra Non-Foto (Digital)</h5>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Aspek</th><th>Citra Foto</th><th>Citra Non-Foto (Digital)</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Sensor</strong></td><td>Kamera (analog/digital)</td><td>Scanner, radar, lidar</td></tr>
+                                <tr><td><strong>Spektrum</strong></td><td>Tampak (visible)</td><td>Multispektral, hiperspektral, radar</td></tr>
+                                <tr><td><strong>Format</strong></td><td>Cetak/digital 2D</td><td>Digital (piksel)</td></tr>
+                                <tr><td><strong>Contoh</strong></td><td>Foto udara, foto satelit</td><td>Landsat, Sentinel, SAR</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== MATERI C: RESOLUSI ===== -->
+            <div class="materi-detail reveal">
+                <div class="detail-header" onclick="toggleDetail(this)">
+                    <h4>C. 4 Jenis Resolusi Citra <span class="local-badge">Detail</span></h4>
+                    <span class="fa-chevron-down" style="color:var(--text-muted); transition:transform 0.3s;">▼</span>
+                </div>
+                <div class="detail-body">
+                    <div class="def-block">
+                        <p style="color:var(--text-dark); font-weight:400; font-size:0.95rem;">
+                            <strong style="color:var(--primary);">Resolusi</strong> menentukan tingkat detail informasi yang dapat ditangkap oleh sensor. Terdapat 4 jenis resolusi yang saling memengaruhi kualitas citra.
+                        </p>
+                    </div>
                     <div class="table-wrap">
                         <table>
                             <thead><tr><th>Resolusi</th><th>Penjelasan</th><th>Contoh</th><th>Dampak pada Analisis</th></tr></thead>
@@ -2007,33 +2087,150 @@
                             </tbody>
                         </table>
                     </div>
+
+                    <!-- Aplikasi Resolusi -->
+                    <h5 style="color:var(--text-dark); font-weight:700; font-size:0.95rem; margin-top:12px;">Aplikasi Resolusi dalam Kehidupan Nyata</h5>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Resolusi</th><th>Contoh Aplikasi</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Spasial Tinggi</strong></td><td>Pemetaan RT/RW, deteksi bangunan ilegal, pemetaan jalan</td></tr>
+                                <tr><td><strong>Spektral Tinggi</strong></td><td>Identifikasi jenis tanaman, mineral, polusi air</td></tr>
+                                <tr><td><strong>Temporal Tinggi</strong></td><td>Pemantauan banjir, kebakaran, longsor, perubahan musim</td></tr>
+                                <tr><td><strong>Radiometrik Tinggi</strong></td><td>Analisis kualitas air, deteksi polusi, studi perubahan iklim</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Studi Kasus Kombinasi Resolusi untuk Bencana -->
+                    <h5 style="color:var(--text-dark); font-weight:700; font-size:0.95rem; margin-top:12px;">Studi Kasus: Kombinasi Resolusi untuk Pemantauan Bencana</h5>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Bencana</th><th>Resolusi Spasial</th><th>Resolusi Temporal</th><th>Satelit yang Digunakan</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Kebakaran Hutan</strong></td><td>Rendah–Sedang (250–30 m)</td><td>Tinggi (1–5 hari)</td><td>MODIS, VIIRS, Sentinel-2</td></tr>
+                                <tr><td><strong>Banjir Bandang</strong></td><td>Sedang–Tinggi (10–0.3 m)</td><td>Sedang (5–16 hari)</td><td>Sentinel-1 (radar), WorldView</td></tr>
+                                <tr><td><strong>Longsor</strong></td><td>Tinggi (0.3–5 m)</td><td>Rendah–Sedang</td><td>Drone, WorldView, Pleiades</td></tr>
+                                <tr><td><strong>Tsunami</strong></td><td>Sedang–Tinggi</td><td>Sedang</td><td>Sentinel-1, Landsat</td></tr>
+                                <tr><td><strong>Erupsi Gunung</strong></td><td>Sedang–Tinggi</td><td>Tinggi (1–5 hari)</td><td>Sentinel-2, MODIS, Landsat</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div style="background:var(--primary-soft); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid var(--primary);">
+                        <p style="font-size:0.9rem; color:var(--text-dark); font-weight:400;">
+                            <strong style="color:var(--text-dark); font-weight:600;">💡 Prinsip:</strong> Tidak ada resolusi "terbaik". Pilih resolusi yang sesuai dengan <strong>tujuan analisis</strong>, <strong>skala</strong>, dan <strong>jenis bencana</strong> yang ingin dipelajari.
+                        </p>
+                    </div>
                 </div>
             </div>
 
-            <div class="enrichment-box reveal">
-                <h4><i class="fas fa-star" style="color:var(--orange);"></i> Pengayaan: Satelit Terkenal</h4>
+            <!-- ===== PENGAYAAN 1: SATELIT INDONESIA ===== -->
+            <div class="enrichment-box reveal" style="margin-top:16px;">
+                <h4><i class="fas fa-flag" style="color:var(--orange);"></i> Pengayaan: Satelit Indonesia (LAPAN)</h4>
                 <ul>
-                    <li><strong>Landsat (NASA/USGS):</strong> Seri satelit tertua (1972–sekarang). Resolusi 30 m, 16 hari. Digunakan untuk pemetaan tutupan lahan global.</li>
-                    <li><strong>Sentinel (ESA):</strong> Program Copernicus. Sentinel-2 resolusi 10 m, 5 hari. Gratis untuk publik.</li>
-                    <li><strong>MODIS (NASA):</strong> Resolusi 250–1000 m, 1–2 hari. Untuk pemantauan iklim dan kebakaran global.</li>
-                    <li><strong>WorldView (Maxar):</strong> Resolusi 0.3 m (komersial). Bisa melihat objek sekecil 30 cm!</li>
+                    <li><strong>LAPAN-A2 (IORA):</strong> Satelit mikro untuk pemantauan maritim dan bencana.</li>
+                    <li><strong>LAPAN-A3 (LAPAN-IPB):</strong> Satelit untuk pemetaan sumber daya alam dan pertanian.</li>
+                    <li><strong>Manfaat:</strong> Memantau perairan Indonesia, mendeteksi kebakaran hutan, dan mendukung ketahanan pangan.</li>
+                    <li><strong>Sumber:</strong> LAPAN (sekarang BRIN – Badan Riset dan Inovasi Nasional).</li>
                 </ul>
-                <p style="margin-top:6px; font-size:0.85rem; color:var(--text-muted);">💡 Data Landsat dan Sentinel gratis! Kamu bisa mengunduhnya untuk proyek sekolah.</p>
+                <p style="margin-top:6px; font-size:0.85rem; color:var(--text-muted);">🇮🇩 Indonesia memiliki satelit sendiri untuk memantau kekayaan alam dan bencana!</p>
             </div>
 
-            <div class="deep-dive reveal">
-                <h4><i class="fas fa-microscope" style="color:var(--accent);"></i> Pendalaman: Kombinasi Resolusi</h4>
-                <p>Dalam praktik, para ahli menggunakan <strong>kombinasi resolusi</strong> untuk analisis yang lebih baik:</p>
+            <!-- ===== PENGAYAAN 2: PERKEMBANGAN RESOLUSI ===== -->
+            <div class="enrichment-box reveal" style="background:var(--primary-soft); border-left-color:var(--primary);">
+                <h4 style="color:var(--primary);"><i class="fas fa-chart-line" style="color:var(--primary);"></i> Pengayaan: Perkembangan Resolusi Citra dari Masa ke Masa</h4>
                 <ul>
-                    <li><strong>Resolusi spasial tinggi + temporal rendah:</strong> Untuk peta detail yang tidak perlu sering diperbarui (misal: peta RTRW).</li>
-                    <li><strong>Resolusi spasial rendah + temporal tinggi:</strong> Untuk pemantauan perubahan cepat (misal: kebakaran hutan, banjir).</li>
-                    <li><strong>Resolusi spektral tinggi + spasial sedang:</strong> Untuk identifikasi material (misal: mineral, jenis vegetasi).</li>
+                    <li><strong>1970-an – Landsat 1:</strong> Resolusi 80 m – Awal mula penginderaan jauh satelit.</li>
+                    <li><strong>1980-an – SPOT 1:</strong> Resolusi 10 m – Resolusi lebih tajam.</li>
+                    <li><strong>1990-an – IRS-1C:</strong> Resolusi 5.8 m – Satelit India dengan resolusi tinggi.</li>
+                    <li><strong>2000-an – IKONOS:</strong> Resolusi 1 m – Satelit komersial pertama resolusi 1 m.</li>
+                    <li><strong>2010-an – WorldView-3:</strong> Resolusi 0.31 m – Bisa melihat objek sebesar 31 cm!</li>
+                    <li><strong>2020-an – Satelit Mikro (CubeSat):</strong> Resolusi 3–5 m – Biaya murah, produksi massal.</li>
+                </ul>
+                <p style="margin-top:6px; font-size:0.85rem; color:var(--text-muted);">💡 Dari 80 meter ke 0.31 meter — teknologi berkembang sangat pesat!</p>
+            </div>
+
+            <!-- ===== PENGAYAAN 3: LIDAR ===== -->
+            <div class="enrichment-box reveal" style="background:#e0f2fe; border-left-color:#0ea5e9;">
+                <h4 style="color:#0ea5e9;"><i class="fas fa-bolt" style="color:#0ea5e9;"></i> Pengayaan: Teknologi LIDAR (Light Detection and Ranging)</h4>
+                <ul>
+                    <li><strong>Prinsip:</strong> Memancarkan pulsa laser dan merekam pantulannya untuk membuat model 3D.</li>
+                    <li><strong>Kelebihan:</strong> Resolusi sangat tinggi (cm), bisa menembus kanopi hutan.</li>
+                    <li><strong>Aplikasi:</strong> Pemetaan 3D, inventarisasi hutan, pemodelan banjir, arkeologi.</li>
+                    <li><strong>Contoh Wahana:</strong> Pesawat, drone, satelit (GEDI, ICESat-2).</li>
+                </ul>
+                <p style="margin-top:6px; font-size:0.85rem; color:var(--text-muted);">💡 LIDAR seperti "laser pemindai" yang membuat peta 3D permukaan bumi!</p>
+            </div>
+
+            <!-- ===== PENGAYAAN 4: BIG DATA & CLOUD ===== -->
+            <div class="enrichment-box reveal" style="background:var(--accent-soft); border-left-color:var(--accent);">
+                <h4 style="color:var(--accent);"><i class="fas fa-cloud" style="color:var(--accent);"></i> Pengayaan: Big Data dan Cloud Computing dalam Penginderaan Jauh</h4>
+                <ul>
+                    <li><strong>Google Earth Engine:</strong> Platform cloud untuk memproses ribuan citra secara gratis.</li>
+                    <li><strong>Keunggulan:</strong> Bisa menganalisis perubahan tutupan lahan selama puluhan tahun dalam hitungan menit.</li>
+                    <li><strong>Contoh Aplikasi:</strong> Pemantauan deforestasi, analisis urbanisasi, deteksi kebakaran.</li>
+                    <li><strong>Manfaat:</strong> Akses data global, pemrosesan cepat, tanpa perlu perangkat keras mahal.</li>
+                </ul>
+                <p style="margin-top:6px; font-size:0.85rem; color:var(--text-muted);">☁️ Dengan cloud computing, kamu bisa menganalisis citra dari seluruh dunia hanya dengan koneksi internet!</p>
+            </div>
+
+            <!-- ===== PENDALAMAN 1: INDEKS SPEKTRAL ===== -->
+            <div class="deep-dive reveal">
+                <h4><i class="fas fa-calculator" style="color:var(--accent);"></i> Pendalaman: Indeks Spektral untuk Analisis Citra</h4>
+                <p>Selain NDVI (yang sudah dibahas di Pertemuan 3), terdapat indeks spektral lain yang penting:</p>
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr><th>Indeks</th><th>Nama Lengkap</th><th>Rumus</th><th>Kegunaan</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>NDVI</strong></td><td>Normalized Difference Vegetation Index</td><td>(NIR - Red) / (NIR + Red)</td><td>Kesehatan vegetasi</td></tr>
+                            <tr><td><strong>NDWI</strong></td><td>Normalized Difference Water Index</td><td>(Green - NIR) / (Green + NIR)</td><td>Deteksi badan air</td></tr>
+                            <tr><td><strong>NDBI</strong></td><td>Normalized Difference Built-up Index</td><td>(SWIR - NIR) / (SWIR + NIR)</td><td>Deteksi area terbangun</td></tr>
+                            <tr><td><strong>SAVI</strong></td><td>Soil Adjusted Vegetation Index</td><td>((NIR - Red) / (NIR + Red + L)) × (1+L)</td><td>Vegetasi di lahan kering</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="background:var(--bg-card); border-radius:8px; padding:8px 12px; margin-top:6px; border:1px solid var(--border-light);">
+                    <span style="font-size:0.85rem; color:var(--text-muted);">💡 Setiap indeks membantu <strong>mengidentifikasi objek</strong> tertentu secara otomatis dari citra!</span>
+                </div>
+            </div>
+
+            <!-- ===== PENDALAMAN 2: SAR vs OPTIK ===== -->
+            <div class="deep-dive reveal" style="background:var(--accent-soft); border-left-color:var(--accent);">
+                <h4 style="color:var(--accent);"><i class="fas fa-satellite" style="color:var(--accent);"></i> Pendalaman: Perbedaan Citra Radar (SAR) dengan Citra Optik</h4>
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr><th>Aspek</th><th>Citra Optik</th><th>Citra Radar (SAR)</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>Sumber Energi</strong></td><td>Matahari (pasif)</td><td>Sensor memancarkan (aktif)</td></tr>
+                            <tr><td><strong>Cuaca</strong></td><td>Terhalang awan</td><td>Tembus awan</td></tr>
+                            <tr><td><strong>Waktu</strong></td><td>Siang hari saja</td><td>Siang &amp; malam</td></tr>
+                            <tr><td><strong>Resolusi</strong></td><td>Spasial &amp; spektral tinggi</td><td>Spasial tinggi, spektral terbatas</td></tr>
+                            <tr><td><strong>Contoh Satelit</strong></td><td>Landsat, Sentinel-2</td><td>Sentinel-1, ALOS PALSAR, RADARSAT</td></tr>
+                            <tr><td><strong>Aplikasi</strong></td><td>Klasifikasi tutupan lahan</td><td>Deteksi banjir, deformasi tanah</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="background:var(--bg-card); border-radius:8px; padding:8px 12px; margin-top:6px; border:1px solid var(--border-light);">
+                    <span style="font-size:0.85rem; color:var(--text-muted);">💡 SAR sangat berguna saat terjadi <strong>bencana banjir</strong> karena awan tidak menghalangi pengamatan!</span>
+                </div>
+            </div>
+
+            <!-- ===== PENDALAMAN 3: PROSES PENGOLAHAN CITRA DIGITAL ===== -->
+            <div class="deep-dive reveal" style="background:#f0fdf4; border-left-color:var(--green);">
+                <h4 style="color:var(--green);"><i class="fas fa-microchip" style="color:var(--green);"></i> Pendalaman: Proses Pengolahan Citra Digital</h4>
+                <p>Berikut tahapan sederhana dalam mengolah citra digital:</p>
+                <ul>
+                    <li><strong>1. Pra-pemrosesan:</strong> Koreksi geometrik, radiometrik, dan atmosferik untuk menghilangkan distorsi.</li>
+                    <li><strong>2. Peningkatan Citra (Enhancement):</strong> Menajamkan kontras, filter, komposit warna untuk visualisasi lebih baik.</li>
+                    <li><strong>3. Klasifikasi:</strong> Terbimbing (supervised) dan tak terbimbing (unsupervised) untuk mengelompokkan objek.</li>
+                    <li><strong>4. Analisis:</strong> Deteksi perubahan, pemodelan, dan visualisasi untuk pengambilan keputusan.</li>
                 </ul>
                 <div style="background:var(--bg-card); border-radius:8px; padding:8px 12px; margin-top:6px; border:1px solid var(--border-light);">
-                    <span style="font-size:0.85rem; color:var(--text-muted);">💡 Contoh: Untuk mendeteksi kebakaran hutan, gunakan MODIS (temporal tinggi) untuk deteksi awal, lalu Landsat/Sentinel (spasial sedang) untuk verifikasi luas area.</span>
+                    <span style="font-size:0.85rem; color:var(--text-muted);">💡 Pengolahan citra digital mengubah data mentah menjadi <strong>informasi yang bermakna</strong> untuk berbagai keperluan!</span>
                 </div>
             </div>
 
+            <!-- ===== MINI QUIZ ===== -->
             <div class="mini-quiz reveal">
                 <div class="quiz-question">Kuis Cepat: Citra yang dihasilkan dari sensor yang memancarkan energinya sendiri disebut ...</div>
                 <div class="quiz-options">
@@ -2045,6 +2242,19 @@
                 <div class="quiz-feedback"></div>
             </div>
 
+            <!-- MINI QUIZ 2 -->
+            <div class="mini-quiz reveal" style="margin-top:12px;">
+                <div class="quiz-question">Kuis Cepat: Resolusi yang menentukan ukuran piksel di permukaan bumi adalah ...</div>
+                <div class="quiz-options">
+                    <button onclick="checkQuiz(this, false)">Resolusi spektral</button>
+                    <button onclick="checkQuiz(this, true)">Resolusi spasial</button>
+                    <button onclick="checkQuiz(this, false)">Resolusi temporal</button>
+                    <button onclick="checkQuiz(this, false)">Resolusi radiometrik</button>
+                </div>
+                <div class="quiz-feedback"></div>
+            </div>
+
+            <!-- ===== NAVIGASI ===== -->
             <div class="nav-buttons">
                 <div class="group">
                     <button onclick="navigateTo('prev')">Sebelumnya</button>
@@ -2085,6 +2295,7 @@
                 <li>Menganalisis pengaruh tingkat resolusi terhadap kualitas interpretasi melalui studi kasus.</li>
             </ul>
 
+            <!-- Galeri -->
             <div style="margin:16px 0;">
                 <div class="grid-3">
                     <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/citra.png', 'Citra Resolusi Tinggi – Detail objek sangat jelas, dapat membedakan rumah, pohon, dan kendaraan.')">
