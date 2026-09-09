@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes" />
-    <title>Peta & Pemetaan – Geografi Kelas X</title>
+    <title>GeoExplorer – Peta & Pemetaan</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
     <style>
         /* ============================================================
-                   RESET & BASE
+                   RESET & BASE – hijau segar
                    ============================================================ */
         * {
             margin: 0;
@@ -17,20 +17,25 @@
         }
 
         :root {
-            --primary: #2a5c7a;
-            --primary-light: #3a7ca5;
-            --primary-dark: #1a3c52;
+            --primary: #1e7a4a;
+            /* hijau tua segar */
+            --primary-light: #3aaa6a;
+            /* hijau sedang */
+            --primary-dark: #145b34;
+            /* hijau gelap */
             --secondary: #e67e22;
-            --accent: #1abc9c;
-            --gold: #f39c12;
-            /* Warna latar diubah menjadi netral terang */
-            --bg: #f5f6f8;
+            --accent: #2ecc71;
+            /* hijau terang */
+            --gold: #f1c40f;
+            /* kuning cerah */
+            --bg: #f0f7f2;
+            /* latar hijau sangat pucat */
             --card-bg: #ffffff;
-            --text: #1a2a3a;
-            --text-light: #4a5a6a;
-            --text-muted: #8a9aaa;
-            --shadow: 0 12px 48px rgba(0, 0, 0, 0.08);
-            --shadow-hover: 0 20px 64px rgba(0, 0, 0, 0.14);
+            --text: #1a2a1f;
+            --text-light: #2d4a38;
+            --text-muted: #5a7a66;
+            --shadow: 0 12px 48px rgba(30, 122, 74, 0.10);
+            --shadow-hover: 0 20px 64px rgba(30, 122, 74, 0.18);
             --radius: 20px;
             --radius-sm: 12px;
             --transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -50,39 +55,39 @@
         }
 
         /* ============================================================
-                   MAP BACKGROUND (subtle topographic pattern) - warna netral hangat
+                   MAP BACKGROUND – pola topografi halus hijau
                    ============================================================ */
         .map-bg {
             position: fixed;
             inset: 0;
             z-index: 0;
             pointer-events: none;
-            opacity: 0.03;
+            opacity: 0.04;
             background-image:
-                radial-gradient(circle at 20% 30%, rgba(42, 92, 122, 0.08) 0%, transparent 60%),
-                radial-gradient(circle at 80% 70%, rgba(26, 188, 156, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 20% 30%, rgba(30, 122, 74, 0.08) 0%, transparent 60%),
+                radial-gradient(circle at 80% 70%, rgba(46, 204, 113, 0.05) 0%, transparent 50%),
                 repeating-linear-gradient(45deg,
                     transparent,
                     transparent 40px,
-                    rgba(42, 92, 122, 0.03) 40px,
-                    rgba(42, 92, 122, 0.03) 41px),
+                    rgba(30, 122, 74, 0.02) 40px,
+                    rgba(30, 122, 74, 0.02) 41px),
                 repeating-linear-gradient(-45deg,
                     transparent,
                     transparent 40px,
-                    rgba(42, 92, 122, 0.03) 40px,
-                    rgba(42, 92, 122, 0.03) 41px);
+                    rgba(30, 122, 74, 0.02) 40px,
+                    rgba(30, 122, 74, 0.02) 41px);
             background-size: 100% 100%, 100% 100%, 80px 80px, 80px 80px;
         }
 
         /* ============================================================
-                   LOADER - latar putih bersih
+                   LOADER – dengan lingkaran besar berputar & efek hijau
                    ============================================================ */
         #loader {
             position: fixed;
             inset: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -97,49 +102,121 @@
         }
 
         .loader-compass {
-            width: 80px;
-            height: 80px;
+            width: 100px;
+            height: 100px;
             position: relative;
-            animation: spinCompass 2s ease-in-out infinite;
+            animation: spinCompass 2.8s ease-in-out infinite;
         }
         .loader-compass svg {
             width: 100%;
             height: 100%;
+            display: block;
         }
+        /* Lingkaran besar tambahan yang berputar */
+        .loader-ring-big {
+            position: absolute;
+            top: -28px;
+            left: -28px;
+            width: 156px;
+            height: 156px;
+            border-radius: 50%;
+            border: 5px solid transparent;
+            border-top-color: var(--accent);
+            border-right-color: var(--primary-light);
+            border-bottom-color: var(--gold);
+            border-left-color: var(--primary);
+            animation: spinRing 3s linear infinite;
+            box-shadow: 0 0 30px rgba(46, 204, 113, 0.15);
+        }
+        .loader-ring-big::after {
+            content: '';
+            position: absolute;
+            inset: 12px;
+            border-radius: 50%;
+            border: 3px dashed rgba(30, 122, 74, 0.15);
+            animation: spinRing 8s linear infinite reverse;
+        }
+        @keyframes spinRing {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
         @keyframes spinCompass {
             0%,
             100% {
                 transform: rotate(0deg) scale(1);
             }
             50% {
-                transform: rotate(180deg) scale(1.08);
+                transform: rotate(180deg) scale(1.06);
             }
         }
 
         .loader-title {
-            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-size: clamp(2.6rem, 6vw, 4rem);
             font-weight: 900;
-            margin-top: 20px;
-            color: var(--primary);
+            margin-top: 24px;
+            background: linear-gradient(135deg, var(--primary), var(--accent), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             letter-spacing: -1px;
+            animation: shimmerText 3s ease-in-out infinite;
         }
-        .loader-title span {
-            color: var(--gold);
+        @keyframes shimmerText {
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
         }
+        .loader-title {
+            background-size: 200% auto;
+        }
+
         .loader-sub {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            font-weight: 400;
-            letter-spacing: 2px;
-            margin-top: 2px;
+            font-size: clamp(0.95rem, 1.6vw, 1.4rem);
+            font-weight: 500;
+            color: var(--text-light);
+            margin-top: 4px;
+            letter-spacing: 1.5px;
+            text-shadow: 0 2px 12px rgba(30, 122, 74, 0.08);
+            background: linear-gradient(135deg, var(--primary-light), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: pulseSub 2.4s ease-in-out infinite;
         }
+        @keyframes pulseSub {
+            0%,
+            100% {
+                opacity: 0.8;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.02);
+            }
+        }
+        .loader-sub i {
+            -webkit-text-fill-color: initial;
+            color: var(--gold);
+            margin: 0 4px;
+        }
+
         .loader-bar-track {
             width: clamp(200px, 40vw, 380px);
-            height: 5px;
-            background: rgba(42, 92, 122, 0.08);
+            height: 6px;
+            background: rgba(30, 122, 74, 0.08);
             border-radius: 10px;
-            margin-top: 20px;
+            margin-top: 24px;
             overflow: hidden;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02);
         }
         .loader-bar {
             height: 100%;
@@ -151,9 +228,9 @@
         .loader-percent {
             color: var(--text-muted);
             font-size: 0.7rem;
-            font-weight: 600;
-            margin-top: 6px;
-            letter-spacing: 1px;
+            font-weight: 700;
+            margin-top: 8px;
+            letter-spacing: 1.5px;
         }
 
         /* ============================================================
@@ -165,10 +242,10 @@
             left: 0;
             right: 0;
             height: 64px;
-            background: rgba(255, 255, 255, 0.88);
+            background: rgba(255, 255, 255, 0.90);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            border-bottom: 1px solid rgba(30, 122, 74, 0.06);
             z-index: 1000;
             display: flex;
             align-items: center;
@@ -177,7 +254,7 @@
             transition: box-shadow 0.3s ease;
         }
         .site-header.scrolled {
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 4px 30px rgba(30, 122, 74, 0.06);
         }
 
         .site-header .brand {
@@ -246,7 +323,7 @@
             background: #fff;
             z-index: 1002;
             padding: 24px 20px;
-            box-shadow: -8px 0 40px rgba(0, 0, 0, 0.08);
+            box-shadow: -8px 0 40px rgba(0, 0, 0, 0.06);
             transition: right 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
             overflow-y: auto;
         }
@@ -272,16 +349,16 @@
             text-decoration: none;
             transition: all 0.3s ease;
             cursor: pointer;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.02);
         }
         .mobile-drawer a:hover,
         .mobile-drawer a.active {
-            background: rgba(42, 92, 122, 0.06);
+            background: rgba(30, 122, 74, 0.06);
             color: var(--primary);
         }
         .mobile-drawer a .badge {
             float: right;
-            background: rgba(42, 92, 122, 0.08);
+            background: rgba(30, 122, 74, 0.08);
             color: var(--primary-light);
             font-size: 0.65rem;
             padding: 2px 10px;
@@ -292,7 +369,7 @@
         .drawer-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.20);
             z-index: 1001;
             opacity: 0;
             visibility: hidden;
@@ -312,7 +389,7 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: rgba(42, 92, 122, 0.06);
+            background: rgba(30, 122, 74, 0.06);
             z-index: 999;
         }
         .progress-rail .thumb {
@@ -369,7 +446,7 @@
             gap: 16px;
             margin-bottom: 28px;
             padding-bottom: 16px;
-            border-bottom: 2px solid rgba(42, 92, 122, 0.06);
+            border-bottom: 2px solid rgba(30, 122, 74, 0.06);
             flex-wrap: wrap;
             position: relative;
         }
@@ -385,7 +462,7 @@
             font-weight: 800;
             font-size: 1.1rem;
             flex-shrink: 0;
-            box-shadow: 0 8px 24px rgba(42, 92, 122, 0.2);
+            box-shadow: 0 8px 24px rgba(30, 122, 74, 0.20);
         }
         .section-header h2 {
             font-size: clamp(1.3rem, 2.8vw, 2rem);
@@ -402,14 +479,14 @@
             margin-top: 2px;
         }
         .section-header .badge {
-            background: rgba(42, 92, 122, 0.06);
+            background: rgba(30, 122, 74, 0.06);
             color: var(--primary-light);
             padding: 4px 16px;
             border-radius: 40px;
             font-size: 0.7rem;
             font-weight: 700;
             letter-spacing: 0.5px;
-            border: 1px solid rgba(42, 92, 122, 0.06);
+            border: 1px solid rgba(30, 122, 74, 0.06);
             white-space: nowrap;
             align-self: center;
         }
@@ -495,7 +572,7 @@
             height: clamp(50px, 8vw, 100px);
             width: auto;
             object-fit: contain;
-            filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.04));
+            filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.03));
             transition: transform 0.4s ease;
         }
         .hero-section .logo-row img:hover {
@@ -511,24 +588,24 @@
             margin-bottom: 18px;
         }
         .hero-section .badge-row .tag {
-            background: rgba(42, 92, 122, 0.06);
+            background: rgba(30, 122, 74, 0.06);
             color: var(--primary-light);
             font-size: 0.7rem;
             font-weight: 700;
             padding: 4px 18px;
             border-radius: 40px;
             letter-spacing: 0.5px;
-            border: 1px solid rgba(42, 92, 122, 0.04);
+            border: 1px solid rgba(30, 122, 74, 0.04);
         }
         .hero-section .badge-row .tag.gold {
-            background: rgba(243, 156, 18, 0.08);
+            background: rgba(241, 196, 15, 0.08);
             color: var(--gold);
-            border-color: rgba(243, 156, 18, 0.06);
+            border-color: rgba(241, 196, 15, 0.06);
         }
         .hero-section .badge-row .tag.green {
-            background: rgba(26, 188, 156, 0.08);
+            background: rgba(46, 204, 113, 0.08);
             color: var(--accent);
-            border-color: rgba(26, 188, 156, 0.06);
+            border-color: rgba(46, 204, 113, 0.06);
         }
 
         .hero-title {
@@ -577,18 +654,31 @@
             color: var(--gold);
         }
         .hero-school .teacher {
-            margin-top: 4px;
-            font-size: 0.85rem;
-            color: var(--text-muted);
+            margin-top: 6px;
+            font-size: 1.05rem;
             font-weight: 500;
+            color: var(--text-light);
+            background: rgba(30, 122, 74, 0.03);
+            display: inline-block;
+            padding: 6px 24px;
+            border-radius: 40px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(30, 122, 74, 0.04);
         }
         .hero-school .teacher strong {
-            color: var(--text);
-            font-weight: 700;
+            color: var(--primary);
+            font-weight: 800;
+            font-size: 1.1rem;
+            letter-spacing: 0.3px;
         }
         .hero-school .teacher .nip {
-            color: var(--primary-light);
-            font-weight: 600;
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1.0rem;
+            background: rgba(46, 204, 113, 0.06);
+            padding: 2px 14px;
+            border-radius: 30px;
+            letter-spacing: 0.5px;
         }
 
         .hero-cta {
@@ -607,12 +697,12 @@
             font-size: clamp(1rem, 1.4vw, 1.2rem);
             cursor: pointer;
             transition: all var(--transition);
-            box-shadow: 0 8px 32px rgba(42, 92, 122, 0.2);
+            box-shadow: 0 8px 32px rgba(30, 122, 74, 0.20);
             text-decoration: none;
         }
         .hero-cta .btn-primary:hover {
             transform: translateY(-4px) scale(1.03);
-            box-shadow: 0 16px 48px rgba(42, 92, 122, 0.3);
+            box-shadow: 0 16px 48px rgba(30, 122, 74, 0.30);
         }
 
         /* ============================================================
@@ -646,8 +736,8 @@
             gap: 8px;
         }
         .quick-nav .nav-item {
-            background: rgba(42, 92, 122, 0.02);
-            border: 1px solid rgba(42, 92, 122, 0.04);
+            background: rgba(30, 122, 74, 0.02);
+            border: 1px solid rgba(30, 122, 74, 0.04);
             border-radius: var(--radius-sm);
             padding: 12px 8px;
             text-align: center;
@@ -666,17 +756,17 @@
             font-size: 1.2rem;
             font-weight: 900;
             color: var(--primary);
-            background: rgba(42, 92, 122, 0.06);
+            background: rgba(30, 122, 74, 0.06);
             padding: 0 12px;
             border-radius: 30px;
             line-height: 1.8;
             min-width: 32px;
         }
         .quick-nav .nav-item:hover {
-            background: rgba(42, 92, 122, 0.06);
+            background: rgba(30, 122, 74, 0.06);
             transform: translateY(-4px);
             border-color: var(--primary);
-            box-shadow: 0 8px 24px rgba(42, 92, 122, 0.06);
+            box-shadow: 0 8px 24px rgba(30, 122, 74, 0.06);
         }
 
         /* ============================================================
@@ -707,11 +797,11 @@
             user-select: none;
         }
         .materi-box .header:hover {
-            background: rgba(42, 92, 122, 0.02);
+            background: rgba(30, 122, 74, 0.02);
         }
         .materi-box .header.active {
             border-left-color: var(--primary);
-            background: rgba(42, 92, 122, 0.03);
+            background: rgba(30, 122, 74, 0.03);
         }
         .materi-box .header h4 {
             font-size: 0.95rem;
@@ -726,7 +816,7 @@
         .materi-box .header h4 .tag-sm {
             font-size: 0.6rem;
             font-weight: 700;
-            background: rgba(42, 92, 122, 0.06);
+            background: rgba(30, 122, 74, 0.06);
             color: var(--primary-light);
             padding: 2px 12px;
             border-radius: 20px;
@@ -756,11 +846,11 @@
             max-height: 6000px;
             padding: 18px 20px 22px;
             opacity: 1;
-            border-top-color: rgba(42, 92, 122, 0.04);
+            border-top-color: rgba(30, 122, 74, 0.04);
         }
 
         .materi-box .body .highlight-box {
-            background: rgba(42, 92, 122, 0.02);
+            background: rgba(30, 122, 74, 0.02);
             border-radius: var(--radius-sm);
             padding: 14px 18px;
             border-left: 4px solid var(--primary);
@@ -788,7 +878,7 @@
             width: 100%;
             border-collapse: collapse;
             font-size: 0.9rem;
-            background: rgba(42, 92, 122, 0.02);
+            background: rgba(30, 122, 74, 0.02);
             border-radius: var(--radius-sm);
             overflow: hidden;
         }
@@ -800,7 +890,7 @@
             vertical-align: top;
         }
         .table-wrap th {
-            background: rgba(42, 92, 122, 0.04);
+            background: rgba(30, 122, 74, 0.04);
             color: var(--primary);
             font-weight: 700;
         }
@@ -815,7 +905,7 @@
             margin: 8px 0;
         }
         .two-col-grid .col {
-            background: rgba(42, 92, 122, 0.02);
+            background: rgba(30, 122, 74, 0.02);
             border-radius: var(--radius-sm);
             padding: 14px 16px;
             border-left: 4px solid var(--primary);
@@ -858,7 +948,7 @@
         .gallery-item .img-wrap {
             position: relative;
             overflow: hidden;
-            background: rgba(42, 92, 122, 0.02);
+            background: rgba(30, 122, 74, 0.02);
         }
         .gallery-item .img-wrap img {
             width: 100%;
@@ -874,7 +964,7 @@
             position: absolute;
             top: 12px;
             right: 12px;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.50);
             backdrop-filter: blur(8px);
             color: #fff;
             font-size: 0.6rem;
@@ -890,9 +980,9 @@
             position: absolute;
             bottom: 12px;
             left: 12px;
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.30);
             backdrop-filter: blur(8px);
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255, 255, 255, 0.60);
             font-size: 0.6rem;
             font-weight: 600;
             padding: 2px 12px;
@@ -1014,9 +1104,9 @@
             position: absolute;
             bottom: 12px;
             right: 12px;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.40);
             backdrop-filter: blur(8px);
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.70);
             font-size: 0.7rem;
             font-weight: 600;
             padding: 4px 14px;
@@ -1049,7 +1139,7 @@
             color: var(--text);
         }
         .modal-overlay .modal-box .zoom-controls button:hover {
-            background: rgba(42, 92, 122, 0.06);
+            background: rgba(30, 122, 74, 0.06);
             border-color: var(--primary);
         }
         .modal-overlay .modal-box .zoom-controls .level {
@@ -1064,10 +1154,10 @@
                    MINI QUIZ
                    ============================================================ */
         .mini-quiz {
-            background: rgba(42, 92, 122, 0.02);
+            background: rgba(30, 122, 74, 0.02);
             border-radius: var(--radius-sm);
             padding: 18px 20px;
-            border: 1px solid rgba(42, 92, 122, 0.04);
+            border: 1px solid rgba(30, 122, 74, 0.04);
             margin: 12px 0;
         }
         .mini-quiz .question {
@@ -1094,12 +1184,12 @@
             font-family: inherit;
         }
         .mini-quiz .options button:hover {
-            background: rgba(42, 92, 122, 0.04);
+            background: rgba(30, 122, 74, 0.04);
             border-color: var(--primary);
             color: var(--text);
         }
         .mini-quiz .options button.correct {
-            background: rgba(26, 188, 156, 0.08);
+            background: rgba(46, 204, 113, 0.08);
             border-color: var(--accent);
             color: var(--accent);
         }
@@ -1120,7 +1210,7 @@
             display: block;
         }
         .mini-quiz .feedback.success {
-            background: rgba(26, 188, 156, 0.04);
+            background: rgba(46, 204, 113, 0.04);
             border-left: 4px solid var(--accent);
             color: var(--accent);
         }
@@ -1136,13 +1226,13 @@
         .soal-pg {
             margin-bottom: 12px;
             padding: 14px 18px;
-            background: rgba(42, 92, 122, 0.02);
+            background: rgba(30, 122, 74, 0.02);
             border-radius: var(--radius-sm);
             border-left: 4px solid var(--primary);
             transition: all 0.3s ease;
         }
         .soal-pg:hover {
-            background: rgba(42, 92, 122, 0.04);
+            background: rgba(30, 122, 74, 0.04);
         }
         .soal-pg .nomor {
             color: var(--primary);
@@ -1171,7 +1261,7 @@
         .soal-bs {
             margin-bottom: 8px;
             padding: 10px 16px;
-            background: rgba(42, 92, 122, 0.02);
+            background: rgba(30, 122, 74, 0.02);
             border-radius: var(--radius-sm);
             border-left: 4px solid var(--accent);
             display: flex;
@@ -1194,7 +1284,7 @@
         .soal-essay {
             margin-bottom: 12px;
             padding: 14px 18px;
-            background: rgba(42, 92, 122, 0.02);
+            background: rgba(30, 122, 74, 0.02);
             border-radius: var(--radius-sm);
             border-left: 4px solid var(--gold);
         }
@@ -1224,7 +1314,7 @@
             border-radius: var(--radius);
             padding: 24px;
             box-shadow: var(--shadow);
-            border: 2px solid rgba(243, 156, 18, 0.06);
+            border: 2px solid rgba(241, 196, 15, 0.06);
             margin-top: 20px;
         }
         .kunci-box .head {
@@ -1237,7 +1327,7 @@
             width: 36px;
             height: 36px;
             border-radius: 50%;
-            background: rgba(243, 156, 18, 0.06);
+            background: rgba(241, 196, 15, 0.06);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1272,7 +1362,7 @@
         }
         .kunci-box .pw-row input:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(42, 92, 122, 0.06);
+            box-shadow: 0 0 0 3px rgba(30, 122, 74, 0.06);
         }
         .kunci-box .pw-row button {
             background: var(--gold);
@@ -1288,7 +1378,7 @@
         }
         .kunci-box .pw-row button:hover {
             transform: scale(1.04);
-            box-shadow: 0 4px 20px rgba(243, 156, 18, 0.2);
+            box-shadow: 0 4px 20px rgba(241, 196, 15, 0.20);
         }
         .kunci-box .pw-row .clear-btn {
             background: transparent;
@@ -1343,8 +1433,8 @@
         }
 
         .celebration-box {
-            background: linear-gradient(145deg, rgba(42, 92, 122, 0.02), rgba(26, 188, 156, 0.02));
-            border: 2px solid rgba(42, 92, 122, 0.06);
+            background: linear-gradient(145deg, rgba(30, 122, 74, 0.02), rgba(46, 204, 113, 0.02));
+            border: 2px solid rgba(30, 122, 74, 0.06);
             border-radius: var(--radius);
             padding: 32px 24px;
             text-align: center;
@@ -1371,7 +1461,7 @@
             border: none;
             margin-top: 14px;
             cursor: default;
-            box-shadow: 0 8px 24px rgba(42, 92, 122, 0.15);
+            box-shadow: 0 8px 24px rgba(30, 122, 74, 0.15);
         }
 
         /* ============================================================
@@ -1407,7 +1497,7 @@
             color: #fff;
             border-color: var(--primary);
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(42, 92, 122, 0.12);
+            box-shadow: 0 8px 24px rgba(30, 122, 74, 0.12);
         }
         .nav-buttons button:disabled {
             opacity: 0.25;
@@ -1443,15 +1533,15 @@
             cursor: pointer;
         }
         .nav-buttons .page-numbers a:hover {
-            background: rgba(42, 92, 122, 0.04);
-            border-color: rgba(42, 92, 122, 0.06);
+            background: rgba(30, 122, 74, 0.04);
+            border-color: rgba(30, 122, 74, 0.06);
             color: var(--text);
         }
         .nav-buttons .page-numbers a.active {
             background: var(--primary);
             color: #fff;
             border-color: var(--primary);
-            box-shadow: 0 4px 16px rgba(42, 92, 122, 0.15);
+            box-shadow: 0 4px 16px rgba(30, 122, 74, 0.15);
         }
 
         /* ============================================================
@@ -1678,22 +1768,23 @@
     <div class="map-bg"></div>
 
     <!-- ============================================================
-    LOADER
+    LOADER – dengan lingkaran besar berputar & teks baru
     ============================================================ -->
     <div id="loader">
         <div class="loader-compass">
+            <!-- Lingkaran besar tambahan yang berputar -->
+            <div class="loader-ring-big"></div>
             <svg viewBox="0 0 100 100">
-                <!-- Lingkaran warna-warni -->
-                <circle cx="50" cy="50" r="44" fill="none" stroke="#f39c12" stroke-width="2" stroke-dasharray="8 6" opacity="0.6"/>
-                <circle cx="50" cy="50" r="38" fill="none" stroke="#1abc9c" stroke-width="2" stroke-dasharray="6 4" opacity="0.7"/>
-                <circle cx="50" cy="50" r="32" fill="none" stroke="#2a5c7a" stroke-width="2" stroke-dasharray="4 4" opacity="0.8"/>
-                <polygon points="50,10 58,46 50,90 42,46" fill="#2a5c7a" opacity="0.9"/>
-                <polygon points="50,10 50,46 42,46" fill="#f39c12" opacity="0.9"/>
-                <circle cx="50" cy="50" r="6" fill="#fff" stroke="#2a5c7a" stroke-width="2"/>
+                <circle cx="50" cy="50" r="44" fill="none" stroke="#f1c40f" stroke-width="2.5" stroke-dasharray="8 6" opacity="0.6"/>
+                <circle cx="50" cy="50" r="38" fill="none" stroke="#2ecc71" stroke-width="2.5" stroke-dasharray="6 4" opacity="0.7"/>
+                <circle cx="50" cy="50" r="32" fill="none" stroke="#1e7a4a" stroke-width="2.5" stroke-dasharray="4 4" opacity="0.8"/>
+                <polygon points="50,10 58,46 50,90 42,46" fill="#1e7a4a" opacity="0.9"/>
+                <polygon points="50,10 50,46 42,46" fill="#f1c40f" opacity="0.9"/>
+                <circle cx="50" cy="50" r="6" fill="#fff" stroke="#1e7a4a" stroke-width="2.5"/>
             </svg>
         </div>
-        <div class="loader-title">Peta <span>&amp;</span> Pemetaan</div>
-        <div class="loader-sub">Geografi Kelas X · Fase E</div>
+        <div class="loader-title">GeoExplorer</div>
+        <div class="loader-sub">Menjelajahi Bumi, Menemukan Inspirasi</div>
         <div class="loader-bar-track"><div class="loader-bar" id="loaderBar"></div></div>
         <div class="loader-percent" id="loaderPercent">0%</div>
     </div>
@@ -1826,8 +1917,8 @@
             </div>
 
             <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px;">
-                <span class="badge" style="background:rgba(42,92,122,0.04); color:var(--primary-light); border:1px solid rgba(42,92,122,0.04);">TP 1</span>
-                <span class="badge" style="background:rgba(26,188,156,0.04); color:var(--accent); border:1px solid rgba(26,188,156,0.04);">Penalaran Kritis</span>
+                <span class="badge" style="background:rgba(30,122,74,0.04); color:var(--primary-light); border:1px solid rgba(30,122,74,0.04);">TP 1</span>
+                <span class="badge" style="background:rgba(46,204,113,0.04); color:var(--accent); border:1px solid rgba(46,204,113,0.04);">Penalaran Kritis</span>
             </div>
 
             <div class="card">
@@ -1846,13 +1937,13 @@
                 <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; margin-bottom:12px;">
                     <h4 style="color:var(--primary); font-size:0.95rem; font-weight:700; display:flex; align-items:center; gap:8px;">
                         <i class="fas fa-images"></i> Galeri Gambar
-                        <span style="background:rgba(42,92,122,0.04); color:var(--primary-light); padding:2px 12px; border-radius:20px; font-size:0.6rem; font-weight:700; letter-spacing:0.3px;">Klik untuk zoom</span>
+                        <span style="background:rgba(30,122,74,0.04); color:var(--primary-light); padding:2px 12px; border-radius:20px; font-size:0.6rem; font-weight:700; letter-spacing:0.3px;">Klik untuk zoom</span>
                     </h4>
                 </div>
                 <div class="gallery-grid">
                     <div class="gallery-item reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/mapsborneo.png', 'Peta Kalimantan – Representasi permukaan bumi dalam bidang datar.')" data-index="0">
                         <div class="img-wrap">
-                            <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/mapsborneo.png" alt="Peta Kalimantan" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23f0f4f8%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%232a5c7a%22 font-family=%22Inter%22 font-size=%2220%22 dy=%22.3em%22%3E🗺️ Peta Kalimantan%3C/text%3E%3C/svg%3E'" />
+                            <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/mapsborneo.png" alt="Peta Kalimantan" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23f0f7f2%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%231e7a4a%22 font-family=%22Inter%22 font-size=%2220%22 dy=%22.3em%22%3E🗺️ Peta Kalimantan%3C/text%3E%3C/svg%3E'" />
                             <span class="badge-zoom"><i class="fas fa-search-plus"></i> Zoom</span>
                             <span class="counter">01 / 03</span>
                         </div>
@@ -1863,7 +1954,7 @@
                     </div>
                     <div class="gallery-item reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/skalapeta.png', 'Skala Peta – Perbandingan jarak di peta dengan jarak sebenarnya.')" data-index="1">
                         <div class="img-wrap">
-                            <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/skalapeta.png" alt="Skala Peta" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23f0f4f8%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%232a5c7a%22 font-family=%22Inter%22 font-size=%2220%22 dy=%22.3em%22%3E📏 Skala Peta%3C/text%3E%3C/svg%3E'" />
+                            <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/skalapeta.png" alt="Skala Peta" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23f0f7f2%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%231e7a4a%22 font-family=%22Inter%22 font-size=%2220%22 dy=%22.3em%22%3E📏 Skala Peta%3C/text%3E%3C/svg%3E'" />
                             <span class="badge-zoom"><i class="fas fa-search-plus"></i> Zoom</span>
                             <span class="counter">02 / 03</span>
                         </div>
@@ -1874,7 +1965,7 @@
                     </div>
                     <div class="gallery-item reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/petatematik.png', 'Peta Tematik – Menyajikan tema tertentu seperti kepadatan penduduk.')" data-index="2">
                         <div class="img-wrap">
-                            <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/petatematik.png" alt="Peta Tematik" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23f0f4f8%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%232a5c7a%22 font-family=%22Inter%22 font-size=%2220%22 dy=%22.3em%22%3E📊 Peta Tematik%3C/text%3E%3C/svg%3E'" />
+                            <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/petatematik.png" alt="Peta Tematik" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23f0f7f2%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%231e7a4a%22 font-family=%22Inter%22 font-size=%2220%22 dy=%22.3em%22%3E📊 Peta Tematik%3C/text%3E%3C/svg%3E'" />
                             <span class="badge-zoom"><i class="fas fa-search-plus"></i> Zoom</span>
                             <span class="counter">03 / 03</span>
                         </div>
@@ -1897,7 +1988,7 @@
                         <p><strong>Secara etimologis:</strong> Kata "peta" berasal dari bahasa Inggris <strong>"map"</strong> yang berarti gambaran permukaan bumi.</p>
                         <p><strong>Secara umum:</strong> Peta adalah <span class="gold-text">representasi atau gambaran permukaan bumi pada bidang datar</span> yang diperkecil dengan skala tertentu, dilengkapi simbol untuk menyampaikan informasi geografis.</p>
                     </div>
-                    <div style="background:rgba(243,156,18,0.02); border-radius:var(--radius-sm); padding:10px 14px; margin-top:6px; border-left:3px solid var(--gold);">
+                    <div style="background:rgba(241,196,15,0.02); border-radius:var(--radius-sm); padding:10px 14px; margin-top:6px; border-left:3px solid var(--gold);">
                         <p style="font-size:0.9rem; color:var(--text-light);"><strong style="color:var(--text);">Karakteristik Peta:</strong> Representasi, skala, bidang datar, simbol.</p>
                     </div>
                     <h5 style="color:var(--primary); font-weight:700; font-size:0.95rem; margin-top:12px;">Definisi Menurut Para Ahli</h5>
@@ -2018,7 +2109,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div style="background:rgba(26,188,156,0.02); border-radius:var(--radius-sm); padding:10px 14px; margin-top:8px; border-left:3px solid var(--accent);">
+                    <div style="background:rgba(46,204,113,0.02); border-radius:var(--radius-sm); padding:10px 14px; margin-top:8px; border-left:3px solid var(--accent);">
                         <p style="font-size:0.9rem; color:var(--text-light);"><strong style="color:var(--text);">Catatan:</strong> Semakin kecil angka skala (misal 1:10.000), semakin besar dan detail peta. Sebaliknya, skala 1:1.000.000 lebih kecil dan kurang detail.</p>
                     </div>
                 </div>
@@ -2063,7 +2154,7 @@
                         <li>RBI digunakan sebagai acuan untuk pembangunan, tata ruang, mitigasi bencana, dan penelitian.</li>
                         <li>Peta tematik di Indonesia banyak dikembangkan oleh BIG, BPS, kementerian, dan pemerintah daerah.</li>
                     </ul>
-                    <div style="background:rgba(243,156,18,0.02); border-radius:var(--radius-sm); padding:10px 14px; margin-top:8px; border-left:3px solid var(--gold);">
+                    <div style="background:rgba(241,196,15,0.02); border-radius:var(--radius-sm); padding:10px 14px; margin-top:8px; border-left:3px solid var(--gold);">
                         <p style="font-size:0.9rem; color:var(--text-light);"><strong style="color:var(--text);">Aktivitas:</strong> Cari tahu peta RBI skala 1:25.000 untuk daerah tempat tinggalmu! Apa saja informasi yang dapat kamu lihat?</p>
                     </div>
                 </div>
@@ -2102,8 +2193,8 @@
             </div>
 
             <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px;">
-                <span class="badge" style="background:rgba(42,92,122,0.04); color:var(--primary-light); border:1px solid rgba(42,92,122,0.04);">TP 2</span>
-                <span class="badge" style="background:rgba(26,188,156,0.04); color:var(--accent); border:1px solid rgba(26,188,156,0.04);">Literasi</span>
+                <span class="badge" style="background:rgba(30,122,74,0.04); color:var(--primary-light); border:1px solid rgba(30,122,74,0.04);">TP 2</span>
+                <span class="badge" style="background:rgba(46,204,113,0.04); color:var(--accent); border:1px solid rgba(46,204,113,0.04);">Literasi</span>
             </div>
 
             <div class="card">
@@ -2122,13 +2213,13 @@
                 <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; margin-bottom:12px;">
                     <h4 style="color:var(--primary); font-size:0.95rem; font-weight:700; display:flex; align-items:center; gap:8px;">
                         <i class="fas fa-images"></i> Galeri Gambar Proyeksi
-                        <span style="background:rgba(42,92,122,0.04); color:var(--primary-light); padding:2px 12px; border-radius:20px; font-size:0.6rem; font-weight:700; letter-spacing:0.3px;">Klik untuk zoom</span>
+                        <span style="background:rgba(30,122,74,0.04); color:var(--primary-light); padding:2px 12px; border-radius:20px; font-size:0.6rem; font-weight:700; letter-spacing:0.3px;">Klik untuk zoom</span>
                     </h4>
                 </div>
                 <div class="gallery-grid">
                     <div class="gallery-item reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/proyeksisilinder.png', 'Proyeksi Silinder – Tabung, cocok untuk ekuator.')" data-index="0">
                         <div class="img-wrap">
-                            <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/proyeksisilinder.png" alt="Proyeksi Silinder" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23f0f4f8%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%232a5c7a%22 font-family=%22Inter%22 font-size=%2220%22 dy=%22.3em%22%3E🔵 Silinder%3C/text%3E%3C/svg%3E'" />
+                            <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/proyeksisilinder.png" alt="Proyeksi Silinder" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23f0f7f2%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%231e7a4a%22 font-family=%22Inter%22 font-size=%2220%22 dy=%22.3em%22%3E🔵 Silinder%3C/text%3E%3C/svg%3E'" />
                             <span class="badge-zoom"><i class="fas fa-search-plus"></i> Zoom</span>
                             <span class="counter">01 / 03</span>
                         </div>
@@ -2139,7 +2230,7 @@
                     </div>
                     <div class="gallery-item reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/proyeksi_kerucut.png', 'Proyeksi Kerucut – Cocok untuk lintang sedang.')" data-index="1">
                         <div class="img-wrap">
-                            <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/proyeksi_kerucut.png" alt="Proyeksi Kerucut" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23f0f4f8%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%232a5c7a%22 font-family=%22Inter%22 font-size=%2220%22 dy=%22.3em%22%3E🟢 Kerucut%3C/text%3E%3C/svg%3E'" />
+                            <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/proyeksi_kerucut.png" alt="Proyeksi Kerucut" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23f0f7f2%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%231e7a4a%22 font-family=%22Inter%22 font-size=%2220%22 dy=%22.3em%22%3E🟢 Kerucut%3C/text%3E%3C/svg%3E'" />
                             <span class="badge-zoom"><i class="fas fa-search-plus"></i> Zoom</span>
                             <span class="counter">02 / 03</span>
                         </div>
@@ -2150,7 +2241,7 @@
                     </div>
                     <div class="gallery-item reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/proyeksiazimuthal.png', 'Proyeksi Azimuthal – Bidang datar, cocok untuk kutub.')" data-index="2">
                         <div class="img-wrap">
-                            <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/proyeksiazimuthal.png" alt="Proyeksi Azimuthal" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23f0f4f8%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%232a5c7a%22 font-family=%22Inter%22 font-size=%2220%22 dy=%22.3em%22%3E🟠 Azimuthal%3C/text%3E%3C/svg%3E'" />
+                            <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/proyeksiazimuthal.png" alt="Proyeksi Azimuthal" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23f0f7f2%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%231e7a4a%22 font-family=%22Inter%22 font-size=%2220%22 dy=%22.3em%22%3E🟠 Azimuthal%3C/text%3E%3C/svg%3E'" />
                             <span class="badge-zoom"><i class="fas fa-search-plus"></i> Zoom</span>
                             <span class="counter">03 / 03</span>
                         </div>
@@ -2174,7 +2265,7 @@
                         <p>Tidak ada proyeksi yang sempurna. Oleh karena itu, pembuat peta harus memilih jenis proyeksi berdasarkan <strong>tujuan</strong> penggunaan peta.</p>
                     </div>
                     <h5 style="color:var(--primary); font-weight:700; font-size:0.95rem; margin-top:12px;">1. Proyeksi Silinder (Cylindrical)</h5>
-                    <div style="background:rgba(26,188,156,0.02); border-radius:var(--radius-sm); padding:12px 16px; border-left:4px solid var(--accent); margin-bottom:10px;">
+                    <div style="background:rgba(46,204,113,0.02); border-radius:var(--radius-sm); padding:12px 16px; border-left:4px solid var(--accent); margin-bottom:10px;">
                         <p style="font-size:0.92rem; color:var(--text-light);"><strong>Bidang proyeksi:</strong> Tabung (silinder) yang melingkupi bumi dan menyentuh di garis ekuator.<br>
                             <strong>Cocok untuk:</strong> Daerah di sekitar <strong>ekuator (khatulistiwa)</strong>, karena distorsi minimum di ekuator dan membesar ke arah kutub.<br>
                             <strong>Contoh terkenal:</strong> <em>Proyeksi Mercator</em> – digunakan untuk navigasi laut karena sudut/arahnya akurat (conform), tetapi luas di kutub sangat membesar (Greenland terlihat sebesar Afrika).<br>
@@ -2183,7 +2274,7 @@
                         </p>
                     </div>
                     <h5 style="color:var(--primary); font-weight:700; font-size:0.95rem; margin-top:12px;">2. Proyeksi Kerucut (Conical)</h5>
-                    <div style="background:rgba(243,156,18,0.02); border-radius:var(--radius-sm); padding:12px 16px; border-left:4px solid var(--gold); margin-bottom:10px;">
+                    <div style="background:rgba(241,196,15,0.02); border-radius:var(--radius-sm); padding:12px 16px; border-left:4px solid var(--gold); margin-bottom:10px;">
                         <p style="font-size:0.92rem; color:var(--text-light);"><strong>Bidang proyeksi:</strong> Kerucut yang ditempelkan pada bumi di satu atau dua garis paralel (lintang standar).<br>
                             <strong>Cocok untuk:</strong> Wilayah <strong>lintang sedang (30°–60° LU/LS)</strong>, seperti Amerika Serikat, Eropa, dan sebagian besar Indonesia bagian utara.<br>
                             <strong>Contoh:</strong> <em>Proyeksi Lambert (Conformal Conic)</em> – sering digunakan untuk peta penerbangan dan peta negara di lintang sedang.<br>
@@ -2192,7 +2283,7 @@
                         </p>
                     </div>
                     <h5 style="color:var(--primary); font-weight:700; font-size:0.95rem; margin-top:12px;">3. Proyeksi Azimuthal (Zenithal / Planar)</h5>
-                    <div style="background:rgba(42,92,122,0.02); border-radius:var(--radius-sm); padding:12px 16px; border-left:4px solid var(--primary);">
+                    <div style="background:rgba(30,122,74,0.02); border-radius:var(--radius-sm); padding:12px 16px; border-left:4px solid var(--primary);">
                         <p style="font-size:0.92rem; color:var(--text-light);"><strong>Bidang proyeksi:</strong> Bidang datar yang menyentuh bumi di satu titik (biasanya kutub).<br>
                             <strong>Cocok untuk:</strong> Daerah <strong>kutub (Arktik dan Antarktika)</strong> serta peta hemisfer (belahan bumi).<br>
                             <strong>Contoh:</strong> <em>Proyeksi Gnomonic</em> – semua garis lurus adalah jalur terpendek (great circle), digunakan untuk navigasi jarak jauh.<br>
@@ -2200,7 +2291,7 @@
                             <strong>Kekurangan:</strong> Distorsi besar di luar titik pusat.
                         </p>
                     </div>
-                    <div style="background:rgba(42,92,122,0.02); border-radius:var(--radius-sm); padding:10px 14px; margin-top:12px; border-left:3px solid var(--primary);">
+                    <div style="background:rgba(30,122,74,0.02); border-radius:var(--radius-sm); padding:10px 14px; margin-top:12px; border-left:3px solid var(--primary);">
                         <p style="font-size:0.9rem; color:var(--text-light);"><strong>💡 Catatan Guru:</strong> Tanyakan kepada siswa, "Menurut kalian, proyeksi apa yang digunakan oleh Google Maps?" (Jawaban: Web Mercator – varian silinder yang mengutamakan bentuk untuk kenyamanan navigasi digital).</p>
                     </div>
                 </div>
@@ -2219,7 +2310,7 @@
                     <p style="font-size:0.92rem; color:var(--text-light);">Ditulis dalam bentuk pecahan atau rasio, misalnya <strong>1 : 100.000</strong>. Artinya <strong>1 cm di peta = 100.000 cm (1 km) di lapangan</strong>.</p>
                     <h5 style="color:var(--primary); font-weight:700; font-size:0.95rem; margin-top:12px;">B. Skala Garis (Grafis)</h5>
                     <p style="font-size:0.92rem; color:var(--text-light);">Berupa garis lurus yang dibagi menjadi segmen-segmen, masing-masing mewakili jarak tertentu di lapangan. Kelebihannya: tetap berlaku meskipun peta diperbesar/diperkecil (fotokopi).</p>
-                    <div style="background:rgba(243,156,18,0.02); border-radius:var(--radius-sm); padding:10px 14px; margin-top:8px; border-left:3px solid var(--gold);">
+                    <div style="background:rgba(241,196,15,0.02); border-radius:var(--radius-sm); padding:10px 14px; margin-top:8px; border-left:3px solid var(--gold);">
                         <p style="font-size:0.9rem; color:var(--text-light);"><strong>🔑 Kunci:</strong> Semakin besar angka skala (misal 1:10.000), semakin kecil area yang digambarkan, tetapi detailnya lebih tinggi (peta kota). Semakin kecil angka skala (1:1.000.000), semakin luas area, tetapi detailnya berkurang (peta dunia).</p>
                     </div>
                 </div>
@@ -2281,7 +2372,7 @@
                         <li><strong>Garis Tanggal Internasional</strong> terletak di sekitar 180° BT/BB.</li>
                         <li>Setiap perbedaan 15° bujur = perbedaan waktu 1 jam.</li>
                     </ul>
-                    <div style="background:rgba(42,92,122,0.02); border-radius:var(--radius-sm); padding:10px 14px; margin-top:8px; border-left:3px solid var(--primary);">
+                    <div style="background:rgba(30,122,74,0.02); border-radius:var(--radius-sm); padding:10px 14px; margin-top:8px; border-left:3px solid var(--primary);">
                         <p style="font-size:0.9rem; color:var(--text-light);"><strong>💡 Aplikasi:</strong> Koordinat GPS menggunakan lintang dan bujur (misal: -1.500° LU, 112.500° BT) untuk menunjukkan lokasi persis di peta digital seperti Google Maps.</p>
                     </div>
                 </div>
@@ -2297,17 +2388,17 @@
                         <p>Kemampuan menghitung skala adalah keterampilan <span class="gold-text">numerik dasar</span> yang wajib dikuasai dalam geografi. Berikut 3 rumus utama:</p>
                     </div>
                     <div style="display:grid; gap:12px; margin-top:8px;">
-                        <div style="background:rgba(243,156,18,0.02); border-radius:var(--radius-sm); padding:14px 16px; border-left:4px solid var(--gold);">
+                        <div style="background:rgba(241,196,15,0.02); border-radius:var(--radius-sm); padding:14px 16px; border-left:4px solid var(--gold);">
                             <h4 style="color:var(--gold); font-size:0.9rem; font-weight:700;">Rumus 1: Mencari Jarak Sebenarnya</h4>
                             <p style="font-size:0.95rem; color:var(--text); font-weight:500; font-family:monospace; background:rgba(0,0,0,0.02); padding:8px 12px; border-radius:6px;">Jarak Sebenarnya = Jarak pada Peta ÷ Skala</p>
                             <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;"><strong>Contoh:</strong> Jarak kota A-B di peta = 4 cm, skala 1:250.000.<br> → 4 ÷ (1/250.000) = 4 × 250.000 = 1.000.000 cm = <strong>10 km</strong>.</p>
                         </div>
-                        <div style="background:rgba(26,188,156,0.02); border-radius:var(--radius-sm); padding:14px 16px; border-left:4px solid var(--accent);">
+                        <div style="background:rgba(46,204,113,0.02); border-radius:var(--radius-sm); padding:14px 16px; border-left:4px solid var(--accent);">
                             <h4 style="color:var(--accent); font-size:0.9rem; font-weight:700;">Rumus 2: Mencari Skala</h4>
                             <p style="font-size:0.95rem; color:var(--text); font-weight:500; font-family:monospace; background:rgba(0,0,0,0.02); padding:8px 12px; border-radius:6px;">Skala = Jarak pada Peta ÷ Jarak Sebenarnya</p>
                             <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;"><strong>Contoh:</strong> Jarak pada peta = 5 cm, jarak sebenarnya = 15 km (1.500.000 cm).<br> → 5 : 1.500.000 (bagi 5) = <strong>1 : 300.000</strong>.</p>
                         </div>
-                        <div style="background:rgba(42,92,122,0.02); border-radius:var(--radius-sm); padding:14px 16px; border-left:4px solid var(--primary);">
+                        <div style="background:rgba(30,122,74,0.02); border-radius:var(--radius-sm); padding:14px 16px; border-left:4px solid var(--primary);">
                             <h4 style="color:var(--primary); font-size:0.9rem; font-weight:700;">Rumus 3: Mencari Jarak pada Peta</h4>
                             <p style="font-size:0.95rem; color:var(--text); font-weight:500; font-family:monospace; background:rgba(0,0,0,0.02); padding:8px 12px; border-radius:6px;">Jarak Peta = Jarak Sebenarnya × Skala</p>
                             <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;"><strong>Contoh:</strong> Jarak sebenarnya = 12 km (1.200.000 cm), skala 1:200.000.<br> → 1.200.000 × (1/200.000) = <strong>6 cm</strong>.</p>
@@ -2343,7 +2434,7 @@
                         <li><strong>🔤 Huruf Tegak (Roman)</strong> – untuk nama jalan, wilayah administratif, dan objek buatan manusia.</li>
                         <li><strong>📏 Ukuran Huruf</strong> – semakin besar huruf, semakin penting objek tersebut.</li>
                     </ul>
-                    <div style="background:rgba(26,188,156,0.02); border-radius:var(--radius-sm); padding:10px 14px; margin-top:8px; border-left:3px solid var(--accent);">
+                    <div style="background:rgba(46,204,113,0.02); border-radius:var(--radius-sm); padding:10px 14px; margin-top:8px; border-left:3px solid var(--accent);">
                         <p style="font-size:0.9rem; color:var(--text-light);"><strong>💡 Aktivitas:</strong> Amati peta di dinding kelas. Identifikasi 3 warna dan 3 jenis huruf yang kalian temukan! Diskusikan maknanya.</p>
                     </div>
                 </div>
@@ -2359,17 +2450,17 @@
                         <p>Setiap proyeksi peta memiliki <span class="gold-text">sifat (properti)</span> yang dipertahankan, tetapi mengorbankan sifat lainnya. Pemahaman ini penting agar kita bisa memilih peta yang tepat untuk kebutuhan tertentu.</p>
                     </div>
                     <div style="display:grid; gap:10px; margin-top:8px;">
-                        <div style="background:rgba(42,92,122,0.02); border-radius:var(--radius-sm); padding:12px 16px; border-left:4px solid var(--primary);">
+                        <div style="background:rgba(30,122,74,0.02); border-radius:var(--radius-sm); padding:12px 16px; border-left:4px solid var(--primary);">
                             <h4 style="color:var(--primary); font-size:0.9rem; font-weight:700;">1. Conform (Bentuk Tetap)</h4>
                             <p style="font-size:0.88rem; color:var(--text-light);">Mempertahankan <strong>bentuk dan sudut</strong> suatu wilayah. Sangat baik untuk navigasi (arah akurat). Contoh: <strong>Proyeksi Mercator</strong>.<br>
                                 <span style="color:#e74c3c;">Kekurangan:</span> Luas wilayah menjadi sangat terdistorsi (Greenland terlihat lebih besar dari Afrika).</p>
                         </div>
-                        <div style="background:rgba(26,188,156,0.02); border-radius:var(--radius-sm); padding:12px 16px; border-left:4px solid var(--accent);">
+                        <div style="background:rgba(46,204,113,0.02); border-radius:var(--radius-sm); padding:12px 16px; border-left:4px solid var(--accent);">
                             <h4 style="color:var(--accent); font-size:0.9rem; font-weight:700;">2. Equivalent (Luas Tetap)</h4>
                             <p style="font-size:0.88rem; color:var(--text-light);">Mempertahankan <strong>perbandingan luas</strong> yang proporsional. Sangat baik untuk peta tematik (persebaran penduduk, sumber daya alam). Contoh: <strong>Proyeksi Peters</strong>.<br>
                                 <span style="color:#e74c3c;">Kekurangan:</span> Bentuk wilayah menjadi tidak proporsional (memanjang/melebar).</p>
                         </div>
-                        <div style="background:rgba(243,156,18,0.02); border-radius:var(--radius-sm); padding:12px 16px; border-left:4px solid var(--gold);">
+                        <div style="background:rgba(241,196,15,0.02); border-radius:var(--radius-sm); padding:12px 16px; border-left:4px solid var(--gold);">
                             <h4 style="color:var(--gold); font-size:0.9rem; font-weight:700;">3. Equidistant (Jarak Tetap)</h4>
                             <p style="font-size:0.88rem; color:var(--text-light);">Mempertahankan <strong>jarak dari titik pusat</strong> yang benar. Contoh: Peta navigasi yang menghitung jarak dari stasiun radio.<br>
                                 <span style="color:#e74c3c;">Kekurangan:</span> Bentuk dan luas terdistorsi di luar titik pusat.</p>
@@ -2380,7 +2471,7 @@
                                 <span style="color:#e74c3c;">Kekurangan:</span> Distorsi besar pada jarak dan luas saat menjauh dari pusat.</p>
                         </div>
                     </div>
-                    <div style="background:rgba(243,156,18,0.02); border-radius:var(--radius-sm); padding:10px 14px; margin-top:8px; border-left:3px solid var(--gold);">
+                    <div style="background:rgba(241,196,15,0.02); border-radius:var(--radius-sm); padding:10px 14px; margin-top:8px; border-left:3px solid var(--gold);">
                         <p style="font-size:0.9rem; color:var(--text-light);"><strong>🧠 Tantangan Berpikir:</strong> Mengapa peta dunia yang kita lihat di sekolah biasanya menggunakan proyeksi Mercator (Conform) padahal luasnya salah? (Jawaban: karena secara historis digunakan untuk navigasi laut, dan bentuknya yang familiar membuatnya tetap populer, meskipun saat ini banyak kritik).</p>
                     </div>
                 </div>
@@ -2419,9 +2510,9 @@
             </div>
 
             <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px;">
-                <span class="badge" style="background:rgba(42,92,122,0.04); color:var(--primary-light); border:1px solid rgba(42,92,122,0.04);">TP 3</span>
-                <span class="badge" style="background:rgba(26,188,156,0.04); color:var(--accent); border:1px solid rgba(26,188,156,0.04);">Kreativitas</span>
-                <span class="badge" style="background:rgba(243,156,18,0.04); color:var(--gold); border:1px solid rgba(243,156,18,0.04);">Kemandirian</span>
+                <span class="badge" style="background:rgba(30,122,74,0.04); color:var(--primary-light); border:1px solid rgba(30,122,74,0.04);">TP 3</span>
+                <span class="badge" style="background:rgba(46,204,113,0.04); color:var(--accent); border:1px solid rgba(46,204,113,0.04);">Kreativitas</span>
+                <span class="badge" style="background:rgba(241,196,15,0.04); color:var(--gold); border:1px solid rgba(241,196,15,0.04);">Kemandirian</span>
             </div>
 
             <div class="card">
@@ -2455,7 +2546,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div style="background:rgba(26,188,156,0.02); border-radius:var(--radius-sm); padding:10px 14px; margin-top:8px; border-left:3px solid var(--accent);">
+                    <div style="background:rgba(46,204,113,0.02); border-radius:var(--radius-sm); padding:10px 14px; margin-top:8px; border-left:3px solid var(--accent);">
                         <p style="font-size:0.9rem; color:var(--text-light);"><strong style="color:var(--text);">Aktivitas:</strong> Ambil peta RBI skala 1:50.000 di daerahmu. Temukan titik tertinggi dan terendah, lalu hitung jarak antara dua desa!</p>
                     </div>
                     <h5 style="color:var(--primary); font-weight:700; font-size:0.95rem; margin-top:12px;">Cara Membaca Garis Kontur</h5>
@@ -2478,15 +2569,15 @@
                         <p>Peta memiliki banyak manfaat dalam kehidupan, mulai dari sehari-hari hingga pembangunan nasional.</p>
                     </div>
                     <div class="grid-2">
-                        <div style="background:rgba(42,92,122,0.02); border-radius:var(--radius-sm); padding:12px 16px; border-left:4px solid var(--primary);">
+                        <div style="background:rgba(30,122,74,0.02); border-radius:var(--radius-sm); padding:12px 16px; border-left:4px solid var(--primary);">
                             <h4 style="color:var(--primary); font-size:0.9rem; font-weight:700;">Navigasi &amp; Orientasi</h4>
                             <p style="font-size:0.92rem; color:var(--text-light);">Menentukan lokasi, arah, dan rute perjalanan (Google Maps, peta laut, GPS).</p>
                         </div>
-                        <div style="background:rgba(26,188,156,0.02); border-radius:var(--radius-sm); padding:12px 16px; border-left:4px solid var(--accent);">
+                        <div style="background:rgba(46,204,113,0.02); border-radius:var(--radius-sm); padding:12px 16px; border-left:4px solid var(--accent);">
                             <h4 style="color:var(--accent); font-size:0.9rem; font-weight:700;">Analisis Spasial</h4>
                             <p style="font-size:0.92rem; color:var(--text-light);">Menganalisis pola persebaran fenomena (kerawanan banjir, kepadatan penduduk, sebaran penyakit).</p>
                         </div>
-                        <div style="background:rgba(243,156,18,0.02); border-radius:var(--radius-sm); padding:12px 16px; border-left:4px solid var(--gold);">
+                        <div style="background:rgba(241,196,15,0.02); border-radius:var(--radius-sm); padding:12px 16px; border-left:4px solid var(--gold);">
                             <h4 style="color:var(--gold); font-size:0.9rem; font-weight:700;">Perencanaan Wilayah</h4>
                             <p style="font-size:0.92rem; color:var(--text-light);">Tata ruang, zonasi, infrastruktur, dan pengembangan kawasan.</p>
                         </div>
@@ -2526,15 +2617,15 @@
                     <h5 style="color:var(--primary); font-weight:700; font-size:0.95rem; margin-top:8px;">1. Peta Digital</h5>
                     <p style="font-size:0.92rem; color:var(--text-light);">Peta yang disajikan dalam format digital, dapat diakses melalui perangkat elektronik. Contoh: Google Maps, OpenStreetMap, peta interaktif di website. Kelebihan: mudah diperbarui, interaktif, dan dapat diintegrasikan dengan data lain.</p>
                     <h5 style="color:var(--primary); font-weight:700; font-size:0.95rem; margin-top:12px;">2. SIG (Sistem Informasi Geografis)</h5>
-                    <div style="background:rgba(42,92,122,0.02); border-radius:var(--radius-sm); padding:12px 16px; border-left:4px solid var(--primary); margin-bottom:10px;">
+                    <div style="background:rgba(30,122,74,0.02); border-radius:var(--radius-sm); padding:12px 16px; border-left:4px solid var(--primary); margin-bottom:10px;">
                         <p style="font-size:0.92rem; color:var(--text-light);"><strong>SIG</strong> adalah sistem komputer yang digunakan untuk <span class="gold-text">mengumpulkan, menyimpan, menganalisis, dan menyajikan data geografis</span>. Komponen utama SIG: perangkat keras, perangkat lunak (ArcGIS, QGIS), data spasial, dan sumber daya manusia.<br>
                             <strong>Kegunaan:</strong> analisis overlay (tumpang susun) untuk menentukan lokasi optimal, pemodelan banjir, pemetaan perubahan lahan, dan lain-lain.</p>
                     </div>
                     <h5 style="color:var(--primary); font-weight:700; font-size:0.95rem; margin-top:12px;">3. GPS (Global Positioning System)</h5>
-                    <div style="background:rgba(26,188,156,0.02); border-radius:var(--radius-sm); padding:12px 16px; border-left:4px solid var(--accent);">
+                    <div style="background:rgba(46,204,113,0.02); border-radius:var(--radius-sm); padding:12px 16px; border-left:4px solid var(--accent);">
                         <p style="font-size:0.92rem; color:var(--text-light);"><strong>GPS</strong> adalah sistem satelit yang memberikan informasi posisi (lintang, bujur, dan ketinggian) secara akurat di seluruh dunia. Digunakan untuk navigasi, survei, pemetaan, dan pelacakan. Aplikasi sehari-hari: Google Maps, Waze, dan aplikasi olahraga (Strava).</p>
                     </div>
-                    <div style="background:rgba(243,156,18,0.02); border-radius:var(--radius-sm); padding:10px 14px; margin-top:8px; border-left:3px solid var(--gold);">
+                    <div style="background:rgba(241,196,15,0.02); border-radius:var(--radius-sm); padding:10px 14px; margin-top:8px; border-left:3px solid var(--gold);">
                         <p style="font-size:0.9rem; color:var(--text-light);"><strong>💡 Tantangan:</strong> Coba cari koordinat GPS sekolahmu menggunakan smartphone! Bandingkan dengan koordinat dari Google Maps.</p>
                     </div>
                 </div>
@@ -2585,14 +2676,14 @@
                         <li><strong>Peta Wisata:</strong> Memetakan potensi ekowisata (Taman Nasional Sebangau, Danau Sembuluh) untuk ekonomi lokal dan konservasi.</li>
                         <li><strong>Peta Kebakaran:</strong> Memantau titik api (hotspot) dan mengarahkan pemadaman secara cepat.</li>
                     </ul>
-                    <div style="background:rgba(243,156,18,0.02); border-radius:var(--radius-sm); padding:10px 14px; margin-top:8px; border-left:3px solid var(--gold);">
+                    <div style="background:rgba(241,196,15,0.02); border-radius:var(--radius-sm); padding:10px 14px; margin-top:8px; border-left:3px solid var(--gold);">
                         <p style="font-size:0.9rem; color:var(--text-light);"><strong style="color:var(--text);">Pesan:</strong> Peta bukan sekadar gambar, tapi <span class="gold-text">alat untuk mengambil keputusan</span> yang lebih baik dan menyelamatkan lingkungan.</p>
                     </div>
                 </div>
             </div>
 
             <!-- Aktivitas -->
-            <div style="background:rgba(243,156,18,0.02); border-radius:var(--radius); padding:18px 20px; border-left:6px solid var(--gold); margin:12px 0;">
+            <div style="background:rgba(241,196,15,0.02); border-radius:var(--radius); padding:18px 20px; border-left:6px solid var(--gold); margin:12px 0;">
                 <h4 style="color:var(--gold); font-weight:700; font-size:1rem; display:flex; align-items:center; gap:10px;"><span>🧩</span> Aktivitas Siswa – Terapkan Keterampilanmu!</h4>
                 <p style="font-size:0.92rem; color:var(--text-light); margin-top:4px;">Pilih salah satu tugas di bawah ini, kerjakan di buku catatan, dan diskusikan dengan teman sekelas.</p>
                 <ul style="color:var(--text-light); padding-left:20px; line-height:2.2; font-size:0.92rem; margin-top:6px;">
@@ -2637,16 +2728,16 @@
 
             <div style="background:var(--card-bg); border-radius:var(--radius); padding:20px 24px; margin-bottom:24px; box-shadow:var(--shadow); border:1px solid rgba(0,0,0,0.02);">
                 <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(120px,1fr)); gap:12px;">
-                    <div style="display:flex; align-items:center; gap:12px; padding:10px 14px; background:rgba(42,92,122,0.02); border-radius:var(--radius-sm);">
-                        <div style="width:32px; height:32px; border-radius:50%; background:rgba(42,92,122,0.04); display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--primary);">A</div>
+                    <div style="display:flex; align-items:center; gap:12px; padding:10px 14px; background:rgba(30,122,74,0.02); border-radius:var(--radius-sm);">
+                        <div style="width:32px; height:32px; border-radius:50%; background:rgba(30,122,74,0.04); display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--primary);">A</div>
                         <div><span style="color:var(--text-muted); font-size:0.6rem; font-weight:600; text-transform:uppercase;">PG</span><div style="color:var(--text); font-size:1.2rem; font-weight:700;">30</div></div>
                     </div>
-                    <div style="display:flex; align-items:center; gap:12px; padding:10px 14px; background:rgba(26,188,156,0.02); border-radius:var(--radius-sm);">
-                        <div style="width:32px; height:32px; border-radius:50%; background:rgba(26,188,156,0.04); display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--accent);">B</div>
+                    <div style="display:flex; align-items:center; gap:12px; padding:10px 14px; background:rgba(46,204,113,0.02); border-radius:var(--radius-sm);">
+                        <div style="width:32px; height:32px; border-radius:50%; background:rgba(46,204,113,0.04); display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--accent);">B</div>
                         <div><span style="color:var(--text-muted); font-size:0.6rem; font-weight:600; text-transform:uppercase;">B/S</span><div style="color:var(--text); font-size:1.2rem; font-weight:700;">20</div></div>
                     </div>
-                    <div style="display:flex; align-items:center; gap:12px; padding:10px 14px; background:rgba(243,156,18,0.02); border-radius:var(--radius-sm);">
-                        <div style="width:32px; height:32px; border-radius:50%; background:rgba(243,156,18,0.04); display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--gold);">C</div>
+                    <div style="display:flex; align-items:center; gap:12px; padding:10px 14px; background:rgba(241,196,15,0.02); border-radius:var(--radius-sm);">
+                        <div style="width:32px; height:32px; border-radius:50%; background:rgba(241,196,15,0.04); display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--gold);">C</div>
                         <div><span style="color:var(--text-muted); font-size:0.6rem; font-weight:600; text-transform:uppercase;">Essay</span><div style="color:var(--text); font-size:1.2rem; font-weight:700;">5</div></div>
                     </div>
                 </div>
@@ -2659,7 +2750,7 @@
             <!-- PILIHAN GANDA (30 Soal) -->
             <div style="background:var(--card-bg); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow); border:1px solid rgba(0,0,0,0.02); margin-bottom:20px;">
                 <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
-                    <div style="width:32px; height:32px; border-radius:50%; background:rgba(42,92,122,0.04); display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--primary);">A</div>
+                    <div style="width:32px; height:32px; border-radius:50%; background:rgba(30,122,74,0.04); display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--primary);">A</div>
                     <h3 style="color:var(--text); font-size:1.05rem; font-weight:700; margin:0;">Pilihan Ganda</h3>
                     <span style="font-size:0.7rem; color:var(--text-muted); margin-left:auto;">30 Soal</span>
                 </div>
@@ -2700,7 +2791,7 @@
             <!-- BENAR / SALAH (20 Soal) -->
             <div style="background:var(--card-bg); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow); border:1px solid rgba(0,0,0,0.02); margin-bottom:20px;">
                 <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
-                    <div style="width:32px; height:32px; border-radius:50%; background:rgba(26,188,156,0.04); display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--accent);">B</div>
+                    <div style="width:32px; height:32px; border-radius:50%; background:rgba(46,204,113,0.04); display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--accent);">B</div>
                     <h3 style="color:var(--text); font-size:1.05rem; font-weight:700; margin:0;">Benar / Salah</h3>
                     <span style="font-size:0.7rem; color:var(--text-muted); margin-left:auto;">20 Soal</span>
                 </div>
@@ -2730,7 +2821,7 @@
             <!-- ESSAY (5 Soal) -->
             <div style="background:var(--card-bg); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow); border:1px solid rgba(0,0,0,0.02); margin-bottom:20px;">
                 <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
-                    <div style="width:32px; height:32px; border-radius:50%; background:rgba(243,156,18,0.04); display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--gold);">C</div>
+                    <div style="width:32px; height:32px; border-radius:50%; background:rgba(241,196,15,0.04); display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--gold);">C</div>
                     <h3 style="color:var(--text); font-size:1.05rem; font-weight:700; margin:0;">Essay</h3>
                     <span style="font-size:0.7rem; color:var(--text-muted); margin-left:auto;">5 Soal</span>
                 </div>
@@ -2826,7 +2917,7 @@
                 <span class="badge">Inspirasi</span>
             </div>
 
-            <div class="card" style="background:rgba(26,188,156,0.02); border:1px solid rgba(26,188,156,0.04);">
+            <div class="card" style="background:rgba(46,204,113,0.02); border:1px solid rgba(46,204,113,0.04);">
                 <h3 style="display:flex; align-items:center; gap:10px;"><span style="font-size:1.8rem;">🌟</span> Apa yang Kamu Dapatkan?</h3>
                 <ul class="refleksi-list">
                     <li><span class="check">✓</span><span>Memahami pengertian peta dan komponennya.</span></li>
@@ -3138,7 +3229,7 @@
             modalImage.src = src;
             modalImage.onload = function() { modalImage.style.opacity = '1'; };
             modalImage.onerror = function() {
-                this.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%23f0f4f8' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' fill='%232a5c7a' font-family='Inter' font-size='20' dy='.3em'%3E🖼️ Gambar tidak tersedia%3C/text%3E%3C/svg%3E";
+                this.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%23f0f7f2' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' fill='%231e7a4a' font-family='Inter' font-size='20' dy='.3em'%3E🖼️ Gambar tidak tersedia%3C/text%3E%3C/svg%3E";
                 modalImage.style.opacity = '1';
             };
             updateModalCaption();
