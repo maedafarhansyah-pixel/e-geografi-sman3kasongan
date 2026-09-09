@@ -18,8 +18,8 @@
         }
         body {
             font-family: 'Poppins', 'Segoe UI', sans-serif;
-            background: #07070f;
-            color: #e8f0f8;
+            background: #0d0800;
+            color: #f5ede0;
             line-height: 1.7;
             overflow-x: hidden;
             min-height: 100vh;
@@ -36,50 +36,52 @@
             pointer-events: none;
         }
 
-        /* ===== GLOW ORBS ===== */
+        /* ===== GLOW ORBS – WARM GOLD / AMBER ===== */
         .glow-orb {
             position: fixed;
             border-radius: 50%;
             filter: blur(120px);
             pointer-events: none;
             z-index: 0;
-            opacity: 0.25;
+            opacity: 0.20;
             animation: orbFloat 9s ease-in-out infinite alternate;
         }
         .glow-orb.orb-1 {
             width: 600px;
             height: 600px;
-            background: radial-gradient(circle, #7C3AED, #EC4899);
+            background: radial-gradient(circle, #F59E0B, #B45309);
             top: -250px;
             right: -250px;
             animation-delay: 0s;
+            opacity: 0.18;
         }
         .glow-orb.orb-2 {
             width: 500px;
             height: 500px;
-            background: radial-gradient(circle, #06B6D4, #7C3AED);
+            background: radial-gradient(circle, #FCD34D, #D97706);
             bottom: -200px;
             left: -200px;
             animation-delay: 2.5s;
+            opacity: 0.15;
         }
         .glow-orb.orb-3 {
             width: 350px;
             height: 350px;
-            background: radial-gradient(circle, #F59E0B, #EC4899);
+            background: radial-gradient(circle, #FBBF24, #F59E0B);
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             animation-delay: 5s;
-            opacity: 0.12;
+            opacity: 0.10;
         }
         .glow-orb.orb-4 {
             width: 300px;
             height: 300px;
-            background: radial-gradient(circle, #06B6D4, #F59E0B);
+            background: radial-gradient(circle, #FCD34D, #B45309);
             bottom: 30%;
             right: 10%;
             animation-delay: 3.5s;
-            opacity: 0.15;
+            opacity: 0.12;
         }
         @keyframes orbFloat {
             0% {
@@ -96,7 +98,7 @@
             }
         }
 
-        /* ===== COMET STARS ===== */
+        /* ===== COMET STARS – GOLDEN ===== */
         .comet-star {
             position: fixed;
             pointer-events: none;
@@ -135,11 +137,11 @@
             }
         }
 
-        /* ===== LOADER ===== */
+        /* ===== LOADER – GOLDEN ===== */
         #loader {
             position: fixed;
             inset: 0;
-            background: rgba(7, 7, 15, 0.85);
+            background: rgba(13, 8, 0, 0.92);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             display: flex;
@@ -164,10 +166,10 @@
             height: 120px;
             border-radius: 50%;
             border: 4px solid transparent;
-            border-top-color: #7C3AED;
-            border-right-color: #EC4899;
-            border-bottom-color: #06B6D4;
-            border-left-color: #F59E0B;
+            border-top-color: #F59E0B;
+            border-right-color: #FCD34D;
+            border-bottom-color: #D97706;
+            border-left-color: #FBBF24;
             animation: spinRing 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
         }
         .loader-ring::after {
@@ -176,8 +178,8 @@
             inset: 16px;
             border-radius: 50%;
             border: 3px solid transparent;
-            border-bottom-color: #F59E0B;
-            border-left-color: #06B6D4;
+            border-bottom-color: #FBBF24;
+            border-left-color: #FCD34D;
             animation: spinRing 0.8s linear infinite reverse;
         }
         .loader-ring::before {
@@ -209,7 +211,7 @@
             font-size: clamp(2.5rem, 6vw, 4rem);
             font-weight: 900;
             margin-top: 20px;
-            background: linear-gradient(135deg, #7C3AED, #EC4899, #06B6D4, #F59E0B);
+            background: linear-gradient(135deg, #F59E0B, #FCD34D, #D97706, #FBBF24);
             background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -226,7 +228,7 @@
             }
         }
         .loader-sub {
-            color: rgba(255, 255, 255, 0.25);
+            color: rgba(255, 240, 210, 0.25);
             font-size: 0.9rem;
             letter-spacing: 4px;
             font-weight: 300;
@@ -235,7 +237,7 @@
         .loader-bar-track {
             width: clamp(200px, 40vw, 400px);
             height: 6px;
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 240, 210, 0.04);
             border-radius: 10px;
             margin-top: 20px;
             overflow: hidden;
@@ -244,11 +246,11 @@
             height: 100%;
             width: 0%;
             border-radius: 10px;
-            background: linear-gradient(90deg, #7C3AED, #EC4899, #06B6D4, #F59E0B, #7C3AED);
+            background: linear-gradient(90deg, #F59E0B, #FCD34D, #D97706, #FBBF24, #F59E0B);
             background-size: 300% 100%;
             animation: barShine 2.5s linear infinite;
             transition: width 0.3s ease;
-            box-shadow: 0 0 40px rgba(124, 58, 237, 0.3);
+            box-shadow: 0 0 40px rgba(245, 158, 11, 0.25);
         }
         @keyframes barShine {
             0% {
@@ -259,7 +261,7 @@
             }
         }
         .loader-percent {
-            color: rgba(255, 255, 255, 0.15);
+            color: rgba(255, 240, 210, 0.12);
             font-size: 0.7rem;
             margin-top: 6px;
             font-weight: 500;
@@ -273,7 +275,7 @@
             left: 0;
             width: 100%;
             height: 56px;
-            background: rgba(7, 7, 15, 0.92);
+            background: rgba(13, 8, 0, 0.94);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             display: flex;
@@ -281,12 +283,12 @@
             justify-content: space-between;
             padding: 0 16px;
             z-index: 1001;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(255, 240, 210, 0.03);
         }
         .mobile-header .brand {
             font-weight: 800;
             font-size: 1.2rem;
-            background: linear-gradient(135deg, #7C3AED, #06B6D4);
+            background: linear-gradient(135deg, #F59E0B, #FCD34D);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             display: flex;
@@ -294,7 +296,7 @@
             gap: 8px;
         }
         .mobile-header .menu-toggle {
-            color: rgba(255, 255, 255, 0.4);
+            color: rgba(255, 240, 210, 0.4);
             font-size: 1.3rem;
             cursor: pointer;
             transition: 0.3s;
@@ -302,7 +304,7 @@
             border: none;
         }
         .mobile-header .menu-toggle:hover {
-            color: #fff;
+            color: #FCD34D;
         }
 
         /* ===== MAIN CONTENT ===== */
@@ -335,7 +337,7 @@
             }
         }
 
-        /* ===== SECTION HEADER ===== */
+        /* ===== SECTION HEADER – GOLDEN ===== */
         .section-header {
             display: flex;
             align-items: center;
@@ -343,7 +345,7 @@
             margin-bottom: 24px;
             padding-bottom: 14px;
             flex-wrap: wrap;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.03);
+            border-bottom: 2px solid rgba(255, 240, 210, 0.03);
             position: relative;
         }
         .section-header::after {
@@ -353,12 +355,12 @@
             left: 0;
             width: 80px;
             height: 3px;
-            background: linear-gradient(90deg, #7C3AED, #EC4899, #06B6D4);
+            background: linear-gradient(90deg, #F59E0B, #FCD34D, #D97706);
             border-radius: 10px;
         }
         .section-header .num {
-            background: linear-gradient(145deg, #7C3AED, #06B6D4);
-            color: #fff;
+            background: linear-gradient(145deg, #F59E0B, #D97706);
+            color: #0d0800;
             font-weight: 800;
             font-size: 1.1rem;
             width: 44px;
@@ -368,7 +370,7 @@
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            box-shadow: 0 8px 30px rgba(124, 58, 237, 0.35);
+            box-shadow: 0 8px 30px rgba(245, 158, 11, 0.30);
             position: relative;
         }
         .section-header .num::after {
@@ -376,7 +378,7 @@
             position: absolute;
             inset: -4px;
             border-radius: 50%;
-            border: 2px solid rgba(124, 58, 237, 0.15);
+            border: 2px solid rgba(245, 158, 11, 0.15);
             animation: ringPulse 2.5s ease-in-out infinite;
         }
         @keyframes ringPulse {
@@ -393,38 +395,38 @@
         .section-header h2 {
             font-size: 1.4rem;
             font-weight: 800;
-            color: #f0f4fa;
+            color: #f5ede0;
             letter-spacing: -0.5px;
             flex: 1;
         }
         .section-header h2 small {
             font-weight: 600;
             font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.4);
+            color: rgba(255, 240, 210, 0.35);
             display: block;
             margin-top: 2px;
         }
         .section-header .badge-pertemuan {
-            background: rgba(124, 58, 237, 0.12);
-            color: #a78bfa;
+            background: rgba(245, 158, 11, 0.10);
+            color: #FCD34D;
             padding: 4px 16px;
             border-radius: 40px;
             font-size: 0.7rem;
             font-weight: 600;
-            border: 1px solid rgba(124, 58, 237, 0.12);
+            border: 1px solid rgba(245, 158, 11, 0.08);
             letter-spacing: 0.5px;
         }
 
-        /* ===== CARDS ===== */
+        /* ===== CARDS – WARM DARK ===== */
         .card {
-            background: rgba(20, 20, 40, 0.75);
+            background: rgba(30, 20, 8, 0.80);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-radius: 18px;
             padding: 20px 18px;
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 240, 210, 0.03);
             transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-            border: 1px solid rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 240, 210, 0.03);
             position: relative;
             overflow: hidden;
         }
@@ -435,29 +437,29 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle at 30% 20%, rgba(124, 58, 237, 0.03), transparent 60%);
+            background: radial-gradient(circle at 30% 20%, rgba(245, 158, 11, 0.03), transparent 60%);
             pointer-events: none;
         }
         .card:hover {
             transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 60px rgba(124, 58, 237, 0.04);
-            border-color: rgba(124, 58, 237, 0.15);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 60px rgba(245, 158, 11, 0.04);
+            border-color: rgba(245, 158, 11, 0.12);
         }
         .card h3 {
             font-size: 1.1rem;
             font-weight: 700;
-            color: #f0f4fa;
+            color: #f5ede0;
             margin-bottom: 4px;
         }
         .card h4 {
             font-size: 1rem;
             font-weight: 600;
-            color: #dfe6e9;
+            color: #f0e8d8;
         }
         .card p,
         .card li {
             font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.75);
+            color: rgba(255, 240, 210, 0.70);
             line-height: 1.8;
             font-weight: 400;
         }
@@ -506,14 +508,14 @@
             }
         }
 
-        /* ===== PROGRESS BAR ===== */
+        /* ===== PROGRESS BAR – GOLDEN ===== */
         .progress-wrap {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
             height: 4px;
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(255, 240, 210, 0.02);
             z-index: 999;
             backdrop-filter: blur(4px);
             overflow: hidden;
@@ -521,21 +523,21 @@
         .progress-wrap .bar {
             height: 100%;
             width: 0%;
-            background: linear-gradient(90deg, #7C3AED, #EC4899, #06B6D4, #F59E0B);
+            background: linear-gradient(90deg, #F59E0B, #FCD34D, #D97706, #FBBF24);
             background-size: 300% 100%;
             transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
             border-radius: 0 4px 4px 0;
-            box-shadow: 0 0 40px rgba(124, 58, 237, 0.25);
+            box-shadow: 0 0 40px rgba(245, 158, 11, 0.20);
             animation: barGlow 3.5s ease-in-out infinite;
             position: relative;
         }
         @keyframes barGlow {
             0%,
             100% {
-                box-shadow: 0 0 20px rgba(124, 58, 237, 0.15);
+                box-shadow: 0 0 20px rgba(245, 158, 11, 0.12);
             }
             50% {
-                box-shadow: 0 0 50px rgba(6, 182, 212, 0.2);
+                box-shadow: 0 0 50px rgba(251, 191, 36, 0.18);
             }
         }
         .progress-wrap .bar::after {
@@ -545,7 +547,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 240, 210, 0.12), transparent);
             animation: sweepBar 2.5s infinite;
         }
         @keyframes sweepBar {
@@ -557,21 +559,21 @@
             }
         }
 
-        /* ===== NAVIGATION ===== */
+        /* ===== NAVIGATION – GOLDEN ===== */
         .nav-buttons {
             display: flex;
             justify-content: center;
             align-items: center;
             margin-top: 36px;
             padding-top: 18px;
-            border-top: 1px solid rgba(255, 255, 255, 0.02);
+            border-top: 1px solid rgba(255, 240, 210, 0.02);
             flex-wrap: wrap;
             gap: 10px;
         }
         .nav-buttons button {
-            background: rgba(124, 58, 237, 0.08);
-            color: #a78bfa;
-            border: 1px solid rgba(124, 58, 237, 0.10);
+            background: rgba(245, 158, 11, 0.06);
+            color: #FCD34D;
+            border: 1px solid rgba(245, 158, 11, 0.08);
             padding: 10px 24px;
             border-radius: 40px;
             font-weight: 600;
@@ -584,10 +586,10 @@
             backdrop-filter: blur(4px);
         }
         .nav-buttons button:hover:not(:disabled) {
-            background: rgba(124, 58, 237, 0.18);
-            border-color: #7C3AED;
+            background: rgba(245, 158, 11, 0.15);
+            border-color: #F59E0B;
             transform: scale(1.08) translateY(-2px);
-            box-shadow: 0 8px 30px rgba(124, 58, 237, 0.15);
+            box-shadow: 0 8px 30px rgba(245, 158, 11, 0.12);
             color: #fff;
         }
         .nav-buttons button:disabled {
@@ -597,7 +599,7 @@
         }
         .nav-buttons .counter {
             font-weight: 500;
-            color: rgba(255, 255, 255, 0.25);
+            color: rgba(255, 240, 210, 0.20);
             font-size: 0.85rem;
             padding: 0 12px;
             font-variant-numeric: tabular-nums;
@@ -624,27 +626,27 @@
             border-radius: 50%;
             font-size: 0.8rem;
             font-weight: 700;
-            color: rgba(255, 255, 255, 0.35);
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.02);
+            color: rgba(255, 240, 210, 0.30);
+            background: rgba(255, 240, 210, 0.02);
+            border: 1px solid rgba(255, 240, 210, 0.02);
             text-decoration: none;
             transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
             cursor: pointer;
         }
         .page-numbers a:hover {
-            background: rgba(124, 58, 237, 0.12);
-            border-color: #7C3AED;
+            background: rgba(245, 158, 11, 0.10);
+            border-color: #F59E0B;
             color: #fff;
             transform: scale(1.1);
         }
         .page-numbers a.active {
-            background: linear-gradient(145deg, #7C3AED, #06B6D4);
-            color: #fff;
-            border-color: #7C3AED;
-            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.25);
+            background: linear-gradient(145deg, #F59E0B, #D97706);
+            color: #0d0800;
+            border-color: #F59E0B;
+            box-shadow: 0 4px 20px rgba(245, 158, 11, 0.20);
         }
 
-        /* ===== COVER SECTION ===== */
+        /* ===== COVER SECTION – GOLDEN ===== */
         .cover-section {
             text-align: center;
             padding: 8px 0 4px;
@@ -677,26 +679,26 @@
         }
         .cover-section .badge {
             display: inline-block;
-            background: rgba(124, 58, 237, 0.10);
+            background: rgba(245, 158, 11, 0.08);
             backdrop-filter: blur(4px);
-            color: #a78bfa;
+            color: #FCD34D;
             font-size: 0.75rem;
             font-weight: 700;
             padding: 5px 20px;
             border-radius: 40px;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            border: 1px solid rgba(124, 58, 237, 0.10);
+            border: 1px solid rgba(245, 158, 11, 0.06);
         }
         .cover-section .badge-gold {
-            background: rgba(245, 158, 11, 0.08);
-            color: #F59E0B;
+            background: rgba(245, 158, 11, 0.12);
+            color: #FBBF24;
             border-color: rgba(245, 158, 11, 0.08);
         }
         .cover-section .badge-cyan {
-            background: rgba(6, 182, 212, 0.08);
-            color: #06B6D4;
-            border-color: rgba(6, 182, 212, 0.08);
+            background: rgba(251, 191, 36, 0.08);
+            color: #FCD34D;
+            border-color: rgba(251, 191, 36, 0.06);
         }
         .cover-title {
             font-size: clamp(2.2rem, 8vw, 4.5rem);
@@ -704,14 +706,14 @@
             margin: 6px 0 4px;
             letter-spacing: -1px;
             text-transform: uppercase;
-            background: linear-gradient(135deg, #f0f4fa 0%, #a78bfa 20%, #06B6D4 40%, #EC4899 60%, #F59E0B 85%);
+            background: linear-gradient(135deg, #f5ede0 0%, #FCD34D 20%, #F59E0B 40%, #FBBF24 60%, #D97706 85%);
             background-size: 400% 100%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: cosmicShimmer 7s ease-in-out infinite;
             display: inline-block;
             line-height: 1.1;
-            text-shadow: 0 0 80px rgba(124, 58, 237, 0.08);
+            text-shadow: 0 0 80px rgba(245, 158, 11, 0.06);
         }
         @keyframes cosmicShimmer {
             0%,
@@ -724,7 +726,7 @@
         }
         .cover-sub {
             font-size: clamp(1rem, 1.6vw, 1.3rem);
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255, 240, 210, 0.55);
             max-width: 680px;
             margin: 4px auto 0;
             padding: 0 12px;
@@ -733,14 +735,14 @@
             letter-spacing: 0.5px;
         }
         .cover-sub strong {
-            color: rgba(255, 255, 255, 0.85);
+            color: rgba(255, 240, 210, 0.85);
             font-weight: 700;
         }
         .cover-section .school-wrap {
             margin-top: 18px;
         }
         .cover-section .school-name {
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(255, 240, 210, 0.02);
             backdrop-filter: blur(16px);
             padding: 10px 32px;
             border-radius: 60px;
@@ -748,30 +750,30 @@
             font-weight: 800;
             font-size: clamp(1.2rem, 2.8vw, 2.2rem);
             box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 240, 210, 0.02);
             letter-spacing: 2px;
         }
         .cover-section .school-name .gold {
-            background: linear-gradient(135deg, #F59E0B, #fbbf24);
+            background: linear-gradient(135deg, #F59E0B, #FCD34D);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         .cover-section .teacher-info {
             margin-top: 6px;
             font-size: clamp(0.75rem, 0.9vw, 0.9rem);
-            color: rgba(255, 255, 255, 0.35);
+            color: rgba(255, 240, 210, 0.30);
             letter-spacing: 0.5px;
             font-weight: 500;
         }
         .cover-section .teacher-info strong {
-            color: #F59E0B;
+            color: #FCD34D;
             font-weight: 700;
-            text-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+            text-shadow: 0 0 20px rgba(245, 158, 11, 0.20);
         }
         .cover-section .teacher-info .nip {
-            color: #06B6D4;
+            color: #FBBF24;
             font-weight: 600;
-            text-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
+            text-shadow: 0 0 15px rgba(251, 191, 36, 0.12);
         }
         .cover-section .start-btn-wrap {
             display: flex;
@@ -779,8 +781,8 @@
             margin: 24px 0 12px;
         }
         .cover-section .start-btn {
-            background: linear-gradient(145deg, #7C3AED, #06B6D4);
-            color: #fff;
+            background: linear-gradient(145deg, #F59E0B, #D97706);
+            color: #0d0800;
             border: none;
             padding: clamp(14px, 2.2vw, 22px) clamp(36px, 6vw, 70px);
             border-radius: 60px;
@@ -788,7 +790,7 @@
             font-size: clamp(1.1rem, 1.8vw, 1.4rem);
             cursor: pointer;
             transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 0 8px 50px rgba(124, 58, 237, 0.2);
+            box-shadow: 0 8px 50px rgba(245, 158, 11, 0.15);
             display: inline-flex;
             align-items: center;
             gap: 16px;
@@ -802,7 +804,7 @@
             inset: -2px;
             border-radius: 60px;
             padding: 2px;
-            background: linear-gradient(135deg, #7C3AED, #EC4899, #06B6D4, #F59E0B);
+            background: linear-gradient(135deg, #F59E0B, #FCD34D, #D97706, #FBBF24);
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor;
             mask-composite: exclude;
@@ -814,28 +816,28 @@
         }
         .cover-section .start-btn:hover {
             transform: scale(1.06) translateY(-4px);
-            box-shadow: 0 16px 60px rgba(124, 58, 237, 0.3);
+            box-shadow: 0 16px 60px rgba(245, 158, 11, 0.25);
         }
 
-        /* ===== NAV BOX ===== */
+        /* ===== NAV BOX – GOLDEN ===== */
         .nav-box {
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(30, 20, 8, 0.85);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-radius: 28px;
             padding: clamp(20px, 3vw, 36px) clamp(16px, 2.5vw, 32px);
             margin-top: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.02);
-            box-shadow: 0 16px 60px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 240, 210, 0.02);
+            box-shadow: 0 16px 60px rgba(0, 0, 0, 0.4);
         }
         .nav-box .nav-header {
-            color: #a78bfa;
+            color: #FCD34D;
             display: flex;
             align-items: center;
             gap: 14px;
             font-size: clamp(1rem, 1.2vw, 1.2rem);
             font-weight: 700;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid rgba(255, 240, 210, 0.02);
             padding-bottom: 14px;
             margin-bottom: 20px;
             letter-spacing: 0.5px;
@@ -846,8 +848,8 @@
             gap: 10px;
         }
         .nav-box .nav-item {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.04);
+            background: rgba(255, 240, 210, 0.02);
+            border: 1px solid rgba(255, 240, 210, 0.03);
             border-radius: 16px;
             padding: 14px 10px;
             text-align: center;
@@ -863,29 +865,29 @@
         .nav-box .nav-item .num-badge {
             font-size: 1.3rem;
             font-weight: 900;
-            background: linear-gradient(145deg, #7C3AED, #06B6D4);
-            color: #fff;
+            background: linear-gradient(145deg, #F59E0B, #D97706);
+            color: #0d0800;
             padding: 4px 14px;
             border-radius: 30px;
-            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.2);
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.15);
             min-width: 36px;
             line-height: 1.6;
         }
         .nav-box .nav-item .nav-label {
             font-size: 0.9rem;
             font-weight: 800;
-            color: #f0f4fa;
+            color: #f5ede0;
             letter-spacing: 0.5px;
         }
         .nav-box .nav-item:hover {
-            background: rgba(124, 58, 237, 0.15);
+            background: rgba(245, 158, 11, 0.10);
             transform: translateY(-6px) scale(1.04);
-            border-color: rgba(124, 58, 237, 0.2);
-            box-shadow: 0 8px 30px rgba(124, 58, 237, 0.10);
+            border-color: rgba(245, 158, 11, 0.15);
+            box-shadow: 0 8px 30px rgba(245, 158, 11, 0.06);
         }
         .nav-box .nav-item:hover .num-badge {
-            background: linear-gradient(145deg, #EC4899, #F59E0B);
-            box-shadow: 0 4px 20px rgba(236, 72, 153, 0.2);
+            background: linear-gradient(145deg, #FCD34D, #F59E0B);
+            box-shadow: 0 4px 20px rgba(245, 158, 11, 0.20);
         }
         @media (max-width:480px) {
             .nav-box .nav-grid {
@@ -905,15 +907,15 @@
             }
         }
 
-        /* ===== CP & ATP ===== */
+        /* ===== CP & ATP – GOLDEN ===== */
         .cp-atp-box {
-            background: rgba(20, 20, 40, 0.85);
+            background: rgba(30, 20, 8, 0.85);
             backdrop-filter: blur(8px);
             border-radius: 16px;
             padding: 18px 20px;
-            border-left: 6px solid #7C3AED;
+            border-left: 6px solid #F59E0B;
             margin: 10px 0;
-            color: rgba(255, 255, 255, 0.85);
+            color: rgba(255, 240, 210, 0.80);
             position: relative;
             overflow: hidden;
             font-size: 0.95rem;
@@ -927,15 +929,15 @@
             width: 200px;
             height: 200px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(124, 58, 237, 0.03), transparent 70%);
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.03), transparent 70%);
             pointer-events: none;
         }
         .cp-atp-box strong {
-            color: #a78bfa;
+            color: #FCD34D;
             font-weight: 700;
         }
 
-        /* ===== MATERI DETAIL ===== */
+        /* ===== MATERI DETAIL – GOLDEN ===== */
         .materi-detail {
             margin: 8px 0;
             border-radius: 14px;
@@ -947,7 +949,7 @@
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
         }
         .materi-detail .detail-header {
-            background: rgba(20, 20, 40, 0.5);
+            background: rgba(30, 20, 8, 0.50);
             padding: 14px 18px;
             border-radius: 14px;
             cursor: pointer;
@@ -959,17 +961,17 @@
             user-select: none;
         }
         .materi-detail .detail-header:hover {
-            background: rgba(124, 58, 237, 0.06);
-            border-left-color: rgba(124, 58, 237, 0.2);
+            background: rgba(245, 158, 11, 0.05);
+            border-left-color: rgba(245, 158, 11, 0.15);
         }
         .materi-detail .detail-header.active {
-            border-left-color: #7C3AED;
-            background: rgba(124, 58, 237, 0.05);
+            border-left-color: #F59E0B;
+            background: rgba(245, 158, 11, 0.04);
             border-radius: 14px 14px 0 0;
         }
         .materi-detail .detail-header h4 {
             margin: 0;
-            color: #f0f4fa;
+            color: #f5ede0;
             font-size: 0.95rem;
             font-weight: 700;
             display: flex;
@@ -983,20 +985,20 @@
         .materi-detail .detail-header .fa-chevron-down {
             transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease;
             font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.2);
+            color: rgba(255, 240, 210, 0.15);
         }
         .materi-detail .detail-header:hover .fa-chevron-down {
-            color: #a78bfa;
+            color: #FCD34D;
         }
         .materi-detail .detail-header.active .fa-chevron-down {
-            color: #7C3AED;
+            color: #F59E0B;
         }
         .materi-detail .detail-body {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.7s cubic-bezier(0.22, 1, 0.36, 1), padding 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease 0.05s, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.05s;
             padding: 0 18px;
-            background: rgba(0, 0, 0, 0.12);
+            background: rgba(0, 0, 0, 0.15);
             border-radius: 0 0 14px 14px;
             opacity: 0;
             transform: translateY(-12px) scale(0.98);
@@ -1007,29 +1009,29 @@
             padding: 18px 18px 24px;
             opacity: 1;
             transform: translateY(0) scale(1);
-            border-top-color: rgba(124, 58, 237, 0.04);
+            border-top-color: rgba(245, 158, 11, 0.04);
         }
 
-        /* ===== DEF BLOCK ===== */
+        /* ===== DEF BLOCK – GOLDEN ===== */
         .def-block {
-            background: rgba(20, 20, 40, 0.7);
+            background: rgba(30, 20, 8, 0.70);
             backdrop-filter: blur(8px);
             border-radius: 16px;
             padding: 18px 20px;
-            border-left: 6px solid #7C3AED;
+            border-left: 6px solid #F59E0B;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
             margin: 12px 0;
             transition: border-color 0.4s ease;
         }
         .def-block:hover {
-            border-color: #06B6D4;
+            border-color: #FCD34D;
         }
         .def-block .source {
             font-weight: 700;
-            color: #f0f4fa;
+            color: #f5ede0;
         }
 
-        /* ===== TABLE ===== */
+        /* ===== TABLE – GOLDEN ===== */
         .table-wrap {
             overflow-x: auto;
             margin: 10px 0;
@@ -1038,7 +1040,7 @@
             width: 100%;
             border-collapse: collapse;
             font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.85);
+            color: rgba(255, 240, 210, 0.80);
             background: rgba(0, 0, 0, 0.12);
             border-radius: 10px;
             overflow: hidden;
@@ -1046,20 +1048,20 @@
         .table-wrap th,
         .table-wrap td {
             padding: 10px 14px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(255, 240, 210, 0.03);
             text-align: left;
             vertical-align: top;
         }
         .table-wrap th {
-            background: rgba(124, 58, 237, 0.06);
-            color: #a78bfa;
+            background: rgba(245, 158, 11, 0.06);
+            color: #FCD34D;
             font-weight: 700;
         }
         .table-wrap tr:last-child td {
             border-bottom: none;
         }
         .table-wrap tr:hover td {
-            background: rgba(124, 58, 237, 0.02);
+            background: rgba(245, 158, 11, 0.02);
         }
         @media (max-width:600px) {
             .table-wrap table {
@@ -1071,18 +1073,18 @@
             }
         }
 
-        /* ===== MINI QUIZ ===== */
+        /* ===== MINI QUIZ – GOLDEN ===== */
         .mini-quiz {
-            background: rgba(20, 20, 40, 0.6);
+            background: rgba(30, 20, 8, 0.60);
             backdrop-filter: blur(8px);
             border-radius: 16px;
             padding: 18px 20px;
-            border: 1px solid rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 240, 210, 0.02);
             margin: 12px 0;
         }
         .mini-quiz .quiz-question {
             font-weight: 700;
-            color: #f0f4fa;
+            color: #f5ede0;
             margin-bottom: 10px;
             font-size: 0.95rem;
         }
@@ -1092,9 +1094,9 @@
             gap: 8px;
         }
         .mini-quiz .quiz-options button {
-            background: rgba(255, 255, 255, 0.02);
-            border: 2px solid rgba(255, 255, 255, 0.03);
-            color: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 240, 210, 0.02);
+            border: 2px solid rgba(255, 240, 210, 0.03);
+            color: rgba(255, 240, 210, 0.55);
             padding: 8px 20px;
             border-radius: 30px;
             cursor: pointer;
@@ -1104,19 +1106,19 @@
             font-family: inherit;
         }
         .mini-quiz .quiz-options button:hover {
-            background: rgba(124, 58, 237, 0.06);
-            border-color: #7C3AED;
+            background: rgba(245, 158, 11, 0.06);
+            border-color: #F59E0B;
             color: #fff;
         }
         .mini-quiz .quiz-options button.correct {
-            background: rgba(6, 182, 212, 0.12);
-            border-color: #06B6D4;
-            color: #06B6D4;
+            background: rgba(245, 158, 11, 0.12);
+            border-color: #F59E0B;
+            color: #FCD34D;
         }
         .mini-quiz .quiz-options button.wrong {
-            background: rgba(236, 72, 153, 0.12);
-            border-color: #EC4899;
-            color: #EC4899;
+            background: rgba(185, 28, 28, 0.12);
+            border-color: #B91C1C;
+            color: #F87171;
         }
         .mini-quiz .quiz-feedback {
             margin-top: 10px;
@@ -1130,17 +1132,17 @@
             display: block;
         }
         .mini-quiz .quiz-feedback.success {
-            background: rgba(6, 182, 212, 0.04);
-            border-left: 4px solid #06B6D4;
-            color: #06B6D4;
+            background: rgba(245, 158, 11, 0.04);
+            border-left: 4px solid #F59E0B;
+            color: #FCD34D;
         }
         .mini-quiz .quiz-feedback.fail {
-            background: rgba(236, 72, 153, 0.04);
-            border-left: 4px solid #EC4899;
-            color: #EC4899;
+            background: rgba(185, 28, 28, 0.04);
+            border-left: 4px solid #B91C1C;
+            color: #F87171;
         }
 
-        /* ===== PROGRESS TRACKER ===== */
+        /* ===== PROGRESS TRACKER – GOLDEN ===== */
         .progress-tracker {
             display: flex;
             align-items: center;
@@ -1152,35 +1154,35 @@
             width: 32px;
             height: 32px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.02);
-            border: 2px solid rgba(255, 255, 255, 0.03);
+            background: rgba(255, 240, 210, 0.02);
+            border: 2px solid rgba(255, 240, 210, 0.03);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 0.8rem;
             font-weight: 700;
-            color: rgba(255, 255, 255, 0.15);
+            color: rgba(255, 240, 210, 0.12);
             transition: all 0.4s ease;
         }
         .progress-tracker .step.done {
-            background: rgba(6, 182, 212, 0.08);
-            border-color: #06B6D4;
-            color: #06B6D4;
+            background: rgba(245, 158, 11, 0.08);
+            border-color: #F59E0B;
+            color: #FCD34D;
         }
         .progress-tracker .step.active {
-            background: rgba(124, 58, 237, 0.12);
-            border-color: #7C3AED;
-            color: #a78bfa;
-            box-shadow: 0 0 20px rgba(124, 58, 237, 0.06);
+            background: rgba(245, 158, 11, 0.10);
+            border-color: #F59E0B;
+            color: #FCD34D;
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.06);
         }
         .progress-tracker .line {
             flex: 1;
             min-width: 20px;
             height: 2px;
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 240, 210, 0.03);
         }
         .progress-tracker .line.done {
-            background: #06B6D4;
+            background: #F59E0B;
         }
 
         /* ===== REVEAL ===== */
@@ -1194,45 +1196,45 @@
             transform: translateY(0);
         }
 
-        /* ===== LOCAL BADGE ===== */
+        /* ===== LOCAL BADGE – GOLDEN ===== */
         .local-badge {
             display: inline-block;
             background: rgba(245, 158, 11, 0.06);
-            color: #F59E0B;
+            color: #FCD34D;
             font-size: 0.65rem;
             font-weight: 700;
             padding: 2px 12px;
             border-radius: 20px;
-            border: 1px solid rgba(245, 158, 11, 0.05);
+            border: 1px solid rgba(245, 158, 11, 0.04);
             letter-spacing: 0.5px;
             margin-left: 8px;
         }
         .hot-badge {
             display: inline-block;
-            background: rgba(236, 72, 153, 0.10);
-            color: #EC4899;
+            background: rgba(185, 28, 28, 0.08);
+            color: #F87171;
             font-size: 0.6rem;
             font-weight: 700;
             padding: 2px 10px;
             border-radius: 20px;
-            border: 1px solid rgba(236, 72, 153, 0.06);
+            border: 1px solid rgba(185, 28, 28, 0.04);
             letter-spacing: 0.5px;
             margin-left: 6px;
         }
         .pertemuan-badge {
             display: inline-block;
-            background: rgba(124, 58, 237, 0.06);
-            color: #a78bfa;
+            background: rgba(245, 158, 11, 0.06);
+            color: #FCD34D;
             padding: 2px 18px;
             border-radius: 30px;
             font-size: 0.75rem;
             font-weight: 700;
-            border: 1px solid rgba(124, 58, 237, 0.04);
+            border: 1px solid rgba(245, 158, 11, 0.04);
             margin-bottom: 8px;
             letter-spacing: 0.3px;
         }
         .school-name-gold {
-            background: linear-gradient(135deg, #F59E0B, #fbbf24);
+            background: linear-gradient(135deg, #F59E0B, #FCD34D);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 700;
@@ -1249,8 +1251,8 @@
             gap: 14px;
             padding: 10px 0;
             font-size: 1rem;
-            color: rgba(255, 255, 255, 0.75);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+            color: rgba(255, 240, 210, 0.70);
+            border-bottom: 1px solid rgba(255, 240, 210, 0.02);
             font-weight: 400;
         }
         .refleksi-list li:last-child {
@@ -1258,21 +1260,21 @@
         }
         .refleksi-list li .check {
             font-size: 1.2rem;
-            color: #06B6D4;
+            color: #F59E0B;
             flex-shrink: 0;
             margin-top: 2px;
         }
 
         .quote-block {
-            background: rgba(20, 20, 40, 0.7);
+            background: rgba(30, 20, 8, 0.70);
             backdrop-filter: blur(8px);
-            border-left: 6px solid #7C3AED;
+            border-left: 6px solid #F59E0B;
             padding: 18px 22px;
             border-radius: 14px;
             margin: 12px 0;
             font-style: italic;
             font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.75);
+            color: rgba(255, 240, 210, 0.70);
             font-weight: 400;
         }
         .quote-block .author {
@@ -1280,16 +1282,16 @@
             margin-top: 8px;
             font-style: normal;
             font-weight: 700;
-            background: linear-gradient(135deg, #7C3AED, #06B6D4);
+            background: linear-gradient(135deg, #F59E0B, #FCD34D);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-align: right;
         }
 
         .celebration-box {
-            background: linear-gradient(145deg, rgba(20, 30, 40, 0.9), rgba(10, 15, 30, 0.9));
+            background: linear-gradient(145deg, rgba(30, 20, 8, 0.90), rgba(20, 12, 4, 0.90));
             backdrop-filter: blur(8px);
-            border: 2px solid #7C3AED;
+            border: 2px solid #F59E0B;
             border-radius: 20px;
             padding: 28px 24px;
             text-align: center;
@@ -1301,17 +1303,17 @@
         @keyframes celebPulse {
             0%,
             100% {
-                border-color: #7C3AED;
-                box-shadow: 0 0 40px rgba(124, 58, 237, 0.04);
+                border-color: #F59E0B;
+                box-shadow: 0 0 40px rgba(245, 158, 11, 0.04);
             }
             50% {
-                border-color: #06B6D4;
-                box-shadow: 0 0 60px rgba(6, 182, 212, 0.06);
+                border-color: #FCD34D;
+                box-shadow: 0 0 60px rgba(251, 191, 36, 0.06);
             }
         }
         .celebration-box h3 {
             font-size: 1.8rem;
-            background: linear-gradient(135deg, #7C3AED, #EC4899, #06B6D4);
+            background: linear-gradient(135deg, #F59E0B, #FCD34D, #D97706);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 10px;
@@ -1319,13 +1321,13 @@
         }
         .celebration-box p {
             font-size: 1.05rem;
-            color: rgba(255, 255, 255, 0.75);
+            color: rgba(255, 240, 210, 0.70);
             font-weight: 400;
         }
         .celebration-box .next-btn {
             display: inline-block;
-            background: linear-gradient(145deg, #7C3AED, #06B6D4);
-            color: #fff;
+            background: linear-gradient(145deg, #F59E0B, #D97706);
+            color: #0d0800;
             padding: 14px 40px;
             border-radius: 60px;
             font-weight: 700;
@@ -1335,7 +1337,7 @@
             margin-top: 16px;
             border: none;
             cursor: default;
-            box-shadow: 0 8px 30px rgba(124, 58, 237, 0.15);
+            box-shadow: 0 8px 30px rgba(245, 158, 11, 0.12);
         }
 
         .ref-list {
@@ -1344,66 +1346,66 @@
         }
         .ref-list li {
             padding: 8px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid rgba(255, 240, 210, 0.02);
             font-size: 0.9rem;
             display: flex;
             align-items: baseline;
             gap: 12px;
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255, 240, 210, 0.55);
             transition: all 0.3s ease;
             font-weight: 400;
         }
         .ref-list li:hover {
             color: #fff;
             padding-left: 8px;
-            border-color: rgba(124, 58, 237, 0.2);
+            border-color: rgba(245, 158, 11, 0.15);
         }
         .ref-list li strong {
             font-weight: 600;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 240, 210, 0.65);
         }
 
         .footer-credit {
             text-align: center;
             margin-top: 20px;
             padding-top: 14px;
-            border-top: 1px solid rgba(255, 255, 255, 0.02);
+            border-top: 1px solid rgba(255, 240, 210, 0.02);
             font-size: 0.88rem;
-            color: rgba(255, 255, 255, 0.2);
+            color: rgba(255, 240, 210, 0.18);
             font-weight: 400;
         }
         .footer-credit strong {
-            color: #F59E0B;
+            color: #FCD34D;
             font-weight: 700;
-            text-shadow: 0 0 20px rgba(245, 158, 11, 0.2);
+            text-shadow: 0 0 20px rgba(245, 158, 11, 0.12);
         }
         .footer-credit .nip {
-            color: #06B6D4;
+            color: #FBBF24;
             font-weight: 500;
-            text-shadow: 0 0 12px rgba(6, 182, 212, 0.15);
+            text-shadow: 0 0 12px rgba(251, 191, 36, 0.08);
         }
 
-        /* ===== ASESMEN ===== */
+        /* ===== ASESMEN – GOLDEN ===== */
         .soal-pg {
             margin-bottom: 14px;
             padding: 14px 18px;
-            background: rgba(20, 20, 40, 0.5);
+            background: rgba(30, 20, 8, 0.50);
             border-radius: 12px;
-            border-left: 4px solid #7C3AED;
+            border-left: 4px solid #F59E0B;
             transition: all 0.3s ease;
         }
         .soal-pg:hover {
-            border-left-color: #06B6D4;
-            background: rgba(20, 20, 40, 0.7);
+            border-left-color: #FCD34D;
+            background: rgba(30, 20, 8, 0.70);
         }
         .soal-pg .nomor {
-            color: #a78bfa;
+            color: #FCD34D;
             font-weight: 700;
             font-size: 0.85rem;
             margin-right: 8px;
         }
         .soal-pg .pertanyaan {
-            color: #f0f4fa;
+            color: #f5ede0;
             font-weight: 600;
             font-size: 0.95rem;
             margin-bottom: 4px;
@@ -1417,7 +1419,7 @@
         .soal-pg .opsi span {
             display: inline-block;
             font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255, 240, 210, 0.55);
             line-height: 2;
         }
         @media (max-width:600px) {
@@ -1430,25 +1432,25 @@
         .soal-bs {
             margin-bottom: 10px;
             padding: 12px 16px;
-            background: rgba(20, 20, 40, 0.4);
+            background: rgba(30, 20, 8, 0.40);
             border-radius: 10px;
-            border-left: 4px solid #06B6D4;
+            border-left: 4px solid #FBBF24;
             transition: all 0.3s ease;
             display: flex;
             align-items: flex-start;
             gap: 12px;
         }
         .soal-bs:hover {
-            background: rgba(20, 20, 40, 0.6);
+            background: rgba(30, 20, 8, 0.60);
         }
         .soal-bs .nomor {
-            color: #06B6D4;
+            color: #FBBF24;
             font-weight: 700;
             font-size: 0.85rem;
             min-width: 30px;
         }
         .soal-bs .pertanyaan {
-            color: #f0f4fa;
+            color: #f5ede0;
             font-weight: 500;
             font-size: 0.92rem;
             flex: 1;
@@ -1457,28 +1459,28 @@
         .soal-essay {
             margin-bottom: 14px;
             padding: 14px 18px;
-            background: rgba(20, 20, 40, 0.4);
+            background: rgba(30, 20, 8, 0.40);
             border-radius: 12px;
-            border-left: 4px solid #F59E0B;
+            border-left: 4px solid #D97706;
             transition: all 0.3s ease;
         }
         .soal-essay:hover {
-            background: rgba(20, 20, 40, 0.6);
+            background: rgba(30, 20, 8, 0.60);
         }
         .soal-essay .nomor {
-            color: #F59E0B;
+            color: #D97706;
             font-weight: 700;
             font-size: 0.85rem;
             margin-right: 8px;
         }
         .soal-essay .pertanyaan {
-            color: #f0f4fa;
+            color: #f5ede0;
             font-weight: 600;
             font-size: 0.95rem;
             margin-bottom: 4px;
         }
         .soal-essay .petunjuk {
-            color: rgba(255, 255, 255, 0.2);
+            color: rgba(255, 240, 210, 0.18);
             font-size: 0.85rem;
             font-style: italic;
             font-weight: 400;
@@ -1518,13 +1520,13 @@
         .modal-overlay .modal-content {
             max-width: 92vw;
             max-height: 92vh;
-            background: rgba(20, 20, 40, 0.7);
+            background: rgba(30, 20, 8, 0.70);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-radius: 28px;
             padding: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            box-shadow: 0 40px 120px rgba(0, 0, 0, 0.9), 0 0 80px rgba(124, 58, 237, 0.04);
+            border: 1px solid rgba(255, 240, 210, 0.03);
+            box-shadow: 0 40px 120px rgba(0, 0, 0, 0.9), 0 0 80px rgba(245, 158, 11, 0.03);
             position: relative;
             text-align: center;
             cursor: default;
@@ -1557,7 +1559,7 @@
             right: -10px;
             background: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(16px);
-            color: rgba(255, 255, 255, 0.5);
+            color: rgba(255, 240, 210, 0.40);
             width: 44px;
             height: 44px;
             border-radius: 50%;
@@ -1566,23 +1568,23 @@
             justify-content: center;
             font-size: 1.2rem;
             cursor: pointer;
-            border: 1px solid rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 240, 210, 0.02);
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
             z-index: 20;
         }
         .modal-overlay .modal-close:hover {
-            background: rgba(236, 72, 153, 0.10);
+            background: rgba(245, 158, 11, 0.08);
             transform: rotate(90deg) scale(1.08);
-            border-color: rgba(236, 72, 153, 0.06);
-            color: #EC4899;
+            border-color: rgba(245, 158, 11, 0.06);
+            color: #FCD34D;
         }
         .modal-overlay .modal-content .caption {
-            color: rgba(255, 255, 255, 0.3);
+            color: rgba(255, 240, 210, 0.25);
             font-size: 0.9rem;
             margin-top: 12px;
             padding-top: 10px;
-            border-top: 1px solid rgba(255, 255, 255, 0.02);
+            border-top: 1px solid rgba(255, 240, 210, 0.02);
             letter-spacing: 0.5px;
             font-weight: 400;
             line-height: 1.6;
@@ -1608,14 +1610,14 @@
             }
         }
 
-        /* ===== IMAGE CARD ===== */
+        /* ===== IMAGE CARD – GOLDEN ===== */
         .image-card-premium {
-            background: rgba(20, 20, 40, 0.6);
+            background: rgba(30, 20, 8, 0.60);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-radius: 20px;
             padding: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 240, 210, 0.02);
             transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
             cursor: pointer;
             position: relative;
@@ -1626,8 +1628,8 @@
         }
         .image-card-premium:hover {
             transform: translateY(-12px) scale(1.02) rotateX(2deg) rotateY(4deg);
-            border-color: rgba(124, 58, 237, 0.10);
-            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5), 0 0 60px rgba(124, 58, 237, 0.03);
+            border-color: rgba(245, 158, 11, 0.08);
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5), 0 0 60px rgba(245, 158, 11, 0.03);
         }
         .image-card-premium .img-wrap {
             position: relative;
@@ -1642,7 +1644,7 @@
             border-radius: 14px;
             transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
             display: block;
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(255, 240, 210, 0.02);
         }
         .image-card-premium:hover .img-wrap img {
             transform: scale(1.04);
@@ -1651,7 +1653,7 @@
             margin-top: 12px;
             font-size: 0.95rem;
             font-weight: 700;
-            color: #f0f4fa;
+            color: #f5ede0;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1659,7 +1661,7 @@
         }
         .image-card-premium .image-sub-premium {
             font-size: 0.82rem;
-            color: rgba(255, 255, 255, 0.3);
+            color: rgba(255, 240, 210, 0.25);
             margin-top: 2px;
             font-weight: 400;
             letter-spacing: 0.3px;
@@ -1681,9 +1683,9 @@
             }
         }
 
-        /* ===== ENRICHMENT BOX ===== */
+        /* ===== ENRICHMENT BOX – GOLDEN ===== */
         .enrichment-box {
-            background: linear-gradient(145deg, rgba(20, 30, 50, 0.85), rgba(10, 20, 40, 0.85));
+            background: linear-gradient(145deg, rgba(30, 20, 8, 0.85), rgba(20, 12, 4, 0.85));
             backdrop-filter: blur(8px);
             border-radius: 16px;
             padding: 18px 20px;
@@ -1702,7 +1704,7 @@
             transform: rotate(10deg);
         }
         .enrichment-box h4 {
-            color: #F59E0B;
+            color: #FCD34D;
             font-size: 1rem;
             font-weight: 700;
             display: flex;
@@ -1711,7 +1713,7 @@
         }
         .enrichment-box p,
         .enrichment-box li {
-            color: rgba(255, 255, 255, 0.75);
+            color: rgba(255, 240, 210, 0.70);
             font-size: 0.92rem;
             font-weight: 400;
             line-height: 1.8;
@@ -1725,15 +1727,15 @@
         }
 
         .deep-dive {
-            background: linear-gradient(145deg, rgba(40, 20, 50, 0.85), rgba(20, 10, 40, 0.85));
+            background: linear-gradient(145deg, rgba(30, 20, 8, 0.85), rgba(20, 12, 4, 0.85));
             backdrop-filter: blur(8px);
             border-radius: 16px;
             padding: 18px 20px;
-            border-left: 6px solid #a78bfa;
+            border-left: 6px solid #FBBF24;
             margin: 14px 0;
         }
         .deep-dive h4 {
-            color: #a78bfa;
+            color: #FBBF24;
             font-size: 1rem;
             font-weight: 700;
             display: flex;
@@ -1742,7 +1744,7 @@
         }
         .deep-dive p,
         .deep-dive li {
-            color: rgba(255, 255, 255, 0.75);
+            color: rgba(255, 240, 210, 0.70);
             font-size: 0.92rem;
             font-weight: 400;
             line-height: 1.8;
@@ -1756,41 +1758,41 @@
         }
 
         .example-box {
-            background: rgba(6, 182, 212, 0.03);
+            background: rgba(245, 158, 11, 0.03);
             border-radius: 10px;
             padding: 12px 16px;
-            border-left: 3px solid #06B6D4;
+            border-left: 3px solid #F59E0B;
             margin: 8px 0;
         }
         .example-box .label-example {
             font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: #06B6D4;
+            color: #FCD34D;
             font-weight: 700;
         }
         .example-box p {
             font-size: 0.92rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 240, 210, 0.65);
             font-weight: 400;
             margin-top: 2px;
         }
         .example-box strong {
-            color: #f0f4fa;
+            color: #f5ede0;
             font-weight: 700;
         }
 
         /* ===== HOTS TAG ===== */
         .hots-tag {
             display: inline-block;
-            background: rgba(236, 72, 153, 0.08);
-            color: #EC4899;
+            background: rgba(185, 28, 28, 0.08);
+            color: #F87171;
             padding: 2px 10px;
             border-radius: 20px;
             font-size: 0.6rem;
             font-weight: 700;
             letter-spacing: 0.5px;
-            border: 1px solid rgba(236, 72, 153, 0.05);
+            border: 1px solid rgba(185, 28, 28, 0.04);
             margin-left: 6px;
         }
 
@@ -1895,7 +1897,7 @@
                 <span class="badge">KELAS X / FASE E</span>
                 <span class="badge badge-gold">4 × 45 Menit</span>
                 <span class="badge badge-cyan">Kurikulum Merdeka</span>
-                <span class="badge" style="background:rgba(236,72,153,0.08); color:#EC4899; border-color:rgba(236,72,153,0.06);">HOTS</span>
+                <span class="badge" style="background:rgba(245,158,11,0.06); color:#FCD34D; border-color:rgba(245,158,11,0.04);">HOTS</span>
             </div>
             <h1 class="cover-title reveal">SISTEM INFORMASI<br />GEOGRAFI</h1>
             <p class="cover-sub reveal">
@@ -1933,9 +1935,9 @@
         <!-- SECTION 2 : PERTEMUAN 1 – PENGERTIAN, KOMPONEN, RUANG LINGKUP -->
         <!-- ============================================================ -->
         <section id="section2" class="section">
-            <div style="background:rgba(124,58,237,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(124,58,237,0.12); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-                <div style="display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.35); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
-                <button onclick="navigateTo('section1')" style="background:rgba(255,255,255,0.02); color:rgba(255,255,255,0.25); border:1px solid rgba(255,255,255,0.02); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem;">⌂ Beranda</button>
+            <div style="background:rgba(245,158,11,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(245,158,11,0.08); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                <div style="display:flex; align-items:center; gap:8px; color:rgba(255,240,210,0.30); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
+                <button onclick="navigateTo('section1')" style="background:rgba(255,240,210,0.02); color:rgba(255,240,210,0.20); border:1px solid rgba(255,240,210,0.02); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem;">⌂ Beranda</button>
             </div>
             <div class="section-header">
                 <div class="num">02</div>
@@ -1947,15 +1949,15 @@
                 <span class="step">2</span><span class="line"></span>
                 <span class="step">3</span><span class="line"></span>
                 <span class="step">4</span>
-                <span style="color:rgba(255,255,255,0.10); font-size:0.75rem; font-weight:500; margin-left:8px;">Klik untuk eksplorasi</span>
+                <span style="color:rgba(255,240,210,0.08); font-size:0.75rem; font-weight:500; margin-left:8px;">Klik untuk eksplorasi</span>
             </div>
             <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;">
                 <span class="pertemuan-badge">TP 1</span>
-                <span class="pertemuan-badge" style="background:rgba(6,182,212,0.06); color:#06B6D4; border-color:rgba(6,182,212,0.04);">Penalaran Kritis</span>
-                <span class="pertemuan-badge" style="background:rgba(236,72,153,0.06); color:#EC4899; border-color:rgba(236,72,153,0.04);">Komunikasi</span>
+                <span class="pertemuan-badge" style="background:rgba(245,158,11,0.06); color:#FCD34D; border-color:rgba(245,158,11,0.04);">Penalaran Kritis</span>
+                <span class="pertemuan-badge" style="background:rgba(245,158,11,0.06); color:#FCD34D; border-color:rgba(245,158,11,0.04);">Komunikasi</span>
             </div>
-            <h3 style="font-size:1.05rem; color:#f0f4fa; font-weight:700; border-left:4px solid #7C3AED; padding-left:12px; margin-bottom:6px;">Tujuan Pembelajaran</h3>
-            <ul style="color:rgba(255,255,255,0.7); font-weight:400; padding-left:20px; margin-bottom:16px; line-height:2; font-size:0.95rem;">
+            <h3 style="font-size:1.05rem; color:#f5ede0; font-weight:700; border-left:4px solid #F59E0B; padding-left:12px; margin-bottom:6px;">Tujuan Pembelajaran</h3>
+            <ul style="color:rgba(255,240,210,0.65); font-weight:400; padding-left:20px; margin-bottom:16px; line-height:2; font-size:0.95rem;">
                 <li>Menjelaskan pengertian SIG secara etimologis dan menurut para ahli (Rice, Aronoff, Demers, Star).</li>
                 <li>Mengidentifikasi 3 komponen utama SIG: Sistem Komputer, Pelaksana/SDM, dan Data.</li>
                 <li>Membedakan data spasial (vektor &amp; raster) dan data atribut dengan contoh nyata.</li>
@@ -1964,21 +1966,21 @@
             <!-- Galeri Gambar -->
             <div style="margin:16px 0;">
                 <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:14px;">
-                    <h4 style="color:#a78bfa; font-size:0.95rem; font-weight:700;">Galeri Gambar</h4>
+                    <h4 style="color:#FCD34D; font-size:0.95rem; font-weight:700;">Galeri Gambar</h4>
                 </div>
                 <div class="grid-3">
                     <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/bumi23.png', 'Bumi dari Luar Angkasa – SIG membantu kita memahami fenomena geosfer secara spasial.')">
-                        <div class="img-wrap"><img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/bumi23.png" alt="Bumi" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%237C3AED%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🌍 Bumi%3C/text%3E%3C/svg%3E'" /></div>
+                        <div class="img-wrap"><img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/bumi23.png" alt="Bumi" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1200%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%23F59E0B%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🌍 Bumi%3C/text%3E%3C/svg%3E'" /></div>
                         <div class="image-label-premium"><span>🌍</span> Bumi sebagai Objek SIG</div>
                         <div class="image-sub-premium">Fenomena geosfer sebagai ruang lingkup SIG</div>
                     </div>
                     <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/komputer.png', 'Komputer – Perangkat keras utama dalam sistem SIG modern.')">
-                        <div class="img-wrap"><img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/komputer.png" alt="Komputer" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%237C3AED%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E💻 Komputer%3C/text%3E%3C/svg%3E'" /></div>
+                        <div class="img-wrap"><img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/komputer.png" alt="Komputer" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1200%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%23F59E0B%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E💻 Komputer%3C/text%3E%3C/svg%3E'" /></div>
                         <div class="image-label-premium"><span>💻</span> Perangkat Keras SIG</div>
                         <div class="image-sub-premium">Komputer sebagai jantung sistem SIG</div>
                     </div>
                     <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/peta.png', 'Peta Digital – Contoh output SIG yang menampilkan data spasial dalam bentuk visual.')">
-                        <div class="img-wrap"><img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/peta.png" alt="Peta" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%237C3AED%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🗺️ Peta SIG%3C/text%3E%3C/svg%3E'" /></div>
+                        <div class="img-wrap"><img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/peta.png" alt="Peta" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1200%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%23F59E0B%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🗺️ Peta SIG%3C/text%3E%3C/svg%3E'" /></div>
                         <div class="image-label-premium"><span>🗺️</span> Peta Digital SIG</div>
                         <div class="image-sub-premium">Output dari analisis data spasial</div>
                     </div>
@@ -1989,16 +1991,16 @@
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
                     <h4>A. Pengertian SIG <span class="local-badge">Etimologi &amp; Definisi</span></h4>
-                    <span class="fa-chevron-down" style="color:#a78bfa; transition:transform 0.3s;">▼</span>
+                    <span class="fa-chevron-down" style="color:#FCD34D; transition:transform 0.3s;">▼</span>
                 </div>
                 <div class="detail-body">
                     <div class="def-block">
-                        <p style="color:rgba(255,255,255,0.85); font-weight:400; font-size:0.95rem;">
-                            <strong style="color:#7C3AED;">Sistem Informasi Geografi (SIG)</strong> adalah sistem komputer yang digunakan untuk memasukkan, menyimpan, memeriksa, mengintegrasikan, memanipulasi, menganalisis, dan menampilkan data yang berhubungan dengan posisi suatu objek di permukaan bumi.
+                        <p style="color:rgba(255,240,210,0.85); font-weight:400; font-size:0.95rem;">
+                            <strong style="color:#F59E0B;">Sistem Informasi Geografi (SIG)</strong> adalah sistem komputer yang digunakan untuk memasukkan, menyimpan, memeriksa, mengintegrasikan, memanipulasi, menganalisis, dan menampilkan data yang berhubungan dengan posisi suatu objek di permukaan bumi.
                         </p>
-                        <div style="margin-top:8px; background:rgba(6,182,212,0.03); border-radius:8px; padding:8px 12px; border-left:3px solid #06B6D4;">
-                            <p style="font-size:0.85rem; color:rgba(255,255,255,0.5); font-weight:400;">
-                                <strong style="color:rgba(255,255,255,0.7); font-weight:600;">Etimologi:</strong> <em>Sistem</em> = kumpulan komponen yang saling terkait, <em>Informasi</em> = data yang diolah, <em>Geografi</em> = berkaitan dengan bumi.
+                        <div style="margin-top:8px; background:rgba(245,158,11,0.03); border-radius:8px; padding:8px 12px; border-left:3px solid #F59E0B;">
+                            <p style="font-size:0.85rem; color:rgba(255,240,210,0.45); font-weight:400;">
+                                <strong style="color:rgba(255,240,210,0.65); font-weight:600;">Etimologi:</strong> <em>Sistem</em> = kumpulan komponen yang saling terkait, <em>Informasi</em> = data yang diolah, <em>Geografi</em> = berkaitan dengan bumi.
                             </p>
                         </div>
                     </div>
@@ -2006,7 +2008,7 @@
                         <span class="label-example">📌 Contoh Mudah</span>
                         <p>Saat kamu membuka Google Maps dan mencari rute dari rumah ke sekolah, kamu sedang menggunakan SIG! SIG menggabungkan peta (data spasial) dengan informasi jalan dan waktu tempuh (data atribut).</p>
                     </div>
-                    <h5 style="color:#a78bfa; font-weight:700; font-size:0.95rem; margin-top:12px;">Definisi Menurut Para Ahli</h5>
+                    <h5 style="color:#FCD34D; font-weight:700; font-size:0.95rem; margin-top:12px;">Definisi Menurut Para Ahli</h5>
                     <div class="table-wrap">
                         <table>
                             <thead><tr><th>Ahli</th><th>Definisi</th></tr></thead>
@@ -2019,8 +2021,8 @@
                         </table>
                     </div>
                     <div style="background:rgba(245,158,11,0.02); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #F59E0B;">
-                        <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">
-                            <strong style="color:rgba(255,255,255,0.7); font-weight:600;">💡 Inti:</strong> SIG = Komputer + Data Geografi + Manusia yang mengolahnya untuk menghasilkan informasi yang bermanfaat.
+                        <p style="font-size:0.9rem; color:rgba(255,240,210,0.55); font-weight:400;">
+                            <strong style="color:rgba(255,240,210,0.65); font-weight:600;">💡 Inti:</strong> SIG = Komputer + Data Geografi + Manusia yang mengolahnya untuk menghasilkan informasi yang bermanfaat.
                         </p>
                     </div>
                 </div>
@@ -2030,34 +2032,34 @@
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
                     <h4>B. 3 Komponen Utama SIG</h4>
-                    <span class="fa-chevron-down" style="color:#a78bfa; transition:transform 0.3s;">▼</span>
+                    <span class="fa-chevron-down" style="color:#FCD34D; transition:transform 0.3s;">▼</span>
                 </div>
                 <div class="detail-body">
                     <div class="def-block">
-                        <p style="color:rgba(255,255,255,0.85); font-weight:400; font-size:0.95rem;">
-                            SIG terdiri dari <strong style="color:#7C3AED;">3 komponen utama</strong> yang saling mendukung: <strong style="color:#06B6D4;">Sistem Komputer</strong>, <strong style="color:#EC4899;">Pelaksana/SDM</strong>, dan <strong style="color:#F59E0B;">Data</strong>.
+                        <p style="color:rgba(255,240,210,0.85); font-weight:400; font-size:0.95rem;">
+                            SIG terdiri dari <strong style="color:#F59E0B;">3 komponen utama</strong> yang saling mendukung: <strong style="color:#FCD34D;">Sistem Komputer</strong>, <strong style="color:#FBBF24;">Pelaksana/SDM</strong>, dan <strong style="color:#F59E0B;">Data</strong>.
                         </p>
                     </div>
                     <div style="display:grid; gap:10px; margin-top:8px;">
-                        <div style="background:rgba(124,58,237,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #7C3AED;">
-                            <h4 style="color:#a78bfa; font-size:0.9rem; font-weight:700;">1. Sistem Komputer</h4>
-                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Terdiri dari <strong>Perangkat Keras (Hardware)</strong> dan <strong>Perangkat Lunak (Software)</strong>.</p>
-                            <div style="background:rgba(0,0,0,0.08); border-radius:6px; padding:4px 10px; margin-top:4px;"><span style="font-size:0.8rem; color:rgba(255,255,255,0.4);">Contoh Hardware: CPU, monitor, digitizer, printer. Software: ArcGIS, QGIS, Google Earth.</span></div>
+                        <div style="background:rgba(245,158,11,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #F59E0B;">
+                            <h4 style="color:#FCD34D; font-size:0.9rem; font-weight:700;">1. Sistem Komputer</h4>
+                            <p style="font-size:0.92rem; color:rgba(255,240,210,0.65); font-weight:400;">Terdiri dari <strong>Perangkat Keras (Hardware)</strong> dan <strong>Perangkat Lunak (Software)</strong>.</p>
+                            <div style="background:rgba(0,0,0,0.08); border-radius:6px; padding:4px 10px; margin-top:4px;"><span style="font-size:0.8rem; color:rgba(255,240,210,0.35);">Contoh Hardware: CPU, monitor, digitizer, printer. Software: ArcGIS, QGIS, Google Earth.</span></div>
                         </div>
-                        <div style="background:rgba(236,72,153,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #EC4899;">
-                            <h4 style="color:#EC4899; font-size:0.9rem; font-weight:700;">2. Pelaksana / SDM</h4>
-                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Manusia yang mengoperasikan SIG, mulai dari analis, operator, hingga pengambil keputusan.</p>
-                            <div style="background:rgba(0,0,0,0.08); border-radius:6px; padding:4px 10px; margin-top:4px;"><span style="font-size:0.8rem; color:rgba(255,255,255,0.4);">Contoh: Kartografer, perencana tata ruang, peneliti.</span></div>
+                        <div style="background:rgba(245,158,11,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #FBBF24;">
+                            <h4 style="color:#FBBF24; font-size:0.9rem; font-weight:700;">2. Pelaksana / SDM</h4>
+                            <p style="font-size:0.92rem; color:rgba(255,240,210,0.65); font-weight:400;">Manusia yang mengoperasikan SIG, mulai dari analis, operator, hingga pengambil keputusan.</p>
+                            <div style="background:rgba(0,0,0,0.08); border-radius:6px; padding:4px 10px; margin-top:4px;"><span style="font-size:0.8rem; color:rgba(255,240,210,0.35);">Contoh: Kartografer, perencana tata ruang, peneliti.</span></div>
                         </div>
                         <div style="background:rgba(245,158,11,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #F59E0B;">
                             <h4 style="color:#F59E0B; font-size:0.9rem; font-weight:700;">3. Data</h4>
-                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Data spasial (lokasi) dan data atribut (informasi deskriptif) yang saling terkait.</p>
-                            <div style="background:rgba(0,0,0,0.08); border-radius:6px; padding:4px 10px; margin-top:4px;"><span style="font-size:0.8rem; color:rgba(255,255,255,0.4);">Contoh: Peta digital, data sensus, citra satelit.</span></div>
+                            <p style="font-size:0.92rem; color:rgba(255,240,210,0.65); font-weight:400;">Data spasial (lokasi) dan data atribut (informasi deskriptif) yang saling terkait.</p>
+                            <div style="background:rgba(0,0,0,0.08); border-radius:6px; padding:4px 10px; margin-top:4px;"><span style="font-size:0.8rem; color:rgba(255,240,210,0.35);">Contoh: Peta digital, data sensus, citra satelit.</span></div>
                         </div>
                     </div>
-                    <div style="background:rgba(6,182,212,0.02); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #06B6D4;">
-                        <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">
-                            <strong style="color:rgba(255,255,255,0.7); font-weight:600;">🔑 Kunci:</strong> Ketiga komponen ini harus berjalan seimbang. Tanpa data, SIG kosong. Tanpa SDM, SIG tidak bisa dioperasikan. Tanpa komputer, SIG tidak bisa bekerja efektif.
+                    <div style="background:rgba(245,158,11,0.02); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #F59E0B;">
+                        <p style="font-size:0.9rem; color:rgba(255,240,210,0.55); font-weight:400;">
+                            <strong style="color:rgba(255,240,210,0.65); font-weight:600;">🔑 Kunci:</strong> Ketiga komponen ini harus berjalan seimbang. Tanpa data, SIG kosong. Tanpa SDM, SIG tidak bisa dioperasikan. Tanpa komputer, SIG tidak bisa bekerja efektif.
                         </p>
                     </div>
                 </div>
@@ -2067,40 +2069,40 @@
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
                     <h4>C. Data Spasial &amp; Data Atribut <span class="local-badge">Vektor &amp; Raster</span></h4>
-                    <span class="fa-chevron-down" style="color:#a78bfa; transition:transform 0.3s;">▼</span>
+                    <span class="fa-chevron-down" style="color:#FCD34D; transition:transform 0.3s;">▼</span>
                 </div>
                 <div class="detail-body">
                     <div class="def-block">
-                        <p style="color:rgba(255,255,255,0.85); font-weight:400; font-size:0.95rem;">
-                            Data dalam SIG terbagi menjadi <strong style="color:#7C3AED;">Data Spasial</strong> (lokasi/geometri) dan <strong style="color:#06B6D4;">Data Atribut</strong> (informasi deskriptif).
+                        <p style="color:rgba(255,240,210,0.85); font-weight:400; font-size:0.95rem;">
+                            Data dalam SIG terbagi menjadi <strong style="color:#F59E0B;">Data Spasial</strong> (lokasi/geometri) dan <strong style="color:#FCD34D;">Data Atribut</strong> (informasi deskriptif).
                         </p>
                     </div>
                     <div class="example-box">
                         <span class="label-example">📌 Analogi Sederhana</span>
                         <p>Bayangkan sebuah rumah di peta. <strong>Data spasial</strong> adalah posisi rumah (koordinat x,y) dan bentuknya (persegi). <strong>Data atribut</strong> adalah informasi tentang rumah itu: siapa pemiliknya, berapa luasnya, berapa jumlah penghuninya.</p>
                     </div>
-                    <h5 style="color:#a78bfa; font-weight:700; font-size:0.95rem; margin-top:10px;">Data Spasial</h5>
+                    <h5 style="color:#FCD34D; font-weight:700; font-size:0.95rem; margin-top:10px;">Data Spasial</h5>
                     <div class="grid-2">
-                        <div class="card" style="background:rgba(124,58,237,0.03); border-left:4px solid #7C3AED; border-radius:12px; padding:14px 16px;">
-                            <h4 style="color:#7C3AED;">Model Vektor</h4>
-                            <ul style="font-size:0.9rem; color:rgba(255,255,255,0.7); padding-left:18px;">
+                        <div class="card" style="background:rgba(245,158,11,0.03); border-left:4px solid #F59E0B; border-radius:12px; padding:14px 16px;">
+                            <h4 style="color:#F59E0B;">Model Vektor</h4>
+                            <ul style="font-size:0.9rem; color:rgba(255,240,210,0.65); padding-left:18px;">
                                 <li><strong>Titik:</strong> Untuk objek dengan lokasi tunggal (misal: pos, sumur)</li>
                                 <li><strong>Garis:</strong> Untuk objek linear (misal: jalan, sungai)</li>
                                 <li><strong>Poligon:</strong> Untuk objek area (misal: sawah, danau, permukiman)</li>
                             </ul>
-                            <div style="background:rgba(0,0,0,0.08); border-radius:6px; padding:4px 10px; margin-top:4px;"><span style="font-size:0.8rem; color:rgba(255,255,255,0.4);">Kelebihan: Akurat, detail, ukuran file kecil.</span></div>
+                            <div style="background:rgba(0,0,0,0.08); border-radius:6px; padding:4px 10px; margin-top:4px;"><span style="font-size:0.8rem; color:rgba(255,240,210,0.35);">Kelebihan: Akurat, detail, ukuran file kecil.</span></div>
                         </div>
-                        <div class="card" style="background:rgba(6,182,212,0.03); border-left:4px solid #06B6D4; border-radius:12px; padding:14px 16px;">
-                            <h4 style="color:#06B6D4;">Model Raster</h4>
-                            <ul style="font-size:0.9rem; color:rgba(255,255,255,0.7); padding-left:18px;">
+                        <div class="card" style="background:rgba(245,158,11,0.03); border-left:4px solid #FCD34D; border-radius:12px; padding:14px 16px;">
+                            <h4 style="color:#FCD34D;">Model Raster</h4>
+                            <ul style="font-size:0.9rem; color:rgba(255,240,210,0.65); padding-left:18px;">
                                 <li><strong>Pixel (Picture Element):</strong> Data berupa grid sel/kotak</li>
                                 <li>Setiap pixel memiliki nilai (warna, ketinggian, dll.)</li>
                                 <li>Contoh: Citra satelit, foto udara, DEM (Digital Elevation Model)</li>
                             </ul>
-                            <div style="background:rgba(0,0,0,0.08); border-radius:6px; padding:4px 10px; margin-top:4px;"><span style="font-size:0.8rem; color:rgba(255,255,255,0.4);">Kelebihan: Cocok untuk data kontinu, mudah diproses.</span></div>
+                            <div style="background:rgba(0,0,0,0.08); border-radius:6px; padding:4px 10px; margin-top:4px;"><span style="font-size:0.8rem; color:rgba(255,240,210,0.35);">Kelebihan: Cocok untuk data kontinu, mudah diproses.</span></div>
                         </div>
                     </div>
-                    <h5 style="color:#a78bfa; font-weight:700; font-size:0.95rem; margin-top:12px;">Data Atribut</h5>
+                    <h5 style="color:#FCD34D; font-weight:700; font-size:0.95rem; margin-top:12px;">Data Atribut</h5>
                     <div class="table-wrap">
                         <table>
                             <thead><tr><th>Jenis Data</th><th>Contoh</th><th>Fungsi dalam SIG</th></tr></thead>
@@ -2113,8 +2115,8 @@
                         </table>
                     </div>
                     <div style="background:rgba(245,158,11,0.02); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #F59E0B;">
-                        <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">
-                            <strong style="color:rgba(255,255,255,0.7); font-weight:600;">💡 Hubungan:</strong> Data spasial dan atribut dihubungkan oleh <strong>ID unik</strong> — setiap objek di peta memiliki ID yang terhubung dengan data atributnya.
+                        <p style="font-size:0.9rem; color:rgba(255,240,210,0.55); font-weight:400;">
+                            <strong style="color:rgba(255,240,210,0.65); font-weight:600;">💡 Hubungan:</strong> Data spasial dan atribut dihubungkan oleh <strong>ID unik</strong> — setiap objek di peta memiliki ID yang terhubung dengan data atributnya.
                         </p>
                     </div>
                 </div>
@@ -2128,12 +2130,12 @@
                     <li><strong>Masa Digital Awal (1960-1980):</strong> Komputer mulai digunakan, tetapi masih mahal dan terbatas. Kanada adalah pelopor SIG digital dengan CGIS (Canada Geographic Information System).</li>
                     <li><strong>Masa Modern (1980-sekarang):</strong> SIG berkembang pesat dengan PC, software seperti ArcGIS dan QGIS, serta data satelit gratis. SIG sekarang bisa diakses di HP!</li>
                 </ul>
-                <p style="margin-top:6px; font-size:0.85rem; color:rgba(255,255,255,0.35);">💡 SIG modern memungkinkan analisis real-time, 3D, dan berbasis cloud.</p>
+                <p style="margin-top:6px; font-size:0.85rem; color:rgba(255,240,210,0.30);">💡 SIG modern memungkinkan analisis real-time, 3D, dan berbasis cloud.</p>
             </div>
 
             <!-- PENDALAMAN -->
             <div class="deep-dive reveal">
-                <h4><i class="fas fa-microscope" style="color:#a78bfa;"></i> Pendalaman: Sistem Koordinat dan Proyeksi</h4>
+                <h4><i class="fas fa-microscope" style="color:#FBBF24;"></i> Pendalaman: Sistem Koordinat dan Proyeksi</h4>
                 <p>Data spasial dalam SIG selalu memiliki <strong>sistem koordinat</strong> yang menentukan posisi objek di permukaan bumi.</p>
                 <ul>
                     <li><strong>Koordinat Geografis (Lintang-Bujur):</strong> Menggunakan derajat (°). Cocok untuk peta global.</li>
@@ -2141,7 +2143,7 @@
                     <li><strong>Proyeksi Peta:</strong> Cara memindahkan permukaan bumi yang bulat ke bidang datar. Setiap proyeksi memiliki distorsi (luas, bentuk, jarak, arah).</li>
                 </ul>
                 <div style="background:rgba(0,0,0,0.08); border-radius:8px; padding:8px 12px; margin-top:6px;">
-                    <span style="font-size:0.85rem; color:rgba(255,255,255,0.35);">💡 Di Indonesia, sistem koordinat yang umum digunakan adalah UTM (Universal Transverse Mercator) dan Sistem Referensi Geospasial Indonesia (SRGI).</span>
+                    <span style="font-size:0.85rem; color:rgba(255,240,210,0.30);">💡 Di Indonesia, sistem koordinat yang umum digunakan adalah UTM (Universal Transverse Mercator) dan Sistem Referensi Geospasial Indonesia (SRGI).</span>
                 </div>
             </div>
 
@@ -2171,9 +2173,9 @@
         <!-- SECTION 3 : PERTEMUAN 2 – TAHAPAN KERJA & JENIS DATA          -->
         <!-- ============================================================ -->
         <section id="section3" class="section">
-            <div style="background:rgba(124,58,237,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(124,58,237,0.12); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-                <div style="display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.35); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
-                <button onclick="navigateTo('section1')" style="background:rgba(255,255,255,0.02); color:rgba(255,255,255,0.25); border:1px solid rgba(255,255,255,0.02); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem;">⌂ Beranda</button>
+            <div style="background:rgba(245,158,11,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(245,158,11,0.08); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                <div style="display:flex; align-items:center; gap:8px; color:rgba(255,240,210,0.30); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
+                <button onclick="navigateTo('section1')" style="background:rgba(255,240,210,0.02); color:rgba(255,240,210,0.20); border:1px solid rgba(255,240,210,0.02); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem;">⌂ Beranda</button>
             </div>
             <div class="section-header">
                 <div class="num">03</div>
@@ -2185,15 +2187,15 @@
                 <span class="step active">2</span><span class="line"></span>
                 <span class="step">3</span><span class="line"></span>
                 <span class="step">4</span>
-                <span style="color:rgba(255,255,255,0.10); font-size:0.75rem; font-weight:500; margin-left:8px;">Klik untuk eksplorasi</span>
+                <span style="color:rgba(255,240,210,0.08); font-size:0.75rem; font-weight:500; margin-left:8px;">Klik untuk eksplorasi</span>
             </div>
             <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;">
                 <span class="pertemuan-badge">TP 2</span>
-                <span class="pertemuan-badge" style="background:rgba(6,182,212,0.06); color:#06B6D4; border-color:rgba(6,182,212,0.04);">Literasi</span>
-                <span class="pertemuan-badge" style="background:rgba(236,72,153,0.06); color:#EC4899; border-color:rgba(236,72,153,0.04);">Kolaborasi</span>
+                <span class="pertemuan-badge" style="background:rgba(245,158,11,0.06); color:#FCD34D; border-color:rgba(245,158,11,0.04);">Literasi</span>
+                <span class="pertemuan-badge" style="background:rgba(245,158,11,0.06); color:#FCD34D; border-color:rgba(245,158,11,0.04);">Kolaborasi</span>
             </div>
-            <h3 style="font-size:1.05rem; color:#f0f4fa; font-weight:700; border-left:4px solid #7C3AED; padding-left:12px; margin-bottom:6px;">Tujuan Pembelajaran</h3>
-            <ul style="color:rgba(255,255,255,0.7); font-weight:400; padding-left:20px; margin-bottom:16px; line-height:2; font-size:0.95rem;">
+            <h3 style="font-size:1.05rem; color:#f5ede0; font-weight:700; border-left:4px solid #F59E0B; padding-left:12px; margin-bottom:6px;">Tujuan Pembelajaran</h3>
+            <ul style="color:rgba(255,240,210,0.65); font-weight:400; padding-left:20px; margin-bottom:16px; line-height:2; font-size:0.95rem;">
                 <li>Menjelaskan 4 tahapan kerja SIG: Input Data, Manajemen Data, Manipulasi &amp; Analisis Data, Output Data.</li>
                 <li>Mengidentifikasi jenis data masukan SIG (statistik, sensus, peta, foto udara, data digital).</li>
                 <li>Membedakan 4 bentuk data SIG: titik, garis, poligon, dan pixel.</li>
@@ -2203,17 +2205,17 @@
             <div style="margin:16px 0;">
                 <div class="grid-3">
                     <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/inputdata.png', 'Input Data – Proses pertama dalam SIG: memasukkan data dari berbagai sumber.')">
-                        <div class="img-wrap"><img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/inputdata.png" alt="Input Data" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%237C3AED%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E📥 Input Data%3C/text%3E%3C/svg%3E'" /></div>
+                        <div class="img-wrap"><img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/inputdata.png" alt="Input Data" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1200%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%23F59E0B%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E📥 Input Data%3C/text%3E%3C/svg%3E'" /></div>
                         <div class="image-label-premium"><span>📥</span> Tahap Input Data</div>
                         <div class="image-sub-premium">Memasukkan data spasial &amp; atribut</div>
                     </div>
                     <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/analisis.png', 'Analisis Data – Overlay, buffer, dan query untuk mendapatkan informasi baru.')">
-                        <div class="img-wrap"><img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/analisis.png" alt="Analisis" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%237C3AED%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E📊 Analisis%3C/text%3E%3C/svg%3E'" /></div>
+                        <div class="img-wrap"><img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/analisis.png" alt="Analisis" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1200%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%23F59E0B%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E📊 Analisis%3C/text%3E%3C/svg%3E'" /></div>
                         <div class="image-label-premium"><span>📊</span> Manipulasi &amp; Analisis</div>
                         <div class="image-sub-premium">Overlay, buffer, query, dan network</div>
                     </div>
                     <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/outputdata.png', 'Output Data – Hasil SIG berupa peta, grafik, tabel, dan laporan.')">
-                        <div class="img-wrap"><img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/outputdata.png" alt="Output" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%237C3AED%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E📤 Output%3C/text%3E%3C/svg%3E'" /></div>
+                        <div class="img-wrap"><img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/outputdata.png" alt="Output" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1200%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%23F59E0B%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E📤 Output%3C/text%3E%3C/svg%3E'" /></div>
                         <div class="image-label-premium"><span>📤</span> Tahap Output Data</div>
                         <div class="image-sub-premium">Peta, grafik, tabel, laporan</div>
                     </div>
@@ -2224,12 +2226,12 @@
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
                     <h4>A. 4 Tahapan Kerja SIG</h4>
-                    <span class="fa-chevron-down" style="color:#a78bfa; transition:transform 0.3s;">▼</span>
+                    <span class="fa-chevron-down" style="color:#FCD34D; transition:transform 0.3s;">▼</span>
                 </div>
                 <div class="detail-body">
                     <div class="def-block">
-                        <p style="color:rgba(255,255,255,0.85); font-weight:400; font-size:0.95rem;">
-                            Pekerjaan SIG dilakukan melalui <strong style="color:#7C3AED;">4 tahapan utama</strong> yang saling berurutan: <strong style="color:#06B6D4;">Input Data</strong>, <strong style="color:#EC4899;">Manajemen Data</strong>, <strong style="color:#F59E0B;">Manipulasi &amp; Analisis Data</strong>, dan <strong style="color:#7C3AED;">Output Data</strong>.
+                        <p style="color:rgba(255,240,210,0.85); font-weight:400; font-size:0.95rem;">
+                            Pekerjaan SIG dilakukan melalui <strong style="color:#F59E0B;">4 tahapan utama</strong> yang saling berurutan: <strong style="color:#FCD34D;">Input Data</strong>, <strong style="color:#FBBF24;">Manajemen Data</strong>, <strong style="color:#F59E0B;">Manipulasi &amp; Analisis Data</strong>, dan <strong style="color:#FCD34D;">Output Data</strong>.
                         </p>
                     </div>
                     <div class="example-box">
@@ -2237,25 +2239,25 @@
                         <p>Input Data = membeli bahan-bahan. Manajemen Data = menyimpan bahan di kulkas. Manipulasi &amp; Analisis = memasak dan mengolah bahan menjadi hidangan. Output Data = menyajikan hidangan di atas meja.</p>
                     </div>
                     <div style="display:grid; gap:10px; margin-top:8px;">
-                        <div style="background:rgba(124,58,237,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #7C3AED;">
-                            <h4 style="color:#a78bfa; font-size:0.9rem; font-weight:700;">1. Input Data</h4>
-                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Memasukkan data spasial dan atribut dari berbagai sumber ke dalam sistem SIG.</p>
-                            <div style="background:rgba(0,0,0,0.08); border-radius:6px; padding:4px 10px; margin-top:4px;"><span style="font-size:0.8rem; color:rgba(255,255,255,0.4);">Sumber: digitasi peta, scan, data GPS, citra satelit, tabel Excel.</span></div>
+                        <div style="background:rgba(245,158,11,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #F59E0B;">
+                            <h4 style="color:#FCD34D; font-size:0.9rem; font-weight:700;">1. Input Data</h4>
+                            <p style="font-size:0.92rem; color:rgba(255,240,210,0.65); font-weight:400;">Memasukkan data spasial dan atribut dari berbagai sumber ke dalam sistem SIG.</p>
+                            <div style="background:rgba(0,0,0,0.08); border-radius:6px; padding:4px 10px; margin-top:4px;"><span style="font-size:0.8rem; color:rgba(255,240,210,0.35);">Sumber: digitasi peta, scan, data GPS, citra satelit, tabel Excel.</span></div>
                         </div>
-                        <div style="background:rgba(236,72,153,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #EC4899;">
-                            <h4 style="color:#EC4899; font-size:0.9rem; font-weight:700;">2. Manajemen Data</h4>
-                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Menyimpan, mengorganisasi, dan memelihara data agar mudah diakses dan diperbarui.</p>
-                            <div style="background:rgba(0,0,0,0.08); border-radius:6px; padding:4px 10px; margin-top:4px;"><span style="font-size:0.8rem; color:rgba(255,255,255,0.4);">Kegiatan: pembuatan database, backup, update data.</span></div>
+                        <div style="background:rgba(245,158,11,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #FBBF24;">
+                            <h4 style="color:#FBBF24; font-size:0.9rem; font-weight:700;">2. Manajemen Data</h4>
+                            <p style="font-size:0.92rem; color:rgba(255,240,210,0.65); font-weight:400;">Menyimpan, mengorganisasi, dan memelihara data agar mudah diakses dan diperbarui.</p>
+                            <div style="background:rgba(0,0,0,0.08); border-radius:6px; padding:4px 10px; margin-top:4px;"><span style="font-size:0.8rem; color:rgba(255,240,210,0.35);">Kegiatan: pembuatan database, backup, update data.</span></div>
                         </div>
                         <div style="background:rgba(245,158,11,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #F59E0B;">
                             <h4 style="color:#F59E0B; font-size:0.9rem; font-weight:700;">3. Manipulasi &amp; Analisis Data</h4>
-                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Mengolah dan menganalisis data sesuai kebutuhan untuk menghasilkan informasi baru.</p>
-                            <div style="background:rgba(0,0,0,0.08); border-radius:6px; padding:4px 10px; margin-top:4px;"><span style="font-size:0.8rem; color:rgba(255,255,255,0.4);">Teknik: overlay, buffer, query spasial, analisis jaringan, pemodelan.</span></div>
+                            <p style="font-size:0.92rem; color:rgba(255,240,210,0.65); font-weight:400;">Mengolah dan menganalisis data sesuai kebutuhan untuk menghasilkan informasi baru.</p>
+                            <div style="background:rgba(0,0,0,0.08); border-radius:6px; padding:4px 10px; margin-top:4px;"><span style="font-size:0.8rem; color:rgba(255,240,210,0.35);">Teknik: overlay, buffer, query spasial, analisis jaringan, pemodelan.</span></div>
                         </div>
-                        <div style="background:rgba(6,182,212,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #06B6D4;">
-                            <h4 style="color:#06B6D4; font-size:0.9rem; font-weight:700;">4. Output Data</h4>
-                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Menyajikan hasil analisis dalam bentuk yang mudah dipahami oleh pengguna.</p>
-                            <div style="background:rgba(0,0,0,0.08); border-radius:6px; padding:4px 10px; margin-top:4px;"><span style="font-size:0.8rem; color:rgba(255,255,255,0.4);">Bentuk: peta digital/cetak, grafik, tabel, laporan, dashboard.</span></div>
+                        <div style="background:rgba(245,158,11,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #FCD34D;">
+                            <h4 style="color:#FCD34D; font-size:0.9rem; font-weight:700;">4. Output Data</h4>
+                            <p style="font-size:0.92rem; color:rgba(255,240,210,0.65); font-weight:400;">Menyajikan hasil analisis dalam bentuk yang mudah dipahami oleh pengguna.</p>
+                            <div style="background:rgba(0,0,0,0.08); border-radius:6px; padding:4px 10px; margin-top:4px;"><span style="font-size:0.8rem; color:rgba(255,240,210,0.35);">Bentuk: peta digital/cetak, grafik, tabel, laporan, dashboard.</span></div>
                         </div>
                     </div>
                 </div>
@@ -2265,12 +2267,12 @@
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
                     <h4>B. Jenis Data Masukan SIG</h4>
-                    <span class="fa-chevron-down" style="color:#a78bfa; transition:transform 0.3s;">▼</span>
+                    <span class="fa-chevron-down" style="color:#FCD34D; transition:transform 0.3s;">▼</span>
                 </div>
                 <div class="detail-body">
                     <div class="def-block">
-                        <p style="color:rgba(255,255,255,0.85); font-weight:400; font-size:0.95rem;">
-                            Data masukan SIG berasal dari berbagai sumber, baik <strong style="color:#7C3AED;">data numerik/atribut</strong> maupun <strong style="color:#06B6D4;">data spasial</strong>.
+                        <p style="color:rgba(255,240,210,0.85); font-weight:400; font-size:0.95rem;">
+                            Data masukan SIG berasal dari berbagai sumber, baik <strong style="color:#F59E0B;">data numerik/atribut</strong> maupun <strong style="color:#FCD34D;">data spasial</strong>.
                         </p>
                     </div>
                     <div class="table-wrap">
@@ -2287,8 +2289,8 @@
                         </table>
                     </div>
                     <div style="background:rgba(245,158,11,0.02); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #F59E0B;">
-                        <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">
-                            <strong style="color:rgba(255,255,255,0.7); font-weight:600;">💡 Sumber Data Gratis:</strong> Data dari <strong>LAPAN</strong> (http://www.lapanrs.com/) dapat digunakan untuk pemantauan sumber daya alam dan lingkungan.
+                        <p style="font-size:0.9rem; color:rgba(255,240,210,0.55); font-weight:400;">
+                            <strong style="color:rgba(255,240,210,0.65); font-weight:600;">💡 Sumber Data Gratis:</strong> Data dari <strong>LAPAN</strong> (http://www.lapanrs.com/) dapat digunakan untuk pemantauan sumber daya alam dan lingkungan.
                         </p>
                     </div>
                 </div>
@@ -2298,39 +2300,39 @@
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
                     <h4>C. Bentuk Data SIG</h4>
-                    <span class="fa-chevron-down" style="color:#a78bfa; transition:transform 0.3s;">▼</span>
+                    <span class="fa-chevron-down" style="color:#FCD34D; transition:transform 0.3s;">▼</span>
                 </div>
                 <div class="detail-body">
                     <div class="def-block">
-                        <p style="color:rgba(255,255,255,0.85); font-weight:400; font-size:0.95rem;">
-                            Data dalam SIG hadir dalam <strong style="color:#7C3AED;">4 bentuk utama</strong> yang merepresentasikan objek di permukaan bumi.
+                        <p style="color:rgba(255,240,210,0.85); font-weight:400; font-size:0.95rem;">
+                            Data dalam SIG hadir dalam <strong style="color:#F59E0B;">4 bentuk utama</strong> yang merepresentasikan objek di permukaan bumi.
                         </p>
                     </div>
                     <div class="grid-4">
-                        <div class="card" style="background:rgba(124,58,237,0.03); border-left:4px solid #7C3AED; border-radius:12px; padding:12px 14px; text-align:center;">
-                            <div style="font-size:2.5rem; color:#7C3AED;">•</div>
-                            <h4 style="color:#7C3AED; font-size:0.9rem;">Data Titik</h4>
-                            <p style="font-size:0.85rem; color:rgba(255,255,255,0.6);">Objek dengan lokasi tunggal. Contoh: pos, sumur, tiang listrik.</p>
-                        </div>
-                        <div class="card" style="background:rgba(6,182,212,0.03); border-left:4px solid #06B6D4; border-radius:12px; padding:12px 14px; text-align:center;">
-                            <div style="font-size:2.5rem; color:#06B6D4;">━</div>
-                            <h4 style="color:#06B6D4; font-size:0.9rem;">Data Garis</h4>
-                            <p style="font-size:0.85rem; color:rgba(255,255,255,0.6);">Objek linear. Contoh: jalan, sungai, rel kereta.</p>
-                        </div>
-                        <div class="card" style="background:rgba(236,72,153,0.03); border-left:4px solid #EC4899; border-radius:12px; padding:12px 14px; text-align:center;">
-                            <div style="font-size:2.5rem; color:#EC4899;">▭</div>
-                            <h4 style="color:#EC4899; font-size:0.9rem;">Data Poligon</h4>
-                            <p style="font-size:0.85rem; color:rgba(255,255,255,0.6);">Objek area. Contoh: sawah, danau, permukiman.</p>
-                        </div>
                         <div class="card" style="background:rgba(245,158,11,0.03); border-left:4px solid #F59E0B; border-radius:12px; padding:12px 14px; text-align:center;">
-                            <div style="font-size:2.5rem; color:#F59E0B;">⬛</div>
-                            <h4 style="color:#F59E0B; font-size:0.9rem;">Data Pixel</h4>
-                            <p style="font-size:0.85rem; color:rgba(255,255,255,0.6);">Data raster berupa sel/grid. Contoh: citra satelit, DEM.</p>
+                            <div style="font-size:2.5rem; color:#F59E0B;">•</div>
+                            <h4 style="color:#F59E0B; font-size:0.9rem;">Data Titik</h4>
+                            <p style="font-size:0.85rem; color:rgba(255,240,210,0.55);">Objek dengan lokasi tunggal. Contoh: pos, sumur, tiang listrik.</p>
+                        </div>
+                        <div class="card" style="background:rgba(245,158,11,0.03); border-left:4px solid #FCD34D; border-radius:12px; padding:12px 14px; text-align:center;">
+                            <div style="font-size:2.5rem; color:#FCD34D;">━</div>
+                            <h4 style="color:#FCD34D; font-size:0.9rem;">Data Garis</h4>
+                            <p style="font-size:0.85rem; color:rgba(255,240,210,0.55);">Objek linear. Contoh: jalan, sungai, rel kereta.</p>
+                        </div>
+                        <div class="card" style="background:rgba(245,158,11,0.03); border-left:4px solid #FBBF24; border-radius:12px; padding:12px 14px; text-align:center;">
+                            <div style="font-size:2.5rem; color:#FBBF24;">▭</div>
+                            <h4 style="color:#FBBF24; font-size:0.9rem;">Data Poligon</h4>
+                            <p style="font-size:0.85rem; color:rgba(255,240,210,0.55);">Objek area. Contoh: sawah, danau, permukiman.</p>
+                        </div>
+                        <div class="card" style="background:rgba(245,158,11,0.03); border-left:4px solid #D97706; border-radius:12px; padding:12px 14px; text-align:center;">
+                            <div style="font-size:2.5rem; color:#D97706;">⬛</div>
+                            <h4 style="color:#D97706; font-size:0.9rem;">Data Pixel</h4>
+                            <p style="font-size:0.85rem; color:rgba(255,240,210,0.55);">Data raster berupa sel/grid. Contoh: citra satelit, DEM.</p>
                         </div>
                     </div>
-                    <div style="background:rgba(6,182,212,0.02); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #06B6D4;">
-                        <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">
-                            <strong style="color:rgba(255,255,255,0.7); font-weight:600;">🔑 Prinsip:</strong> Pemilihan bentuk data tergantung pada jenis objek dan tujuan analisis. Objek yang sama bisa direpresentasikan berbeda-beda.
+                    <div style="background:rgba(245,158,11,0.02); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #FCD34D;">
+                        <p style="font-size:0.9rem; color:rgba(255,240,210,0.55); font-weight:400;">
+                            <strong style="color:rgba(255,240,210,0.65); font-weight:600;">🔑 Prinsip:</strong> Pemilihan bentuk data tergantung pada jenis objek dan tujuan analisis. Objek yang sama bisa direpresentasikan berbeda-beda.
                         </p>
                     </div>
                 </div>
@@ -2345,12 +2347,12 @@
                     <li><strong>BPS (Badan Pusat Statistik):</strong> Menyediakan data sosial-ekonomi yang bisa diintegrasikan dengan SIG.</li>
                     <li><strong>Kementerian PUPR:</strong> Menyediakan data infrastruktur dan tata ruang.</li>
                 </ul>
-                <p style="margin-top:6px; font-size:0.85rem; color:rgba(255,255,255,0.35);">💡 Banyak data SIG di Indonesia yang bisa diakses secara gratis melalui portal <strong>Ina-Geoportal</strong> (https://tanahair.indonesia.go.id).</p>
+                <p style="margin-top:6px; font-size:0.85rem; color:rgba(255,240,210,0.30);">💡 Banyak data SIG di Indonesia yang bisa diakses secara gratis melalui portal <strong>Ina-Geoportal</strong> (https://tanahair.indonesia.go.id).</p>
             </div>
 
             <!-- PENDALAMAN -->
             <div class="deep-dive reveal">
-                <h4><i class="fas fa-microscope" style="color:#a78bfa;"></i> Pendalaman: Teknik Input Data</h4>
+                <h4><i class="fas fa-microscope" style="color:#FBBF24;"></i> Pendalaman: Teknik Input Data</h4>
                 <ul>
                     <li><strong>Digitasi (Digitizing):</strong> Mengubah peta analog (kertas) menjadi digital dengan menjiplak menggunakan digitizer atau layar komputer.</li>
                     <li><strong>Scanning:</strong> Memindai peta kertas dan mengubahnya menjadi raster, lalu di-vektorisasi.</li>
@@ -2358,7 +2360,7 @@
                     <li><strong>Key-in (Entry Manual):</strong> Memasukkan data atribut secara manual dari formulir atau tabel.</li>
                 </ul>
                 <div style="background:rgba(0,0,0,0.08); border-radius:8px; padding:8px 12px; margin-top:6px;">
-                    <span style="font-size:0.85rem; color:rgba(255,255,255,0.35);">💡 Kualitas input data sangat menentukan kualitas output SIG. Prinsip GIGO: Garbage In Garbage Out.</span>
+                    <span style="font-size:0.85rem; color:rgba(255,240,210,0.30);">💡 Kualitas input data sangat menentukan kualitas output SIG. Prinsip GIGO: Garbage In Garbage Out.</span>
                 </div>
             </div>
 
@@ -2388,9 +2390,9 @@
         <!-- SECTION 4 : PERTEMUAN 3 – PENGOPERASIAN SIG (KONVENSIONAL VS DIGITAL) -->
         <!-- ============================================================ -->
         <section id="section4" class="section">
-            <div style="background:rgba(124,58,237,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(124,58,237,0.12); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-                <div style="display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.35); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
-                <button onclick="navigateTo('section1')" style="background:rgba(255,255,255,0.02); color:rgba(255,255,255,0.25); border:1px solid rgba(255,255,255,0.02); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem;">⌂ Beranda</button>
+            <div style="background:rgba(245,158,11,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(245,158,11,0.08); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                <div style="display:flex; align-items:center; gap:8px; color:rgba(255,240,210,0.30); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
+                <button onclick="navigateTo('section1')" style="background:rgba(255,240,210,0.02); color:rgba(255,240,210,0.20); border:1px solid rgba(255,240,210,0.02); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem;">⌂ Beranda</button>
             </div>
             <div class="section-header">
                 <div class="num">04</div>
@@ -2402,15 +2404,15 @@
                 <span class="step done">2</span><span class="line done"></span>
                 <span class="step active">3</span><span class="line"></span>
                 <span class="step">4</span>
-                <span style="color:rgba(255,255,255,0.10); font-size:0.75rem; font-weight:500; margin-left:8px;">Klik untuk eksplorasi</span>
+                <span style="color:rgba(255,240,210,0.08); font-size:0.75rem; font-weight:500; margin-left:8px;">Klik untuk eksplorasi</span>
             </div>
             <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;">
                 <span class="pertemuan-badge">TP 3</span>
-                <span class="pertemuan-badge" style="background:rgba(6,182,212,0.06); color:#06B6D4; border-color:rgba(6,182,212,0.04);">Penalaran Kritis</span>
-                <span class="pertemuan-badge" style="background:rgba(236,72,153,0.06); color:#EC4899; border-color:rgba(236,72,153,0.04);">Kreativitas</span>
+                <span class="pertemuan-badge" style="background:rgba(245,158,11,0.06); color:#FCD34D; border-color:rgba(245,158,11,0.04);">Penalaran Kritis</span>
+                <span class="pertemuan-badge" style="background:rgba(245,158,11,0.06); color:#FCD34D; border-color:rgba(245,158,11,0.04);">Kreativitas</span>
             </div>
-            <h3 style="font-size:1.05rem; color:#f0f4fa; font-weight:700; border-left:4px solid #7C3AED; padding-left:12px; margin-bottom:6px;">Tujuan Pembelajaran</h3>
-            <ul style="color:rgba(255,255,255,0.7); font-weight:400; padding-left:20px; margin-bottom:16px; line-height:2; font-size:0.95rem;">
+            <h3 style="font-size:1.05rem; color:#f5ede0; font-weight:700; border-left:4px solid #F59E0B; padding-left:12px; margin-bottom:6px;">Tujuan Pembelajaran</h3>
+            <ul style="color:rgba(255,240,210,0.65); font-weight:400; padding-left:20px; margin-bottom:16px; line-height:2; font-size:0.95rem;">
                 <li>Menjelaskan perbedaan pengoperasian SIG secara konvensional (manual) dan digital (komputer).</li>
                 <li>Mengidentifikasi tahapan SIG konvensional: persiapan, pembuatan peta, analisis overlay, pemindahan peta.</li>
                 <li>Memahami konsep layer dan georeferensi dalam SIG digital.</li>
@@ -2420,17 +2422,17 @@
             <div style="margin:16px 0;">
                 <div class="grid-3">
                     <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/petakertas.png', 'Peta Kertas – Contoh SIG konvensional yang digambar manual di atas kertas.')">
-                        <div class="img-wrap"><img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/petakertas.png" alt="Peta Kertas" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%237C3AED%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🗺️ Peta Kertas%3C/text%3E%3C/svg%3E'" /></div>
+                        <div class="img-wrap"><img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/petakertas.png" alt="Peta Kertas" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1200%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%23F59E0B%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🗺️ Peta Kertas%3C/text%3E%3C/svg%3E'" /></div>
                         <div class="image-label-premium"><span>🗺️</span> SIG Konvensional</div>
                         <div class="image-sub-premium">Peta digambar manual di atas kertas</div>
                     </div>
                     <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/layer.png', 'Layer SIG – Konsep layer memungkinkan overlay data tematik dalam SIG digital.')">
-                        <div class="img-wrap"><img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/layer.png" alt="Layer" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%237C3AED%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E📚 Layer%3C/text%3E%3C/svg%3E'" /></div>
+                        <div class="img-wrap"><img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/layer.png" alt="Layer" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1200%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%23F59E0B%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E📚 Layer%3C/text%3E%3C/svg%3E'" /></div>
                         <div class="image-label-premium"><span>📚</span> Konsep Layer</div>
                         <div class="image-sub-premium">Tumpang susun data tematik (overlay)</div>
                     </div>
                     <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/komputer.png', 'SIG Digital – Pengoperasian SIG dengan bantuan komputer dan software khusus.')">
-                        <div class="img-wrap"><img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/komputer.png" alt="SIG Digital" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%237C3AED%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E💻 SIG Digital%3C/text%3E%3C/svg%3E'" /></div>
+                        <div class="img-wrap"><img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/komputer.png" alt="SIG Digital" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1200%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%23F59E0B%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E💻 SIG Digital%3C/text%3E%3C/svg%3E'" /></div>
                         <div class="image-label-premium"><span>💻</span> SIG Digital Modern</div>
                         <div class="image-sub-premium">Komputer + software untuk analisis cepat</div>
                     </div>
@@ -2441,12 +2443,12 @@
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
                     <h4>A. SIG Konvensional vs SIG Digital</h4>
-                    <span class="fa-chevron-down" style="color:#a78bfa; transition:transform 0.3s;">▼</span>
+                    <span class="fa-chevron-down" style="color:#FCD34D; transition:transform 0.3s;">▼</span>
                 </div>
                 <div class="detail-body">
                     <div class="def-block">
-                        <p style="color:rgba(255,255,255,0.85); font-weight:400; font-size:0.95rem;">
-                            SIG dapat dioperasikan secara <strong style="color:#7C3AED;">konvensional (manual)</strong> atau <strong style="color:#06B6D4;">digital (berbantuan komputer)</strong>. Keduanya memiliki kelebihan dan kekurangan.
+                        <p style="color:rgba(255,240,210,0.85); font-weight:400; font-size:0.95rem;">
+                            SIG dapat dioperasikan secara <strong style="color:#F59E0B;">konvensional (manual)</strong> atau <strong style="color:#FCD34D;">digital (berbantuan komputer)</strong>. Keduanya memiliki kelebihan dan kekurangan.
                         </p>
                     </div>
                     <div class="example-box">
@@ -2454,32 +2456,32 @@
                         <p>SIG Konvensional = membuat peta dengan tangan di atas kertas. SIG Digital = membuat peta dengan software di komputer. SIG digital jauh lebih cepat, akurat, dan mudah diperbarui.</p>
                     </div>
                     <div class="grid-2">
-                        <div class="card" style="background:rgba(124,58,237,0.03); border-left:4px solid #7C3AED; border-radius:12px; padding:14px 16px;">
-                            <h4 style="color:#7C3AED;">SIG Konvensional</h4>
-                            <ul style="font-size:0.9rem; color:rgba(255,255,255,0.7); padding-left:18px;">
+                        <div class="card" style="background:rgba(245,158,11,0.03); border-left:4px solid #F59E0B; border-radius:12px; padding:14px 16px;">
+                            <h4 style="color:#F59E0B;">SIG Konvensional</h4>
+                            <ul style="font-size:0.9rem; color:rgba(255,240,210,0.65); padding-left:18px;">
                                 <li>Menggunakan teknik kartografi manual</li>
                                 <li>Membutuhkan waktu lama (bulanan)</li>
                                 <li>Data sulit diperbarui</li>
                                 <li>Overlay menggunakan plastik transparan</li>
                                 <li>Keterbatasan basis data</li>
                             </ul>
-                            <div style="background:rgba(0,0,0,0.08); border-radius:6px; padding:4px 10px; margin-top:4px;"><span style="font-size:0.8rem; color:rgba(255,255,255,0.4);">Contoh: Peta tematik yang digambar dengan rapido dan kertas kalkir.</span></div>
+                            <div style="background:rgba(0,0,0,0.08); border-radius:6px; padding:4px 10px; margin-top:4px;"><span style="font-size:0.8rem; color:rgba(255,240,210,0.35);">Contoh: Peta tematik yang digambar dengan rapido dan kertas kalkir.</span></div>
                         </div>
-                        <div class="card" style="background:rgba(6,182,212,0.03); border-left:4px solid #06B6D4; border-radius:12px; padding:14px 16px;">
-                            <h4 style="color:#06B6D4;">SIG Digital</h4>
-                            <ul style="font-size:0.9rem; color:rgba(255,255,255,0.7); padding-left:18px;">
+                        <div class="card" style="background:rgba(245,158,11,0.03); border-left:4px solid #FCD34D; border-radius:12px; padding:14px 16px;">
+                            <h4 style="color:#FCD34D;">SIG Digital</h4>
+                            <ul style="font-size:0.9rem; color:rgba(255,240,210,0.65); padding-left:18px;">
                                 <li>Menggunakan komputer dan software khusus</li>
                                 <li>Proses cepat (jam/hari)</li>
                                 <li>Data mudah diperbarui</li>
                                 <li>Overlay digital (layer)</li>
                                 <li>Basis data besar dan terintegrasi</li>
                             </ul>
-                            <div style="background:rgba(0,0,0,0.08); border-radius:6px; padding:4px 10px; margin-top:4px;"><span style="font-size:0.8rem; color:rgba(255,255,255,0.4);">Contoh: Analisis spasial di QGIS, ArcGIS, Google Earth.</span></div>
+                            <div style="background:rgba(0,0,0,0.08); border-radius:6px; padding:4px 10px; margin-top:4px;"><span style="font-size:0.8rem; color:rgba(255,240,210,0.35);">Contoh: Analisis spasial di QGIS, ArcGIS, Google Earth.</span></div>
                         </div>
                     </div>
                     <div style="background:rgba(245,158,11,0.02); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #F59E0B;">
-                        <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">
-                            <strong style="color:rgba(255,255,255,0.7); font-weight:600;">💡 Kunci:</strong> SIG digital tidak sepenuhnya menggantikan SIG konvensional. Keterampilan kartografi manual tetap penting sebagai dasar pemahaman.
+                        <p style="font-size:0.9rem; color:rgba(255,240,210,0.55); font-weight:400;">
+                            <strong style="color:rgba(255,240,210,0.65); font-weight:600;">💡 Kunci:</strong> SIG digital tidak sepenuhnya menggantikan SIG konvensional. Keterampilan kartografi manual tetap penting sebagai dasar pemahaman.
                         </p>
                     </div>
                 </div>
@@ -2489,35 +2491,35 @@
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
                     <h4>B. Tahapan SIG Konvensional</h4>
-                    <span class="fa-chevron-down" style="color:#a78bfa; transition:transform 0.3s;">▼</span>
+                    <span class="fa-chevron-down" style="color:#FCD34D; transition:transform 0.3s;">▼</span>
                 </div>
                 <div class="detail-body">
                     <div class="def-block">
-                        <p style="color:rgba(255,255,255,0.85); font-weight:400; font-size:0.95rem;">
-                            SIG konvensional dilakukan melalui <strong style="color:#7C3AED;">4 tahapan</strong>: <strong style="color:#06B6D4;">Persiapan</strong>, <strong style="color:#EC4899;">Pembuatan Peta</strong>, <strong style="color:#F59E0B;">Analisis</strong>, dan <strong style="color:#7C3AED;">Pemindahan Peta</strong>.
+                        <p style="color:rgba(255,240,210,0.85); font-weight:400; font-size:0.95rem;">
+                            SIG konvensional dilakukan melalui <strong style="color:#F59E0B;">4 tahapan</strong>: <strong style="color:#FCD34D;">Persiapan</strong>, <strong style="color:#FBBF24;">Pembuatan Peta</strong>, <strong style="color:#F59E0B;">Analisis</strong>, dan <strong style="color:#FCD34D;">Pemindahan Peta</strong>.
                         </p>
                     </div>
                     <div style="display:grid; gap:10px; margin-top:8px;">
-                        <div style="background:rgba(124,58,237,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #7C3AED;">
-                            <h4 style="color:#a78bfa; font-size:0.9rem; font-weight:700;">1. Persiapan</h4>
-                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Kajian kebutuhan, pembuatan konsep, rencana analisis, dan pengumpulan data dari berbagai sumber.</p>
+                        <div style="background:rgba(245,158,11,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #F59E0B;">
+                            <h4 style="color:#FCD34D; font-size:0.9rem; font-weight:700;">1. Persiapan</h4>
+                            <p style="font-size:0.92rem; color:rgba(255,240,210,0.65); font-weight:400;">Kajian kebutuhan, pembuatan konsep, rencana analisis, dan pengumpulan data dari berbagai sumber.</p>
                         </div>
-                        <div style="background:rgba(236,72,153,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #EC4899;">
-                            <h4 style="color:#EC4899; font-size:0.9rem; font-weight:700;">2. Pembuatan Peta</h4>
-                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Menggambar peta tematik di atas plastik transparan dengan teknik kartografi (rapido, lettering set).</p>
+                        <div style="background:rgba(245,158,11,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #FBBF24;">
+                            <h4 style="color:#FBBF24; font-size:0.9rem; font-weight:700;">2. Pembuatan Peta</h4>
+                            <p style="font-size:0.92rem; color:rgba(255,240,210,0.65); font-weight:400;">Menggambar peta tematik di atas plastik transparan dengan teknik kartografi (rapido, lettering set).</p>
                         </div>
                         <div style="background:rgba(245,158,11,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #F59E0B;">
                             <h4 style="color:#F59E0B; font-size:0.9rem; font-weight:700;">3. Analisis (Overlay)</h4>
-                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Menumpang susun (overlay) peta tematik pada plastik untuk menghasilkan peta komposit.</p>
+                            <p style="font-size:0.92rem; color:rgba(255,240,210,0.65); font-weight:400;">Menumpang susun (overlay) peta tematik pada plastik untuk menghasilkan peta komposit.</p>
                         </div>
-                        <div style="background:rgba(6,182,212,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #06B6D4;">
-                            <h4 style="color:#06B6D4; font-size:0.9rem; font-weight:700;">4. Pemindahan Peta</h4>
-                            <p style="font-size:0.92rem; color:rgba(255,255,255,0.7); font-weight:400;">Memindahkan peta komposit dari plastik ke kertas kalkir dengan rapido dan lettering set.</p>
+                        <div style="background:rgba(245,158,11,0.04); border-radius:10px; padding:12px 16px; border-left:4px solid #FCD34D;">
+                            <h4 style="color:#FCD34D; font-size:0.9rem; font-weight:700;">4. Pemindahan Peta</h4>
+                            <p style="font-size:0.92rem; color:rgba(255,240,210,0.65); font-weight:400;">Memindahkan peta komposit dari plastik ke kertas kalkir dengan rapido dan lettering set.</p>
                         </div>
                     </div>
-                    <div style="background:rgba(6,182,212,0.02); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #06B6D4;">
-                        <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">
-                            <strong style="color:rgba(255,255,255,0.7); font-weight:600;">🔑 Prinsip:</strong> SIG konvensional melatih ketelitian dan pemahaman konsep dasar kartografi yang menjadi fondasi SIG digital.
+                    <div style="background:rgba(245,158,11,0.02); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #FCD34D;">
+                        <p style="font-size:0.9rem; color:rgba(255,240,210,0.55); font-weight:400;">
+                            <strong style="color:rgba(255,240,210,0.65); font-weight:600;">🔑 Prinsip:</strong> SIG konvensional melatih ketelitian dan pemahaman konsep dasar kartografi yang menjadi fondasi SIG digital.
                         </p>
                     </div>
                 </div>
@@ -2527,12 +2529,12 @@
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
                     <h4>C. Konsep Layer &amp; Georeferensi dalam SIG Digital</h4>
-                    <span class="fa-chevron-down" style="color:#a78bfa; transition:transform 0.3s;">▼</span>
+                    <span class="fa-chevron-down" style="color:#FCD34D; transition:transform 0.3s;">▼</span>
                 </div>
                 <div class="detail-body">
                     <div class="def-block">
-                        <p style="color:rgba(255,255,255,0.85); font-weight:400; font-size:0.95rem;">
-                            Dalam SIG digital, data disusun dalam <strong style="color:#7C3AED;">layer (lapisan)</strong> yang dapat ditumpang susun. Setiap layer selalu memiliki <strong style="color:#06B6D4;">georeferensi</strong> (sistem koordinat) yang sama.
+                        <p style="color:rgba(255,240,210,0.85); font-weight:400; font-size:0.95rem;">
+                            Dalam SIG digital, data disusun dalam <strong style="color:#F59E0B;">layer (lapisan)</strong> yang dapat ditumpang susun. Setiap layer selalu memiliki <strong style="color:#FCD34D;">georeferensi</strong> (sistem koordinat) yang sama.
                         </p>
                     </div>
                     <div class="example-box">
@@ -2551,8 +2553,8 @@
                         </table>
                     </div>
                     <div style="background:rgba(245,158,11,0.02); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #F59E0B;">
-                        <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">
-                            <strong style="color:rgba(255,255,255,0.7); font-weight:600;">💡 Penting:</strong> Semua layer dalam satu proyek SIG harus memiliki <strong>georeferensi yang sama</strong>. Jika tidak, data tidak akan pas saat ditumpang susun.
+                        <p style="font-size:0.9rem; color:rgba(255,240,210,0.55); font-weight:400;">
+                            <strong style="color:rgba(255,240,210,0.65); font-weight:600;">💡 Penting:</strong> Semua layer dalam satu proyek SIG harus memiliki <strong>georeferensi yang sama</strong>. Jika tidak, data tidak akan pas saat ditumpang susun.
                         </p>
                     </div>
                 </div>
@@ -2568,19 +2570,19 @@
                     <li><strong>MapInfo:</strong> Software SIG yang banyak digunakan di sektor pemerintahan dan bisnis.</li>
                     <li><strong>GRASS GIS:</strong> Open-source dengan kemampuan analisis ilmiah yang kuat.</li>
                 </ul>
-                <p style="margin-top:6px; font-size:0.85rem; color:rgba(255,255,255,0.35);">💡 QGIS dan Google Earth Pro dapat diunduh gratis dan cocok untuk pemula!</p>
+                <p style="margin-top:6px; font-size:0.85rem; color:rgba(255,240,210,0.30);">💡 QGIS dan Google Earth Pro dapat diunduh gratis dan cocok untuk pemula!</p>
             </div>
 
             <!-- PENDALAMAN -->
             <div class="deep-dive reveal">
-                <h4><i class="fas fa-microscope" style="color:#a78bfa;"></i> Pendalaman: Analisis Overlay dan Buffer</h4>
+                <h4><i class="fas fa-microscope" style="color:#FBBF24;"></i> Pendalaman: Analisis Overlay dan Buffer</h4>
                 <p>Dua teknik analisis spasial yang paling umum digunakan dalam SIG:</p>
                 <ul>
                     <li><strong>Overlay:</strong> Menggabungkan dua atau lebih layer untuk menghasilkan informasi baru. Contoh: Overlay peta rawan banjir dan peta permukiman untuk mengetahui permukiman mana yang berada di zona rawan.</li>
                     <li><strong>Buffer:</strong> Membuat zona dengan jarak tertentu dari suatu objek. Contoh: Buffer 500 m dari sungai untuk mengetahui area yang berpotensi terkena banjir.</li>
                 </ul>
                 <div style="background:rgba(0,0,0,0.08); border-radius:8px; padding:8px 12px; margin-top:6px;">
-                    <span style="font-size:0.85rem; color:rgba(255,255,255,0.35);">💡 Overlay dan buffer adalah fondasi dari banyak analisis SIG, mulai dari perencanaan tata ruang hingga mitigasi bencana.</span>
+                    <span style="font-size:0.85rem; color:rgba(255,240,210,0.30);">💡 Overlay dan buffer adalah fondasi dari banyak analisis SIG, mulai dari perencanaan tata ruang hingga mitigasi bencana.</span>
                 </div>
             </div>
 
@@ -2610,9 +2612,9 @@
         <!-- SECTION 5 : PERTEMUAN 4 – PEMANFAATAN SIG                      -->
         <!-- ============================================================ -->
         <section id="section5" class="section">
-            <div style="background:rgba(124,58,237,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(124,58,237,0.12); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-                <div style="display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.35); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
-                <button onclick="navigateTo('section1')" style="background:rgba(255,255,255,0.02); color:rgba(255,255,255,0.25); border:1px solid rgba(255,255,255,0.02); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem;">⌂ Beranda</button>
+            <div style="background:rgba(245,158,11,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(245,158,11,0.08); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                <div style="display:flex; align-items:center; gap:8px; color:rgba(255,240,210,0.30); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
+                <button onclick="navigateTo('section1')" style="background:rgba(255,240,210,0.02); color:rgba(255,240,210,0.20); border:1px solid rgba(255,240,210,0.02); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem;">⌂ Beranda</button>
             </div>
             <div class="section-header">
                 <div class="num">05</div>
@@ -2624,15 +2626,15 @@
                 <span class="step done">2</span><span class="line done"></span>
                 <span class="step done">3</span><span class="line done"></span>
                 <span class="step active">4</span>
-                <span style="color:rgba(255,255,255,0.10); font-size:0.75rem; font-weight:500; margin-left:8px;">Klik untuk eksplorasi</span>
+                <span style="color:rgba(255,240,210,0.08); font-size:0.75rem; font-weight:500; margin-left:8px;">Klik untuk eksplorasi</span>
             </div>
             <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;">
                 <span class="pertemuan-badge">TP 4</span>
-                <span class="pertemuan-badge" style="background:rgba(6,182,212,0.06); color:#06B6D4; border-color:rgba(6,182,212,0.04);">Kreativitas</span>
-                <span class="pertemuan-badge" style="background:rgba(236,72,153,0.06); color:#EC4899; border-color:rgba(236,72,153,0.04);">Kemandirian</span>
+                <span class="pertemuan-badge" style="background:rgba(245,158,11,0.06); color:#FCD34D; border-color:rgba(245,158,11,0.04);">Kreativitas</span>
+                <span class="pertemuan-badge" style="background:rgba(245,158,11,0.06); color:#FCD34D; border-color:rgba(245,158,11,0.04);">Kemandirian</span>
             </div>
-            <h3 style="font-size:1.05rem; color:#f0f4fa; font-weight:700; border-left:4px solid #7C3AED; padding-left:12px; margin-bottom:6px;">Tujuan Pembelajaran</h3>
-            <ul style="color:rgba(255,255,255,0.7); font-weight:400; padding-left:20px; margin-bottom:16px; line-height:2; font-size:0.95rem;">
+            <h3 style="font-size:1.05rem; color:#f5ede0; font-weight:700; border-left:4px solid #F59E0B; padding-left:12px; margin-bottom:6px;">Tujuan Pembelajaran</h3>
+            <ul style="color:rgba(255,240,210,0.65); font-weight:400; padding-left:20px; margin-bottom:16px; line-height:2; font-size:0.95rem;">
                 <li>Menganalisis berbagai bidang pemanfaatan SIG (agraris, non-agraris, sosial ekonomi, lingkungan).</li>
                 <li>Menghubungkan SIG dengan pemantauan sumber daya alam dan lingkungan (LAPAN).</li>
                 <li>Menyusun gagasan kreatif pemanfaatan SIG untuk masalah di daerah sendiri.</li>
@@ -2642,17 +2644,17 @@
             <div style="margin:16px 0;">
                 <div class="grid-3">
                     <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/pertanian.png', 'SIG untuk Pertanian – Pemetaan lahan pertanian dan analisis kesesuaian lahan.')">
-                        <div class="img-wrap"><img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/pertanian.png" alt="Pertanian" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%237C3AED%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🌾 Pertanian%3C/text%3E%3C/svg%3E'" /></div>
+                        <div class="img-wrap"><img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/pertanian.png" alt="Pertanian" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1200%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%23F59E0B%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🌾 Pertanian%3C/text%3E%3C/svg%3E'" /></div>
                         <div class="image-label-premium"><span>🌾</span> SIG untuk Pertanian</div>
                         <div class="image-sub-premium">Pemetaan lahan dan analisis kesesuaian</div>
                     </div>
                     <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/mitigasibanjir.png', 'SIG untuk Mitigasi Bencana – Pemetaan daerah rawan banjir dan jalur evakuasi.')">
-                        <div class="img-wrap"><img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/mitigasibanjir.png" alt="Bencana" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%237C3AED%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🌊 Mitigasi%3C/text%3E%3C/svg%3E'" /></div>
+                        <div class="img-wrap"><img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/mitigasibanjir.png" alt="Bencana" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1200%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%23F59E0B%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🌊 Mitigasi%3C/text%3E%3C/svg%3E'" /></div>
                         <div class="image-label-premium"><span>🌊</span> SIG untuk Mitigasi Bencana</div>
                         <div class="image-sub-premium">Pemetaan zona risiko dan jalur evakuasi</div>
                     </div>
                     <div class="image-card-premium reveal" onclick="openModal('https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/kota.png', 'SIG untuk Perencanaan Kota – Analisis tata ruang dan pengembangan wilayah.')">
-                        <div class="img-wrap"><img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/kota.png" alt="Kota" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1a2e%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%237C3AED%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🏙️ Kota%3C/text%3E%3C/svg%3E'" /></div>
+                        <div class="img-wrap"><img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/kota.png" alt="Kota" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%231a1200%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 fill=%22%23F59E0B%22 font-family=%22Poppins%22 font-size=%2220%22 dy=%22.3em%22%3E🏙️ Kota%3C/text%3E%3C/svg%3E'" /></div>
                         <div class="image-label-premium"><span>🏙️</span> SIG untuk Perencanaan Kota</div>
                         <div class="image-sub-premium">Analisis tata ruang dan infrastruktur</div>
                     </div>
@@ -2663,19 +2665,19 @@
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
                     <h4>A. Bidang Pemanfaatan SIG</h4>
-                    <span class="fa-chevron-down" style="color:#a78bfa; transition:transform 0.3s;">▼</span>
+                    <span class="fa-chevron-down" style="color:#FCD34D; transition:transform 0.3s;">▼</span>
                 </div>
                 <div class="detail-body">
                     <div class="def-block">
-                        <p style="color:rgba(255,255,255,0.85); font-weight:400; font-size:0.95rem;">
-                            SIG memiliki <strong style="color:#7C3AED;">banyak manfaat</strong> di berbagai bidang. Perkembangan teknologi komputer membuat aplikasi SIG semakin luas.
+                        <p style="color:rgba(255,240,210,0.85); font-weight:400; font-size:0.95rem;">
+                            SIG memiliki <strong style="color:#F59E0B;">banyak manfaat</strong> di berbagai bidang. Perkembangan teknologi komputer membuat aplikasi SIG semakin luas.
                         </p>
                     </div>
                     <div class="grid-3">
-                        <div class="card" style="border-left:4px solid #7C3AED; border-radius:12px;">
-                            <div style="font-size:2rem; color:#7C3AED;"><i class="fas fa-seedling"></i></div>
-                            <h4 style="color:#f0f4fa;">Bidang Agraris</h4>
-                            <ul style="font-size:0.9rem; color:rgba(255,255,255,0.7); padding-left:18px;">
+                        <div class="card" style="border-left:4px solid #F59E0B; border-radius:12px;">
+                            <div style="font-size:2rem; color:#F59E0B;"><i class="fas fa-seedling"></i></div>
+                            <h4 style="color:#f5ede0;">Bidang Agraris</h4>
+                            <ul style="font-size:0.9rem; color:rgba(255,240,210,0.65); padding-left:18px;">
                                 <li>Pemetaan lahan pertanian</li>
                                 <li>Analisis kesesuaian lahan</li>
                                 <li>Pemantauan kesehatan tanaman (NDVI)</li>
@@ -2683,10 +2685,10 @@
                                 <li>Inventarisasi perkebunan dan kehutanan</li>
                             </ul>
                         </div>
-                        <div class="card" style="border-left:4px solid #06B6D4; border-radius:12px;">
-                            <div style="font-size:2rem; color:#06B6D4;"><i class="fas fa-industry"></i></div>
-                            <h4 style="color:#f0f4fa;">Bidang Non-Agraris</h4>
-                            <ul style="font-size:0.9rem; color:rgba(255,255,255,0.7); padding-left:18px;">
+                        <div class="card" style="border-left:4px solid #FCD34D; border-radius:12px;">
+                            <div style="font-size:2rem; color:#FCD34D;"><i class="fas fa-industry"></i></div>
+                            <h4 style="color:#f5ede0;">Bidang Non-Agraris</h4>
+                            <ul style="font-size:0.9rem; color:rgba(255,240,210,0.65); padding-left:18px;">
                                 <li>Perencanaan tata ruang dan infrastruktur</li>
                                 <li>Pengelolaan sumber daya mineral</li>
                                 <li>Pemantauan perubahan tutupan lahan</li>
@@ -2694,10 +2696,10 @@
                                 <li>Perencanaan transportasi</li>
                             </ul>
                         </div>
-                        <div class="card" style="border-left:4px solid #EC4899; border-radius:12px;">
-                            <div style="font-size:2rem; color:#EC4899;"><i class="fas fa-users"></i></div>
-                            <h4 style="color:#f0f4fa;">Bidang Sosial Ekonomi</h4>
-                            <ul style="font-size:0.9rem; color:rgba(255,255,255,0.7); padding-left:18px;">
+                        <div class="card" style="border-left:4px solid #FBBF24; border-radius:12px;">
+                            <div style="font-size:2rem; color:#FBBF24;"><i class="fas fa-users"></i></div>
+                            <h4 style="color:#f5ede0;">Bidang Sosial Ekonomi</h4>
+                            <ul style="font-size:0.9rem; color:rgba(255,240,210,0.65); padding-left:18px;">
                                 <li>Analisis persebaran penduduk</li>
                                 <li>Pemetaan fasilitas umum (sekolah, RS)</li>
                                 <li>Analisis kemiskinan dan kesenjangan</li>
@@ -2717,12 +2719,12 @@
             <div class="materi-detail reveal">
                 <div class="detail-header" onclick="toggleDetail(this)">
                     <h4>B. Studi Kasus: Pemanfaatan SIG di LAPAN</h4>
-                    <span class="fa-chevron-down" style="color:#a78bfa; transition:transform 0.3s;">▼</span>
+                    <span class="fa-chevron-down" style="color:#FCD34D; transition:transform 0.3s;">▼</span>
                 </div>
                 <div class="detail-body">
                     <div class="def-block">
-                        <p style="color:rgba(255,255,255,0.85); font-weight:400; font-size:0.95rem;">
-                            <strong style="color:#F59E0B;">LAPAN (Lembaga Penerbangan dan Antariksa Nasional)</strong> memanfaatkan SIG dan penginderaan jauh untuk <strong style="color:#06B6D4;">pemantauan sumber daya alam dan lingkungan</strong>.
+                        <p style="color:rgba(255,240,210,0.85); font-weight:400; font-size:0.95rem;">
+                            <strong style="color:#F59E0B;">LAPAN (Lembaga Penerbangan dan Antariksa Nasional)</strong> memanfaatkan SIG dan penginderaan jauh untuk <strong style="color:#FCD34D;">pemantauan sumber daya alam dan lingkungan</strong>.
                         </p>
                     </div>
                     <div class="table-wrap">
@@ -2738,8 +2740,8 @@
                         </table>
                     </div>
                     <div style="background:rgba(245,158,11,0.02); border-radius:10px; padding:10px 14px; margin-top:8px; border-left:3px solid #F59E0B;">
-                        <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); font-weight:400;">
-                            <strong style="color:rgba(255,255,255,0.7); font-weight:600;">💡 Informasi Tambahan:</strong> Data LAPAN dapat diakses publik melalui portal <strong>http://www.lapanrs.com/</strong> untuk keperluan penelitian dan perencanaan.
+                        <p style="font-size:0.9rem; color:rgba(255,240,210,0.55); font-weight:400;">
+                            <strong style="color:rgba(255,240,210,0.65); font-weight:600;">💡 Informasi Tambahan:</strong> Data LAPAN dapat diakses publik melalui portal <strong>http://www.lapanrs.com/</strong> untuk keperluan penelitian dan perencanaan.
                         </p>
                     </div>
                 </div>
@@ -2756,12 +2758,12 @@
                     <li><strong>SDG 13 (Penanganan Perubahan Iklim):</strong> SIG memantau emisi karbon dan deforestasi.</li>
                     <li><strong>SDG 15 (Ekosistem Darat):</strong> SIG memantau hutan, lahan gambut, dan keanekaragaman hayati.</li>
                 </ul>
-                <p style="margin-top:6px; font-size:0.85rem; color:rgba(255,255,255,0.35);">💡 SIG adalah alat penting untuk mencapai 17 tujuan SDGs!</p>
+                <p style="margin-top:6px; font-size:0.85rem; color:rgba(255,240,210,0.30);">💡 SIG adalah alat penting untuk mencapai 17 tujuan SDGs!</p>
             </div>
 
             <!-- PENDALAMAN -->
             <div class="deep-dive reveal">
-                <h4><i class="fas fa-microscope" style="color:#a78bfa;"></i> Pendalaman: SIG dan Penginderaan Jauh</h4>
+                <h4><i class="fas fa-microscope" style="color:#FBBF24;"></i> Pendalaman: SIG dan Penginderaan Jauh</h4>
                 <p><strong>SIG</strong> dan <strong>Penginderaan Jauh</strong> adalah dua teknologi yang saling melengkapi:</p>
                 <ul>
                     <li><strong>Penginderaan Jauh</strong> menyediakan data spasial (citra satelit, foto udara) yang menjadi bahan baku SIG.</li>
@@ -2769,7 +2771,7 @@
                     <li>Contoh: Citra Landsat (penginderaan jauh) diolah di QGIS (SIG) menjadi peta tutupan lahan, kemudian di-overlay dengan data jalan dan administrasi untuk analisis perubahan lahan.</li>
                 </ul>
                 <div style="background:rgba(0,0,0,0.08); border-radius:8px; padding:8px 12px; margin-top:6px;">
-                    <span style="font-size:0.85rem; color:rgba(255,255,255,0.35);">💡 Kombinasi SIG + Penginderaan Jauh adalah alat paling ampuh untuk analisis geospasial modern.</span>
+                    <span style="font-size:0.85rem; color:rgba(255,240,210,0.30);">💡 Kombinasi SIG + Penginderaan Jauh adalah alat paling ampuh untuk analisis geospasial modern.</span>
                 </div>
             </div>
 
@@ -2799,44 +2801,44 @@
         <!-- SECTION 6 : ASESMEN (HOTS)                                    -->
         <!-- ============================================================ -->
         <section id="section6" class="section">
-            <div style="background:rgba(124,58,237,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(124,58,237,0.12); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-                <div style="display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.35); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
-                <button onclick="navigateTo('section1')" style="background:rgba(255,255,255,0.02); color:rgba(255,255,255,0.25); border:1px solid rgba(255,255,255,0.02); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem;">⌂ Beranda</button>
+            <div style="background:rgba(245,158,11,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(245,158,11,0.08); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                <div style="display:flex; align-items:center; gap:8px; color:rgba(255,240,210,0.30); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
+                <button onclick="navigateTo('section1')" style="background:rgba(255,240,210,0.02); color:rgba(255,240,210,0.20); border:1px solid rgba(255,240,210,0.02); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem;">⌂ Beranda</button>
             </div>
             <div class="section-header">
                 <div class="num">06</div>
                 <h2>Asesmen HOTS <small>Evaluasi Pemahaman 4 Pertemuan</small></h2>
                 <span class="badge-pertemuan">35 PG · 10 BS · 5 Essay</span>
             </div>
-            <div style="background:linear-gradient(145deg, rgba(20,20,40,0.8), rgba(10,10,30,0.8)); backdrop-filter:blur(12px); border-radius:16px; padding:20px 24px; margin-bottom:24px; border:1px solid rgba(255,255,255,0.02);">
+            <div style="background:linear-gradient(145deg, rgba(30,20,8,0.80), rgba(20,12,4,0.80)); backdrop-filter:blur(12px); border-radius:16px; padding:20px 24px; margin-bottom:24px; border:1px solid rgba(255,240,210,0.02);">
                 <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap:12px;">
-                    <div style="display:flex; align-items:center; gap:12px; padding:10px 14px; background:rgba(124,58,237,0.04); border-radius:12px; border:1px solid rgba(124,58,237,0.04);">
-                        <div style="width:32px; height:32px; border-radius:50%; background:rgba(124,58,237,0.06); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.8rem; color:#a78bfa;">A</div>
-                        <div><span style="color:rgba(255,255,255,0.15); font-size:0.6rem; font-weight:600; text-transform:uppercase;">Pilihan Ganda</span><div style="color:#f0f4fa; font-size:1.1rem; font-weight:700;">35</div></div>
+                    <div style="display:flex; align-items:center; gap:12px; padding:10px 14px; background:rgba(245,158,11,0.04); border-radius:12px; border:1px solid rgba(245,158,11,0.04);">
+                        <div style="width:32px; height:32px; border-radius:50%; background:rgba(245,158,11,0.06); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.8rem; color:#FCD34D;">A</div>
+                        <div><span style="color:rgba(255,240,210,0.12); font-size:0.6rem; font-weight:600; text-transform:uppercase;">Pilihan Ganda</span><div style="color:#f5ede0; font-size:1.1rem; font-weight:700;">35</div></div>
                     </div>
-                    <div style="display:flex; align-items:center; gap:12px; padding:10px 14px; background:rgba(6,182,212,0.04); border-radius:12px; border:1px solid rgba(6,182,212,0.04);">
-                        <div style="width:32px; height:32px; border-radius:50%; background:rgba(6,182,212,0.06); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.8rem; color:#06B6D4;">B</div>
-                        <div><span style="color:rgba(255,255,255,0.15); font-size:0.6rem; font-weight:600; text-transform:uppercase;">Benar/Salah</span><div style="color:#f0f4fa; font-size:1.1rem; font-weight:700;">10</div></div>
+                    <div style="display:flex; align-items:center; gap:12px; padding:10px 14px; background:rgba(245,158,11,0.04); border-radius:12px; border:1px solid rgba(245,158,11,0.04);">
+                        <div style="width:32px; height:32px; border-radius:50%; background:rgba(245,158,11,0.06); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.8rem; color:#FCD34D;">B</div>
+                        <div><span style="color:rgba(255,240,210,0.12); font-size:0.6rem; font-weight:600; text-transform:uppercase;">Benar/Salah</span><div style="color:#f5ede0; font-size:1.1rem; font-weight:700;">10</div></div>
                     </div>
-                    <div style="display:flex; align-items:center; gap:12px; padding:10px 14px; background:rgba(236,72,153,0.04); border-radius:12px; border:1px solid rgba(236,72,153,0.04);">
-                        <div style="width:32px; height:32px; border-radius:50%; background:rgba(236,72,153,0.06); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.8rem; color:#EC4899;">C</div>
-                        <div><span style="color:rgba(255,255,255,0.15); font-size:0.6rem; font-weight:600; text-transform:uppercase;">Essay</span><div style="color:#f0f4fa; font-size:1.1rem; font-weight:700;">5</div></div>
+                    <div style="display:flex; align-items:center; gap:12px; padding:10px 14px; background:rgba(245,158,11,0.04); border-radius:12px; border:1px solid rgba(245,158,11,0.04);">
+                        <div style="width:32px; height:32px; border-radius:50%; background:rgba(245,158,11,0.06); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.8rem; color:#FCD34D;">C</div>
+                        <div><span style="color:rgba(255,240,210,0.12); font-size:0.6rem; font-weight:600; text-transform:uppercase;">Essay</span><div style="color:#f5ede0; font-size:1.1rem; font-weight:700;">5</div></div>
                     </div>
                 </div>
-                <div style="margin-top:12px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.02); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;">
-                    <span style="color:rgba(255,255,255,0.2); font-size:0.85rem; font-weight:400;">Total <strong style="color:#f0f4fa; font-weight:700;">50 soal</strong> · HOTS (Higher Order Thinking Skills)</span>
-                    <span style="color:rgba(255,255,255,0.08); font-size:0.75rem; font-weight:400;">60 menit</span>
+                <div style="margin-top:12px; padding-top:12px; border-top:1px solid rgba(255,240,210,0.02); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+                    <span style="color:rgba(255,240,210,0.18); font-size:0.85rem; font-weight:400;">Total <strong style="color:#f5ede0; font-weight:700;">50 soal</strong> · HOTS (Higher Order Thinking Skills)</span>
+                    <span style="color:rgba(255,240,210,0.06); font-size:0.75rem; font-weight:400;">60 menit</span>
                 </div>
             </div>
 
             <!-- PILIHAN GANDA 35 SOAL -->
-            <div style="background:rgba(20,20,40,0.5); backdrop-filter:blur(8px); border-radius:16px; padding:20px; border:1px solid rgba(255,255,255,0.02); margin-bottom:20px;">
+            <div style="background:rgba(30,20,8,0.50); backdrop-filter:blur(8px); border-radius:16px; padding:20px; border:1px solid rgba(255,240,210,0.02); margin-bottom:20px;">
                 <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
-                    <div style="width:32px; height:32px; border-radius:50%; background:linear-gradient(145deg,#2a2a4a,#1a1a3a); display:flex; align-items:center; justify-content:center; font-weight:700; color:#a78bfa; font-size:0.85rem;">A</div>
-                    <h3 style="color:#f0f4fa; font-size:1.05rem; font-weight:700; margin:0;">Pilihan Ganda <span class="hots-tag">HOTS</span></h3>
-                    <span style="font-size:0.7rem; color:rgba(255,255,255,0.08); font-weight:400; margin-left:auto;">35 Soal</span>
+                    <div style="width:32px; height:32px; border-radius:50%; background:linear-gradient(145deg,#2a1a0a,#1a0e04); display:flex; align-items:center; justify-content:center; font-weight:700; color:#FCD34D; font-size:0.85rem;">A</div>
+                    <h3 style="color:#f5ede0; font-size:1.05rem; font-weight:700; margin:0;">Pilihan Ganda <span class="hots-tag">HOTS</span></h3>
+                    <span style="font-size:0.7rem; color:rgba(255,240,210,0.06); font-weight:400; margin-left:auto;">35 Soal</span>
                 </div>
-                <p style="color:rgba(255,255,255,0.10); font-size:0.8rem; font-weight:400; margin-bottom:12px;">Pilih satu jawaban paling tepat!</p>
+                <p style="color:rgba(255,240,210,0.08); font-size:0.8rem; font-weight:400; margin-bottom:12px;">Pilih satu jawaban paling tepat!</p>
 
                 <!-- Soal 1-35 -->
                 <div class="soal-pg"><div class="pertanyaan"><span class="nomor">1.</span> SIG adalah singkatan dari ... <span class="hots-tag">C1</span></div><div class="opsi"><span>A. Sistem Informasi Global</span><span>B. Sistem Informasi Geografi</span><span>C. Sistem Integrasi Geografi</span><span>D. Satuan Informasi Geografi</span><span>E. Sistem Informasi Geologi</span></div></div>
@@ -2877,11 +2879,11 @@
             </div>
 
             <!-- BENAR/SALAH 10 SOAL -->
-            <div style="background:rgba(20,20,40,0.5); backdrop-filter:blur(8px); border-radius:16px; padding:20px; border:1px solid rgba(255,255,255,0.02); margin-bottom:20px;">
+            <div style="background:rgba(30,20,8,0.50); backdrop-filter:blur(8px); border-radius:16px; padding:20px; border:1px solid rgba(255,240,210,0.02); margin-bottom:20px;">
                 <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
-                    <div style="width:32px; height:32px; border-radius:50%; background:linear-gradient(145deg,#1a3a3a,#0a2a2a); display:flex; align-items:center; justify-content:center; font-weight:700; color:#06B6D4; font-size:0.85rem;">B</div>
-                    <h3 style="color:#f0f4fa; font-size:1.05rem; font-weight:700; margin:0;">Benar / Salah <span class="hots-tag">HOTS</span></h3>
-                    <span style="font-size:0.7rem; color:rgba(255,255,255,0.08); font-weight:400; margin-left:auto;">10 Soal</span>
+                    <div style="width:32px; height:32px; border-radius:50%; background:linear-gradient(145deg,#0a2a1a,#041a0e); display:flex; align-items:center; justify-content:center; font-weight:700; color:#FCD34D; font-size:0.85rem;">B</div>
+                    <h3 style="color:#f5ede0; font-size:1.05rem; font-weight:700; margin:0;">Benar / Salah <span class="hots-tag">HOTS</span></h3>
+                    <span style="font-size:0.7rem; color:rgba(255,240,210,0.06); font-weight:400; margin-left:auto;">10 Soal</span>
                 </div>
                 <div class="soal-bs"><span class="nomor">1.</span><span class="pertanyaan">SIG hanya dapat digunakan untuk membuat peta. <span class="hots-tag">C1</span></span></div>
                 <div class="soal-bs"><span class="nomor">2.</span><span class="pertanyaan">Data raster terdiri dari piksel-piksel yang membentuk grid. <span class="hots-tag">C1</span></span></div>
@@ -2896,11 +2898,11 @@
             </div>
 
             <!-- ESSAY 5 SOAL -->
-            <div style="background:rgba(20,20,40,0.5); backdrop-filter:blur(8px); border-radius:16px; padding:20px; border:1px solid rgba(255,255,255,0.02); margin-bottom:20px;">
+            <div style="background:rgba(30,20,8,0.50); backdrop-filter:blur(8px); border-radius:16px; padding:20px; border:1px solid rgba(255,240,210,0.02); margin-bottom:20px;">
                 <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
-                    <div style="width:32px; height:32px; border-radius:50%; background:linear-gradient(145deg,#3a2a1a,#2a1a0a); display:flex; align-items:center; justify-content:center; font-weight:700; color:#F59E0B; font-size:0.85rem;">C</div>
-                    <h3 style="color:#f0f4fa; font-size:1.05rem; font-weight:700; margin:0;">Essay <span class="hots-tag">HOTS</span></h3>
-                    <span style="font-size:0.7rem; color:rgba(255,255,255,0.08); font-weight:400; margin-left:auto;">5 Soal</span>
+                    <div style="width:32px; height:32px; border-radius:50%; background:linear-gradient(145deg,#3a2a0a,#1a1204); display:flex; align-items:center; justify-content:center; font-weight:700; color:#F59E0B; font-size:0.85rem;">C</div>
+                    <h3 style="color:#f5ede0; font-size:1.05rem; font-weight:700; margin:0;">Essay <span class="hots-tag">HOTS</span></h3>
+                    <span style="font-size:0.7rem; color:rgba(255,240,210,0.06); font-weight:400; margin-left:auto;">5 Soal</span>
                 </div>
                 <div class="soal-essay"><div class="pertanyaan"><span class="nomor">1.</span> Jelaskan perbedaan antara data spasial dan data atribut dalam SIG! Berikan 3 contoh masing-masing! <span class="hots-tag">C4</span></div><div class="petunjuk">(Skor: 0-10) · Minimal 4 kalimat dengan contoh konkret</div></div>
                 <div class="soal-essay"><div class="pertanyaan"><span class="nomor">2.</span> Sebuah desa ingin membuat peta daerah rawan banjir. Jelaskan langkah-langkah yang harus dilakukan dengan menggunakan SIG, mulai dari pengumpulan data hingga pembuatan peta! <span class="hots-tag">C5</span></div><div class="petunjuk">(Skor: 0-10) · Uraian minimal 6 langkah dengan alasan logis</div></div>
@@ -2910,23 +2912,23 @@
             </div>
 
             <!-- KUNCI JAWABAN TERSEMBUNYI -->
-            <div style="background:linear-gradient(145deg, rgba(20,20,40,0.8), rgba(10,10,30,0.8)); backdrop-filter:blur(12px); border-radius:16px; padding:20px; border:2px solid rgba(245,158,11,0.06); margin-top:20px;">
+            <div style="background:linear-gradient(145deg, rgba(30,20,8,0.80), rgba(20,12,4,0.80)); backdrop-filter:blur(12px); border-radius:16px; padding:20px; border:2px solid rgba(245,158,11,0.06); margin-top:20px;">
                 <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
                     <div style="width:32px; height:32px; border-radius:50%; background:rgba(245,158,11,0.06); display:flex; align-items:center; justify-content:center; font-weight:700; color:#F59E0B; font-size:0.85rem;">🔑</div>
                     <h3 style="color:#F59E0B; font-size:1.05rem; font-weight:700; margin:0;">Kunci Jawaban Tersembunyi</h3>
-                    <span style="font-size:0.65rem; color:rgba(255,255,255,0.06); font-weight:400; margin-left:auto;">Password</span>
+                    <span style="font-size:0.65rem; color:rgba(255,240,210,0.04); font-weight:400; margin-left:auto;">Password</span>
                 </div>
                 <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:14px;">
-                    <input type="password" id="passwordInput" placeholder="Masukkan password..." style="flex:1; min-width:180px; padding:12px 18px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.03); border-radius:10px; color:#e8e8e8; font-size:0.9rem; outline:none; transition:0.3s; font-weight:400;">
-                    <button onclick="checkPassword()" style="background:linear-gradient(145deg,#F59E0B,#d97706); color:#1a1a1a; border:none; padding:12px 28px; border-radius:10px; font-weight:700; cursor:pointer; transition:0.3s; display:flex; align-items:center; gap:8px; font-size:0.85rem;">Buka Kunci</button>
-                    <button onclick="clearPassword()" style="background:rgba(255,255,255,0.02); color:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.02); padding:12px 18px; border-radius:10px; cursor:pointer; font-weight:400;">✕</button>
+                    <input type="password" id="passwordInput" placeholder="Masukkan password..." style="flex:1; min-width:180px; padding:12px 18px; background:rgba(255,240,210,0.02); border:1px solid rgba(255,240,210,0.03); border-radius:10px; color:#e8e0d8; font-size:0.9rem; outline:none; transition:0.3s; font-weight:400;">
+                    <button onclick="checkPassword()" style="background:linear-gradient(145deg,#F59E0B,#D97706); color:#0d0800; border:none; padding:12px 28px; border-radius:10px; font-weight:700; cursor:pointer; transition:0.3s; display:flex; align-items:center; gap:8px; font-size:0.85rem;">Buka Kunci</button>
+                    <button onclick="clearPassword()" style="background:rgba(255,240,210,0.02); color:rgba(255,240,210,0.12); border:1px solid rgba(255,240,210,0.02); padding:12px 18px; border-radius:10px; cursor:pointer; font-weight:400;">✕</button>
                 </div>
                 <div id="answerKey" style="display:none;">
-                    <div style="background:rgba(255,255,255,0.01); border-radius:12px; padding:16px;">
+                    <div style="background:rgba(255,240,210,0.01); border-radius:12px; padding:16px;">
                         <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
                             <div>
-                                <h4 style="color:#a78bfa; margin-bottom:8px; font-size:0.85rem; font-weight:700;">PG (35 Soal)</h4>
-                                <div style="font-size:0.85rem; color:rgba(255,255,255,0.4); font-weight:400; line-height:2.2; display:grid; grid-template-columns:1fr 1fr 1fr; gap:0 15px;">
+                                <h4 style="color:#FCD34D; margin-bottom:8px; font-size:0.85rem; font-weight:700;">PG (35 Soal)</h4>
+                                <div style="font-size:0.85rem; color:rgba(255,240,210,0.35); font-weight:400; line-height:2.2; display:grid; grid-template-columns:1fr 1fr 1fr; gap:0 15px;">
                                     <div>1. B</div><div>2. B</div><div>3. B</div><div>4. A</div><div>5. C</div>
                                     <div>6. B</div><div>7. A</div><div>8. C</div><div>9. B</div><div>10. B</div>
                                     <div>11. B</div><div>12. B</div><div>13. B</div><div>14. B</div><div>15. B</div>
@@ -2937,35 +2939,35 @@
                                 </div>
                             </div>
                             <div>
-                                <h4 style="color:#06B6D4; margin-bottom:8px; font-size:0.85rem; font-weight:700;">B/S (10 Soal)</h4>
-                                <div style="font-size:0.85rem; color:rgba(255,255,255,0.4); font-weight:400; line-height:2.2;">
-                                    <div>1. <span style="color:#EC4899; font-weight:700;">S</span> (SIG banyak kegunaan)</div>
-                                    <div>2. <span style="color:#06B6D4; font-weight:700;">B</span></div>
-                                    <div>3. <span style="color:#EC4899; font-weight:700;">S</span> (ArcGIS berbayar, QGIS gratis)</div>
-                                    <div>4. <span style="color:#06B6D4; font-weight:700;">B</span></div>
-                                    <div>5. <span style="color:#EC4899; font-weight:700;">S</span> (Bisa berupa teks, angka, tanggal)</div>
-                                    <div>6. <span style="color:#EC4899; font-weight:700;">S</span> (Bisa untuk perubahan iklim)</div>
-                                    <div>7. <span style="color:#06B6D4; font-weight:700;">B</span></div>
-                                    <div>8. <span style="color:#EC4899; font-weight:700;">S</span> (Konvensional manual)</div>
-                                    <div>9. <span style="color:#06B6D4; font-weight:700;">B</span></div>
-                                    <div>10. <span style="color:#06B6D4; font-weight:700;">B</span></div>
+                                <h4 style="color:#FCD34D; margin-bottom:8px; font-size:0.85rem; font-weight:700;">B/S (10 Soal)</h4>
+                                <div style="font-size:0.85rem; color:rgba(255,240,210,0.35); font-weight:400; line-height:2.2;">
+                                    <div>1. <span style="color:#F87171; font-weight:700;">S</span> (SIG banyak kegunaan)</div>
+                                    <div>2. <span style="color:#FCD34D; font-weight:700;">B</span></div>
+                                    <div>3. <span style="color:#F87171; font-weight:700;">S</span> (ArcGIS berbayar, QGIS gratis)</div>
+                                    <div>4. <span style="color:#FCD34D; font-weight:700;">B</span></div>
+                                    <div>5. <span style="color:#F87171; font-weight:700;">S</span> (Bisa berupa teks, angka, tanggal)</div>
+                                    <div>6. <span style="color:#F87171; font-weight:700;">S</span> (Bisa untuk perubahan iklim)</div>
+                                    <div>7. <span style="color:#FCD34D; font-weight:700;">B</span></div>
+                                    <div>8. <span style="color:#F87171; font-weight:700;">S</span> (Konvensional manual)</div>
+                                    <div>9. <span style="color:#FCD34D; font-weight:700;">B</span></div>
+                                    <div>10. <span style="color:#FCD34D; font-weight:700;">B</span></div>
                                 </div>
                             </div>
                         </div>
-                        <div style="margin-top:14px; border-top:1px solid rgba(255,255,255,0.02); padding-top:12px;">
+                        <div style="margin-top:14px; border-top:1px solid rgba(255,240,210,0.02); padding-top:12px;">
                             <h4 style="color:#F59E0B; margin-bottom:6px; font-size:0.85rem; font-weight:700;">Essay (5 Soal) – Pedoman Penskoran</h4>
-                            <div style="font-size:0.8rem; color:rgba(255,255,255,0.25); font-weight:400; line-height:2;">
-                                <div><strong style="color:rgba(255,255,255,0.5); font-weight:600;">Soal 1:</strong> Perbedaan data spasial vs atribut, 3 contoh masing-masing. (Skor 0-10)</div>
-                                <div><strong style="color:rgba(255,255,255,0.5); font-weight:600;">Soal 2:</strong> Langkah-langkah SIG untuk peta banjir: pengumpulan data, input, analisis, output. (Skor 0-10)</div>
-                                <div><strong style="color:rgba(255,255,255,0.5); font-weight:600;">Soal 3:</strong> Perbandingan SIG konvensional vs digital, kelebihan/kekurangan, contoh. (Skor 0-10)</div>
-                                <div><strong style="color:rgba(255,255,255,0.5); font-weight:600;">Soal 4:</strong> Peran SIG dalam pemantauan SDA dan lingkungan, contoh kasus. (Skor 0-10)</div>
-                                <div><strong style="color:rgba(255,255,255,0.5); font-weight:600;">Soal 5:</strong> 3 gagasan kreatif pemanfaatan SIG untuk pembangunan daerah. (Skor 0-10)</div>
-                                <div style="margin-top:6px; color:rgba(255,255,255,0.10);">Total skor maksimal: 35 + 10 + 50 = 95 · Nilai = (skor/95) × 100</div>
+                            <div style="font-size:0.8rem; color:rgba(255,240,210,0.22); font-weight:400; line-height:2;">
+                                <div><strong style="color:rgba(255,240,210,0.45); font-weight:600;">Soal 1:</strong> Perbedaan data spasial vs atribut, 3 contoh masing-masing. (Skor 0-10)</div>
+                                <div><strong style="color:rgba(255,240,210,0.45); font-weight:600;">Soal 2:</strong> Langkah-langkah SIG untuk peta banjir: pengumpulan data, input, analisis, output. (Skor 0-10)</div>
+                                <div><strong style="color:rgba(255,240,210,0.45); font-weight:600;">Soal 3:</strong> Perbandingan SIG konvensional vs digital, kelebihan/kekurangan, contoh. (Skor 0-10)</div>
+                                <div><strong style="color:rgba(255,240,210,0.45); font-weight:600;">Soal 4:</strong> Peran SIG dalam pemantauan SDA dan lingkungan, contoh kasus. (Skor 0-10)</div>
+                                <div><strong style="color:rgba(255,240,210,0.45); font-weight:600;">Soal 5:</strong> 3 gagasan kreatif pemanfaatan SIG untuk pembangunan daerah. (Skor 0-10)</div>
+                                <div style="margin-top:6px; color:rgba(255,240,210,0.08);">Total skor maksimal: 35 + 10 + 50 = 95 · Nilai = (skor/95) × 100</div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div id="passwordError" style="display:none; color:#EC4899; font-size:0.85rem; font-weight:400; margin-top:6px; padding:8px 14px; background:rgba(236,72,153,0.04); border-radius:8px; border-left:3px solid #EC4899;">
+                <div id="passwordError" style="display:none; color:#F87171; font-size:0.85rem; font-weight:400; margin-top:6px; padding:8px 14px; background:rgba(185,28,28,0.04); border-radius:8px; border-left:3px solid #B91C1C;">
                     Password salah! Coba lagi.
                 </div>
             </div>
@@ -2984,17 +2986,17 @@
         <!-- SECTION 7 : REFLEKSI                                            -->
         <!-- ============================================================ -->
         <section id="section7" class="section">
-            <div style="background:rgba(124,58,237,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(124,58,237,0.12); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-                <div style="display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.35); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
-                <button onclick="navigateTo('section1')" style="background:rgba(255,255,255,0.02); color:rgba(255,255,255,0.25); border:1px solid rgba(255,255,255,0.02); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem;">⌂ Beranda</button>
+            <div style="background:rgba(245,158,11,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(245,158,11,0.08); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                <div style="display:flex; align-items:center; gap:8px; color:rgba(255,240,210,0.30); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
+                <button onclick="navigateTo('section1')" style="background:rgba(255,240,210,0.02); color:rgba(255,240,210,0.20); border:1px solid rgba(255,240,210,0.02); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem;">⌂ Beranda</button>
             </div>
             <div class="section-header">
                 <div class="num">07</div>
                 <h2>Refleksi <small>Menyimpulkan 4 Pertemuan</small></h2>
                 <span class="badge-pertemuan">Inspirasi</span>
             </div>
-            <div class="card" style="background:rgba(20,30,40,0.7); backdrop-filter:blur(8px); border:1px solid rgba(124,58,237,0.06);">
-                <h3 style="display:flex; align-items:center; gap:10px; color:#f0f4fa; font-weight:700;"><span style="font-size:1.8rem;">🌟</span> Apa yang Kamu Dapatkan?</h3>
+            <div class="card" style="background:rgba(30,20,8,0.70); backdrop-filter:blur(8px); border:1px solid rgba(245,158,11,0.04);">
+                <h3 style="display:flex; align-items:center; gap:10px; color:#f5ede0; font-weight:700;"><span style="font-size:1.8rem;">🌟</span> Apa yang Kamu Dapatkan?</h3>
                 <ul class="refleksi-list">
                     <li><span class="check">✓</span><span>Memahami pengertian SIG dari berbagai ahli dan 3 komponen utamanya.</span></li>
                     <li><span class="check">✓</span><span>Mengetahui 4 tahapan kerja SIG dan jenis data masukan.</span></li>
@@ -3003,14 +3005,14 @@
                     <li><span class="check">✓</span><span>Menyadari pentingnya SIG untuk perencanaan, mitigasi, dan pembangunan.</span></li>
                 </ul>
             </div>
-            <div class="card" style="background:rgba(20,20,40,0.7); backdrop-filter:blur(8px); margin-top:16px; border-left:6px solid #7C3AED;">
-                <h3 style="display:flex; align-items:center; gap:10px; color:#f0f4fa; font-weight:700;">Renungkan</h3>
-                <p style="font-size:1.05rem; color:rgba(255,255,255,0.65); font-weight:400; font-style:italic; margin-top:4px;">"Bagaimana SIG dapat membantu kita merencanakan pembangunan yang lebih baik dan berkelanjutan di daerah kita?"</p>
-                <p style="margin-top:8px; font-size:0.88rem; color:rgba(255,255,255,0.2); font-weight:400;">Tuliskan jawabanmu di buku catatan sebagai bentuk refleksi pribadi.</p>
+            <div class="card" style="background:rgba(30,20,8,0.70); backdrop-filter:blur(8px); margin-top:16px; border-left:6px solid #F59E0B;">
+                <h3 style="display:flex; align-items:center; gap:10px; color:#f5ede0; font-weight:700;">Renungkan</h3>
+                <p style="font-size:1.05rem; color:rgba(255,240,210,0.60); font-weight:400; font-style:italic; margin-top:4px;">"Bagaimana SIG dapat membantu kita merencanakan pembangunan yang lebih baik dan berkelanjutan di daerah kita?"</p>
+                <p style="margin-top:8px; font-size:0.88rem; color:rgba(255,240,210,0.18); font-weight:400;">Tuliskan jawabanmu di buku catatan sebagai bentuk refleksi pribadi.</p>
             </div>
             <div class="celebration-box">
                 <h3>🎉 Selamat!</h3>
-                <p>Kamu telah menyelesaikan <strong style="color:#f0f4fa; font-weight:700;">4 Pertemuan</strong> materi Sistem Informasi Geografi dengan <strong style="color:#F59E0B;">pengayaan, pendalaman, dan HOTS!</strong></p>
+                <p>Kamu telah menyelesaikan <strong style="color:#f5ede0; font-weight:700;">4 Pertemuan</strong> materi Sistem Informasi Geografi dengan <strong style="color:#F59E0B;">pengayaan, pendalaman, dan HOTS!</strong></p>
                 <div style="margin-top:14px;"><span class="next-btn">➡️ Lanjutkan ke materi berikutnya</span></div>
             </div>
             <div class="nav-buttons">
@@ -3027,9 +3029,9 @@
         <!-- SECTION 8 : REFERENSI                                          -->
         <!-- ============================================================ -->
         <section id="section8" class="section">
-            <div style="background:rgba(124,58,237,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(124,58,237,0.12); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-                <div style="display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.35); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
-                <button onclick="navigateTo('section1')" style="background:rgba(255,255,255,0.02); color:rgba(255,255,255,0.25); border:1px solid rgba(255,255,255,0.02); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem;">⌂ Beranda</button>
+            <div style="background:rgba(245,158,11,0.03); border-radius:14px; padding:10px 16px; margin-bottom:16px; border-left:4px solid rgba(245,158,11,0.08); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                <div style="display:flex; align-items:center; gap:8px; color:rgba(255,240,210,0.30); font-size:0.85rem; flex-wrap:wrap;"><span class="school-name-gold">SMAN 3 KASONGAN</span></div>
+                <button onclick="navigateTo('section1')" style="background:rgba(255,240,210,0.02); color:rgba(255,240,210,0.20); border:1px solid rgba(255,240,210,0.02); padding:6px 16px; border-radius:30px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem;">⌂ Beranda</button>
             </div>
             <div class="section-header">
                 <div class="num">08</div>
@@ -3118,7 +3120,7 @@
                     this.pulse = 0.005 + Math.random() * 0.015;
                     this.phase = Math.random() * Math.PI * 2;
                     this.color =
-                        `hsl(${220 + Math.random() * 40}, ${60 + Math.random() * 40}%, ${70 + Math.random() * 30}%)`;
+                        `hsl(40 + ${Math.random() * 30}, ${80 + Math.random() * 20}%, ${60 + Math.random() * 30}%)`;
                 }
                 update(time) {
                     this.y += this.speed;
@@ -3129,16 +3131,16 @@
                     const glow = this.radius * 4 + 2 * Math.sin(time * this.pulse * 0.5 + this.phase);
                     const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, glow);
                     const c = this.color;
-                    grad.addColorStop(0, `rgba(255,255,255,${this.opacity * 0.8})`);
-                    grad.addColorStop(0.2, `rgba(180,200,255,${this.opacity * 0.4})`);
-                    grad.addColorStop(1, `rgba(100,150,255,0)`);
+                    grad.addColorStop(0, `rgba(255,240,210,${this.opacity * 0.8})`);
+                    grad.addColorStop(0.2, `rgba(255,220,160,${this.opacity * 0.4})`);
+                    grad.addColorStop(1, `rgba(200,150,80,0)`);
                     ctx.beginPath();
                     ctx.arc(this.x, this.y, glow, 0, Math.PI * 2);
                     ctx.fillStyle = grad;
                     ctx.fill();
                     ctx.beginPath();
                     ctx.arc(this.x, this.y, this.radius * 0.6, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(255,255,255,${this.opacity * 0.9})`;
+                    ctx.fillStyle = `rgba(255,240,210,${this.opacity * 0.9})`;
                     ctx.fill();
                 }
             }
@@ -3153,14 +3155,14 @@
                 stars.forEach(s => { s.update(time);
                     s.draw(time); });
                 const grd = ctx.createRadialGradient(W * 0.7, H * 0.2, 0, W * 0.7, H * 0.2, W * 0.7);
-                grd.addColorStop(0, 'rgba(124,58,237,0.02)');
-                grd.addColorStop(0.5, 'rgba(6,182,212,0.015)');
+                grd.addColorStop(0, 'rgba(245,158,11,0.015)');
+                grd.addColorStop(0.5, 'rgba(251,191,36,0.010)');
                 grd.addColorStop(1, 'rgba(0,0,0,0)');
                 ctx.fillStyle = grd;
                 ctx.fillRect(0, 0, W, H);
                 const grd2 = ctx.createRadialGradient(W * 0.2, H * 0.8, 0, W * 0.2, H * 0.8, W * 0.6);
-                grd2.addColorStop(0, 'rgba(236,72,153,0.015)');
-                grd2.addColorStop(0.5, 'rgba(245,158,11,0.01)');
+                grd2.addColorStop(0, 'rgba(217,119,6,0.010)');
+                grd2.addColorStop(0.5, 'rgba(245,158,11,0.008)');
                 grd2.addColorStop(1, 'rgba(0,0,0,0)');
                 ctx.fillStyle = grd2;
                 ctx.fillRect(0, 0, W, H);
@@ -3169,9 +3171,9 @@
             animate();
         })();
 
-        // ===== COMET STARS =====
+        // ===== COMET STARS – GOLDEN =====
         (function() {
-            const colors = ['#7C3AED', '#EC4899', '#06B6D4', '#F59E0B'];
+            const colors = ['#F59E0B', '#FCD34D', '#D97706', '#FBBF24'];
             const sizes = [3, 5, 8];
             const count = 50;
             const container = document.body;
@@ -3220,7 +3222,7 @@
             const cap = document.getElementById('modalCaption');
             modalImage.src = src;
             modalImage.onerror = function() {
-                this.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%231a1a2e' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' fill='%237C3AED' font-family='Poppins' font-size='24' dy='.3em'%3E🖼️ Gambar tidak tersedia%3C/text%3E%3C/svg%3E";
+                this.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%231a1200' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' fill='%23F59E0B' font-family='Poppins' font-size='24' dy='.3em'%3E🖼️ Gambar tidak tersedia%3C/text%3E%3C/svg%3E";
             };
             cap.innerHTML = caption || 'Klik di luar untuk menutup';
             modal.classList.add('active');
@@ -3311,19 +3313,19 @@
             const err = document.getElementById('passwordError');
             if (pw === '1234567890') { key.style.display = 'block';
                 err.style.display = 'none';
-                document.getElementById('passwordInput').style.borderColor = '#06B6D4'; } else { err.style.display =
+                document.getElementById('passwordInput').style.borderColor = '#F59E0B'; } else { err.style.display =
                     'block';
                 key.style.display = 'none';
-                document.getElementById('passwordInput').style.borderColor = '#EC4899';
+                document.getElementById('passwordInput').style.borderColor = '#B91C1C';
                 setTimeout(() => { document.getElementById('passwordInput').style.borderColor =
-                    'rgba(255,255,255,0.03)'; }, 2000); }
+                    'rgba(255,240,210,0.03)'; }, 2000); }
         }
 
         function clearPassword() {
             document.getElementById('passwordInput').value = '';
             document.getElementById('answerKey').style.display = 'none';
             document.getElementById('passwordError').style.display = 'none';
-            document.getElementById('passwordInput').style.borderColor = 'rgba(255,255,255,0.03)';
+            document.getElementById('passwordInput').style.borderColor = 'rgba(255,240,210,0.03)';
         }
         document.getElementById('passwordInput').addEventListener('keypress', e => { if (e.key === 'Enter') checkPassword(); });
 
