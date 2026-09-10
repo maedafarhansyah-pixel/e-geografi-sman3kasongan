@@ -406,7 +406,7 @@
             margin: 0 auto;
             padding-left: 20px;
             padding-right: 20px;
-            padding-bottom: 60px;
+            padding-bottom: 130px;
         }
 
         /* ============================================================
@@ -1558,83 +1558,97 @@
         }
 
         /* ============================================================
-                   NAVIGATION BUTTONS
+                   FLOATING NAV – Beranda melayang diapit
+                   Sebelumnya & Selanjutnya (panah)
                    ============================================================ */
-        .nav-buttons {
+        .floating-nav {
+            position: fixed;
+            bottom: 22px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1200;
             display: flex;
-            justify-content: center;
             align-items: center;
-            margin-top: 32px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(0, 0, 0, 0.04);
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-        .nav-buttons button {
-            background: var(--card-bg);
-            color: var(--text);
-            border: 1px solid rgba(0, 0, 0, 0.04);
-            padding: 10px 24px;
-            border-radius: 40px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
+            gap: 6px;
+            padding: 8px 10px;
+            border-radius: 60px;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(30, 122, 74, 0.08);
+            box-shadow: 0 12px 40px rgba(30, 122, 74, 0.16);
             transition: all var(--transition);
+        }
+
+        .floating-nav .fn-arrow {
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 40px;
+            background: transparent;
+            color: var(--text-light);
             font-family: inherit;
-        }
-        .nav-buttons button:hover:not(:disabled) {
-            background: var(--primary);
-            color: #fff;
-            border-color: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(30, 122, 74, 0.12);
-        }
-        .nav-buttons button:disabled {
-            opacity: 0.25;
-            cursor: not-allowed;
-            transform: none !important;
-        }
-        .nav-buttons .counter {
-            font-weight: 500;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            padding: 0 12px;
-        }
-        .nav-buttons .page-numbers {
-            display: flex;
-            gap: 4px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .nav-buttons .page-numbers a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 34px;
-            height: 34px;
-            border-radius: 50%;
             font-size: 0.8rem;
             font-weight: 700;
-            color: var(--text-muted);
-            background: transparent;
-            border: 1px solid transparent;
-            text-decoration: none;
-            transition: all 0.3s ease;
+            letter-spacing: 0.2px;
             cursor: pointer;
+            transition: all 0.3s ease;
         }
-        .nav-buttons .page-numbers a:hover {
-            background: rgba(30, 122, 74, 0.04);
-            border-color: rgba(30, 122, 74, 0.06);
-            color: var(--text);
+        .floating-nav .fn-arrow i {
+            font-size: 0.85rem;
         }
-        .nav-buttons .page-numbers a.active {
-            background: var(--primary);
+        .floating-nav .fn-arrow:hover:not(:disabled) {
+            background: rgba(30, 122, 74, 0.06);
+            color: var(--primary);
+        }
+        .floating-nav .fn-arrow:disabled {
+            opacity: 0.25;
+            cursor: not-allowed;
+        }
+
+        .floating-nav .fn-home {
+            position: relative;
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
+            border: none;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
             color: #fff;
-            border-color: var(--primary);
-            box-shadow: 0 4px 16px rgba(30, 122, 74, 0.15);
+            font-size: 1.05rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 24px rgba(30, 122, 74, 0.28);
+            transition: all var(--transition);
+        }
+        .floating-nav .fn-home:hover {
+            transform: translateY(-3px) scale(1.06);
+            box-shadow: 0 14px 32px rgba(30, 122, 74, 0.36);
+        }
+        .floating-nav .fn-home:active {
+            transform: scale(0.94);
+        }
+        .floating-nav .fn-home.active {
+            background: linear-gradient(135deg, var(--gold), var(--secondary));
+            box-shadow: 0 8px 24px rgba(241, 196, 15, 0.35);
+        }
+        .floating-nav .fn-badge {
+            position: absolute;
+            top: -7px;
+            right: -12px;
+            background: var(--gold);
+            color: #fff;
+            font-size: 0.55rem;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            padding: 2px 8px;
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+            white-space: nowrap;
         }
 
         /* ============================================================
@@ -1789,6 +1803,21 @@
             }
         }
 
+        @media (max-width: 600px) {
+            /* FLOATING NAV – hanya panah di layar kecil */
+            .floating-nav .fn-label {
+                display: none;
+            }
+            .floating-nav .fn-arrow {
+                padding: 12px 14px;
+            }
+            .floating-nav {
+                bottom: 16px;
+                gap: 2px;
+                padding: 6px 8px;
+            }
+        }
+
         @media (max-width: 480px) {
             .section-header .num {
                 width: 38px;
@@ -1830,10 +1859,6 @@
             }
             .kunci-box .pw-row input {
                 min-width: 120px;
-            }
-            .nav-buttons button {
-                padding: 6px 14px;
-                font-size: 0.8rem;
             }
             .materi-box .header h4 {
                 font-size: 0.85rem;
@@ -2322,14 +2347,6 @@
                 <div class="feedback"></div>
             </div>
 
-            <div class="nav-buttons">
-                <div class="group" style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:center;">
-                    <button onclick="navigateTo('prev')">Sebelumnya</button>
-                    <span class="page-numbers"></span>
-                    <button onclick="navigateTo('next')">Selanjutnya</button>
-                    <span class="counter">2 / 7</span>
-                </div>
-            </div>
         </section>
 
         <!-- ============================================================
@@ -2639,14 +2656,6 @@
                 <div class="feedback"></div>
             </div>
 
-            <div class="nav-buttons">
-                <div class="group" style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:center;">
-                    <button onclick="navigateTo('prev')">Sebelumnya</button>
-                    <span class="page-numbers"></span>
-                    <button onclick="navigateTo('next')">Selanjutnya</button>
-                    <span class="counter">3 / 7</span>
-                </div>
-            </div>
         </section>
 
         <!-- ============================================================
@@ -2856,14 +2865,6 @@
                 <div class="feedback"></div>
             </div>
 
-            <div class="nav-buttons">
-                <div class="group" style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:center;">
-                    <button onclick="navigateTo('prev')">Sebelumnya</button>
-                    <span class="page-numbers"></span>
-                    <button onclick="navigateTo('next')">Selanjutnya</button>
-                    <span class="counter">4 / 7</span>
-                </div>
-            </div>
         </section>
 
         <!-- ============================================================
@@ -3047,14 +3048,6 @@
                 <div id="passwordError">Password salah! Coba lagi.</div>
             </div>
 
-            <div class="nav-buttons">
-                <div class="group" style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:center;">
-                    <button onclick="navigateTo('prev')">Sebelumnya</button>
-                    <span class="page-numbers"></span>
-                    <button onclick="navigateTo('next')">Selanjutnya</button>
-                    <span class="counter">5 / 7</span>
-                </div>
-            </div>
         </section>
 
         <!-- ============================================================
@@ -3090,14 +3083,6 @@
                 <div style="margin-top:14px;"><span class="next-btn">➡️ Lanjutkan ke Penginderaan Jauh &amp; SIG</span></div>
             </div>
 
-            <div class="nav-buttons">
-                <div class="group" style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:center;">
-                    <button onclick="navigateTo('prev')">Sebelumnya</button>
-                    <span class="page-numbers"></span>
-                    <button onclick="navigateTo('next')">Selanjutnya</button>
-                    <span class="counter">6 / 7</span>
-                </div>
-            </div>
         </section>
 
         <!-- ============================================================
@@ -3129,17 +3114,28 @@
                 <span style="color:var(--primary-light); font-weight:600;">NIP. 197512172005011016</span>
             </div>
 
-            <div class="nav-buttons">
-                <div class="group" style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:center;">
-                    <button onclick="navigateTo('prev')">Sebelumnya</button>
-                    <span class="page-numbers"></span>
-                    <button disabled>Terakhir</button>
-                    <span class="counter">7 / 7</span>
-                </div>
-            </div>
         </section>
 
     </main>
+
+    <!-- ============================================================
+    FLOATING NAV – Beranda melayang diapit
+    "Sebelumnya" & "Selanjutnya" (panah)
+    ============================================================ -->
+    <div class="floating-nav" id="floatingNav">
+        <button class="fn-arrow fn-prev" id="fnPrev" onclick="navigateTo('prev')" aria-label="Sebelumnya">
+            <i class="fas fa-chevron-left"></i>
+            <span class="fn-label">Sebelumnya</span>
+        </button>
+        <button class="fn-home" id="fnHome" onclick="navigateTo('section1')" aria-label="Beranda">
+            <i class="fas fa-home"></i>
+            <span class="fn-badge" id="fnCounter">1 / 7</span>
+        </button>
+        <button class="fn-arrow fn-next" id="fnNext" onclick="navigateTo('next')" aria-label="Selanjutnya">
+            <span class="fn-label">Selanjutnya</span>
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
 
     <!-- ============================================================
     JAVASCRIPT
@@ -3197,15 +3193,10 @@
             sections.forEach((el, i) => map[el.id] = i);
 
             function renderNumbers() {
-                document.querySelectorAll('.page-numbers').forEach(c => {
-                    let html = '';
-                    for (let i = 1; i <= total; i++) {
-                        const active = i === current + 1 ? 'active' : '';
-                        html += `<a href="#" class="${active}" onclick="navigateToPage(${i}); return false;">${i}</a>`;
-                    }
-                    c.innerHTML = html;
-                });
                 document.querySelectorAll('#navLinks a').forEach((a, idx) => {
+                    a.classList.toggle('active', idx === current);
+                });
+                document.querySelectorAll('#mobileDrawer a').forEach((a, idx) => {
                     a.classList.toggle('active', idx === current);
                 });
             }
@@ -3230,13 +3221,19 @@
             function updateUI(idx) {
                 sections.forEach((el, i) => el.classList.toggle('active', i === idx));
                 document.getElementById('progressThumb').style.width = ((idx + 1) / total * 100) + '%';
-                document.querySelectorAll('.counter').forEach(el => el.textContent = `${idx+1} / ${total}`);
-                document.querySelectorAll('.nav-buttons .group button:last-child').forEach(btn => {
-                    if (idx === total - 1) { btn.disabled = true;
-                        btn.textContent = 'Terakhir'; } else { btn.disabled = false;
-                        btn.innerHTML = 'Selanjutnya'; }
-                });
-                document.querySelectorAll('.nav-buttons .group button:first-child').forEach(btn => btn.disabled = idx === 0);
+
+                /* ===== FLOATING NAV (Beranda melayang diapit Sebelumnya & Selanjutnya) ===== */
+                const fnCounter = document.getElementById('fnCounter');
+                if (fnCounter) fnCounter.textContent = `${idx + 1} / ${total}`;
+
+                const fnPrev = document.getElementById('fnPrev');
+                const fnNext = document.getElementById('fnNext');
+                const fnHome = document.getElementById('fnHome');
+
+                if (fnPrev) fnPrev.disabled = idx === 0;
+                if (fnNext) fnNext.disabled = idx === total - 1;
+                if (fnHome) fnHome.classList.toggle('active', idx === 0);
+
                 renderNumbers();
                 document.querySelector('.main-wrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
                 setTimeout(() => {
