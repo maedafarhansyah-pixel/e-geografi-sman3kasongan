@@ -256,6 +256,9 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
 
 /* ============ HERO ============ */
 .hero-section{text-align:center;padding:12px 0 8px}
+.hero-section .logo-row{display:flex;justify-content:center;align-items:center;gap:clamp(16px,4vw,48px);flex-wrap:wrap;margin-bottom:24px}
+.hero-section .logo-row img{height:clamp(50px,8vw,100px);width:auto;object-fit:contain;filter:drop-shadow(0 4px 16px rgba(0,0,0,.03));transition:transform .4s ease}
+.hero-section .logo-row img:hover{transform:scale(1.06)}
 .hero-section .badge-row{display:flex;justify-content:center;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:20px}
 .hero-section .badge-row .tag{background:rgba(122,22,38,.07);color:var(--primary-light);font-size:.7rem;font-weight:700;
   padding:5px 18px;border-radius:40px;letter-spacing:.5px;border:1px solid var(--line)}
@@ -342,7 +345,6 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
   z-index:2;
 }
 
-/* Warna gradien tebal berbeda per kotak */
 .quick-nav .nav-item:nth-child(1){background:linear-gradient(140deg,#7a1626 0%,#a52a3d 100%);}
 .quick-nav .nav-item:nth-child(2){background:linear-gradient(140deg,#8a1c2d 0%,#c1121f 100%);}
 .quick-nav .nav-item:nth-child(3){background:linear-gradient(140deg,#a52a3d 0%,#d94a2e 100%);}
@@ -728,6 +730,11 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
 
 <!-- SECTION 1 : BERANDA -->
 <section id="section1" class="section active hero-section">
+    <div class="logo-row reveal">
+        <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/Logo-Provinsi-Kalimantan-Tengah.png" alt="Logo Provinsi Kalimantan Tengah" onerror="this.style.display='none'" />
+        <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/imagesdisdiklogo.png" alt="Logo Dinas Pendidikan" onerror="this.style.display='none'" />
+        <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/LOGOSMAN3KAS.png" alt="Logo SMAN 3 Kasongan" onerror="this.style.display='none'" />
+    </div>
     <div class="badge-row reveal">
         <span class="tag">KELAS X / FASE E</span>
         <span class="tag gold">Kurikulum Merdeka 2024</span>
