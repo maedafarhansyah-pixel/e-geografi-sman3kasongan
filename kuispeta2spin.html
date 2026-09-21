@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#050816">
-<title>Spin the Wheel Quiz — Geografi SMAN 3 Kasongan</title>
+<title>Kuis Roda Berputar — Geografi SMAN 3 Kasongan</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -54,31 +54,48 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
     background: linear-gradient(90deg, transparent, rgba(34,211,238,.6), transparent);
   }
 
-  /* ============ START SCREEN ============ */
+  /* ============ NAMA SEKOLAH - WARNA EMAS GRADIENT ============ */
   .school-badge{
-    display:inline-flex; align-items:center; gap:8px; padding:6px 16px;
-    background: linear-gradient(135deg, rgba(59,130,246,.22), rgba(34,211,238,.12));
-    border: 1px solid rgba(103,232,249,.4); border-radius: 99px;
-    font-size:.62rem; font-weight:800; letter-spacing:2.5px;
+    display:inline-flex; align-items:center; gap:8px; padding:7px 18px;
+    background: linear-gradient(135deg, rgba(251,191,36,.22), rgba(245,158,11,.10));
+    border: 2px solid rgba(251,191,36,.65); border-radius: 99px;
+    font-size:.65rem; font-weight:900; letter-spacing:2.5px;
     text-transform: uppercase; position: relative; overflow: hidden;
-    box-shadow: 0 0 26px rgba(34,211,238,.28), inset 0 1px 0 rgba(255,255,255,.1);
+    box-shadow: 0 0 30px rgba(251,191,36,.45), inset 0 1px 0 rgba(255,255,255,.15);
     white-space: nowrap;
   }
   .school-badge::before{
     content:''; position: absolute; top:0; left:-100%; width:100%; height:100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,.45), transparent);
-    animation: badgeShine 3.2s ease-in-out infinite;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent);
+    animation: badgeShine 3s ease-in-out infinite;
   }
   @keyframes badgeShine{0%{left:-100%}60%,100%{left:100%}}
+
+  /* Nama sekolah - gradient emas terang + glow */
   .school-name{
-    background: linear-gradient(135deg, #67e8f9 0%, #3b82f6 45%, #8b5cf6 80%, #67e8f9 100%);
-    background-size: 250% auto;
+    background: linear-gradient(135deg, #fef3c7 0%, #fbbf24 25%, #f59e0b 50%, #fbbf24 75%, #fef3c7 100%);
+    background-size: 300% auto;
     -webkit-background-clip: text; background-clip: text; color: transparent;
-    font-weight: 900; letter-spacing: 2px;
-    animation: shimmerText 3.5s ease-in-out infinite;
-    filter: drop-shadow(0 2px 10px rgba(59,130,246,.55));
+    font-weight: 900; letter-spacing: 2.5px;
+    animation: shimmerText 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 12px rgba(251,191,36,.85)) drop-shadow(0 2px 4px rgba(0,0,0,.5));
   }
   @keyframes shimmerText{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+
+  /* ============ NAMA GURU - WARNA CYAN TERANG ============ */
+  .teacher-name{
+    background: linear-gradient(135deg, #a5f3fc 0%, #22d3ee 30%, #06b6d4 60%, #67e8f9 100%);
+    background-size: 250% auto;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    font-weight: 900; letter-spacing: 1.5px;
+    animation: shimmerText 3.5s ease-in-out infinite;
+    filter: drop-shadow(0 0 12px rgba(34,211,238,.9)) drop-shadow(0 2px 4px rgba(0,0,0,.5));
+  }
+  .nip-text{
+    color: #67e8f9; font-family: monospace; font-weight: 700;
+    letter-spacing: .5px;
+    text-shadow: 0 0 10px rgba(34,211,238,.6);
+  }
 
   .navy-input{
     background: linear-gradient(135deg, rgba(10,15,46,.9), rgba(5,8,22,.95));
@@ -110,7 +127,6 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
   }
   @keyframes shineBtn{0%{left:-100%}60%,100%{left:100%}}
 
-  /* ============ WHEEL SCREEN ============ */
   .wheel-stage{
     position: relative; width: min(88vw, 420px); aspect-ratio: 1;
     margin: 20px auto;
@@ -121,6 +137,7 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
     transform-origin: center center;
     will-change: transform;
     filter: drop-shadow(0 0 30px rgba(34,211,238,.35));
+    cursor: pointer;
   }
   .wheel-pointer{
     position: absolute; top: -6px; left: 50%; transform: translateX(-50%);
@@ -168,7 +185,6 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
   .spin-btn .spin-icon{ font-size: 1.6em; display: block; animation: spinIcon 4s linear infinite; }
   @keyframes spinIcon{ to { transform: rotate(360deg); } }
 
-  /* ============ OPTION BUTTONS ============ */
   .opt-btn{
     width: 100%; text-align: left;
     background: linear-gradient(135deg, rgba(15,23,60,.7), rgba(5,8,22,.85));
@@ -187,13 +203,9 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
   }
   .opt-btn:active{ transform: scale(.99); }
   .opt-btn:disabled{ cursor: not-allowed; }
-  .opt-selected{ background: linear-gradient(135deg,#3b82f6,#2563eb) !important; border-color: #67e8f9 !important; color: #fff !important; box-shadow: 0 0 30px rgba(59,130,246,.65); }
-  .opt-correct{ background: linear-gradient(135deg,#16a34a,#22c55e) !important; border-color: #4ade80 !important; color: #fff !important; box-shadow: 0 0 36px rgba(34,197,94,.75); animation: correctPulse .7s ease; }
-  .opt-wrong{ background: linear-gradient(135deg,#dc2626,#ef4444) !important; border-color: #f87171 !important; color: #fff !important; box-shadow: 0 0 36px rgba(239,68,68,.75); animation: wrongShake .5s ease; }
-  @keyframes correctPulse{0%{transform:scale(1)}50%{transform:scale(1.02)}100%{transform:scale(1)}}
-  @keyframes wrongShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+  .opt-correct{ background: linear-gradient(135deg,#16a34a,#22c55e) !important; border-color: #4ade80 !important; color: #fff !important; box-shadow: 0 0 36px rgba(34,197,94,.75); }
+  .opt-wrong{ background: linear-gradient(135deg,#dc2626,#ef4444) !important; border-color: #f87171 !important; color: #fff !important; box-shadow: 0 0 36px rgba(239,68,68,.75); }
 
-  /* ============ CATEGORY RESULT ============ */
   .cat-badge{
     display: inline-flex; align-items: center; gap: 8px;
     padding: 8px 18px; border-radius: 99px;
@@ -201,20 +213,17 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
     font-size: .72rem;
     box-shadow: 0 0 30px currentColor, inset 0 1px 0 rgba(255,255,255,.2);
     animation: catPop .5s cubic-bezier(.2,.9,.3,1.4);
+    white-space: nowrap;
   }
   @keyframes catPop{ 0%{opacity:0;transform:scale(.6)} 60%{transform:scale(1.08)} 100%{opacity:1;transform:scale(1)} }
 
-  /* ============ FEEDBACK SECTION ============ */
   .fb-section{ padding:11px 13px; border-radius:12px; margin-bottom:8px; background: linear-gradient(135deg, rgba(15,23,60,.5), rgba(5,8,22,.7)); border:1px solid rgba(59,130,246,.16); }
   .fb-section .fb-t{ font-size:.6rem; font-weight:900; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; display:flex; align-items:center; gap:6px; }
   .fb-section .fb-b{ font-size:.8rem; line-height:1.55; color:#cbd5e1; }
   .fb-section.why .fb-t{color:#4ade80}
-  .fb-section.yours .fb-t{color:#f87171}
-  .fb-section.yours .fb-b{ background: linear-gradient(90deg,rgba(248,113,113,.12),rgba(248,113,113,.02)); padding:9px 11px; border-radius:9px; border-left:3px solid #ef4444; }
   .fb-section.key .fb-t{color:#fbbf24}
   .fb-section.key .fb-b{ background: linear-gradient(90deg,rgba(251,191,36,.16),rgba(251,191,36,.03)); padding:9px 11px; border-radius:9px; border-left:3px solid #f59e0b; color:#fde68a; font-weight:600; }
 
-  /* ============ SCORE PILL ============ */
   .stat-pill{
     display: flex; align-items: center; gap: 6px;
     padding: 7px 12px; border-radius: 99px;
@@ -224,7 +233,6 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
   }
   .stat-pill .lbl{ color: rgba(148,163,184,.8); font-size:.62rem; text-transform:uppercase; letter-spacing:1px; }
 
-  /* ============ REVEAL OVERLAY ============ */
   #revealOverlay{ position: fixed; inset: 0; z-index: 100; display: none; align-items: center; justify-content: center; pointer-events: none; padding: 16px; }
   #revealOverlay.show{ display: flex; }
   #revealOverlay.backdrop{ backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); background: rgba(5,8,22,.7); pointer-events: auto; animation: fadeInBackdrop .25s ease; }
@@ -258,11 +266,75 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
   .burst-particle{ position: absolute; width: 10px; height: 10px; border-radius: 50%; pointer-events: none; animation: burstOut 1.1s cubic-bezier(.2,.9,.3,1) forwards; }
   @keyframes burstOut{ 0%{opacity:1;transform:translate(0,0) scale(1)} 100%{opacity:0;transform:translate(var(--tx),var(--ty)) scale(.2)} }
 
-  /* ============ MODAL ============ */
-  .modal-backdrop{ position: fixed; inset: 0; z-index: 90; display: none; align-items: center; justify-content: center; padding: 12px; background: rgba(5,8,22,.88); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); overflow-y: auto; }
-  .modal-backdrop.show{ display: flex; }
+  /* ============ KATEGORI CAPAIAN (ACHIEVEMENT) ============ */
+  .achievement-card{
+    position: relative;
+    padding: 14px 16px;
+    border-radius: 16px;
+    border: 2px solid;
+    overflow: hidden;
+    animation: achIn .7s cubic-bezier(.2,.9,.3,1.3);
+  }
+  @keyframes achIn{
+    0%{ opacity: 0; transform: scale(.85) translateY(20px); }
+    100%{ opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .achievement-card::before{
+    content:''; position: absolute; inset: 0;
+    background: radial-gradient(circle at 30% 20%, rgba(255,255,255,.15), transparent 60%);
+    pointer-events: none;
+  }
+  .ach-tier-gold{
+    background: linear-gradient(135deg, rgba(251,191,36,.22), rgba(245,158,11,.10));
+    border-color: rgba(251,191,36,.7);
+    box-shadow: 0 0 40px rgba(251,191,36,.5), inset 0 0 30px rgba(251,191,36,.1);
+  }
+  .ach-tier-emerald{
+    background: linear-gradient(135deg, rgba(34,197,94,.22), rgba(34,197,94,.10));
+    border-color: rgba(34,197,94,.7);
+    box-shadow: 0 0 40px rgba(34,197,94,.5), inset 0 0 30px rgba(34,197,94,.1);
+  }
+  .ach-tier-blue{
+    background: linear-gradient(135deg, rgba(59,130,246,.22), rgba(59,130,246,.10));
+    border-color: rgba(59,130,246,.7);
+    box-shadow: 0 0 40px rgba(59,130,246,.5), inset 0 0 30px rgba(59,130,246,.1);
+  }
+  .ach-tier-violet{
+    background: linear-gradient(135deg, rgba(139,92,246,.22), rgba(139,92,246,.10));
+    border-color: rgba(139,92,246,.7);
+    box-shadow: 0 0 40px rgba(139,92,246,.5), inset 0 0 30px rgba(139,92,246,.1);
+  }
+  .ach-tier-slate{
+    background: linear-gradient(135deg, rgba(100,116,139,.22), rgba(100,116,139,.10));
+    border-color: rgba(100,116,139,.7);
+    box-shadow: 0 0 40px rgba(100,116,139,.5), inset 0 0 30px rgba(100,116,139,.1);
+  }
+  .ach-icon{
+    width: 52px; height: 52px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem; flex-shrink: 0;
+    background: rgba(5,8,22,.4);
+    border: 1px solid rgba(255,255,255,.15);
+    box-shadow: inset 0 2px 8px rgba(0,0,0,.4);
+  }
 
-  /* Responsive tweaks */
+  /* Bar untuk per-kategori */
+  .cat-stat-row{
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 10px; border-radius: 10px;
+    background: rgba(5,8,22,.5);
+    border: 1px solid rgba(59,130,246,.15);
+  }
+  .cat-stat-bar{
+    flex: 1; height: 6px; border-radius: 99px;
+    background: rgba(148,163,184,.15);
+    overflow: hidden;
+  }
+  .cat-stat-bar > i{
+    display: block; height: 100%; border-radius: 99px;
+    transition: width 1.2s cubic-bezier(.2,.9,.3,1.2);
+  }
+
   @media (max-width: 640px){
     .glass-panel{ padding: 14px; }
     main{ padding: 12px 10px 20px !important; }
@@ -275,9 +347,6 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
     .wheel-stage{ width: min(94vw, 320px); }
   }
   .overflow-safe{ word-wrap: break-word; overflow-wrap: break-word; }
-  .custom-scrollbar::-webkit-scrollbar{ width: 6px; }
-  .custom-scrollbar::-webkit-scrollbar-track{ background: rgba(10,15,46,.6); }
-  .custom-scrollbar::-webkit-scrollbar-thumb{ background: linear-gradient(180deg,#3b82f6,#22d3ee); border-radius: 9999px; }
 </style>
 </head>
 <body>
@@ -290,7 +359,7 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
         style="background: linear-gradient(135deg,#3b82f6,#22d3ee); box-shadow: 0 0 24px rgba(34,211,238,.55), inset 0 1px 0 rgba(255,255,255,.3)">🎡</div>
       <div class="min-w-0 flex-1">
         <h1 class="text-[11px] sm:text-sm md:text-lg font-black tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-blue-300 to-violet-300 truncate"
-          style="font-family:'Space Grotesk',sans-serif">SPIN THE WHEEL QUIZ</h1>
+          style="font-family:'Space Grotesk',sans-serif">KUIS RODA BERPUTAR</h1>
         <p class="text-[9px] md:text-[11px] font-medium truncate">
           <span class="school-name">SMAN 3 KASONGAN</span>
           <span class="text-cyan-500/60"> • </span>
@@ -317,17 +386,19 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
     <div class="text-center mb-5">
       <div class="text-5xl md:text-6xl mb-2" style="filter:drop-shadow(0 0 28px rgba(34,211,238,.8))">🎡</div>
       <h2 class="text-xl md:text-2xl lg:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-blue-300 to-violet-300 mb-1.5 leading-tight"
-        style="font-family:'Space Grotesk',sans-serif">SPIN THE WHEEL QUIZ</h2>
+        style="font-family:'Space Grotesk',sans-serif">KUIS RODA BERPUTAR</h2>
       <p class="text-xs md:text-sm text-blue-200/70">Peta & Pemetaan • Geografi Kelas X</p>
     </div>
 
-    <div class="mb-5 p-3 md:p-4 rounded-xl border border-cyan-500/25" style="background: linear-gradient(135deg, rgba(34,211,238,.08), rgba(59,130,246,.04))">
+    <!-- ============ GURU PENGAMPU dengan WARNA KHUSUS ============ -->
+    <div class="mb-5 p-4 md:p-5 rounded-xl" style="background: linear-gradient(135deg, rgba(6,182,212,.12), rgba(59,130,246,.06)); border: 2px solid rgba(34,211,238,.4); box-shadow: 0 0 30px rgba(34,211,238,.2)">
       <div class="text-center">
-        <div class="text-[10px] uppercase tracking-widest text-cyan-400 font-bold mb-1.5 flex items-center justify-center gap-1.5">
-          <span>👨‍🏫</span> Guru Pengampu
+        <div class="text-[10px] uppercase tracking-widest font-black mb-2 flex items-center justify-center gap-1.5"
+          style="color: #67e8f9; text-shadow: 0 0 12px rgba(34,211,238,.8)">
+          <span>👨‍🏫</span> GURU PENGAMPU
         </div>
-        <div class="text-sm md:text-base font-black text-cyan-100 tracking-wide">SYAHRANI, S.Pd.</div>
-        <div class="text-[10px] md:text-[11px] text-cyan-300/70 font-mono mt-0.5">NIP. 19751217200501 1 016</div>
+        <div class="teacher-name text-lg md:text-2xl tracking-wide">SYAHRANI, S.Pd.</div>
+        <div class="nip-text text-[11px] md:text-xs mt-1.5">NIP. 19751217200501 1 016</div>
       </div>
     </div>
 
@@ -385,7 +456,6 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
   <!-- ========== WHEEL SCREEN ========== -->
   <section id="wheelScreen" class="is-hidden w-full max-w-2xl my-auto">
     <div class="glass-panel p-4 md:p-5 rounded-2xl">
-      <!-- Stats bar -->
       <div class="flex items-center justify-between gap-2 flex-wrap mb-3">
         <div class="stat-pill">👤 <span id="playerName" class="text-cyan-200 font-bold">Siswa</span></div>
         <div class="flex gap-1.5 flex-wrap">
@@ -394,26 +464,22 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
         </div>
       </div>
 
-      <!-- Wheel -->
       <div class="wheel-stage">
         <div class="wheel-pointer"></div>
         <svg id="wheelSvg" viewBox="0 0 200 200"></svg>
         <button id="spinBtn" class="spin-btn" type="button">
           <span class="spin-icon">🎯</span>
-          <span>SPIN</span>
+          <span>PUTAR</span>
         </button>
       </div>
 
-      <!-- Instruction -->
       <div id="wheelInstruction" class="text-center mt-3 md:mt-4">
-        <div class="text-xs md:text-sm text-cyan-300/80 font-semibold">👆 Tekan tombol <b class="text-cyan-300">SPIN</b> di tengah roda untuk memilih kategori!</div>
+        <div class="text-xs md:text-sm text-cyan-300/80 font-semibold">👆 Tekan tombol <b class="text-cyan-300">PUTAR</b> di tengah roda untuk memilih kategori!</div>
       </div>
 
-      <!-- Category result -->
       <div id="categoryResult" class="is-hidden text-center mt-3 md:mt-4"></div>
     </div>
 
-    <!-- Legend -->
     <div class="mt-3 glass-panel p-3 rounded-2xl">
       <div class="text-[10px] uppercase tracking-widest text-cyan-400/70 font-bold mb-2 text-center">Kategori Soal</div>
       <div id="wheelLegend" class="grid grid-cols-2 md:grid-cols-4 gap-1.5 md:gap-2"></div>
@@ -423,28 +489,22 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
   <!-- ========== QUESTION SCREEN ========== -->
   <section id="questionScreen" class="is-hidden w-full max-w-2xl my-auto">
     <div class="glass-panel p-4 md:p-6 rounded-2xl">
-      <!-- Top stats -->
       <div class="flex items-center justify-between gap-2 flex-wrap mb-3">
         <div class="stat-pill"><span class="lbl">Putaran</span> <span id="qRoundCounter" class="text-cyan-300 font-mono">1/12</span></div>
         <div class="stat-pill">⚡ <span id="qScoreCounter" class="text-emerald-400 font-mono">0</span></div>
       </div>
 
-      <!-- Category badge -->
       <div id="qCatBadge" class="text-center mb-3"></div>
 
-      <!-- Question -->
       <div class="rounded-xl p-3.5 md:p-5 mb-3 border border-cyan-500/20" style="background: linear-gradient(135deg, rgba(15,23,60,.5), rgba(5,8,22,.7))">
         <div class="text-[10px] uppercase tracking-widest text-cyan-400/70 font-bold mb-1.5">❓ Pertanyaan</div>
         <h3 id="qText" class="text-base md:text-lg font-bold text-slate-100 leading-relaxed overflow-safe">Memuat...</h3>
       </div>
 
-      <!-- Options -->
       <div id="qOptions" class="grid grid-cols-1 md:grid-cols-2 gap-2.5 md:gap-3 mb-3"></div>
 
-      <!-- Feedback (inline) -->
       <div id="qFeedback" class="is-hidden"></div>
 
-      <!-- Action buttons -->
       <div id="qActions" class="is-hidden flex gap-2 mt-3">
         <button id="btnNextSpin" type="button" class="btn-primary flex-1" style="background: linear-gradient(135deg,#22d3ee,#3b82f6)">🎡 PUTAR LAGI</button>
       </div>
@@ -459,44 +519,65 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
     </div>
 
     <div class="glass-panel p-4 md:p-8 rounded-2xl" style="border: 2px solid rgba(34,211,238,.35)">
+      <!-- Header -->
       <div class="border-b-2 border-dashed pb-3 mb-4 text-center" style="border-color: rgba(34,211,238,.25)">
         <div class="text-base md:text-xl font-black tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-violet-400"
-          style="font-family:'Space Grotesk',sans-serif">🎡 SPIN THE WHEEL QUIZ</div>
-        <div class="school-name text-xs md:text-sm tracking-widest mt-1">SMAN 3 KASONGAN</div>
+          style="font-family:'Space Grotesk',sans-serif">🎡 KUIS RODA BERPUTAR</div>
+        <div class="school-name text-sm md:text-base tracking-widest mt-1.5">SMAN 3 KASONGAN</div>
         <div class="text-[9px] md:text-[10px] text-cyan-300/80 font-bold uppercase mt-0.5">HASIL TUGAS INDIVIDU</div>
       </div>
 
-      <div class="flex flex-wrap items-center justify-center gap-4 mb-5">
-        <div class="flex flex-col items-center gap-1.5">
-          <div id="resultAvatar" class="w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center text-white font-black text-lg md:text-xl"
-            style="background: linear-gradient(135deg,#3b82f6,#22d3ee); box-shadow: 0 10px 28px rgba(34,211,238,.5)">?</div>
-          <div class="text-[9px] md:text-[10px] text-cyan-400/70 uppercase font-bold">Avatar</div>
+      <!-- Nama siswa -->
+      <div class="text-center mb-5">
+        <div class="text-[10px] uppercase tracking-widest text-cyan-400/70 font-bold mb-1">Nama Siswa</div>
+        <div id="rName" class="text-xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-300 leading-tight overflow-safe"
+          style="font-family:'Space Grotesk',sans-serif">—</div>
+      </div>
+
+      <!-- KATEGORI CAPAIAN — Achievement Card -->
+      <div id="achievementWrap" class="mb-5"></div>
+
+      <!-- Stats ringkas -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4">
+        <div class="p-2.5 rounded-xl text-center" style="background: rgba(34,197,94,.08); border: 1px solid rgba(34,197,94,.3)">
+          <div class="text-[9px] uppercase tracking-widest text-emerald-400/80 font-bold mb-0.5">Benar</div>
+          <div id="rCorrect" class="text-lg md:text-2xl font-black text-emerald-400" style="font-family:'Space Grotesk',sans-serif">0</div>
         </div>
-        <div class="flex flex-col items-center gap-1.5">
-          <div id="gradeBadge" class="w-20 h-20 md:w-24 md:h-24 rounded-2xl flex items-center justify-center text-3xl md:text-4xl font-black text-white"
-            style="background: linear-gradient(135deg,#22d3ee,#3b82f6); box-shadow: 0 12px 32px rgba(0,0,0,.5), 0 0 40px rgba(34,211,238,.6)">A</div>
-          <div class="text-[9px] md:text-[10px] text-cyan-400/70 uppercase font-bold">Grade</div>
+        <div class="p-2.5 rounded-xl text-center" style="background: rgba(239,68,68,.08); border: 1px solid rgba(239,68,68,.3)">
+          <div class="text-[9px] uppercase tracking-widest text-rose-400/80 font-bold mb-0.5">Salah</div>
+          <div id="rWrong" class="text-lg md:text-2xl font-black text-rose-400" style="font-family:'Space Grotesk',sans-serif">0</div>
         </div>
-        <div class="flex flex-col items-center gap-1.5">
-          <div id="totalScoreDisplay" class="text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-400" style="font-family:'Space Grotesk',sans-serif">0</div>
-          <div class="text-[9px] md:text-[10px] text-cyan-400/70 uppercase font-bold">Total Poin</div>
+        <div class="p-2.5 rounded-xl text-center" style="background: rgba(34,211,238,.08); border: 1px solid rgba(34,211,238,.3)">
+          <div class="text-[9px] uppercase tracking-widest text-cyan-400/80 font-bold mb-0.5">Akurasi</div>
+          <div id="rAcc" class="text-lg md:text-2xl font-black text-cyan-300" style="font-family:'Space Grotesk',sans-serif">0%</div>
+        </div>
+        <div class="p-2.5 rounded-xl text-center" style="background: rgba(251,146,60,.08); border: 1px solid rgba(251,146,60,.3)">
+          <div class="text-[9px] uppercase tracking-widest text-orange-400/80 font-bold mb-0.5">Streak</div>
+          <div id="rStreak" class="text-lg md:text-2xl font-black text-orange-400" style="font-family:'Space Grotesk',sans-serif">0🔥</div>
         </div>
       </div>
 
-      <div class="space-y-2 text-[11px] md:text-sm">
-        <div class="flex justify-between items-center py-1 border-b gap-2" style="border-color: rgba(59,130,246,.12)"><span class="text-cyan-400/70 shrink-0">Nama Siswa:</span><span id="rName" class="font-bold text-blue-50 text-sm md:text-base text-right overflow-safe">—</span></div>
-        <div class="flex justify-between items-center py-1 border-b gap-2" style="border-color: rgba(59,130,246,.12)"><span class="text-cyan-400/70 shrink-0">Materi:</span><span class="font-semibold text-cyan-300 text-right">Peta & Pemetaan</span></div>
-        <div class="flex justify-between items-center py-1 border-b gap-2" style="border-color: rgba(59,130,246,.12)"><span class="text-cyan-400/70">Jawaban Benar:</span><span id="rCorrect" class="font-bold text-emerald-400 font-mono">0 / 12</span></div>
-        <div class="flex justify-between items-center py-1 border-b gap-2" style="border-color: rgba(59,130,246,.12)"><span class="text-cyan-400/70">Jawaban Salah:</span><span id="rWrong" class="font-bold text-rose-400 font-mono">0</span></div>
-        <div class="flex justify-between items-center py-1 border-b gap-2" style="border-color: rgba(59,130,246,.12)"><span class="text-cyan-400/70">Akurasi:</span><span id="rAcc" class="font-bold text-cyan-300 font-mono">0%</span></div>
-        <div class="flex justify-between items-center py-1 border-b gap-2" style="border-color: rgba(59,130,246,.12)"><span class="text-cyan-400/70">Streak Terbaik:</span><span id="rStreak" class="font-bold text-orange-400 font-mono">0 🔥</span></div>
-        <div class="flex justify-between items-center py-1 border-b gap-2" style="border-color: rgba(59,130,246,.12)"><span class="text-cyan-400/70">Gelar:</span><span id="rTitle" class="font-extrabold text-amber-300 text-xs md:text-sm text-right overflow-safe">🌱 PEMBELAJAR GEOGRAFI</span></div>
+      <!-- Total skor besar -->
+      <div class="p-4 rounded-xl text-center mb-4" style="background: linear-gradient(135deg, rgba(251,191,36,.12), rgba(245,158,11,.05)); border: 1px solid rgba(251,191,36,.35)">
+        <div class="text-[10px] uppercase tracking-widest text-amber-400/90 font-bold mb-1">⚡ Total Poin Diperoleh</div>
+        <div id="totalScoreDisplay" class="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-300 to-amber-400"
+          style="font-family:'Space Grotesk',sans-serif; filter: drop-shadow(0 0 20px rgba(251,191,36,.5))">0</div>
       </div>
 
-      <div class="mt-4 pt-3 border-t text-center" style="border-color: rgba(34,211,238,.2)">
-        <div class="text-[9px] md:text-[10px] uppercase tracking-widest text-cyan-400/70 font-bold mb-1">Guru Pengampu</div>
-        <div class="text-xs md:text-sm font-black text-cyan-200">SYAHRANI, S.Pd.</div>
-        <div class="text-[9px] md:text-[10px] text-cyan-300/60 font-mono">NIP. 19751217200501 1 016</div>
+      <!-- Statistik per kategori -->
+      <div class="mb-4">
+        <div class="text-[10px] uppercase tracking-widest text-cyan-400/80 font-bold mb-2 text-center">📊 Capaian per Kategori</div>
+        <div id="catBreakdown" class="space-y-1.5"></div>
+      </div>
+
+      <!-- Footer guru -->
+      <div class="mt-4 pt-4 border-t text-center" style="border-color: rgba(34,211,238,.2)">
+        <div class="text-[9px] md:text-[10px] uppercase tracking-widest font-black mb-1.5 flex items-center justify-center gap-1.5"
+          style="color:#67e8f9; text-shadow: 0 0 10px rgba(34,211,238,.7)">
+          <span>👨‍🏫</span> GURU PENGAMPU
+        </div>
+        <div class="teacher-name text-sm md:text-base">SYAHRANI, S.Pd.</div>
+        <div class="nip-text text-[10px] md:text-[11px] mt-0.5">NIP. 19751217200501 1 016</div>
       </div>
     </div>
 
@@ -512,28 +593,25 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
 
 </main>
 
-<!-- REVEAL OVERLAY -->
 <div id="revealOverlay">
   <div class="reveal-badge" id="revealBadge">BENAR</div>
 </div>
 
-<footer class="w-full text-center py-3 px-3 text-[10px] md:text-[11px] text-cyan-400/60 border-t border-cyan-500/15"
+<footer class="w-full text-center py-3 px-3 text-[10px] md:text-[11px] border-t border-cyan-500/15"
   style="background: linear-gradient(90deg, rgba(5,8,22,.9), rgba(10,15,46,.9), rgba(5,8,22,.9))">
-  <div class="school-name text-[11px] md:text-xs mb-1">SMAN 3 KASONGAN</div>
-  <div>Spin the Wheel Quiz • Guru Pengampu: SYAHRANI, S.Pd.</div>
+  <div class="school-name text-xs md:text-sm mb-1">SMAN 3 KASONGAN</div>
+  <div class="text-cyan-400/70">Kuis Roda Berputar • Guru Pengampu: <span class="teacher-name">SYAHRANI, S.Pd.</span></div>
 </footer>
 
 <script>
 "use strict";
 
-/* ============ HELPERS ============ */
 const $ = id => document.getElementById(id);
 function show(id){const e=$(id);if(e)e.classList.remove('is-hidden');}
 function hide(id){const e=$(id);if(e)e.classList.add('is-hidden');}
 function setText(id,t){const e=$(id);if(e)e.textContent=t;}
 function safeConfetti(o){try{if(typeof confetti==='function')confetti(o);}catch(e){}}
 
-/* ============ AUDIO ============ */
 let audioCtx=null,soundMuted=false;
 function playTone(freq,dur,type,vol,delay){
   if(soundMuted)return;
@@ -555,14 +633,12 @@ function sfx(type){
     if(type==='correct'){[523.25,659.25,783.99,1046.5].forEach((f,i)=>playTone(f,.2,'triangle',.2,i*.1));}
     else if(type==='wrong'){playTone(220,.25,'sawtooth',.2,0);playTone(110,.4,'sawtooth',.2,.2);}
     else if(type==='click'){playTone(440,.05,'sine',.08,0);}
-    else if(type==='select'){playTone(660,.08,'sine',.12,0);playTone(880,.1,'sine',.1,.06);}
     else if(type==='tick'){playTone(1200,.03,'square',.06,0);}
     else if(type==='spin'){playTone(400,.5,'sawtooth',.08,0);}
     else if(type==='win'){[440,554.37,659.25,880].forEach((f,i)=>playTone(f,.25,'sine',.2,i*.13));}
   }catch(e){}
 }
 
-/* ============ CATEGORIES ============ */
 const CATEGORIES = [
   { id:'sejarah',   name:'Sejarah & Kartografi', short:'Sejarah',  icon:'🏛️', color:'#22c55e', points:100 },
   { id:'komponen',  name:'Komponen Peta',         short:'Komponen', icon:'📐', color:'#06b6d4', points:150 },
@@ -574,37 +650,31 @@ const CATEGORIES = [
   { id:'lanjutan',  name:'Kartografi Lanjutan',    short:'Lanjutan', icon:'🔬', color:'#fbbf24', points:800 }
 ];
 
-/* ============ QUESTIONS (30 soal, tagged per kategori) ============ */
 const QUESTIONS = [
-  // Sejarah & Kartografi
   { cat:'sejarah', q:"Istilah 'geografi' pertama kali diperkenalkan oleh ilmuwan Yunani bernama...",
     options:["A. Ptolemaeus","B. Eratosthenes","C. Herodotus","D. Aristoteles"], correct:1,
-    explanation:"Eratosthenes (276–194 SM) adalah ilmuwan Yunani yang pertama kali memperkenalkan istilah 'geografi' dari kata 'geo' (bumi) dan 'graphein' (tulisan). Ia dikenal sebagai 'Bapak Geografi'.",
+    explanation:"Eratosthenes (276–194 SM) adalah ilmuwan Yunani yang pertama kali memperkenalkan istilah 'geografi'.",
     keyPoint:"Eratosthenes = Bapak Geografi." },
   { cat:'sejarah', q:"Ilmu yang mempelajari tentang pembuatan peta disebut...",
     options:["A. Geologi","B. Demografi","C. Kartografi","D. Klimatologi"], correct:2,
-    explanation:"Kartografi adalah ilmu, seni, dan teknik pembuatan peta. Kata 'kartografi' berasal dari 'chartes' (peta) dan 'graphein' (menulis).",
+    explanation:"Kartografi adalah ilmu, seni, dan teknik pembuatan peta.",
     keyPoint:"Kartografi = seni + ilmu memetakan." },
-
-  // Komponen Peta
   { cat:'komponen', q:"Komponen peta yang berisi keterangan semua simbol yang digunakan pada peta disebut...",
     options:["A. Judul Peta","B. Legenda","C. Skala","D. Sumber Peta"], correct:1,
-    explanation:"Legenda adalah kunci peta yang menjelaskan arti semua simbol (titik, garis, area, warna). Tanpa legenda, pembaca tidak tahu arti simbol pada peta.",
+    explanation:"Legenda adalah kunci peta yang menjelaskan arti semua simbol.",
     keyPoint:"Legenda = kunci arti simbol peta." },
-  { cat:'komponen', q:"Komponen peta yang menunjukkan arah mata angin (biasanya Utara di atas) disebut...",
+  { cat:'komponen', q:"Komponen peta yang menunjukkan arah mata angin disebut...",
     options:["A. Legenda","B. Inset","C. Orientasi / Mata Angin","D. Lettering"], correct:2,
-    explanation:"Orientasi peta (mata angin) menunjukkan arah Utara, Timur, Selatan, Barat. Simbolnya bisa berupa kompas atau tanda panah.",
+    explanation:"Orientasi peta (mata angin) menunjukkan arah Utara, Timur, Selatan, Barat.",
     keyPoint:"Orientasi = arah mata angin." },
   { cat:'komponen', q:"Mengapa kutub Utara selalu diletakkan di bagian atas peta?",
-    options:["A. Kebetulan saja","B. Kesepakatan internasional (konvensi kartografi)","C. Mengikuti rotasi bumi","D. Mengikuti gravitasi bumi"], correct:1,
+    options:["A. Kebetulan saja","B. Kesepakatan internasional","C. Mengikuti rotasi bumi","D. Mengikuti gravitasi bumi"], correct:1,
     explanation:"Penempatan Utara di atas peta adalah konvensi/kesepakatan internasional dalam kartografi.",
     keyPoint:"Utara di atas = konvensi internasional." },
   { cat:'komponen', q:"Simbol peta berupa gambar kecil di sudut peta untuk menunjukkan letak wilayah disebut...",
     options:["A. Legenda","B. Inset Peta","C. Sumber Peta","D. Lettering"], correct:1,
     explanation:"Inset peta adalah peta kecil yang disisipkan untuk menunjukkan posisi relatif wilayah utama.",
     keyPoint:"Inset = peta mini." },
-
-  // Skala Peta
   { cat:'skala', q:"Angka 1 : 100.000 pada peta artinya 1 cm di peta sama dengan...",
     options:["A. 100 meter","B. 1 kilometer","C. 10 kilometer","D. 100 kilometer"], correct:1,
     explanation:"Skala 1 : 100.000 berarti 1 cm di peta mewakili 100.000 cm = 1 km di lapangan.",
@@ -613,7 +683,7 @@ const QUESTIONS = [
     options:["A. Skala Angka","B. Skala Grafis","C. Skala Verbal","D. Skala Batang"], correct:2,
     explanation:"Skala verbal dinyatakan dalam kalimat/kata-kata langsung.",
     keyPoint:"Skala: angka, verbal, grafis." },
-  { cat:'skala', q:"Skala yang dinyatakan dengan garis lurus bertingkat yang menunjukkan jarak sebenarnya disebut skala...",
+  { cat:'skala', q:"Skala yang dinyatakan dengan garis lurus bertingkat disebut skala...",
     options:["A. Skala Angka","B. Skala Grafis/Batang","C. Skala Verbal","D. Skala Kontur"], correct:1,
     explanation:"Skala grafis (batang) berupa garis bertingkat dengan angka.",
     keyPoint:"Grafis = batang." },
@@ -625,39 +695,35 @@ const QUESTIONS = [
     options:["A. Lebih detail","B. Sama saja","C. Kurang detail & cakupan lebih luas","D. Lebih besar"], correct:2,
     explanation:"Memperkecil skala = cakupan lebih luas, detail berkurang.",
     keyPoint:"Skala kecil = luas & kurang detail." },
-
-  // Simbol & Warna
   { cat:'simbol', q:"Warna biru pada peta umumnya digunakan untuk menggambarkan kenampakan...",
     options:["A. Pegunungan","B. Hutan","C. Perairan","D. Jalan raya"], correct:2,
-    explanation:"Warna biru merepresentasikan perairan (laut, sungai, danau).",
+    explanation:"Warna biru merepresentasikan perairan.",
     keyPoint:"Biru = air." },
   { cat:'simbol', q:"Simbol titik pada peta biasanya digunakan untuk menggambarkan objek...",
     options:["A. Jalan raya","B. Sungai panjang","C. Kota atau gunung","D. Wilayah hutan"], correct:2,
-    explanation:"Simbol titik digunakan untuk objek lokal/pontual seperti kota, gunung, kantor, bandara.",
+    explanation:"Simbol titik digunakan untuk objek lokal/pontual.",
     keyPoint:"Titik = lokal." },
-  { cat:'simbol', q:"Simbol warna coklat pada peta umumnya menggambarkan daerah...",
+  { cat:'simbol', q:"Simbol warna coklat pada peta menggambarkan daerah...",
     options:["A. Perairan","B. Dataran rendah","C. Pegunungan/daerah tinggi","D. Rawa-rawa"], correct:2,
-    explanation:"Warna coklat merepresentasikan pegunungan (semakin tua semakin tinggi).",
+    explanation:"Warna coklat merepresentasikan pegunungan.",
     keyPoint:"Coklat = pegunungan." },
-  { cat:'simbol', q:"Warna hijau pada peta umumnya menggambarkan daerah...",
+  { cat:'simbol', q:"Warna hijau pada peta menggambarkan daerah...",
     options:["A. Pegunungan tinggi","B. Perairan","C. Vegetasi/dataran rendah","D. Gurun pasir"], correct:2,
-    explanation:"Warna hijau merepresentasikan vegetasi dan dataran rendah (0–200 mdpl).",
+    explanation:"Warna hijau merepresentasikan vegetasi dan dataran rendah.",
     keyPoint:"Hijau = vegetasi." },
-
-  // Jenis Peta
   { cat:'jenis', q:"Peta yang menampilkan kenampakan umum tanpa menekankan tema tertentu disebut peta...",
     options:["A. Peta Tematik","B. Peta Umum","C. Peta Kadaster","D. Peta Digital"], correct:1,
     explanation:"Peta umum menampilkan kenampakan umum seperti jalan, sungai, kota.",
     keyPoint:"Umum = semua kenampakan." },
   { cat:'jenis', q:"Peta yang khusus menyajikan tema tertentu seperti peta curah hujan disebut peta...",
     options:["A. Peta Umum","B. Peta Tematik","C. Peta Topografi","D. Peta Dunia"], correct:1,
-    explanation:"Peta tematik menyajikan satu tema/variabel spasial tertentu secara rinci.",
+    explanation:"Peta tematik menyajikan satu tema/variabel spasial tertentu.",
     keyPoint:"Tematik = bertema khusus." },
-  { cat:'jenis', q:"Peta yang menyajikan relief/ketinggian permukaan bumi dengan garis kontur disebut peta...",
+  { cat:'jenis', q:"Peta yang menyajikan relief/ketinggian permukaan bumi disebut peta...",
     options:["A. Peta Tematik","B. Peta Topografi","C. Peta Kadaster","D. Peta Korografi"], correct:1,
     explanation:"Peta topografi menyajikan relief permukaan bumi dengan garis kontur.",
     keyPoint:"Topografi = relief/ketinggian." },
-  { cat:'jenis', q:"Peta yang menggambarkan wilayah sangat luas seperti provinsi atau negara disebut peta...",
+  { cat:'jenis', q:"Peta yang menggambarkan wilayah sangat luas seperti provinsi disebut peta...",
     options:["A. Peta Kadaster","B. Peta Korografi","C. Peta Topografi","D. Peta Dunia"], correct:1,
     explanation:"Peta korografi menggambarkan wilayah luas (provinsi/negara).",
     keyPoint:"Korografi = wilayah luas." },
@@ -665,13 +731,11 @@ const QUESTIONS = [
     options:["A. Peta Topografi","B. Peta Kadaster","C. Peta Korografi","D. Peta Dunia"], correct:1,
     explanation:"Peta kadaster digunakan untuk sertifikat tanah.",
     keyPoint:"Kadaster = peta tanah." },
-  { cat:'jenis', q:"Jenis peta yang menunjukkan ketinggian dengan gradasi warna hijau (rendah) ke coklat (tinggi) disebut peta...",
+  { cat:'jenis', q:"Peta yang menunjukkan ketinggian dengan gradasi warna hijau ke coklat disebut peta...",
     options:["A. Peta Tematik","B. Peta Hipsometri","C. Peta Kadaster","D. Peta Korografi"], correct:1,
     explanation:"Peta hipsometri menyajikan perbedaan ketinggian dengan gradasi warna.",
     keyPoint:"Hipsometri = gradasi warna ketinggian." },
-
-  // Peta Kontur
-  { cat:'kontur', q:"Garis khayal pada peta yang menghubungkan titik-titik dengan ketinggian yang sama disebut...",
+  { cat:'kontur', q:"Garis khayal pada peta yang menghubungkan titik-titik dengan ketinggian sama disebut...",
     options:["A. Garis Lintang","B. Garis Bujur","C. Garis Kontur","D. Garis Astronomis"], correct:2,
     explanation:"Garis kontur menghubungkan titik-titik dengan ketinggian sama.",
     keyPoint:"Kontur = garis ketinggian sama." },
@@ -683,13 +747,11 @@ const QUESTIONS = [
     options:["A. 1 : 25.000","B. 1 : 50.000","C. 1 : 100.000","D. 1 : 500.000"], correct:1,
     explanation:"Rumus: CI = 1/2000 × penyebut skala. Skala = 25 × 2000 = 50.000.",
     keyPoint:"CI = 1/2000 × Skala." },
-
-  // Proyeksi Peta
   { cat:'proyeksi', q:"Proyeksi peta yang paling cocok untuk wilayah ekuator seperti Indonesia adalah...",
     options:["A. Proyeksi Azimutal","B. Proyeksi Kerucut","C. Proyeksi Silinder","D. Proyeksi Transversal"], correct:2,
     explanation:"Proyeksi silinder menyinggung bumi di ekuator. Distorsi minimal di daerah ekuator.",
     keyPoint:"Ekuator → silinder." },
-  { cat:'proyeksi', q:"Proyeksi peta yang paling tepat untuk wilayah lintang sedang (subtropis) adalah...",
+  { cat:'proyeksi', q:"Proyeksi peta yang paling tepat untuk wilayah lintang sedang adalah...",
     options:["A. Silinder","B. Kerucut","C. Azimutal","D. Mercator"], correct:1,
     explanation:"Proyeksi kerucut cocok untuk wilayah lintang sedang.",
     keyPoint:"Subtropis → kerucut." },
@@ -701,13 +763,11 @@ const QUESTIONS = [
     options:["A. Luas sesuai aslinya","B. Bentuk sesuai aslinya","C. Jarak sesuai aslinya","D. Warna sesuai aslinya"], correct:1,
     explanation:"Syarat peta: Conform=bentuk, Equidistant=jarak, Equivalent=luas.",
     keyPoint:"Conform=bentuk." },
-
-  // Kartografi Lanjutan
   { cat:'lanjutan', q:"Proses penyederhanaan informasi pada peta ketika skala diperkecil disebut...",
     options:["A. Proyeksi Peta","B. Generalisasi Peta","C. Overlay Peta","D. Digitasi Peta"], correct:1,
     explanation:"Generalisasi peta adalah penyederhanaan unsur peta ketika skala diperkecil.",
     keyPoint:"Generalisasi = penyederhanaan." },
-  { cat:'lanjutan', q:"Penulisan nama-nama geografis pada peta (kota, sungai, gunung) disebut...",
+  { cat:'lanjutan', q:"Penulisan nama-nama geografis pada peta disebut...",
     options:["A. Lettering","B. Layouting","C. Coloring","D. Symboling"], correct:0,
     explanation:"Lettering adalah seni penulisan nama geografis pada peta.",
     keyPoint:"Lettering = penulisan nama." },
@@ -715,7 +775,7 @@ const QUESTIONS = [
     options:["A. Kartografi","B. Fotogrametri","C. Geodesi","D. Topografi"], correct:1,
     explanation:"Fotogrametri adalah pemetaan dari foto udara.",
     keyPoint:"Fotogrametri = dari foto udara." },
-  { cat:'lanjutan', q:"Peta yang dibuat dan disimpan dalam format digital sehingga dapat diolah dengan komputer disebut...",
+  { cat:'lanjutan', q:"Peta yang dibuat dan disimpan dalam format digital disebut...",
     options:["A. Peta Konvensional","B. Peta Digital","C. Peta Manual","D. Peta Cetak"], correct:1,
     explanation:"Peta digital dibuat dengan perangkat lunak SIG (ArcGIS, QGIS).",
     keyPoint:"Peta digital = dibuat komputer." },
@@ -725,47 +785,29 @@ const QUESTIONS = [
     keyPoint:"Teodolit = ukur sudut." }
 ];
 
-/* ============ STATE ============ */
 const state = {
-  studentName: '',
-  currentRound: 0,
-  totalRounds: 12,
-  totalScore: 0,
-  correctCount: 0,
-  wrongCount: 0,
-  streak: 0,
-  maxStreak: 0,
-  currentCategory: null,
-  currentQuestion: null,
-  currentRotation: 0,
-  spinning: false,
-  answerLocked: false,
-  selectedAnswerIndex: null,
-  usedQuestions: new Set(),
-  history: []
+  studentName: '', currentRound: 0, totalRounds: 12,
+  totalScore: 0, correctCount: 0, wrongCount: 0,
+  streak: 0, maxStreak: 0,
+  currentCategory: null, currentQuestion: null,
+  currentRotation: 0, spinning: false, answerLocked: false,
+  selectedAnswerIndex: null, usedQuestions: new Set(), history: [],
+  catStats: {} // { catId: { total, correct, points } }
 };
-const STORAGE_PREFIX = 'spin_wheel_geo_v1_';
+const STORAGE_PREFIX = 'kuis_roda_geo_v2_';
 
-/* ============ BUILD WHEEL ============ */
 function buildWheel() {
   const svg = $('wheelSvg');
   const cx = 100, cy = 100, r = 92;
   let html = '';
-
-  // Outer glow ring
-  html += `<defs>
-    <radialGradient id="wheelInner" cx="50%" cy="50%">
-      <stop offset="0%" stop-color="#0a0f2e" stop-opacity="1"/>
-      <stop offset="70%" stop-color="#0a0f2e" stop-opacity="1"/>
-      <stop offset="100%" stop-color="#1e2a6e" stop-opacity="1"/>
-    </radialGradient>
-  </defs>`;
-
-  // Outer circle
+  html += `<defs><radialGradient id="wheelInner" cx="50%" cy="50%">
+    <stop offset="0%" stop-color="#0a0f2e" stop-opacity="1"/>
+    <stop offset="70%" stop-color="#0a0f2e" stop-opacity="1"/>
+    <stop offset="100%" stop-color="#1e2a6e" stop-opacity="1"/>
+  </radialGradient></defs>`;
   html += `<circle cx="${cx}" cy="${cy}" r="${r+4}" fill="#0a0f2e" stroke="#22d3ee" stroke-width="2" opacity="0.6"/>`;
   html += `<circle cx="${cx}" cy="${cy}" r="${r+6}" fill="none" stroke="#3b82f6" stroke-width="0.5" opacity="0.4"/>`;
 
-  // Segments
   const total = CATEGORIES.length;
   const segAngle = 360 / total;
   for (let i = 0; i < total; i++) {
@@ -781,14 +823,9 @@ function buildWheel() {
     const ey = cy + r * Math.sin(endRad);
     const largeArc = segAngle > 180 ? 1 : 0;
     const path = `M ${cx} ${cy} L ${sx} ${sy} A ${r} ${r} 0 ${largeArc} 1 ${ex} ${ey} Z`;
-
-    // Segment fill
     html += `<path d="${path}" fill="${cat.color}" fill-opacity="0.85" stroke="#0a0f2e" stroke-width="1.2"/>`;
-
-    // Inner subtle gradient circle overlay
     html += `<path d="${path}" fill="url(#wheelInner)" fill-opacity="0.15"/>`;
 
-    // Icon + short label — rotated along radius
     const labelR = r * 0.68;
     const midRad = centerDeg * Math.PI / 180;
     const lx = cx + labelR * Math.cos(midRad);
@@ -800,37 +837,28 @@ function buildWheel() {
       <text x="0" y="8" text-anchor="middle" font-size="6.5" font-weight="900" fill="#ffffff" font-family="'Space Grotesk', sans-serif" style="letter-spacing:0.5px; text-shadow: 0 1px 2px rgba(0,0,0,.8)">${cat.short.toUpperCase()}</text>
     </g>`;
   }
-
-  // Outer border ring
   html += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#67e8f9" stroke-width="1.5" opacity="0.7"/>`;
-  // Divider dots
   for (let i = 0; i < total * 2; i++) {
     const angle = (i * 22.5) * Math.PI / 180;
     const dx = cx + (r + 1.5) * Math.cos(angle);
     const dy = cy + (r + 1.5) * Math.sin(angle);
     html += `<circle cx="${dx}" cy="${dy}" r="0.9" fill="#67e8f9" opacity="0.5"/>`;
   }
-
   svg.innerHTML = html;
 }
 
-/* ============ BUILD LEGEND ============ */
 function buildLegend() {
   const legend = $('wheelLegend');
   legend.innerHTML = CATEGORIES.map(c => `
-    <div class="flex items-center gap-1.5 px-2 py-1.5 rounded-lg border border-cyan-500/15"
-      style="background: rgba(10,15,46,.5)">
+    <div class="flex items-center gap-1.5 px-2 py-1.5 rounded-lg border border-cyan-500/15" style="background: rgba(10,15,46,.5)">
       <span class="w-2.5 h-2.5 rounded-full shrink-0" style="background: ${c.color}; box-shadow: 0 0 8px ${c.color}"></span>
       <span class="text-[10px] md:text-[11px] text-slate-300 truncate">${c.icon} ${c.short}</span>
       <span class="ml-auto text-[9px] md:text-[10px] font-mono font-bold" style="color: ${c.color}">${c.points}</span>
-    </div>
-  `).join('');
+    </div>`).join('');
 }
 
-/* ============ PICK QUESTION FROM CATEGORY ============ */
 function pickQuestion(catId) {
   const pool = QUESTIONS.filter(q => q.cat === catId);
-  // Prefer unused questions
   const unused = pool.filter(q => !state.usedQuestions.has(q.q));
   const source = unused.length > 0 ? unused : pool;
   const chosen = source[Math.floor(Math.random() * source.length)];
@@ -838,32 +866,23 @@ function pickQuestion(catId) {
   return chosen;
 }
 
-/* ============ SPIN ============ */
 function spin() {
   if (state.spinning) return;
   state.spinning = true;
   $('spinBtn').disabled = true;
   hide('categoryResult');
   hide('wheelInstruction');
-
   sfx('spin');
 
-  // Pick winning segment
   const targetIdx = Math.floor(Math.random() * CATEGORIES.length);
   const segAngle = 360 / CATEGORIES.length;
-
-  // Segment i center is at -90 + i * segAngle (SVG angle)
-  // To bring to top (-90 in SVG coords), rotate by -i * segAngle (mod 360)
   const extraSpins = 5 + Math.floor(Math.random() * 3);
-  const jitter = (Math.random() - 0.5) * (segAngle * 0.6); // ± within segment
-
+  const jitter = (Math.random() - 0.5) * (segAngle * 0.6);
   const baseTarget = -targetIdx * segAngle + jitter;
-
   const currentMod = ((state.currentRotation % 360) + 360) % 360;
   const targetMod = ((baseTarget % 360) + 360) % 360;
   const delta = ((targetMod - currentMod) + 360) % 360;
   const finalRotation = state.currentRotation + extraSpins * 360 + delta;
-
   state.currentRotation = finalRotation;
 
   const wheel = $('wheelSvg');
@@ -871,8 +890,13 @@ function spin() {
   wheel.style.transition = `transform ${duration}ms cubic-bezier(0.15, 0.9, 0.25, 1)`;
   wheel.style.transform = `rotate(${finalRotation}deg)`;
 
-  // Play tick sounds
-  playTickSeries(duration);
+  let t = 0;
+  while (t < duration) {
+    const progress = t / duration;
+    const interval = 30 + progress * progress * 260;
+    setTimeout(() => sfx('tick'), t);
+    t += interval;
+  }
 
   setTimeout(() => {
     state.spinning = false;
@@ -881,47 +905,22 @@ function spin() {
   }, duration + 100);
 }
 
-function playTickSeries(duration) {
-  const ticks = [];
-  let t = 0;
-  while (t < duration) {
-    ticks.push(t);
-    const progress = t / duration;
-    // Fast start → slow end
-    const interval = 30 + progress * progress * 260;
-    t += interval;
-  }
-  ticks.forEach(delay => {
-    setTimeout(() => sfx('tick'), delay);
-  });
-}
-
 function onSpinComplete(targetIdx) {
   const cat = CATEGORIES[targetIdx];
   state.currentCategory = cat;
-
-  // Show category badge
   const res = $('categoryResult');
   res.innerHTML = `
     <div class="cat-badge" style="background: linear-gradient(135deg, ${cat.color}, ${cat.color}aa); color: #050816; border: 2px solid ${cat.color}">
       <span style="font-size: 1.2em">${cat.icon}</span>
       <span>${cat.name}</span>
       <span class="ml-1 px-2 py-0.5 rounded-full font-mono text-[10px]" style="background: rgba(5,8,22,.3)">+${cat.points}</span>
-    </div>
-  `;
+    </div>`;
   show('categoryResult');
-
-  // Play reveal sound
   playTone(660, .1, 'sine', .15, 0);
   playTone(880, .15, 'sine', .15, .1);
-
-  // After delay, go to question
-  setTimeout(() => {
-    startQuestion(cat);
-  }, 1400);
+  setTimeout(() => startQuestion(cat), 1400);
 }
 
-/* ============ QUESTION FLOW ============ */
 function startQuestion(cat) {
   state.currentQuestion = pickQuestion(cat.id);
   state.answerLocked = false;
@@ -933,18 +932,15 @@ function startQuestion(cat) {
   setText('qRoundCounter', `${state.currentRound + 1}/${state.totalRounds}`);
   setText('qScoreCounter', state.totalScore);
 
-  // Category badge
   $('qCatBadge').innerHTML = `
     <div class="cat-badge" style="background: linear-gradient(135deg, ${cat.color}, ${cat.color}aa); color: #050816; border: 2px solid ${cat.color}">
       <span>${cat.icon}</span>
       <span>${cat.name}</span>
       <span class="ml-1 px-2 py-0.5 rounded-full font-mono text-[10px]" style="background: rgba(5,8,22,.3)">+${cat.points} poin</span>
-    </div>
-  `;
+    </div>`;
 
   setText('qText', state.currentQuestion.q);
 
-  // Options
   const opts = $('qOptions');
   opts.innerHTML = '';
   state.currentQuestion.options.forEach((opt, i) => {
@@ -964,55 +960,46 @@ function selectAnswer(idx) {
   if (state.answerLocked) return;
   state.answerLocked = true;
   state.selectedAnswerIndex = idx;
-  sfx('select');
+  sfx('click');
 
   const q = state.currentQuestion;
   const isCorrect = idx === q.correct;
   const cat = state.currentCategory;
 
-  // Highlight
+  // Inisialisasi stats kategori
+  if (!state.catStats[cat.id]) state.catStats[cat.id] = { total: 0, correct: 0, points: 0 };
+  state.catStats[cat.id].total++;
+
   const btns = document.querySelectorAll('#qOptions .opt-btn');
   btns.forEach(b => b.disabled = true);
   btns[idx].classList.add(isCorrect ? 'opt-correct' : 'opt-wrong');
   if (!isCorrect) btns[q.correct].classList.add('opt-correct');
 
-  // Show reveal overlay
   showRevealOverlay(isCorrect ? 'BENAR' : 'SALAH', isCorrect ? 'benar' : 'salah');
 
-  // Score
   let earnedPoints = 0;
   if (isCorrect) {
     sfx('correct');
     state.correctCount++;
     state.streak++;
     if (state.streak > state.maxStreak) state.maxStreak = state.streak;
-
-    // Streak bonus: 10% per streak level (max +50%)
     const streakBonus = Math.min(state.streak - 1, 5) * 0.1;
     earnedPoints = Math.round(cat.points * (1 + streakBonus));
     state.totalScore += earnedPoints;
+    state.catStats[cat.id].correct++;
+    state.catStats[cat.id].points += earnedPoints;
   } else {
     sfx('wrong');
     state.wrongCount++;
     state.streak = 0;
   }
 
-  // Record history
   state.history.push({
-    round: state.currentRound + 1,
-    cat: cat.name,
-    catColor: cat.color,
-    catIcon: cat.icon,
-    question: q.q,
-    userAnswer: q.options[idx],
-    correctAnswer: q.options[q.correct],
-    explanation: q.explanation,
-    keyPoint: q.keyPoint,
-    isCorrect: isCorrect,
-    points: earnedPoints
+    round: state.currentRound + 1, cat: cat.name, catColor: cat.color, catIcon: cat.icon,
+    question: q.q, userAnswer: q.options[idx], correctAnswer: q.options[q.correct],
+    explanation: q.explanation, keyPoint: q.keyPoint, isCorrect, points: earnedPoints
   });
 
-  // Hide overlay after delay, then show feedback
   setTimeout(() => {
     hideRevealOverlay();
     showFeedback(isCorrect, earnedPoints, cat);
@@ -1022,8 +1009,6 @@ function selectAnswer(idx) {
 function showFeedback(isCorrect, earnedPoints, cat) {
   const q = state.currentQuestion;
   const fb = $('qFeedback');
-  const letters = ['A','B','C','D'];
-
   let html = '';
   if (isCorrect) {
     html += `<div class="p-3 rounded-xl mb-2" style="background: linear-gradient(135deg, rgba(34,197,94,.12), rgba(34,197,94,.03)); border: 1px solid rgba(34,197,94,.35)">
@@ -1043,15 +1028,11 @@ function showFeedback(isCorrect, earnedPoints, cat) {
       </div>
     </div>`;
   }
-
   html += `<div class="fb-section why"><div class="fb-t">💡 Pembahasan</div><div class="fb-b">${q.explanation}</div></div>`;
   html += `<div class="fb-section key"><div class="fb-t">🎯 Poin Kunci</div><div class="fb-b">${q.keyPoint}</div></div>`;
-
   fb.innerHTML = html;
   show('qFeedback');
   show('qActions');
-
-  // Update score counter
   setText('qScoreCounter', state.totalScore);
 
   if (isCorrect && state.streak >= 3) {
@@ -1062,24 +1043,15 @@ function showFeedback(isCorrect, earnedPoints, cat) {
 function nextRound() {
   sfx('click');
   state.currentRound++;
-
-  if (state.currentRound >= state.totalRounds) {
-    endGame();
-    return;
-  }
-
-  // Go back to wheel
+  if (state.currentRound >= state.totalRounds) { endGame(); return; }
   hide('questionScreen');
   show('wheelScreen');
   setText('roundCounter', `${state.currentRound + 1}/${state.totalRounds}`);
   setText('scoreCounter', state.totalScore);
-
-  // Reset wheel instruction
   show('wheelInstruction');
   hide('categoryResult');
 }
 
-/* ============ REVEAL OVERLAY ============ */
 function showRevealOverlay(text, type) {
   const o = $('revealOverlay');
   const b = $('revealBadge');
@@ -1118,7 +1090,46 @@ function createBurst(cx, cy, colors) {
   }
 }
 
-/* ============ END GAME ============ */
+/* ============ ACHIEVEMENT / KATEGORI CAPAIAN ============ */
+function getAchievement(accuracy, correct, total) {
+  if (accuracy >= 95) return {
+    tier: 'gold', icon: '👑',
+    title: 'LEGENDA GEOGRAFI',
+    desc: 'Sempurna! Kamu menguasai Peta & Pemetaan dengan sangat luar biasa.',
+    color: '#fbbf24'
+  };
+  if (accuracy >= 85) return {
+    tier: 'gold', icon: '🏆',
+    title: 'MASTER KARTOGRAFER',
+    desc: 'Luar biasa! Pemahamanmu tentang Peta & Pemetaan sangat tinggi.',
+    color: '#fbbf24'
+  };
+  if (accuracy >= 70) return {
+    tier: 'emerald', icon: '🌟',
+    title: 'AHLI PETA',
+    desc: 'Hebat! Kamu sudah menguasai sebagian besar konsep pemetaan.',
+    color: '#22c55e'
+  };
+  if (accuracy >= 55) return {
+    tier: 'blue', icon: '🧭',
+    title: 'PENJELAJAH MUDA',
+    desc: 'Bagus! Kemampuanmu sudah baik, terus tingkatkan lagi.',
+    color: '#3b82f6'
+  };
+  if (accuracy >= 40) return {
+    tier: 'violet', icon: '🗺️',
+    title: 'PEMBELAJAR AKTIF',
+    desc: 'Cukup baik! Pelajari kembali materi yang belum dikuasai.',
+    color: '#8b5cf6'
+  };
+  return {
+    tier: 'slate', icon: '🌱',
+    title: 'PEMULA SEMANGAT',
+    desc: 'Jangan menyerah! Setiap perjalanan dimulai dari langkah pertama.',
+    color: '#94a3b8'
+  };
+}
+
 function endGame() {
   hide('wheelScreen');
   hide('questionScreen');
@@ -1130,31 +1141,69 @@ function endGame() {
   const accuracy = Math.round((correct / total) * 100);
   const score = state.totalScore;
 
-  const grade = accuracy >= 90 ? 'A' : accuracy >= 80 ? 'B' : accuracy >= 70 ? 'C' : accuracy >= 60 ? 'D' : 'E';
-  const title = accuracy >= 90 ? '🏆 MASTER GEOGRAFI' : accuracy >= 75 ? '🧭 AHLI KARTOGRAFI' : accuracy >= 50 ? '🗺️ EXPLORER BUMI' : '🌱 PEMBELAJAR GEOGRAFI';
+  // Achievement
+  const ach = getAchievement(accuracy, correct, total);
 
-  // Initials
-  const initials = state.studentName.trim().split(/\s+/).map(w => w[0]).join('').slice(0,2).toUpperCase() || '?';
-  setText('resultAvatar', initials);
-  setText('totalScoreDisplay', score);
-
-  const gradeColors = {
-    A: 'linear-gradient(135deg,#22d3ee,#3b82f6)',
-    B: 'linear-gradient(135deg,#3b82f6,#8b5cf6)',
-    C: 'linear-gradient(135deg,#f59e0b,#fbbf24)',
-    D: 'linear-gradient(135deg,#f97316,#f59e0b)',
-    E: 'linear-gradient(135deg,#ef4444,#dc2626)'
-  };
-  const gb = $('gradeBadge');
-  gb.textContent = grade;
-  gb.style.background = gradeColors[grade];
-
+  // Nama siswa
   setText('rName', state.studentName.toUpperCase());
-  setText('rCorrect', `${correct} / ${total}`);
+
+  // Achievement card
+  const achWrap = $('achievementWrap');
+  achWrap.innerHTML = `
+    <div class="achievement-card ach-tier-${ach.tier}">
+      <div class="flex items-center gap-3 relative z-10">
+        <div class="ach-icon">${ach.icon}</div>
+        <div class="flex-1 min-w-0">
+          <div class="text-[10px] uppercase tracking-widest font-black mb-1" style="color: ${ach.color}; text-shadow: 0 0 12px ${ach.color}aa">🏅 KATEGORI CAPAIAN</div>
+          <div class="text-lg md:text-2xl font-black leading-tight overflow-safe" style="color: ${ach.color}; font-family:'Space Grotesk',sans-serif; text-shadow: 0 0 20px ${ach.color}aa">
+            ${ach.title}
+          </div>
+          <div class="text-[11px] md:text-xs mt-1.5 leading-snug" style="color: rgba(226,232,240,.9)">${ach.desc}</div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Stats
+  setText('rCorrect', correct);
   setText('rWrong', wrong);
   setText('rAcc', accuracy + '%');
-  setText('rStreak', state.maxStreak + ' 🔥');
-  setText('rTitle', title);
+  setText('rStreak', state.maxStreak + '🔥');
+
+  // Total score dengan animasi
+  let counter = 0;
+  const targetScore = score;
+  const scoreEl = $('totalScoreDisplay');
+  const step = Math.max(1, Math.ceil(targetScore / 40));
+  const iv = setInterval(() => {
+    counter += step;
+    if (counter >= targetScore) { counter = targetScore; clearInterval(iv); }
+    scoreEl.textContent = counter;
+  }, 30);
+
+  // Breakdown per kategori
+  const breakdown = $('catBreakdown');
+  breakdown.innerHTML = '';
+  CATEGORIES.forEach(cat => {
+    const s = state.catStats[cat.id];
+    if (!s || s.total === 0) return;
+    const pct = Math.round((s.correct / s.total) * 100);
+    const row = document.createElement('div');
+    row.className = 'cat-stat-row';
+    row.innerHTML = `
+      <span class="text-base shrink-0">${cat.icon}</span>
+      <div class="flex-1 min-w-0">
+        <div class="flex items-center justify-between gap-2 mb-1">
+          <span class="text-[10px] md:text-[11px] font-bold truncate" style="color: ${cat.color}">${cat.name}</span>
+          <span class="text-[10px] md:text-[11px] font-mono font-bold text-slate-300 shrink-0">${s.correct}/${s.total} • ${s.points} poin</span>
+        </div>
+        <div class="cat-stat-bar">
+          <i style="width: ${pct}%; background: linear-gradient(90deg, ${cat.color}, ${cat.color}cc); box-shadow: 0 0 12px ${cat.color}aa"></i>
+        </div>
+      </div>
+    `;
+    breakdown.appendChild(row);
+  });
 
   // Best score check
   let prev = null;
@@ -1165,7 +1214,7 @@ function endGame() {
     try {
       localStorage.setItem(STORAGE_PREFIX + 'best_score', score);
       localStorage.setItem(STORAGE_PREFIX + 'best_acc', accuracy);
-      localStorage.setItem(STORAGE_PREFIX + 'best_title', title);
+      localStorage.setItem(STORAGE_PREFIX + 'best_title', ach.title);
     } catch(e) {}
     show('recordBanner');
     setText('recordText', '🎉 SKOR BARU TERBAIK!');
@@ -1182,26 +1231,42 @@ function endGame() {
   }
 }
 
-/* ============ COPY RESULT ============ */
 function copyResult() {
   sfx('click');
   const total = state.totalRounds;
   const accuracy = Math.round((state.correctCount / total) * 100);
+  const ach = getAchievement(accuracy, state.correctCount, total);
+
+  // Breakdown kategori
+  let catBreakdownText = '';
+  CATEGORIES.forEach(cat => {
+    const s = state.catStats[cat.id];
+    if (!s || s.total === 0) return;
+    catBreakdownText += `  • ${cat.name}: ${s.correct}/${s.total} (${s.points} poin)\n`;
+  });
+
   const txt =
-`HASIL SPIN THE WHEEL QUIZ GEOGRAFI
+`HASIL KUIS RODA BERPUTAR GEOGRAFI
 Sekolah: SMAN 3 Kasongan
 Kelas: X / Fase E
 Guru Pengampu: SYAHRANI, S.Pd.
 NIP. 19751217200501 1 016
-Nama: ${state.studentName}
+━━━━━━━━━━━━━━━━━━━━
+Nama Siswa: ${state.studentName}
 Materi: Peta & Pemetaan
 ━━━━━━━━━━━━━━━━━━━━
-Total Poin: ${state.totalScore}
-Jawaban Benar: ${state.correctCount}/${total}
-Jawaban Salah: ${state.wrongCount}
-Akurasi: ${accuracy}%
-Streak Terbaik: ${state.maxStreak}
-━━━━━━━━━━━━━━━━━━━━`;
+🏅 KATEGORI CAPAIAN: ${ach.title}
+${ach.icon} ${ach.desc}
+━━━━━━━━━━━━━━━━━━━━
+📊 STATISTIK:
+  • Total Poin: ${state.totalScore}
+  • Jawaban Benar: ${state.correctCount}/${total}
+  • Jawaban Salah: ${state.wrongCount}
+  • Akurasi: ${accuracy}%
+  • Streak Terbaik: ${state.maxStreak}
+━━━━━━━━━━━━━━━━━━━━
+📚 CAPAIAN PER KATEGORI:
+${catBreakdownText}━━━━━━━━━━━━━━━━━━━━`;
 
   const ta = document.createElement('textarea');
   ta.value = txt;
@@ -1216,12 +1281,10 @@ Streak Terbaik: ${state.maxStreak}
   setTimeout(() => { btn.textContent = oldText; }, 2000);
 }
 
-/* ============ INIT ============ */
 function init() {
   buildWheel();
   buildLegend();
 
-  // Sound toggle
   $('soundToggle').addEventListener('click', () => {
     soundMuted = !soundMuted;
     $('soundToggle').textContent = soundMuted ? '🔇' : '🔊';
@@ -1229,7 +1292,6 @@ function init() {
     if (!soundMuted) sfx('click');
   });
 
-  // Start form
   $('startForm').addEventListener('submit', e => {
     e.preventDefault();
     sfx('click');
@@ -1245,6 +1307,7 @@ function init() {
     state.usedQuestions.clear();
     state.history = [];
     state.currentRotation = 0;
+    state.catStats = {};
 
     setText('playerName', name);
     setText('roundCounter', `1/${state.totalRounds}`);
@@ -1256,15 +1319,10 @@ function init() {
     hide('categoryResult');
   });
 
-  // Spin button
   $('spinBtn').addEventListener('click', spin);
-  // Also allow clicking the wheel
   $('wheelSvg').addEventListener('click', () => { if (!state.spinning) spin(); });
-
-  // Next round
   $('btnNextSpin').addEventListener('click', nextRound);
 
-  // Result buttons
   $('btnRestart').addEventListener('click', () => {
     hide('resultScreen');
     show('startScreen');
@@ -1275,7 +1333,6 @@ function init() {
     show('startScreen');
   });
 
-  // Load best score
   try {
     const bs = localStorage.getItem(STORAGE_PREFIX + 'best_score');
     const ba = localStorage.getItem(STORAGE_PREFIX + 'best_acc');
