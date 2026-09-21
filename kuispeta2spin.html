@@ -54,7 +54,6 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
     background: linear-gradient(90deg, transparent, rgba(34,211,238,.6), transparent);
   }
 
-  /* ============ NAMA SEKOLAH - DIPERBESAR, TANPA IKON ============ */
   .school-badge{
     display:inline-flex; align-items:center; justify-content:center;
     padding:10px 28px;
@@ -79,7 +78,6 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
   }
   @keyframes badgeShine{0%{left:-100%}60%,100%{left:100%}}
 
-  /* Nama sekolah - gradient emas terang + glow */
   .school-name{
     background: linear-gradient(135deg, #fef3c7 0%, #fbbf24 25%, #f59e0b 50%, #fbbf24 75%, #fef3c7 100%);
     background-size: 300% auto;
@@ -90,7 +88,6 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
   }
   @keyframes shimmerText{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
 
-  /* ============ NAMA GURU - WARNA CYAN TERANG ============ */
   .teacher-name{
     background: linear-gradient(135deg, #a5f3fc 0%, #22d3ee 30%, #06b6d4 60%, #67e8f9 100%);
     background-size: 250% auto;
@@ -341,6 +338,89 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
     transition: width 1.2s cubic-bezier(.2,.9,.3,1.2);
   }
 
+  /* ============ KUIS SELESAI BANNER ============ */
+  .kuis-selesai-banner{
+    text-align: center;
+    padding: 20px 16px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(34,211,238,.15), rgba(59,130,246,.1), rgba(139,92,246,.15));
+    border: 2px solid rgba(34,211,238,.5);
+    box-shadow: 0 0 50px rgba(34,211,238,.35), inset 0 0 40px rgba(59,130,246,.1);
+    margin-bottom: 18px;
+    animation: selesaiIn .9s cubic-bezier(.2,.9,.3,1.3);
+    position: relative;
+    overflow: hidden;
+  }
+  .kuis-selesai-banner::before{
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(34,211,238,.25), transparent 60%);
+    pointer-events: none;
+  }
+  @keyframes selesaiIn{
+    0%{ opacity: 0; transform: scale(.7) translateY(-30px); }
+    60%{ transform: scale(1.05) translateY(4px); }
+    100%{ opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .kuis-selesai-title{
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #67e8f9 0%, #22d3ee 30%, #3b82f6 60%, #8b5cf6 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    animation: shimmerText 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 20px rgba(34,211,238,.7));
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  @media (min-width:480px){ .kuis-selesai-title{ font-size: 3rem; letter-spacing: 5px; } }
+  @media (min-width:768px){ .kuis-selesai-title{ font-size: 3.8rem; letter-spacing: 6px; } }
+  .kuis-selesai-sub{
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(165,243,252,.85);
+    font-weight: 700;
+  }
+  @media (min-width:480px){ .kuis-selesai-sub{ font-size: .85rem; } }
+
+  /* Button kembali ke halaman utama */
+  .btn-home{
+    background: linear-gradient(135deg, #22d3ee 0%, #3b82f6 50%, #8b5cf6 100%);
+    color: #050816;
+    font-weight: 900;
+    letter-spacing: 2px;
+    padding: 18px 28px;
+    border-radius: 16px;
+    border: 2px solid rgba(103,232,249,.6);
+    box-shadow:
+      0 0 40px rgba(34,211,238,.6),
+      0 14px 40px rgba(0,0,0,.5),
+      inset 0 1px 0 rgba(255,255,255,.5);
+    transition: all .22s;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 100%;
+    font-family: 'Space Grotesk', sans-serif;
+    text-transform: uppercase;
+    position: relative; overflow: hidden;
+    animation: homePulse 2s ease-in-out infinite;
+  }
+  @media (min-width:480px){ .btn-home{ padding: 20px 36px; font-size: 1.15rem; letter-spacing: 3px; } }
+  @keyframes homePulse{
+    0%,100% { box-shadow: 0 0 40px rgba(34,211,238,.6), 0 14px 40px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.5); }
+    50%     { box-shadow: 0 0 70px rgba(34,211,238,1), 0 14px 40px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.5); }
+  }
+  .btn-home:hover{ transform: translateY(-3px) scale(1.02); }
+  .btn-home:active{ transform: translateY(0) scale(.98); }
+  .btn-home::after{
+    content:''; position: absolute; top:0; left:-100%; width:100%; height:100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.5), transparent);
+    animation: shineBtn 2.6s ease-in-out infinite;
+  }
+
   @media (max-width: 640px){
     .glass-panel{ padding: 14px; }
     main{ padding: 12px 10px 20px !important; }
@@ -352,6 +432,7 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
     .opt-btn{ padding: 11px 12px; font-size: .8rem; border-radius: 12px; }
     .wheel-stage{ width: min(94vw, 320px); }
     .school-badge{ padding: 8px 18px; font-size:.85rem; letter-spacing:2px; }
+    .kuis-selesai-title{ font-size: 1.8rem; }
   }
   .overflow-safe{ word-wrap: break-word; overflow-wrap: break-word; }
 </style>
@@ -383,7 +464,6 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
 
   <!-- ========== START SCREEN ========== -->
   <section id="startScreen" class="w-full max-w-lg glass-panel p-5 md:p-7 rounded-2xl my-auto">
-    <!-- NAMA SEKOLAH - DIPERBESAR TANPA IKON -->
     <div class="text-center mb-5">
       <div class="school-badge">
         <span class="school-name">SMAN 3 KASONGAN</span>
@@ -397,7 +477,6 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
       <p class="text-xs md:text-sm text-blue-200/70">Peta & Pemetaan • Geografi Kelas X</p>
     </div>
 
-    <!-- GURU PENGAMPU dengan WARNA KHUSUS -->
     <div class="mb-5 p-4 md:p-5 rounded-xl" style="background: linear-gradient(135deg, rgba(6,182,212,.12), rgba(59,130,246,.06)); border: 2px solid rgba(34,211,238,.4); box-shadow: 0 0 30px rgba(34,211,238,.2)">
       <div class="text-center">
         <div class="text-[10px] uppercase tracking-widest font-black mb-2 flex items-center justify-center gap-1.5"
@@ -520,17 +599,17 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
 
   <!-- ========== RESULT SCREEN ========== -->
   <section id="resultScreen" class="is-hidden w-full max-w-2xl my-auto space-y-3">
-    <div id="recordBanner" class="is-hidden glass-panel p-3 md:p-4 rounded-2xl text-center" style="border-color: rgba(34,211,238,.5); background: linear-gradient(135deg,rgba(34,211,238,.15),rgba(59,130,246,.1),rgba(139,92,246,.15))">
-      <h3 id="recordText" class="text-base md:text-xl font-black text-cyan-400">🎉 SKOR BARU TERBAIK!</h3>
-      <p id="recordSubtext" class="text-[11px] md:text-xs text-blue-200">Luar biasa!</p>
+
+    <!-- BANNER KUIS SELESAI -->
+    <div class="kuis-selesai-banner">
+      <div class="kuis-selesai-title">KUIS SELESAI</div>
+      <div class="kuis-selesai-sub">🎉 12 Putaran Telah Selesai 🎉</div>
     </div>
 
     <div class="glass-panel p-4 md:p-8 rounded-2xl" style="border: 2px solid rgba(34,211,238,.35)">
       <div class="border-b-2 border-dashed pb-3 mb-4 text-center" style="border-color: rgba(34,211,238,.25)">
-        <div class="text-base md:text-xl font-black tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-violet-400"
-          style="font-family:'Space Grotesk',sans-serif">🎡 KUIS RODA BERPUTAR</div>
         <div class="school-name text-base md:text-lg tracking-widest mt-2">SMAN 3 KASONGAN</div>
-        <div class="text-[9px] md:text-[10px] text-cyan-300/80 font-bold uppercase mt-0.5">HASIL TUGAS INDIVIDU</div>
+        <div class="text-[9px] md:text-[10px] text-cyan-300/80 font-bold uppercase mt-1">HASIL TUGAS INDIVIDU</div>
       </div>
 
       <div class="text-center mb-5">
@@ -581,14 +660,13 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
       </div>
     </div>
 
-    <div class="grid grid-cols-2 gap-2 md:grid-cols-3">
-      <button id="btnRestart" type="button" class="font-bold p-3 rounded-xl text-xs cursor-pointer"
-        style="background: linear-gradient(135deg,#22d3ee,#3b82f6); color:#050816">🔄 MAIN LAGI</button>
-      <button id="btnCopy" type="button" class="font-bold p-3 rounded-xl text-xs cursor-pointer border border-cyan-500/30"
-        style="background: linear-gradient(135deg,#1e3a8a,#2563eb); color:#e0f2fe">📋 SALIN HASIL</button>
-      <button id="btnMenu" type="button" class="font-bold p-3 rounded-xl text-xs cursor-pointer border border-cyan-500/20 col-span-2 md:col-span-1"
-        style="background: rgba(10,15,46,.8); color:#cbd5e1">🏠 MENU</button>
-    </div>
+    <!-- TOMBOL - HANYA KEMBALI KE HALAMAN UTAMA & SALIN -->
+    <button id="btnHome" type="button" class="btn-home">🏠 KEMBALI KE HALAMAN UTAMA</button>
+
+    <button id="btnCopy" type="button" class="w-full font-bold p-3 rounded-xl text-xs cursor-pointer border border-cyan-500/30"
+      style="background: linear-gradient(135deg,#1e3a8a,#2563eb); color:#e0f2fe">
+      📋 SALIN HASIL
+    </button>
   </section>
 
 </main>
@@ -796,10 +874,11 @@ const state = {
   streak: 0, maxStreak: 0,
   currentCategory: null, currentQuestion: null,
   currentRotation: 0, spinning: false, answerLocked: false,
+  gameFinished: false,
   selectedAnswerIndex: null, usedQuestions: new Set(), history: [],
   catStats: {}
 };
-const STORAGE_PREFIX = 'kuis_roda_geo_v2_';
+const STORAGE_PREFIX = 'kuis_roda_geo_v3_';
 
 function buildWheel() {
   const svg = $('wheelSvg');
@@ -872,7 +951,10 @@ function pickQuestion(catId) {
 }
 
 function spin() {
+  // Cegah spin setelah kuis selesai
+  if (state.gameFinished) return;
   if (state.spinning) return;
+
   state.spinning = true;
   $('spinBtn').disabled = true;
   hide('categoryResult');
@@ -927,6 +1009,9 @@ function onSpinComplete(targetIdx) {
 }
 
 function startQuestion(cat) {
+  // Jika kuis sudah selesai, jangan load lagi
+  if (state.gameFinished) return;
+
   state.currentQuestion = pickQuestion(cat.id);
   state.answerLocked = false;
   state.selectedAnswerIndex = null;
@@ -1036,6 +1121,18 @@ function showFeedback(isCorrect, earnedPoints, cat) {
   html += `<div class="fb-section key"><div class="fb-t">🎯 Poin Kunci</div><div class="fb-b">${q.keyPoint}</div></div>`;
   fb.innerHTML = html;
   show('qFeedback');
+
+  // Cek apakah ini putaran terakhir
+  if (state.currentRound >= state.totalRounds - 1) {
+    // Ini putaran terakhir - ubah tombol jadi "LIHAT HASIL"
+    const btn = $('btnNextSpin');
+    btn.innerHTML = '🏁 LIHAT HASIL KUIS';
+    btn.style.background = 'linear-gradient(135deg,#fbbf24,#f59e0b)';
+  } else {
+    const btn = $('btnNextSpin');
+    btn.innerHTML = '🎡 PUTAR LAGI';
+    btn.style.background = 'linear-gradient(135deg,#22d3ee,#3b82f6)';
+  }
   show('qActions');
   setText('qScoreCounter', state.totalScore);
 
@@ -1046,8 +1143,21 @@ function showFeedback(isCorrect, earnedPoints, cat) {
 
 function nextRound() {
   sfx('click');
+
+  // Sudah selesai → tidak boleh lanjut
+  if (state.gameFinished) return;
+
   state.currentRound++;
-  if (state.currentRound >= state.totalRounds) { endGame(); return; }
+
+  // Jika sudah mencapai 12 putaran → SELESAI
+  if (state.currentRound >= state.totalRounds) {
+    state.gameFinished = true;
+    hide('questionScreen');
+    hide('wheelScreen');
+    endGame();
+    return;
+  }
+
   hide('questionScreen');
   show('wheelScreen');
   setText('roundCounter', `${state.currentRound + 1}/${state.totalRounds}`);
@@ -1212,17 +1322,11 @@ function endGame() {
       localStorage.setItem(STORAGE_PREFIX + 'best_acc', accuracy);
       localStorage.setItem(STORAGE_PREFIX + 'best_title', ach.title);
     } catch(e) {}
-    show('recordBanner');
-    setText('recordText', '🎉 SKOR BARU TERBAIK!');
-    setText('recordSubtext', 'Luar biasa! Kamu melampaui rekor sebelumnya.');
     sfx('win');
     safeConfetti({ particleCount: 100, spread: 100, origin: { y: .6 }, colors: ['#22d3ee','#3b82f6','#8b5cf6','#fbbf24'] });
     setTimeout(() => safeConfetti({ particleCount: 60, angle: 60, spread: 70, origin: { x: 0, y: .7 }, colors: ['#22d3ee','#3b82f6'] }), 300);
     setTimeout(() => safeConfetti({ particleCount: 60, angle: 120, spread: 70, origin: { x: 1, y: .7 }, colors: ['#8b5cf6','#fbbf24'] }), 500);
   } else {
-    show('recordBanner');
-    setText('recordText', '💪 Tetap Semangat!');
-    setText('recordSubtext', 'Belum jadi skor terbaik. Coba lagi!');
     if (accuracy >= 60) safeConfetti({ particleCount: 40, spread: 80, origin: { y: .6 } });
   }
 }
@@ -1276,6 +1380,65 @@ ${catBreakdownText}━━━━━━━━━━━━━━━━━━━━`
   setTimeout(() => { btn.textContent = oldText; }, 2000);
 }
 
+function returnToMainScreen() {
+  sfx('click');
+
+  // Reset semua state
+  state.studentName = '';
+  state.currentRound = 0;
+  state.totalScore = 0;
+  state.correctCount = 0;
+  state.wrongCount = 0;
+  state.streak = 0;
+  state.maxStreak = 0;
+  state.usedQuestions.clear();
+  state.history = [];
+  state.currentRotation = 0;
+  state.catStats = {};
+  state.currentCategory = null;
+  state.currentQuestion = null;
+  state.selectedAnswerIndex = null;
+  state.answerLocked = false;
+  state.spinning = false;
+  state.gameFinished = false;
+
+  // Reset wheel rotation
+  const wheel = $('wheelSvg');
+  wheel.style.transition = 'none';
+  wheel.style.transform = 'rotate(0deg)';
+
+  // Reset input nama
+  const nameInput = $('studentName');
+  if (nameInput) nameInput.value = '';
+
+  // Sembunyikan semua, tampilkan start screen
+  hide('resultScreen');
+  hide('wheelScreen');
+  hide('questionScreen');
+  hide('categoryResult');
+  hide('wheelInstruction');
+  hide('qFeedback');
+  hide('qActions');
+
+  // Refresh best score
+  try {
+    const bs = localStorage.getItem(STORAGE_PREFIX + 'best_score');
+    const ba = localStorage.getItem(STORAGE_PREFIX + 'best_acc');
+    const bt = localStorage.getItem(STORAGE_PREFIX + 'best_title');
+    if (bs !== null) {
+      show('bestScoreSummary');
+      setText('bestScorePoints', bs);
+      setText('bestScoreAcc', ba + '%');
+      setText('bestScoreTitle', bt);
+    } else {
+      hide('bestScoreSummary');
+    }
+  } catch(e) {}
+
+  show('startScreen');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
 function init() {
   buildWheel();
   buildLegend();
@@ -1303,6 +1466,14 @@ function init() {
     state.history = [];
     state.currentRotation = 0;
     state.catStats = {};
+    state.gameFinished = false;
+
+    // Reset tombol PUTAR LAGI
+    const btn = $('btnNextSpin');
+    if (btn) {
+      btn.innerHTML = '🎡 PUTAR LAGI';
+      btn.style.background = 'linear-gradient(135deg,#22d3ee,#3b82f6)';
+    }
 
     setText('playerName', name);
     setText('roundCounter', `1/${state.totalRounds}`);
@@ -1315,18 +1486,12 @@ function init() {
   });
 
   $('spinBtn').addEventListener('click', spin);
-  $('wheelSvg').addEventListener('click', () => { if (!state.spinning) spin(); });
+  $('wheelSvg').addEventListener('click', () => { if (!state.spinning && !state.gameFinished) spin(); });
   $('btnNextSpin').addEventListener('click', nextRound);
 
-  $('btnRestart').addEventListener('click', () => {
-    hide('resultScreen');
-    show('startScreen');
-  });
+  // TOMBOL KEMBALI KE HALAMAN UTAMA
+  $('btnHome').addEventListener('click', returnToMainScreen);
   $('btnCopy').addEventListener('click', copyResult);
-  $('btnMenu').addEventListener('click', () => {
-    hide('resultScreen');
-    show('startScreen');
-  });
 
   try {
     const bs = localStorage.getItem(STORAGE_PREFIX + 'best_score');
