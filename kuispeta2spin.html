@@ -457,9 +457,101 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
     .kuis-selesai-title{ font-size: 1.8rem; }
   }
   .overflow-safe{ word-wrap: break-word; overflow-wrap: break-word; }
+
+  /* ============ MODERN LOADING SCREEN ============ */
+  #loadingScreen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #050816;
+    transition: opacity 0.7s ease, visibility 0.7s ease;
+    flex-direction: column;
+    padding: 20px;
+  }
+  #loadingScreen.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  .loader-content {
+    text-align: center;
+    max-width: 340px;
+    width: 100%;
+  }
+  /* .loader-wheel dihapus karena ikon dihilangkan */
+  .loader-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 900;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #67e8f9, #3b82f6, #8b5cf6);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmerText 2s ease-in-out infinite;
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+  .loader-sub {
+    font-size: 0.7rem;
+    color: rgba(165,243,252,.8);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .loader-bar {
+    width: 100%;
+    height: 5px;
+    background: rgba(59,130,246,.2);
+    border-radius: 99px;
+    overflow: hidden;
+    margin-bottom: 14px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,.5);
+  }
+  .loader-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #22d3ee, #3b82f6, #8b5cf6);
+    border-radius: 99px;
+    animation: loadFill 2s ease-in-out forwards;
+    box-shadow: 0 0 16px rgba(34,211,238,.8);
+  }
+  @keyframes loadFill {
+    0% { width: 0%; }
+    100% { width: 100%; }
+  }
+  .loader-text {
+    font-size: 0.65rem;
+    color: rgba(148,163,184,.8);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 700;
+    animation: blinkText 1.4s ease-in-out infinite;
+  }
+  @keyframes blinkText {
+    0%,100% { opacity: .6; }
+    50% { opacity: 1; }
+  }
 </style>
 </head>
 <body>
+
+<!-- ========== MODERN LOADING SCREEN (tanpa ikon) ========== -->
+<div id="loadingScreen">
+  <div class="loader-content">
+    <div class="loader-title">KUIS RODA BERPUTAR</div>
+    <div class="loader-sub">Geografi • Peta & Pemetaan</div>
+    <div class="loader-bar">
+      <div class="loader-bar-fill"></div>
+    </div>
+    <div class="loader-text">Memuat...</div>
+  </div>
+</div>
 
 <!-- HEADER -->
 <header class="w-full border-b border-cyan-500/20 backdrop-blur-xl sticky top-0 z-40 px-3 py-2.5" style="background: linear-gradient(90deg, rgba(5,8,22,.85), rgba(10,15,46,.85), rgba(5,8,22,.85))">
@@ -1538,6 +1630,19 @@ function init() {
 }
 
 document.addEventListener('DOMContentLoaded', init);
+
+/* =========================================================
+   LOADING SCREEN CONTROLLER
+   ========================================================= */
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const ls = document.getElementById('loadingScreen');
+    if (ls) {
+      ls.classList.add('hidden');
+      setTimeout(() => ls.remove(), 800);
+    }
+  }, 2200);
+});
 </script>
 </body>
 </html>
