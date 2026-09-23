@@ -833,6 +833,11 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
           style="background: linear-gradient(135deg, #145b34, #2ecc71); color:#fff; box-shadow: 0 3px 10px rgba(30,122,74,.4)">3</span>
         <span style="color: var(--text); font-weight: 700;">Mainkan <b style="color: var(--primary);">12 putaran</b> — kumpulkan poin!</span>
       </div>
+      <div class="flex items-center gap-3">
+        <span class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-black shrink-0"
+          style="background: linear-gradient(135deg, #b8860b, #f1c40f); color:#fff; box-shadow: 0 3px 10px rgba(212,160,23,.4)">🎯</span>
+        <span style="color: var(--text); font-weight: 700;">Akurasi minimal <b style="color: #b8860b;">75%</b> untuk bisa kirim nilai</span>
+      </div>
     </div>
 
    <form id="startForm" class="space-y-4">
@@ -843,7 +848,7 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
     <input type="text" id="studentName" required placeholder="Tulis namamu di sini..." class="navy-input" aria-label="Nama siswa">
   </div>
 
-  <!-- ⬇️ DROPDOWN KELAS ⬇️ -->
+  <!-- DROPDOWN KELAS -->
   <div>
     <label for="studentClass" class="block text-xs md:text-sm font-black uppercase tracking-wider mb-2" style="color: var(--primary);">
       Kelas <span style="color: #c0392b;">*</span>
@@ -855,7 +860,6 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
       <option value="X C">X C</option>
     </select>
   </div>
-  <!-- ⬆️ SELESAI DROPDOWN ⬆️ -->
 
   <button type="submit" class="btn-primary">▶ MULAI PERMAINAN</button>
 </form>
@@ -1017,10 +1021,34 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
         <div class="nip-text mt-0.5">NIP. 19751217 200501 1 016</div>
       </div>
     </div>
-    <div id="sendStatus" class="text-center text-xs font-black py-3 px-4 rounded-2xl"
-         style="background: rgba(46,204,113,.10); color: var(--primary); border: 1.5px solid rgba(30,122,74,.25)">
-      ⏳ Menyiapkan pengiriman nilai...
+
+    <!-- TOMBOL KIRIM NILAI -->
+    <button id="btnSendScore" type="button"
+      class="w-full font-black p-4 rounded-2xl text-sm md:text-base cursor-pointer border-2 transition-all"
+      style="background: linear-gradient(135deg,#b8860b,#f1c40f); color:#ffffff; border-color: rgba(255,255,255,.55); box-shadow: 0 8px 22px rgba(212,160,23,.5)"
+      aria-label="Kirim nilai ke guru">
+      📤 KIRIM NILAI KE GURU
+    </button>
+
+    <!-- PANEL PERINGATAN SKOR MINIMUM -->
+    <div id="minScoreWarning" class="is-hidden rounded-2xl p-4 text-center"
+         style="background: linear-gradient(135deg, rgba(239,68,68,.14), rgba(185,28,28,.08)); border: 2px solid rgba(185,28,28,.45)">
+      <div class="text-3xl mb-1">🚫</div>
+      <div class="text-sm md:text-base font-black mb-1" style="color:#991b1b;">
+        BELUM BISA KIRIM NILAI
+      </div>
+      <div class="text-[11px] md:text-xs font-bold leading-snug" style="color:#7f1d1d;">
+        Akurasimu <span id="minScoreAcc" class="font-mono">0%</span> — belum mencapai batas minimum <b>75%</b>.<br>
+        Pelajari kembali materi lalu <b>coba lagi</b> ya! 💪
+      </div>
     </div>
+
+    <!-- STATUS PENGIRIMAN -->
+    <div id="sendStatus" class="is-hidden text-center text-xs font-black py-3 px-4 rounded-2xl"
+         style="background: rgba(46,204,113,.10); color: var(--primary); border: 1.5px solid rgba(30,122,74,.25)">
+      ⏳ Mengirim nilai...
+    </div>
+
     <button id="btnHome" type="button" class="btn-home">🔄 MAIN LAGI</button>
 
     <button id="btnCopy" type="button" class="w-full font-black p-4 rounded-2xl text-xs md:text-sm cursor-pointer border-2"
@@ -1484,11 +1512,12 @@ const state = {
   streak: 0, maxStreak: 0,
   currentCategory: null, currentQuestion: null,
   currentRotation: 0, spinning: false, answerLocked: false,
-  gameFinished: false,
+  gameFinished: false, scoreSent: false,
   selectedAnswerIndex: null, usedQuestions: new Set(), history: [],
   catStats: {}
 };
 const STORAGE_PREFIX = 'kuis_roda_geo_v4_';
+const MIN_ACCURACY_TO_SEND = 75;   // akurasi minimal (%) untuk boleh kirim nilai
 
 // ⬇️ GANTI DENGAN URL APPS SCRIPT MILIKMU ⬇️
 const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyV__yZS4bzttuspA2DwcZWPKM4P9ya3pksmJm9L5DfA9aERS9pm2ETWric1T7nnMq6bw/exec';
@@ -1957,7 +1986,42 @@ function endGame() {
   } else {
     if (accuracy >= 60) safeConfetti({ particleCount: 40, spread: 80, origin: { y: .6 }, colors: ['#2ecc71','#1e7a4a'] });
   }
-  sendScoreToSheet();
+
+  // ===== CEK SYARAT MINIMUM UNTUK KIRIM =====
+  const sendBtn = $('btnSendScore');
+  const warning = $('minScoreWarning');
+  const sendStatus = $('sendStatus');
+
+  if (accuracy >= MIN_ACCURACY_TO_SEND) {
+    // ✅ LULUS — tombol aktif
+    if (sendBtn) {
+      sendBtn.disabled = false;
+      sendBtn.innerHTML = '📤 KIRIM NILAI KE GURU';
+      sendBtn.style.background = 'linear-gradient(135deg,#b8860b,#f1c40f)';
+      sendBtn.style.opacity = '1';
+      sendBtn.style.cursor = 'pointer';
+      sendBtn.style.boxShadow = '0 8px 22px rgba(212,160,23,.5)';
+    }
+    if (warning) warning.classList.add('is-hidden');
+    if (sendStatus) sendStatus.classList.add('is-hidden');
+    state.scoreSent = false;
+  } else {
+    // ❌ BELUM LULUS — tombol mati + tampilkan peringatan
+    if (sendBtn) {
+      sendBtn.disabled = true;
+      sendBtn.innerHTML = '🔒 NILAI BELUM MEMENUHI SYARAT';
+      sendBtn.style.background = 'linear-gradient(135deg,#6b7280,#9ca3af)';
+      sendBtn.style.opacity = '0.75';
+      sendBtn.style.cursor = 'not-allowed';
+      sendBtn.style.boxShadow = '0 4px 12px rgba(107,114,128,.35)';
+    }
+    if (warning) {
+      warning.classList.remove('is-hidden');
+      setText('minScoreAcc', accuracy + '%');
+    }
+    if (sendStatus) sendStatus.classList.add('is-hidden');
+    state.scoreSent = true;   // kunci agar tidak bisa dipanggil via console
+  }
 }
 
 async function copyResult() {
@@ -2038,6 +2102,28 @@ ${catBreakdownText}━━━━━━━━━━━━━━━━━━━━`
 async function sendScoreToSheet() {
   const total = state.totalRounds;
   const accuracy = Math.round((state.correctCount / total) * 100);
+
+  // 🔒 Cek ulang syarat minimum
+  if (accuracy < MIN_ACCURACY_TO_SEND) {
+    const warning = $('minScoreWarning');
+    if (warning) {
+      warning.classList.remove('is-hidden');
+      setText('minScoreAcc', accuracy + '%');
+    }
+    return;
+  }
+
+  if (state.scoreSent) return;
+  state.scoreSent = true;
+
+  const sendBtn = $('btnSendScore');
+  if (sendBtn) {
+    sendBtn.disabled = true;
+    sendBtn.innerHTML = '⏳ MENGIRIM...';
+    sendBtn.style.opacity = '0.75';
+    sendBtn.style.cursor = 'wait';
+  }
+
   const ach = getAchievement(accuracy);
 
   let catBreakdown = '';
@@ -2072,6 +2158,7 @@ async function sendScoreToSheet() {
 
   const statusEl = $('sendStatus');
   if (statusEl) {
+    statusEl.classList.remove('is-hidden');
     statusEl.innerHTML = '⏳ Mengirim nilai ke guru...';
     statusEl.style.color = 'var(--primary)';
     statusEl.style.background = 'rgba(46,204,113,.10)';
@@ -2080,8 +2167,8 @@ async function sendScoreToSheet() {
   try {
     await fetch(SHEET_URL, {
       method: 'POST',
-      mode: 'no-cors',                                  // ← WAJIB
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },  // ← WAJIB
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify(payload)
     });
 
@@ -2090,15 +2177,43 @@ async function sendScoreToSheet() {
       statusEl.style.color = '#15803d';
       statusEl.style.background = 'rgba(46,204,113,.18)';
     }
+    if (sendBtn) {
+      sendBtn.innerHTML = '✅ NILAI TERKIRIM';
+      sendBtn.style.background = 'linear-gradient(135deg,#145b34,#2ecc71)';
+    }
 
   } catch (e) {
     console.error('Gagal kirim:', e);
+    state.scoreSent = false;   // izinkan coba lagi kalau gagal
     if (statusEl) {
       statusEl.innerHTML = '⚠️ Gagal kirim nilai. Periksa koneksi internet.';
       statusEl.style.color = '#b91c1c';
       statusEl.style.background = 'rgba(239,68,68,.10)';
     }
+    if (sendBtn) {
+      sendBtn.disabled = false;
+      sendBtn.innerHTML = '📤 COBA KIRIM LAGI';
+      sendBtn.style.opacity = '1';
+      sendBtn.style.cursor = 'pointer';
+    }
   }
+}
+
+function resetSendButton() {
+  state.scoreSent = false;
+  const sb = $('btnSendScore');
+  if (sb) {
+    sb.disabled = false;
+    sb.innerHTML = '📤 KIRIM NILAI KE GURU';
+    sb.style.background = 'linear-gradient(135deg,#b8860b,#f1c40f)';
+    sb.style.opacity = '1';
+    sb.style.cursor = 'pointer';
+    sb.style.boxShadow = '0 8px 22px rgba(212,160,23,.5)';
+  }
+  const w = $('minScoreWarning');
+  if (w) w.classList.add('is-hidden');
+  const ss = $('sendStatus');
+  if (ss) ss.classList.add('is-hidden');
 }
 
 function returnToMainScreen() {
@@ -2121,6 +2236,9 @@ function returnToMainScreen() {
   state.answerLocked = false;
   state.spinning = false;
   state.gameFinished = false;
+  state.scoreSent = false;
+
+  resetSendButton();
 
   const wheel = $('wheelSvg');
   wheel.style.transition = 'none';
@@ -2179,6 +2297,9 @@ function init() {
     state.currentRotation = 0;
     state.catStats = {};
     state.gameFinished = false;
+    state.scoreSent = false;
+
+    resetSendButton();
 
     const wheel = $('wheelSvg');
     wheel.style.transition = 'none';
@@ -2203,6 +2324,10 @@ function init() {
   $('btnNextSpin').addEventListener('click', nextRound);
   $('btnHome').addEventListener('click', returnToMainScreen);
   $('btnCopy').addEventListener('click', copyResult);
+  $('btnSendScore').addEventListener('click', () => {
+    sfx('click');
+    sendScoreToSheet();
+  });
 
   try {
     const bs = localStorage.getItem(STORAGE_PREFIX + 'best_score');
