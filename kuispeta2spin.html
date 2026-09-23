@@ -15,7 +15,7 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
   * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
-  /* ============ LATAR BIRU SEDANG (tidak terlalu terang) ============ */
+  /* ============ LATAR BIRU SEDANG ============ */
   body {
     background: linear-gradient(160deg, #dbeafe 0%, #bfdbfe 30%, #93c5fd 65%, #60a5fa 100%);
     background-attachment: fixed;
@@ -44,7 +44,6 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
   }
   .is-hidden{display:none!important}
 
-  /* Panel dengan sedikit tint biru, tidak terlalu putih */
   .glass-panel{
     background: linear-gradient(160deg, rgba(255,255,255,.9), rgba(224,242,254,.85));
     backdrop-filter: blur(18px) saturate(150%);
@@ -102,7 +101,6 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
   }
   @keyframes shimmerText{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
 
-  /* Nama guru — ukuran kecil & konsisten */
   .teacher-name{
     background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 30%, #0369a1 60%, #075985 100%);
     background-size: 250% auto;
@@ -263,6 +261,19 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
     white-space: nowrap;
   }
   @keyframes catPop{ 0%{opacity:0;transform:scale(.6)} 60%{transform:scale(1.08)} 100%{opacity:1;transform:scale(1)} }
+
+  .diff-badge{
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 7px 16px; border-radius: 99px;
+    font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase;
+    font-size: .68rem;
+    color: #fff;
+    animation: catPop .55s .1s cubic-bezier(.2,.9,.3,1.4) both;
+    white-space: nowrap;
+  }
+  .diff-mudah{ background: linear-gradient(135deg, #16a34a, #22c55e); box-shadow: 0 0 24px rgba(34,197,94,.55), inset 0 1px 0 rgba(255,255,255,.3); }
+  .diff-sedang{ background: linear-gradient(135deg, #d97706, #f59e0b); box-shadow: 0 0 24px rgba(245,158,11,.55), inset 0 1px 0 rgba(255,255,255,.3); }
+  .diff-sulit{ background: linear-gradient(135deg, #b91c1c, #ef4444); box-shadow: 0 0 24px rgba(239,68,68,.55), inset 0 1px 0 rgba(255,255,255,.3); }
 
   .fb-section{
     padding:11px 13px; border-radius:12px; margin-bottom:8px;
@@ -586,17 +597,17 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
 </head>
 <body>
 
+<!-- LOADING SCREEN -->
 <div id="loadingScreen" role="status" aria-live="polite">
   <div class="loader-content">
     <div class="loader-title">KUIS RODA BERPUTAR</div>
     <div class="loader-sub">Geografi • Peta & Pemetaan</div>
-    <div class="loader-bar">
-      <div class="loader-bar-fill"></div>
-    </div>
+    <div class="loader-bar"><div class="loader-bar-fill"></div></div>
     <div class="loader-text">Memuat...</div>
   </div>
 </div>
 
+<!-- HEADER -->
 <header class="w-full border-b border-blue-500/30 backdrop-blur-xl sticky top-0 z-40 px-3 py-2.5">
   <div class="max-w-6xl mx-auto flex items-center justify-between gap-2">
     <div class="flex items-center gap-2 min-w-0 flex-1">
@@ -620,7 +631,7 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
 
 <main class="max-w-5xl mx-auto w-full px-3 py-4 md:px-4 md:py-6 flex-1 flex flex-col justify-center items-center relative">
 
-  <!-- ========== START SCREEN ========== -->
+  <!-- START SCREEN -->
   <section id="startScreen" class="w-full max-w-lg glass-panel p-5 md:p-7 rounded-2xl my-auto">
     <div class="text-center mb-5">
       <div class="school-badge">
@@ -655,7 +666,7 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
       <div class="flex items-center gap-2.5">
         <span class="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0"
           style="background: linear-gradient(135deg, #1d4ed8, #0891b2); color:#fff; box-shadow: 0 2px 6px rgba(30,64,175,.35)">2</span>
-        <span class="text-slate-700">Jawab soal dari kategori tersebut → dapat <b class="text-blue-800">poin</b></span>
+        <span class="text-slate-700">Soal memiliki <b class="text-blue-800">3 tingkat kesulitan</b> — Mudah, Sedang, Sulit</span>
       </div>
       <div class="flex items-center gap-2.5">
         <span class="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0"
@@ -697,7 +708,7 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
     <div class="text-center mt-4 text-[10px] text-slate-500">© SMAN 3 Kasongan • Kelas X / Fase E</div>
   </section>
 
-  <!-- ========== WHEEL SCREEN ========== -->
+  <!-- WHEEL SCREEN -->
   <section id="wheelScreen" class="is-hidden w-full max-w-2xl my-auto">
     <div class="glass-panel p-4 md:p-5 rounded-2xl">
       <div class="flex items-center justify-between gap-2 flex-wrap mb-3">
@@ -725,7 +736,7 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
     </div>
   </section>
 
-  <!-- ========== QUESTION SCREEN ========== -->
+  <!-- QUESTION SCREEN -->
   <section id="questionScreen" class="is-hidden w-full max-w-2xl my-auto">
     <div class="glass-panel p-4 md:p-6 rounded-2xl">
       <div class="flex items-center justify-between gap-2 flex-wrap mb-3">
@@ -750,7 +761,7 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
     </div>
   </section>
 
-  <!-- ========== RESULT SCREEN ========== -->
+  <!-- RESULT SCREEN -->
   <section id="resultScreen" class="is-hidden w-full max-w-2xl my-auto space-y-3">
 
     <div class="kuis-selesai-banner">
@@ -906,334 +917,348 @@ const CATEGORIES = [
 ];
 
 const QUESTIONS = [
-  { cat:'sejarah', q:"Istilah 'geografi' pertama kali diperkenalkan oleh ilmuwan Yunani bernama...",
+  /* SEJARAH & KARTOGRAFI */
+  { cat:'sejarah', difficulty:'mudah', q:"Istilah 'geografi' pertama kali diperkenalkan oleh ilmuwan Yunani bernama...",
     options:["Ptolemaeus","Eratosthenes","Herodotus","Aristoteles"], correct:1,
     explanation:"Eratosthenes (276–194 SM) adalah ilmuwan Yunani yang pertama kali memperkenalkan istilah 'geografi'.",
     keyPoint:"Eratosthenes = Bapak Geografi." },
-  { cat:'sejarah', q:"Ilmu yang mempelajari tentang pembuatan peta disebut...",
+  { cat:'sejarah', difficulty:'mudah', q:"Ilmu yang mempelajari tentang pembuatan peta disebut...",
     options:["Geologi","Demografi","Kartografi","Klimatologi"], correct:2,
     explanation:"Kartografi adalah ilmu, seni, dan teknik pembuatan peta.",
     keyPoint:"Kartografi = seni + ilmu memetakan." },
-  { cat:'sejarah', q:"Karya klasik berjudul 'Geographia' yang menjadi dasar kartografi modern ditulis oleh...",
-    options:["Eratosthenes","Herodotus","Claudius Ptolemaeus","Aristoteles"], correct:2,
-    explanation:"Claudius Ptolemaeus menulis 'Geographia' yang berisi peta dunia dan sistem koordinat.",
-    keyPoint:"Ptolemaeus → Geographia." },
-  { cat:'sejarah', q:"Peta tertua yang ditemukan dibuat oleh bangsa...",
-    options:["Mesir Kuno","Babilonia","Yunani Kuno","Romawi"], correct:1,
-    explanation:"Peta tertua ditemukan di Babilonia berupa lempengan tanah liat, berusia sekitar 2.500 tahun.",
-    keyPoint:"Babilonia = peta tertua." },
-  { cat:'sejarah', q:"Tokoh yang menciptakan proyeksi silinder untuk peta dunia adalah...",
-    options:["Ptolemaeus","Mercator","Eratosthenes","Al-Idrisi"], correct:1,
-    explanation:"Gerhard Mercator menciptakan proyeksi Mercator (silinder) yang masih dipakai hingga kini.",
-    keyPoint:"Mercator = proyeksi silinder." },
-  { cat:'sejarah', q:"Kumpulan peta yang dibukukan disebut...",
-    options:["Katalog","Atlas","Ensiklopedia","Glosarium"], correct:1,
-    explanation:"Atlas adalah kumpulan peta yang disusun dalam bentuk buku.",
-    keyPoint:"Atlas = buku kumpulan peta." },
-  { cat:'sejarah', q:"Ilmuwan Islam yang membuat peta dunia pada abad ke-12 adalah...",
-    options:["Ibnu Khaldun","Al-Idrisi","Ibnu Batutah","Al-Biruni"], correct:1,
-    explanation:"Al-Idrisi membuat peta dunia lengkap pada masa kejayaan Islam.",
-    keyPoint:"Al-Idrisi = pembuat peta dunia Islam." },
-  { cat:'sejarah', q:"Peta wilayah Indonesia pertama kali dibuat secara sistematis oleh bangsa...",
-    options:["Portugis","Belanda","Inggris","Spanyol"], correct:1,
-    explanation:"Bangsa Belanda (VOC) membuat peta wilayah Indonesia untuk keperluan perdagangan.",
-    keyPoint:"VOC → peta Nusantara." },
-  { cat:'sejarah', q:"Herodotus dikenal sebagai Bapak...",
-    options:["Geografi","Sejarah","Kartografi","Astronomi"], correct:1,
-    explanation:"Herodotus dikenal sebagai 'Bapak Sejarah', bukan Bapak Geografi.",
+  { cat:'sejarah', difficulty:'mudah', q:"Eratosthenes berasal dari negara...",
+    options:["Mesir","Yunani","Romawi","Babilonia"], correct:1,
+    explanation:"Eratosthenes adalah ilmuwan yang berasal dari Yunani Kuno.",
+    keyPoint:"Eratosthenes = ilmuwan Yunani." },
+  { cat:'sejarah', difficulty:'sedang', q:"Kartografi mencakup tiga aspek utama, yaitu ilmu, seni, dan...",
+    options:["Filsafat","Teknik","Ekonomi","Politik"], correct:1,
+    explanation:"Kartografi adalah ilmu, seni, dan teknik pembuatan peta.",
+    keyPoint:"Kartografi = ilmu + seni + teknik." },
+  { cat:'sejarah', difficulty:'sedang', q:"Eratosthenes dijuluki sebagai Bapak...",
+    options:["Sejarah","Geografi","Kartografi","Astronomi"], correct:1,
+    explanation:"Karena pertama memperkenalkan istilah 'geografi', Eratosthenes dijuluki Bapak Geografi.",
+    keyPoint:"Eratosthenes = Bapak Geografi." },
+  { cat:'sejarah', difficulty:'sedang', q:"Peran utama kartografi dalam dunia sains adalah...",
+    options:["Menghitung luas wilayah","Membuat dan menyajikan peta","Menganalisis iklim","Meneliti batuan"], correct:1,
+    explanation:"Kartografi berperan dalam pembuatan dan penyajian peta.",
+    keyPoint:"Kartografi = pembuatan peta." },
+  { cat:'sejarah', difficulty:'sulit', q:"Eratosthenes hidup sekitar tahun...",
+    options:["500–400 SM","376–294 SM","276–194 SM","176–100 SM"], correct:2,
+    explanation:"Eratosthenes hidup pada 276–194 SM.",
+    keyPoint:"Eratosthenes: 276–194 SM." },
+  { cat:'sejarah', difficulty:'sulit', q:"Secara harfiah, istilah 'geografi' berarti...",
+    options:["Tulisan tentang bintang","Tulisan tentang bumi","Ilmu tentang peta","Ilmu tentang cuaca"], correct:1,
+    explanation:"Geografi berasal dari kata 'geo' (bumi) dan 'graphein' (tulisan), berarti tulisan tentang bumi.",
+    keyPoint:"Geo = bumi, graphein = tulisan." },
+  { cat:'sejarah', difficulty:'sulit', q:"Tokoh yang dijuluki Bapak Sejarah sekaligus sering dikaitkan dengan perkembangan geografi awal adalah...",
+    options:["Aristoteles","Herodotus","Ptolemaeus","Al-Idrisi"], correct:1,
+    explanation:"Herodotus dikenal sebagai Bapak Sejarah dan juga menulis tentang wilayah geografis.",
     keyPoint:"Herodotus = Bapak Sejarah." },
-  { cat:'sejarah', q:"Peta kuno yang menggambarkan dunia pada lempengan tanah liat Babilonia berusia sekitar...",
-    options:["500 tahun","2.500 tahun","10.000 tahun","50.000 tahun"], correct:1,
-    explanation:"Peta Babilonia berusia sekitar 2.500 tahun (sekitar 600 SM).",
-    keyPoint:"Peta Babilonia ≈ 600 SM." },
+  { cat:'sejarah', difficulty:'sulit', q:"Alasan utama Eratosthenes disebut sebagai Bapak Geografi adalah...",
+    options:["Ia membuat peta pertama dunia","Ia pertama kali memperkenalkan istilah geografi","Ia menemukan kompas","Ia mengukur tinggi gunung"], correct:1,
+    explanation:"Eratosthenes dijuluki Bapak Geografi karena pertama kali memperkenalkan istilah 'geografi'.",
+    keyPoint:"Pertama memperkenalkan istilah 'geografi'." },
 
-  { cat:'komponen', q:"Komponen peta yang berisi keterangan semua simbol yang digunakan pada peta disebut...",
+  /* KOMPONEN PETA */
+  { cat:'komponen', difficulty:'mudah', q:"Komponen peta yang berisi keterangan semua simbol yang digunakan pada peta disebut...",
     options:["Judul Peta","Legenda","Skala","Sumber Peta"], correct:1,
     explanation:"Legenda adalah kunci peta yang menjelaskan arti semua simbol.",
     keyPoint:"Legenda = kunci arti simbol peta." },
-  { cat:'komponen', q:"Komponen peta yang menunjukkan arah mata angin disebut...",
+  { cat:'komponen', difficulty:'mudah', q:"Komponen peta yang menunjukkan arah mata angin disebut...",
     options:["Legenda","Inset","Orientasi / Mata Angin","Lettering"], correct:2,
     explanation:"Orientasi peta (mata angin) menunjukkan arah Utara, Timur, Selatan, Barat.",
     keyPoint:"Orientasi = arah mata angin." },
-  { cat:'komponen', q:"Mengapa kutub Utara selalu diletakkan di bagian atas peta?",
-    options:["Kebetulan saja","Kesepakatan internasional","Mengikuti rotasi bumi","Pengaruh magnet bumi"], correct:1,
-    explanation:"Penempatan Utara di atas peta adalah konvensi/kesepakatan internasional dalam kartografi.",
-    keyPoint:"Utara di atas = konvensi internasional." },
-  { cat:'komponen', q:"Simbol peta berupa gambar kecil di sudut peta untuk menunjukkan letak wilayah disebut...",
+  { cat:'komponen', difficulty:'mudah', q:"Simbol peta berupa gambar kecil di sudut peta untuk menunjukkan letak wilayah disebut...",
     options:["Legenda","Inset Peta","Sumber Peta","Lettering"], correct:1,
     explanation:"Inset peta adalah peta kecil yang disisipkan untuk menunjukkan posisi relatif wilayah utama.",
     keyPoint:"Inset = peta mini." },
-  { cat:'komponen', q:"Fungsi utama judul peta adalah...",
-    options:["Menghias peta","Menyatakan isi/tema peta","Menunjukkan skala","Menjelaskan simbol"], correct:1,
+  { cat:'komponen', difficulty:'mudah', q:"Mengapa kutub Utara selalu diletakkan di bagian atas peta?",
+    options:["Kebetulan saja","Kesepakatan internasional","Mengikuti rotasi bumi","Pengaruh magnet bumi"], correct:1,
+    explanation:"Penempatan Utara di atas peta adalah konvensi/kesepakatan internasional dalam kartografi.",
+    keyPoint:"Utara di atas = konvensi internasional." },
+  { cat:'komponen', difficulty:'sedang', q:"Fungsi utama inset peta adalah...",
+    options:["Menghias peta","Menunjukkan posisi relatif wilayah utama","Menyatakan skala","Menghitung jarak"], correct:1,
+    explanation:"Inset menunjukkan posisi relatif wilayah yang dipetakan terhadap wilayah sekitarnya.",
+    keyPoint:"Inset = posisi relatif wilayah." },
+  { cat:'komponen', difficulty:'sedang', q:"Keterangan yang menjelaskan arti semua simbol pada peta disebut...",
+    options:["Judul","Legenda","Sumber","Skala"], correct:1,
+    explanation:"Legenda menjelaskan arti semua simbol pada peta.",
+    keyPoint:"Legenda = keterangan simbol." },
+  { cat:'komponen', difficulty:'sedang', q:"Komponen peta yang menyatakan tema atau isi peta secara singkat disebut...",
+    options:["Legenda","Judul Peta","Skala","Sumber Peta"], correct:1,
     explanation:"Judul peta menyatakan tema/isi peta secara singkat.",
     keyPoint:"Judul = tema peta." },
-  { cat:'komponen', q:"Bagian peta yang menyebutkan instansi/tahun pembuatan peta adalah...",
-    options:["Legenda","Sumber Peta","Inset","Skala"], correct:1,
-    explanation:"Sumber peta mencantumkan pembuat/instansi/tahun peta dibuat.",
-    keyPoint:"Sumber = asal peta." },
-  { cat:'komponen', q:"Penulisan nama-nama geografis pada peta disebut...",
-    options:["Legenda","Lettering","Inset","Orientasi"], correct:1,
-    explanation:"Lettering adalah seni penulisan nama-nama geografis pada peta.",
-    keyPoint:"Lettering = penulisan nama." },
-  { cat:'komponen', q:"Garis tepi peta berfungsi untuk...",
-    options:["Membatasi wilayah peta","Menunjukkan arah","Menyatakan skala","Menghias peta"], correct:0,
-    explanation:"Garis tepi peta membatasi ruang gambar peta dengan informasi lain.",
-    keyPoint:"Garis tepi = pembatas peta." },
-  { cat:'komponen', q:"Komponen peta yang berfungsi menunjukkan perbandingan jarak peta dengan jarak sebenarnya adalah...",
-    options:["Legenda","Skala","Orientasi","Sumber"], correct:1,
-    explanation:"Skala peta membandingkan jarak pada peta dengan jarak sebenarnya.",
-    keyPoint:"Skala = perbandingan jarak." },
-  { cat:'komponen', q:"Mengapa tahun pembuatan peta penting dicantumkan?",
-    options:["Sebagai hiasan","Karena kondisi wilayah bisa berubah","Supaya terlihat resmi","Agar peta bagus"], correct:1,
-    explanation:"Kondisi geografis berubah seiring waktu, sehingga tahun pembuatan penting untuk validitas data.",
-    keyPoint:"Tahun peta = validitas data." },
+  { cat:'komponen', difficulty:'sulit', q:"Jika peta tidak memiliki legenda, maka yang terjadi adalah...",
+    options:["Peta menjadi lebih akurat","Pembaca tidak dapat memahami arti simbol","Peta tidak bisa diputar","Skala berubah"], correct:1,
+    explanation:"Tanpa legenda, pembaca tidak dapat memahami arti simbol yang ada pada peta.",
+    keyPoint:"Legenda = kunci arti simbol." },
+  { cat:'komponen', difficulty:'sulit', q:"Orientasi peta dapat berupa penunjuk arah...",
+    options:["Skala batang","Mata angin atau arah Utara sejati","Garis lintang","Garis tepi"], correct:1,
+    explanation:"Orientasi peta umumnya berupa penunjuk arah mata angin atau arah Utara sejati.",
+    keyPoint:"Orientasi = mata angin / Utara sejati." },
+  { cat:'komponen', difficulty:'sulit', q:"Bagian peta yang menyebutkan instansi atau tahun pembuatan peta disebut...",
+    options:["Legenda","Sumber Peta","Inset","Judul"], correct:1,
+    explanation:"Sumber peta mencantumkan instansi/pembuat dan tahun peta dibuat.",
+    keyPoint:"Sumber = asal & tahun peta." },
 
-  { cat:'skala', q:"Angka 1 : 100.000 pada peta artinya 1 cm di peta sama dengan...",
+  /* SKALA PETA */
+  { cat:'skala', difficulty:'mudah', q:"Angka 1 : 100.000 pada peta artinya 1 cm di peta sama dengan...",
     options:["100 meter","1 kilometer","10 kilometer","100 kilometer"], correct:1,
     explanation:"Skala 1 : 100.000 berarti 1 cm di peta mewakili 100.000 cm = 1 km di lapangan.",
     keyPoint:"100.000 cm = 1 km." },
-  { cat:'skala', q:"Skala yang dinyatakan dalam bentuk kalimat seperti '1 cm mewakili 5 km' disebut skala...",
+  { cat:'skala', difficulty:'mudah', q:"Skala yang dinyatakan dalam bentuk kalimat seperti '1 cm mewakili 5 km' disebut skala...",
     options:["Skala Angka","Skala Grafis","Skala Verbal","Skala Batang"], correct:2,
     explanation:"Skala verbal dinyatakan dalam kalimat/kata-kata langsung.",
-    keyPoint:"Skala: angka, verbal, grafis." },
-  { cat:'skala', q:"Skala yang dinyatakan dengan garis lurus bertingkat disebut skala...",
+    keyPoint:"Skala verbal = kalimat." },
+  { cat:'skala', difficulty:'mudah', q:"Skala yang dinyatakan dengan garis lurus bertingkat disebut skala...",
     options:["Skala Angka","Skala Grafis/Batang","Skala Verbal","Skala Kontur"], correct:1,
     explanation:"Skala grafis (batang) berupa garis bertingkat dengan angka.",
     keyPoint:"Grafis = batang." },
-  { cat:'skala', q:"Jarak dua kota pada peta berskala 1:500.000 adalah 4 cm. Berapa jarak sebenarnya?",
-    options:["2 km","10 km","20 km","200 km"], correct:2,
-    explanation:"Jarak sebenarnya = 4 cm × 500.000 = 2.000.000 cm = 20 km.",
-    keyPoint:"Jarak sebenarnya = jarak peta × penyebut skala." },
-  { cat:'skala', q:"Jika peta berskala 1:25.000 diperkecil menjadi 1:50.000, penampakan objek akan...",
-    options:["Lebih detail","Sama saja","Kurang detail & cakupan lebih luas","Lebih besar"], correct:2,
-    explanation:"Memperkecil skala = cakupan lebih luas, detail berkurang.",
-    keyPoint:"Skala kecil = luas & kurang detail." },
-  { cat:'skala', q:"Skala 1 : 250.000 berarti 1 cm pada peta sama dengan...",
+  { cat:'skala', difficulty:'mudah', q:"Skala 1 : 250.000 berarti 1 cm pada peta sama dengan...",
     options:["25 meter","250 meter","2,5 km","25 km"], correct:2,
     explanation:"1 : 250.000 berarti 1 cm mewakili 250.000 cm = 2,5 km.",
     keyPoint:"250.000 cm = 2,5 km." },
-  { cat:'skala', q:"Jarak sebenarnya dua kota 60 km, sedangkan di peta 3 cm. Skala peta tersebut adalah...",
+  { cat:'skala', difficulty:'sedang', q:"Jarak dua kota pada peta berskala 1:500.000 adalah 4 cm. Berapa jarak sebenarnya?",
+    options:["2 km","10 km","20 km","200 km"], correct:2,
+    explanation:"Jarak sebenarnya = 4 cm × 500.000 = 2.000.000 cm = 20 km.",
+    keyPoint:"JS = JP × penyebut skala." },
+  { cat:'skala', difficulty:'sedang', q:"Jika peta berskala 1:25.000 diperkecil menjadi 1:50.000, penampakan objek akan...",
+    options:["Lebih detail","Sama saja","Kurang detail & cakupan lebih luas","Lebih besar"], correct:2,
+    explanation:"Memperkecil skala = cakupan lebih luas, detail berkurang.",
+    keyPoint:"Skala kecil = luas & kurang detail." },
+  { cat:'skala', difficulty:'sedang', q:"Rumus untuk mencari jarak sebenarnya adalah...",
+    options:["JP × penyebut skala","JP : penyebut skala","Penyebut skala : JP","JP + penyebut skala"], correct:0,
+    explanation:"Jarak sebenarnya = jarak pada peta × penyebut skala.",
+    keyPoint:"JS = JP × penyebut skala." },
+  { cat:'skala', difficulty:'sulit', q:"Jarak sebenarnya dua kota 60 km, sedangkan di peta 3 cm. Skala peta tersebut adalah...",
     options:["1 : 200.000","1 : 1.000.000","1 : 2.000.000","1 : 20.000"], correct:2,
     explanation:"Skala = JP : JS = 3 cm : 6.000.000 cm = 1 : 2.000.000.",
     keyPoint:"Skala = JP : JS." },
-  { cat:'skala', q:"Di antara skala berikut, yang paling besar (paling detail) adalah...",
+  { cat:'skala', difficulty:'sulit', q:"Di antara skala berikut, yang paling besar (paling detail) adalah...",
     options:["1 : 10.000","1 : 50.000","1 : 100.000","1 : 500.000"], correct:0,
     explanation:"Semakin kecil angka penyebut, semakin besar skalanya, semakin detail.",
     keyPoint:"Penyebut kecil = skala besar = detail." },
-  { cat:'skala', q:"Peta A berskala 1:50.000 dan peta B berskala 1:100.000. Pernyataan yang benar adalah...",
+  { cat:'skala', difficulty:'sulit', q:"Peta A berskala 1:50.000 dan peta B berskala 1:100.000. Pernyataan yang benar adalah...",
     options:["Peta A lebih detail dari peta B","Peta B lebih detail dari peta A","Keduanya sama detail","Peta B cakupannya lebih sempit"], correct:0,
     explanation:"Peta A lebih besar skalanya sehingga lebih detail dan cakupannya lebih sempit.",
     keyPoint:"Skala besar = detail + cakupan sempit." },
-  { cat:'skala', q:"Rumus untuk mencari jarak pada peta adalah...",
-    options:["Jarak peta = jarak sebenarnya × skala","Jarak peta = jarak sebenarnya : penyebut skala","Jarak peta = penyebut skala : jarak sebenarnya","Jarak peta = skala : jarak sebenarnya"], correct:1,
-    explanation:"Jarak peta = jarak sebenarnya ÷ penyebut skala.",
-    keyPoint:"JP = JS : penyebut skala." },
 
-  { cat:'simbol', q:"Warna biru pada peta umumnya digunakan untuk menggambarkan kenampakan...",
+  /* SIMBOL & WARNA */
+  { cat:'simbol', difficulty:'mudah', q:"Warna biru pada peta umumnya digunakan untuk menggambarkan kenampakan...",
     options:["Pegunungan","Hutan","Perairan","Jalan raya"], correct:2,
     explanation:"Warna biru merepresentasikan perairan.",
     keyPoint:"Biru = air." },
-  { cat:'simbol', q:"Simbol titik pada peta biasanya digunakan untuk menggambarkan objek...",
-    options:["Jalan raya","Sungai panjang","Kota atau gunung","Wilayah hutan"], correct:2,
-    explanation:"Simbol titik digunakan untuk objek lokal/pontual.",
-    keyPoint:"Titik = lokal." },
-  { cat:'simbol', q:"Simbol warna coklat pada peta menggambarkan daerah...",
+  { cat:'simbol', difficulty:'mudah', q:"Simbol warna coklat pada peta menggambarkan daerah...",
     options:["Perairan","Dataran rendah","Pegunungan/daerah tinggi","Rawa-rawa"], correct:2,
     explanation:"Warna coklat merepresentasikan pegunungan.",
     keyPoint:"Coklat = pegunungan." },
-  { cat:'simbol', q:"Warna hijau pada peta menggambarkan daerah...",
+  { cat:'simbol', difficulty:'mudah', q:"Warna hijau pada peta menggambarkan daerah...",
     options:["Pegunungan tinggi","Perairan","Vegetasi/dataran rendah","Gurun pasir"], correct:2,
     explanation:"Warna hijau merepresentasikan vegetasi dan dataran rendah.",
     keyPoint:"Hijau = vegetasi." },
-  { cat:'simbol', q:"Warna kuning pada peta biasanya menunjukkan daerah...",
+  { cat:'simbol', difficulty:'mudah', q:"Warna kuning pada peta biasanya menunjukkan daerah...",
     options:["Perairan","Dataran tinggi","Dataran rendah","Pegunungan"], correct:2,
     explanation:"Warna kuning biasanya untuk dataran rendah atau wilayah yang lebih rendah.",
     keyPoint:"Kuning = dataran rendah." },
-  { cat:'simbol', q:"Simbol garis pada peta digunakan untuk menggambarkan objek...",
+  { cat:'simbol', difficulty:'sedang', q:"Simbol titik pada peta biasanya digunakan untuk menggambarkan objek...",
+    options:["Jalan raya","Sungai panjang","Kota atau gunung","Wilayah hutan"], correct:2,
+    explanation:"Simbol titik digunakan untuk objek lokal/pontual seperti kota atau gunung.",
+    keyPoint:"Titik = objek lokal." },
+  { cat:'simbol', difficulty:'sedang', q:"Simbol garis pada peta digunakan untuk menggambarkan objek...",
     options:["Kota","Jalan raya dan sungai","Pegunungan","Hutan"], correct:1,
     explanation:"Simbol garis untuk objek memanjang seperti jalan, sungai, rel kereta.",
     keyPoint:"Garis = objek memanjang." },
-  { cat:'simbol', q:"Simbol area (polygon) pada peta digunakan untuk menggambarkan...",
+  { cat:'simbol', difficulty:'sedang', q:"Simbol area (polygon) pada peta digunakan untuk menggambarkan...",
     options:["Kota","Jalan","Wilayah/luasan seperti hutan","Gunung berapi"], correct:2,
     explanation:"Simbol area untuk objek yang memiliki luasan seperti hutan, danau, sawah.",
     keyPoint:"Area = objek berluas." },
-  { cat:'simbol', q:"Warna merah pada peta sering digunakan untuk menunjukkan...",
+  { cat:'simbol', difficulty:'sedang', q:"Warna merah pada peta sering digunakan untuk menunjukkan...",
     options:["Jalan raya utama","Jalan kereta api","Perairan","Hutan"], correct:0,
     explanation:"Warna merah sering untuk jalan raya utama atau batas wilayah penting.",
     keyPoint:"Merah = jalan utama/batas." },
-  { cat:'simbol', q:"Simbol peta dibagi menjadi tiga jenis utama yaitu...",
+  { cat:'simbol', difficulty:'sulit', q:"Simbol peta dibagi menjadi tiga jenis utama, yaitu...",
     options:["Titik, garis, area","Angka, huruf, gambar","Besar, sedang, kecil","Biru, hijau, merah"], correct:0,
-    explanation:"Simbol peta: titik (lokal), garis (memanjang), area (berluas).",
+    explanation:"Simbol peta terdiri dari titik (lokal), garis (memanjang), dan area (berluas).",
     keyPoint:"Simbol: titik, garis, area." },
-  { cat:'simbol', q:"Warna putih pada peta biasanya digunakan untuk menunjukkan...",
+  { cat:'simbol', difficulty:'sulit', q:"Warna putih pada peta biasanya digunakan untuk menunjukkan...",
     options:["Perairan","Daerah bersalju/puncak tertinggi","Hutan","Jalan raya"], correct:1,
     explanation:"Warna putih untuk puncak tertinggi/daerah bersalju atau wilayah kosong.",
     keyPoint:"Putih = puncak/kosong." },
 
-  { cat:'jenis', q:"Peta yang menampilkan kenampakan umum tanpa menekankan tema tertentu disebut peta...",
+  /* JENIS PETA */
+  { cat:'jenis', difficulty:'mudah', q:"Peta yang menampilkan kenampakan umum tanpa menekankan tema tertentu disebut peta...",
     options:["Peta Tematik","Peta Umum","Peta Kadaster","Peta Digital"], correct:1,
     explanation:"Peta umum menampilkan kenampakan umum seperti jalan, sungai, kota.",
     keyPoint:"Umum = semua kenampakan." },
-  { cat:'jenis', q:"Peta yang khusus menyajikan tema tertentu seperti peta curah hujan disebut peta...",
+  { cat:'jenis', difficulty:'mudah', q:"Peta yang khusus menyajikan tema tertentu seperti peta curah hujan disebut peta...",
     options:["Peta Umum","Peta Tematik","Peta Topografi","Peta Dunia"], correct:1,
     explanation:"Peta tematik menyajikan satu tema/variabel spasial tertentu.",
     keyPoint:"Tematik = bertema khusus." },
-  { cat:'jenis', q:"Peta yang menyajikan relief/ketinggian permukaan bumi disebut peta...",
+  { cat:'jenis', difficulty:'mudah', q:"Peta yang menyajikan relief/ketinggian permukaan bumi disebut peta...",
     options:["Peta Tematik","Peta Topografi","Peta Kadaster","Peta Korografi"], correct:1,
     explanation:"Peta topografi menyajikan relief permukaan bumi dengan garis kontur.",
     keyPoint:"Topografi = relief/ketinggian." },
-  { cat:'jenis', q:"Peta yang menggambarkan wilayah sangat luas seperti provinsi disebut peta...",
+  { cat:'jenis', difficulty:'mudah', q:"Peta yang menggambarkan wilayah sangat luas seperti provinsi disebut peta...",
     options:["Peta Kadaster","Peta Korografi","Peta Topografi","Peta Dunia"], correct:1,
     explanation:"Peta korografi menggambarkan wilayah luas (provinsi/negara).",
     keyPoint:"Korografi = wilayah luas." },
-  { cat:'jenis', q:"Peta untuk administrasi pertanahan dengan skala 1:100 sampai 1:5.000 disebut peta...",
+  { cat:'jenis', difficulty:'mudah', q:"Peta untuk administrasi pertanahan dengan skala 1:100 sampai 1:5.000 disebut peta...",
     options:["Peta Topografi","Peta Kadaster","Peta Korografi","Peta Dunia"], correct:1,
     explanation:"Peta kadaster digunakan untuk sertifikat tanah.",
     keyPoint:"Kadaster = peta tanah." },
-  { cat:'jenis', q:"Peta yang menunjukkan ketinggian dengan gradasi warna hijau ke coklat disebut peta...",
+  { cat:'jenis', difficulty:'sedang', q:"Peta yang menunjukkan ketinggian dengan gradasi warna hijau ke coklat disebut peta...",
     options:["Peta Tematik","Peta Hipsometri","Peta Kadaster","Peta Korografi"], correct:1,
     explanation:"Peta hipsometri menyajikan perbedaan ketinggian dengan gradasi warna.",
     keyPoint:"Hipsometri = gradasi warna ketinggian." },
-  { cat:'jenis', q:"Peta statistik yang menunjukkan persebaran data kuantitatif disebut peta...",
+  { cat:'jenis', difficulty:'sedang', q:"Peta statistik yang menunjukkan persebaran data kuantitatif disebut peta...",
     options:["Peta Umum","Peta Statistik","Peta Kadaster","Peta Topografi"], correct:1,
     explanation:"Peta statistik menampilkan data kuantitatif seperti kepadatan penduduk.",
     keyPoint:"Statistik = data kuantitatif." },
-  { cat:'jenis', q:"Peta yang menunjukkan persebaran jenis batuan disebut peta...",
+  { cat:'jenis', difficulty:'sedang', q:"Peta yang menunjukkan persebaran jenis batuan disebut peta...",
     options:["Peta Geologi","Peta Topografi","Peta Iklim","Peta Kadaster"], correct:0,
     explanation:"Peta geologi menunjukkan persebaran jenis batuan dan struktur geologi.",
     keyPoint:"Geologi = batuan." },
-  { cat:'jenis', q:"Peta yang menunjukkan pembagian wilayah administrasi pemerintahan disebut peta...",
+  { cat:'jenis', difficulty:'sulit', q:"Peta yang menunjukkan pembagian wilayah administrasi pemerintahan disebut peta...",
     options:["Peta Tematik","Peta Administrasi","Peta Topografi","Peta Geologi"], correct:1,
     explanation:"Peta administrasi menunjukkan batas-batas wilayah pemerintahan.",
     keyPoint:"Administrasi = batas wilayah." },
-  { cat:'jenis', q:"Peta skala besar yang menunjukkan detail jalan dan bangunan disebut peta...",
-    options:["Peta Korografi","Peta Topografi","Peta Kadaster","Peta Dunia"], correct:2,
-    explanation:"Peta kadaster menampilkan detail kecil seperti bangunan dan tanah.",
-    keyPoint:"Kadaster = skala besar." },
+  { cat:'jenis', difficulty:'sulit', q:"Peta kadaster umumnya memiliki skala antara...",
+    options:["1 : 100 sampai 1 : 5.000","1 : 10.000 sampai 1 : 50.000","1 : 100.000 sampai 1 : 500.000","1 : 1.000.000 ke atas"], correct:0,
+    explanation:"Peta kadaster untuk administrasi tanah memiliki skala besar: 1:100 sampai 1:5.000.",
+    keyPoint:"Kadaster = skala 1:100 – 1:5.000." },
 
-  { cat:'kontur', q:"Garis khayal pada peta yang menghubungkan titik-titik dengan ketinggian sama disebut...",
+  /* PETA KONTUR */
+  { cat:'kontur', difficulty:'mudah', q:"Garis khayal pada peta yang menghubungkan titik-titik dengan ketinggian sama disebut...",
     options:["Garis Lintang","Garis Bujur","Garis Kontur","Garis Astronomis"], correct:2,
     explanation:"Garis kontur menghubungkan titik-titik dengan ketinggian sama.",
     keyPoint:"Kontur = garis ketinggian sama." },
-  { cat:'kontur', q:"Garis kontur yang sangat rapat menunjukkan bentuk lereng yang...",
+  { cat:'kontur', difficulty:'mudah', q:"Garis kontur yang sangat rapat menunjukkan bentuk lereng yang...",
     options:["Landai","Datar","Terjal/curam","Bercekungan"], correct:2,
     explanation:"Kontur rapat = perubahan ketinggian drastis = lereng terjal.",
-    keyPoint:"Rapat = terjal. Renggang = landai." },
-  { cat:'kontur', q:"Peta kontur memiliki Kontur Interval (CI) 25 meter. Berapakah skala peta tersebut?",
-    options:["1 : 25.000","1 : 50.000","1 : 100.000","1 : 500.000"], correct:1,
-    explanation:"Rumus: CI = 1/2000 × penyebut skala. Skala = 25 × 2000 = 50.000.",
-    keyPoint:"CI = 1/2000 × Skala → Skala = CI × 2000." },
-  { cat:'kontur', q:"Jarak/interval ketinggian antara dua garis kontur yang berdekatan disebut...",
-    options:["Kontur Interval","Jarak Kontur","Skala Kontur","Garis Kontur"], correct:0,
-    explanation:"Kontur Interval (CI) adalah selisih ketinggian antara dua garis kontur berdekatan.",
-    keyPoint:"CI = selisih ketinggian." },
-  { cat:'kontur', q:"Rumus Kontur Interval adalah...",
-    options:["CI = 1/1000 × skala","CI = 1/2000 × skala","CI = 2000 × skala","CI = skala : 2000"], correct:1,
-    explanation:"CI = 1/2000 × penyebut skala peta.",
-    keyPoint:"CI = 1/2000 × skala." },
-  { cat:'kontur', q:"Peta memiliki CI 50 meter. Skala peta tersebut adalah...",
-    options:["1 : 25.000","1 : 50.000","1 : 100.000","1 : 200.000"], correct:2,
-    explanation:"Skala = CI × 2000 = 50 × 2000 = 100.000 → 1 : 100.000.",
-    keyPoint:"Skala = CI × 2000." },
-  { cat:'kontur', q:"Angka yang tercantum pada garis kontur menunjukkan...",
-    options:["Jarak antar kontur","Ketinggian tempat","Skala peta","Luas wilayah"], correct:1,
-    explanation:"Angka pada garis kontur menunjukkan ketinggian (elevasi) tempat tersebut.",
-    keyPoint:"Angka kontur = ketinggian." },
-  { cat:'kontur', q:"Garis kontur yang membentuk lingkaran tertutup kecil menunjukkan...",
-    options:["Lembah","Puncak bukit","Sungai","Danau"], correct:1,
-    explanation:"Kontur tertutup kecil = puncak bukit. Jika ada tanda hachure = depresi.",
-    keyPoint:"Kontur tertutup = puncak." },
-  { cat:'kontur', q:"Manfaat utama peta kontur adalah...",
-    options:["Menunjukkan batas negara","Mengetahui bentuk relief/ketinggian permukaan bumi","Menunjukkan jalan raya","Menunjukkan suhu udara"], correct:1,
-    explanation:"Peta kontur bermanfaat untuk mengetahui bentuk relief/ketinggian permukaan bumi.",
-    keyPoint:"Kontur = relief bumi." },
-  { cat:'kontur', q:"Garis kontur yang renggang menunjukkan bentuk lereng yang...",
+    keyPoint:"Rapat = terjal." },
+  { cat:'kontur', difficulty:'mudah', q:"Garis kontur yang renggang menunjukkan bentuk lereng yang...",
     options:["Terjal","Landai/datar","Cekung","Cembung"], correct:1,
     explanation:"Kontur renggang = perubahan ketinggian kecil = lereng landai.",
     keyPoint:"Renggang = landai." },
+  { cat:'kontur', difficulty:'sedang', q:"Peta kontur memiliki Kontur Interval (CI) 25 meter. Berapakah skala peta tersebut?",
+    options:["1 : 25.000","1 : 50.000","1 : 100.000","1 : 500.000"], correct:1,
+    explanation:"Rumus: CI = 1/2000 × penyebut skala. Skala = 25 × 2000 = 50.000.",
+    keyPoint:"Skala = CI × 2000." },
+  { cat:'kontur', difficulty:'sedang', q:"Rumus Kontur Interval (CI) adalah...",
+    options:["CI = 1/1000 × skala","CI = 1/2000 × skala","CI = 2000 × skala","CI = skala : 2000"], correct:1,
+    explanation:"CI = 1/2000 × penyebut skala peta.",
+    keyPoint:"CI = 1/2000 × penyebut skala." },
+  { cat:'kontur', difficulty:'sedang', q:"Angka yang tercantum pada garis kontur menunjukkan...",
+    options:["Jarak antar kontur","Ketinggian tempat","Skala peta","Luas wilayah"], correct:1,
+    explanation:"Angka pada garis kontur menunjukkan ketinggian (elevasi) tempat tersebut.",
+    keyPoint:"Angka kontur = ketinggian." },
+  { cat:'kontur', difficulty:'sulit', q:"Garis kontur yang membentuk lingkaran tertutup kecil menunjukkan...",
+    options:["Lembah","Puncak bukit","Sungai","Danau"], correct:1,
+    explanation:"Kontur tertutup kecil = puncak bukit.",
+    keyPoint:"Kontur tertutup = puncak." },
+  { cat:'kontur', difficulty:'sulit', q:"Manfaat utama peta kontur adalah...",
+    options:["Menunjukkan batas negara","Mengetahui bentuk relief/ketinggian permukaan bumi","Menunjukkan jalan raya","Menunjukkan suhu udara"], correct:1,
+    explanation:"Peta kontur bermanfaat untuk mengetahui bentuk relief/ketinggian permukaan bumi.",
+    keyPoint:"Kontur = relief bumi." },
+  { cat:'kontur', difficulty:'sulit', q:"Peta memiliki CI 50 meter. Skala peta tersebut adalah...",
+    options:["1 : 25.000","1 : 50.000","1 : 100.000","1 : 200.000"], correct:2,
+    explanation:"Skala = CI × 2000 = 50 × 2000 = 100.000 → 1 : 100.000.",
+    keyPoint:"Skala = CI × 2000." },
+  { cat:'kontur', difficulty:'sulit', q:"Kontur Interval (CI) adalah...",
+    options:["Jarak antar garis kontur","Selisih ketinggian antara dua garis kontur berdekatan","Skala peta","Panjang garis kontur"], correct:1,
+    explanation:"CI adalah selisih ketinggian antara dua garis kontur yang berdekatan.",
+    keyPoint:"CI = selisih ketinggian." },
 
-  { cat:'proyeksi', q:"Proyeksi peta yang paling cocok untuk wilayah ekuator seperti Indonesia adalah...",
+  /* PROYEKSI PETA */
+  { cat:'proyeksi', difficulty:'mudah', q:"Proyeksi peta yang paling cocok untuk wilayah ekuator seperti Indonesia adalah...",
     options:["Proyeksi Azimutal","Proyeksi Kerucut","Proyeksi Silinder","Proyeksi Transversal"], correct:2,
     explanation:"Proyeksi silinder menyinggung bumi di ekuator. Distorsi minimal di daerah ekuator.",
     keyPoint:"Ekuator → silinder." },
-  { cat:'proyeksi', q:"Proyeksi peta yang paling tepat untuk wilayah lintang sedang adalah...",
-    options:["Silinder","Kerucut","Azimutal","Mercator"], correct:1,
-    explanation:"Proyeksi kerucut cocok untuk wilayah lintang sedang.",
-    keyPoint:"Subtropis → kerucut." },
-  { cat:'proyeksi', q:"Proyeksi peta yang cocok untuk menggambarkan wilayah kutub adalah...",
+  { cat:'proyeksi', difficulty:'mudah', q:"Proyeksi peta yang cocok untuk menggambarkan wilayah kutub adalah...",
     options:["Silinder","Kerucut","Azimutal","Mercator"], correct:2,
     explanation:"Proyeksi azimutal menggunakan bidang datar yang menyinggung bumi di kutub.",
     keyPoint:"Kutub → azimutal." },
-  { cat:'proyeksi', q:"Syarat peta 'conform' berarti...",
+  { cat:'proyeksi', difficulty:'mudah', q:"Proyeksi peta yang paling tepat untuk wilayah lintang sedang adalah...",
+    options:["Silinder","Kerucut","Azimutal","Mercator"], correct:1,
+    explanation:"Proyeksi kerucut cocok untuk wilayah lintang sedang.",
+    keyPoint:"Lintang sedang → kerucut." },
+  { cat:'proyeksi', difficulty:'sedang', q:"Syarat peta 'conform' berarti...",
     options:["Luas sesuai aslinya","Bentuk sesuai aslinya","Jarak sesuai aslinya","Warna sesuai aslinya"], correct:1,
     explanation:"Syarat peta: Conform=bentuk, Equidistant=jarak, Equivalent=luas.",
-    keyPoint:"Conform=bentuk." },
-  { cat:'proyeksi', q:"Syarat peta 'equidistant' berarti...",
+    keyPoint:"Conform = bentuk." },
+  { cat:'proyeksi', difficulty:'sedang', q:"Syarat peta 'equidistant' berarti...",
     options:["Bentuk sesuai aslinya","Luas sesuai aslinya","Jarak sesuai aslinya","Arah sesuai aslinya"], correct:2,
     explanation:"Equidistant berarti jarak pada peta sesuai dengan jarak sebenarnya.",
     keyPoint:"Equidistant = jarak." },
-  { cat:'proyeksi', q:"Syarat peta 'equivalent' berarti...",
+  { cat:'proyeksi', difficulty:'sedang', q:"Syarat peta 'equivalent' berarti...",
     options:["Bentuk sesuai","Jarak sesuai","Luas sesuai","Arah sesuai"], correct:2,
     explanation:"Equivalent berarti luas pada peta sesuai dengan luas sebenarnya.",
     keyPoint:"Equivalent = luas." },
-  { cat:'proyeksi', q:"Proyeksi Mercator termasuk jenis proyeksi...",
+  { cat:'proyeksi', difficulty:'sedang', q:"Proyeksi Mercator termasuk jenis proyeksi...",
     options:["Kerucut","Silinder","Azimutal","Konik"], correct:1,
     explanation:"Proyeksi Mercator adalah proyeksi silinder yang banyak digunakan untuk peta navigasi.",
     keyPoint:"Mercator = silinder." },
-  { cat:'proyeksi', q:"Proyeksi peta adalah cara untuk...",
-    options:["Menghias peta","Memindahkan permukaan bumi yang melengkung ke bidang datar","Menghitung jarak","Menentukan warna peta"], correct:1,
-    explanation:"Proyeksi peta memindahkan permukaan bumi (bola) ke bidang datar (peta).",
-    keyPoint:"Proyeksi = bumi lengkung → bidang datar." },
-  { cat:'proyeksi', q:"Distorsi peta paling kecil terjadi pada bagian yang...",
+  { cat:'proyeksi', difficulty:'sulit', q:"Distorsi peta paling kecil terjadi pada bagian yang...",
     options:["Jauh dari bidang proyeksi","Bersinggungan dengan bidang proyeksi","Di tengah peta","Di tepi peta"], correct:1,
     explanation:"Distorsi paling kecil pada area yang menyinggung bidang proyeksi.",
     keyPoint:"Singgungan = distorsi kecil." },
-  { cat:'proyeksi', q:"Proyeksi Transversal (UTM) banyak digunakan untuk peta...",
+  { cat:'proyeksi', difficulty:'sulit', q:"Fungsi utama proyeksi peta adalah...",
+    options:["Menghias peta","Memindahkan permukaan bumi yang melengkung ke bidang datar","Menghitung jarak","Menentukan warna peta"], correct:1,
+    explanation:"Proyeksi peta memindahkan permukaan bumi (bola) ke bidang datar (peta).",
+    keyPoint:"Proyeksi = bumi lengkung → bidang datar." },
+  { cat:'proyeksi', difficulty:'sulit', q:"Proyeksi Transversal (UTM) banyak digunakan untuk peta...",
     options:["Peta dunia","Peta navigasi laut","Peta skala besar daerah tertentu","Peta kutub"], correct:2,
     explanation:"Proyeksi UTM (Universal Transverse Mercator) cocok untuk peta skala besar daerah tertentu.",
     keyPoint:"UTM = peta skala besar." },
 
-  { cat:'lanjutan', q:"Proses penyederhanaan informasi pada peta ketika skala diperkecil disebut...",
+  /* KARTOGRAFI LANJUTAN */
+  { cat:'lanjutan', difficulty:'mudah', q:"Proses penyederhanaan informasi pada peta ketika skala diperkecil disebut...",
     options:["Proyeksi Peta","Generalisasi Peta","Overlay Peta","Digitasi Peta"], correct:1,
     explanation:"Generalisasi peta adalah penyederhanaan unsur peta ketika skala diperkecil.",
     keyPoint:"Generalisasi = penyederhanaan." },
-  { cat:'lanjutan', q:"Penulisan nama-nama geografis pada peta disebut...",
+  { cat:'lanjutan', difficulty:'mudah', q:"Penulisan nama-nama geografis pada peta disebut...",
     options:["Lettering","Layouting","Coloring","Symboling"], correct:0,
     explanation:"Lettering adalah seni penulisan nama geografis pada peta.",
     keyPoint:"Lettering = penulisan nama." },
-  { cat:'lanjutan', q:"Teknik pengukuran dan pemetaan menggunakan foto udara sebagai dasar disebut...",
+  { cat:'lanjutan', difficulty:'mudah', q:"Teknik pengukuran dan pemetaan menggunakan foto udara sebagai dasar disebut...",
     options:["Kartografi","Fotogrametri","Geodesi","Topografi"], correct:1,
     explanation:"Fotogrametri adalah pemetaan dari foto udara.",
     keyPoint:"Fotogrametri = dari foto udara." },
-  { cat:'lanjutan', q:"Peta yang dibuat dan disimpan dalam format digital disebut...",
+  { cat:'lanjutan', difficulty:'mudah', q:"Peta yang dibuat dan disimpan dalam format digital disebut...",
     options:["Peta Konvensional","Peta Digital","Peta Manual","Peta Cetak"], correct:1,
     explanation:"Peta digital dibuat dengan perangkat lunak SIG (ArcGIS, QGIS).",
     keyPoint:"Peta digital = dibuat komputer." },
-  { cat:'lanjutan', q:"Alat untuk menentukan arah dan besar sudut pada pembuatan peta adalah...",
+  { cat:'lanjutan', difficulty:'sedang', q:"Alat untuk menentukan arah dan besar sudut pada pembuatan peta adalah...",
     options:["Kompas","Teodolit","Barometer","Altimeter"], correct:1,
     explanation:"Teodolit adalah alat ukur sudut horizontal dan vertikal untuk pemetaan.",
     keyPoint:"Teodolit = ukur sudut." },
-  { cat:'lanjutan', q:"SIG adalah singkatan dari...",
+  { cat:'lanjutan', difficulty:'sedang', q:"SIG adalah singkatan dari...",
     options:["Sistem Informasi Geografis","Sistem Informasi Global","Sistem Indeks Geografi","Sistem Integrasi Geologi"], correct:0,
     explanation:"SIG (GIS) = Sistem Informasi Geografis, sistem untuk mengolah data spasial.",
     keyPoint:"SIG = Sistem Informasi Geografis." },
-  { cat:'lanjutan', q:"Proses mengubah peta analog (kertas) menjadi peta digital disebut...",
+  { cat:'lanjutan', difficulty:'sedang', q:"Proses mengubah peta analog (kertas) menjadi peta digital disebut...",
     options:["Digitasi","Proyeksi","Generalisasi","Fotogrametri"], correct:0,
     explanation:"Digitasi adalah proses mengubah data peta analog menjadi digital.",
     keyPoint:"Digitasi = analog → digital." },
-  { cat:'lanjutan', q:"Teknologi penginderaan jauh yang menggunakan satelit disebut...",
+  { cat:'lanjutan', difficulty:'sedang', q:"Teknologi penginderaan jauh yang menggunakan satelit disebut...",
     options:["Fotogrametri","Remote Sensing","Geodesi","Kartografi"], correct:1,
     explanation:"Remote sensing (penginderaan jauh) menggunakan satelit/sensor dari jarak jauh.",
     keyPoint:"Remote sensing = indera jauh." },
-  { cat:'lanjutan', q:"Contoh perangkat lunak SIG adalah...",
+  { cat:'lanjutan', difficulty:'sulit', q:"Contoh perangkat lunak SIG adalah...",
     options:["Photoshop","ArcGIS","Excel","Notepad"], correct:1,
     explanation:"ArcGIS dan QGIS adalah contoh perangkat lunak SIG.",
     keyPoint:"ArcGIS = software SIG." },
-  { cat:'lanjutan', q:"Manfaat SIG dalam bidang tata kota adalah...",
+  { cat:'lanjutan', difficulty:'sulit', q:"Manfaat SIG dalam bidang tata kota adalah...",
     options:["Membuat iklan","Analisis tata ruang dan zonasi wilayah","Membuat novel","Menggambar kartun"], correct:1,
     explanation:"SIG dimanfaatkan untuk analisis tata ruang, zonasi, dan perencanaan kota.",
-    keyPoint:"SIG → tata kota." }
+    keyPoint:"SIG → analisis tata ruang." }
 ];
+
+const DIFF_META = {
+  mudah:  { label:'MUDAH',  cls:'diff-mudah',  icon:'🟢' },
+  sedang: { label:'SEDANG', cls:'diff-sedang', icon:'🟡' },
+  sulit:  { label:'SULIT',  cls:'diff-sulit',  icon:'🔴' }
+};
 
 const state = {
   studentName: '', currentRound: 0, totalRounds: 12,
@@ -1248,7 +1273,10 @@ const state = {
 const STORAGE_PREFIX = 'kuis_roda_geo_v3_';
 
 /* =========================================================
-   MEMBANGUN RODA — TEKS RADIAL DARI LUAR KE DALAM
+   MEMBANGUN RODA
+   - Teks RADIAL: dari lingkaran besar menuju inti lingkaran
+   - Orientasi otomatis dibalik jika terbalik agar tetap terbaca
+   - Ikon emoji ditata rapi di tepi luar
    ========================================================= */
 function buildWheel() {
   const svg = $('wheelSvg');
@@ -1259,10 +1287,9 @@ function buildWheel() {
 
   let defsHtml = `<radialGradient id="wheelInner" cx="50%" cy="50%">
       <stop offset="0%" stop-color="#0a0f2e" stop-opacity="1"/>
-      <stop offset="60%" stop-color="#0a0f2e" stop-opacity="1"/>
+      <stop offset="62%" stop-color="#0a0f2e" stop-opacity="1"/>
       <stop offset="100%" stop-color="#1e2a6e" stop-opacity="1"/>
     </radialGradient>`;
-
   let segHtml = '';
 
   for (let i = 0; i < total; i++) {
@@ -1270,65 +1297,62 @@ function buildWheel() {
     const centerDeg = -90 + i * segAngle;
     const centerRad = centerDeg * Math.PI / 180;
 
-    /* -------- WEDGE -------- */
+    /* ---------- WEDGE ---------- */
     const a0 = (centerDeg - half) * Math.PI / 180;
     const a1 = (centerDeg + half) * Math.PI / 180;
     const sx = cx + r * Math.cos(a0), sy = cy + r * Math.sin(a0);
     const ex = cx + r * Math.cos(a1), ey = cy + r * Math.sin(a1);
     const wedge = `M ${cx} ${cy} L ${sx.toFixed(2)} ${sy.toFixed(2)} A ${r} ${r} 0 0 1 ${ex.toFixed(2)} ${ey.toFixed(2)} Z`;
 
-    segHtml += `<path d="${wedge}" fill="${cat.color}" fill-opacity="0.94" stroke="#ffffff" stroke-width="1.4"/>`;
-    segHtml += `<path d="${wedge}" fill="url(#wheelInner)" fill-opacity="0.22"/>`;
-    segHtml += `<path d="${wedge}" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="0.5"/>`;
+    segHtml += `<path d="${wedge}" fill="${cat.color}" fill-opacity="0.92" stroke="#0a0f2e" stroke-width="1.4"/>`;
+    segHtml += `<path d="${wedge}" fill="url(#wheelInner)" fill-opacity="0.24"/>`;
+    segHtml += `<path d="${wedge}" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="0.5"/>`;
 
-    /* -------- IKON di tepi luar -------- */
-    const iconR = r * 0.84;
-    const icx = cx + iconR * Math.cos(centerRad);
-    const icy = cy + iconR * Math.sin(centerRad);
-    segHtml += `<g transform="translate(${icx.toFixed(2)} ${icy.toFixed(2)})">
-        <circle r="6.5" fill="rgba(255,255,255,.4)" stroke="rgba(255,255,255,.85)" stroke-width="0.6"/>
-        <text x="0" y="2.6" text-anchor="middle" font-size="8.5"
-          font-family="'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif">${cat.icon}</text>
-      </g>`;
-
-    /* -------- TEKS RADIAL (dari luar ke inti lingkaran) -------- */
-    // Pusat teks di posisi radius R_text dari pusat roda
-    const R_text = r * 0.52;
+    /* ---------- TEKS RADIAL (luar → inti) ---------- */
+    const R_text = r * 0.58;
     const tx = cx + R_text * Math.cos(centerRad);
     const ty = cy + R_text * Math.sin(centerRad);
 
-    // Rotation agar baseline tulisan mengarah KE DALAM lingkaran (outer→inner)
-    // centerDeg + 180 = arah ke pusat
+    // Rotasi: baseline mengarah ke pusat (outer → inner)
     let rot = centerDeg + 180;
-    while (rot > 180) rot -= 360;
-    while (rot <= -180) rot += 360;
-    // Jika tulisan jadi terbalik (di luar rentang [-90, 90]), balik 180° agar tetap terbaca
+    rot = ((rot + 180) % 360 + 360) % 360 - 180;
+    // Jika terbalik, putar 180° agar tetap terbaca
     if (rot > 90 || rot < -90) {
-      rot -= 180;
-      while (rot > 180) rot -= 360;
-      while (rot <= -180) rot += 360;
+      rot += 180;
+      rot = ((rot + 180) % 360 + 360) % 360 - 180;
     }
 
     segHtml += `<text x="${tx.toFixed(2)}" y="${ty.toFixed(2)}"
         transform="rotate(${rot.toFixed(2)} ${tx.toFixed(2)} ${ty.toFixed(2)})"
-        text-anchor="middle" dominant-baseline="middle"
-        font-size="6.8" font-weight="900" fill="#ffffff" letter-spacing="0.5"
-        style="paint-order:stroke;stroke:rgba(5,8,22,.75);stroke-width:1.8px;stroke-linejoin:round"
-        font-family="'Space Grotesk','Inter',sans-serif">${cat.short.toUpperCase()}</text>`;
+        text-anchor="middle" dominant-baseline="central"
+        font-size="7.4" font-weight="900" fill="#ffffff"
+        letter-spacing="0.7" font-family="'Space Grotesk','Inter',sans-serif"
+        style="paint-order:stroke;stroke:rgba(5,8,22,.78);stroke-width:2px;stroke-linejoin:round">${cat.short.toUpperCase()}</text>`;
+
+    /* ---------- IKON di tepi luar ---------- */
+    const iconR = r * 0.87;
+    const icx = cx + iconR * Math.cos(centerRad);
+    const icy = cy + iconR * Math.sin(centerRad);
+
+    segHtml += `<g transform="translate(${icx.toFixed(2)} ${icy.toFixed(2)})">
+        <circle r="6.6" fill="rgba(5,8,22,.45)" stroke="rgba(255,255,255,.4)" stroke-width="0.6"/>
+        <text x="0" y="2.7" text-anchor="middle" font-size="8.6"
+          font-family="'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif">${cat.icon}</text>
+      </g>`;
   }
 
   let html = `<defs>${defsHtml}</defs>`;
-  html += `<circle cx="${cx}" cy="${cy}" r="${r + 4}" fill="#ffffff" stroke="#1d4ed8" stroke-width="2" opacity="0.95"/>`;
-  html += `<circle cx="${cx}" cy="${cy}" r="${r + 6}" fill="none" stroke="#2563eb" stroke-width="0.5" opacity="0.5"/>`;
+  html += `<circle cx="${cx}" cy="${cy}" r="${r + 4}" fill="#0a0f2e" stroke="#22d3ee" stroke-width="2" opacity="0.65"/>`;
+  html += `<circle cx="${cx}" cy="${cy}" r="${r + 6}" fill="none" stroke="#3b82f6" stroke-width="0.5" opacity="0.4"/>`;
   html += segHtml;
-  html += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#ffffff" stroke-width="1.6" opacity="0.95"/>`;
+  html += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#67e8f9" stroke-width="1.6" opacity="0.75"/>`;
 
   const dots = total * 2;
   for (let i = 0; i < dots; i++) {
     const ang = (i * (360 / dots)) * Math.PI / 180;
     const dx = cx + (r + 2) * Math.cos(ang);
     const dy = cy + (r + 2) * Math.sin(ang);
-    html += `<circle cx="${dx.toFixed(2)}" cy="${dy.toFixed(2)}" r="0.9" fill="#1d4ed8" opacity="0.65"/>`;
+    html += `<circle cx="${dx.toFixed(2)}" cy="${dy.toFixed(2)}" r="0.9" fill="#67e8f9" opacity="0.55"/>`;
   }
 
   svg.innerHTML = html;
@@ -1337,12 +1361,10 @@ function buildWheel() {
 function pickQuestion(catId) {
   const pool = QUESTIONS.filter(q => q.cat === catId);
   let unused = pool.filter(q => !state.usedQuestions.has(q.q));
-
   if (unused.length === 0) {
     pool.forEach(q => state.usedQuestions.delete(q.q));
     unused = pool;
   }
-
   const shuffled = shuffleArray(unused);
   const chosen = shuffled[0];
   state.usedQuestions.add(chosen.q);
@@ -1350,9 +1372,7 @@ function pickQuestion(catId) {
 }
 
 function spin() {
-  if (state.gameFinished) return;
-  if (state.spinning) return;
-
+  if (state.gameFinished || state.spinning) return;
   state.spinning = true;
   $('spinBtn').disabled = true;
   hide('categoryResult');
@@ -1411,7 +1431,6 @@ function startQuestion(cat) {
   if (state.gameFinished) return;
 
   const baseQ = pickQuestion(cat.id);
-
   const correctText = baseQ.options[baseQ.correct];
   const shuffled = shuffleArray(baseQ.options);
   state.currentQuestion = {
@@ -1430,11 +1449,20 @@ function startQuestion(cat) {
   setText('qScoreCounter', state.totalScore);
 
   const txtColor = getContrastColor(cat.color);
+  const diff = state.currentQuestion.difficulty || 'sedang';
+  const meta = DIFF_META[diff] || DIFF_META.sedang;
+
   $('qCatBadge').innerHTML = `
-    <div class="cat-badge" style="background: linear-gradient(135deg, ${cat.color}, ${cat.color}cc); color: ${txtColor}; border: 2px solid #ffffff">
-      <span>${cat.icon}</span>
-      <span>${cat.name}</span>
-      <span class="ml-1 px-2 py-0.5 rounded-full font-mono text-[10px]" style="background: rgba(0,0,0,.2); color:#fff">+${cat.points} poin</span>
+    <div class="flex flex-wrap gap-2 justify-center items-center">
+      <div class="cat-badge" style="background: linear-gradient(135deg, ${cat.color}, ${cat.color}cc); color: ${txtColor}; border: 2px solid #ffffff">
+        <span>${cat.icon}</span>
+        <span>${cat.name}</span>
+        <span class="ml-1 px-2 py-0.5 rounded-full font-mono text-[10px]" style="background: rgba(0,0,0,.2); color:#fff">+${cat.points} poin</span>
+      </div>
+      <div class="diff-badge ${meta.cls}">
+        <span>${meta.icon}</span>
+        <span>${meta.label}</span>
+      </div>
     </div>`;
 
   setText('qText', state.currentQuestion.q);
@@ -1493,6 +1521,7 @@ function selectAnswer(idx) {
 
   state.history.push({
     round: state.currentRound + 1, cat: cat.name, catColor: cat.color, catIcon: cat.icon,
+    difficulty: q.difficulty,
     question: q.q, userAnswer: q.options[idx], correctAnswer: q.options[q.correct],
     explanation: q.explanation, keyPoint: q.keyPoint, isCorrect, points: earnedPoints
   });
@@ -1505,26 +1534,28 @@ function selectAnswer(idx) {
 
 function showFeedback(isCorrect, earnedPoints, cat) {
   const q = state.currentQuestion;
+  const diff = q.difficulty || 'sedang';
+  const meta = DIFF_META[diff] || DIFF_META.sedang;
   const fb = $('qFeedback');
   const userTxt = formatOption(state.selectedAnswerIndex, q.options[state.selectedAnswerIndex]);
   const correctTxt = formatOption(q.correct, q.options[q.correct]);
 
   let html = '';
   if (isCorrect) {
-    html += `<div class="p-3 rounded-xl mb-2" style="background: linear-gradient(135deg, rgba(34,197,94,.18), rgba(34,197,94,.06)); border: 1px solid rgba(22,163,74,.5)">
-      <div class="text-[10px] text-emerald-800 font-bold uppercase mb-1">✓ Jawaban Benar</div>
-      <div class="font-bold text-emerald-800 text-xs md:text-sm overflow-safe">${userTxt}</div>
-      <div class="text-[11px] mt-1.5 text-emerald-800 font-bold">+${earnedPoints} poin ${state.streak >= 2 ? `(🔥 Streak x${state.streak})` : ''}</div>
+    html += `<div class="p-3 rounded-xl mb-2" style="background: linear-gradient(135deg, rgba(34,197,94,.15), rgba(34,197,94,.05)); border: 1px solid rgba(34,197,94,.45)">
+      <div class="text-[10px] text-emerald-700 font-bold uppercase mb-1">✓ Jawaban Benar <span class="ml-2">${meta.icon} ${meta.label}</span></div>
+      <div class="font-bold text-emerald-700 text-xs md:text-sm overflow-safe">${userTxt}</div>
+      <div class="text-[11px] mt-1.5 text-emerald-700 font-bold">+${earnedPoints} poin ${state.streak >= 2 ? `(🔥 Streak x${state.streak})` : ''}</div>
     </div>`;
   } else {
     html += `<div class="space-y-2 mb-2">
-      <div class="p-2.5 rounded-xl" style="background: rgba(239,68,68,.14); border: 1px solid rgba(185,28,28,.45)">
-        <div class="text-[10px] text-rose-800 font-bold uppercase">✗ Jawabanmu:</div>
-        <div class="font-semibold text-rose-800 text-xs md:text-sm overflow-safe">${userTxt}</div>
+      <div class="p-2.5 rounded-xl" style="background: rgba(239,68,68,.12); border: 1px solid rgba(239,68,68,.4)">
+        <div class="text-[10px] text-rose-700 font-bold uppercase">✗ Jawabanmu <span class="ml-2">${meta.icon} ${meta.label}</span></div>
+        <div class="font-semibold text-rose-700 text-xs md:text-sm overflow-safe">${userTxt}</div>
       </div>
-      <div class="p-2.5 rounded-xl" style="background: rgba(34,197,94,.14); border: 1px solid rgba(22,163,74,.5)">
-        <div class="text-[10px] text-emerald-800 font-bold uppercase">✓ Jawaban Benar:</div>
-        <div class="font-bold text-emerald-800 text-xs md:text-sm overflow-safe">${correctTxt}</div>
+      <div class="p-2.5 rounded-xl" style="background: rgba(34,197,94,.12); border: 1px solid rgba(34,197,94,.45)">
+        <div class="text-[10px] text-emerald-700 font-bold uppercase">✓ Jawaban Benar:</div>
+        <div class="font-bold text-emerald-700 text-xs md:text-sm overflow-safe">${correctTxt}</div>
       </div>
     </div>`;
   }
@@ -1553,9 +1584,7 @@ function showFeedback(isCorrect, earnedPoints, cat) {
 function nextRound() {
   sfx('click');
   if (state.gameFinished) return;
-
   state.currentRound++;
-
   if (state.currentRound >= state.totalRounds) {
     state.gameFinished = true;
     hide('questionScreen');
@@ -1563,7 +1592,6 @@ function nextRound() {
     endGame();
     return;
   }
-
   hide('questionScreen');
   show('wheelScreen');
   setText('roundCounter', `${state.currentRound + 1}/${state.totalRounds}`);
@@ -1610,19 +1638,13 @@ function createBurst(cx, cy, colors) {
   }
 }
 
-function getAchievement(accuracy, correct, total) {
-  if (accuracy >= 95) return { tier: 'gold', icon: '👑', title: 'LEGENDA GEOGRAFI',
-    desc: 'Sempurna! Kamu menguasai Peta & Pemetaan dengan sangat luar biasa.', color: '#92400e' };
-  if (accuracy >= 85) return { tier: 'gold', icon: '🏆', title: 'MASTER KARTOGRAFER',
-    desc: 'Luar biasa! Pemahamanmu tentang Peta & Pemetaan sangat tinggi.', color: '#92400e' };
-  if (accuracy >= 70) return { tier: 'emerald', icon: '🌟', title: 'AHLI PETA',
-    desc: 'Hebat! Kamu sudah menguasai sebagian besar konsep pemetaan.', color: '#15803d' };
-  if (accuracy >= 55) return { tier: 'blue', icon: '🧭', title: 'PENJELAJAH MUDA',
-    desc: 'Bagus! Kemampuanmu sudah baik, terus tingkatkan lagi.', color: '#1e40af' };
-  if (accuracy >= 40) return { tier: 'violet', icon: '🗺️', title: 'PEMBELAJAR AKTIF',
-    desc: 'Cukup baik! Pelajari kembali materi yang belum dikuasai.', color: '#6d28d9' };
-  return { tier: 'slate', icon: '🌱', title: 'PEMULA SEMANGAT',
-    desc: 'Jangan menyerah! Setiap perjalanan dimulai dari langkah pertama.', color: '#334155' };
+function getAchievement(accuracy) {
+  if (accuracy >= 95) return { tier:'gold', icon:'👑', title:'LEGENDA GEOGRAFI', desc:'Sempurna! Kamu menguasai Peta & Pemetaan dengan sangat luar biasa.', color:'#b45309' };
+  if (accuracy >= 85) return { tier:'gold', icon:'🏆', title:'MASTER KARTOGRAFER', desc:'Luar biasa! Pemahamanmu tentang Peta & Pemetaan sangat tinggi.', color:'#b45309' };
+  if (accuracy >= 70) return { tier:'emerald', icon:'🌟', title:'AHLI PETA', desc:'Hebat! Kamu sudah menguasai sebagian besar konsep pemetaan.', color:'#15803d' };
+  if (accuracy >= 55) return { tier:'blue', icon:'🧭', title:'PENJELAJAH MUDA', desc:'Bagus! Kemampuanmu sudah baik, terus tingkatkan lagi.', color:'#1d4ed8' };
+  if (accuracy >= 40) return { tier:'violet', icon:'🗺️', title:'PEMBELAJAR AKTIF', desc:'Cukup baik! Pelajari kembali materi yang belum dikuasai.', color:'#6d28d9' };
+  return { tier:'slate', icon:'🌱', title:'PEMULA SEMANGAT', desc:'Jangan menyerah! Setiap perjalanan dimulai dari langkah pertama.', color:'#475569' };
 }
 
 function endGame() {
@@ -1635,8 +1657,7 @@ function endGame() {
   const wrong = state.wrongCount;
   const accuracy = Math.round((correct / total) * 100);
   const score = state.totalScore;
-
-  const ach = getAchievement(accuracy, correct, total);
+  const ach = getAchievement(accuracy);
 
   setText('rName', state.studentName.toUpperCase());
 
@@ -1653,8 +1674,7 @@ function endGame() {
           <div class="text-[11px] md:text-xs mt-1.5 leading-snug text-slate-700">${ach.desc}</div>
         </div>
       </div>
-    </div>
-  `;
+    </div>`;
 
   setText('rCorrect', correct);
   setText('rWrong', wrong);
@@ -1662,12 +1682,11 @@ function endGame() {
   setText('rStreak', state.maxStreak + '🔥');
 
   let counter = 0;
-  const targetScore = score;
   const scoreEl = $('totalScoreDisplay');
-  const step = Math.max(1, Math.ceil(targetScore / 40));
+  const step = Math.max(1, Math.ceil(score / 40));
   const iv = setInterval(() => {
     counter += step;
-    if (counter >= targetScore) { counter = targetScore; clearInterval(iv); }
+    if (counter >= score) { counter = score; clearInterval(iv); }
     scoreEl.textContent = counter;
   }, 30);
 
@@ -1689,8 +1708,7 @@ function endGame() {
         <div class="cat-stat-bar">
           <i style="width: ${pct}%; background: linear-gradient(90deg, ${cat.color}, ${cat.color}cc); box-shadow: 0 2px 8px ${cat.color}88"></i>
         </div>
-      </div>
-    `;
+      </div>`;
     breakdown.appendChild(row);
   });
 
@@ -1717,13 +1735,25 @@ async function copyResult() {
   sfx('click');
   const total = state.totalRounds;
   const accuracy = Math.round((state.correctCount / total) * 100);
-  const ach = getAchievement(accuracy, state.correctCount, total);
+  const ach = getAchievement(accuracy);
 
   let catBreakdownText = '';
   CATEGORIES.forEach(cat => {
     const s = state.catStats[cat.id];
     if (!s || s.total === 0) return;
     catBreakdownText += `  • ${cat.name}: ${s.correct}/${s.total} (${s.points} poin)\n`;
+  });
+
+  const diffStats = { mudah:{b:0,t:0}, sedang:{b:0,t:0}, sulit:{b:0,t:0} };
+  state.history.forEach(h => {
+    const d = h.difficulty || 'sedang';
+    if (diffStats[d]) { diffStats[d].t++; if (h.isCorrect) diffStats[d].b++; }
+  });
+  let diffText = '';
+  ['mudah','sedang','sulit'].forEach(d => {
+    if (diffStats[d].t > 0) {
+      diffText += `  • ${DIFF_META[d].label}: ${diffStats[d].b}/${diffStats[d].t}\n`;
+    }
   });
 
   const txt =
@@ -1746,6 +1776,8 @@ ${ach.icon} ${ach.desc}
   • Akurasi: ${accuracy}%
   • Streak Terbaik: ${state.maxStreak}
 ━━━━━━━━━━━━━━━━━━━━
+🎯 CAPAIAN PER TINGKAT KESULITAN:
+${diffText}━━━━━━━━━━━━━━━━━━━━
 📚 CAPAIAN PER KATEGORI:
 ${catBreakdownText}━━━━━━━━━━━━━━━━━━━━`;
 
@@ -1775,7 +1807,6 @@ ${catBreakdownText}━━━━━━━━━━━━━━━━━━━━`
 
 function returnToMainScreen() {
   sfx('click');
-
   state.studentName = '';
   state.currentRound = 0;
   state.totalScore = 0;
@@ -1797,17 +1828,11 @@ function returnToMainScreen() {
   const wheel = $('wheelSvg');
   wheel.style.transition = 'none';
   wheel.style.transform = 'rotate(0deg)';
-
   const nameInput = $('studentName');
   if (nameInput) nameInput.value = '';
 
-  hide('resultScreen');
-  hide('wheelScreen');
-  hide('questionScreen');
-  hide('categoryResult');
-  hide('wheelInstruction');
-  hide('qFeedback');
-  hide('qActions');
+  hide('resultScreen'); hide('wheelScreen'); hide('questionScreen');
+  hide('categoryResult'); hide('wheelInstruction'); hide('qFeedback'); hide('qActions');
 
   try {
     const bs = localStorage.getItem(STORAGE_PREFIX + 'best_score');
@@ -1864,7 +1889,6 @@ function init() {
       btn.innerHTML = '🎡 PUTAR LAGI';
       btn.style.background = 'linear-gradient(135deg,#0891b2,#2563eb)';
     }
-
     setText('playerName', name);
     setText('roundCounter', `1/${state.totalRounds}`);
     setText('scoreCounter', state.totalScore);
