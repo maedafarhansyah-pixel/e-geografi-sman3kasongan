@@ -47,6 +47,64 @@ try {
   @keyframes pulseRed{0%,100%{box-shadow:0 8px 22px rgba(192,57,43,.4)}50%{box-shadow:0 14px 36px rgba(192,57,43,.7)}}
   @keyframes learnPulse{0%,100%{box-shadow:0 8px 22px rgba(15,81,50,.4)}50%{box-shadow:0 14px 36px rgba(46,204,113,.65)}}
 
+  /* ===== PAKET A+ EFFECTS ===== */
+  @keyframes compassNeedleSpin{
+    0%{transform:rotate(0deg) scale(1);opacity:0}
+    15%{opacity:1;transform:rotate(720deg) scale(1.2)}
+    60%{transform:rotate(1080deg) scale(1.15)}
+    85%{transform:rotate(1440deg) scale(1.05)}
+    100%{transform:rotate(1440deg) scale(1);opacity:0}
+  }
+  @keyframes gpsPinDrop{
+    0%{transform:translateY(-60px) scale(.4);opacity:0}
+    40%{transform:translateY(0) scale(1.15);opacity:1}
+    60%{transform:translateY(-6px) scale(1)}
+    100%{transform:translateY(0) scale(1);opacity:1}
+  }
+  @keyframes pinRipple{
+    0%{transform:scale(0);opacity:.8}
+    100%{transform:scale(3.5);opacity:0}
+  }
+  @keyframes radarSweep{
+    0%{transform:translate(-50%,-50%) rotate(0deg);opacity:0}
+    10%{opacity:1}
+    90%{opacity:1}
+    100%{transform:translate(-50%,-50%) rotate(360deg);opacity:0}
+  }
+  @keyframes contourDraw{
+    0%{stroke-dashoffset:2000;opacity:0}
+    20%{opacity:.55}
+    100%{stroke-dashoffset:0;opacity:.35}
+  }
+  @keyframes auroraShift{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+  }
+  @keyframes tectonicShake{
+    0%,100%{transform:translate(0,0) rotate(0)}
+    15%{transform:translate(-6px,3px) rotate(-.7deg)}
+    30%{transform:translate(6px,-3px) rotate(.7deg)}
+    45%{transform:translate(-5px,-2px) rotate(-.5deg)}
+    60%{transform:translate(5px,2px) rotate(.5deg)}
+    80%{transform:translate(-2px,1px) rotate(-.2deg)}
+  }
+  @keyframes faultLine{
+    0%{width:0;opacity:0}
+    20%{opacity:1}
+    100%{width:100%;opacity:0}
+  }
+  @keyframes stampAppear{
+    0%{transform:scale(2.5) rotate(-25deg);opacity:0}
+    50%{transform:scale(1) rotate(-12deg);opacity:1}
+    75%{transform:scale(1.05) rotate(-12deg)}
+    100%{transform:scale(1) rotate(-12deg);opacity:1}
+  }
+  @keyframes waypointPulse{
+    0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(46,204,113,.6)}
+    50%{transform:scale(1.15);box-shadow:0 0 0 6px rgba(46,204,113,0)}
+  }
+
   :root {
     --primary: #0f5132;
     --primary-light: #1e7a4a;
@@ -94,6 +152,24 @@ try {
       repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(15, 81, 50, 0.025) 40px, rgba(15, 81, 50, 0.025) 41px),
       repeating-linear-gradient(-45deg, transparent, transparent 40px, rgba(15, 81, 50, 0.025) 40px, rgba(15, 81, 50, 0.025) 41px);
     background-size: 100% 100%, 100% 100%, 80px 80px, 80px 80px;
+  }
+
+  /* ===== AURORA GRADIENT (Efek #6) ===== */
+  body::after {
+    content:'';
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    opacity: .35;
+    background: linear-gradient(120deg,
+      rgba(46,204,113,.10) 0%,
+      rgba(15,81,50,.05) 25%,
+      rgba(212,160,23,.08) 50%,
+      rgba(30,122,74,.05) 75%,
+      rgba(46,204,113,.10) 100%);
+    background-size: 300% 300%;
+    animation: auroraShift 18s ease-in-out infinite;
   }
 
   .custom-scrollbar::-webkit-scrollbar{width:6px}
@@ -262,6 +338,105 @@ try {
   .opt-wrong{background:linear-gradient(135deg,#c0392b,#e74c3c)!important;border-color:#c0392b!important;color:#fff!important;box-shadow:0 10px 28px rgba(192,57,43,.40);animation:wrongShake .5s ease;}
   .opt-eliminated{opacity:.20!important;pointer-events:none!important;text-decoration:line-through;filter: blur(.5px)}
 
+  /* ===== GPS PIN (Efek #2) ===== */
+  .gps-pin{
+    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    font-size:1.6rem;pointer-events:none;z-index:5;
+    animation:gpsPinDrop .4s cubic-bezier(.34,1.56,.64,1) forwards;
+    filter: drop-shadow(0 4px 10px rgba(192,57,43,.5));
+  }
+  .gps-pin-ripple{
+    position:absolute;left:50%;top:50%;width:20px;height:20px;border-radius:50%;
+    transform:translate(-50%,-50%);pointer-events:none;z-index:4;
+    border:2px solid rgba(46,204,113,.7);
+    animation:pinRipple .5s ease-out forwards;
+  }
+
+  /* ===== KOMPAS NEEDLE (Efek #1) ===== */
+  .compass-needle-fx{
+    position:fixed;left:50%;top:50%;width:140px;height:140px;z-index:9999;
+    pointer-events:none;transform:translate(-50%,-50%);
+    animation:compassNeedleSpin 1.2s cubic-bezier(.2,.9,.3,1) forwards;
+  }
+  .compass-needle-fx svg{width:100%;height:100%;filter:drop-shadow(0 0 20px rgba(46,204,113,.8))}
+
+  /* ===== RADAR SWEEP (Efek #3) ===== */
+  .radar-sweep{
+    position:fixed;left:50%;top:50%;width:min(80vw,420px);height:min(80vw,420px);
+    border-radius:50%;pointer-events:none;z-index:9998;
+    background:conic-gradient(from 0deg, transparent 0deg, rgba(46,204,113,.35) 30deg, transparent 60deg, transparent 360deg);
+    border:2px solid rgba(46,204,113,.3);
+    animation:radarSweep 1.5s ease-out forwards;
+    transform:translate(-50%,-50%);
+  }
+  .radar-sweep::before{
+    content:'';position:absolute;inset:20%;border-radius:50%;
+    border:1.5px solid rgba(46,204,113,.4);
+  }
+  .radar-sweep::after{
+    content:'';position:absolute;inset:40%;border-radius:50%;
+    border:1.5px solid rgba(46,204,113,.5);
+  }
+
+  /* ===== CONTOUR LINES (Efek #4) ===== */
+  .contour-bg{
+    position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden;
+  }
+  .contour-bg svg{width:100%;height:100%;opacity:.55}
+  .contour-bg path{
+    fill:none;stroke:url(#contourGrad);stroke-width:1.2;
+    stroke-dasharray:2000;stroke-dashoffset:2000;
+    animation:contourDraw 2s ease-out forwards;
+  }
+  .contour-bg path:nth-child(2){animation-delay:.15s}
+  .contour-bg path:nth-child(3){animation-delay:.3s}
+  .contour-bg path:nth-child(4){animation-delay:.45s}
+  .contour-bg path:nth-child(5){animation-delay:.6s}
+
+  /* ===== TECTONIC SHAKE (Efek #7) ===== */
+  .tectonic-shake{animation:tectonicShake .5s ease}
+  .fault-line{
+    position:absolute;top:50%;left:0;height:3px;z-index:10;pointer-events:none;
+    background:linear-gradient(90deg,transparent,#c0392b,#e74c3c,#f1c40f,#c0392b,transparent);
+    animation:faultLine .5s ease-out forwards;
+    box-shadow:0 0 20px rgba(192,57,43,.6);
+  }
+
+  /* ===== WAYPOINT TRAIL (Efek #8) ===== */
+  .waypoint-trail{
+    display:flex;align-items:center;gap:2px;margin-top:4px;
+  }
+  .waypoint-dot{
+    width:6px;height:6px;border-radius:50%;
+    background:rgba(15,81,50,.20);
+    transition:all .4s ease;
+  }
+  .waypoint-dot.done{background:linear-gradient(135deg,#0f5132,#2ecc71)}
+  .waypoint-dot.active{
+    background:linear-gradient(135deg,#d4a017,#f1c40f);
+    animation:waypointPulse 1.5s ease-in-out infinite;
+    width:8px;height:8px;
+  }
+  .waypoint-dot.skipped{background:rgba(61,107,74,.4)}
+  .waypoint-line{
+    flex:1;height:2px;background:rgba(15,81,50,.10);min-width:2px;
+  }
+  .waypoint-line.done{background:linear-gradient(90deg,#0f5132,#2ecc71)}
+
+  /* ===== STAMP ACHIEVEMENT (Efek #9) ===== */
+  .achievement-stamp{
+    position:absolute;right:-10px;top:-10px;z-index:20;pointer-events:none;
+    padding:6px 14px;border-radius:6px;
+    background:linear-gradient(135deg,#d4a017,#f1c40f);
+    color:#5c3a00;font-weight:900;font-size:.6rem;letter-spacing:2px;
+    border:2.5px dashed #5c3a00;
+    box-shadow:0 6px 20px rgba(212,160,23,.5);
+    animation:stampAppear .8s cubic-bezier(.34,1.56,.64,1) .3s both;
+    text-transform:uppercase;
+    opacity:0;
+  }
+  .achievement-stamp.show{opacity:1}
+
   .sound-toggle{width:40px;height:40px;border-radius:50%;background: var(--card-bg);border:1.5px solid rgba(15,81,50,.20);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;transition:all .25s;flex-shrink:0;}
   .sound-toggle:hover{background: linear-gradient(135deg, rgba(46,204,113,.15), rgba(15,81,50,.08));transform:scale(1.10);border-color: var(--primary);}
   .sound-toggle.muted{opacity:.5}
@@ -354,7 +529,6 @@ try {
     .lock-btn{padding:14px 28px;font-size:.82rem;letter-spacing:1.8px}
   }
 
-  /* ===== PANEL WAJIB ULANG ===== */
   #mustRepeatWarning{
     animation: fadeUp .6s cubic-bezier(.2,.9,.3,1.3) both;
   }
@@ -378,7 +552,6 @@ try {
     animation: pulseRed 2s ease-in-out infinite;
   }
 
-  /* ===== TOMBOL BELAJAR KEMBALI ===== */
   #btnLearnAgain {
     animation: learnPulse 2.2s ease-in-out infinite;
     text-decoration: none;
@@ -545,6 +718,15 @@ try {
         </div>
       </div>
 
+      <!-- WAYPOINT TRAIL (Efek #8) -->
+      <div class="glass-panel p-2 md:p-3 rounded-xl">
+        <div class="flex items-center justify-between gap-2 mb-1 px-1">
+          <span class="text-[10px] md:text-xs font-black uppercase tracking-wider" style="color:#0f5132;">🧭 Jalur Peta</span>
+          <span class="text-[10px] md:text-xs font-black" style="color:#3d6b4a;" id="waypoint-text">Soal 1 / 15</span>
+        </div>
+        <div class="waypoint-trail" id="waypoint-trail"></div>
+      </div>
+
       <div class="glass-panel p-3 md:p-4 rounded-xl">
         <div class="text-[10px] md:text-xs font-black text-center mb-2 tracking-widest uppercase" style="color:#0f5132;">Bantuan (masing-masing 1x pakai)</div>
         <div class="flex justify-center gap-2 md:gap-3">
@@ -563,7 +745,9 @@ try {
         </div>
       </div>
 
-      <div class="glass-panel p-4 md:p-6 rounded-2xl relative" style="border-left: 5px solid #0f5132;">
+      <div class="glass-panel p-4 md:p-6 rounded-2xl relative" style="border-left: 5px solid #0f5132;" id="question-panel">
+        <!-- CONTOUR LINES (Efek #4) -->
+        <div class="contour-bg" id="contour-bg"></div>
         <div class="q-progress"><i id="q-progress"></i></div>
         <div class="flex justify-between items-center mb-3 flex-wrap gap-2">
           <span class="text-xs md:text-sm font-black uppercase tracking-wider" style="color:#0f5132;">Pertanyaan <span id="current-q-num">1</span>/15</span>
@@ -572,9 +756,9 @@ try {
             <span id="reward-tag" class="text-xs font-mono px-3 py-1 rounded-full font-black whitespace-nowrap" style="background: linear-gradient(135deg, rgba(212,160,23,.15), rgba(241,196,15,.08)); color:#6d4c00; border: 1.5px solid rgba(212,160,23,.30);">Lvl 1 — 100</span>
           </div>
         </div>
-        <h3 id="question-text" class="question-text overflow-safe">Memuat pertanyaan...</h3>
+        <h3 id="question-text" class="question-text overflow-safe" style="position:relative;z-index:1;">Memuat pertanyaan...</h3>
 
-        <div id="hint-panel" class="is-hidden mt-4 p-4 rounded-xl" style="background: linear-gradient(135deg, rgba(46,204,113,.10), rgba(15,81,50,.04)); border: 2px solid rgba(46,204,113,.30);">
+        <div id="hint-panel" class="is-hidden mt-4 p-4 rounded-xl" style="background: linear-gradient(135deg, rgba(46,204,113,.10), rgba(15,81,50,.04)); border: 2px solid rgba(46,204,113,.30); position:relative; z-index:1;">
           <div class="text-xs font-black tracking-widest mb-2 flex items-center gap-1.5" style="color:#0f5132;">💡 Petunjuk dari Guru</div>
           <div class="text-xs md:text-sm font-semibold leading-relaxed overflow-safe" style="color:#0a1f14;" id="hint-text"></div>
         </div>
@@ -632,7 +816,10 @@ try {
     </div>
   </div>
 
-  <section id="result-screen" class="is-hidden w-full max-w-2xl my-auto space-y-3 md:space-y-4">
+  <section id="result-screen" class="is-hidden w-full max-w-2xl my-auto space-y-3 md:space-y-4" style="position:relative;">
+    <!-- STAMP ACHIEVEMENT (Efek #9) -->
+    <div id="achievement-stamp" class="achievement-stamp">✔ VERIFIED</div>
+
     <div id="record-banner" class="is-hidden glass-panel p-4 md:p-5 rounded-2xl text-center" style="border-color: rgba(46,204,113,.5); background: linear-gradient(135deg, rgba(46,204,113,.10), rgba(212,160,23,.06));">
       <h3 id="record-text" class="text-lg md:text-2xl font-black" style="color:#0f5132;">🎉 SKOR BARU TERBAIK!</h3>
       <p id="record-subtext" class="text-xs md:text-sm font-bold" style="color:#1a3a26;">Luar biasa!</p>
@@ -687,7 +874,6 @@ try {
       </div>
     </div>
 
-    <!-- ⬇️ PANEL WAJIB ULANG (muncul kalau skor < 75) ⬇️ -->
     <div id="mustRepeatWarning" class="is-hidden glass-panel p-5 md:p-6 rounded-2xl text-center"
          style="border: 2px solid rgba(192,57,43,.5); background: linear-gradient(135deg, rgba(192,57,43,.10), rgba(127,29,29,.05));">
       <div class="text-5xl md:text-6xl mb-2">🚫</div>
@@ -702,7 +888,6 @@ try {
         lalu <b>WAJIB MENGULANG</b> kuis ini! 💪
       </div>
 
-      <!-- ⬇️ TOMBOL BELAJAR KEMBALI ⬇️ -->
       <a id="btnLearnAgain"
          href="https://maedafarhansyah-pixel.github.io/e-geografi-sman3kasongan//peta.html"
          target="_blank"
@@ -717,7 +902,6 @@ try {
       </div>
     </div>
 
-    <!-- ⬇️ TOMBOL KIRIM NILAI (muncul kalau skor ≥ 75) ⬇️ -->
     <button id="btnSendScore" type="button"
       class="is-hidden w-full font-black p-4 md:p-5 rounded-2xl text-sm md:text-base cursor-pointer border-2 transition-all"
       style="background: linear-gradient(135deg,#d4a017,#f1c40f); color:#ffffff; border-color: rgba(255,255,255,.55); box-shadow: 0 8px 22px rgba(212,160,23,.5)"
@@ -789,9 +973,189 @@ function sfx(type){
     else if(type==='win'){[440,554.37,659.25,880].forEach((f,i)=>playTone(f,.25,'sine',.2,i*.13));}
     else if(type==='hint'){playTone(660,.1,'sine',.15,0);playTone(880,.15,'sine',.15,.08);}
     else if(type==='skip'){playTone(330,.1,'sine',.1,0);playTone(220,.15,'sine',.1,.08);}
+    else if(type==='pin'){playTone(880,.08,'sine',.15,0);playTone(1320,.12,'sine',.12,.05);}
+    else if(type==='stamp'){playTone(220,.1,'square',.2,0);playTone(180,.15,'square',.2,.1);playTone(220,.2,'square',.2,.25);}
   }catch(e){}
 }
 function safeConfetti(o){try{if(typeof confetti==='function')confetti(o);}catch(e){}}
+
+/* ===== HAPTIC FEEDBACK (Efek #5) ===== */
+function haptic(pattern){
+  try{
+    if(navigator.vibrate && !soundMuted){
+      if(typeof pattern === 'number') navigator.vibrate(pattern);
+      else navigator.vibrate(pattern);
+    }
+  }catch(e){}
+}
+
+/* ===== KOMPAS NEEDLE SPIN (Efek #1) ===== */
+function compassNeedleEffect(){
+  try{
+    const el = document.createElement('div');
+    el.className = 'compass-needle-fx';
+    el.innerHTML = '<svg viewBox="0 0 100 100" fill="none">'+
+      '<defs><linearGradient id="cnGrad" x1="0" y1="0" x2="1" y2="1">'+
+      '<stop offset="0%" stop-color="#2ecc71"/><stop offset="50%" stop-color="#0f5132"/><stop offset="100%" stop-color="#f1c40f"/></linearGradient></defs>'+
+      '<circle cx="50" cy="50" r="38" stroke="url(#cnGrad)" stroke-width="2.5" fill="none" opacity="0.5"/>'+
+      '<polygon points="50,10 56,46 50,50 44,46" fill="#2ecc71"/>'+
+      '<polygon points="50,90 56,54 50,50 44,54" fill="#0f5132"/>'+
+      '<polygon points="10,50 46,44 50,50 46,56" fill="#1e7a4a"/>'+
+      '<polygon points="90,50 54,44 50,50 54,56" fill="#f1c40f"/>'+
+      '<circle cx="50" cy="50" r="5" fill="#f1c40f" stroke="#5c3a00" stroke-width="1"/>'+
+      '<text x="50" y="22" text-anchor="middle" font-size="10" font-weight="900" fill="#0f5132" font-family="sans-serif">N</text>'+
+      '</svg>';
+    document.body.appendChild(el);
+    setTimeout(function(){el.remove();},1300);
+  }catch(e){}
+}
+
+/* ===== GPS PIN DROP (Efek #2) ===== */
+function gpsPinDrop(btn){
+  try{
+    if(!btn) return;
+    const rect = btn.getBoundingClientRect();
+    const pin = document.createElement('div');
+    pin.className = 'gps-pin';
+    pin.textContent = '📍';
+    // Position absolute relative to button
+    btn.style.position = 'relative';
+    btn.appendChild(pin);
+    const ripple = document.createElement('div');
+    ripple.className = 'gps-pin-ripple';
+    btn.appendChild(ripple);
+    sfx('pin');
+    setTimeout(function(){pin.remove();ripple.remove();},500);
+  }catch(e){}
+}
+
+/* ===== RADAR SWEEP (Efek #3) ===== */
+function radarSweepEffect(){
+  try{
+    const el = document.createElement('div');
+    el.className = 'radar-sweep';
+    document.body.appendChild(el);
+    sfx('hint');
+    setTimeout(function(){el.remove();},1600);
+  }catch(e){}
+}
+
+/* ===== CONTOUR LINES (Efek #4) ===== */
+function drawContourLines(){
+  try{
+    const bg = document.getElementById('contour-bg');
+    if(!bg) return;
+    bg.innerHTML = '';
+    const svgNS = 'http://www.w3.org/2000/svg';
+    const svg = document.createElementNS(svgNS,'svg');
+    svg.setAttribute('viewBox','0 0 400 300');
+    svg.setAttribute('preserveAspectRatio','none');
+    const defs = document.createElementNS(svgNS,'defs');
+    const grad = document.createElementNS(svgNS,'linearGradient');
+    grad.setAttribute('id','contourGrad');
+    grad.setAttribute('x1','0');grad.setAttribute('y1','0');
+    grad.setAttribute('x2','1');grad.setAttribute('y2','1');
+    const s1 = document.createElementNS(svgNS,'stop');
+    s1.setAttribute('offset','0%');s1.setAttribute('stop-color','#0f5132');s1.setAttribute('stop-opacity','.5');
+    const s2 = document.createElementNS(svgNS,'stop');
+    s2.setAttribute('offset','50%');s2.setAttribute('stop-color','#2ecc71');s2.setAttribute('stop-opacity','.4');
+    const s3 = document.createElementNS(svgNS,'stop');
+    s3.setAttribute('offset','100%');s3.setAttribute('stop-color','#d4a017');s3.setAttribute('stop-opacity','.4');
+    grad.appendChild(s1);grad.appendChild(s2);grad.appendChild(s3);
+    defs.appendChild(grad);svg.appendChild(defs);
+    const paths = [
+      'M -20,80 Q 80,20 200,70 T 420,40',
+      'M -20,130 Q 100,80 220,120 T 420,90',
+      'M -20,180 Q 120,140 240,170 T 420,150',
+      'M -20,230 Q 140,200 260,220 T 420,210',
+      'M -20,280 Q 160,260 280,270 T 420,260'
+    ];
+    paths.forEach(function(d){
+      const p = document.createElementNS(svgNS,'path');
+      p.setAttribute('d',d);
+      svg.appendChild(p);
+    });
+    bg.appendChild(svg);
+  }catch(e){}
+}
+
+/* ===== TECTONIC SHAKE (Efek #7) ===== */
+function tectonicShakeEffect(){
+  try{
+    const panel = document.getElementById('question-panel');
+    if(!panel) return;
+    panel.classList.add('tectonic-shake');
+    const fault = document.createElement('div');
+    fault.className = 'fault-line';
+    panel.appendChild(fault);
+    setTimeout(function(){
+      panel.classList.remove('tectonic-shake');
+      fault.remove();
+    },600);
+  }catch(e){}
+}
+
+/* ===== WAYPOINT TRAIL (Efek #8) ===== */
+function renderWaypointTrail(){
+  try{
+    const trail = document.getElementById('waypoint-trail');
+    const txt = document.getElementById('waypoint-text');
+    if(!trail) return;
+    const total = (currentQuestions && currentQuestions.length) ? currentQuestions.length : 15;
+    trail.innerHTML = '';
+    for(let i=0;i<total;i++){
+      const dot = document.createElement('div');
+      dot.className = 'waypoint-dot';
+      dot.id = 'wp-dot-'+i;
+      trail.appendChild(dot);
+      if(i < total-1){
+        const line = document.createElement('div');
+        line.className = 'waypoint-line';
+        line.id = 'wp-line-'+i;
+        trail.appendChild(line);
+      }
+    }
+    if(txt) txt.textContent = 'Soal '+(currentQuestionIndex+1)+' / '+total;
+    updateWaypointTrail();
+  }catch(e){}
+}
+function updateWaypointTrail(){
+  try{
+    const total = (currentQuestions && currentQuestions.length) ? currentQuestions.length : 15;
+    for(let i=0;i<total;i++){
+      const dot = document.getElementById('wp-dot-'+i);
+      const line = document.getElementById('wp-line-'+i);
+      if(!dot) continue;
+      dot.className = 'waypoint-dot';
+      if(i < currentQuestionIndex){
+        const hist = userAnswersHistory[i];
+        if(hist && hist.isSkipped) dot.classList.add('skipped');
+        else dot.classList.add('done');
+      } else if(i === currentQuestionIndex){
+        dot.classList.add('active');
+      }
+      if(line){
+        line.className = 'waypoint-line';
+        if(i < currentQuestionIndex) line.classList.add('done');
+      }
+    }
+    const txt = document.getElementById('waypoint-text');
+    if(txt) txt.textContent = 'Soal '+(currentQuestionIndex+1)+' / '+total;
+  }catch(e){}
+}
+
+/* ===== STAMP ACHIEVEMENT (Efek #9) ===== */
+function showAchievementStamp(){
+  try{
+    const stamp = document.getElementById('achievement-stamp');
+    if(!stamp) return;
+    stamp.classList.remove('show');
+    void stamp.offsetWidth;
+    stamp.classList.add('show');
+    sfx('stamp');
+    setTimeout(function(){ stamp.classList.remove('show'); }, 3500);
+  }catch(e){}
+}
 
 (function(){
   try{
@@ -981,9 +1345,6 @@ const questionsBankFull = [
     topic:"SIG",keyPoint:"SIG = HW + SW + data + SDM.",difficulty:"Sedang" }
 ];
 
-/* ============================================================
-   FUNGSI UTAMA: ACAK SOAL + ACAK PILIHAN
-   ============================================================ */
 function shuffleArray(arr){
   const a = arr.slice();
   for(let i = a.length - 1; i > 0; i--){
@@ -1025,11 +1386,9 @@ let lifelinesUsed={'5050':false,'hint':false,'skip':false};
 let selectedAnswerIndex=null;let answerLocked=false;
 const STORAGE_PREFIX="kuis_geo_cyber_v2_";
 
-/* ====== PENGATURAN NILAI MINIMUM & PENGIRIMAN ====== */
 let scoreSent = false;
 const MIN_SCORE_TO_PASS = 75;
 const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyV__yZS4bzttuspA2DwcZWPKM4P9ya3pksmJm9L5DfA9aERS9pm2ETWric1T7nnMq6bw/exec';
-/* ⬆️ GANTI URL APPS SCRIPT MILIKMU ⬆️ */
 
 window.addEventListener('DOMContentLoaded',function(){
   try{
@@ -1102,7 +1461,9 @@ function startGame(){
     selectedAnswerIndex=null;answerLocked=false;
     setText("player-display-name",studentName);
     hide("start-screen");hide("result-screen");show("game-screen");
-    resetLifelineButtons();startTimer();renderPrizeLadder();loadQuestion();
+    resetLifelineButtons();startTimer();renderPrizeLadder();
+    renderWaypointTrail();drawContourLines();
+    loadQuestion();
   }catch(e){console.error("startGame error:",e);alert("Terjadi kesalahan: "+e.message);}
 }
 
@@ -1167,6 +1528,8 @@ function getDifficultyClass(diff){
 function loadQuestion(){
   try{
     updatePrizeLadderHighlight();
+    updateWaypointTrail();
+    drawContourLines();
     selectedAnswerIndex=null;answerLocked=false;
     const qData=currentQuestions[currentQuestionIndex];
     if(!qData){console.error("Question not found");return;}
@@ -1214,8 +1577,12 @@ function selectAnswer(index){
     sfx('select');selectedAnswerIndex=index;
     document.querySelectorAll('#answers-container button').forEach(function(b){b.classList.remove('opt-selected');});
     const sb=document.getElementById("opt-btn-"+index);
-    if(sb)sb.classList.add('opt-selected');
+    if(sb){
+      sb.classList.add('opt-selected');
+      gpsPinDrop(sb); // Efek #2
+    }
     show("lock-btn-container");
+    haptic(20);
   }catch(e){}
 }
 
@@ -1240,7 +1607,9 @@ function useHint(){
   try{
     if(lifelinesUsed['hint']||answerLocked)return;
     const qData=currentQuestions[currentQuestionIndex];if(!qData)return;
-    sfx('hint');lifelinesUsed['hint']=true;updateLifelineButtons();
+    // Radar Sweep (Efek #3)
+    radarSweepEffect();
+    lifelinesUsed['hint']=true;updateLifelineButtons();
     const topic=qData.topic||"Geografi";const difficulty=qData.difficulty||"Mudah";
 
     const topicHints = {
@@ -1291,6 +1660,7 @@ function confirmSkip(){
     sfx('skip');lifelinesUsed['skip']=true;hide("skip-modal");
     userAnswersHistory.push({questionNum:currentQuestionIndex+1,questionText:qData.q,userAnswer:"— Dilewati —",correctAnswer:qData.options[qData.correct],explanation:qData.explanation,topic:qData.topic,keyPoint:qData.keyPoint,difficulty:qData.difficulty,isCorrect:false,isSkipped:true});
     skippedCount++;streak=0;hide("streak-container");
+    updateWaypointTrail();
     showToast("⏭️ Soal dilewati — lanjut berikutnya");
     setTimeout(function(){currentQuestionIndex++;if(currentQuestionIndex<currentQuestions.length){loadQuestion();}else{endGame();}},900);
   }catch(e){}
@@ -1323,6 +1693,8 @@ function confirmAnswer(){
     if(isCorrect){
       if(sb)sb.classList.add('opt-correct');
       showRevealOverlay("BENAR","benar");sfx('correct');
+      compassNeedleEffect(); // Efek #1
+      haptic([30,40,30]);
       correctAnswersCount++;streak++;
       if(streak>maxStreak)maxStreak=streak;
       const earnedXP=100+streak*20;xpGained+=earnedXP;
@@ -1332,6 +1704,8 @@ function confirmAnswer(){
       if(sb)sb.classList.add('opt-wrong');
       if(cb)cb.classList.add('opt-correct');
       showRevealOverlay("SALAH","salah");sfx('wrong');
+      tectonicShakeEffect(); // Efek #7
+      haptic([50,80,50]);
       wrongAnswersCount++;streak=0;hide("streak-container");
       setTimeout(function(){hideRevealOverlay();showFeedbackModal(qData,false,selectedAnswerIndex,0);},1600);
     }
@@ -1466,6 +1840,11 @@ function endGame(){
       }catch(e){}
     }
 
+    // ===== STAMP ACHIEVEMENT (Efek #9) =====
+    if(isNewRecord || score >= 75){
+      setTimeout(showAchievementStamp, 500);
+    }
+
     show("record-banner");
     const recordTextEl = document.getElementById("record-text");
     const recordSubEl  = document.getElementById("record-subtext");
@@ -1525,15 +1904,14 @@ function endGame(){
 
     if(isNewRecord || score>=70){ sfx('win'); triggerConfetti(true); }
     else if(score>=50){ triggerConfetti(false); }
+    haptic([100,50,100]);
 
-    /* ===== CEK SYARAT MINIMUM 75 ===== */
     const sendBtn = document.getElementById('btnSendScore');
     const warning = document.getElementById('mustRepeatWarning');
     const sendStatus = document.getElementById('sendStatus');
     const restartBtn = document.getElementById('btn-restart');
 
     if (score >= MIN_SCORE_TO_PASS) {
-      // ✅ LULUS — boleh kirim
       if (sendBtn) {
         sendBtn.classList.remove('is-hidden');
         sendBtn.disabled = false;
@@ -1551,7 +1929,6 @@ function endGame(){
       }
       scoreSent = false;
     } else {
-      // ❌ BELUM LULUS — wajib ulang, tombol kirim disembunyikan
       if (sendBtn) sendBtn.classList.add('is-hidden');
       if (warning) {
         warning.classList.remove('is-hidden');
@@ -1565,7 +1942,6 @@ function endGame(){
       }
       scoreSent = true;
     }
-    /* ===== SELESAI CEK ===== */
 
     updateBestScoreSummary();
   }catch(e){console.error('endGame error:',e);}
@@ -1631,11 +2007,12 @@ function restartGame(){
     currentQuestionIndex=0;score=0;correctAnswersCount=0;wrongAnswersCount=0;skippedCount=0;
     xpGained=0;streak=0;maxStreak=0;secondsElapsed=0;userAnswersHistory=[];
     selectedAnswerIndex=null;answerLocked=false;
-    resetLifelineButtons();startTimer();renderPrizeLadder();loadQuestion();
+    resetLifelineButtons();startTimer();renderPrizeLadder();
+    renderWaypointTrail();drawContourLines();
+    loadQuestion();
   }catch(e){}
 }
 
-/* ========== KIRIM NILAI KE GOOGLE SHEETS ========== */
 async function sendScoreToSheet(){
   const total = currentQuestions.length || 15;
   const accuracy = Math.round((correctAnswersCount / total) * 100);
@@ -1718,7 +2095,6 @@ async function sendScoreToSheet(){
   }
 }
 
-/* ========== RESET UI PENGIRIMAN ========== */
 function resetSendUI(){
   scoreSent = false;
   const sb = document.getElementById('btnSendScore');
@@ -1740,6 +2116,8 @@ function resetSendUI(){
     rb.style.background = 'linear-gradient(135deg,#0f5132,#2ecc71)';
     rb.classList.remove('must-repeat');
   }
+  const stamp = document.getElementById('achievement-stamp');
+  if (stamp) stamp.classList.remove('show');
 }
 
 function returnToMainScreen(){
