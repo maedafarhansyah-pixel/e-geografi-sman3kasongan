@@ -44,6 +44,8 @@ try {
   @keyframes fadeInBackdrop{from{opacity:0}to{opacity:1}}
   @keyframes barShine{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
   @keyframes softBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+  @keyframes pulseRed{0%,100%{box-shadow:0 8px 22px rgba(192,57,43,.4)}50%{box-shadow:0 14px 36px rgba(192,57,43,.7)}}
+  @keyframes learnPulse{0%,100%{box-shadow:0 8px 22px rgba(15,81,50,.4)}50%{box-shadow:0 14px 36px rgba(46,204,113,.65)}}
 
   :root {
     --primary: #0f5132;
@@ -351,6 +353,44 @@ try {
     .reveal-badge{font-size:1.5rem;padding:14px 28px;letter-spacing:2px}
     .lock-btn{padding:14px 28px;font-size:.82rem;letter-spacing:1.8px}
   }
+
+  /* ===== PANEL WAJIB ULANG ===== */
+  #mustRepeatWarning{
+    animation: fadeUp .6s cubic-bezier(.2,.9,.3,1.3) both;
+  }
+  #mustRepeatWarning::before{
+    content:''; position:absolute; top:0; left:8%; right:8%; height:3px;
+    background: linear-gradient(90deg, transparent, #c0392b, #e74c3c, #c0392b, transparent);
+    background-size: 200% 100%;
+    animation: borderFlow 3s linear infinite;
+  }
+  #btnSendScore{
+    animation: fadeUp .5s cubic-bezier(.2,.9,.3,1.3) both;
+  }
+  #btnSendScore:not(:disabled):hover{
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 14px 36px rgba(212,160,23,.65) !important;
+  }
+  #btnSendScore:not(:disabled):active{
+    transform: translateY(0) scale(.98);
+  }
+  #btn-restart.must-repeat{
+    animation: pulseRed 2s ease-in-out infinite;
+  }
+
+  /* ===== TOMBOL BELAJAR KEMBALI ===== */
+  #btnLearnAgain {
+    animation: learnPulse 2.2s ease-in-out infinite;
+    text-decoration: none;
+  }
+  #btnLearnAgain:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 16px 40px rgba(46,204,113,.7) !important;
+    background: linear-gradient(135deg,#0f5132,#2ecc71,#1e7a4a) !important;
+  }
+  #btnLearnAgain:active {
+    transform: translateY(0) scale(.98);
+  }
 </style>
 </head>
 <body>
@@ -444,6 +484,10 @@ try {
       <div class="flex items-center gap-3">
         <span class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-black shrink-0" style="background: linear-gradient(135deg, #0f5132, #2ecc71); color:#fff;">3</span>
         <span style="color:#0a1f14; font-weight:700;">Gunakan <b style="color:#0f5132;">3 bantuan</b>: 50:50, Petunjuk, Lewati</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-black shrink-0" style="background: linear-gradient(135deg, #d4a017, #f1c40f); color:#fff;">4</span>
+        <span style="color:#0a1f14; font-weight:700;">Skor minimal <b style="color:#c0392b;">75</b> untuk bisa kirim nilai — kalau belum, <b style="color:#c0392b;">wajib ulang!</b></span>
       </div>
     </div>
 
@@ -643,6 +687,49 @@ try {
       </div>
     </div>
 
+    <!-- ⬇️ PANEL WAJIB ULANG (muncul kalau skor < 75) ⬇️ -->
+    <div id="mustRepeatWarning" class="is-hidden glass-panel p-5 md:p-6 rounded-2xl text-center"
+         style="border: 2px solid rgba(192,57,43,.5); background: linear-gradient(135deg, rgba(192,57,43,.10), rgba(127,29,29,.05));">
+      <div class="text-5xl md:text-6xl mb-2">🚫</div>
+      <div class="text-base md:text-xl font-black mb-2" style="color:#a04400;">
+        NILAI BELUM MEMENUHI SYARAT
+      </div>
+      <div class="text-sm md:text-base font-bold leading-relaxed mb-2" style="color:#7a1f16;">
+        Skormu <span id="mustRepeatScore" class="font-mono font-black text-xl md:text-2xl" style="color:#c0392b;">0</span> — belum mencapai batas minimum <b style="color:#c0392b;">75</b>.
+      </div>
+      <div class="text-sm md:text-base font-black leading-relaxed" style="color:#c0392b;">
+        📚 Pelajari kembali materi <b>Peta &amp; Pemetaan</b>,<br class="md:hidden">
+        lalu <b>WAJIB MENGULANG</b> kuis ini! 💪
+      </div>
+
+      <!-- ⬇️ TOMBOL BELAJAR KEMBALI ⬇️ -->
+      <a id="btnLearnAgain"
+         href="https://maedafarhansyah-pixel.github.io/e-geografi-sman3kasongan//peta.html"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="mt-5 w-full font-black p-3.5 md:p-4 rounded-2xl text-sm md:text-base cursor-pointer border-2 transition-all block"
+         style="background: linear-gradient(135deg,#0f5132,#1e7a4a,#2ecc71); color:#ffffff; border-color: rgba(255,255,255,.55); box-shadow: 0 8px 22px rgba(15,81,50,.4); text-align: center; text-decoration: none;">
+        📖 BELAJAR KEMBALI MATERI PETA &amp; PEMETAAN
+      </a>
+
+      <div class="text-[10px] md:text-xs italic font-semibold mt-3" style="color:#7a1f16;">
+        💡 Buka materi di tab baru, lalu kembali ke sini untuk ulangi kuis
+      </div>
+    </div>
+
+    <!-- ⬇️ TOMBOL KIRIM NILAI (muncul kalau skor ≥ 75) ⬇️ -->
+    <button id="btnSendScore" type="button"
+      class="is-hidden w-full font-black p-4 md:p-5 rounded-2xl text-sm md:text-base cursor-pointer border-2 transition-all"
+      style="background: linear-gradient(135deg,#d4a017,#f1c40f); color:#ffffff; border-color: rgba(255,255,255,.55); box-shadow: 0 8px 22px rgba(212,160,23,.5)"
+      aria-label="Kirim nilai ke guru">
+      📤 KIRIM NILAI KE GURU
+    </button>
+
+    <div id="sendStatus" class="is-hidden text-center text-xs md:text-sm font-black py-3 px-4 rounded-2xl"
+         style="background: rgba(46,204,113,.10); color:#0f5132; border: 1.5px solid rgba(15,81,50,.25)">
+      ⏳ Mengirim nilai...
+    </div>
+
     <div class="grid grid-cols-2 gap-2 md:grid-cols-4">
       <button type="button" id="btn-restart" class="font-black p-3 md:p-4 rounded-xl text-xs md:text-sm cursor-pointer shadow-lg" style="background: linear-gradient(135deg,#0f5132,#2ecc71); color:#fff;">🔄 MAIN LAGI</button>
       <button type="button" id="btn-copy" class="font-black p-3 md:p-4 rounded-xl text-xs md:text-sm cursor-pointer border-2" style="background: #fff; color:#0f5132; border-color: rgba(15,81,50,.25);">📋 <span id="copy-btn-text">SALIN</span></button>
@@ -741,7 +828,6 @@ function safeConfetti(o){try{if(typeof confetti==='function')confetti(o);}catch(
 
 /* ============================================================
    BANK SOAL — 30 SOAL
-   100% DIAMBIL DARI MATERI peta.html
    ============================================================ */
 const questionsBankFull = [
   { q:"Secara etimologis, kata 'peta' berasal dari bahasa Inggris yaitu...",
@@ -898,8 +984,6 @@ const questionsBankFull = [
 /* ============================================================
    FUNGSI UTAMA: ACAK SOAL + ACAK PILIHAN
    ============================================================ */
-
-/* Fisher-Yates shuffle — acak array secara merata */
 function shuffleArray(arr){
   const a = arr.slice();
   for(let i = a.length - 1; i > 0; i--){
@@ -909,17 +993,12 @@ function shuffleArray(arr){
   return a;
 }
 
-/* Ambil 15 soal acak + acak pilihan jawaban setiap soal.
-   Kunci jawaban (correct) DIHITUNG ULANG sesuai posisi baru. */
 function getRandomQuestions(){
-  /* 1) Acak seluruh bank soal, ambil 15 pertama */
   const selected = shuffleArray(questionsBankFull).slice(0, 15);
-
-  /* 2) Untuk tiap soal, acak pilihan jawabannya */
   return selected.map(function(q){
-    const correctText = q.options[q.correct];      // teks jawaban benar asli
-    const shuffled = shuffleArray(q.options);      // acak pilihan
-    const newCorrectIndex = shuffled.indexOf(correctText); // cari posisi baru
+    const correctText = q.options[q.correct];
+    const shuffled = shuffleArray(q.options);
+    const newCorrectIndex = shuffled.indexOf(correctText);
     return {
       q: q.q,
       options: shuffled,
@@ -946,6 +1025,12 @@ let lifelinesUsed={'5050':false,'hint':false,'skip':false};
 let selectedAnswerIndex=null;let answerLocked=false;
 const STORAGE_PREFIX="kuis_geo_cyber_v2_";
 
+/* ====== PENGATURAN NILAI MINIMUM & PENGIRIMAN ====== */
+let scoreSent = false;
+const MIN_SCORE_TO_PASS = 75;
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyV__yZS4bzttuspA2DwcZWPKM4P9ya3pksmJm9L5DfA9aERS9pm2ETWric1T7nnMq6bw/exec';
+/* ⬆️ GANTI URL APPS SCRIPT MILIKMU ⬆️ */
+
 window.addEventListener('DOMContentLoaded',function(){
   try{
     const st=document.getElementById('sound-toggle');
@@ -965,6 +1050,7 @@ window.addEventListener('DOMContentLoaded',function(){
     bind('btn-menu',returnToMainScreen);
     bind('btn-close-review',closeReviewModal);
     bind('btn-close-review-2',closeReviewModal);
+    bind('btnSendScore',function(){sendScoreToSheet();});
     bind('lifeline-5050',function(){useFiftyFifty();});
     bind('lifeline-hint',function(){useHint();});
     bind('lifeline-skip',function(){openSkipModal();});
@@ -1003,6 +1089,7 @@ function updateBestScoreSummary(){
 function startGame(){
   try{
     sfx('click');
+    resetSendUI();
     const ni=document.getElementById("student-name");
     studentName=(ni?ni.value:"").trim();
     if(!studentName){alert("Mohon isi nama terlebih dahulu.");return;}
@@ -1095,12 +1182,10 @@ function loadQuestion(){
     const prog=document.getElementById("q-progress");
     if(prog)prog.style.width=((currentQuestionIndex)/15*100)+"%";
     const c=document.getElementById("answers-container");if(!c)return;c.innerHTML="";
-    /* Pilihan sudah dalam keadaan teracak dari getRandomQuestions() */
     qData.options.forEach(function(opt,index){
       const btn=document.createElement("button");
       btn.type="button";btn.id="opt-btn-"+index;
       btn.className="opt-btn overflow-safe";
-      /* Label A, B, C, D selalu tetap urut (A dulu, B, C, D) — isi teksnya yang diacak */
       const label = ["A","B","C","D"][index];
       btn.textContent = label + ". " + opt;
       btn.addEventListener("click",function(){selectAnswer(index);});
@@ -1441,8 +1526,49 @@ function endGame(){
     if(isNewRecord || score>=70){ sfx('win'); triggerConfetti(true); }
     else if(score>=50){ triggerConfetti(false); }
 
+    /* ===== CEK SYARAT MINIMUM 75 ===== */
+    const sendBtn = document.getElementById('btnSendScore');
+    const warning = document.getElementById('mustRepeatWarning');
+    const sendStatus = document.getElementById('sendStatus');
+    const restartBtn = document.getElementById('btn-restart');
+
+    if (score >= MIN_SCORE_TO_PASS) {
+      // ✅ LULUS — boleh kirim
+      if (sendBtn) {
+        sendBtn.classList.remove('is-hidden');
+        sendBtn.disabled = false;
+        sendBtn.innerHTML = '📤 KIRIM NILAI KE GURU';
+        sendBtn.style.background = 'linear-gradient(135deg,#d4a017,#f1c40f)';
+        sendBtn.style.opacity = '1';
+        sendBtn.style.cursor = 'pointer';
+      }
+      if (warning) warning.classList.add('is-hidden');
+      if (sendStatus) sendStatus.classList.add('is-hidden');
+      if (restartBtn) {
+        restartBtn.innerHTML = '🔄 MAIN LAGI';
+        restartBtn.style.background = 'linear-gradient(135deg,#0f5132,#2ecc71)';
+        restartBtn.classList.remove('must-repeat');
+      }
+      scoreSent = false;
+    } else {
+      // ❌ BELUM LULUS — wajib ulang, tombol kirim disembunyikan
+      if (sendBtn) sendBtn.classList.add('is-hidden');
+      if (warning) {
+        warning.classList.remove('is-hidden');
+        setText('mustRepeatScore', score);
+      }
+      if (sendStatus) sendStatus.classList.add('is-hidden');
+      if (restartBtn) {
+        restartBtn.innerHTML = '🔄 ULANGI KUIS (WAJIB)';
+        restartBtn.style.background = 'linear-gradient(135deg,#c0392b,#e74c3c)';
+        restartBtn.classList.add('must-repeat');
+      }
+      scoreSent = true;
+    }
+    /* ===== SELESAI CEK ===== */
+
     updateBestScoreSummary();
-  }catch(e){}
+  }catch(e){console.error('endGame error:',e);}
 }
 function triggerConfetti(isRecord){
   const colors=['#2ecc71','#1e7a4a','#0f5132','#f1c40f','#e67e22'];
@@ -1456,7 +1582,8 @@ function copyFormattedResult(){
   try{
     sfx('click');
     const earnedTitle=calculateTitle(score);const grade=calculateGrade(score);
-    const txt="HASIL KUIS INTERAKTIF GEOGRAFI\nSekolah: SMAN 3 Kasongan\nKelas: X / Fase E\nGuru Pengampu: SYAHRANI, S.Pd.\nNIP. 19751217200501 1 016\nNama: "+studentName+"\nMateri: Peta & Pemetaan\n━━━━━━━━━━━━━━━━━━━━\nJawaban Benar: "+correctAnswersCount+"/15\nJawaban Salah: "+wrongAnswersCount+"\nDilewati: "+skippedCount+"\nSkor: "+score+"\nGrade: "+grade+"\nXP: "+xpGained.toLocaleString('id-ID')+"\nStreak terbaik: "+maxStreak+"\nPercobaan: "+attemptCount+"\nGelar: "+earnedTitle+"\n━━━━━━━━━━━━━━━━━━━━";
+    const statusText = score >= MIN_SCORE_TO_PASS ? "✓ LULUS (boleh kirim)" : "✗ WAJIB ULANG (min "+MIN_SCORE_TO_PASS+")";
+    const txt="HASIL KUIS INTERAKTIF GEOGRAFI\nSekolah: SMAN 3 Kasongan\nKelas: X / Fase E\nGuru Pengampu: SYAHRANI, S.Pd.\nNIP. 19751217200501 1 016\nNama: "+studentName+"\nMateri: Peta & Pemetaan\n━━━━━━━━━━━━━━━━━━━━\nJawaban Benar: "+correctAnswersCount+"/15\nJawaban Salah: "+wrongAnswersCount+"\nDilewati: "+skippedCount+"\nSkor: "+score+"\nGrade: "+grade+"\nStatus: "+statusText+"\nXP: "+xpGained.toLocaleString('id-ID')+"\nStreak terbaik: "+maxStreak+"\nPercobaan: "+attemptCount+"\nGelar: "+earnedTitle+"\n━━━━━━━━━━━━━━━━━━━━";
     function onSuccess(){
       const cbt=document.getElementById("copy-btn-text");
       if(cbt){cbt.textContent="TERSALIN! ✓";setTimeout(function(){cbt.textContent="SALIN";},2000);}
@@ -1497,6 +1624,7 @@ function closeReviewModal(){sfx('click');hide("review-modal");}
 function restartGame(){
   try{
     sfx('click');
+    resetSendUI();
     incrementAttempt();
     hide("result-screen");show("game-screen");
     currentQuestions=getRandomQuestions();
@@ -1506,8 +1634,117 @@ function restartGame(){
     resetLifelineButtons();startTimer();renderPrizeLadder();loadQuestion();
   }catch(e){}
 }
+
+/* ========== KIRIM NILAI KE GOOGLE SHEETS ========== */
+async function sendScoreToSheet(){
+  const total = currentQuestions.length || 15;
+  const accuracy = Math.round((correctAnswersCount / total) * 100);
+
+  if (score < MIN_SCORE_TO_PASS) {
+    const w = document.getElementById('mustRepeatWarning');
+    if (w) {
+      w.classList.remove('is-hidden');
+      setText('mustRepeatScore', score);
+    }
+    return;
+  }
+  if (scoreSent) return;
+  scoreSent = true;
+
+  const sendBtn = document.getElementById('btnSendScore');
+  if (sendBtn) {
+    sendBtn.disabled = true;
+    sendBtn.innerHTML = '⏳ MENGIRIM...';
+    sendBtn.style.opacity = '0.75';
+    sendBtn.style.cursor = 'wait';
+  }
+
+  const earnedTitle = calculateTitle(score);
+  const grade = calculateGrade(score);
+
+  const payload = {
+    nama: studentName,
+    materi: 'Peta & Pemetaan',
+    totalScore: score,
+    correct: correctAnswersCount,
+    wrong: wrongAnswersCount,
+    skipped: skippedCount,
+    xp: xpGained,
+    maxStreak: maxStreak,
+    grade: grade,
+    achievement: earnedTitle,
+    attempt: attemptCount,
+    durasi: Math.floor(secondsElapsed/60) + 'm ' + (secondsElapsed%60) + 's'
+  };
+
+  const statusEl = document.getElementById('sendStatus');
+  if (statusEl) {
+    statusEl.classList.remove('is-hidden');
+    statusEl.innerHTML = '⏳ Mengirim nilai ke guru...';
+    statusEl.style.color = '#0f5132';
+    statusEl.style.background = 'rgba(46,204,113,.10)';
+  }
+
+  try {
+    await fetch(SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    });
+    if (statusEl) {
+      statusEl.innerHTML = '✅ Nilai berhasil dikirim ke guru';
+      statusEl.style.color = '#0f5132';
+      statusEl.style.background = 'rgba(46,204,113,.18)';
+    }
+    if (sendBtn) {
+      sendBtn.innerHTML = '✅ NILAI TERKIRIM';
+      sendBtn.style.background = 'linear-gradient(135deg,#0f5132,#2ecc71)';
+    }
+  } catch (e) {
+    console.error('Gagal kirim:', e);
+    scoreSent = false;
+    if (statusEl) {
+      statusEl.innerHTML = '⚠️ Gagal kirim nilai. Periksa koneksi internet.';
+      statusEl.style.color = '#c0392b';
+      statusEl.style.background = 'rgba(192,57,43,.10)';
+    }
+    if (sendBtn) {
+      sendBtn.disabled = false;
+      sendBtn.innerHTML = '📤 COBA KIRIM LAGI';
+      sendBtn.style.opacity = '1';
+      sendBtn.style.cursor = 'pointer';
+    }
+  }
+}
+
+/* ========== RESET UI PENGIRIMAN ========== */
+function resetSendUI(){
+  scoreSent = false;
+  const sb = document.getElementById('btnSendScore');
+  if (sb) {
+    sb.classList.add('is-hidden');
+    sb.disabled = false;
+    sb.innerHTML = '📤 KIRIM NILAI KE GURU';
+    sb.style.background = 'linear-gradient(135deg,#d4a017,#f1c40f)';
+    sb.style.opacity = '1';
+    sb.style.cursor = 'pointer';
+  }
+  const w = document.getElementById('mustRepeatWarning');
+  if (w) w.classList.add('is-hidden');
+  const ss = document.getElementById('sendStatus');
+  if (ss) ss.classList.add('is-hidden');
+  const rb = document.getElementById('btn-restart');
+  if (rb) {
+    rb.innerHTML = '🔄 MAIN LAGI';
+    rb.style.background = 'linear-gradient(135deg,#0f5132,#2ecc71)';
+    rb.classList.remove('must-repeat');
+  }
+}
+
 function returnToMainScreen(){
   sfx('click');
+  resetSendUI();
   hide("result-screen");hide("game-screen");show("start-screen");
   loadAttemptHistory();updateBestScoreSummary();
 }
