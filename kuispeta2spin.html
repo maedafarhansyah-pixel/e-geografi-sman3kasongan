@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#93c5fd">
+<meta name="theme-color" content="#1e7a4a">
 <title>Kuis Roda Berputar — Geografi SMAN 3 Kasongan</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -13,69 +13,107 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
 </script>
 <style>
   * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-behavior: smooth; }
 
-  /* ============ LATAR BIRU SEDANG ============ */
+  :root {
+    --primary: #1e7a4a;
+    --primary-light: #3aaa6a;
+    --primary-dark: #145b34;
+    --accent: #2ecc71;
+    --gold: #f1c40f;
+    --gold-deep: #d4a017;
+    --secondary: #e67e22;
+    --bg: #f0f7f2;
+    --card: #ffffff;
+    --text: #1a2a1f;
+    --text-light: #2d4a38;
+    --text-muted: #5a7a66;
+    --shadow: 0 12px 48px rgba(30,122,74,.12);
+    --shadow-hover: 0 24px 64px rgba(30,122,74,.20);
+  }
+
   body {
-    background: linear-gradient(160deg, #dbeafe 0%, #bfdbfe 30%, #93c5fd 65%, #60a5fa 100%);
-    background-attachment: fixed;
-    color:#0f172a; min-height:100vh; margin:0;
-    font-family:'Inter',system-ui,sans-serif;
-    font-size: 15px; line-height: 1.5;
+    background: #f0f7f2;
+    color: var(--text);
+    min-height: 100vh; margin: 0;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 15px; line-height: 1.6;
     overflow-x: hidden; position: relative;
+    font-weight: 500;
   }
+
   body::before {
-    content:''; position: fixed; inset: -20%;
+    content: ''; position: fixed; inset: 0; z-index: -2;
     background:
-      radial-gradient(circle at 20% 30%, rgba(59,130,246,.30) 0%, transparent 45%),
-      radial-gradient(circle at 80% 70%, rgba(37,99,235,.22) 0%, transparent 45%),
-      radial-gradient(circle at 50% 90%, rgba(99,102,241,.18) 0%, transparent 50%);
-    z-index: -3; animation: bgShift 24s ease-in-out infinite alternate;
+      radial-gradient(ellipse 60% 50% at 15% 10%, rgba(46,204,113,.22), transparent 60%),
+      radial-gradient(ellipse 55% 45% at 85% 25%, rgba(30,122,74,.18), transparent 65%),
+      radial-gradient(ellipse 70% 60% at 50% 100%, rgba(241,196,15,.14), transparent 70%),
+      radial-gradient(ellipse 50% 40% at 5% 85%, rgba(58,170,106,.15), transparent 70%);
+    animation: meshShift 22s ease-in-out infinite alternate;
   }
-  @keyframes bgShift { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(3%,-2%) scale(1.1); } }
+  @keyframes meshShift {
+    0%   { transform: scale(1) translate(0,0); }
+    50%  { transform: scale(1.08) translate(-2%, 1.5%); }
+    100% { transform: scale(1.05) translate(2%, -1.5%); }
+  }
+
   body::after {
-    content:''; position: fixed; inset:0;
+    content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    opacity: 0.5;
     background-image:
-      linear-gradient(rgba(30,64,175,.09) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(30,64,175,.09) 1px, transparent 1px);
-    background-size: 44px 44px; z-index: -2; pointer-events: none;
-    mask-image: radial-gradient(ellipse at center, #000 30%, transparent 80%);
-    -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 80%);
+      repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(30,122,74,.030) 40px, rgba(30,122,74,.030) 41px),
+      repeating-linear-gradient(-45deg, transparent, transparent 40px, rgba(30,122,74,.030) 40px, rgba(30,122,74,.030) 41px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse at center, #000 40%, transparent 90%);
+    -webkit-mask-image: radial-gradient(ellipse at center, #000 40%, transparent 90%);
   }
+
   .is-hidden{display:none!important}
 
   .glass-panel{
-    background: linear-gradient(160deg, rgba(255,255,255,.9), rgba(224,242,254,.85));
-    backdrop-filter: blur(18px) saturate(150%);
-    -webkit-backdrop-filter: blur(18px) saturate(150%);
-    border: 1px solid rgba(37,99,235,.28);
+    background: linear-gradient(160deg, rgba(255,255,255,.92), rgba(240,247,242,.88));
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid rgba(30,122,74,.14);
     box-shadow:
-      0 1px 0 rgba(255,255,255,.85) inset,
-      0 12px 40px rgba(30,64,175,.16),
-      0 4px 12px rgba(30,64,175,.1);
-    border-radius: 20px;
+      0 1px 0 rgba(255,255,255,.9) inset,
+      0 12px 44px rgba(30,122,74,.14),
+      0 4px 12px rgba(30,122,74,.08);
+    border-radius: 22px;
     position: relative; overflow: hidden;
+    animation: panelIn .8s cubic-bezier(.2,.9,.3,1.2) both;
+  }
+  @keyframes panelIn {
+    0% { opacity: 0; transform: translateY(24px) scale(.97); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
   }
   .glass-panel::before{
-    content:''; position: absolute; top:0; left:10%; right:10%; height:1px;
-    background: linear-gradient(90deg, transparent, rgba(37,99,235,.55), transparent);
+    content:''; position: absolute; top:0; left:8%; right:8%; height:2px;
+    background: linear-gradient(90deg, transparent, var(--accent), var(--gold), var(--primary), transparent);
+    background-size: 200% 100%;
+    animation: borderFlow 4s linear infinite;
+    opacity: .85;
+  }
+  @keyframes borderFlow {
+    0%   { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
   }
 
   header {
-    background: linear-gradient(90deg, rgba(255,255,255,.82), rgba(191,219,254,.82), rgba(255,255,255,.82)) !important;
-    border-color: rgba(37,99,235,.3) !important;
-    box-shadow: 0 2px 16px rgba(30,64,175,.12);
+    background: linear-gradient(90deg, rgba(255,255,255,.85), rgba(240,247,242,.85), rgba(255,255,255,.85)) !important;
+    border-color: rgba(30,122,74,.16) !important;
+    box-shadow: 0 2px 18px rgba(30,122,74,.10);
   }
 
   .school-badge{
     display:inline-flex; align-items:center; justify-content:center;
     padding:10px 28px;
-    background: linear-gradient(135deg, rgba(251,191,36,.4), rgba(245,158,11,.22));
-    border: 2.5px solid rgba(217,119,6,.9);
+    background: linear-gradient(135deg, rgba(241,196,15,.30), rgba(212,160,23,.14));
+    border: 2.5px solid rgba(212,160,23,.85);
     border-radius: 99px;
     font-size: 1rem; font-weight: 900; letter-spacing: 3px;
     text-transform: uppercase; position: relative; overflow: hidden;
-    box-shadow: 0 6px 20px rgba(217,119,6,.35), inset 0 1px 0 rgba(255,255,255,.5);
+    box-shadow: 0 8px 26px rgba(212,160,23,.35), inset 0 1px 0 rgba(255,255,255,.6);
     white-space: nowrap;
   }
   @media (min-width:480px){
@@ -86,82 +124,102 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
   }
   .school-badge::before{
     content:''; position: absolute; top:0; left:-100%; width:100%; height:100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,.7), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.8), transparent);
     animation: badgeShine 3s ease-in-out infinite;
   }
   @keyframes badgeShine{0%{left:-100%}60%,100%{left:100%}}
 
   .school-name{
-    background: linear-gradient(135deg, #78350f 0%, #b45309 25%, #92400e 50%, #b45309 75%, #78350f 100%);
+    background: linear-gradient(135deg, #145b34 0%, #1e7a4a 25%, #2ecc71 50%, #1e7a4a 75%, #145b34 100%);
     background-size: 300% auto;
     -webkit-background-clip: text; background-clip: text; color: transparent;
     font-weight: 900; letter-spacing: 3px;
-    animation: shimmerText 3s ease-in-out infinite;
+    animation: shimmerText 4s ease-in-out infinite;
     filter: drop-shadow(0 1px 2px rgba(255,255,255,.6));
   }
   @keyframes shimmerText{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
 
   .teacher-name{
-    background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 30%, #0369a1 60%, #075985 100%);
+    background: linear-gradient(135deg, #145b34 0%, #1e7a4a 30%, #2ecc71 60%, #d4a017 100%);
     background-size: 250% auto;
     -webkit-background-clip: text; background-clip: text; color: transparent;
-    font-weight: 800; letter-spacing: 1px;
-    font-size: 0.85rem;
-    animation: shimmerText 3.5s ease-in-out infinite;
+    font-weight: 900; letter-spacing: 1px;
+    font-size: 0.9rem;
+    animation: shimmerText 4s ease-in-out infinite;
     filter: drop-shadow(0 1px 2px rgba(255,255,255,.5));
   }
-  @media (min-width:480px){ .teacher-name{ font-size: 0.95rem; } }
+  @media (min-width:480px){ .teacher-name{ font-size: 1rem; } }
   .nip-text{
-    color: #1e3a8a; font-family: monospace; font-weight: 700;
+    color: #1e7a4a; font-family: monospace; font-weight: 800;
     letter-spacing: .3px;
-    font-size: 0.68rem;
-    text-shadow: 0 1px 0 rgba(255,255,255,.5);
+    font-size: 0.7rem;
+    text-shadow: 0 1px 0 rgba(255,255,255,.6);
   }
-  @media (min-width:480px){ .nip-text{ font-size: 0.75rem; } }
+  @media (min-width:480px){ .nip-text{ font-size: 0.78rem; } }
 
   .navy-input{
-    background: linear-gradient(135deg, #ffffff, #eff6ff);
-    border: 1.5px solid rgba(37,99,235,.45); color: #0f172a;
-    transition: all .22s; width: 100%; border-radius: 12px;
-    padding: 13px 16px; font-size: 16px; font-weight: 500;
-    box-shadow: 0 2px 8px rgba(30,64,175,.08) inset;
+    background: #ffffff;
+    border: 2px solid rgba(30,122,74,.22); color: var(--text);
+    transition: all .25s ease; width: 100%; border-radius: 14px;
+    padding: 14px 18px; font-size: 16px; font-weight: 600;
+    box-shadow: 0 2px 8px rgba(30,122,74,.06) inset;
+    font-family: inherit;
   }
-  @media (min-width:640px){ .navy-input{font-size:.95rem;} }
-  .navy-input:focus{ outline:none; border-color:#1d4ed8; box-shadow: 0 0 0 4px rgba(37,99,235,.18), 0 4px 20px rgba(37,99,235,.2); background: #ffffff; }
-  .navy-input::placeholder{color: rgba(100,116,139,.7);}
+  @media (min-width:640px){ .navy-input{font-size:1rem;} }
+  .navy-input:focus{ outline:none; border-color:#2ecc71; box-shadow: 0 0 0 5px rgba(46,204,113,.18), 0 6px 22px rgba(46,204,113,.20); background: #ffffff; }
+  .navy-input::placeholder{color: rgba(90,122,102,.65); font-weight: 500;}
 
   .btn-primary{
-    background: linear-gradient(135deg,#1d4ed8 0%,#2563eb 40%,#0891b2 100%);
+    background: linear-gradient(135deg, #145b34 0%, #1e7a4a 40%, #2ecc71 100%);
+    background-size: 200% auto;
     color: #ffffff; font-weight: 900; letter-spacing: 2px;
-    padding: 15px 28px; border-radius: 14px;
-    border: 1px solid rgba(29,78,216,.65);
-    box-shadow: 0 10px 30px rgba(30,64,175,.4), 0 1px 0 rgba(255,255,255,.4) inset;
-    transition: all .22s; cursor: pointer; font-size: .92rem;
+    padding: 16px 28px; border-radius: 16px;
+    border: 2px solid rgba(255,255,255,.5);
+    box-shadow:
+      0 12px 32px rgba(30,122,74,.35),
+      0 4px 12px rgba(30,122,74,.20),
+      inset 0 2px 0 rgba(255,255,255,.4);
+    transition: all .28s cubic-bezier(.34,1.56,.64,1); cursor: pointer; font-size: .95rem;
     width: 100%; font-family: 'Space Grotesk', sans-serif; text-transform: uppercase;
     position: relative; overflow: hidden;
-    text-shadow: 0 1px 2px rgba(0,0,0,.18);
+    text-shadow: 0 1px 3px rgba(0,0,0,.28);
   }
-  @media (min-width:480px){ .btn-primary{padding:16px 32px;font-size:1rem;} }
-  .btn-primary:hover{ transform:translateY(-2px); box-shadow: 0 14px 40px rgba(30,64,175,.55); }
-  .btn-primary:active{ transform:translateY(0) scale(.98); }
+  @media (min-width:480px){ .btn-primary{padding:17px 32px;font-size:1rem;} }
+  .btn-primary:hover{
+    transform: translateY(-3px) scale(1.02);
+    background-position: 100% center;
+    box-shadow: 0 18px 46px rgba(30,122,74,.55);
+  }
+  .btn-primary:active{ transform: translateY(0) scale(.97); }
   .btn-primary::after{
     content:''; position: absolute; top:0; left:-100%; width:100%; height:100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,.45), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent);
     animation: shineBtn 2.6s ease-in-out infinite;
   }
   @keyframes shineBtn{0%{left:-100%}60%,100%{left:100%}}
 
-  /* ============ RODA ============ */
   .wheel-stage{
     position: relative; width: min(88vw, 430px); aspect-ratio: 1;
     margin: 20px auto;
-    filter: drop-shadow(0 20px 50px rgba(30,64,175,.35));
+    filter: drop-shadow(0 20px 50px rgba(30,122,74,.35));
   }
+  .wheel-stage::before{
+    content:''; position:absolute; inset: -8%;
+    border-radius: 50%;
+    background:
+      conic-gradient(from 0deg, transparent 0deg, rgba(46,204,113,.35) 60deg, transparent 120deg,
+                     transparent 180deg, rgba(241,196,15,.30) 240deg, transparent 300deg);
+    animation: auraSpin 8s linear infinite;
+    z-index: -1;
+    filter: blur(18px);
+  }
+  @keyframes auraSpin { to { transform: rotate(360deg); } }
+
   #wheelSvg{
     width: 100%; height: 100%; display: block;
     transform-origin: center center;
     will-change: transform;
-    filter: drop-shadow(0 4px 16px rgba(30,64,175,.28));
+    filter: drop-shadow(0 6px 20px rgba(30,122,74,.35));
     cursor: pointer;
     overflow: visible;
   }
@@ -171,8 +229,8 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
     width: 0; height: 0;
     border-left: 30px solid transparent;
     border-right: 30px solid transparent;
-    border-top: 56px solid #d97706;
-    filter: drop-shadow(0 4px 12px rgba(217,119,6,.6));
+    border-top: 56px solid #d4a017;
+    filter: drop-shadow(0 6px 16px rgba(212,160,23,.7));
     z-index: 5;
     animation: pointerBounce 2s ease-in-out infinite;
   }
@@ -187,14 +245,14 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
     content:''; position:absolute;
     top: -8px; left: 50%; transform: translateX(-50%);
     width: 62px; height: 10px; border-radius: 99px;
-    background: linear-gradient(90deg,#fde68a,#d97706,#fde68a);
-    box-shadow: 0 2px 10px rgba(217,119,6,.65);
+    background: linear-gradient(90deg,#fde68a,#d4a017,#fde68a);
+    box-shadow: 0 3px 12px rgba(212,160,23,.7);
   }
   .wheel-pointer::after{
     content:''; position:absolute;
     top: -22px; left: 50%; transform: translateX(-50%);
     width: 9px; height: 9px; border-radius: 50%;
-    background: #d97706; box-shadow: 0 0 16px rgba(217,119,6,.95);
+    background: #d4a017; box-shadow: 0 0 18px rgba(212,160,23,1);
   }
 
   .spin-btn{
@@ -202,26 +260,26 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
     transform: translate(-50%,-50%);
     width: 33%; aspect-ratio: 1;
     border-radius: 50%;
-    background: radial-gradient(circle at 35% 30%, #67e8f9, #22d3ee 40%, #2563eb 80%, #1e3a8a);
+    background: radial-gradient(circle at 35% 30%, #67e8f9, #2ecc71 40%, #1e7a4a 80%, #145b34);
     border: 5px solid #ffffff;
     color: #ffffff; font-family: 'Space Grotesk', sans-serif;
     font-weight: 900; letter-spacing: 1px; font-size: clamp(0.85rem, 3.4vw, 1.2rem);
     cursor: pointer;
     box-shadow:
-      0 0 0 5px rgba(103,232,249,.5),
-      0 6px 30px rgba(30,64,175,.55),
-      0 12px 34px rgba(0,0,0,.22),
+      0 0 0 5px rgba(46,204,113,.5),
+      0 0 40px rgba(46,204,113,.55),
+      0 12px 34px rgba(0,0,0,.28),
       inset 0 3px 0 rgba(255,255,255,.55);
     z-index: 4;
     transition: transform .2s ease, box-shadow .2s;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     line-height: 1.05;
     animation: spinPulse 2.4s ease-in-out infinite;
-    text-shadow: 0 1px 3px rgba(0,0,0,.35);
+    text-shadow: 0 1px 3px rgba(0,0,0,.4);
   }
   @keyframes spinPulse{
-    0%,100%{ box-shadow: 0 0 0 5px rgba(103,232,249,.5), 0 6px 30px rgba(30,64,175,.5), 0 12px 34px rgba(0,0,0,.22), inset 0 3px 0 rgba(255,255,255,.55); }
-    50%    { box-shadow: 0 0 0 9px rgba(103,232,249,.25), 0 10px 44px rgba(30,64,175,.75), 0 12px 34px rgba(0,0,0,.22), inset 0 3px 0 rgba(255,255,255,.55); }
+    0%,100%{ box-shadow: 0 0 0 5px rgba(46,204,113,.5), 0 0 40px rgba(46,204,113,.55), 0 12px 34px rgba(0,0,0,.28), inset 0 3px 0 rgba(255,255,255,.55); }
+    50%    { box-shadow: 0 0 0 9px rgba(46,204,113,.25), 0 0 64px rgba(46,204,113,.9), 0 12px 34px rgba(0,0,0,.28), inset 0 3px 0 rgba(255,255,255,.55); }
   }
   .spin-btn:hover{ transform: translate(-50%,-50%) scale(1.07); }
   .spin-btn:active{ transform: translate(-50%,-50%) scale(.95); }
@@ -231,33 +289,63 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
 
   .opt-btn{
     width: 100%; text-align: left;
-    background: linear-gradient(135deg, #ffffff, #eff6ff);
-    border: 1.5px solid rgba(37,99,235,.35);
-    border-radius: 14px; padding: 13px 15px;
-    font-size: .85rem; color: #1e293b; font-weight: 600;
-    line-height: 1.4; transition: all .22s cubic-bezier(.4,0,.2,1);
+    background: #ffffff;
+    border: 2px solid rgba(30,122,74,.14);
+    border-radius: 14px; padding: 14px 17px;
+    font-size: .88rem; color: var(--text); font-weight: 700;
+    line-height: 1.45; transition: all .25s cubic-bezier(.4,0,.2,1);
     cursor: pointer; position: relative; overflow: hidden;
-    box-shadow: 0 2px 6px rgba(30,64,175,.06);
+    box-shadow: 0 2px 6px rgba(30,122,74,.05);
+    font-family: inherit;
+    opacity: 0; transform: translateY(14px);
+    animation: optIn .5s cubic-bezier(.34,1.56,.64,1) forwards;
   }
-  @media (min-width:768px){ .opt-btn{font-size:.9rem;padding:14px 17px;} }
-  .opt-btn:hover{
-    background: linear-gradient(135deg, #dbeafe, #e0f2fe);
-    border-color: #1d4ed8;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(30,64,175,.25);
+  .opt-btn:nth-child(1){ animation-delay: .05s; }
+  .opt-btn:nth-child(2){ animation-delay: .12s; }
+  .opt-btn:nth-child(3){ animation-delay: .19s; }
+  .opt-btn:nth-child(4){ animation-delay: .26s; }
+  @keyframes optIn { to { opacity:1; transform: translateY(0); } }
+  @media (min-width:768px){ .opt-btn{font-size:.95rem;padding:15px 19px;} }
+  .opt-btn:hover:not(:disabled){
+    background: linear-gradient(135deg, rgba(46,204,113,.12), rgba(240,247,242,.9));
+    border-color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(30,122,74,.20);
   }
   .opt-btn:active{ transform: scale(.99); }
   .opt-btn:disabled{ cursor: not-allowed; }
-  .opt-correct{ background: linear-gradient(135deg,#15803d,#22c55e) !important; border-color: #166534 !important; color: #ffffff !important; box-shadow: 0 8px 24px rgba(34,197,94,.55) !important; text-shadow: 0 1px 2px rgba(0,0,0,.2); }
-  .opt-wrong{ background: linear-gradient(135deg,#b91c1c,#ef4444) !important; border-color: #991b1b !important; color: #ffffff !important; box-shadow: 0 8px 24px rgba(239,68,68,.55) !important; text-shadow: 0 1px 2px rgba(0,0,0,.2); }
+  .opt-correct{
+    background: linear-gradient(135deg,#0f5132,#2ecc71) !important;
+    border-color: #145b34 !important;
+    color: #ffffff !important;
+    box-shadow: 0 10px 28px rgba(46,204,113,.55) !important;
+    text-shadow: 0 1px 2px rgba(0,0,0,.25);
+    animation: correctPulse .7s ease;
+  }
+  @keyframes correctPulse{ 0%,100%{transform:scale(1)} 50%{transform:scale(1.02)} }
+  .opt-wrong{
+    background: linear-gradient(135deg,#991b1b,#ef4444) !important;
+    border-color: #7f1d1d !important;
+    color: #ffffff !important;
+    box-shadow: 0 10px 28px rgba(239,68,68,.5) !important;
+    text-shadow: 0 1px 2px rgba(0,0,0,.25);
+    animation: wrongShake .5s ease;
+  }
+  @keyframes wrongShake{
+    0%,100%{transform:translateX(0)}
+    20%{transform:translateX(-6px)}
+    40%{transform:translateX(6px)}
+    60%{transform:translateX(-4px)}
+    80%{transform:translateX(4px)}
+  }
 
   .cat-badge{
     display: inline-flex; align-items: center; gap: 8px;
     padding: 8px 18px; border-radius: 99px;
     font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
     font-size: .72rem;
-    box-shadow: 0 6px 20px rgba(30,64,175,.3), inset 0 1px 0 rgba(255,255,255,.35);
-    animation: catPop .5s cubic-bezier(.2,.9,.3,1.4);
+    box-shadow: 0 6px 22px rgba(30,122,74,.28), inset 0 1px 0 rgba(255,255,255,.4);
+    animation: catPop .55s cubic-bezier(.2,.9,.3,1.4);
     white-space: nowrap;
   }
   @keyframes catPop{ 0%{opacity:0;transform:scale(.6)} 60%{transform:scale(1.08)} 100%{opacity:1;transform:scale(1)} }
@@ -270,61 +358,62 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
     color: #fff;
     animation: catPop .55s .1s cubic-bezier(.2,.9,.3,1.4) both;
     white-space: nowrap;
+    border: 2px solid rgba(255,255,255,.35);
   }
-  .diff-mudah{ background: linear-gradient(135deg, #16a34a, #22c55e); box-shadow: 0 0 24px rgba(34,197,94,.55), inset 0 1px 0 rgba(255,255,255,.3); }
-  .diff-sedang{ background: linear-gradient(135deg, #d97706, #f59e0b); box-shadow: 0 0 24px rgba(245,158,11,.55), inset 0 1px 0 rgba(255,255,255,.3); }
-  .diff-sulit{ background: linear-gradient(135deg, #b91c1c, #ef4444); box-shadow: 0 0 24px rgba(239,68,68,.55), inset 0 1px 0 rgba(255,255,255,.3); }
+  .diff-mudah{ background: linear-gradient(135deg, #145b34, #2ecc71); box-shadow: 0 0 26px rgba(46,204,113,.65); }
+  .diff-sedang{ background: linear-gradient(135deg, #d4a017, #f1c40f); box-shadow: 0 0 26px rgba(241,196,15,.65); }
+  .diff-sulit{ background: linear-gradient(135deg, #991b1b, #ef4444); box-shadow: 0 0 26px rgba(239,68,68,.65); }
 
   .fb-section{
-    padding:11px 13px; border-radius:12px; margin-bottom:8px;
-    background: linear-gradient(135deg, #ffffff, #eff6ff);
-    border:1px solid rgba(37,99,235,.3);
-    box-shadow: 0 2px 6px rgba(30,64,175,.06);
+    padding:12px 14px; border-radius:14px; margin-bottom:10px;
+    background: linear-gradient(135deg, #ffffff, #f6fbf7);
+    border: 1.5px solid rgba(30,122,74,.14);
+    box-shadow: 0 3px 8px rgba(30,122,74,.05);
   }
-  .fb-section .fb-t{ font-size:.6rem; font-weight:900; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; display:flex; align-items:center; gap:6px; }
-  .fb-section .fb-b{ font-size:.8rem; line-height:1.55; color:#334155; }
+  .fb-section .fb-t{ font-size:.65rem; font-weight:900; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; display:flex; align-items:center; gap:6px; }
+  .fb-section .fb-b{ font-size:.85rem; line-height:1.6; color: var(--text-light); font-weight: 600; }
   .fb-section.why .fb-t{color:#15803d}
-  .fb-section.key .fb-t{color:#92400e}
+  .fb-section.key .fb-t{color:#b8860b}
   .fb-section.key .fb-b{
-    background: linear-gradient(90deg,rgba(251,191,36,.22),rgba(251,191,36,.06));
-    padding:9px 11px; border-radius:9px; border-left:3px solid #d97706; color:#78350f; font-weight:600;
+    background: linear-gradient(90deg,rgba(241,196,15,.18),rgba(241,196,15,.05));
+    padding:10px 13px; border-radius:10px; border-left:4px solid var(--gold-deep); color:#6d4c00; font-weight:700;
   }
 
   .stat-pill{
     display: flex; align-items: center; gap: 6px;
-    padding: 7px 12px; border-radius: 99px;
-    background: linear-gradient(135deg, #ffffff, #eff6ff);
-    border: 1px solid rgba(37,99,235,.35);
-    font-size: .72rem; font-weight: 700;
-    color: #1e293b;
-    box-shadow: 0 2px 6px rgba(30,64,175,.1);
+    padding: 8px 14px; border-radius: 99px;
+    background: linear-gradient(135deg, #ffffff, #f6fbf7);
+    border: 1.5px solid rgba(30,122,74,.20);
+    font-size: .75rem; font-weight: 800;
+    color: var(--text);
+    box-shadow: 0 3px 10px rgba(30,122,74,.10);
   }
-  .stat-pill .lbl{ color: #64748b; font-size:.62rem; text-transform:uppercase; letter-spacing:1px; }
+  .stat-pill .lbl{ color: var(--text-muted); font-size:.62rem; text-transform:uppercase; letter-spacing:1px; }
 
   #revealOverlay{ position: fixed; inset: 0; z-index: 100; display: none; align-items: center; justify-content: center; pointer-events: none; padding: 16px; }
   #revealOverlay.show{ display: flex; }
-  #revealOverlay.backdrop{ backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); background: rgba(191,219,254,.55); pointer-events: auto; animation: fadeInBackdrop .25s ease; }
+  #revealOverlay.backdrop{ backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); background: rgba(240,247,242,.75); pointer-events: auto; animation: fadeInBackdrop .25s ease; }
   @keyframes fadeInBackdrop{ from{opacity:0} to{opacity:1} }
   .reveal-badge{
     font-size: clamp(1.6rem, 6.5vw, 3.5rem); font-weight: 900;
     letter-spacing: 3px; text-transform: uppercase;
     font-family: 'Space Grotesk', sans-serif;
-    padding: 16px 36px; border-radius: 20px;
+    padding: 16px 36px; border-radius: 24px;
     text-align: center; line-height: 1.1;
     animation: revealPop .7s cubic-bezier(.34,1.56,.64,1);
   }
-  @media (min-width:480px){ .reveal-badge{ font-size: clamp(2rem,7vw,4.5rem); padding: 22px 52px; letter-spacing: 4px; border-radius: 24px; } }
+  @media (min-width:480px){ .reveal-badge{ font-size: clamp(2rem,7vw,4.5rem); padding: 22px 52px; letter-spacing: 4px; border-radius: 28px; } }
   @keyframes revealPop{ 0%{opacity:0;transform:scale(.4) rotate(-8deg)} 50%{transform:scale(1.1) rotate(2deg)} 100%{opacity:1;transform:scale(1) rotate(0)} }
   .reveal-badge.benar{
-    color:#fff; background: linear-gradient(135deg,#15803d 0%,#22c55e 50%,#4ade80 100%);
-    box-shadow: 0 0 60px rgba(34,197,94,.9), 0 0 120px rgba(34,197,94,.4), 0 16px 44px rgba(0,0,0,.3), inset 0 2px 0 rgba(255,255,255,.5);
-    text-shadow: 0 0 18px rgba(255,255,255,.9); border: 2.5px solid rgba(255,255,255,.7);
+    color:#fff; background: linear-gradient(135deg,#0f5132 0%,#1e7a4a 50%,#2ecc71 100%);
+    box-shadow: 0 0 60px rgba(46,204,113,.9), 0 0 120px rgba(46,204,113,.4), 0 16px 44px rgba(0,0,0,.3), inset 0 2px 0 rgba(255,255,255,.5);
+    text-shadow: 0 0 18px rgba(255,255,255,.9); border: 3px solid rgba(255,255,255,.7);
   }
   .reveal-badge.benar::before{ content:'✓'; display:block; font-size:.6em; margin-bottom:-.1em; animation: checkPop .5s .25s cubic-bezier(.34,1.56,.64,1) both; }
   .reveal-badge.salah{
     color:#fff; background: linear-gradient(135deg,#7f1d1d 0%,#dc2626 50%,#f87171 100%);
     box-shadow: 0 0 60px rgba(239,68,68,.9), 0 0 120px rgba(239,68,68,.4), 0 16px 44px rgba(0,0,0,.3), inset 0 2px 0 rgba(255,255,255,.5);
-    text-shadow: 0 0 18px rgba(255,255,255,.9); border: 2.5px solid rgba(255,255,255,.7);
+    text-shadow: 0 0 18px rgba(255,255,255,.9); border: 3px solid rgba(255,255,255,.7);
     animation: revealPop .7s cubic-bezier(.34,1.56,.64,1), salahShake .5s .7s ease;
   }
   .reveal-badge.salah::before{ content:'✗'; display:block; font-size:.6em; margin-bottom:-.1em; animation: checkPop .5s .25s cubic-bezier(.34,1.56,.64,1) both; }
@@ -336,15 +425,16 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
 
   .achievement-card{
     position: relative;
-    padding: 14px 16px;
-    border-radius: 16px;
+    padding: 16px 18px;
+    border-radius: 18px;
     border: 2px solid;
     overflow: hidden;
-    animation: achIn .7s cubic-bezier(.2,.9,.3,1.3);
+    animation: achIn .8s cubic-bezier(.2,.9,.3,1.3);
   }
   @keyframes achIn{
-    0%{ opacity: 0; transform: scale(.85) translateY(20px); }
-    100%{ opacity: 1; transform: scale(1) translateY(0); }
+    0%{ opacity: 0; transform: scale(.85) translateY(20px) rotate(-2deg); }
+    60%{ transform: scale(1.03) rotate(1deg); }
+    100%{ opacity: 1; transform: scale(1) translateY(0) rotate(0); }
   }
   .achievement-card::before{
     content:''; position: absolute; inset: 0;
@@ -352,72 +442,85 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
     pointer-events: none;
   }
   .ach-tier-gold{
-    background: linear-gradient(135deg, rgba(251,191,36,.28), rgba(245,158,11,.14));
-    border-color: rgba(217,119,6,.8);
-    box-shadow: 0 8px 30px rgba(217,119,6,.32), inset 0 0 30px rgba(251,191,36,.15);
+    background: linear-gradient(135deg, rgba(241,196,15,.28), rgba(212,160,23,.14));
+    border-color: rgba(212,160,23,.8);
+    box-shadow: 0 10px 34px rgba(212,160,23,.32), inset 0 0 30px rgba(241,196,15,.15);
   }
   .ach-tier-emerald{
-    background: linear-gradient(135deg, rgba(34,197,94,.25), rgba(34,197,94,.12));
-    border-color: rgba(22,163,74,.8);
-    box-shadow: 0 8px 30px rgba(34,197,94,.32), inset 0 0 30px rgba(34,197,94,.15);
+    background: linear-gradient(135deg, rgba(46,204,113,.25), rgba(46,204,113,.12));
+    border-color: rgba(30,122,74,.75);
+    box-shadow: 0 10px 34px rgba(46,204,113,.32), inset 0 0 30px rgba(46,204,113,.15);
   }
   .ach-tier-blue{
-    background: linear-gradient(135deg, rgba(37,99,235,.25), rgba(37,99,235,.12));
-    border-color: rgba(29,78,216,.8);
-    box-shadow: 0 8px 30px rgba(37,99,235,.32), inset 0 0 30px rgba(37,99,235,.15);
+    background: linear-gradient(135deg, rgba(30,122,74,.22), rgba(30,122,74,.10));
+    border-color: rgba(20,91,52,.75);
+    box-shadow: 0 10px 34px rgba(30,122,74,.30), inset 0 0 30px rgba(30,122,74,.15);
   }
   .ach-tier-violet{
-    background: linear-gradient(135deg, rgba(124,58,237,.25), rgba(124,58,237,.12));
-    border-color: rgba(109,40,217,.8);
-    box-shadow: 0 8px 30px rgba(124,58,237,.32), inset 0 0 30px rgba(124,58,237,.15);
+    background: linear-gradient(135deg, rgba(58,170,106,.25), rgba(58,170,106,.12));
+    border-color: rgba(46,204,113,.7);
+    box-shadow: 0 10px 34px rgba(58,170,106,.30), inset 0 0 30px rgba(58,170,106,.15);
   }
   .ach-tier-slate{
-    background: linear-gradient(135deg, rgba(71,85,105,.22), rgba(71,85,105,.12));
-    border-color: rgba(51,65,85,.75);
-    box-shadow: 0 8px 30px rgba(51,65,85,.32), inset 0 0 30px rgba(51,65,85,.15);
+    background: linear-gradient(135deg, rgba(90,122,102,.22), rgba(90,122,102,.12));
+    border-color: rgba(90,122,102,.75);
+    box-shadow: 0 10px 34px rgba(90,122,102,.32), inset 0 0 30px rgba(90,122,102,.15);
   }
   .ach-icon{
-    width: 52px; height: 52px; border-radius: 14px;
+    width: 56px; height: 56px; border-radius: 16px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 1.8rem; flex-shrink: 0;
-    background: rgba(255,255,255,.75);
-    border: 1px solid rgba(255,255,255,.95);
-    box-shadow: 0 4px 12px rgba(0,0,0,.1), inset 0 2px 4px rgba(255,255,255,.8);
+    font-size: 1.9rem; flex-shrink: 0;
+    background: rgba(255,255,255,.85);
+    border: 2px solid rgba(255,255,255,.95);
+    box-shadow: 0 6px 16px rgba(0,0,0,.10), inset 0 2px 4px rgba(255,255,255,.8);
+    animation: floatCard 4s ease-in-out infinite;
   }
+  @keyframes floatCard{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
 
   .cat-stat-row{
     display: flex; align-items: center; gap: 8px;
-    padding: 8px 10px; border-radius: 10px;
-    background: rgba(255,255,255,.75);
-    border: 1px solid rgba(37,99,235,.25);
+    padding: 10px 12px; border-radius: 12px;
+    background: rgba(255,255,255,.85);
+    border: 1.5px solid rgba(30,122,74,.16);
+    transition: all .3s ease;
   }
+  .cat-stat-row:hover{ transform: translateX(4px); border-color: var(--accent); }
   .cat-stat-bar{
-    flex: 1; height: 6px; border-radius: 99px;
-    background: rgba(148,163,184,.28);
+    flex: 1; height: 8px; border-radius: 99px;
+    background: rgba(30,122,74,.10);
     overflow: hidden;
   }
   .cat-stat-bar > i{
     display: block; height: 100%; border-radius: 99px;
-    transition: width 1.2s cubic-bezier(.2,.9,.3,1.2);
+    transition: width 1.4s cubic-bezier(.2,.9,.3,1.2);
+    position: relative;
   }
+  .cat-stat-bar > i::after{
+    content:''; position:absolute; inset:0;
+    background: linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);
+    animation: barShine 2.4s linear infinite;
+  }
+  @keyframes barShine { 0%{transform:translateX(-100%)} 100%{transform:translateX(100%)} }
 
   .kuis-selesai-banner{
     text-align: center;
-    padding: 20px 16px;
-    border-radius: 20px;
-    background: linear-gradient(135deg, rgba(37,99,235,.2), rgba(8,145,178,.16), rgba(124,58,237,.18));
-    border: 2px solid rgba(29,78,216,.6);
-    box-shadow: 0 12px 40px rgba(30,64,175,.3), inset 0 0 40px rgba(255,255,255,.4);
+    padding: 24px 16px;
+    border-radius: 22px;
+    background: linear-gradient(135deg, rgba(46,204,113,.20), rgba(30,122,74,.14), rgba(241,196,15,.16));
+    border: 2px solid rgba(46,204,113,.6);
+    box-shadow: 0 14px 44px rgba(30,122,74,.28), inset 0 0 40px rgba(255,255,255,.4);
     margin-bottom: 18px;
-    animation: selesaiIn .9s cubic-bezier(.2,.9,.3,1.3);
+    animation: selesaiIn 1s cubic-bezier(.2,.9,.3,1.3);
     position: relative;
     overflow: hidden;
   }
   .kuis-selesai-banner::before{
     content: ''; position: absolute; inset: 0;
-    background: radial-gradient(circle at 50% 0%, rgba(255,255,255,.4), transparent 60%);
+    background: radial-gradient(circle at 50% 0%, rgba(255,255,255,.5), transparent 60%);
     pointer-events: none;
+    animation: bannerGlow 3s ease-in-out infinite;
   }
+  @keyframes bannerGlow { 0%,100%{opacity:.6} 50%{opacity:1} }
   @keyframes selesaiIn{
     0%{ opacity: 0; transform: scale(.7) translateY(-30px); }
     60%{ transform: scale(1.05) translateY(4px); }
@@ -429,11 +532,11 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
     font-weight: 900;
     letter-spacing: 3px;
     text-transform: uppercase;
-    background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 30%, #0369a1 60%, #6d28d9 100%);
+    background: linear-gradient(135deg, #145b34 0%, #1e7a4a 30%, #2ecc71 60%, #d4a017 100%);
     background-size: 200% auto;
     -webkit-background-clip: text; background-clip: text; color: transparent;
     animation: shimmerText 3s ease-in-out infinite;
-    filter: drop-shadow(0 2px 6px rgba(30,64,175,.35));
+    filter: drop-shadow(0 2px 6px rgba(30,122,74,.4));
     line-height: 1;
     margin-bottom: 8px;
   }
@@ -443,13 +546,14 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
     font-size: 0.75rem;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: #1e40af;
+    color: var(--primary);
     font-weight: 800;
   }
   @media (min-width:480px){ .kuis-selesai-sub{ font-size: .85rem; } }
 
   .btn-home{
-    background: linear-gradient(135deg, #0891b2 0%, #2563eb 50%, #7c3aed 100%);
+    background: linear-gradient(135deg, #2ecc71 0%, #1e7a4a 50%, #145b34 100%);
+    background-size: 200% auto;
     color: #ffffff;
     font-weight: 900;
     letter-spacing: 2px;
@@ -457,39 +561,55 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
     border-radius: 16px;
     border: 2px solid rgba(255,255,255,.6);
     box-shadow:
-      0 10px 30px rgba(30,64,175,.45),
-      0 4px 12px rgba(30,64,175,.28),
-      inset 0 1px 0 rgba(255,255,255,.5);
-    transition: all .22s;
+      0 12px 32px rgba(30,122,74,.4),
+      0 4px 12px rgba(30,122,74,.28),
+      inset 0 2px 0 rgba(255,255,255,.5);
+    transition: all .28s cubic-bezier(.34,1.56,.64,1);
     cursor: pointer;
     font-size: 1rem;
     width: 100%;
     font-family: 'Space Grotesk', sans-serif;
     text-transform: uppercase;
     position: relative; overflow: hidden;
-    animation: homePulse 2s ease-in-out infinite;
-    text-shadow: 0 1px 3px rgba(0,0,0,.28);
+    animation: homePulse 2.4s ease-in-out infinite;
+    text-shadow: 0 1px 3px rgba(0,0,0,.3);
   }
   @media (min-width:480px){ .btn-home{ padding: 20px 36px; font-size: 1.15rem; letter-spacing: 3px; } }
   @keyframes homePulse{
-    0%,100% { box-shadow: 0 10px 30px rgba(30,64,175,.45), 0 4px 12px rgba(30,64,175,.28), inset 0 1px 0 rgba(255,255,255,.5); }
-    50%     { box-shadow: 0 16px 46px rgba(30,64,175,.75), 0 4px 12px rgba(30,64,175,.28), inset 0 1px 0 rgba(255,255,255,.5); }
+    0%,100% { box-shadow: 0 12px 32px rgba(30,122,74,.4), 0 4px 12px rgba(30,122,74,.28), inset 0 2px 0 rgba(255,255,255,.5); }
+    50%     { box-shadow: 0 18px 48px rgba(46,204,113,.7), 0 4px 12px rgba(30,122,74,.28), inset 0 2px 0 rgba(255,255,255,.5); }
   }
-  .btn-home:hover{ transform: translateY(-3px) scale(1.02); }
+  .btn-home:hover{ transform: translateY(-3px) scale(1.02); background-position: 100% center; }
   .btn-home:active{ transform: translateY(0) scale(.98); }
   .btn-home::after{
     content:''; position: absolute; top:0; left:-100%; width:100%; height:100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,.45), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.5), transparent);
     animation: shineBtn 2.6s ease-in-out infinite;
   }
 
   footer {
-    background: linear-gradient(90deg, rgba(255,255,255,.82), rgba(191,219,254,.82), rgba(255,255,255,.82)) !important;
-    border-color: rgba(37,99,235,.3) !important;
+    background: linear-gradient(90deg, rgba(255,255,255,.85), rgba(240,247,242,.85), rgba(255,255,255,.85)) !important;
+    border-color: rgba(30,122,74,.16) !important;
+  }
+
+  .float-dot{
+    position: fixed; width: 8px; height: 8px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(46,204,113,.6), transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+    animation: floatUp linear infinite;
+    filter: blur(.5px);
+  }
+  @keyframes floatUp {
+    0% { transform: translateY(100vh) scale(.5); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: .6; }
+    100% { transform: translateY(-100vh) scale(1.4); opacity: 0; }
   }
 
   @media (max-width: 640px){
-    .glass-panel{ padding: 14px; }
+    .glass-panel{ padding: 16px; }
     main{ padding: 12px 10px 20px !important; }
     header{ padding: 10px 12px !important; }
     .wheel-stage{ width: min(92vw, 380px); margin: 14px auto; }
@@ -497,7 +617,7 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
   }
   @media (max-width: 380px){
     body{ font-size: 14px; }
-    .opt-btn{ padding: 11px 12px; font-size: .8rem; border-radius: 12px; }
+    .opt-btn{ padding: 11px 12px; font-size: .82rem; border-radius: 12px; }
     .wheel-stage{ width: min(94vw, 330px); }
     .school-badge{ padding: 8px 18px; font-size:.85rem; letter-spacing:2px; }
     .kuis-selesai-title{ font-size: 1.8rem; }
@@ -511,88 +631,110 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
     .btn-home::after,
     .spin-btn,
     .spin-btn .spin-icon,
-    .wheel-pointer{ animation: none !important; }
+    .wheel-pointer,
+    .wheel-stage::before,
+    .ach-icon,
+    .float-dot{ animation: none !important; }
   }
 
   #loadingScreen {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(160deg, #dbeafe, #93c5fd, #60a5fa);
+    position: fixed; inset: 0; z-index: 9999;
+    display: flex; align-items: center; justify-content: center;
+    background: radial-gradient(circle at center, #ffffff 0%, #f0f7f2 60%, #d5e8dd 100%);
     transition: opacity 0.7s ease, visibility 0.7s ease;
-    flex-direction: column;
-    padding: 20px;
+    flex-direction: column; padding: 20px;
   }
   #loadingScreen.hidden {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
+    opacity: 0; visibility: hidden; pointer-events: none;
   }
   .loader-content {
-    text-align: center;
-    max-width: 340px;
-    width: 100%;
+    text-align: center; max-width: 340px; width: 100%;
+    position: relative;
   }
+  .loader-compass-wrap {
+    position: relative; width: 110px; height: 110px; margin: 0 auto 12px;
+  }
+  .loader-ring-big{
+    position: absolute; inset: -22px;
+    border-radius: 50%;
+    border: 4px solid transparent;
+    border-top-color: var(--accent);
+    border-right-color: var(--primary-light);
+    border-bottom-color: var(--gold);
+    border-left-color: var(--primary);
+    animation: ringSpin 3s linear infinite;
+    box-shadow: 0 0 30px rgba(46,204,113,.25);
+  }
+  .loader-ring-big::after{
+    content:''; position: absolute; inset: 12px;
+    border-radius: 50%;
+    border: 2.5px dashed rgba(30,122,74,.22);
+    animation: ringSpin 8s linear infinite reverse;
+  }
+  @keyframes ringSpin { to { transform: rotate(360deg); } }
+  .loader-compass{
+    position: absolute; inset: 5px;
+    animation: compassSpin 2.8s ease-in-out infinite;
+  }
+  .loader-compass svg{ width:100%; height:100%; display:block; filter: drop-shadow(0 0 12px rgba(46,204,113,.4)); }
+  @keyframes compassSpin{
+    0%,100%{ transform: rotate(0deg) scale(1); }
+    50%{ transform: rotate(180deg) scale(1.06); }
+  }
+
   .loader-title {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.6rem;
-    font-weight: 900;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    background: linear-gradient(135deg, #1e3a8a, #1d4ed8, #0369a1);
+    font-size: 1.6rem; font-weight: 900;
+    letter-spacing: 4px; text-transform: uppercase;
+    background: linear-gradient(135deg, #145b34, #1e7a4a, #2ecc71, #d4a017);
     background-size: 200% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
     animation: shimmerText 2s ease-in-out infinite;
-    margin-bottom: 6px;
-    line-height: 1.2;
-    filter: drop-shadow(0 2px 6px rgba(30,64,175,.35));
+    margin-bottom: 6px; line-height: 1.2;
+    filter: drop-shadow(0 2px 6px rgba(30,122,74,.3));
   }
   .loader-sub {
-    font-size: 0.7rem;
-    color: #1e40af;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-bottom: 28px;
-    font-weight: 700;
+    font-size: 0.7rem; color: var(--primary);
+    letter-spacing: 3px; text-transform: uppercase; margin-bottom: 28px;
+    font-weight: 800;
+    animation: softBounce 2s ease-in-out infinite;
   }
+  @keyframes softBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
   .loader-bar {
-    width: 100%;
-    height: 5px;
-    background: rgba(30,64,175,.2);
-    border-radius: 99px;
-    overflow: hidden;
-    margin-bottom: 14px;
-    box-shadow: inset 0 1px 3px rgba(30,64,175,.18);
+    width: 100%; height: 6px;
+    background: rgba(30,122,74,.10);
+    border-radius: 99px; overflow: hidden; margin-bottom: 14px;
+    box-shadow: inset 0 1px 3px rgba(30,122,74,.15);
   }
   .loader-bar-fill {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg, #22d3ee, #2563eb, #7c3aed);
+    height: 100%; width: 0%;
+    background: linear-gradient(90deg, #1e7a4a, #2ecc71, #f1c40f);
     border-radius: 99px;
     animation: loadFill 1.2s ease-in-out forwards;
-    box-shadow: 0 0 16px rgba(37,99,235,.7);
+    box-shadow: 0 0 16px rgba(46,204,113,.7);
   }
-  @keyframes loadFill {
-    0% { width: 0%; }
-    100% { width: 100%; }
-  }
+  @keyframes loadFill { 0% { width: 0%; } 100% { width: 100%; } }
   .loader-text {
-    font-size: 0.65rem;
-    color: #334155;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    font-weight: 700;
-    animation: blinkText 1.4s ease-in-out infinite;
+    font-size: 0.65rem; color: var(--text-muted);
+    letter-spacing: 3px; text-transform: uppercase;
+    font-weight: 800; animation: blinkText 1.4s ease-in-out infinite;
   }
-  @keyframes blinkText {
-    0%,100% { opacity: .6; }
-    50% { opacity: 1; }
+  @keyframes blinkText { 0%,100% { opacity: .55; } 50% { opacity: 1; } }
+
+  .score-circle{position:relative;width:130px;height:130px;flex-shrink:0}
+  @media (min-width:480px){ .score-circle{width:160px;height:160px;} }
+  .score-circle svg{position:absolute;inset:0;transform:rotate(-90deg);width:100%;height:100%}
+  .score-circle .track{stroke:rgba(30,122,74,.10);fill:none}
+  .score-circle .bar{fill:none;stroke-linecap:round;transition:stroke-dashoffset 1.6s cubic-bezier(.2,.9,.3,1.2);}
+  .score-circle .inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .score-circle .num{
+    font-size:2.4rem;font-weight:900;line-height:1;font-family:'Space Grotesk',sans-serif;
+    background:linear-gradient(180deg,#145b34,#2ecc71);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    filter: drop-shadow(0 2px 6px rgba(30,122,74,.3));
   }
+  @media (min-width:480px){ .score-circle .num{font-size:3rem;} }
+  .score-circle .lbl{font-size:.6rem;letter-spacing:3px;color:var(--primary);text-transform:uppercase;font-weight:900;margin-top:4px}
 </style>
 </head>
 <body>
@@ -600,6 +742,26 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
 <!-- LOADING SCREEN -->
 <div id="loadingScreen" role="status" aria-live="polite">
   <div class="loader-content">
+    <div class="loader-compass-wrap">
+      <div class="loader-ring-big"></div>
+      <div class="loader-compass">
+        <svg viewBox="0 0 100 100" fill="none">
+          <defs>
+            <linearGradient id="compGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#2ecc71"/>
+              <stop offset="50%" stop-color="#1e7a4a"/>
+              <stop offset="100%" stop-color="#f1c40f"/>
+            </linearGradient>
+          </defs>
+          <circle cx="50" cy="50" r="36" stroke="url(#compGrad)" stroke-width="2.5" fill="none" opacity="0.35"/>
+          <polygon points="50,20 54.5,46 50,50 45.5,46" fill="#2ecc71"/>
+          <polygon points="50,80 54.5,54 50,50 45.5,54" fill="#1e7a4a"/>
+          <polygon points="20,50 46,45.5 50,50 46,54.5" fill="#3aaa6a"/>
+          <polygon points="80,50 54,45.5 50,50 54,54.5" fill="#f1c40f"/>
+          <circle cx="50" cy="50" r="4" fill="#f1c40f"/>
+        </svg>
+      </div>
+    </div>
     <div class="loader-title">KUIS RODA BERPUTAR</div>
     <div class="loader-sub">Geografi • Peta & Pemetaan</div>
     <div class="loader-bar"><div class="loader-bar-fill"></div></div>
@@ -608,28 +770,28 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
 </div>
 
 <!-- HEADER -->
-<header class="w-full border-b border-blue-500/30 backdrop-blur-xl sticky top-0 z-40 px-3 py-2.5">
+<header class="w-full border-b backdrop-blur-xl sticky top-0 z-40 px-3 py-2.5">
   <div class="max-w-6xl mx-auto flex items-center justify-between gap-2">
     <div class="flex items-center gap-2 min-w-0 flex-1">
-      <div class="w-9 h-9 md:w-10 md:h-10 rounded-xl flex items-center justify-center text-white font-black text-lg md:text-xl shrink-0"
-        style="background: linear-gradient(135deg,#1d4ed8,#0891b2); box-shadow: 0 4px 16px rgba(30,64,175,.5), inset 0 1px 0 rgba(255,255,255,.4)">🎡</div>
+      <div class="w-10 h-10 md:w-11 md:h-11 rounded-2xl flex items-center justify-center text-white font-black text-lg md:text-xl shrink-0"
+        style="background: linear-gradient(135deg,#145b34,#2ecc71); box-shadow: 0 6px 20px rgba(30,122,74,.45), inset 0 2px 0 rgba(255,255,255,.4)">🎡</div>
       <div class="min-w-0 flex-1">
-        <h1 class="text-[11px] sm:text-sm md:text-lg font-black tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-blue-800 via-blue-700 to-violet-700 truncate"
-          style="font-family:'Space Grotesk',sans-serif">KUIS RODA BERPUTAR</h1>
+        <h1 class="text-[11px] sm:text-sm md:text-lg font-black tracking-wide truncate"
+          style="font-family:'Space Grotesk',sans-serif; color: var(--primary);">KUIS RODA BERPUTAR</h1>
         <p class="text-[9px] md:text-[11px] font-medium truncate">
           <span class="school-name">SMAN 3 KASONGAN</span>
-          <span class="text-blue-600/80"> • </span>
-          <span class="text-blue-800 font-bold">Peta & Pemetaan</span>
+          <span style="color: var(--primary-light);"> • </span>
+          <span style="color: var(--primary); font-weight: 900;">Peta & Pemetaan</span>
         </p>
       </div>
     </div>
-    <button class="w-9 h-9 rounded-full flex items-center justify-center border border-blue-500/50 shrink-0 cursor-pointer"
-      style="background: rgba(255,255,255,.9); box-shadow: 0 2px 8px rgba(30,64,175,.18)" id="soundToggle" type="button"
+    <button class="w-10 h-10 rounded-full flex items-center justify-center border-2 shrink-0 cursor-pointer transition-all hover:scale-110"
+      style="background: #ffffff; border-color: rgba(30,122,74,.25); box-shadow: 0 4px 12px rgba(30,122,74,.15)" id="soundToggle" type="button"
       aria-label="Hidup atau matikan suara">🔊</button>
   </div>
 </header>
 
-<main class="max-w-5xl mx-auto w-full px-3 py-4 md:px-4 md:py-6 flex-1 flex flex-col justify-center items-center relative">
+<main class="max-w-5xl mx-auto w-full px-3 py-4 md:px-4 md:py-6 flex-1 flex flex-col justify-center items-center relative z-10">
 
   <!-- START SCREEN -->
   <section id="startScreen" class="w-full max-w-lg glass-panel p-5 md:p-7 rounded-2xl my-auto">
@@ -640,82 +802,80 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
     </div>
 
     <div class="text-center mb-5">
-      <div class="text-5xl md:text-6xl mb-2" style="filter:drop-shadow(0 4px 16px rgba(30,64,175,.5))">🎡</div>
-      <h2 class="text-xl md:text-2xl lg:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-800 via-blue-700 to-violet-700 mb-1.5 leading-tight"
-        style="font-family:'Space Grotesk',sans-serif">KUIS RODA BERPUTAR</h2>
-      <p class="text-xs md:text-sm text-slate-600 font-semibold">Peta & Pemetaan • Geografi Kelas X</p>
+      <div class="text-5xl md:text-6xl mb-2" style="filter:drop-shadow(0 8px 24px rgba(30,122,74,.45)); animation: floatCard 3s ease-in-out infinite;">🎡</div>
+      <h2 class="text-xl md:text-2xl lg:text-3xl font-black mb-1.5 leading-tight"
+        style="font-family:'Space Grotesk',sans-serif; background: linear-gradient(135deg, #145b34, #1e7a4a, #2ecc71, #d4a017); background-size: 300% auto; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shimmerText 4s ease-in-out infinite;">
+        KUIS RODA BERPUTAR
+      </h2>
+      <p class="text-xs md:text-sm font-bold" style="color: var(--text-muted);">Peta & Pemetaan • Geografi Kelas X</p>
     </div>
 
-    <div class="mb-5 p-4 md:p-5 rounded-xl" style="background: linear-gradient(135deg, rgba(37,99,235,.16), rgba(8,145,178,.12)); border: 2px solid rgba(29,78,216,.4); box-shadow: 0 6px 24px rgba(30,64,175,.18)">
-      <div class="text-center">
-        <div class="text-[10px] uppercase tracking-widest font-black mb-2 flex items-center justify-center gap-1.5"
-          style="color: #1e40af;">
-          <span>👨‍🏫</span> GURU PENGAMPU
-        </div>
-        <div class="teacher-name">SYAHRANI, S.Pd.</div>
-        <div class="nip-text mt-1.5">NIP. 19751217 200501 1 016</div>
-      </div>
-    </div>
-
-    <div class="rounded-xl p-3 md:p-4 mb-5 space-y-2 text-xs md:text-sm border border-blue-500/30" style="background: rgba(255,255,255,.75)">
-      <div class="flex items-center gap-2.5">
-        <span class="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0"
-          style="background: linear-gradient(135deg, #1d4ed8, #0891b2); color:#fff; box-shadow: 0 2px 6px rgba(30,64,175,.35)">1</span>
-        <span class="text-slate-700">Putar roda untuk memilih <b class="text-blue-800">kategori soal</b></span>
-      </div>
-      <div class="flex items-center gap-2.5">
-        <span class="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0"
-          style="background: linear-gradient(135deg, #1d4ed8, #0891b2); color:#fff; box-shadow: 0 2px 6px rgba(30,64,175,.35)">2</span>
-        <span class="text-slate-700">Soal memiliki <b class="text-blue-800">3 tingkat kesulitan</b> — Mudah, Sedang, Sulit</span>
-      </div>
-      <div class="flex items-center gap-2.5">
-        <span class="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0"
-          style="background: linear-gradient(135deg, #1d4ed8, #0891b2); color:#fff; box-shadow: 0 2px 6px rgba(30,64,175,.35)">3</span>
-        <span class="text-slate-700">Mainkan <b class="text-blue-800">12 putaran</b> — kumpulkan poin tertinggi!</span>
+    <div class="text-center mb-5">
+      <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full text-xs font-black"
+        style="background: linear-gradient(135deg, rgba(46,204,113,.14), rgba(30,122,74,.08)); color: var(--primary); border: 2px solid rgba(30,122,74,.22);">
+        <span>🎓</span> KELAS X / FASE E
       </div>
     </div>
 
-    <form id="startForm" class="space-y-3.5">
+    <div class="rounded-2xl p-4 md:p-5 mb-5 space-y-3 text-xs md:text-sm border-2" style="background: rgba(255,255,255,.75); border-color: rgba(30,122,74,.14)">
+      <div class="flex items-center gap-3">
+        <span class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-black shrink-0"
+          style="background: linear-gradient(135deg, #145b34, #2ecc71); color:#fff; box-shadow: 0 3px 10px rgba(30,122,74,.4)">1</span>
+        <span style="color: var(--text); font-weight: 700;">Putar roda untuk memilih <b style="color: var(--primary);">kategori soal</b></span>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-black shrink-0"
+          style="background: linear-gradient(135deg, #145b34, #2ecc71); color:#fff; box-shadow: 0 3px 10px rgba(30,122,74,.4)">2</span>
+        <span style="color: var(--text); font-weight: 700;">Soal memiliki <b style="color: var(--primary);">3 tingkat kesulitan</b></span>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-black shrink-0"
+          style="background: linear-gradient(135deg, #145b34, #2ecc71); color:#fff; box-shadow: 0 3px 10px rgba(30,122,74,.4)">3</span>
+        <span style="color: var(--text); font-weight: 700;">Mainkan <b style="color: var(--primary);">12 putaran</b> — kumpulkan poin!</span>
+      </div>
+    </div>
+
+    <form id="startForm" class="space-y-4">
       <div>
-        <label for="studentName" class="block text-[11px] md:text-xs font-bold uppercase tracking-wider text-blue-800 mb-1.5">
-          Nama Siswa <span class="text-rose-600">*</span>
+        <label for="studentName" class="block text-xs md:text-sm font-black uppercase tracking-wider mb-2" style="color: var(--primary);">
+          Nama Siswa <span style="color: #c0392b;">*</span>
         </label>
         <input type="text" id="studentName" required placeholder="Tulis namamu di sini..." class="navy-input" aria-label="Nama siswa">
       </div>
       <button type="submit" class="btn-primary">▶ MULAI PERMAINAN</button>
     </form>
 
-    <div id="bestScoreSummary" class="is-hidden mt-4 pt-4 border-t border-blue-500/25 text-center">
-      <div class="text-[10px] uppercase tracking-widest text-blue-800 font-bold mb-1.5">🏆 Skor Terbaikmu</div>
-      <div class="flex justify-center gap-3 text-xs">
+    <div id="bestScoreSummary" class="is-hidden mt-5 pt-5 border-t-2 text-center" style="border-color: rgba(30,122,74,.14)">
+      <div class="text-[10px] uppercase tracking-widest font-black mb-2" style="color: var(--primary);">🏆 Skor Terbaikmu</div>
+      <div class="flex justify-center gap-4 text-xs">
         <div>
-          <div class="text-slate-500 text-[10px] uppercase font-bold">Total Poin</div>
-          <div id="bestScorePoints" class="text-blue-800 font-bold text-sm md:text-base">0</div>
+          <div class="text-[10px] uppercase font-black" style="color: var(--text-muted);">Total Poin</div>
+          <div id="bestScorePoints" class="font-black text-sm md:text-base" style="color: var(--primary);">0</div>
         </div>
-        <div class="border-l border-blue-500/25"></div>
+        <div class="border-l-2" style="border-color: rgba(30,122,74,.14);"></div>
         <div>
-          <div class="text-slate-500 text-[10px] uppercase font-bold">Akurasi</div>
-          <div id="bestScoreAcc" class="text-emerald-700 font-bold text-sm md:text-base">0%</div>
+          <div class="text-[10px] uppercase font-black" style="color: var(--text-muted);">Akurasi</div>
+          <div id="bestScoreAcc" class="font-black text-sm md:text-base" style="color: var(--accent);">0%</div>
         </div>
-        <div class="border-l border-blue-500/25"></div>
+        <div class="border-l-2" style="border-color: rgba(30,122,74,.14);"></div>
         <div>
-          <div class="text-slate-500 text-[10px] uppercase font-bold">Gelar</div>
-          <div id="bestScoreTitle" class="text-amber-700 font-bold text-[11px] mt-0.5">—</div>
+          <div class="text-[10px] uppercase font-black" style="color: var(--text-muted);">Gelar</div>
+          <div id="bestScoreTitle" class="font-black text-[11px] mt-0.5" style="color: var(--gold-deep);">—</div>
         </div>
       </div>
     </div>
 
-    <div class="text-center mt-4 text-[10px] text-slate-500">© SMAN 3 Kasongan • Kelas X / Fase E</div>
+    <div class="text-center mt-4 text-[10px] font-bold" style="color: var(--text-muted);">© SMAN 3 Kasongan • Kelas X / Fase E</div>
   </section>
 
   <!-- WHEEL SCREEN -->
   <section id="wheelScreen" class="is-hidden w-full max-w-2xl my-auto">
     <div class="glass-panel p-4 md:p-5 rounded-2xl">
       <div class="flex items-center justify-between gap-2 flex-wrap mb-3">
-        <div class="stat-pill">👤 <span id="playerName" class="text-blue-800 font-bold">Siswa</span></div>
-        <div class="flex gap-1.5 flex-wrap">
-          <div class="stat-pill"><span class="lbl">Putaran</span> <span id="roundCounter" class="text-blue-800 font-mono font-bold">1/12</span></div>
-          <div class="stat-pill">⚡ <span id="scoreCounter" class="text-emerald-700 font-mono font-bold">0</span></div>
+        <div class="stat-pill">👤 <span id="playerName" class="font-black" style="color: var(--primary);">Siswa</span></div>
+        <div class="flex gap-2 flex-wrap">
+          <div class="stat-pill"><span class="lbl">Putaran</span> <span id="roundCounter" class="font-mono font-black" style="color: var(--primary);">1/12</span></div>
+          <div class="stat-pill">⚡ <span id="scoreCounter" class="font-mono font-black" style="color: var(--accent);">0</span></div>
         </div>
       </div>
 
@@ -729,7 +889,7 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
       </div>
 
       <div id="wheelInstruction" class="text-center mt-3 md:mt-4">
-        <div class="text-xs md:text-sm text-slate-600 font-semibold">👆 Tekan tombol <b class="text-blue-800">PUTAR</b> di tengah roda untuk memilih kategori!</div>
+        <div class="text-xs md:text-sm font-bold" style="color: var(--text-muted);">👆 Tekan tombol <b style="color: var(--primary);">PUTAR</b> di tengah roda untuk memilih kategori!</div>
       </div>
 
       <div id="categoryResult" class="is-hidden text-center mt-3 md:mt-4"></div>
@@ -740,15 +900,15 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
   <section id="questionScreen" class="is-hidden w-full max-w-2xl my-auto">
     <div class="glass-panel p-4 md:p-6 rounded-2xl">
       <div class="flex items-center justify-between gap-2 flex-wrap mb-3">
-        <div class="stat-pill"><span class="lbl">Putaran</span> <span id="qRoundCounter" class="text-blue-800 font-mono font-bold">1/12</span></div>
-        <div class="stat-pill">⚡ <span id="qScoreCounter" class="text-emerald-700 font-mono font-bold">0</span></div>
+        <div class="stat-pill"><span class="lbl">Putaran</span> <span id="qRoundCounter" class="font-mono font-black" style="color: var(--primary);">1/12</span></div>
+        <div class="stat-pill">⚡ <span id="qScoreCounter" class="font-mono font-black" style="color: var(--accent);">0</span></div>
       </div>
 
       <div id="qCatBadge" class="text-center mb-3"></div>
 
-      <div class="rounded-xl p-3.5 md:p-5 mb-3 border border-blue-500/30" style="background: linear-gradient(135deg, rgba(219,234,254,.75), rgba(239,246,255,.9))">
-        <div class="text-[10px] uppercase tracking-widest text-blue-800/80 font-bold mb-1.5">❓ Pertanyaan</div>
-        <h3 id="qText" class="text-base md:text-lg font-bold text-slate-800 leading-relaxed overflow-safe">Memuat...</h3>
+      <div class="rounded-2xl p-4 md:p-5 mb-3 border-2" style="background: linear-gradient(135deg, rgba(46,204,113,.08), rgba(255,255,255,.9)); border-color: rgba(30,122,74,.16)">
+        <div class="text-[10px] uppercase tracking-widest font-black mb-2" style="color: var(--primary);">❓ Pertanyaan</div>
+        <h3 id="qText" class="text-base md:text-lg font-bold leading-relaxed overflow-safe" style="color: var(--text); font-weight: 800;">Memuat...</h3>
       </div>
 
       <div id="qOptions" class="grid grid-cols-1 md:grid-cols-2 gap-2.5 md:gap-3 mb-3"></div>
@@ -756,7 +916,7 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
       <div id="qFeedback" class="is-hidden"></div>
 
       <div id="qActions" class="is-hidden flex gap-2 mt-3">
-        <button id="btnNextSpin" type="button" class="btn-primary flex-1" style="background: linear-gradient(135deg,#0891b2,#2563eb)">🎡 PUTAR LAGI</button>
+        <button id="btnNextSpin" type="button" class="btn-primary flex-1">🎡 PUTAR LAGI</button>
       </div>
     </div>
   </section>
@@ -769,53 +929,73 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
       <div class="kuis-selesai-sub">🎉 12 Putaran Telah Selesai 🎉</div>
     </div>
 
-    <div class="glass-panel p-4 md:p-8 rounded-2xl" style="border: 2px solid rgba(29,78,216,.4)">
-      <div class="border-b-2 border-dashed pb-3 mb-4 text-center" style="border-color: rgba(37,99,235,.3)">
+    <div class="glass-panel p-4 md:p-8 rounded-2xl" style="border: 2px solid rgba(30,122,74,.25)">
+      <div class="border-b-2 border-dashed pb-4 mb-5 text-center" style="border-color: rgba(30,122,74,.20)">
         <div class="school-name text-base md:text-lg tracking-widest mt-2">SMAN 3 KASONGAN</div>
-        <div class="text-[9px] md:text-[10px] text-blue-800 font-bold uppercase mt-1">HASIL TUGAS INDIVIDU</div>
+        <div class="text-[9px] md:text-[10px] font-black uppercase mt-1" style="color: var(--primary);">HASIL TUGAS INDIVIDU</div>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-center gap-5 md:gap-7 mb-6">
+        <div class="score-circle">
+          <svg viewBox="0 0 120 120">
+            <defs>
+              <linearGradient id="scGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#145b34"/>
+                <stop offset="50%" stop-color="#2ecc71"/>
+                <stop offset="100%" stop-color="#f1c40f"/>
+              </linearGradient>
+            </defs>
+            <circle class="track" cx="60" cy="60" r="50" stroke-width="9"/>
+            <circle class="bar" cx="60" cy="60" r="50" stroke-width="9" stroke="url(#scGrad)" stroke-dasharray="314.16" stroke-dashoffset="314.16" id="scoreCircleBar"/>
+          </svg>
+          <div class="inner">
+            <div class="num" id="scoreCircleNum">0</div>
+            <div class="lbl">Skor</div>
+          </div>
+        </div>
       </div>
 
       <div class="text-center mb-5">
-        <div class="text-[10px] uppercase tracking-widest text-blue-800/80 font-bold mb-1">Nama Siswa</div>
-        <div id="rName" class="text-xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-800 to-cyan-700 leading-tight overflow-safe"
-          style="font-family:'Space Grotesk',sans-serif">—</div>
+        <div class="text-[10px] uppercase tracking-widest font-black mb-1" style="color: var(--text-muted);">Nama Siswa</div>
+        <div id="rName" class="text-xl md:text-3xl font-black leading-tight overflow-safe"
+          style="font-family:'Space Grotesk',sans-serif; background: linear-gradient(135deg, #145b34, #2ecc71); -webkit-background-clip: text; background-clip: text; color: transparent;">—</div>
       </div>
 
       <div id="achievementWrap" class="mb-5"></div>
 
       <div class="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4">
-        <div class="p-2.5 rounded-xl text-center" style="background: rgba(34,197,94,.16); border: 1px solid rgba(22,163,74,.45)">
-          <div class="text-[9px] uppercase tracking-widest text-emerald-800 font-bold mb-0.5">Benar</div>
-          <div id="rCorrect" class="text-lg md:text-2xl font-black text-emerald-700" style="font-family:'Space Grotesk',sans-serif">0</div>
+        <div class="p-3 rounded-2xl text-center" style="background: rgba(46,204,113,.14); border: 2px solid rgba(30,122,74,.35)">
+          <div class="text-[9px] uppercase tracking-widest font-black mb-1" style="color: var(--primary);">Benar</div>
+          <div id="rCorrect" class="text-lg md:text-2xl font-black" style="font-family:'Space Grotesk',sans-serif; color: #15803d;">0</div>
         </div>
-        <div class="p-2.5 rounded-xl text-center" style="background: rgba(239,68,68,.14); border: 1px solid rgba(185,28,28,.45)">
-          <div class="text-[9px] uppercase tracking-widest text-rose-800 font-bold mb-0.5">Salah</div>
-          <div id="rWrong" class="text-lg md:text-2xl font-black text-rose-700" style="font-family:'Space Grotesk',sans-serif">0</div>
+        <div class="p-3 rounded-2xl text-center" style="background: rgba(239,68,68,.10); border: 2px solid rgba(185,28,28,.35)">
+          <div class="text-[9px] uppercase tracking-widest font-black mb-1" style="color: #7f1d1d;">Salah</div>
+          <div id="rWrong" class="text-lg md:text-2xl font-black" style="font-family:'Space Grotesk',sans-serif; color: #b91c1c;">0</div>
         </div>
-        <div class="p-2.5 rounded-xl text-center" style="background: rgba(37,99,235,.14); border: 1px solid rgba(29,78,216,.45)">
-          <div class="text-[9px] uppercase tracking-widest text-blue-800 font-bold mb-0.5">Akurasi</div>
-          <div id="rAcc" class="text-lg md:text-2xl font-black text-blue-800" style="font-family:'Space Grotesk',sans-serif">0%</div>
+        <div class="p-3 rounded-2xl text-center" style="background: rgba(30,122,74,.10); border: 2px solid rgba(30,122,74,.35)">
+          <div class="text-[9px] uppercase tracking-widest font-black mb-1" style="color: var(--primary);">Akurasi</div>
+          <div id="rAcc" class="text-lg md:text-2xl font-black" style="font-family:'Space Grotesk',sans-serif; color: var(--primary);">0%</div>
         </div>
-        <div class="p-2.5 rounded-xl text-center" style="background: rgba(251,146,60,.16); border: 1px solid rgba(217,119,6,.5)">
-          <div class="text-[9px] uppercase tracking-widest text-orange-800 font-bold mb-0.5">Streak</div>
-          <div id="rStreak" class="text-lg md:text-2xl font-black text-orange-700" style="font-family:'Space Grotesk',sans-serif">0🔥</div>
+        <div class="p-3 rounded-2xl text-center" style="background: rgba(241,196,15,.14); border: 2px solid rgba(212,160,23,.4)">
+          <div class="text-[9px] uppercase tracking-widest font-black mb-1" style="color: #78350f;">Streak</div>
+          <div id="rStreak" class="text-lg md:text-2xl font-black" style="font-family:'Space Grotesk',sans-serif; color: var(--gold-deep);">0🔥</div>
         </div>
       </div>
 
-      <div class="p-4 rounded-xl text-center mb-4" style="background: linear-gradient(135deg, rgba(251,191,36,.25), rgba(245,158,11,.12)); border: 1px solid rgba(217,119,6,.55)">
-        <div class="text-[10px] uppercase tracking-widest text-amber-800 font-bold mb-1">⚡ Total Poin Diperoleh</div>
-        <div id="totalScoreDisplay" class="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-yellow-600 to-amber-700"
-          style="font-family:'Space Grotesk',sans-serif; filter: drop-shadow(0 2px 8px rgba(217,119,6,.4))">0</div>
+      <div class="p-5 rounded-2xl text-center mb-4" style="background: linear-gradient(135deg, rgba(241,196,15,.25), rgba(212,160,23,.10)); border: 2px solid rgba(212,160,23,.5)">
+        <div class="text-[10px] uppercase tracking-widest font-black mb-1" style="color: #78350f;">⚡ Total Poin Diperoleh</div>
+        <div id="totalScoreDisplay" class="text-4xl md:text-6xl font-black"
+          style="font-family:'Space Grotesk',sans-serif; background: linear-gradient(135deg, #b8860b, #f1c40f, #d4a017); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 4px 12px rgba(212,160,23,.5));">0</div>
       </div>
 
       <div class="mb-4">
-        <div class="text-[10px] uppercase tracking-widest text-blue-800 font-bold mb-2 text-center">📊 Capaian per Kategori</div>
-        <div id="catBreakdown" class="space-y-1.5"></div>
+        <div class="text-[10px] uppercase tracking-widest font-black mb-2 text-center" style="color: var(--primary);">📊 Capaian per Kategori</div>
+        <div id="catBreakdown" class="space-y-2"></div>
       </div>
 
-      <div class="mt-4 pt-4 border-t text-center" style="border-color: rgba(37,99,235,.25)">
+      <div class="mt-5 pt-4 border-t-2 text-center" style="border-color: rgba(30,122,74,.20)">
         <div class="text-[9px] md:text-[10px] uppercase tracking-widest font-black mb-1.5 flex items-center justify-center gap-1.5"
-          style="color:#1e40af">
+          style="color: var(--primary);">
           <span>👨‍🏫</span> GURU PENGAMPU
         </div>
         <div class="teacher-name">SYAHRANI, S.Pd.</div>
@@ -825,8 +1005,8 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
 
     <button id="btnHome" type="button" class="btn-home">🔄 MAIN LAGI</button>
 
-    <button id="btnCopy" type="button" class="w-full font-bold p-3 rounded-xl text-xs cursor-pointer border border-blue-500/45"
-      style="background: linear-gradient(135deg,#1d4ed8,#0369a1); color:#ffffff; box-shadow: 0 4px 14px rgba(30,64,175,.4)"
+    <button id="btnCopy" type="button" class="w-full font-black p-4 rounded-2xl text-xs md:text-sm cursor-pointer border-2"
+      style="background: linear-gradient(135deg,#145b34,#2ecc71); color:#ffffff; border-color: rgba(255,255,255,.5); box-shadow: 0 8px 22px rgba(30,122,74,.4)"
       aria-label="Salin hasil kuis">
       📋 SALIN HASIL
     </button>
@@ -838,13 +1018,13 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
   <div class="reveal-badge" id="revealBadge">BENAR</div>
 </div>
 
-<footer class="w-full text-center py-4 px-3 border-t border-blue-500/30">
-  <div class="text-[10px] md:text-[11px] uppercase tracking-widest font-black mb-2 flex items-center justify-center gap-1.5"
-    style="color:#1e40af">
-    <span>👨‍🏫</span> GURU PENGAMPU
+<footer class="w-full text-center py-4 px-3 border-t-2">
+  <div class="text-[10px] md:text-[11px] font-black tracking-widest uppercase" style="color: var(--text-muted);">
+    🌍 Kuis Roda Berputar · Peta &amp; Pemetaan
   </div>
-  <div class="teacher-name">SYAHRANI, S.Pd.</div>
-  <div class="nip-text mt-1">NIP. 19751217 200501 1 016</div>
+  <div class="text-[9px] md:text-[10px] font-bold mt-1" style="color: var(--text-muted); opacity: .7;">
+    © SMAN 3 Kasongan · Kelas X / Fase E
+  </div>
 </footer>
 
 <script>
@@ -861,7 +1041,7 @@ function getContrastColor(hex){
   const g = parseInt(hex.slice(3,5),16);
   const b = parseInt(hex.slice(5,7),16);
   const yiq = (r*299 + g*587 + b*114) / 1000;
-  return yiq >= 150 ? '#050816' : '#ffffff';
+  return yiq >= 150 ? '#1a2a1f' : '#ffffff';
 }
 
 function shuffleArray(arr) {
@@ -877,6 +1057,21 @@ const OPTION_LETTERS = ['A','B','C','D','E','F'];
 function formatOption(idx, text) {
   return `${OPTION_LETTERS[idx] || '?'}. ${text}`;
 }
+
+/* ============ FLOATING PARTICLES ============ */
+(function(){
+  const n = window.innerWidth < 640 ? 12 : 22;
+  for (let i = 0; i < n; i++) {
+    const p = document.createElement('div');
+    p.className = 'float-dot';
+    const s = 4 + Math.random() * 10;
+    p.style.width = s + 'px'; p.style.height = s + 'px';
+    p.style.left = (Math.random() * 100) + 'vw';
+    p.style.animationDuration = (14 + Math.random() * 20) + 's';
+    p.style.animationDelay = (-Math.random() * 22) + 's';
+    document.body.appendChild(p);
+  }
+})();
 
 let audioCtx=null,soundMuted=false;
 function playTone(freq,dur,type,vol,delay){
@@ -916,342 +1111,347 @@ const CATEGORIES = [
   { id:'lanjutan',  name:'Kartografi Lanjutan',    short:'Lanjutan', icon:'🔬', color:'#f59e0b', points:800 }
 ];
 
+/* =========================================================
+   BANK SOAL — 80 SOAL
+   Materi: Peta & Pemetaan — 10 soal per kategori
+   Distribusi: Mudah / Sedang / Sulit
+   ========================================================= */
 const QUESTIONS = [
-  /* SEJARAH & KARTOGRAFI */
-  { cat:'sejarah', difficulty:'mudah', q:"Istilah 'geografi' pertama kali diperkenalkan oleh ilmuwan Yunani bernama...",
-    options:["Ptolemaeus","Eratosthenes","Herodotus","Aristoteles"], correct:1,
-    explanation:"Eratosthenes (276–194 SM) adalah ilmuwan Yunani yang pertama kali memperkenalkan istilah 'geografi'.",
-    keyPoint:"Eratosthenes = Bapak Geografi." },
-  { cat:'sejarah', difficulty:'mudah', q:"Ilmu yang mempelajari tentang pembuatan peta disebut...",
-    options:["Geologi","Demografi","Kartografi","Klimatologi"], correct:2,
+  /* SEJARAH & KARTOGRAFI (10) */
+  { cat:'sejarah', difficulty:'mudah', q:"Peta menurut Bintarto adalah gambaran permukaan bumi pada bidang datar dengan skala tertentu, menggunakan...",
+    options:["Warna dan garis","Simbol-simbol","Judul dan orientasi","Legenda dan inset"], correct:1,
+    explanation:"Bintarto mendefinisikan peta sebagai gambaran permukaan bumi pada bidang datar dengan skala tertentu, menggunakan simbol-simbol.",
+    keyPoint:"Bintarto = skala + simbol." },
+  { cat:'sejarah', difficulty:'mudah', q:"Menurut Suharyono & Amien, peta adalah alat penyampaian informasi tentang keruangan dengan...",
+    options:["Warna cerah","Simbol terstandar","Skala besar","Tulisan tangan"], correct:1,
+    explanation:"Suharyono & Amien menyatakan peta adalah alat penyampaian informasi keruangan dengan simbol terstandar.",
+    keyPoint:"Suharyono & Amien = simbol terstandar." },
+  { cat:'sejarah', difficulty:'mudah', q:"Kata \"kartografi\" berkaitan erat dengan kegiatan...",
+    options:["Pembuatan peta","Perhitungan cuaca","Pengukuran gunung","Analisis batuan"], correct:0,
     explanation:"Kartografi adalah ilmu, seni, dan teknik pembuatan peta.",
-    keyPoint:"Kartografi = seni + ilmu memetakan." },
-  { cat:'sejarah', difficulty:'mudah', q:"Eratosthenes berasal dari negara...",
-    options:["Mesir","Yunani","Romawi","Babilonia"], correct:1,
-    explanation:"Eratosthenes adalah ilmuwan yang berasal dari Yunani Kuno.",
-    keyPoint:"Eratosthenes = ilmuwan Yunani." },
-  { cat:'sejarah', difficulty:'sedang', q:"Kartografi mencakup tiga aspek utama, yaitu ilmu, seni, dan...",
-    options:["Filsafat","Teknik","Ekonomi","Politik"], correct:1,
-    explanation:"Kartografi adalah ilmu, seni, dan teknik pembuatan peta.",
-    keyPoint:"Kartografi = ilmu + seni + teknik." },
-  { cat:'sejarah', difficulty:'sedang', q:"Eratosthenes dijuluki sebagai Bapak...",
-    options:["Sejarah","Geografi","Kartografi","Astronomi"], correct:1,
-    explanation:"Karena pertama memperkenalkan istilah 'geografi', Eratosthenes dijuluki Bapak Geografi.",
-    keyPoint:"Eratosthenes = Bapak Geografi." },
-  { cat:'sejarah', difficulty:'sedang', q:"Peran utama kartografi dalam dunia sains adalah...",
-    options:["Menghitung luas wilayah","Membuat dan menyajikan peta","Menganalisis iklim","Meneliti batuan"], correct:1,
-    explanation:"Kartografi berperan dalam pembuatan dan penyajian peta.",
     keyPoint:"Kartografi = pembuatan peta." },
-  { cat:'sejarah', difficulty:'sulit', q:"Eratosthenes hidup sekitar tahun...",
-    options:["500–400 SM","376–294 SM","276–194 SM","176–100 SM"], correct:2,
-    explanation:"Eratosthenes hidup pada 276–194 SM.",
-    keyPoint:"Eratosthenes: 276–194 SM." },
-  { cat:'sejarah', difficulty:'sulit', q:"Secara harfiah, istilah 'geografi' berarti...",
-    options:["Tulisan tentang bintang","Tulisan tentang bumi","Ilmu tentang peta","Ilmu tentang cuaca"], correct:1,
-    explanation:"Geografi berasal dari kata 'geo' (bumi) dan 'graphein' (tulisan), berarti tulisan tentang bumi.",
-    keyPoint:"Geo = bumi, graphein = tulisan." },
-  { cat:'sejarah', difficulty:'sulit', q:"Tokoh yang dijuluki Bapak Sejarah sekaligus sering dikaitkan dengan perkembangan geografi awal adalah...",
-    options:["Aristoteles","Herodotus","Ptolemaeus","Al-Idrisi"], correct:1,
-    explanation:"Herodotus dikenal sebagai Bapak Sejarah dan juga menulis tentang wilayah geografis.",
-    keyPoint:"Herodotus = Bapak Sejarah." },
-  { cat:'sejarah', difficulty:'sulit', q:"Alasan utama Eratosthenes disebut sebagai Bapak Geografi adalah...",
-    options:["Ia membuat peta pertama dunia","Ia pertama kali memperkenalkan istilah geografi","Ia menemukan kompas","Ia mengukur tinggi gunung"], correct:1,
-    explanation:"Eratosthenes dijuluki Bapak Geografi karena pertama kali memperkenalkan istilah 'geografi'.",
-    keyPoint:"Pertama memperkenalkan istilah 'geografi'." },
+  { cat:'sejarah', difficulty:'sedang', q:"Karakteristik utama peta meliputi representasi, skala, bidang datar, dan...",
+    options:["Simbol","Warna cerah","Bahan kertas","Ukuran besar"], correct:0,
+    explanation:"Karakteristik peta: representasi, skala, bidang datar, dan simbol.",
+    keyPoint:"Representasi · Skala · Datar · Simbol." },
+  { cat:'sejarah', difficulty:'sedang', q:"Tujuan utama peta dibuat diperkecil dari ukuran sebenarnya adalah...",
+    options:["Agar mudah dibawa dan digunakan","Agar terlihat bagus","Agar bisa diwarnai","Agar sesuai standar internasional"], correct:0,
+    explanation:"Pengecilan dilakukan agar peta praktis, mudah dibawa, dan dapat digunakan untuk berbagai keperluan.",
+    keyPoint:"Pengecilan = kepraktisan." },
+  { cat:'sejarah', difficulty:'sedang', q:"Ahli yang mendefinisikan peta sebagai \"gambaran konvensional dari permukaan bumi yang diperkecil, dilengkapi simbol dan tulisan\" adalah...",
+    options:["Bintarto","Erwin Raisz","Suharyono","ICA"], correct:1,
+    explanation:"Definisi tersebut dikemukakan oleh Erwin Raisz.",
+    keyPoint:"Raisz = konvensional + simbol + tulisan." },
+  { cat:'sejarah', difficulty:'sulit', q:"\"Peta adalah alat penyampaian informasi tentang keruangan dengan simbol terstandar.\" Definisi ini dikemukakan oleh...",
+    options:["ICA","Erwin Raisz","Bintarto","Suharyono & Amien"], correct:3,
+    explanation:"Definisi ini dikemukakan oleh Suharyono & Amien.",
+    keyPoint:"Suharyono & Amien = informasi keruangan." },
+  { cat:'sejarah', difficulty:'sulit', q:"Organisasi internasional yang mendefinisikan peta sebagai representasi unsur-unsur kenampakan abstrak yang dipilih dari permukaan bumi adalah...",
+    options:["PBB","ICA","UNESCO","WHO"], correct:1,
+    explanation:"ICA (International Cartographic Association) memberi definisi tersebut.",
+    keyPoint:"ICA = organisasi kartografi internasional." },
+  { cat:'sejarah', difficulty:'sulit', q:"Fungsi utama peta sebagai alat komunikasi informasi geografis adalah...",
+    options:["Menyampaikan data keruangan secara visual dan mudah dipahami","Menghiasi dinding kelas","Menyimpan data rahasia","Menunjukkan kekayaan negara"], correct:0,
+    explanation:"Peta menyampaikan data keruangan (spasial) secara visual sehingga mudah dipahami.",
+    keyPoint:"Peta = komunikasi spasial." },
+  { cat:'sejarah', difficulty:'sulit', q:"Peta dikatakan memiliki karakteristik \"representasi\" karena...",
+    options:["Peta menggambarkan wilayah nyata di permukaan bumi","Peta dibuat oleh manusia","Peta berwarna-warni","Peta bisa dilipat"], correct:0,
+    explanation:"Representasi berarti peta merupakan gambaran dari wilayah nyata di permukaan bumi.",
+    keyPoint:"Representasi = gambaran wilayah nyata." },
 
-  /* KOMPONEN PETA */
-  { cat:'komponen', difficulty:'mudah', q:"Komponen peta yang berisi keterangan semua simbol yang digunakan pada peta disebut...",
-    options:["Judul Peta","Legenda","Skala","Sumber Peta"], correct:1,
-    explanation:"Legenda adalah kunci peta yang menjelaskan arti semua simbol.",
-    keyPoint:"Legenda = kunci arti simbol peta." },
-  { cat:'komponen', difficulty:'mudah', q:"Komponen peta yang menunjukkan arah mata angin disebut...",
-    options:["Legenda","Inset","Orientasi / Mata Angin","Lettering"], correct:2,
-    explanation:"Orientasi peta (mata angin) menunjukkan arah Utara, Timur, Selatan, Barat.",
-    keyPoint:"Orientasi = arah mata angin." },
-  { cat:'komponen', difficulty:'mudah', q:"Simbol peta berupa gambar kecil di sudut peta untuk menunjukkan letak wilayah disebut...",
-    options:["Legenda","Inset Peta","Sumber Peta","Lettering"], correct:1,
-    explanation:"Inset peta adalah peta kecil yang disisipkan untuk menunjukkan posisi relatif wilayah utama.",
-    keyPoint:"Inset = peta mini." },
-  { cat:'komponen', difficulty:'mudah', q:"Mengapa kutub Utara selalu diletakkan di bagian atas peta?",
-    options:["Kebetulan saja","Kesepakatan internasional","Mengikuti rotasi bumi","Pengaruh magnet bumi"], correct:1,
-    explanation:"Penempatan Utara di atas peta adalah konvensi/kesepakatan internasional dalam kartografi.",
-    keyPoint:"Utara di atas = konvensi internasional." },
-  { cat:'komponen', difficulty:'sedang', q:"Fungsi utama inset peta adalah...",
-    options:["Menghias peta","Menunjukkan posisi relatif wilayah utama","Menyatakan skala","Menghitung jarak"], correct:1,
-    explanation:"Inset menunjukkan posisi relatif wilayah yang dipetakan terhadap wilayah sekitarnya.",
-    keyPoint:"Inset = posisi relatif wilayah." },
-  { cat:'komponen', difficulty:'sedang', q:"Keterangan yang menjelaskan arti semua simbol pada peta disebut...",
-    options:["Judul","Legenda","Sumber","Skala"], correct:1,
-    explanation:"Legenda menjelaskan arti semua simbol pada peta.",
-    keyPoint:"Legenda = keterangan simbol." },
-  { cat:'komponen', difficulty:'sedang', q:"Komponen peta yang menyatakan tema atau isi peta secara singkat disebut...",
-    options:["Legenda","Judul Peta","Skala","Sumber Peta"], correct:1,
-    explanation:"Judul peta menyatakan tema/isi peta secara singkat.",
+  /* KOMPONEN PETA (10) */
+  { cat:'komponen', difficulty:'mudah', q:"Komponen peta yang berfungsi memberikan informasi tentang isi/tema peta adalah...",
+    options:["Judul","Inset","Legenda","Simbol"], correct:0,
+    explanation:"Judul peta memberikan informasi tentang isi atau tema peta.",
     keyPoint:"Judul = tema peta." },
-  { cat:'komponen', difficulty:'sulit', q:"Jika peta tidak memiliki legenda, maka yang terjadi adalah...",
-    options:["Peta menjadi lebih akurat","Pembaca tidak dapat memahami arti simbol","Peta tidak bisa diputar","Skala berubah"], correct:1,
-    explanation:"Tanpa legenda, pembaca tidak dapat memahami arti simbol yang ada pada peta.",
-    keyPoint:"Legenda = kunci arti simbol." },
-  { cat:'komponen', difficulty:'sulit', q:"Orientasi peta dapat berupa penunjuk arah...",
-    options:["Skala batang","Mata angin atau arah Utara sejati","Garis lintang","Garis tepi"], correct:1,
-    explanation:"Orientasi peta umumnya berupa penunjuk arah mata angin atau arah Utara sejati.",
-    keyPoint:"Orientasi = mata angin / Utara sejati." },
-  { cat:'komponen', difficulty:'sulit', q:"Bagian peta yang menyebutkan instansi atau tahun pembuatan peta disebut...",
-    options:["Legenda","Sumber Peta","Inset","Judul"], correct:1,
-    explanation:"Sumber peta mencantumkan instansi/pembuat dan tahun peta dibuat.",
-    keyPoint:"Sumber = asal & tahun peta." },
+  { cat:'komponen', difficulty:'mudah', q:"Komponen peta yang menunjukkan perbandingan jarak di peta dengan jarak sebenarnya adalah...",
+    options:["Orientasi","Skala","Legenda","Inset"], correct:1,
+    explanation:"Skala adalah perbandingan jarak di peta dengan jarak sebenarnya.",
+    keyPoint:"Skala = perbandingan jarak." },
+  { cat:'komponen', difficulty:'mudah', q:"Komponen peta yang menunjukkan kapan peta tersebut dibuat atau diperbarui adalah...",
+    options:["Tahun Pembuatan","Judul","Legenda","Sumber"], correct:0,
+    explanation:"Tahun pembuatan menunjukkan kapan peta dibuat atau diperbarui.",
+    keyPoint:"Tahun = kapan dibuat." },
+  { cat:'komponen', difficulty:'mudah', q:"Lembaga atau penulis pembuat peta dicantumkan pada komponen...",
+    options:["Legenda","Sumber","Judul","Orientasi"], correct:1,
+    explanation:"Sumber peta mencantumkan lembaga/penulis pembuat peta.",
+    keyPoint:"Sumber = pembuat peta." },
+  { cat:'komponen', difficulty:'sedang', q:"Fungsi utama legenda pada peta adalah...",
+    options:["Menjelaskan simbol-simbol yang digunakan","Menunjukkan arah mata angin","Menyatakan tema peta","Menunjukkan skala"], correct:0,
+    explanation:"Legenda berfungsi menjelaskan arti simbol-simbol yang digunakan pada peta.",
+    keyPoint:"Legenda = kunci simbol." },
+  { cat:'komponen', difficulty:'sedang', q:"Komponen peta yang berfungsi menunjukkan lokasi peta utama dalam konteks wilayah yang lebih luas adalah...",
+    options:["Legenda","Inset","Orientasi","Simbol"], correct:1,
+    explanation:"Inset adalah peta kecil yang menunjukkan lokasi peta utama dalam konteks lebih luas.",
+    keyPoint:"Inset = peta mini." },
+  { cat:'komponen', difficulty:'sedang', q:"Jika sebuah peta tidak memiliki orientasi, maka pembaca tidak dapat mengetahui...",
+    options:["Skala peta","Arah utara peta","Jenis peta","Tahun pembuatan"], correct:1,
+    explanation:"Orientasi berfungsi menunjukkan arah utara pada peta.",
+    keyPoint:"Orientasi = arah utara." },
+  { cat:'komponen', difficulty:'sulit', q:"Mengapa tahun pembuatan peta perlu dicantumkan?",
+    options:["Sebagai formalitas","Untuk mengetahui seberapa baru/valid informasi peta","Agar peta terlihat cantik","Untuk memenuhi standar UNESCO"], correct:1,
+    explanation:"Tahun pembuatan penting agar pengguna tahu seberapa baru/valid informasi peta tersebut.",
+    keyPoint:"Tahun = validitas data." },
+  { cat:'komponen', difficulty:'sulit', q:"Sebuah peta tanpa legenda akan menyulitkan pembaca karena...",
+    options:["Tidak ada arah utara","Tidak tahu arti simbol yang digunakan","Tidak ada judul","Tidak ada warna"], correct:1,
+    explanation:"Tanpa legenda, pembaca tidak dapat mengetahui arti simbol-simbol yang ada di peta.",
+    keyPoint:"Tanpa legenda = simbol tak terbaca." },
+  { cat:'komponen', difficulty:'sulit', q:"Komponen peta yang berfungsi sebagai \"kunci\" untuk membaca arti semua simbol pada peta adalah...",
+    options:["Judul","Legenda","Skala","Inset"], correct:1,
+    explanation:"Legenda adalah kunci peta yang menjelaskan arti semua simbol.",
+    keyPoint:"Legenda = kunci peta." },
 
-  /* SKALA PETA */
-  { cat:'skala', difficulty:'mudah', q:"Angka 1 : 100.000 pada peta artinya 1 cm di peta sama dengan...",
-    options:["100 meter","1 kilometer","10 kilometer","100 kilometer"], correct:1,
-    explanation:"Skala 1 : 100.000 berarti 1 cm di peta mewakili 100.000 cm = 1 km di lapangan.",
-    keyPoint:"100.000 cm = 1 km." },
-  { cat:'skala', difficulty:'mudah', q:"Skala yang dinyatakan dalam bentuk kalimat seperti '1 cm mewakili 5 km' disebut skala...",
-    options:["Skala Angka","Skala Grafis","Skala Verbal","Skala Batang"], correct:2,
-    explanation:"Skala verbal dinyatakan dalam kalimat/kata-kata langsung.",
-    keyPoint:"Skala verbal = kalimat." },
-  { cat:'skala', difficulty:'mudah', q:"Skala yang dinyatakan dengan garis lurus bertingkat disebut skala...",
-    options:["Skala Angka","Skala Grafis/Batang","Skala Verbal","Skala Kontur"], correct:1,
-    explanation:"Skala grafis (batang) berupa garis bertingkat dengan angka.",
-    keyPoint:"Grafis = batang." },
-  { cat:'skala', difficulty:'mudah', q:"Skala 1 : 250.000 berarti 1 cm pada peta sama dengan...",
-    options:["25 meter","250 meter","2,5 km","25 km"], correct:2,
-    explanation:"1 : 250.000 berarti 1 cm mewakili 250.000 cm = 2,5 km.",
-    keyPoint:"250.000 cm = 2,5 km." },
-  { cat:'skala', difficulty:'sedang', q:"Jarak dua kota pada peta berskala 1:500.000 adalah 4 cm. Berapa jarak sebenarnya?",
-    options:["2 km","10 km","20 km","200 km"], correct:2,
-    explanation:"Jarak sebenarnya = 4 cm × 500.000 = 2.000.000 cm = 20 km.",
-    keyPoint:"JS = JP × penyebut skala." },
-  { cat:'skala', difficulty:'sedang', q:"Jika peta berskala 1:25.000 diperkecil menjadi 1:50.000, penampakan objek akan...",
-    options:["Lebih detail","Sama saja","Kurang detail & cakupan lebih luas","Lebih besar"], correct:2,
-    explanation:"Memperkecil skala = cakupan lebih luas, detail berkurang.",
-    keyPoint:"Skala kecil = luas & kurang detail." },
-  { cat:'skala', difficulty:'sedang', q:"Rumus untuk mencari jarak sebenarnya adalah...",
-    options:["JP × penyebut skala","JP : penyebut skala","Penyebut skala : JP","JP + penyebut skala"], correct:0,
-    explanation:"Jarak sebenarnya = jarak pada peta × penyebut skala.",
-    keyPoint:"JS = JP × penyebut skala." },
-  { cat:'skala', difficulty:'sulit', q:"Jarak sebenarnya dua kota 60 km, sedangkan di peta 3 cm. Skala peta tersebut adalah...",
-    options:["1 : 200.000","1 : 1.000.000","1 : 2.000.000","1 : 20.000"], correct:2,
-    explanation:"Skala = JP : JS = 3 cm : 6.000.000 cm = 1 : 2.000.000.",
+  /* SKALA PETA (10) */
+  { cat:'skala', difficulty:'mudah', q:"Skala 1 : 50.000 berarti 1 cm pada peta sama dengan...",
+    options:["50 meter","500 meter","5 kilometer","50 kilometer"], correct:1,
+    explanation:"1 : 50.000 berarti 1 cm = 50.000 cm = 500 meter.",
+    keyPoint:"50.000 cm = 500 m." },
+  { cat:'skala', difficulty:'mudah', q:"Skala yang dinyatakan dengan angka/rasio seperti 1:100.000 disebut skala...",
+    options:["Skala angka","Skala grafis","Skala verbal","Skala geografis"], correct:0,
+    explanation:"Skala angka (numerik) ditulis dalam bentuk angka/rasio.",
+    keyPoint:"Skala angka = rasio." },
+  { cat:'skala', difficulty:'mudah', q:"Skala grafis pada peta biasanya digambarkan dalam bentuk...",
+    options:["Angka dan huruf","Garis bersegmen","Kalimat","Simbol warna"], correct:1,
+    explanation:"Skala grafis (garis) digambarkan sebagai garis lurus bersegmen dengan angka.",
+    keyPoint:"Grafis = garis bersegmen." },
+  { cat:'skala', difficulty:'mudah', q:"Skala 1 : 10.000 termasuk jenis skala...",
+    options:["Kadaster","Besar","Sedang","Kecil"], correct:1,
+    explanation:"Skala besar = 1:5.000 – 1:250.000. Maka 1:10.000 termasuk skala besar.",
+    keyPoint:"Besar = 1:5.000–1:250.000." },
+  { cat:'skala', difficulty:'sedang', q:"Jarak pada peta antara kota A dan B adalah 5 cm, sedangkan jarak sebenarnya 25 km. Skala peta tersebut adalah...",
+    options:["1 : 50.000","1 : 500.000","1 : 5.000.000","1 : 250.000"], correct:1,
+    explanation:"Skala = JP : JS = 5 cm : 2.500.000 cm = 1 : 500.000.",
     keyPoint:"Skala = JP : JS." },
-  { cat:'skala', difficulty:'sulit', q:"Di antara skala berikut, yang paling besar (paling detail) adalah...",
-    options:["1 : 10.000","1 : 50.000","1 : 100.000","1 : 500.000"], correct:0,
-    explanation:"Semakin kecil angka penyebut, semakin besar skalanya, semakin detail.",
-    keyPoint:"Penyebut kecil = skala besar = detail." },
-  { cat:'skala', difficulty:'sulit', q:"Peta A berskala 1:50.000 dan peta B berskala 1:100.000. Pernyataan yang benar adalah...",
-    options:["Peta A lebih detail dari peta B","Peta B lebih detail dari peta A","Keduanya sama detail","Peta B cakupannya lebih sempit"], correct:0,
-    explanation:"Peta A lebih besar skalanya sehingga lebih detail dan cakupannya lebih sempit.",
-    keyPoint:"Skala besar = detail + cakupan sempit." },
+  { cat:'skala', difficulty:'sedang', q:"Jarak sebenarnya dua desa adalah 12 km. Jika skala peta 1 : 400.000, maka jarak pada peta adalah...",
+    options:["2 cm","3 cm","4 cm","6 cm"], correct:1,
+    explanation:"JP = JS × skala = 1.200.000 × (1/400.000) = 3 cm.",
+    keyPoint:"JP = JS × skala." },
+  { cat:'skala', difficulty:'sedang', q:"Peta dengan skala 1 : 100.000 diperbesar 2× akan menghasilkan skala baru sebesar...",
+    options:["1 : 50.000","1 : 200.000","1 : 100.000","1 : 25.000"], correct:0,
+    explanation:"Diperbesar 2× = skala menjadi lebih besar. 100.000 ÷ 2 = 50.000 → 1 : 50.000.",
+    keyPoint:"Diperbesar = skala lebih besar." },
+  { cat:'skala', difficulty:'sulit', q:"Skala 1 : 1.500.000 termasuk jenis skala...",
+    options:["Kadaster","Besar","Sedang","Geografis"], correct:3,
+    explanation:"Skala geografis = < 1:1.000.000. Maka 1:1.500.000 termasuk skala geografis.",
+    keyPoint:"Geografis < 1:1.000.000." },
+  { cat:'skala', difficulty:'sulit', q:"Jarak sebenarnya antara dua titik adalah 4,5 km. Pada peta, jarak tersebut digambarkan 3 cm. Skala peta tersebut adalah...",
+    options:["1 : 150.000","1 : 1.500","1 : 15.000","1 : 45.000"], correct:0,
+    explanation:"Skala = JP : JS = 3 cm : 450.000 cm = 1 : 150.000.",
+    keyPoint:"Selalu konversi ke cm dulu." },
+  { cat:'skala', difficulty:'sulit', q:"Jika peta A memiliki skala 1 : 25.000 dan peta B memiliki skala 1 : 250.000, pernyataan yang benar adalah...",
+    options:["Peta A lebih detail dari peta B","Peta B lebih detail dari peta A","Keduanya sama detail","Peta A cakupannya lebih luas"], correct:0,
+    explanation:"Penyebut skala peta A lebih kecil, jadi skala lebih besar → peta lebih detail, cakupan lebih sempit.",
+    keyPoint:"Penyebut kecil = detail tinggi." },
 
-  /* SIMBOL & WARNA */
-  { cat:'simbol', difficulty:'mudah', q:"Warna biru pada peta umumnya digunakan untuk menggambarkan kenampakan...",
-    options:["Pegunungan","Hutan","Perairan","Jalan raya"], correct:2,
-    explanation:"Warna biru merepresentasikan perairan.",
-    keyPoint:"Biru = air." },
-  { cat:'simbol', difficulty:'mudah', q:"Simbol warna coklat pada peta menggambarkan daerah...",
-    options:["Perairan","Dataran rendah","Pegunungan/daerah tinggi","Rawa-rawa"], correct:2,
-    explanation:"Warna coklat merepresentasikan pegunungan.",
-    keyPoint:"Coklat = pegunungan." },
-  { cat:'simbol', difficulty:'mudah', q:"Warna hijau pada peta menggambarkan daerah...",
-    options:["Pegunungan tinggi","Perairan","Vegetasi/dataran rendah","Gurun pasir"], correct:2,
-    explanation:"Warna hijau merepresentasikan vegetasi dan dataran rendah.",
-    keyPoint:"Hijau = vegetasi." },
-  { cat:'simbol', difficulty:'mudah', q:"Warna kuning pada peta biasanya menunjukkan daerah...",
-    options:["Perairan","Dataran tinggi","Dataran rendah","Pegunungan"], correct:2,
-    explanation:"Warna kuning biasanya untuk dataran rendah atau wilayah yang lebih rendah.",
-    keyPoint:"Kuning = dataran rendah." },
-  { cat:'simbol', difficulty:'sedang', q:"Simbol titik pada peta biasanya digunakan untuk menggambarkan objek...",
-    options:["Jalan raya","Sungai panjang","Kota atau gunung","Wilayah hutan"], correct:2,
-    explanation:"Simbol titik digunakan untuk objek lokal/pontual seperti kota atau gunung.",
+  /* SIMBOL & WARNA (10) */
+  { cat:'simbol', difficulty:'mudah', q:"Warna coklat/oranye pada peta umumnya menggambarkan...",
+    options:["Perairan","Dataran tinggi/pegunungan","Jalan raya","Pemukiman"], correct:1,
+    explanation:"Warna coklat/oranye menggambarkan dataran tinggi, perbukitan, dan pegunungan.",
+    keyPoint:"Coklat = dataran tinggi." },
+  { cat:'simbol', difficulty:'mudah', q:"Simbol titik pada peta digunakan untuk menggambarkan objek...",
+    options:["Jalan raya","Sungai","Gunung atau kota","Hutan"], correct:2,
+    explanation:"Simbol titik digunakan untuk objek lokal seperti gunung, kota, bandara, pelabuhan.",
     keyPoint:"Titik = objek lokal." },
-  { cat:'simbol', difficulty:'sedang', q:"Simbol garis pada peta digunakan untuk menggambarkan objek...",
-    options:["Kota","Jalan raya dan sungai","Pegunungan","Hutan"], correct:1,
-    explanation:"Simbol garis untuk objek memanjang seperti jalan, sungai, rel kereta.",
-    keyPoint:"Garis = objek memanjang." },
-  { cat:'simbol', difficulty:'sedang', q:"Simbol area (polygon) pada peta digunakan untuk menggambarkan...",
-    options:["Kota","Jalan","Wilayah/luasan seperti hutan","Gunung berapi"], correct:2,
-    explanation:"Simbol area untuk objek yang memiliki luasan seperti hutan, danau, sawah.",
-    keyPoint:"Area = objek berluas." },
-  { cat:'simbol', difficulty:'sedang', q:"Warna merah pada peta sering digunakan untuk menunjukkan...",
-    options:["Jalan raya utama","Jalan kereta api","Perairan","Hutan"], correct:0,
-    explanation:"Warna merah sering untuk jalan raya utama atau batas wilayah penting.",
+  { cat:'simbol', difficulty:'mudah', q:"Warna merah pada peta umumnya menunjukkan...",
+    options:["Jalan utama atau batas","Perairan","Pegunungan","Hutan"], correct:0,
+    explanation:"Warna merah biasanya untuk jalan utama, pemukiman padat, atau batas administrasi.",
     keyPoint:"Merah = jalan utama/batas." },
-  { cat:'simbol', difficulty:'sulit', q:"Simbol peta dibagi menjadi tiga jenis utama, yaitu...",
-    options:["Titik, garis, area","Angka, huruf, gambar","Besar, sedang, kecil","Biru, hijau, merah"], correct:0,
-    explanation:"Simbol peta terdiri dari titik (lokal), garis (memanjang), dan area (berluas).",
-    keyPoint:"Simbol: titik, garis, area." },
-  { cat:'simbol', difficulty:'sulit', q:"Warna putih pada peta biasanya digunakan untuk menunjukkan...",
-    options:["Perairan","Daerah bersalju/puncak tertinggi","Hutan","Jalan raya"], correct:1,
-    explanation:"Warna putih untuk puncak tertinggi/daerah bersalju atau wilayah kosong.",
-    keyPoint:"Putih = puncak/kosong." },
+  { cat:'simbol', difficulty:'mudah', q:"Simbol garis pada peta dapat menggambarkan...",
+    options:["Kota","Rel kereta api","Danau","Hutan"], correct:1,
+    explanation:"Rel kereta api adalah objek memanjang yang digambarkan dengan simbol garis.",
+    keyPoint:"Garis = objek memanjang." },
+  { cat:'simbol', difficulty:'sedang', q:"Perhatikan objek berikut: (1) sungai, (2) pelabuhan, (3) batas wilayah, (4) bandara. Objek yang digambarkan dengan simbol titik adalah...",
+    options:["(1) dan (3)","(2) dan (4)","(1) dan (2)","(3) dan (4)"], correct:1,
+    explanation:"Pelabuhan dan bandara digambarkan dengan simbol titik karena bersifat lokal.",
+    keyPoint:"Titik = pelabuhan, bandara." },
+  { cat:'simbol', difficulty:'sedang', q:"Warna kuning pada peta umumnya menunjukkan daerah...",
+    options:["Perairan","Pegunungan","Pertanian atau gurun","Pemukiman padat"], correct:2,
+    explanation:"Warna kuning biasanya untuk lahan pertanian, padang rumput, atau gurun.",
+    keyPoint:"Kuning = pertanian/gurun." },
+  { cat:'simbol', difficulty:'sedang', q:"Penggunaan huruf miring (italic) pada peta biasanya untuk menulis nama...",
+    options:["Kota besar","Objek alam seperti gunung dan sungai","Jalan raya","Provinsi"], correct:1,
+    explanation:"Huruf miring biasanya untuk nama objek alam seperti gunung, sungai, dan danau.",
+    keyPoint:"Italic = nama objek alam." },
+  { cat:'simbol', difficulty:'sulit', q:"Simbol area (polygon) paling tepat digunakan untuk menggambarkan objek...",
+    options:["Stasiun kereta","Bandara","Kawasan industri","Jalan tol"], correct:2,
+    explanation:"Simbol area digunakan untuk objek yang memiliki luasan seperti kawasan industri, hutan, dan permukiman.",
+    keyPoint:"Area = objek berluas." },
+  { cat:'simbol', difficulty:'sulit', q:"Penulisan nama ibu kota pada peta umumnya menggunakan...",
+    options:["Huruf kecil miring","Huruf kapital tegak","Huruf kecil biasa","Angka saja"], correct:1,
+    explanation:"Nama ibu kota menggunakan huruf kapital tegak karena merupakan hierarki tertinggi.",
+    keyPoint:"Ibu kota = kapital tegak." },
+  { cat:'simbol', difficulty:'sulit', q:"Simbol-simbol pada peta dibedakan menjadi tiga jenis utama, yaitu...",
+    options:["Besar, sedang, kecil","Titik, garis, dan area","Warna, tulisan, dan gambar","Bulat, kotak, segitiga"], correct:1,
+    explanation:"Simbol peta terdiri dari tiga jenis utama: titik, garis, dan area.",
+    keyPoint:"Titik · Garis · Area." },
 
-  /* JENIS PETA */
-  { cat:'jenis', difficulty:'mudah', q:"Peta yang menampilkan kenampakan umum tanpa menekankan tema tertentu disebut peta...",
-    options:["Peta Tematik","Peta Umum","Peta Kadaster","Peta Digital"], correct:1,
-    explanation:"Peta umum menampilkan kenampakan umum seperti jalan, sungai, kota.",
-    keyPoint:"Umum = semua kenampakan." },
-  { cat:'jenis', difficulty:'mudah', q:"Peta yang khusus menyajikan tema tertentu seperti peta curah hujan disebut peta...",
-    options:["Peta Umum","Peta Tematik","Peta Topografi","Peta Dunia"], correct:1,
-    explanation:"Peta tematik menyajikan satu tema/variabel spasial tertentu.",
-    keyPoint:"Tematik = bertema khusus." },
-  { cat:'jenis', difficulty:'mudah', q:"Peta yang menyajikan relief/ketinggian permukaan bumi disebut peta...",
-    options:["Peta Tematik","Peta Topografi","Peta Kadaster","Peta Korografi"], correct:1,
-    explanation:"Peta topografi menyajikan relief permukaan bumi dengan garis kontur.",
-    keyPoint:"Topografi = relief/ketinggian." },
-  { cat:'jenis', difficulty:'mudah', q:"Peta yang menggambarkan wilayah sangat luas seperti provinsi disebut peta...",
-    options:["Peta Kadaster","Peta Korografi","Peta Topografi","Peta Dunia"], correct:1,
-    explanation:"Peta korografi menggambarkan wilayah luas (provinsi/negara).",
-    keyPoint:"Korografi = wilayah luas." },
-  { cat:'jenis', difficulty:'mudah', q:"Peta untuk administrasi pertanahan dengan skala 1:100 sampai 1:5.000 disebut peta...",
-    options:["Peta Topografi","Peta Kadaster","Peta Korografi","Peta Dunia"], correct:1,
-    explanation:"Peta kadaster digunakan untuk sertifikat tanah.",
-    keyPoint:"Kadaster = peta tanah." },
-  { cat:'jenis', difficulty:'sedang', q:"Peta yang menunjukkan ketinggian dengan gradasi warna hijau ke coklat disebut peta...",
-    options:["Peta Tematik","Peta Hipsometri","Peta Kadaster","Peta Korografi"], correct:1,
-    explanation:"Peta hipsometri menyajikan perbedaan ketinggian dengan gradasi warna.",
-    keyPoint:"Hipsometri = gradasi warna ketinggian." },
-  { cat:'jenis', difficulty:'sedang', q:"Peta statistik yang menunjukkan persebaran data kuantitatif disebut peta...",
-    options:["Peta Umum","Peta Statistik","Peta Kadaster","Peta Topografi"], correct:1,
-    explanation:"Peta statistik menampilkan data kuantitatif seperti kepadatan penduduk.",
-    keyPoint:"Statistik = data kuantitatif." },
-  { cat:'jenis', difficulty:'sedang', q:"Peta yang menunjukkan persebaran jenis batuan disebut peta...",
-    options:["Peta Geologi","Peta Topografi","Peta Iklim","Peta Kadaster"], correct:0,
-    explanation:"Peta geologi menunjukkan persebaran jenis batuan dan struktur geologi.",
-    keyPoint:"Geologi = batuan." },
-  { cat:'jenis', difficulty:'sulit', q:"Peta yang menunjukkan pembagian wilayah administrasi pemerintahan disebut peta...",
-    options:["Peta Tematik","Peta Administrasi","Peta Topografi","Peta Geologi"], correct:1,
-    explanation:"Peta administrasi menunjukkan batas-batas wilayah pemerintahan.",
-    keyPoint:"Administrasi = batas wilayah." },
-  { cat:'jenis', difficulty:'sulit', q:"Peta kadaster umumnya memiliki skala antara...",
-    options:["1 : 100 sampai 1 : 5.000","1 : 10.000 sampai 1 : 50.000","1 : 100.000 sampai 1 : 500.000","1 : 1.000.000 ke atas"], correct:0,
-    explanation:"Peta kadaster untuk administrasi tanah memiliki skala besar: 1:100 sampai 1:5.000.",
-    keyPoint:"Kadaster = skala 1:100 – 1:5.000." },
+  /* JENIS PETA (10) */
+  { cat:'jenis', difficulty:'mudah', q:"Peta yang menggambarkan relief dan kontur permukaan bumi disebut peta...",
+    options:["Kadaster","Topografi","Chorografi","Tematik"], correct:1,
+    explanation:"Peta topografi menggambarkan relief dan kontur permukaan bumi.",
+    keyPoint:"Topografi = relief + kontur." },
+  { cat:'jenis', difficulty:'mudah', q:"Peta yang menggambarkan kepemilikan tanah disebut peta...",
+    options:["Kadaster","Topografi","Dunia","Iklim"], correct:0,
+    explanation:"Peta kadaster menggambarkan kepemilikan tanah dengan skala besar.",
+    keyPoint:"Kadaster = kepemilikan tanah." },
+  { cat:'jenis', difficulty:'mudah', q:"Peta yang menggambarkan wilayah luas seperti provinsi dengan skala sedang disebut peta...",
+    options:["Kadaster","Chorografi","Topografi","Tematik"], correct:1,
+    explanation:"Peta chorografi menggambarkan wilayah luas (provinsi/negara) dengan skala sedang.",
+    keyPoint:"Chorografi = wilayah luas." },
+  { cat:'jenis', difficulty:'mudah', q:"Peta yang menggambarkan kenampakan umum permukaan bumi tanpa tema khusus disebut peta...",
+    options:["Tematik","Umum","Kadaster","Digital"], correct:1,
+    explanation:"Peta umum menggambarkan kenampakan umum permukaan bumi.",
+    keyPoint:"Umum = tanpa tema khusus." },
+  { cat:'jenis', difficulty:'sedang', q:"Berikut ini yang termasuk peta tematik adalah...",
+    options:["Peta dunia","Peta topografi","Peta iklim","Peta chorografi"], correct:2,
+    explanation:"Peta iklim adalah peta tematik karena menyajikan tema tertentu (iklim).",
+    keyPoint:"Peta iklim = tematik." },
+  { cat:'jenis', difficulty:'sedang', q:"Peta yang digunakan untuk menunjukkan potensi wisata di suatu daerah termasuk peta...",
+    options:["Umum","Tematik","Kadaster","Topografi"], correct:1,
+    explanation:"Peta pariwisata termasuk peta tematik karena fokus pada tema wisata.",
+    keyPoint:"Pariwisata = tematik." },
+  { cat:'jenis', difficulty:'sedang', q:"Peta Indonesia yang menunjukkan seluruh kepulauan dengan skala kecil termasuk jenis peta...",
+    options:["Umum","Tematik","Kadaster","Topografi"], correct:0,
+    explanation:"Peta Indonesia dengan kenampakan umum termasuk peta umum berskala kecil.",
+    keyPoint:"Skala kecil = peta umum." },
+  { cat:'jenis', difficulty:'sulit', q:"Peta yang memuat informasi jenis tanah, iklim, dan penggunaan lahan suatu wilayah termasuk...",
+    options:["Peta umum","Peta tematik","Peta kadaster","Peta topografi"], correct:1,
+    explanation:"Karena fokus pada tema-tema tertentu (tanah, iklim, penggunaan lahan), peta tersebut termasuk tematik.",
+    keyPoint:"Tema spesifik = tematik." },
+  { cat:'jenis', difficulty:'sulit', q:"Peta Rupa Bumi Indonesia (RBI) termasuk dalam kategori peta...",
+    options:["Tematik","Umum","Digital","Statistik"], correct:1,
+    explanation:"RBI adalah peta dasar nasional yang menampilkan kenampakan umum → peta umum.",
+    keyPoint:"RBI = peta umum." },
+  { cat:'jenis', difficulty:'sulit', q:"Perbedaan utama peta umum dengan peta tematik adalah...",
+    options:["Peta umum menggambarkan kenampakan umum, peta tematik fokus pada tema tertentu","Peta umum lebih besar skalanya","Peta tematik selalu berwarna-warni","Peta umum tidak memiliki skala"], correct:0,
+    explanation:"Peta umum menampilkan kenampakan umum; peta tematik menyajikan satu tema/variabel tertentu.",
+    keyPoint:"Umum = banyak objek · Tematik = satu tema." },
 
-  /* PETA KONTUR */
+  /* PETA KONTUR (10) */
   { cat:'kontur', difficulty:'mudah', q:"Garis khayal pada peta yang menghubungkan titik-titik dengan ketinggian sama disebut...",
-    options:["Garis Lintang","Garis Bujur","Garis Kontur","Garis Astronomis"], correct:2,
+    options:["Garis lintang","Garis bujur","Garis kontur","Garis astronomis"], correct:2,
     explanation:"Garis kontur menghubungkan titik-titik dengan ketinggian sama.",
-    keyPoint:"Kontur = garis ketinggian sama." },
-  { cat:'kontur', difficulty:'mudah', q:"Garis kontur yang sangat rapat menunjukkan bentuk lereng yang...",
-    options:["Landai","Datar","Terjal/curam","Bercekungan"], correct:2,
-    explanation:"Kontur rapat = perubahan ketinggian drastis = lereng terjal.",
-    keyPoint:"Rapat = terjal." },
-  { cat:'kontur', difficulty:'mudah', q:"Garis kontur yang renggang menunjukkan bentuk lereng yang...",
-    options:["Terjal","Landai/datar","Cekung","Cembung"], correct:1,
+    keyPoint:"Kontur = ketinggian sama." },
+  { cat:'kontur', difficulty:'mudah', q:"Garis kontur yang rapat pada peta menunjukkan lereng...",
+    options:["Landai","Datar","Curam/terjal","Bercekung"], correct:2,
+    explanation:"Kontur rapat = perubahan ketinggian drastis = lereng curam/terjal.",
+    keyPoint:"Rapat = curam." },
+  { cat:'kontur', difficulty:'mudah', q:"Garis kontur yang renggang menunjukkan lereng...",
+    options:["Curam","Landai","Terjal","Vertikal"], correct:1,
     explanation:"Kontur renggang = perubahan ketinggian kecil = lereng landai.",
     keyPoint:"Renggang = landai." },
-  { cat:'kontur', difficulty:'sedang', q:"Peta kontur memiliki Kontur Interval (CI) 25 meter. Berapakah skala peta tersebut?",
-    options:["1 : 25.000","1 : 50.000","1 : 100.000","1 : 500.000"], correct:1,
-    explanation:"Rumus: CI = 1/2000 × penyebut skala. Skala = 25 × 2000 = 50.000.",
-    keyPoint:"Skala = CI × 2000." },
+  { cat:'kontur', difficulty:'mudah', q:"Peta kontur merupakan bagian dari peta...",
+    options:["Tematik","Topografi","Kadaster","Digital"], correct:1,
+    explanation:"Peta kontur adalah bagian dari peta topografi yang menyajikan relief.",
+    keyPoint:"Kontur ⊂ topografi." },
   { cat:'kontur', difficulty:'sedang', q:"Rumus Kontur Interval (CI) adalah...",
-    options:["CI = 1/1000 × skala","CI = 1/2000 × skala","CI = 2000 × skala","CI = skala : 2000"], correct:1,
+    options:["CI = 1/1000 × penyebut skala","CI = 1/2000 × penyebut skala","CI = 1/1000 × jarak peta","CI = 1/2000 × jarak peta"], correct:1,
     explanation:"CI = 1/2000 × penyebut skala peta.",
-    keyPoint:"CI = 1/2000 × penyebut skala." },
-  { cat:'kontur', difficulty:'sedang', q:"Angka yang tercantum pada garis kontur menunjukkan...",
-    options:["Jarak antar kontur","Ketinggian tempat","Skala peta","Luas wilayah"], correct:1,
-    explanation:"Angka pada garis kontur menunjukkan ketinggian (elevasi) tempat tersebut.",
-    keyPoint:"Angka kontur = ketinggian." },
-  { cat:'kontur', difficulty:'sulit', q:"Garis kontur yang membentuk lingkaran tertutup kecil menunjukkan...",
-    options:["Lembah","Puncak bukit","Sungai","Danau"], correct:1,
-    explanation:"Kontur tertutup kecil = puncak bukit.",
-    keyPoint:"Kontur tertutup = puncak." },
-  { cat:'kontur', difficulty:'sulit', q:"Manfaat utama peta kontur adalah...",
-    options:["Menunjukkan batas negara","Mengetahui bentuk relief/ketinggian permukaan bumi","Menunjukkan jalan raya","Menunjukkan suhu udara"], correct:1,
-    explanation:"Peta kontur bermanfaat untuk mengetahui bentuk relief/ketinggian permukaan bumi.",
-    keyPoint:"Kontur = relief bumi." },
-  { cat:'kontur', difficulty:'sulit', q:"Peta memiliki CI 50 meter. Skala peta tersebut adalah...",
-    options:["1 : 25.000","1 : 50.000","1 : 100.000","1 : 200.000"], correct:2,
-    explanation:"Skala = CI × 2000 = 50 × 2000 = 100.000 → 1 : 100.000.",
+    keyPoint:"CI = 1/2000 × skala." },
+  { cat:'kontur', difficulty:'sedang', q:"Garis kontur yang membentuk huruf \"V\" mengarah ke hulu sungai menunjukkan...",
+    options:["Punggungan bukit","Lembah","Puncak","Danau"], correct:1,
+    explanation:"Kontur berbentuk V yang mengarah ke hulu menunjukkan lembah.",
+    keyPoint:"V ke hulu = lembah." },
+  { cat:'kontur', difficulty:'sedang', q:"Rumus kemiringan lereng adalah...",
+    options:["(Beda tinggi / Jarak horizontal) × 100%","(Jarak horizontal / Beda tinggi) × 100%","Beda tinggi × Jarak horizontal","Beda tinggi + Jarak horizontal"], correct:0,
+    explanation:"Kemiringan (%) = (Beda tinggi / Jarak horizontal) × 100%.",
+    keyPoint:"Kemiringan = Δh / d × 100%." },
+  { cat:'kontur', difficulty:'sulit', q:"Peta kontur memiliki CI = 20 meter. Jika penyebut skala = 2000 × CI, maka skala peta tersebut adalah...",
+    options:["1 : 20.000","1 : 40.000","1 : 60.000","1 : 80.000"], correct:1,
+    explanation:"Skala = CI × 2000 = 20 × 2000 = 40.000 → 1 : 40.000.",
     keyPoint:"Skala = CI × 2000." },
-  { cat:'kontur', difficulty:'sulit', q:"Kontur Interval (CI) adalah...",
-    options:["Jarak antar garis kontur","Selisih ketinggian antara dua garis kontur berdekatan","Skala peta","Panjang garis kontur"], correct:1,
-    explanation:"CI adalah selisih ketinggian antara dua garis kontur yang berdekatan.",
-    keyPoint:"CI = selisih ketinggian." },
+  { cat:'kontur', difficulty:'sulit', q:"Dua garis kontur berdekatan menunjukkan ketinggian 200 m dan 240 m. Jika jarak horizontal 100 m, kemiringan lereng adalah...",
+    options:["20%","30%","40%","50%"], correct:2,
+    explanation:"Kemiringan = (240 − 200) / 100 × 100% = 40%.",
+    keyPoint:"(Δh / d) × 100%." },
+  { cat:'kontur', difficulty:'sulit', q:"Manfaat utama peta kontur bagi kegiatan pembangunan adalah...",
+    options:["Menentukan jenis tanah","Mengidentifikasi kemiringan lereng untuk perencanaan infrastruktur","Menentukan suhu udara","Menghitung jumlah penduduk"], correct:1,
+    explanation:"Peta kontur membantu mengidentifikasi kemiringan lereng yang penting untuk perencanaan infrastruktur.",
+    keyPoint:"Kontur → kemiringan lereng." },
 
-  /* PROYEKSI PETA */
-  { cat:'proyeksi', difficulty:'mudah', q:"Proyeksi peta yang paling cocok untuk wilayah ekuator seperti Indonesia adalah...",
-    options:["Proyeksi Azimutal","Proyeksi Kerucut","Proyeksi Silinder","Proyeksi Transversal"], correct:2,
-    explanation:"Proyeksi silinder menyinggung bumi di ekuator. Distorsi minimal di daerah ekuator.",
-    keyPoint:"Ekuator → silinder." },
-  { cat:'proyeksi', difficulty:'mudah', q:"Proyeksi peta yang cocok untuk menggambarkan wilayah kutub adalah...",
-    options:["Silinder","Kerucut","Azimutal","Mercator"], correct:2,
-    explanation:"Proyeksi azimutal menggunakan bidang datar yang menyinggung bumi di kutub.",
-    keyPoint:"Kutub → azimutal." },
-  { cat:'proyeksi', difficulty:'mudah', q:"Proyeksi peta yang paling tepat untuk wilayah lintang sedang adalah...",
-    options:["Silinder","Kerucut","Azimutal","Mercator"], correct:1,
-    explanation:"Proyeksi kerucut cocok untuk wilayah lintang sedang.",
-    keyPoint:"Lintang sedang → kerucut." },
-  { cat:'proyeksi', difficulty:'sedang', q:"Syarat peta 'conform' berarti...",
-    options:["Luas sesuai aslinya","Bentuk sesuai aslinya","Jarak sesuai aslinya","Warna sesuai aslinya"], correct:1,
-    explanation:"Syarat peta: Conform=bentuk, Equidistant=jarak, Equivalent=luas.",
-    keyPoint:"Conform = bentuk." },
-  { cat:'proyeksi', difficulty:'sedang', q:"Syarat peta 'equidistant' berarti...",
-    options:["Bentuk sesuai aslinya","Luas sesuai aslinya","Jarak sesuai aslinya","Arah sesuai aslinya"], correct:2,
-    explanation:"Equidistant berarti jarak pada peta sesuai dengan jarak sebenarnya.",
-    keyPoint:"Equidistant = jarak." },
-  { cat:'proyeksi', difficulty:'sedang', q:"Syarat peta 'equivalent' berarti...",
-    options:["Bentuk sesuai","Jarak sesuai","Luas sesuai","Arah sesuai"], correct:2,
-    explanation:"Equivalent berarti luas pada peta sesuai dengan luas sebenarnya.",
-    keyPoint:"Equivalent = luas." },
-  { cat:'proyeksi', difficulty:'sedang', q:"Proyeksi Mercator termasuk jenis proyeksi...",
-    options:["Kerucut","Silinder","Azimutal","Konik"], correct:1,
-    explanation:"Proyeksi Mercator adalah proyeksi silinder yang banyak digunakan untuk peta navigasi.",
+  /* PROYEKSI PETA (10) */
+  { cat:'proyeksi', difficulty:'mudah', q:"Proyeksi peta adalah teknik memindahkan permukaan bumi yang berbentuk bola (3D) ke bidang...",
+    options:["Lengkung","Datar (2D)","Bola","Kubus"], correct:1,
+    explanation:"Proyeksi peta memindahkan permukaan bumi (3D) ke bidang datar (2D).",
+    keyPoint:"3D → 2D." },
+  { cat:'proyeksi', difficulty:'mudah', q:"Proyeksi yang menggunakan bidang proyeksi tabung disebut proyeksi...",
+    options:["Kerucut","Azimuthal","Silinder","Planar"], correct:2,
+    explanation:"Proyeksi silinder menggunakan bidang tabung (silinder).",
+    keyPoint:"Silinder = tabung." },
+  { cat:'proyeksi', difficulty:'mudah', q:"Proyeksi Mercator termasuk jenis proyeksi...",
+    options:["Silinder","Kerucut","Azimuthal","Planar"], correct:0,
+    explanation:"Mercator adalah proyeksi silinder yang digunakan untuk navigasi.",
     keyPoint:"Mercator = silinder." },
-  { cat:'proyeksi', difficulty:'sulit', q:"Distorsi peta paling kecil terjadi pada bagian yang...",
-    options:["Jauh dari bidang proyeksi","Bersinggungan dengan bidang proyeksi","Di tengah peta","Di tepi peta"], correct:1,
-    explanation:"Distorsi paling kecil pada area yang menyinggung bidang proyeksi.",
-    keyPoint:"Singgungan = distorsi kecil." },
-  { cat:'proyeksi', difficulty:'sulit', q:"Fungsi utama proyeksi peta adalah...",
-    options:["Menghias peta","Memindahkan permukaan bumi yang melengkung ke bidang datar","Menghitung jarak","Menentukan warna peta"], correct:1,
-    explanation:"Proyeksi peta memindahkan permukaan bumi (bola) ke bidang datar (peta).",
-    keyPoint:"Proyeksi = bumi lengkung → bidang datar." },
-  { cat:'proyeksi', difficulty:'sulit', q:"Proyeksi Transversal (UTM) banyak digunakan untuk peta...",
-    options:["Peta dunia","Peta navigasi laut","Peta skala besar daerah tertentu","Peta kutub"], correct:2,
-    explanation:"Proyeksi UTM (Universal Transverse Mercator) cocok untuk peta skala besar daerah tertentu.",
-    keyPoint:"UTM = peta skala besar." },
+  { cat:'proyeksi', difficulty:'mudah', q:"Proyeksi Gnomonic termasuk jenis proyeksi...",
+    options:["Silinder","Kerucut","Azimuthal","Planar"], correct:2,
+    explanation:"Gnomonic adalah proyeksi azimuthal yang menggunakan bidang datar.",
+    keyPoint:"Gnomonic = azimuthal." },
+  { cat:'proyeksi', difficulty:'sedang', q:"Proyeksi silinder paling cocok digunakan untuk peta wilayah...",
+    options:["Lintang tinggi","Ekuator (khatulistiwa)","Kutub","Gurun"], correct:1,
+    explanation:"Proyeksi silinder cocok untuk wilayah ekuator karena distorsinya minimum di sana.",
+    keyPoint:"Silinder → ekuator." },
+  { cat:'proyeksi', difficulty:'sedang', q:"Sifat proyeksi yang mempertahankan bentuk dan sudut adalah...",
+    options:["Conform","Equivalent","Equidistant","Azimuthal"], correct:0,
+    explanation:"Conform mempertahankan bentuk dan sudut wilayah.",
+    keyPoint:"Conform = bentuk & sudut." },
+  { cat:'proyeksi', difficulty:'sedang', q:"Sifat proyeksi yang mempertahankan perbandingan luas adalah...",
+    options:["Conform","Equivalent","Equidistant","Azimuthal"], correct:1,
+    explanation:"Equivalent mempertahankan perbandingan luas wilayah.",
+    keyPoint:"Equivalent = luas." },
+  { cat:'proyeksi', difficulty:'sulit', q:"Proyeksi silinder mengakibatkan distorsi luas yang parah di wilayah...",
+    options:["Ekuator","Lintang rendah","Kutub","Tropis"], correct:2,
+    explanation:"Proyeksi silinder menyebabkan distorsi luas yang parah di lintang tinggi (kutub), misalnya Greenland terlihat sangat besar.",
+    keyPoint:"Kutub = distorsi luas parah." },
+  { cat:'proyeksi', difficulty:'sulit', q:"Google Maps menggunakan varian proyeksi silinder yang mengutamakan bentuk untuk navigasi digital. Proyeksi tersebut adalah...",
+    options:["UTM","Web Mercator","Gnomonic","Lambert"], correct:1,
+    explanation:"Google Maps menggunakan Web Mercator, varian Mercator untuk navigasi digital.",
+    keyPoint:"Google Maps = Web Mercator." },
+  { cat:'proyeksi', difficulty:'sulit', q:"Proyeksi yang paling tepat digunakan untuk peta wilayah Amerika Serikat (lintang sedang) adalah...",
+    options:["Silinder","Kerucut (Lambert)","Azimuthal","Planar"], correct:1,
+    explanation:"Untuk wilayah lintang sedang (30°–60°), proyeksi kerucut seperti Lambert paling cocok.",
+    keyPoint:"Lintang sedang → kerucut." },
 
-  /* KARTOGRAFI LANJUTAN */
-  { cat:'lanjutan', difficulty:'mudah', q:"Proses penyederhanaan informasi pada peta ketika skala diperkecil disebut...",
-    options:["Proyeksi Peta","Generalisasi Peta","Overlay Peta","Digitasi Peta"], correct:1,
-    explanation:"Generalisasi peta adalah penyederhanaan unsur peta ketika skala diperkecil.",
-    keyPoint:"Generalisasi = penyederhanaan." },
-  { cat:'lanjutan', difficulty:'mudah', q:"Penulisan nama-nama geografis pada peta disebut...",
-    options:["Lettering","Layouting","Coloring","Symboling"], correct:0,
-    explanation:"Lettering adalah seni penulisan nama geografis pada peta.",
-    keyPoint:"Lettering = penulisan nama." },
-  { cat:'lanjutan', difficulty:'mudah', q:"Teknik pengukuran dan pemetaan menggunakan foto udara sebagai dasar disebut...",
-    options:["Kartografi","Fotogrametri","Geodesi","Topografi"], correct:1,
-    explanation:"Fotogrametri adalah pemetaan dari foto udara.",
-    keyPoint:"Fotogrametri = dari foto udara." },
-  { cat:'lanjutan', difficulty:'mudah', q:"Peta yang dibuat dan disimpan dalam format digital disebut...",
-    options:["Peta Konvensional","Peta Digital","Peta Manual","Peta Cetak"], correct:1,
-    explanation:"Peta digital dibuat dengan perangkat lunak SIG (ArcGIS, QGIS).",
-    keyPoint:"Peta digital = dibuat komputer." },
-  { cat:'lanjutan', difficulty:'sedang', q:"Alat untuk menentukan arah dan besar sudut pada pembuatan peta adalah...",
-    options:["Kompas","Teodolit","Barometer","Altimeter"], correct:1,
-    explanation:"Teodolit adalah alat ukur sudut horizontal dan vertikal untuk pemetaan.",
-    keyPoint:"Teodolit = ukur sudut." },
-  { cat:'lanjutan', difficulty:'sedang', q:"SIG adalah singkatan dari...",
-    options:["Sistem Informasi Geografis","Sistem Informasi Global","Sistem Indeks Geografi","Sistem Integrasi Geologi"], correct:0,
-    explanation:"SIG (GIS) = Sistem Informasi Geografis, sistem untuk mengolah data spasial.",
+  /* KARTOGRAFI LANJUTAN (10) */
+  { cat:'lanjutan', difficulty:'mudah', q:"Sistem Informasi Geografis disingkat menjadi...",
+    options:["SIG","GPS","SSID","GISecara"], correct:0,
+    explanation:"SIG (GIS) = Sistem Informasi Geografis.",
     keyPoint:"SIG = Sistem Informasi Geografis." },
-  { cat:'lanjutan', difficulty:'sedang', q:"Proses mengubah peta analog (kertas) menjadi peta digital disebut...",
-    options:["Digitasi","Proyeksi","Generalisasi","Fotogrametri"], correct:0,
-    explanation:"Digitasi adalah proses mengubah data peta analog menjadi digital.",
-    keyPoint:"Digitasi = analog → digital." },
-  { cat:'lanjutan', difficulty:'sedang', q:"Teknologi penginderaan jauh yang menggunakan satelit disebut...",
-    options:["Fotogrametri","Remote Sensing","Geodesi","Kartografi"], correct:1,
-    explanation:"Remote sensing (penginderaan jauh) menggunakan satelit/sensor dari jarak jauh.",
-    keyPoint:"Remote sensing = indera jauh." },
-  { cat:'lanjutan', difficulty:'sulit', q:"Contoh perangkat lunak SIG adalah...",
-    options:["Photoshop","ArcGIS","Excel","Notepad"], correct:1,
-    explanation:"ArcGIS dan QGIS adalah contoh perangkat lunak SIG.",
-    keyPoint:"ArcGIS = software SIG." },
-  { cat:'lanjutan', difficulty:'sulit', q:"Manfaat SIG dalam bidang tata kota adalah...",
-    options:["Membuat iklan","Analisis tata ruang dan zonasi wilayah","Membuat novel","Menggambar kartun"], correct:1,
-    explanation:"SIG dimanfaatkan untuk analisis tata ruang, zonasi, dan perencanaan kota.",
-    keyPoint:"SIG → analisis tata ruang." }
+  { cat:'lanjutan', difficulty:'mudah', q:"GPS adalah singkatan dari...",
+    options:["Geographic Positioning System","Global Positioning System","Global Position Standard","General Positioning System"], correct:1,
+    explanation:"GPS = Global Positioning System.",
+    keyPoint:"GPS = Global Positioning System." },
+  { cat:'lanjutan', difficulty:'mudah', q:"Perangkat lunak yang digunakan untuk membuat peta digital antara lain...",
+    options:["Photoshop","ArcGIS dan QGIS","Excel","Notepad"], correct:1,
+    explanation:"ArcGIS dan QGIS adalah perangkat lunak SIG untuk membuat peta digital.",
+    keyPoint:"ArcGIS, QGIS = software SIG." },
+  { cat:'lanjutan', difficulty:'mudah', q:"Badan yang mengatur informasi geospasial di Indonesia adalah...",
+    options:["BMKG","BIG","BPS","LAPAN"], correct:1,
+    explanation:"BIG (Badan Informasi Geospasial) mengatur informasi geospasial di Indonesia.",
+    keyPoint:"BIG = Badan Informasi Geospasial." },
+  { cat:'lanjutan', difficulty:'sedang', q:"Komponen utama SIG meliputi perangkat keras, perangkat lunak, data spasial, dan...",
+    options:["Peta cetak","GPS","Sumber daya manusia","Citra satelit"], correct:2,
+    explanation:"Empat komponen utama SIG: perangkat keras, perangkat lunak, data spasial, dan sumber daya manusia.",
+    keyPoint:"HW + SW + Data + SDM." },
+  { cat:'lanjutan', difficulty:'sedang', q:"Kegunaan utama SIG dalam analisis spasial adalah...",
+    options:["Membuat foto udara","Overlay (tumpang susun) berbagai data spasial","Menghitung nilai tukar","Memantau media sosial"], correct:1,
+    explanation:"SIG digunakan untuk analisis overlay (tumpang susun) berbagai data spasial.",
+    keyPoint:"SIG = analisis overlay." },
+  { cat:'lanjutan', difficulty:'sedang', q:"GPS memberikan informasi posisi berupa...",
+    options:["Warna, bentuk, ukuran","Lintang, bujur, dan ketinggian","Suhu dan kelembapan","Kecepatan angin"], correct:1,
+    explanation:"GPS memberikan informasi posisi lintang, bujur, dan ketinggian secara akurat.",
+    keyPoint:"GPS = lat, lon, elevasi." },
+  { cat:'lanjutan', difficulty:'sulit', q:"Peta Rupa Bumi Indonesia (RBI) tersedia dalam berbagai skala, salah satunya...",
+    options:["1 : 25.000","1 : 500","1 : 5.000.000","1 : 100"], correct:0,
+    explanation:"RBI tersedia dalam skala 1:25.000, 1:50.000, dan 1:250.000.",
+    keyPoint:"RBI = 1:25.000 · 1:50.000 · 1:250.000." },
+  { cat:'lanjutan', difficulty:'sulit', q:"Untuk memetakan potensi ekowisata Taman Nasional Sebangau, jenis peta yang paling tepat adalah peta...",
+    options:["Kadaster","Tematik","Topografi","Dunia"], correct:1,
+    explanation:"Karena fokus pada tema wisata/ekowisata, peta tematik paling tepat.",
+    keyPoint:"Peta wisata = tematik." },
+  { cat:'lanjutan', difficulty:'sulit', q:"Teknologi yang menggunakan satelit untuk memberikan posisi akurat di seluruh dunia adalah...",
+    options:["SIG","GPS","RFID","NFC"], correct:1,
+    explanation:"GPS (Global Positioning System) menggunakan satelit untuk memberikan posisi akurat di seluruh dunia.",
+    keyPoint:"GPS = satelit navigasi global." }
 ];
 
 const DIFF_META = {
@@ -1270,13 +1470,10 @@ const state = {
   selectedAnswerIndex: null, usedQuestions: new Set(), history: [],
   catStats: {}
 };
-const STORAGE_PREFIX = 'kuis_roda_geo_v3_';
+const STORAGE_PREFIX = 'kuis_roda_geo_v4_';
 
 /* =========================================================
-   MEMBANGUN RODA
-   - Teks RADIAL: dari lingkaran besar menuju inti lingkaran
-   - Orientasi otomatis dibalik jika terbalik agar tetap terbaca
-   - Ikon emoji ditata rapi di tepi luar
+   BUILD WHEEL — Teks RADIAL dari lingkaran besar ke inti
    ========================================================= */
 function buildWheel() {
   const svg = $('wheelSvg');
@@ -1286,9 +1483,9 @@ function buildWheel() {
   const half = segAngle / 2;
 
   let defsHtml = `<radialGradient id="wheelInner" cx="50%" cy="50%">
-      <stop offset="0%" stop-color="#0a0f2e" stop-opacity="1"/>
-      <stop offset="62%" stop-color="#0a0f2e" stop-opacity="1"/>
-      <stop offset="100%" stop-color="#1e2a6e" stop-opacity="1"/>
+      <stop offset="0%" stop-color="#0a1f14" stop-opacity="1"/>
+      <stop offset="62%" stop-color="#0a1f14" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#145b34" stop-opacity="1"/>
     </radialGradient>`;
   let segHtml = '';
 
@@ -1297,26 +1494,22 @@ function buildWheel() {
     const centerDeg = -90 + i * segAngle;
     const centerRad = centerDeg * Math.PI / 180;
 
-    /* ---------- WEDGE ---------- */
     const a0 = (centerDeg - half) * Math.PI / 180;
     const a1 = (centerDeg + half) * Math.PI / 180;
     const sx = cx + r * Math.cos(a0), sy = cy + r * Math.sin(a0);
     const ex = cx + r * Math.cos(a1), ey = cy + r * Math.sin(a1);
     const wedge = `M ${cx} ${cy} L ${sx.toFixed(2)} ${sy.toFixed(2)} A ${r} ${r} 0 0 1 ${ex.toFixed(2)} ${ey.toFixed(2)} Z`;
 
-    segHtml += `<path d="${wedge}" fill="${cat.color}" fill-opacity="0.92" stroke="#0a0f2e" stroke-width="1.4"/>`;
-    segHtml += `<path d="${wedge}" fill="url(#wheelInner)" fill-opacity="0.24"/>`;
-    segHtml += `<path d="${wedge}" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="0.5"/>`;
+    segHtml += `<path d="${wedge}" fill="${cat.color}" fill-opacity="0.92" stroke="#ffffff" stroke-width="1.6"/>`;
+    segHtml += `<path d="${wedge}" fill="url(#wheelInner)" fill-opacity="0.20"/>`;
+    segHtml += `<path d="${wedge}" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="0.5"/>`;
 
-    /* ---------- TEKS RADIAL (luar → inti) ---------- */
     const R_text = r * 0.58;
     const tx = cx + R_text * Math.cos(centerRad);
     const ty = cy + R_text * Math.sin(centerRad);
 
-    // Rotasi: baseline mengarah ke pusat (outer → inner)
     let rot = centerDeg + 180;
     rot = ((rot + 180) % 360 + 360) % 360 - 180;
-    // Jika terbalik, putar 180° agar tetap terbaca
     if (rot > 90 || rot < -90) {
       rot += 180;
       rot = ((rot + 180) % 360 + 360) % 360 - 180;
@@ -1327,32 +1520,31 @@ function buildWheel() {
         text-anchor="middle" dominant-baseline="central"
         font-size="7.4" font-weight="900" fill="#ffffff"
         letter-spacing="0.7" font-family="'Space Grotesk','Inter',sans-serif"
-        style="paint-order:stroke;stroke:rgba(5,8,22,.78);stroke-width:2px;stroke-linejoin:round">${cat.short.toUpperCase()}</text>`;
+        style="paint-order:stroke;stroke:rgba(10,31,20,.8);stroke-width:2px;stroke-linejoin:round">${cat.short.toUpperCase()}</text>`;
 
-    /* ---------- IKON di tepi luar ---------- */
     const iconR = r * 0.87;
     const icx = cx + iconR * Math.cos(centerRad);
     const icy = cy + iconR * Math.sin(centerRad);
 
     segHtml += `<g transform="translate(${icx.toFixed(2)} ${icy.toFixed(2)})">
-        <circle r="6.6" fill="rgba(5,8,22,.45)" stroke="rgba(255,255,255,.4)" stroke-width="0.6"/>
+        <circle r="6.6" fill="rgba(255,255,255,.45)" stroke="rgba(255,255,255,.65)" stroke-width="0.7"/>
         <text x="0" y="2.7" text-anchor="middle" font-size="8.6"
           font-family="'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif">${cat.icon}</text>
       </g>`;
   }
 
   let html = `<defs>${defsHtml}</defs>`;
-  html += `<circle cx="${cx}" cy="${cy}" r="${r + 4}" fill="#0a0f2e" stroke="#22d3ee" stroke-width="2" opacity="0.65"/>`;
-  html += `<circle cx="${cx}" cy="${cy}" r="${r + 6}" fill="none" stroke="#3b82f6" stroke-width="0.5" opacity="0.4"/>`;
+  html += `<circle cx="${cx}" cy="${cy}" r="${r + 4}" fill="#ffffff" stroke="#1e7a4a" stroke-width="2.5" opacity="0.95"/>`;
+  html += `<circle cx="${cx}" cy="${cy}" r="${r + 7}" fill="none" stroke="#2ecc71" stroke-width="0.7" opacity="0.5"/>`;
   html += segHtml;
-  html += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#67e8f9" stroke-width="1.6" opacity="0.75"/>`;
+  html += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#ffffff" stroke-width="1.8" opacity="0.95"/>`;
 
   const dots = total * 2;
   for (let i = 0; i < dots; i++) {
     const ang = (i * (360 / dots)) * Math.PI / 180;
-    const dx = cx + (r + 2) * Math.cos(ang);
-    const dy = cy + (r + 2) * Math.sin(ang);
-    html += `<circle cx="${dx.toFixed(2)}" cy="${dy.toFixed(2)}" r="0.9" fill="#67e8f9" opacity="0.55"/>`;
+    const dx = cx + (r + 2.5) * Math.cos(ang);
+    const dy = cy + (r + 2.5) * Math.sin(ang);
+    html += `<circle cx="${dx.toFixed(2)}" cy="${dy.toFixed(2)}" r="0.9" fill="#1e7a4a" opacity="0.7"/>`;
   }
 
   svg.innerHTML = html;
@@ -1419,7 +1611,7 @@ function onSpinComplete(targetIdx) {
     <div class="cat-badge" style="background: linear-gradient(135deg, ${cat.color}, ${cat.color}cc); color: ${txtColor}; border: 2px solid #ffffff">
       <span style="font-size: 1.2em">${cat.icon}</span>
       <span>${cat.name}</span>
-      <span class="ml-1 px-2 py-0.5 rounded-full font-mono text-[10px]" style="background: rgba(0,0,0,.2); color:#fff">+${cat.points}</span>
+      <span class="ml-1 px-2 py-0.5 rounded-full font-mono text-[10px]" style="background: rgba(0,0,0,.22); color:#fff">+${cat.points}</span>
     </div>`;
   show('categoryResult');
   playTone(660, .1, 'sine', .15, 0);
@@ -1457,7 +1649,7 @@ function startQuestion(cat) {
       <div class="cat-badge" style="background: linear-gradient(135deg, ${cat.color}, ${cat.color}cc); color: ${txtColor}; border: 2px solid #ffffff">
         <span>${cat.icon}</span>
         <span>${cat.name}</span>
-        <span class="ml-1 px-2 py-0.5 rounded-full font-mono text-[10px]" style="background: rgba(0,0,0,.2); color:#fff">+${cat.points} poin</span>
+        <span class="ml-1 px-2 py-0.5 rounded-full font-mono text-[10px]" style="background: rgba(0,0,0,.22); color:#fff">+${cat.points} poin</span>
       </div>
       <div class="diff-badge ${meta.cls}">
         <span>${meta.icon}</span>
@@ -1542,20 +1734,20 @@ function showFeedback(isCorrect, earnedPoints, cat) {
 
   let html = '';
   if (isCorrect) {
-    html += `<div class="p-3 rounded-xl mb-2" style="background: linear-gradient(135deg, rgba(34,197,94,.15), rgba(34,197,94,.05)); border: 1px solid rgba(34,197,94,.45)">
-      <div class="text-[10px] text-emerald-700 font-bold uppercase mb-1">✓ Jawaban Benar <span class="ml-2">${meta.icon} ${meta.label}</span></div>
-      <div class="font-bold text-emerald-700 text-xs md:text-sm overflow-safe">${userTxt}</div>
-      <div class="text-[11px] mt-1.5 text-emerald-700 font-bold">+${earnedPoints} poin ${state.streak >= 2 ? `(🔥 Streak x${state.streak})` : ''}</div>
+    html += `<div class="p-3 rounded-2xl mb-2" style="background: linear-gradient(135deg, rgba(46,204,113,.14), rgba(46,204,113,.05)); border: 2px solid rgba(30,122,74,.4)">
+      <div class="text-[10px] font-black uppercase mb-1" style="color: var(--primary);">✓ Jawaban Benar <span class="ml-2">${meta.icon} ${meta.label}</span></div>
+      <div class="font-black text-xs md:text-sm overflow-safe" style="color: #15803d;">${userTxt}</div>
+      <div class="text-[11px] mt-1.5 font-black" style="color: var(--primary);">+${earnedPoints} poin ${state.streak >= 2 ? `(🔥 Streak x${state.streak})` : ''}</div>
     </div>`;
   } else {
     html += `<div class="space-y-2 mb-2">
-      <div class="p-2.5 rounded-xl" style="background: rgba(239,68,68,.12); border: 1px solid rgba(239,68,68,.4)">
-        <div class="text-[10px] text-rose-700 font-bold uppercase">✗ Jawabanmu <span class="ml-2">${meta.icon} ${meta.label}</span></div>
-        <div class="font-semibold text-rose-700 text-xs md:text-sm overflow-safe">${userTxt}</div>
+      <div class="p-3 rounded-2xl" style="background: rgba(239,68,68,.10); border: 2px solid rgba(185,28,28,.4)">
+        <div class="text-[10px] font-black uppercase" style="color: #7f1d1d;">✗ Jawabanmu <span class="ml-2">${meta.icon} ${meta.label}</span></div>
+        <div class="font-bold text-xs md:text-sm overflow-safe" style="color: #7f1d1d;">${userTxt}</div>
       </div>
-      <div class="p-2.5 rounded-xl" style="background: rgba(34,197,94,.12); border: 1px solid rgba(34,197,94,.45)">
-        <div class="text-[10px] text-emerald-700 font-bold uppercase">✓ Jawaban Benar:</div>
-        <div class="font-bold text-emerald-700 text-xs md:text-sm overflow-safe">${correctTxt}</div>
+      <div class="p-3 rounded-2xl" style="background: rgba(46,204,113,.10); border: 2px solid rgba(30,122,74,.4)">
+        <div class="text-[10px] font-black uppercase" style="color: var(--primary);">✓ Jawaban Benar:</div>
+        <div class="font-black text-xs md:text-sm overflow-safe" style="color: #15803d;">${correctTxt}</div>
       </div>
     </div>`;
   }
@@ -1567,17 +1759,17 @@ function showFeedback(isCorrect, earnedPoints, cat) {
   if (state.currentRound >= state.totalRounds - 1) {
     const btn = $('btnNextSpin');
     btn.innerHTML = '🏁 LIHAT HASIL KUIS';
-    btn.style.background = 'linear-gradient(135deg,#d97706,#b45309)';
+    btn.style.background = 'linear-gradient(135deg,#b8860b,#d4a017)';
   } else {
     const btn = $('btnNextSpin');
     btn.innerHTML = '🎡 PUTAR LAGI';
-    btn.style.background = 'linear-gradient(135deg,#0891b2,#2563eb)';
+    btn.style.background = 'linear-gradient(135deg,#145b34,#2ecc71)';
   }
   show('qActions');
   setText('qScoreCounter', state.totalScore);
 
   if (isCorrect && state.streak >= 3) {
-    safeConfetti({ particleCount: 40, spread: 60, origin: { y: .7 }, colors: ['#22d3ee','#3b82f6','#d97706'] });
+    safeConfetti({ particleCount: 40, spread: 60, origin: { y: .7 }, colors: ['#2ecc71','#1e7a4a','#f1c40f'] });
   }
 }
 
@@ -1607,10 +1799,10 @@ function showRevealOverlay(text, type) {
   b.textContent = text;
   if (type === 'benar') {
     b.classList.add('benar');
-    createBurst(window.innerWidth/2, window.innerHeight/2, ['#22c55e','#4ade80','#0891b2','#86efac']);
+    createBurst(window.innerWidth/2, window.innerHeight/2, ['#2ecc71','#1e7a4a','#f1c40f','#86efac']);
   } else {
     b.classList.add('salah');
-    createBurst(window.innerWidth/2, window.innerHeight/2, ['#ef4444','#f87171','#d97706','#fca5a5']);
+    createBurst(window.innerWidth/2, window.innerHeight/2, ['#ef4444','#f87171','#d4a017','#fca5a5']);
   }
   o.classList.add('show');
   o.classList.add('backdrop');
@@ -1639,12 +1831,12 @@ function createBurst(cx, cy, colors) {
 }
 
 function getAchievement(accuracy) {
-  if (accuracy >= 95) return { tier:'gold', icon:'👑', title:'LEGENDA GEOGRAFI', desc:'Sempurna! Kamu menguasai Peta & Pemetaan dengan sangat luar biasa.', color:'#b45309' };
-  if (accuracy >= 85) return { tier:'gold', icon:'🏆', title:'MASTER KARTOGRAFER', desc:'Luar biasa! Pemahamanmu tentang Peta & Pemetaan sangat tinggi.', color:'#b45309' };
+  if (accuracy >= 95) return { tier:'gold', icon:'👑', title:'LEGENDA GEOGRAFI', desc:'Sempurna! Kamu menguasai Peta & Pemetaan dengan sangat luar biasa.', color:'#b8860b' };
+  if (accuracy >= 85) return { tier:'gold', icon:'🏆', title:'MASTER KARTOGRAFER', desc:'Luar biasa! Pemahamanmu tentang Peta & Pemetaan sangat tinggi.', color:'#b8860b' };
   if (accuracy >= 70) return { tier:'emerald', icon:'🌟', title:'AHLI PETA', desc:'Hebat! Kamu sudah menguasai sebagian besar konsep pemetaan.', color:'#15803d' };
-  if (accuracy >= 55) return { tier:'blue', icon:'🧭', title:'PENJELAJAH MUDA', desc:'Bagus! Kemampuanmu sudah baik, terus tingkatkan lagi.', color:'#1d4ed8' };
-  if (accuracy >= 40) return { tier:'violet', icon:'🗺️', title:'PEMBELAJAR AKTIF', desc:'Cukup baik! Pelajari kembali materi yang belum dikuasai.', color:'#6d28d9' };
-  return { tier:'slate', icon:'🌱', title:'PEMULA SEMANGAT', desc:'Jangan menyerah! Setiap perjalanan dimulai dari langkah pertama.', color:'#475569' };
+  if (accuracy >= 55) return { tier:'blue', icon:'🧭', title:'PENJELAJAH MUDA', desc:'Bagus! Kemampuanmu sudah baik, terus tingkatkan lagi.', color:'#1e7a4a' };
+  if (accuracy >= 40) return { tier:'violet', icon:'🗺️', title:'PEMBELAJAR AKTIF', desc:'Cukup baik! Pelajari kembali materi yang belum dikuasai.', color:'#3aaa6a' };
+  return { tier:'slate', icon:'🌱', title:'PEMULA SEMANGAT', desc:'Jangan menyerah! Setiap perjalanan dimulai dari langkah pertama.', color:'#5a7a66' };
 }
 
 function endGame() {
@@ -1671,7 +1863,7 @@ function endGame() {
           <div class="text-lg md:text-2xl font-black leading-tight overflow-safe" style="color: ${ach.color}; font-family:'Space Grotesk',sans-serif">
             ${ach.title}
           </div>
-          <div class="text-[11px] md:text-xs mt-1.5 leading-snug text-slate-700">${ach.desc}</div>
+          <div class="text-[11px] md:text-xs mt-1.5 leading-snug font-semibold" style="color: var(--text-light);">${ach.desc}</div>
         </div>
       </div>
     </div>`;
@@ -1680,6 +1872,21 @@ function endGame() {
   setText('rWrong', wrong);
   setText('rAcc', accuracy + '%');
   setText('rStreak', state.maxStreak + '🔥');
+
+  const CIRC = 314.16;
+  const bar = $('scoreCircleBar');
+  if (bar) {
+    bar.style.strokeDashoffset = CIRC;
+    setTimeout(() => { bar.style.strokeDashoffset = CIRC * (1 - accuracy / 100); }, 300);
+  }
+  let numCounter = 0;
+  const numEl = $('scoreCircleNum');
+  const target = accuracy;
+  const iv2 = setInterval(() => {
+    numCounter += Math.ceil(target / 30) || 1;
+    if (numCounter >= target) { numCounter = target; clearInterval(iv2); }
+    if (numEl) numEl.textContent = numCounter;
+  }, 40);
 
   let counter = 0;
   const scoreEl = $('totalScoreDisplay');
@@ -1702,11 +1909,11 @@ function endGame() {
       <span class="text-base shrink-0">${cat.icon}</span>
       <div class="flex-1 min-w-0">
         <div class="flex items-center justify-between gap-2 mb-1">
-          <span class="text-[10px] md:text-[11px] font-bold truncate" style="color: ${cat.color}">${cat.name}</span>
-          <span class="text-[10px] md:text-[11px] font-mono font-bold text-slate-600 shrink-0">${s.correct}/${s.total} • ${s.points} poin</span>
+          <span class="text-[10px] md:text-[11px] font-black truncate" style="color: ${cat.color}">${cat.name}</span>
+          <span class="text-[10px] md:text-[11px] font-mono font-black shrink-0" style="color: var(--text-muted);">${s.correct}/${s.total} • ${s.points} poin</span>
         </div>
         <div class="cat-stat-bar">
-          <i style="width: ${pct}%; background: linear-gradient(90deg, ${cat.color}, ${cat.color}cc); box-shadow: 0 2px 8px ${cat.color}88"></i>
+          <i style="width: ${pct}%; background: linear-gradient(90deg, ${cat.color}, ${cat.color}cc); box-shadow: 0 3px 10px ${cat.color}88"></i>
         </div>
       </div>`;
     breakdown.appendChild(row);
@@ -1723,11 +1930,11 @@ function endGame() {
       localStorage.setItem(STORAGE_PREFIX + 'best_title', ach.title);
     } catch(e) {}
     sfx('win');
-    safeConfetti({ particleCount: 100, spread: 100, origin: { y: .6 }, colors: ['#22d3ee','#3b82f6','#8b5cf6','#d97706'] });
-    setTimeout(() => safeConfetti({ particleCount: 60, angle: 60, spread: 70, origin: { x: 0, y: .7 }, colors: ['#22d3ee','#3b82f6'] }), 300);
-    setTimeout(() => safeConfetti({ particleCount: 60, angle: 120, spread: 70, origin: { x: 1, y: .7 }, colors: ['#8b5cf6','#d97706'] }), 500);
+    safeConfetti({ particleCount: 100, spread: 100, origin: { y: .6 }, colors: ['#2ecc71','#1e7a4a','#f1c40f','#d4a017'] });
+    setTimeout(() => safeConfetti({ particleCount: 60, angle: 60, spread: 70, origin: { x: 0, y: .7 }, colors: ['#2ecc71','#3aaa6a'] }), 300);
+    setTimeout(() => safeConfetti({ particleCount: 60, angle: 120, spread: 70, origin: { x: 1, y: .7 }, colors: ['#f1c40f','#d4a017'] }), 500);
   } else {
-    if (accuracy >= 60) safeConfetti({ particleCount: 40, spread: 80, origin: { y: .6 } });
+    if (accuracy >= 60) safeConfetti({ particleCount: 40, spread: 80, origin: { y: .6 }, colors: ['#2ecc71','#1e7a4a'] });
   }
 }
 
@@ -1887,7 +2094,7 @@ function init() {
     const btn = $('btnNextSpin');
     if (btn) {
       btn.innerHTML = '🎡 PUTAR LAGI';
-      btn.style.background = 'linear-gradient(135deg,#0891b2,#2563eb)';
+      btn.style.background = 'linear-gradient(135deg,#145b34,#2ecc71)';
     }
     setText('playerName', name);
     setText('roundCounter', `1/${state.totalRounds}`);
