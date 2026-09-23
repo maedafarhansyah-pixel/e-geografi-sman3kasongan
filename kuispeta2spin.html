@@ -1431,7 +1431,7 @@ const QUESTIONS = [
 
   /* KARTOGRAFI LANJUTAN (10) */
   { cat:'lanjutan', difficulty:'mudah', q:"Sistem Informasi Geografis disingkat menjadi...",
-    options:["SIG","GPS","SSID","GISecara"], correct:0,
+    options:["SIG","GPS","SSID","SIGMA"], correct:0,
     explanation:"SIG (GIS) = Sistem Informasi Geografis.",
     keyPoint:"SIG = Sistem Informasi Geografis." },
   { cat:'lanjutan', difficulty:'mudah', q:"GPS adalah singkatan dari...",
@@ -1479,7 +1479,7 @@ const DIFF_META = {
 };
 
 const state = {
-  studentName: '', currentRound: 0, totalRounds: 12,
+  studentName: '', studentClass: '', currentRound: 0, totalRounds: 12,
   totalScore: 0, correctCount: 0, wrongCount: 0,
   streak: 0, maxStreak: 0,
   currentCategory: null, currentQuestion: null,
@@ -1993,6 +1993,7 @@ Guru Pengampu: SYAHRANI, S.Pd.
 NIP. 197512172005011016
 ━━━━━━━━━━━━━━━━━━━━
 Nama Siswa: ${state.studentName}
+Kelas: ${state.studentClass || '-'}
 Materi: Peta & Pemetaan
 ━━━━━━━━━━━━━━━━━━━━
 🏅 KATEGORI CAPAIAN: ${ach.title}
@@ -2098,6 +2099,7 @@ async function sendScoreToSheet() {
       statusEl.style.background = 'rgba(239,68,68,.10)';
     }
   }
+}
 
 function returnToMainScreen() {
   sfx('click');
