@@ -49,7 +49,6 @@ try {
   @keyframes shineBtn{0%{left:-100%}60%,100%{left:100%}}
   @keyframes fadeInBackdrop{from{opacity:0}to{opacity:1}}
   @keyframes barShine{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
-  @keyframes tickerSlide{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
   @keyframes softBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
 
   /* ===== ROOT ===== */
@@ -106,7 +105,6 @@ try {
   .custom-scrollbar::-webkit-scrollbar-track{background:rgba(30,122,74,.06)}
   .custom-scrollbar::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--primary),var(--accent));border-radius:9999px}
 
-  /* ===== PANEL dengan efek elegan ===== */
   .glass-panel {
     position: relative;
     background: var(--card-bg);
@@ -145,7 +143,6 @@ try {
 
   .is-hidden{display:none!important}
 
-  /* ===== LOADER ===== */
   #loader{
     position:fixed;inset:0;z-index:9999;
     background: radial-gradient(circle at center, #ffffff 0%, #f0f7f2 60%, #d9ead9 100%);
@@ -199,7 +196,6 @@ try {
   .loader-percent{color:var(--primary);font-size:.85rem;font-weight:900;margin-top:14px;letter-spacing:4px;font-family:'Space Grotesk',sans-serif;}
   .loader-tip{margin-top:18px;font-size:.75rem;color:var(--text-muted);font-style:italic;font-weight:600;text-align:center;max-width:280px}
 
-  /* ===== PARTICLES ===== */
   #particles{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
   .particle{
     position:absolute;border-radius:50%;
@@ -207,7 +203,6 @@ try {
     animation:floatUp linear infinite;filter: blur(.5px);
   }
 
-  /* ===== SCHOOL BADGE ===== */
   .school-badge{
     display:inline-flex;align-items:center;gap:8px;
     padding:8px 20px;
@@ -235,7 +230,6 @@ try {
     filter:drop-shadow(0 2px 6px rgba(15,81,50,.20));
   }
 
-  /* ===== FEEDBACK SECTIONS ===== */
   .fb-section{
     padding:12px 14px;border-radius:var(--radius-sm);margin-bottom:8px;
     background:linear-gradient(135deg, rgba(15,81,50,.04), rgba(46,204,113,.02));
@@ -267,7 +261,6 @@ try {
   .badge-pick{display:inline-block;padding:2px 10px;border-radius:6px;background:rgba(192,57,43,.15);color:#7a1f16;font-weight:900;margin-right:4px}
   .badge-correct{display:inline-block;padding:2px 10px;border-radius:6px;background:rgba(0,166,90,.15);color:#0f5132;font-weight:900;margin-right:4px}
 
-  /* ===== GRADE ===== */
   .grade-badge-big{
     width:80px;height:80px;border-radius:20px;
     display:flex;align-items:center;justify-content:center;
@@ -285,7 +278,6 @@ try {
   .grade-D{background:linear-gradient(135deg,#e67e22,#c0392b);color:#e67e22}
   .grade-E{background:linear-gradient(135deg,#c0392b,#7f1d1d);color:#c0392b}
 
-  /* ===== SCORE CIRCLE ===== */
   .score-circle{position:relative;width:110px;height:110px;flex-shrink:0}
   @media (min-width:480px){ .score-circle{width:140px;height:140px;} }
   .score-circle svg{position:absolute;inset:0;transform:rotate(-90deg);width:100%;height:100%}
@@ -296,14 +288,12 @@ try {
   @media (min-width:480px){ .score-circle .num{font-size:2.4rem;} }
   .score-circle .lbl{font-size:.55rem;letter-spacing:2.5px;color:var(--primary);text-transform:uppercase;font-weight:900;margin-top:4px}
 
-  /* ===== DIFFICULTY ===== */
   .diff-badge{font-size:.62rem;letter-spacing:1.2px;font-weight:900;padding:4px 12px;border-radius:99px;text-transform:uppercase;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.06);}
   .diff-mudah{color:#0f5132;background:rgba(46,204,113,.15);border:1.5px solid rgba(46,204,113,.40)}
   .diff-sedang{color:#8a6d00;background:rgba(241,196,15,.18);border:1.5px solid rgba(241,196,15,.45)}
   .diff-sulit{color:#a04400;background:rgba(230,126,34,.15);border:1.5px solid rgba(230,126,34,.40)}
   .diff-sangat{color:#8a1f16;background:rgba(192,57,43,.15);border:1.5px solid rgba(192,57,43,.40)}
 
-  /* ===== OPTIONS ===== */
   .opt-btn{
     width:100%; text-align:left;
     background: var(--card-bg);
@@ -347,7 +337,6 @@ try {
   }
   .opt-eliminated{opacity:.20!important;pointer-events:none!important;text-decoration:line-through;filter: blur(.5px)}
 
-  /* ===== SOUND TOGGLE ===== */
   .sound-toggle{
     width:40px;height:40px;border-radius:50%;
     background: var(--card-bg);
@@ -364,7 +353,6 @@ try {
   }
   .sound-toggle.muted{opacity:.5}
 
-  /* ===== PROGRESS ===== */
   .q-progress{
     height:8px;background:rgba(15,81,50,.10);
     border-radius:99px;overflow:hidden;margin-bottom:14px;
@@ -384,7 +372,6 @@ try {
     animation: barShine 2s linear infinite;
   }
 
-  /* ===== LOCK BUTTON ===== */
   .lock-btn-container{margin-top:16px;display:flex;justify-content:center;animation:slideUp .4s ease}
   .lock-btn{
     padding:16px 40px;font-size:.95rem;font-weight:900;
@@ -413,7 +400,6 @@ try {
   }
   .lock-btn:active:not(:disabled){transform:translateY(0) scale(.97)}
 
-  /* ===== REVEAL OVERLAY ===== */
   #reveal-overlay{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;pointer-events:none;padding:16px}
   #reveal-overlay.show{display:flex}
   #reveal-overlay.backdrop{backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);background:rgba(255,255,255,.85);pointer-events:auto;animation:fadeInBackdrop .3s ease;}
@@ -446,7 +432,6 @@ try {
 
   .burst-particle{position:absolute;width:10px;height:10px;border-radius:50%;pointer-events:none;animation:burstOut 1.1s cubic-bezier(.2,.9,.3,1) forwards}
 
-  /* ===== BUTTONS ===== */
   .btn-primary-gradient{
     background:linear-gradient(135deg,#0f5132 0%,#1e7a4a 50%,#2ecc71 100%);
     background-size:200% auto;
@@ -486,7 +471,6 @@ try {
   }
   .navy-input::placeholder{color:var(--text-muted);opacity:.6;font-weight:500}
 
-  /* ===== GAME FRAME ===== */
   .game-frame{width:100%;max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:14px}
   @media (min-width:1024px){ .game-frame{grid-template-columns:1fr 300px;gap:16px;} }
 
@@ -593,7 +577,6 @@ try {
 
 <main class="max-w-5xl mx-auto w-full px-3 py-4 md:px-4 md:py-6 flex-1 flex flex-col justify-center items-center relative">
 
-  <!-- ============ START SCREEN ============ -->
   <section id="start-screen" class="w-full max-w-lg glass-panel p-5 md:p-7 lg:p-9 rounded-2xl my-auto">
     <div class="text-center mb-5">
       <div class="school-badge mb-4">
@@ -664,7 +647,6 @@ try {
     <div class="text-center mt-5 text-[11px] font-bold" style="color:#3d6b4a;">© SMAN 3 Kasongan • Kelas X / Fase E</div>
   </section>
 
-  <!-- ============ GAME SCREEN ============ -->
   <section id="game-screen" class="is-hidden w-full game-frame">
     <div class="space-y-3 md:space-y-4 min-w-0">
       <div class="glass-panel p-3 md:p-4 rounded-xl flex items-center justify-between text-xs md:text-sm flex-wrap gap-2">
@@ -738,7 +720,6 @@ try {
 
   <div id="reveal-overlay"><div class="reveal-badge" id="reveal-badge">BENAR</div></div>
 
-  <!-- ============ FEEDBACK MODAL ============ -->
   <div id="feedback-modal" class="is-hidden fixed inset-0 backdrop-blur-md z-50 flex items-center justify-center p-3 md:p-4 overflow-y-auto" style="background: rgba(240,247,242,.90)">
     <div class="glass-panel max-w-lg w-full p-5 md:p-7 rounded-2xl my-auto" id="feedback-modal-content" style="border: 3px solid rgba(46,204,113,.5)">
       <div class="flex items-center gap-3 mb-4">
@@ -762,7 +743,6 @@ try {
     </div>
   </div>
 
-  <!-- ============ SKIP MODAL ============ -->
   <div id="skip-modal" class="is-hidden fixed inset-0 backdrop-blur-md z-50 flex items-center justify-center p-4" style="background: rgba(240,247,242,.90)">
     <div class="glass-panel max-w-sm w-full p-6 md:p-7 rounded-2xl text-center">
       <div class="text-4xl md:text-5xl mb-3">⏭️</div>
@@ -775,7 +755,6 @@ try {
     </div>
   </div>
 
-  <!-- ============ RESULT SCREEN ============ -->
   <section id="result-screen" class="is-hidden w-full max-w-2xl my-auto space-y-3 md:space-y-4">
     <div id="record-banner" class="is-hidden glass-panel p-4 md:p-5 rounded-2xl text-center" style="border-color: rgba(46,204,113,.5); background: linear-gradient(135deg, rgba(46,204,113,.10), rgba(212,160,23,.06));">
       <h3 id="record-text" class="text-lg md:text-2xl font-black" style="color:#0f5132;">🎉 SKOR BARU TERBAIK!</h3>
@@ -839,7 +818,6 @@ try {
     </div>
   </section>
 
-  <!-- ============ REVIEW MODAL ============ -->
   <div id="review-modal" class="is-hidden fixed inset-0 backdrop-blur-md z-50 flex items-center justify-center p-2 md:p-3" style="background: rgba(240,247,242,.92)">
     <div class="glass-panel max-w-3xl w-full h-[90vh] md:h-[85vh] flex flex-col rounded-2xl p-4 md:p-5">
       <div class="flex justify-between items-center pb-3 border-b-2 gap-2" style="border-color: rgba(15,81,50,.15);">
@@ -1436,6 +1414,7 @@ function showFeedbackModal(qData,isCorrect,selectedIdx,earnedXP){
     setText("fb-topic",qData.topic||"Geografi");
     setText("fb-why",qData.explanation);
     setText("fb-key",qData.keyPoint||"Baca kembali materi terkait.");
+    updateNextButtonText();
     show("feedback-modal");
   }catch(e){}
 }
@@ -1450,6 +1429,19 @@ function nextQuestion(){
     else{endGame();}
   }catch(e){}
 }
+
+/* ===== FUNGSI BARU: Update tombol LANJUT / LIHAT HASIL AKHIR ===== */
+function updateNextButtonText(){
+  const btn=document.getElementById("btn-next");
+  if(!btn)return;
+  const isLast = (currentQuestionIndex === (currentQuestions.length - 1));
+  if(isLast){
+    btn.innerHTML = "🏆 LIHAT HASIL AKHIR";
+  } else {
+    btn.innerHTML = "➡ LANJUT KE SOAL BERIKUTNYA";
+  }
+}
+
 function calculateTitle(s){if(s>=90)return "🏆 MASTER GEOGRAFI";if(s>=75)return "🧭 AHLI KARTOGRAFI";if(s>=50)return "🗺️ EXPLORER BUMI";return "🌱 PEMBELAJAR GEOGRAFI";}
 function calculateGrade(s){if(s>=90)return "A";if(s>=80)return "B";if(s>=70)return "C";if(s>=60)return "D";return "E";}
 
@@ -1477,7 +1469,10 @@ function endGame(){
     setText("card-title",earnedTitle);
     setText("card-attempt",attemptCount);
     let prevBest=null;try{prevBest=localStorage.getItem(STORAGE_PREFIX+"best_score");}catch(e){}
-    if(prevBest===null||score>parseInt(prevBest)){
+
+    /* ===== PESAN DINAMIS: beda antara BENAR/SALAH, TINGGI/SEDANG/RENDAH ===== */
+    let isNewRecord = (prevBest===null || score>parseInt(prevBest));
+    if(isNewRecord){
       try{
         localStorage.setItem(STORAGE_PREFIX+"best_correct",correctAnswersCount);
         localStorage.setItem(STORAGE_PREFIX+"best_score",score);
@@ -1485,16 +1480,96 @@ function endGame(){
         localStorage.setItem(STORAGE_PREFIX+"best_title",earnedTitle);
         localStorage.setItem(STORAGE_PREFIX+"best_attempt",attemptCount);
       }catch(e){}
-      show("record-banner");
-      setText("record-text","🎉 SKOR BARU TERBAIK!");
-      setText("record-subtext","Luar biasa! Kamu melampaui rekor sebelumnya.");
-      sfx('win');triggerConfetti(true);
-    }else{
-      show("record-banner");
-      setText("record-text","💪 Tetap Semangat!");
-      setText("record-subtext","Belum jadi skor terbaik. Coba lagi untuk nilai maksimal!");
-      if(score>=60)triggerConfetti(false);
     }
+
+    show("record-banner");
+    const recordTextEl = document.getElementById("record-text");
+    const recordSubEl  = document.getElementById("record-subtext");
+    const bannerEl     = document.getElementById("record-banner");
+
+    let headerText = "";
+    let subText = "";
+    let bannerBg = "";
+    let bannerBorder = "";
+    let headerColor = "#0f5132";
+
+    if(isNewRecord && score>=90){
+      headerText = "🏆 SKOR BARU TERBAIK — LUAR BIASA!";
+      subText = "Kamu menjawab "+correctAnswersCount+" dari "+totalQ+" soal dengan benar. Master Geografi sejati!";
+      bannerBg = "linear-gradient(135deg, rgba(46,204,113,.18), rgba(212,160,23,.10))";
+      bannerBorder = "rgba(46,204,113,.6)";
+      headerColor = "#0f5132";
+    }
+    else if(isNewRecord && score>=70){
+      headerText = "🎉 SKOR BARU TERBAIK!";
+      subText = "Kamu menjawab "+correctAnswersCount+" dari "+totalQ+" soal dengan benar. Pertahankan!";
+      bannerBg = "linear-gradient(135deg, rgba(46,204,113,.14), rgba(15,81,50,.06))";
+      bannerBorder = "rgba(46,204,113,.5)";
+      headerColor = "#0f5132";
+    }
+    else if(isNewRecord){
+      headerText = "📈 SKOR BARU TERBAIK!";
+      subText = "Kamu menjawab "+correctAnswersCount+" dari "+totalQ+" soal dengan benar. Tingkatkan lagi!";
+      bannerBg = "linear-gradient(135deg, rgba(212,160,23,.14), rgba(241,196,15,.06))";
+      bannerBorder = "rgba(212,160,23,.5)";
+      headerColor = "#8a6d00";
+    }
+    else if(score>=90){
+      headerText = "🌟 LUAR BIASA!";
+      subText = "Kamu menjawab "+correctAnswersCount+" dari "+totalQ+" soal dengan benar. Hampir sempurna!";
+      bannerBg = "linear-gradient(135deg, rgba(46,204,113,.14), rgba(212,160,23,.08))";
+      bannerBorder = "rgba(46,204,113,.5)";
+      headerColor = "#0f5132";
+    }
+    else if(score>=70){
+      headerText = "👏 BAGUS SEKALI!";
+      subText = "Kamu menjawab "+correctAnswersCount+" dari "+totalQ+" soal dengan benar. Kamu sudah paham materi ini!";
+      bannerBg = "linear-gradient(135deg, rgba(46,204,113,.10), rgba(15,81,50,.04))";
+      bannerBorder = "rgba(46,204,113,.4)";
+      headerColor = "#0f5132";
+    }
+    else if(score>=50){
+      headerText = "💪 CUKUP BAIK, TINGKATKAN LAGI!";
+      subText = "Kamu menjawab "+correctAnswersCount+" dari "+totalQ+" soal dengan benar. Baca ulang materi dan coba lagi!";
+      bannerBg = "linear-gradient(135deg, rgba(212,160,23,.12), rgba(230,126,34,.06))";
+      bannerBorder = "rgba(212,160,23,.4)";
+      headerColor = "#8a6d00";
+    }
+    else if(score>=30){
+      headerText = "📚 PERLU BELAJAR LAGI";
+      subText = "Kamu menjawab "+correctAnswersCount+" dari "+totalQ+" soal dengan benar. Pelajari kembali materi Peta & Pemetaan, lalu coba lagi!";
+      bannerBg = "linear-gradient(135deg, rgba(230,126,34,.12), rgba(192,57,43,.08))";
+      bannerBorder = "rgba(230,126,34,.5)";
+      headerColor = "#a04400";
+    }
+    else{
+      headerText = "❗ JANGAN MENYERAH, COBA LAGI!";
+      subText = "Kamu menjawab "+correctAnswersCount+" dari "+totalQ+" soal dengan benar. Baca materi dengan teliti, lalu kerjakan ulang kuis ini!";
+      bannerBg = "linear-gradient(135deg, rgba(192,57,43,.12), rgba(127,29,29,.08))";
+      bannerBorder = "rgba(192,57,43,.5)";
+      headerColor = "#a04400";
+    }
+
+    if(recordTextEl){
+      recordTextEl.textContent = headerText;
+      recordTextEl.style.color = headerColor;
+    }
+    if(recordSubEl){
+      recordSubEl.textContent = subText;
+    }
+    if(bannerEl){
+      bannerEl.style.background = bannerBg;
+      bannerEl.style.borderColor = bannerBorder;
+    }
+
+    if(isNewRecord || score>=70){
+      sfx('win');
+      triggerConfetti(true);
+    } else if(score>=50){
+      triggerConfetti(false);
+    }
+    /* ==================================================================== */
+
     updateBestScoreSummary();
   }catch(e){}
 }
