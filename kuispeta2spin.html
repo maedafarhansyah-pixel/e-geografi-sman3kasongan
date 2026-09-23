@@ -1491,7 +1491,7 @@ const state = {
 const STORAGE_PREFIX = 'kuis_roda_geo_v4_';
 
 // ⬇️ GANTI DENGAN URL APPS SCRIPT MILIKMU ⬇️
-const SHEET_URL = 'https://script.google.com/macros/s/AKfycby7vIwNYz4iEscy8neODQc1ozmhWpMU6M954sP5M2sNIT9quW_1pYklKWOaQyalo0lLPg/exec';
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyV__yZS4bzttuspA2DwcZWPKM4P9ya3pksmJm9L5DfA9aERS9pm2ETWric1T7nnMq6bw/exec';
 
 /* =========================================================
    BUILD WHEEL — Teks RADIAL dari lingkaran besar ke inti
@@ -2079,15 +2079,17 @@ async function sendScoreToSheet() {
   try {
     await fetch(SHEET_URL, {
       method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      mode: 'no-cors',                                  // ← WAJIB
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },  // ← WAJIB
       body: JSON.stringify(payload)
     });
+
     if (statusEl) {
       statusEl.innerHTML = '✅ Nilai berhasil dikirim ke guru';
       statusEl.style.color = '#15803d';
       statusEl.style.background = 'rgba(46,204,113,.18)';
     }
+
   } catch (e) {
     console.error('Gagal kirim:', e);
     if (statusEl) {
@@ -2096,7 +2098,6 @@ async function sendScoreToSheet() {
       statusEl.style.background = 'rgba(239,68,68,.10)';
     }
   }
-}
 
 function returnToMainScreen() {
   sfx('click');
