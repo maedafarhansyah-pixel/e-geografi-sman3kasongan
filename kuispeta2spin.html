@@ -843,22 +843,19 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
     <input type="text" id="studentName" required placeholder="Tulis namamu di sini..." class="navy-input" aria-label="Nama siswa">
   </div>
 
-  <!-- ⬇️ TAMBAHAN BARU - INPUT KELAS ⬇️ -->
+  <!-- ⬇️ DROPDOWN KELAS ⬇️ -->
   <div>
     <label for="studentClass" class="block text-xs md:text-sm font-black uppercase tracking-wider mb-2" style="color: var(--primary);">
       Kelas <span style="color: #c0392b;">*</span>
     </label>
     <select id="studentClass" required class="navy-input" aria-label="Kelas siswa">
       <option value="">-- Pilih Kelas --</option>
-      <option value="X-1">X-1</option>
-      <option value="X-2">X-2</option>
-      <option value="X-3">X-3</option>
-      <option value="X-4">X-4</option>
-      <option value="X-5">X-5</option>
-      <option value="X-6">X-6</option>
+      <option value="X A">X A</option>
+      <option value="X B">X B</option>
+      <option value="X C">X C</option>
     </select>
   </div>
-  <!-- ⬆️ SELESAI TAMBAHAN ⬆️ -->
+  <!-- ⬆️ SELESAI DROPDOWN ⬆️ -->
 
   <button type="submit" class="btn-primary">▶ MULAI PERMAINAN</button>
 </form>
@@ -1020,12 +1017,10 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
         <div class="nip-text mt-0.5">NIP. 19751217 200501 1 016</div>
       </div>
     </div>
- <!-- ⬇️ TAMBAHAN BARU - STATUS PENGIRIMAN NILAI ⬇️ -->
     <div id="sendStatus" class="text-center text-xs font-black py-3 px-4 rounded-2xl"
          style="background: rgba(46,204,113,.10); color: var(--primary); border: 1.5px solid rgba(30,122,74,.25)">
       ⏳ Menyiapkan pengiriman nilai...
     </div>
-    <!-- ⬆️ SELESAI TAMBAHAN ⬆️ -->
     <button id="btnHome" type="button" class="btn-home">🔄 MAIN LAGI</button>
 
     <button id="btnCopy" type="button" class="w-full font-black p-4 rounded-2xl text-xs md:text-sm cursor-pointer border-2"
@@ -1495,7 +1490,7 @@ const state = {
 };
 const STORAGE_PREFIX = 'kuis_roda_geo_v4_';
 
-// ⬇️ TAMBAHAN BARU - GANTI DENGAN URL APPS SCRIPT MILIKMU ⬇️
+// ⬇️ GANTI DENGAN URL APPS SCRIPT MILIKMU ⬇️
 const SHEET_URL = 'https://script.google.com/macros/s/AKfycby7vIwNYz4iEscy8neODQc1ozmhWpMU6M954sP5M2sNIT9quW_1pYklKWOaQyalo0lLPg/exec';
 
 /* =========================================================
@@ -1962,7 +1957,7 @@ function endGame() {
   } else {
     if (accuracy >= 60) safeConfetti({ particleCount: 40, spread: 80, origin: { y: .6 }, colors: ['#2ecc71','#1e7a4a'] });
   }
-  sendScoreToSheet();   // ⬅️ TAMBAHAN BARU - kirim nilai otomatis
+  sendScoreToSheet();
 }
 
 async function copyResult() {
@@ -2038,13 +2033,12 @@ ${catBreakdownText}━━━━━━━━━━━━━━━━━━━━`
   btn.textContent = ok ? '✓ TERSALIN!' : '⚠ GAGAL SALIN';
   setTimeout(() => { btn.textContent = oldText; }, 2000);
 }
-// ⬇️ TAMBAHAN BARU - FUNGSI KIRIM NILAI KE GOOGLE SHEETS ⬇️
+
 async function sendScoreToSheet() {
   const total = state.totalRounds;
   const accuracy = Math.round((state.correctCount / total) * 100);
   const ach = getAchievement(accuracy);
 
-  // Rangkum per kategori
   let catBreakdown = '';
   CATEGORIES.forEach(cat => {
     const s = state.catStats[cat.id];
@@ -2052,7 +2046,6 @@ async function sendScoreToSheet() {
     catBreakdown += `${cat.short}:${s.correct}/${s.total}(${s.points}p) `;
   });
 
-  // Rangkum per kesulitan
   const diffStats = { mudah:{b:0,t:0}, sedang:{b:0,t:0}, sulit:{b:0,t:0} };
   state.history.forEach(h => {
     const d = h.difficulty || 'sedang';
@@ -2104,11 +2097,11 @@ async function sendScoreToSheet() {
     }
   }
 }
-// ⬆️ SELESAI TAMBAHAN ⬆️
+
 function returnToMainScreen() {
   sfx('click');
   state.studentName = '';
-  state.studentClass = '';                        // ⬅️ TAMBAHAN BARU
+  state.studentClass = '';
   state.currentRound = 0;
   state.totalScore = 0;
   state.correctCount = 0;
@@ -2131,8 +2124,8 @@ function returnToMainScreen() {
   wheel.style.transform = 'rotate(0deg)';
   const nameInput = $('studentName');
   if (nameInput) nameInput.value = '';
-const classInput = $('studentClass');            // ⬅️ TAMBAHAN BARU
-  if (classInput) classInput.value = '';           // ⬅️ TAMBAHAN BARU
+  const classInput = $('studentClass');
+  if (classInput) classInput.value = '';
   hide('resultScreen'); hide('wheelScreen'); hide('questionScreen');
   hide('categoryResult'); hide('wheelInstruction'); hide('qFeedback'); hide('qActions');
 
@@ -2169,9 +2162,9 @@ function init() {
     sfx('click');
     const name = $('studentName').value.trim();
     if (!name) { alert('Mohon isi nama terlebih dahulu.'); return; }
-if (!$('studentClass').value) { alert('Mohon pilih kelas terlebih dahulu.'); return; }
+    if (!$('studentClass').value) { alert('Mohon pilih kelas terlebih dahulu.'); return; }
     state.studentName = name;
-state.studentClass = $('studentClass').value;   // ⬅️ TAMBAHAN BARU
+    state.studentClass = $('studentClass').value;
     state.currentRound = 0;
     state.totalScore = 0;
     state.correctCount = 0;
