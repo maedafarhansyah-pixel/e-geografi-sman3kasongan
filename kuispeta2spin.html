@@ -835,15 +835,33 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
       </div>
     </div>
 
-    <form id="startForm" class="space-y-4">
-      <div>
-        <label for="studentName" class="block text-xs md:text-sm font-black uppercase tracking-wider mb-2" style="color: var(--primary);">
-          Nama Siswa <span style="color: #c0392b;">*</span>
-        </label>
-        <input type="text" id="studentName" required placeholder="Tulis namamu di sini..." class="navy-input" aria-label="Nama siswa">
-      </div>
-      <button type="submit" class="btn-primary">▶ MULAI PERMAINAN</button>
-    </form>
+   <form id="startForm" class="space-y-4">
+  <div>
+    <label for="studentName" class="block text-xs md:text-sm font-black uppercase tracking-wider mb-2" style="color: var(--primary);">
+      Nama Siswa <span style="color: #c0392b;">*</span>
+    </label>
+    <input type="text" id="studentName" required placeholder="Tulis namamu di sini..." class="navy-input" aria-label="Nama siswa">
+  </div>
+
+  <!-- ⬇️ TAMBAHAN BARU - INPUT KELAS ⬇️ -->
+  <div>
+    <label for="studentClass" class="block text-xs md:text-sm font-black uppercase tracking-wider mb-2" style="color: var(--primary);">
+      Kelas <span style="color: #c0392b;">*</span>
+    </label>
+    <select id="studentClass" required class="navy-input" aria-label="Kelas siswa">
+      <option value="">-- Pilih Kelas --</option>
+      <option value="X-1">X-1</option>
+      <option value="X-2">X-2</option>
+      <option value="X-3">X-3</option>
+      <option value="X-4">X-4</option>
+      <option value="X-5">X-5</option>
+      <option value="X-6">X-6</option>
+    </select>
+  </div>
+  <!-- ⬆️ SELESAI TAMBAHAN ⬆️ -->
+
+  <button type="submit" class="btn-primary">▶ MULAI PERMAINAN</button>
+</form>
 
     <div id="bestScoreSummary" class="is-hidden mt-5 pt-5 border-t-2 text-center" style="border-color: rgba(30,122,74,.14)">
       <div class="text-[10px] uppercase tracking-widest font-black mb-2" style="color: var(--primary);">🏆 Skor Terbaikmu</div>
@@ -1002,7 +1020,12 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
         <div class="nip-text mt-0.5">NIP. 19751217 200501 1 016</div>
       </div>
     </div>
-
+ <!-- ⬇️ TAMBAHAN BARU - STATUS PENGIRIMAN NILAI ⬇️ -->
+    <div id="sendStatus" class="text-center text-xs font-black py-3 px-4 rounded-2xl"
+         style="background: rgba(46,204,113,.10); color: var(--primary); border: 1.5px solid rgba(30,122,74,.25)">
+      ⏳ Menyiapkan pengiriman nilai...
+    </div>
+    <!-- ⬆️ SELESAI TAMBAHAN ⬆️ -->
     <button id="btnHome" type="button" class="btn-home">🔄 MAIN LAGI</button>
 
     <button id="btnCopy" type="button" class="w-full font-black p-4 rounded-2xl text-xs md:text-sm cursor-pointer border-2"
@@ -1471,6 +1494,10 @@ const state = {
   catStats: {}
 };
 const STORAGE_PREFIX = 'kuis_roda_geo_v4_';
+ const STORAGE_PREFIX = 'kuis_roda_geo_v4_';
+
+// ⬇️ TAMBAHAN BARU - GANTI DENGAN URL APPS SCRIPT MILIKMU ⬇️
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycby7vIwNYz4iEscy8neODQc1ozmhWpMU6M954sP5M2sNIT9quW_1pYklKWOaQyalo0lLPg/exec';
 
 /* =========================================================
    BUILD WHEEL — Teks RADIAL dari lingkaran besar ke inti
@@ -1936,6 +1963,7 @@ function endGame() {
   } else {
     if (accuracy >= 60) safeConfetti({ particleCount: 40, spread: 80, origin: { y: .6 }, colors: ['#2ecc71','#1e7a4a'] });
   }
+  sendScoreToSheet();   // ⬅️ TAMBAHAN BARU - kirim nilai otomatis
 }
 
 async function copyResult() {
@@ -1968,7 +1996,7 @@ async function copyResult() {
 Sekolah: SMAN 3 Kasongan
 Kelas: X / Fase E
 Guru Pengampu: SYAHRANI, S.Pd.
-NIP. 19751217 200501 1 016
+NIP. 197512172005011016
 ━━━━━━━━━━━━━━━━━━━━
 Nama Siswa: ${state.studentName}
 Materi: Peta & Pemetaan
@@ -2011,10 +2039,77 @@ ${catBreakdownText}━━━━━━━━━━━━━━━━━━━━`
   btn.textContent = ok ? '✓ TERSALIN!' : '⚠ GAGAL SALIN';
   setTimeout(() => { btn.textContent = oldText; }, 2000);
 }
+// ⬇️ TAMBAHAN BARU - FUNGSI KIRIM NILAI KE GOOGLE SHEETS ⬇️
+async function sendScoreToSheet() {
+  const total = state.totalRounds;
+  const accuracy = Math.round((state.correctCount / total) * 100);
+  const ach = getAchievement(accuracy);
 
+  // Rangkum per kategori
+  let catBreakdown = '';
+  CATEGORIES.forEach(cat => {
+    const s = state.catStats[cat.id];
+    if (!s || s.total === 0) return;
+    catBreakdown += `${cat.short}:${s.correct}/${s.total}(${s.points}p) `;
+  });
+
+  // Rangkum per kesulitan
+  const diffStats = { mudah:{b:0,t:0}, sedang:{b:0,t:0}, sulit:{b:0,t:0} };
+  state.history.forEach(h => {
+    const d = h.difficulty || 'sedang';
+    if (diffStats[d]) { diffStats[d].t++; if (h.isCorrect) diffStats[d].b++; }
+  });
+  let diffBreakdown = '';
+  ['mudah','sedang','sulit'].forEach(d => {
+    if (diffStats[d].t > 0) diffBreakdown += `${d}:${diffStats[d].b}/${diffStats[d].t} `;
+  });
+
+  const payload = {
+    nama: state.studentName,
+    kelas: state.studentClass || '-',
+    totalScore: state.totalScore,
+    correct: state.correctCount,
+    wrong: state.wrongCount,
+    accuracy: accuracy,
+    maxStreak: state.maxStreak,
+    achievement: ach.title,
+    catBreakdown: catBreakdown.trim(),
+    diffBreakdown: diffBreakdown.trim()
+  };
+
+  const statusEl = $('sendStatus');
+  if (statusEl) {
+    statusEl.innerHTML = '⏳ Mengirim nilai ke guru...';
+    statusEl.style.color = 'var(--primary)';
+    statusEl.style.background = 'rgba(46,204,113,.10)';
+  }
+
+  try {
+    await fetch(SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    });
+    if (statusEl) {
+      statusEl.innerHTML = '✅ Nilai berhasil dikirim ke guru';
+      statusEl.style.color = '#15803d';
+      statusEl.style.background = 'rgba(46,204,113,.18)';
+    }
+  } catch (e) {
+    console.error('Gagal kirim:', e);
+    if (statusEl) {
+      statusEl.innerHTML = '⚠️ Gagal kirim nilai. Periksa koneksi internet.';
+      statusEl.style.color = '#b91c1c';
+      statusEl.style.background = 'rgba(239,68,68,.10)';
+    }
+  }
+}
+// ⬆️ SELESAI TAMBAHAN ⬆️
 function returnToMainScreen() {
   sfx('click');
   state.studentName = '';
+  state.studentClass = '';                        // ⬅️ TAMBAHAN BARU
   state.currentRound = 0;
   state.totalScore = 0;
   state.correctCount = 0;
@@ -2037,7 +2132,8 @@ function returnToMainScreen() {
   wheel.style.transform = 'rotate(0deg)';
   const nameInput = $('studentName');
   if (nameInput) nameInput.value = '';
-
+const classInput = $('studentClass');            // ⬅️ TAMBAHAN BARU
+  if (classInput) classInput.value = '';           // ⬅️ TAMBAHAN BARU
   hide('resultScreen'); hide('wheelScreen'); hide('questionScreen');
   hide('categoryResult'); hide('wheelInstruction'); hide('qFeedback'); hide('qActions');
 
@@ -2074,7 +2170,9 @@ function init() {
     sfx('click');
     const name = $('studentName').value.trim();
     if (!name) { alert('Mohon isi nama terlebih dahulu.'); return; }
+if (!$('studentClass').value) { alert('Mohon pilih kelas terlebih dahulu.'); return; }
     state.studentName = name;
+state.studentClass = $('studentClass').value;   // ⬅️ TAMBAHAN BARU
     state.currentRound = 0;
     state.totalScore = 0;
     state.correctCount = 0;
