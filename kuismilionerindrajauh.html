@@ -1,0 +1,2174 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1e40af">
+<title>Kuis Interaktif Geografi — Penginderaan Jauh SMAN 3 Kasongan</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+<script>
+try {
+  tailwind.config = {
+    theme: { extend: {
+      fontFamily: {
+        sans: ['Inter','sans-serif'],
+        display: ['Space Grotesk','sans-serif'],
+        serif: ['Playfair Display','Georgia','serif']
+      }
+    }}
+  };
+} catch(e) {}
+</script>
+<style>
+  @keyframes fadeInOut{0%{opacity:0;transform:translate(-50%,-10px)}15%{opacity:1;transform:translate(-50%,0)}85%{opacity:1;transform:translate(-50%,0)}100%{opacity:0;transform:translate(-50%,-10px)}}
+  @keyframes shimmerText{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+  @keyframes floatCard{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+  @keyframes glowPulse{0%,100%{box-shadow:0 12px 48px rgba(30,64,175,.12)}50%{box-shadow:0 20px 60px rgba(6,182,212,.25)}}
+  @keyframes borderFlow{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes ringSpin{to{transform:rotate(360deg)}}
+  @keyframes satelliteSpin{0%,100%{transform:rotate(0) scale(1)}50%{transform:rotate(180deg) scale(1.06)}}
+  @keyframes badgeShine{0%{left:-100%}60%,100%{left:100%}}
+  @keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes revealPop{0%{opacity:0;transform:scale(.4) rotate(-8deg)}50%{transform:scale(1.1) rotate(2deg)}100%{opacity:1;transform:scale(1) rotate(0)}}
+  @keyframes checkPop{0%{opacity:0;transform:scale(0)}100%{opacity:1;transform:scale(1)}}
+  @keyframes salahShake{0%,100%{transform:translateX(0) rotate(0)}20%{transform:translateX(-8px) rotate(-1.5deg)}40%{transform:translateX(8px) rotate(1.5deg)}60%{transform:translateX(-5px) rotate(-.8deg)}80%{transform:translateX(5px) rotate(.8deg)}}
+  @keyframes floatUp{0%{transform:translateY(100vh) scale(0);opacity:0}10%{opacity:1}90%{opacity:.6}100%{transform:translateY(-100vh) scale(1.5);opacity:0}}
+  @keyframes correctPulse{0%{transform:scale(1)}50%{transform:scale(1.02)}100%{transform:scale(1)}}
+  @keyframes wrongShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+  @keyframes burstOut{0%{opacity:1;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--tx),var(--ty)) scale(.2)}}
+  @keyframes shineBtn{0%{left:-100%}60%,100%{left:100%}}
+  @keyframes fadeInBackdrop{from{opacity:0}to{opacity:1}}
+  @keyframes barShine{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+  @keyframes softBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+  @keyframes pulseRed{0%,100%{box-shadow:0 8px 22px rgba(192,57,43,.4)}50%{box-shadow:0 14px 36px rgba(192,57,43,.7)}}
+  @keyframes learnPulse{0%,100%{box-shadow:0 8px 22px rgba(30,64,175,.4)}50%{box-shadow:0 14px 36px rgba(6,182,212,.65)}}
+  @keyframes auroraShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+  @keyframes satelliteNeedleSpin{
+    0%{transform:rotate(0deg) scale(1);opacity:0}
+    15%{opacity:1;transform:rotate(720deg) scale(1.2)}
+    60%{transform:rotate(1080deg) scale(1.15)}
+    85%{transform:rotate(1440deg) scale(1.05)}
+    100%{transform:rotate(1440deg) scale(1);opacity:0}
+  }
+  @keyframes beaconPinDrop{
+    0%{transform:translateY(-60px) scale(.4);opacity:0}
+    40%{transform:translateY(0) scale(1.15);opacity:1}
+    60%{transform:translateY(-6px) scale(1)}
+    100%{transform:translateY(0) scale(1);opacity:1}
+  }
+  @keyframes pinRipple{
+    0%{transform:scale(0);opacity:.8}
+    100%{transform:scale(3.5);opacity:0}
+  }
+  @keyframes radarSweep{
+    0%{transform:translate(-50%,-50%) rotate(0deg);opacity:0}
+    10%{opacity:1}
+    90%{opacity:1}
+    100%{transform:translate(-50%,-50%) rotate(360deg);opacity:0}
+  }
+  @keyframes orbitDraw{
+    0%{stroke-dashoffset:2000;opacity:0}
+    20%{opacity:.55}
+    100%{stroke-dashoffset:0;opacity:.35}
+  }
+  @keyframes signalGlitch{
+    0%,100%{transform:translate(0,0) rotate(0)}
+    15%{transform:translate(-6px,3px) rotate(-.7deg)}
+    30%{transform:translate(6px,-3px) rotate(.7deg)}
+    45%{transform:translate(-5px,-2px) rotate(-.5deg)}
+    60%{transform:translate(5px,2px) rotate(.5deg)}
+    80%{transform:translate(-2px,1px) rotate(-.2deg)}
+  }
+  @keyframes faultLine{
+    0%{width:0;opacity:0}
+    20%{opacity:1}
+    100%{width:100%;opacity:0}
+  }
+  @keyframes stampAppear{
+    0%{transform:scale(2.5) rotate(-25deg);opacity:0}
+    50%{transform:scale(1) rotate(-12deg);opacity:1}
+    75%{transform:scale(1.05) rotate(-12deg)}
+    100%{transform:scale(1) rotate(-12deg);opacity:1}
+  }
+  @keyframes waypointPulse{
+    0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(6,182,212,.6)}
+    50%{transform:scale(1.15);box-shadow:0 0 0 6px rgba(6,182,212,0)}
+  }
+  @keyframes timerPulse{
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.12)}
+  }
+  @keyframes timerDangerPulse{
+    0%,100%{box-shadow:0 0 0 0 rgba(220,38,38,.5)}
+    50%{box-shadow:0 0 0 8px rgba(220,38,38,0)}
+  }
+
+  :root {
+    --primary: #1e40af;
+    --primary-light: #3b82f6;
+    --primary-bright: #06b6d4;
+    --accent: #0ea5e9;
+    --accent-deep: #6366f1;
+    --gold: #f59e0b;
+    --gold-bright: #fbbf24;
+    --bg: #f0f9ff;
+    --card-bg: #ffffff;
+    --text: #0c1e3d;
+    --text-light: #1e3a5f;
+    --text-muted: #475569;
+    --shadow: 0 12px 48px rgba(30,64,175,0.12);
+    --shadow-hover: 0 24px 64px rgba(6,182,212,0.20);
+    --radius: 20px;
+    --radius-sm: 12px;
+    --timer-normal: #1e40af;
+    --timer-warning: #f59e0b;
+    --timer-danger: #dc2626;
+  }
+
+  * { -webkit-tap-highlight-color: transparent; margin:0; padding:0; box-sizing:border-box; }
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    overflow-x: hidden;
+    position: relative;
+    font-weight: 500;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.6;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(30,64,175, 0.10) 0%, transparent 60%),
+      radial-gradient(circle at 80% 70%, rgba(6,182,212, 0.08) 0%, transparent 50%),
+      repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(30,64,175, 0.025) 40px, rgba(30,64,175, 0.025) 41px),
+      repeating-linear-gradient(-45deg, transparent, transparent 40px, rgba(30,64,175, 0.025) 40px, rgba(30,64,175, 0.025) 41px);
+    background-size: 100% 100%, 100% 100%, 80px 80px, 80px 80px;
+  }
+
+  body::after {
+    content:'';
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    opacity: .35;
+    background: linear-gradient(120deg,
+      rgba(6,182,212,.10) 0%,
+      rgba(30,64,175,.05) 25%,
+      rgba(99,102,241,.08) 50%,
+      rgba(14,165,233,.05) 75%,
+      rgba(6,182,212,.10) 100%);
+    background-size: 300% 300%;
+    animation: auroraShift 18s ease-in-out infinite;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar{width:6px}
+  .custom-scrollbar::-webkit-scrollbar-track{background:rgba(30,64,175,.06)}
+  .custom-scrollbar::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--primary),var(--accent));border-radius:9999px}
+
+  .glass-panel {
+    position: relative;
+    background: var(--card-bg);
+    border: 1px solid rgba(30,64,175,.08);
+    box-shadow: var(--shadow);
+    border-radius: var(--radius);
+    overflow: hidden;
+    animation: fadeUp .8s cubic-bezier(.2,.9,.3,1) both;
+    transition: box-shadow .4s ease, transform .4s ease;
+  }
+  .glass-panel:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+  .glass-panel::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--primary-bright), var(--gold-bright), var(--primary));
+    background-size: 300% auto;
+    animation: borderFlow 4s linear infinite;
+    z-index: 2;
+  }
+
+  .is-hidden{display:none!important}
+
+  #loader{
+    position:fixed;inset:0;z-index:9999;
+    background: radial-gradient(circle at center, #ffffff 0%, #f0f9ff 60%, #dbeafe 100%);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    transition:opacity .7s ease,visibility .7s ease;padding:16px;
+  }
+  #loader.fade-out{opacity:0;visibility:hidden;pointer-events:none}
+  .loader-satellite{position:relative;width:100px;height:100px;animation:satelliteSpin 3.2s ease-in-out infinite;}
+  .loader-satellite svg{width:100%;height:100%;display:block;filter:drop-shadow(0 0 22px rgba(6,182,212,.5))}
+  .loader-ring{
+    position:absolute;top:-28px;left:-28px;width:156px;height:156px;border-radius:50%;
+    border:5px solid transparent;
+    border-top-color:var(--primary-bright);
+    border-right-color:var(--primary-light);
+    border-bottom-color:var(--gold-bright);
+    border-left-color:var(--primary);
+    animation:ringSpin 2.8s linear infinite;
+    box-shadow:0 0 40px rgba(6,182,212,.3);
+  }
+  .loader-ring::after{
+    content:'';position:absolute;inset:12px;border-radius:50%;
+    border:3px dashed rgba(30,64,175,.25);
+    animation:ringSpin 8s linear infinite reverse;
+  }
+  .loader-title{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:clamp(2rem,7.5vw,3.6rem);
+    font-weight:900;letter-spacing:-1.2px;margin-top:30px;
+    background:linear-gradient(135deg, #1e40af, #3b82f6, #06b6d4, #6366f1, #3b82f6, #1e40af);
+    background-size:300% auto;
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    animation:shimmerText 4s ease-in-out infinite;text-align:center;
+  }
+  .loader-sub{
+    font-size:0.75rem;font-weight:800;color:var(--primary);
+    margin-top:10px;letter-spacing:5px;text-transform:uppercase;text-align:center;
+    animation: softBounce 2s ease-in-out infinite;
+  }
+  .loader-bar-track{
+    width:min(340px,80vw);height:8px;background:rgba(30,64,175,.10);
+    border-radius:99px;margin-top:26px;overflow:hidden;
+    border:1px solid rgba(30,64,175,.15);
+  }
+  .loader-bar{
+    height:100%;width:0%;border-radius:99px;
+    background:linear-gradient(90deg,var(--primary),var(--primary-bright),var(--gold-bright));
+    transition:width .3s ease;
+  }
+  .loader-percent{color:var(--primary);font-size:.85rem;font-weight:900;margin-top:14px;letter-spacing:4px;font-family:'Space Grotesk',sans-serif;}
+  .loader-tip{margin-top:18px;font-size:.75rem;color:var(--text-muted);font-style:italic;font-weight:600;text-align:center;max-width:280px}
+
+  #particles{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+  .particle{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(6,182,212,.7),transparent 70%);animation:floatUp linear infinite;filter: blur(.5px);}
+
+  .school-badge{
+    display:inline-flex;align-items:center;gap:8px;padding:8px 20px;
+    background:linear-gradient(135deg, rgba(30,64,175,.08), rgba(6,182,212,.10));
+    border:1.5px solid rgba(30,64,175,.20);border-radius:99px;
+    font-size:.68rem;font-weight:900;letter-spacing:2.5px;text-transform:uppercase;
+    position:relative;overflow:hidden;white-space:nowrap;color: var(--primary);
+  }
+  .school-badge::before{
+    content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent);
+    animation:badgeShine 3.2s ease-in-out infinite;
+  }
+  .school-name{
+    background:linear-gradient(135deg, #1e40af 0%, #3b82f6 35%, #06b6d4 55%, #6366f1 80%, #1e40af 100%);
+    background-size:300% auto;
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    font-weight:900;letter-spacing:2px;animation:shimmerText 4s ease-in-out infinite;
+  }
+
+  .fb-section{
+    padding:12px 14px;border-radius:var(--radius-sm);margin-bottom:8px;
+    background:linear-gradient(135deg, rgba(30,64,175,.04), rgba(6,182,212,.02));
+    border:1.5px solid rgba(30,64,175,.10);
+  }
+  .fb-section .fb-t{font-size:.65rem;font-weight:900;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;display:flex;align-items:center;gap:6px;color: var(--primary);}
+  .fb-section .fb-b{font-size:.85rem;line-height:1.6;color:var(--text);font-weight:600}
+  .fb-section.topic .fb-t{color:var(--primary)}
+  .fb-section.topic .fb-b{display:inline-block;padding:5px 14px;border-radius:99px;background:linear-gradient(135deg, rgba(30,64,175,.12), rgba(6,182,212,.10));color:#1e40af;font-weight:900;font-size:.72rem;letter-spacing:.5px;text-transform:uppercase;border: 1.5px solid rgba(30,64,175,.25);}
+  .fb-section.why .fb-t{color:#0ea5e9}
+  .fb-section.yours .fb-t{color:#c0392b}
+  .fb-section.yours .fb-b{background:rgba(231,76,60,.06);padding:10px 12px;border-radius:9px;border-left:4px solid #c0392b;color:#7a1f16;}
+  .fb-section.key .fb-t{color:#b8860b}
+  .fb-section.key .fb-b{background:linear-gradient(90deg, rgba(245,158,11,.10), rgba(251,191,36,.04));padding:10px 12px;border-radius:9px;border-left:4px solid #f59e0b;color:#6d4c00;font-weight:700;}
+  .badge-pick{display:inline-block;padding:2px 10px;border-radius:6px;background:rgba(192,57,43,.15);color:#7a1f16;font-weight:900;margin-right:4px}
+  .badge-correct{display:inline-block;padding:2px 10px;border-radius:6px;background:rgba(6,182,212,.15);color:#0c4a6e;font-weight:900;margin-right:4px}
+
+  .grade-badge-big{
+    width:80px;height:80px;border-radius:20px;display:flex;align-items:center;justify-content:center;
+    font-size:2.4rem;font-weight:900;color:#fff;font-family:'Space Grotesk',sans-serif;
+    box-shadow:0 12px 32px rgba(30,64,175,.25);position: relative;animation: floatCard 4s ease-in-out infinite;
+  }
+  .grade-badge-big::after{content:'';position:absolute;inset:4px;border-radius:16px;border:1.5px solid rgba(255,255,255,.5);}
+  @media (min-width:480px){ .grade-badge-big{width:96px;height:96px;font-size:3rem;border-radius:24px;} .grade-badge-big::after{inset:5px;border-radius:20px;} }
+  .grade-A{background:linear-gradient(135deg,#06b6d4,#1e40af);color:#06b6d4}
+  .grade-B{background:linear-gradient(135deg,#3b82f6,#06b6d4);color:#3b82f6}
+  .grade-C{background:linear-gradient(135deg,#fbbf24,#d97706);color:#fbbf24}
+  .grade-D{background:linear-gradient(135deg,#fb923c,#dc2626);color:#fb923c}
+  .grade-E{background:linear-gradient(135deg,#dc2626,#7f1d1d);color:#dc2626}
+
+  .score-circle{position:relative;width:110px;height:110px;flex-shrink:0}
+  @media (min-width:480px){ .score-circle{width:140px;height:140px;} }
+  .score-circle svg{position:absolute;inset:0;transform:rotate(-90deg);width:100%;height:100%}
+  .score-circle .track{stroke:rgba(30,64,175,.10);fill:none}
+  .score-circle .bar{fill:none;stroke-linecap:round;transition:stroke-dashoffset 1.5s cubic-bezier(.2,.9,.3,1.2);}
+  .score-circle .inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .score-circle .num{font-size:2rem;font-weight:900;line-height:1;font-family:'Space Grotesk',sans-serif;background:linear-gradient(180deg,#1e40af,#06b6d4);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  @media (min-width:480px){ .score-circle .num{font-size:2.4rem;} }
+  .score-circle .lbl{font-size:.55rem;letter-spacing:2.5px;color:var(--primary);text-transform:uppercase;font-weight:900;margin-top:4px}
+
+  .diff-badge{font-size:.62rem;letter-spacing:1.2px;font-weight:900;padding:4px 12px;border-radius:99px;text-transform:uppercase;white-space:nowrap;}
+  .diff-mudah{color:#0c4a6e;background:rgba(6,182,212,.15);border:1.5px solid rgba(6,182,212,.40)}
+  .diff-sedang{color:#8a6d00;background:rgba(251,191,36,.18);border:1.5px solid rgba(251,191,36,.45)}
+  .diff-sulit{color:#a04400;background:rgba(251,146,60,.15);border:1.5px solid rgba(251,146,60,.40)}
+  .diff-sangat{color:#8a1f16;background:rgba(220,38,38,.15);border:1.5px solid rgba(220,38,38,.40)}
+
+  .opt-btn{
+    width:100%; text-align:left;background: var(--card-bg);
+    border:2px solid rgba(30,64,175,.12);border-radius:var(--radius-sm);
+    padding:14px 17px;font-size:.9rem;color:var(--text);font-weight:700;line-height:1.45;
+    transition:all .25s cubic-bezier(.4,0,.2,1);cursor:pointer;position:relative;overflow:hidden;font-family: inherit;
+  }
+  @media (min-width:768px){ .opt-btn{font-size:.95rem;padding:15px 19px;} }
+  .opt-btn:hover:not(:disabled){
+    background: linear-gradient(135deg, rgba(30,64,175,.06), rgba(6,182,212,.04));
+    border-color: var(--primary-light);color: var(--primary);
+    transform:translateY(-3px);box-shadow: 0 10px 24px rgba(30,64,175,.15);
+  }
+  .opt-btn:active{transform:scale(.98)}
+  .opt-btn:disabled{cursor:not-allowed;}
+  .opt-selected{background:linear-gradient(135deg,#1e40af,#3b82f6)!important;border-color:var(--primary-bright)!important;color:#fff!important;box-shadow:0 10px 28px rgba(30,64,175,.40);transform:translateY(-2px);}
+  .opt-correct{background:linear-gradient(135deg,#0891b2,#06b6d4)!important;border-color:#22d3ee!important;color:#fff!important;box-shadow:0 10px 28px rgba(6,182,212,.45);animation:correctPulse .7s ease;}
+  .opt-wrong{background:linear-gradient(135deg,#c0392b,#e74c3c)!important;border-color:#c0392b!important;color:#fff!important;box-shadow:0 10px 28px rgba(192,57,43,.40);animation:wrongShake .5s ease;}
+  .opt-eliminated{opacity:.20!important;pointer-events:none!important;text-decoration:line-through;filter: blur(.5px)}
+
+  .gps-pin{
+    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    font-size:1.6rem;pointer-events:none;z-index:5;
+    animation:beaconPinDrop .4s cubic-bezier(.34,1.56,.64,1) forwards;
+    filter: drop-shadow(0 4px 10px rgba(30,64,175,.5));
+  }
+  .gps-pin-ripple{
+    position:absolute;left:50%;top:50%;width:20px;height:20px;border-radius:50%;
+    transform:translate(-50%,-50%);pointer-events:none;z-index:4;
+    border:2px solid rgba(6,182,212,.7);
+    animation:pinRipple .5s ease-out forwards;
+  }
+
+  .compass-needle-fx{
+    position:fixed;left:50%;top:50%;width:140px;height:140px;z-index:9999;
+    pointer-events:none;transform:translate(-50%,-50%);
+    animation:satelliteNeedleSpin 1.2s cubic-bezier(.2,.9,.3,1) forwards;
+  }
+  .compass-needle-fx svg{width:100%;height:100%;filter:drop-shadow(0 0 20px rgba(6,182,212,.8))}
+
+  .radar-sweep{
+    position:fixed;left:50%;top:50%;width:min(80vw,420px);height:min(80vw,420px);
+    border-radius:50%;pointer-events:none;z-index:9998;
+    background:conic-gradient(from 0deg, transparent 0deg, rgba(6,182,212,.35) 30deg, transparent 60deg, transparent 360deg);
+    border:2px solid rgba(6,182,212,.3);
+    animation:radarSweep 1.5s ease-out forwards;
+    transform:translate(-50%,-50%);
+  }
+  .radar-sweep::before{
+    content:'';position:absolute;inset:20%;border-radius:50%;
+    border:1.5px solid rgba(6,182,212,.4);
+  }
+  .radar-sweep::after{
+    content:'';position:absolute;inset:40%;border-radius:50%;
+    border:1.5px solid rgba(6,182,212,.5);
+  }
+
+  .contour-bg{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+  .contour-bg svg{width:100%;height:100%;opacity:.55}
+  .contour-bg path{
+    fill:none;stroke:url(#contourGrad);stroke-width:1.2;
+    stroke-dasharray:2000;stroke-dashoffset:2000;
+    animation:orbitDraw 2s ease-out forwards;
+  }
+  .contour-bg path:nth-child(2){animation-delay:.15s}
+  .contour-bg path:nth-child(3){animation-delay:.3s}
+  .contour-bg path:nth-child(4){animation-delay:.45s}
+  .contour-bg path:nth-child(5){animation-delay:.6s}
+
+  .tectonic-shake{animation:signalGlitch .5s ease}
+  .fault-line{
+    position:absolute;top:50%;left:0;height:3px;z-index:10;pointer-events:none;
+    background:linear-gradient(90deg,transparent,#dc2626,#ef4444,#fbbf24,#dc2626,transparent);
+    animation:faultLine .5s ease-out forwards;
+    box-shadow:0 0 20px rgba(220,38,38,.6);
+  }
+
+  .waypoint-trail{display:flex;align-items:center;gap:2px;margin-top:4px;}
+  .waypoint-dot{width:6px;height:6px;border-radius:50%;background:rgba(30,64,175,.20);transition:all .4s ease;}
+  .waypoint-dot.done{background:linear-gradient(135deg,#1e40af,#06b6d4)}
+  .waypoint-dot.active{background:linear-gradient(135deg,#f59e0b,#fbbf24);animation:waypointPulse 1.5s ease-in-out infinite;width:8px;height:8px;}
+  .waypoint-dot.skipped{background:rgba(71,85,105,.4)}
+  .waypoint-dot.timedout{background:rgba(220,38,38,.6)}
+  .waypoint-line{flex:1;height:2px;background:rgba(30,64,175,.10);min-width:2px;}
+  .waypoint-line.done{background:linear-gradient(90deg,#1e40af,#06b6d4)}
+
+  .achievement-stamp{
+    position:absolute;right:-10px;top:-10px;z-index:20;pointer-events:none;
+    padding:6px 14px;border-radius:6px;
+    background:linear-gradient(135deg,#f59e0b,#fbbf24);
+    color:#5c3a00;font-weight:900;font-size:.6rem;letter-spacing:2px;
+    border:2.5px dashed #5c3a00;
+    box-shadow:0 6px 20px rgba(245,158,11,.5);
+    animation:stampAppear .8s cubic-bezier(.34,1.56,.64,1) .3s both;
+    text-transform:uppercase;
+    opacity:0;
+  }
+  .achievement-stamp.show{opacity:1}
+
+  .sound-toggle{width:40px;height:40px;border-radius:50%;background: var(--card-bg);border:1.5px solid rgba(30,64,175,.20);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;transition:all .25s;flex-shrink:0;}
+  .sound-toggle:hover{background: linear-gradient(135deg, rgba(6,182,212,.15), rgba(30,64,175,.08));transform:scale(1.10);border-color: var(--primary);}
+  .sound-toggle.muted{opacity:.5}
+
+  .q-progress{height:8px;background:rgba(30,64,175,.10);border-radius:99px;overflow:hidden;margin-bottom:14px;position: relative;}
+  .q-progress>i{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--primary),var(--primary-bright),var(--gold-bright));border-radius:99px;transition:width .6s cubic-bezier(.2,.9,.3,1.2);position: relative;}
+  .q-progress>i::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent);animation: barShine 2s linear infinite;}
+
+  .lock-btn-container{margin-top:16px;display:flex;justify-content:center;animation:slideUp .4s ease}
+  .lock-btn{
+    padding:16px 40px;font-size:.95rem;font-weight:900;letter-spacing:2.5px;text-transform:uppercase;
+    font-family: 'Space Grotesk', sans-serif;color:#fff;
+    background:linear-gradient(135deg,#1e40af 0%,#3b82f6 50%,#06b6d4 100%);background-size:200% auto;
+    border-radius:60px;cursor:pointer;border:none;
+    box-shadow:0 14px 36px rgba(30,64,175,.35);
+    transition:all .3s ease;position:relative;overflow:hidden;
+    animation: glowPulse 2.5s ease-in-out infinite;
+  }
+  @media (min-width:480px){ .lock-btn{padding:18px 52px;font-size:1.05rem;letter-spacing:3px;} }
+  .lock-btn:disabled{opacity:.5;cursor:not-allowed;pointer-events:none;animation:none;}
+  .lock-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);animation:shineBtn 2.2s ease-in-out infinite;}
+  .lock-btn:hover:not(:disabled){transform:translateY(-4px) scale(1.03);background-position: 100% center;box-shadow:0 20px 48px rgba(30,64,175,.50);}
+  .lock-btn:active:not(:disabled){transform:translateY(0) scale(.97)}
+
+  #reveal-overlay{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;pointer-events:none;padding:16px}
+  #reveal-overlay.show{display:flex}
+  #reveal-overlay.backdrop{backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);background:rgba(255,255,255,.85);pointer-events:auto;animation:fadeInBackdrop .3s ease;}
+  .reveal-badge{
+    font-size:clamp(1.7rem,7vw,3.8rem);font-weight:900;letter-spacing:3px;text-transform:uppercase;
+    font-family:'Space Grotesk',sans-serif;padding:20px 42px;border-radius:var(--radius);
+    position:relative;text-align:center;line-height:1.1;animation:revealPop .7s cubic-bezier(.34,1.56,.64,1);
+  }
+  @media (min-width:480px){ .reveal-badge{font-size:clamp(2.2rem,7.5vw,5rem);padding:26px 60px;letter-spacing:5px;border-radius:28px;} }
+  .reveal-badge.benar{color:#fff;background:linear-gradient(135deg,#1e40af 0%,#3b82f6 50%,#06b6d4 100%);box-shadow:0 0 60px rgba(6,182,212,.7),0 20px 50px rgba(30,64,175,.30);text-shadow:0 2px 10px rgba(0,0,0,.25);border:3px solid rgba(255,255,255,.6);}
+  .reveal-badge.benar::before{content:'✓';display:block;font-size:.6em;margin-bottom:-.1em;animation:checkPop .5s .25s cubic-bezier(.34,1.56,.64,1) both;}
+  .reveal-badge.salah{color:#fff;background:linear-gradient(135deg,#7f1d1d 0%,#c0392b 50%,#e74c3c 100%);box-shadow:0 0 60px rgba(192,57,43,.7),0 20px 50px rgba(127,29,29,.30);text-shadow:0 2px 10px rgba(0,0,0,.25);border:3px solid rgba(255,255,255,.6);animation:revealPop .7s cubic-bezier(.34,1.56,.64,1),salahShake .5s .7s ease;}
+  .reveal-badge.salah::before{content:'✗';display:block;font-size:.6em;margin-bottom:-.1em;animation:checkPop .5s .25s cubic-bezier(.34,1.56,.64,1) both;}
+  .reveal-badge.timeout{color:#fff;background:linear-gradient(135deg,#78350f 0%,#f59e0b 50%,#fbbf24 100%);box-shadow:0 0 60px rgba(245,158,11,.7),0 20px 50px rgba(120,53,15,.30);text-shadow:0 2px 10px rgba(0,0,0,.25);border:3px solid rgba(255,255,255,.6);animation:revealPop .7s cubic-bezier(.34,1.56,.64,1),salahShake .5s .7s ease;}
+  .reveal-badge.timeout::before{content:'⏰';display:block;font-size:.6em;margin-bottom:-.1em;animation:checkPop .5s .25s cubic-bezier(.34,1.56,.64,1) both;}
+
+  .burst-particle{position:absolute;width:10px;height:10px;border-radius:50%;pointer-events:none;animation:burstOut 1.1s cubic-bezier(.2,.9,.3,1) forwards}
+
+  .btn-primary-gradient{
+    background:linear-gradient(135deg,#1e40af 0%,#3b82f6 50%,#06b6d4 100%);background-size:200% auto;
+    color:#fff;font-weight:900;letter-spacing:2px;padding:17px 32px;border-radius:60px;border:none;
+    box-shadow:0 12px 36px rgba(30,64,175,.30);transition:all .3s;cursor:pointer;position:relative;overflow:hidden;
+    font-size:1rem;width:100%;font-family: 'Space Grotesk', sans-serif;text-transform: uppercase;
+  }
+  @media (min-width:480px){ .btn-primary-gradient{padding:18px 36px;font-size:1.05rem;} }
+  .btn-primary-gradient:hover{transform:translateY(-4px);background-position: 100% center;box-shadow:0 20px 48px rgba(30,64,175,.45);}
+  .btn-primary-gradient:active{transform:translateY(0) scale(.98)}
+  .btn-primary-gradient::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);animation:shineBtn 2.6s ease-in-out infinite;}
+
+  .navy-input{
+    background: var(--card-bg);border:2px solid rgba(30,64,175,.18);color:var(--text);transition:all .25s;
+    width:100%;border-radius:var(--radius-sm);padding:14px 18px;font-size:1rem;font-weight:600;font-family:inherit;
+  }
+  .navy-input:focus{outline:none;border-color:var(--primary-light);box-shadow:0 0 0 5px rgba(6,182,212,.15);}
+  .navy-input::placeholder{color:var(--text-muted);opacity:.6;font-weight:500}
+
+  .game-frame{width:100%;max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:14px}
+  @media (min-width:1024px){ .game-frame{grid-template-columns:1fr 300px;gap:16px;} }
+
+  .question-text{font-size:1rem;font-weight:800;color:var(--text);line-height:1.55;word-wrap:break-word;font-family: 'Inter', sans-serif;}
+  @media (min-width:480px){ .question-text{font-size:1.08rem;} }
+  @media (min-width:768px){ .question-text{font-size:1.18rem;} }
+
+  .overflow-safe{word-wrap:break-word;overflow-wrap:break-word;hyphens:auto}
+
+  .lifeline-item{
+    padding:12px 6px;font-size:.75rem;border-radius:var(--radius-sm);
+    background: linear-gradient(135deg, #ffffff, #f0f9ff);
+    border:1.5px solid rgba(30,64,175,.18);transition: all .25s;color: var(--primary);font-weight: 800;
+  }
+  .lifeline-item:hover:not(:disabled){background: linear-gradient(135deg, rgba(6,182,212,.12), rgba(30,64,175,.06));border-color: var(--primary-light);transform: translateY(-3px);}
+  @media (min-width:640px){ .lifeline-item{padding:14px 8px;font-size:.8rem;} }
+
+  /* ===== TIMER COUNTDOWN STATES ===== */
+  .timer-pill {
+    transition: all 0.3s ease;
+  }
+  .timer-pill.timer-warning {
+    background: linear-gradient(135deg, rgba(245,158,11,.15), rgba(251,191,36,.10)) !important;
+    border-color: rgba(245,158,11,.5) !important;
+    animation: timerPulse 0.8s ease-in-out infinite;
+  }
+  .timer-pill.timer-warning #timer-display {
+    color: #8a6d00 !important;
+  }
+  .timer-pill.timer-danger {
+    background: linear-gradient(135deg, rgba(220,38,38,.15), rgba(192,57,43,.10)) !important;
+    border-color: rgba(220,38,38,.6) !important;
+    animation: timerDangerPulse 0.6s ease-in-out infinite;
+  }
+  .timer-pill.timer-danger #timer-display {
+    color: #dc2626 !important;
+    font-weight: 900;
+  }
+
+  input[type="text"], textarea, select { font-size: 16px !important; font-family: inherit; }
+  @media (min-width:640px){ input[type="text"], textarea, select { font-size: 1rem !important; } }
+
+  @media (max-width:640px){
+    .glass-panel{padding:14px}
+    .game-frame{gap:10px}
+    main{padding:12px 10px 20px !important}
+    header{padding:10px 12px !important}
+    footer{padding:10px 12px !important}
+  }
+  @media (max-width:380px){
+    body{font-size:14px}
+    .opt-btn{padding:12px 14px;font-size:.85rem;border-radius:10px}
+    .reveal-badge{font-size:1.5rem;padding:14px 28px;letter-spacing:2px}
+    .lock-btn{padding:14px 28px;font-size:.82rem;letter-spacing:1.8px}
+  }
+
+  #mustRepeatWarning{animation: fadeUp .6s cubic-bezier(.2,.9,.3,1.3) both;}
+  #mustRepeatWarning::before{
+    content:''; position:absolute; top:0; left:8%; right:8%; height:3px;
+    background: linear-gradient(90deg, transparent, #c0392b, #e74c3c, #c0392b, transparent);
+    background-size: 200% 100%;
+    animation: borderFlow 3s linear infinite;
+  }
+  #btnSendScore{animation: fadeUp .5s cubic-bezier(.2,.9,.3,1.3) both;}
+  #btnSendScore:not(:disabled):hover{transform: translateY(-3px) scale(1.02);box-shadow: 0 14px 36px rgba(245,158,11,.65) !important;}
+  #btnSendScore:not(:disabled):active{transform: translateY(0) scale(.98);}
+  #btn-restart.must-repeat{animation: pulseRed 2s ease-in-out infinite;}
+  #btnLearnAgain {animation: learnPulse 2.2s ease-in-out infinite;text-decoration: none;}
+  #btnLearnAgain:hover {transform: translateY(-3px) scale(1.02);box-shadow: 0 16px 40px rgba(6,182,212,.7) !important;background: linear-gradient(135deg,#1e40af,#06b6d4,#3b82f6) !important;}
+  #btnLearnAgain:active {transform: translateY(0) scale(.98);}
+</style>
+</head>
+<body>
+
+<div id="loader">
+  <div class="loader-satellite">
+    <div class="loader-ring"></div>
+    <svg viewBox="0 0 100 100" fill="none">
+      <defs>
+        <linearGradient id="satGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#06b6d4"/>
+          <stop offset="50%" stop-color="#1e40af"/>
+          <stop offset="100%" stop-color="#fbbf24"/>
+        </linearGradient>
+      </defs>
+      <circle cx="50" cy="50" r="8" fill="#1e40af"/>
+      <circle cx="50" cy="50" r="4" fill="#06b6d4"/>
+      <rect x="20" y="46" width="14" height="8" fill="#3b82f6" rx="1"/>
+      <rect x="66" y="46" width="14" height="8" fill="#3b82f6" rx="1"/>
+      <line x1="34" y1="50" x2="42" y2="50" stroke="#1e40af" stroke-width="1.5"/>
+      <line x1="58" y1="50" x2="66" y2="50" stroke="#1e40af" stroke-width="1.5"/>
+      <circle cx="50" cy="26" r="3" fill="#fbbf24"/>
+      <line x1="50" y1="29" x2="50" y2="42" stroke="#1e40af" stroke-width="1"/>
+      <line x1="50" y1="58" x2="50" y2="74" stroke="#1e40af" stroke-width="1"/>
+      <circle cx="50" cy="26" r="8" fill="none" stroke="#fbbf24" stroke-width="1" opacity="0.5"/>
+      <ellipse cx="50" cy="50" rx="42" ry="12" stroke="url(#satGrad)" stroke-width="1" fill="none" opacity="0.4"/>
+      <ellipse cx="50" cy="50" rx="12" ry="42" stroke="url(#satGrad)" stroke-width="1" fill="none" opacity="0.4"/>
+    </svg>
+  </div>
+  <div class="loader-title">GeoExplorer</div>
+  <div class="loader-sub">Kuis Interaktif Geografi</div>
+  <div class="loader-bar-track"><div class="loader-bar" id="loader-bar"></div></div>
+  <div class="loader-percent" id="loader-percent">0%</div>
+  <div class="loader-tip" id="loader-tip">🛰️ Menyiapkan soal penginderaan jauh...</div>
+</div>
+
+<div id="particles"></div>
+
+<header class="w-full border-b-2 border-blue-700/20 backdrop-blur-xl sticky top-0 z-40 px-3 py-2.5" style="background: linear-gradient(90deg, rgba(255,255,255,.95), rgba(240,249,255,.95), rgba(255,255,255,.95))">
+  <div class="max-w-6xl mx-auto flex items-center justify-between gap-2">
+    <div class="flex items-center gap-2 min-w-0 flex-1">
+      <div class="w-10 h-10 md:w-11 md:h-11 rounded-xl flex items-center justify-center text-white font-black text-lg md:text-xl shrink-0"
+        style="background: linear-gradient(135deg,#1e40af,#06b6d4); box-shadow: 0 6px 20px rgba(30,64,175,.30)">
+        🛰️
+      </div>
+      <div class="min-w-0 flex-1">
+        <h1 class="text-[12px] sm:text-sm md:text-lg font-black tracking-wide truncate"
+          style="font-family:'Space Grotesk',sans-serif; color:#1e40af;">
+          KUIS INTERAKTIF GEOGRAFI
+        </h1>
+        <p class="text-[10px] md:text-[12px] font-bold truncate">
+          <span class="school-name">SMAN 3 KASONGAN</span>
+          <span style="color:#3b82f6;"> • </span>
+          <span style="color:#1e40af; font-weight:900;">Kelas X / Fase E</span>
+        </p>
+      </div>
+    </div>
+    <div class="flex items-center gap-1.5 shrink-0">
+      <div class="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full border-2" style="background: linear-gradient(135deg, rgba(30,64,175,.08), rgba(6,182,212,.06)); border-color: rgba(30,64,175,.20);">
+        <span class="text-[11px] font-black" style="color:#1e40af;">🛰️ PENGINDERAAN JAUH</span>
+      </div>
+      <button class="sound-toggle" id="sound-toggle" type="button" aria-label="Toggle suara">🔊</button>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-5xl mx-auto w-full px-3 py-4 md:px-4 md:py-6 flex-1 flex flex-col justify-center items-center relative">
+
+  <section id="start-screen" class="w-full max-w-lg glass-panel p-5 md:p-7 lg:p-9 rounded-2xl my-auto">
+    <div class="text-center mb-5">
+      <div class="school-badge mb-4">
+        <span>🏫</span>
+        <span class="school-name">SMAN 3 KASONGAN</span>
+      </div>
+    </div>
+
+    <div class="text-center mb-6">
+      <div class="text-5xl md:text-6xl mb-3" style="filter: drop-shadow(0 6px 20px rgba(30,64,175,.30)); animation: floatCard 3s ease-in-out infinite;">🛰️</div>
+      <h2 class="text-2xl md:text-3xl lg:text-4xl font-black mb-2 leading-tight"
+        style="font-family:'Space Grotesk',sans-serif; background: linear-gradient(135deg, #1e40af, #3b82f6, #06b6d4, #6366f1, #1e40af); background-size: 300% auto; -webkit-background-clip:text; background-clip:text; color:transparent; animation: shimmerText 4s ease-in-out infinite;">
+        KUIS INTERAKTIF GEOGRAFI
+      </h2>
+      <p class="text-sm md:text-base font-bold" style="color:#1e40af;">
+        Materi: <span style="color:#0e7490; font-weight:900; background: linear-gradient(135deg, rgba(6,182,212,.15), rgba(30,64,175,.10)); padding: 3px 12px; border-radius: 20px;">Penginderaan Jauh</span>
+      </p>
+    </div>
+
+    <div class="rounded-xl p-4 md:p-5 mb-6 space-y-3 text-sm md:text-base border-2" style="background: linear-gradient(135deg, rgba(30,64,175,.04), rgba(6,182,212,.02)); border-color: rgba(30,64,175,.12);">
+      <div class="flex items-center gap-3">
+        <span class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-black shrink-0" style="background: linear-gradient(135deg, #1e40af, #06b6d4); color:#fff;">1</span>
+        <span style="color:#0c1e3d; font-weight:700;">Jawab <b style="color:#1e40af;">15 soal</b> dari bank <b style="color:#1e40af;">30 soal</b></span>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-black shrink-0" style="background: linear-gradient(135deg, #1e40af, #06b6d4); color:#fff;">2</span>
+        <span style="color:#0c1e3d; font-weight:700;">Waktu <b style="color:#1e40af;">60 detik</b> per soal — jangan kelamaan!</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-black shrink-0" style="background: linear-gradient(135deg, #1e40af, #06b6d4); color:#fff;">3</span>
+        <span style="color:#0c1e3d; font-weight:700;">Gunakan <b style="color:#1e40af;">3 bantuan</b>: 50:50, Petunjuk, Lewati</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-black shrink-0" style="background: linear-gradient(135deg, #f59e0b, #fbbf24); color:#fff;">4</span>
+        <span style="color:#0c1e3d; font-weight:700;">Skor minimal <b style="color:#c0392b;">75</b> (12 benar dari 15) untuk bisa kirim — kalau belum, <b style="color:#c0392b;">wajib ulang!</b></span>
+      </div>
+    </div>
+
+    <form id="start-form" class="space-y-4">
+      <div>
+        <label for="student-name" class="block text-xs md:text-sm font-black uppercase tracking-wider mb-2" style="color:#1e40af;">
+          Nama Siswa <span style="color:#c0392b;">*</span>
+        </label>
+        <input type="text" id="student-name" required placeholder="Tulis namamu di sini..." class="navy-input">
+      </div>
+      <button type="submit" id="btn-start" class="btn-primary-gradient">▶ MULAI KUIS</button>
+    </form>
+
+    <div id="best-score-summary" class="is-hidden mt-5 pt-5 border-t-2 text-center" style="border-color: rgba(30,64,175,.12);">
+      <div class="text-xs uppercase tracking-widest font-black mb-2" style="color:#1e40af;">🏆 Skor Terbaikmu</div>
+      <div class="flex justify-center gap-4 text-sm">
+        <div>
+          <div class="text-[10px] uppercase font-black" style="color:#3b82f6;">Benar</div>
+          <div id="best-score-correct" class="font-black text-base" style="color:#06b6d4;">0/15</div>
+        </div>
+        <div class="border-l-2" style="border-color: rgba(30,64,175,.12);"></div>
+        <div>
+          <div class="text-[10px] uppercase font-black" style="color:#3b82f6;">Skor</div>
+          <div id="best-score-points" class="font-black text-base" style="color:#1e40af;">0</div>
+        </div>
+        <div class="border-l-2" style="border-color: rgba(30,64,175,.12);"></div>
+        <div>
+          <div class="text-[10px] uppercase font-black" style="color:#3b82f6;">Gelar</div>
+          <div id="best-score-title" class="font-black text-xs mt-0.5" style="color:#b8860b;">—</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-5 text-[11px] font-bold" style="color:#475569;">© SMAN 3 Kasongan • Kelas X / Fase E</div>
+  </section>
+
+  <section id="game-screen" class="is-hidden w-full game-frame">
+    <div class="space-y-3 md:space-y-4 min-w-0">
+      <div class="glass-panel p-3 md:p-4 rounded-xl flex items-center justify-between text-xs md:text-sm flex-wrap gap-2">
+        <div class="flex items-center gap-2 flex-wrap">
+          <div class="px-3 py-1.5 rounded-lg border-2 flex items-center gap-1.5" style="background: linear-gradient(135deg, rgba(30,64,175,.06), rgba(6,182,212,.04)); border-color: rgba(30,64,175,.15);">
+            👤 <span id="player-display-name" class="font-black max-w-[110px] md:max-w-none truncate" style="color:#1e40af;">Siswa</span>
+          </div>
+          <div class="px-3 py-1.5 rounded-lg border-2" style="background: linear-gradient(135deg, rgba(6,182,212,.10), rgba(30,64,175,.06)); border-color: rgba(6,182,212,.30);">
+            ⚡ <span id="xp-counter" class="font-black" style="color:#1e40af;">0</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <div id="streak-container" class="is-hidden px-3 py-1.5 rounded-lg border-2" style="background: linear-gradient(135deg, rgba(245,158,11,.15), rgba(251,191,36,.10)); border-color: rgba(245,158,11,.35);">
+            🔥 <span id="streak-counter" class="font-black" style="color:#8a6d00;">0</span>
+          </div>
+          <div id="timer-pill" class="timer-pill px-3 py-1.5 rounded-lg border-2" style="background: linear-gradient(135deg, rgba(30,64,175,.06), rgba(6,182,212,.04)); border-color: rgba(30,64,175,.15);">
+            ⏱️ <span id="timer-display" class="font-mono font-black" style="color:#1e40af;">60</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-panel p-2 md:p-3 rounded-xl">
+        <div class="flex items-center justify-between gap-2 mb-1 px-1">
+          <span class="text-[10px] md:text-xs font-black uppercase tracking-wider" style="color:#1e40af;">🛰️ Jalur Orbit</span>
+          <span class="text-[10px] md:text-xs font-black" style="color:#475569;" id="waypoint-text">Soal 1 / 15</span>
+        </div>
+        <div class="waypoint-trail" id="waypoint-trail"></div>
+      </div>
+
+      <div class="glass-panel p-3 md:p-4 rounded-xl">
+        <div class="text-[10px] md:text-xs font-black text-center mb-2 tracking-widest uppercase" style="color:#1e40af;">Bantuan (masing-masing 1x pakai)</div>
+        <div class="flex justify-center gap-2 md:gap-3">
+          <button id="lifeline-5050" type="button" class="lifeline-item flex-1 max-w-[150px] cursor-pointer" aria-label="Bantuan 50:50">
+            <div class="flex items-center justify-center gap-1">✂️ <span>50:50</span></div>
+            <div class="text-[9px] md:text-[10px] mt-0.5 font-semibold" style="color:#475569;">Hapus 2 salah</div>
+          </button>
+          <button id="lifeline-hint" type="button" class="lifeline-item flex-1 max-w-[150px] cursor-pointer" aria-label="Bantuan Petunjuk">
+            <div class="flex items-center justify-center gap-1">💡 <span>Petunjuk</span></div>
+            <div class="text-[9px] md:text-[10px] mt-0.5 font-semibold" style="color:#475569;">Guru memberi hint</div>
+          </button>
+          <button id="lifeline-skip" type="button" class="lifeline-item flex-1 max-w-[150px] cursor-pointer" aria-label="Bantuan Lewati">
+            <div class="flex items-center justify-center gap-1">⏭️ <span>Lewati</span></div>
+            <div class="text-[9px] md:text-[10px] mt-0.5 font-semibold" style="color:#475569;">Tanpa pengurangan</div>
+          </button>
+        </div>
+      </div>
+
+      <div class="glass-panel p-4 md:p-6 rounded-2xl relative" style="border-left: 5px solid #1e40af;" id="question-panel">
+        <div class="contour-bg" id="contour-bg"></div>
+        <div class="q-progress"><i id="q-progress"></i></div>
+        <div class="flex justify-between items-center mb-3 flex-wrap gap-2">
+          <span class="text-xs md:text-sm font-black uppercase tracking-wider" style="color:#1e40af;">Pertanyaan <span id="current-q-num">1</span>/15</span>
+          <div class="flex items-center gap-2 flex-wrap">
+            <span id="difficulty-tag" class="diff-badge diff-mudah">Mudah</span>
+            <span id="reward-tag" class="text-xs font-mono px-3 py-1 rounded-full font-black whitespace-nowrap" style="background: linear-gradient(135deg, rgba(245,158,11,.15), rgba(251,191,36,.08)); color:#6d4c00; border: 1.5px solid rgba(245,158,11,.30);">Lvl 1 — 100</span>
+          </div>
+        </div>
+        <h3 id="question-text" class="question-text overflow-safe" style="position:relative;z-index:1;">Memuat pertanyaan...</h3>
+
+        <div id="hint-panel" class="is-hidden mt-4 p-4 rounded-xl" style="background: linear-gradient(135deg, rgba(6,182,212,.10), rgba(30,64,175,.04)); border: 2px solid rgba(6,182,212,.30); position:relative; z-index:1;">
+          <div class="text-xs font-black tracking-widest mb-2 flex items-center gap-1.5" style="color:#1e40af;">💡 Petunjuk dari Guru</div>
+          <div class="text-xs md:text-sm font-semibold leading-relaxed overflow-safe" style="color:#0c1e3d;" id="hint-text"></div>
+        </div>
+      </div>
+
+      <div id="answers-container" class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4"></div>
+
+      <div id="lock-btn-container" class="lock-btn-container is-hidden">
+        <button id="btn-lock-answer" type="button" class="lock-btn">🔒 KUNCI JAWABAN</button>
+      </div>
+    </div>
+
+    <div class="glass-panel p-4 rounded-2xl hidden lg:flex flex-col">
+      <div class="text-sm font-black uppercase mb-3 flex items-center gap-1.5" style="color:#1e40af;">
+        <span>🏆</span> Progres Level
+      </div>
+      <div id="prize-ladder" class="space-y-1 text-xs font-mono"></div>
+    </div>
+  </section>
+
+  <div id="reveal-overlay"><div class="reveal-badge" id="reveal-badge">BENAR</div></div>
+
+  <div id="feedback-modal" class="is-hidden fixed inset-0 backdrop-blur-md z-50 flex items-center justify-center p-3 md:p-4 overflow-y-auto" style="background: rgba(240,249,255,.90)">
+    <div class="glass-panel max-w-lg w-full p-5 md:p-7 rounded-2xl my-auto" id="feedback-modal-content" style="border: 3px solid rgba(6,182,212,.5)">
+      <div class="flex items-center gap-3 mb-4">
+        <div id="feedback-icon-bg" class="w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center text-2xl md:text-3xl font-black shrink-0" style="background: linear-gradient(135deg, rgba(6,182,212,.20), rgba(30,64,175,.10)); color:#1e40af; border: 2px solid rgba(6,182,212,.50);">✓</div>
+        <div class="min-w-0">
+          <h3 id="feedback-title" class="text-lg md:text-2xl font-black truncate" style="font-family:'Space Grotesk',sans-serif; color:#1e40af;">🎉 BENAR!</h3>
+          <p id="feedback-subtitle" class="text-xs md:text-sm font-bold" style="color:#475569;">Apresiasi dan Penjelasan</p>
+        </div>
+      </div>
+      <div id="feedback-details" class="my-4"></div>
+      <div class="my-4">
+        <div class="fb-section topic"><div class="fb-t">📚 Topik</div><div class="fb-b" id="fb-topic">—</div></div>
+        <div class="fb-section why"><div class="fb-t">💡 Mengapa Jawaban Ini Benar</div><div class="fb-b" id="fb-why">—</div></div>
+        <div class="fb-section yours" id="fb-yours-section"><div class="fb-t">⚠️ Analisis Pilihanmu</div><div class="fb-b" id="fb-yours">—</div></div>
+        <div class="fb-section key"><div class="fb-t">🎯 Poin Kunci untuk Diingat</div><div class="fb-b" id="fb-key">—</div></div>
+      </div>
+      <button type="button" id="btn-next" class="w-full font-black py-4 px-5 rounded-xl cursor-pointer transition text-sm md:text-base"
+        style="background: linear-gradient(135deg,#1e40af,#3b82f6,#06b6d4); background-size:200% auto; color:#fff; font-family:'Space Grotesk',sans-serif; letter-spacing:1.5px;">
+        ➡ LANJUT KE SOAL BERIKUTNYA
+      </button>
+    </div>
+  </div>
+
+  <div id="skip-modal" class="is-hidden fixed inset-0 backdrop-blur-md z-50 flex items-center justify-center p-4" style="background: rgba(240,249,255,.90)">
+    <div class="glass-panel max-w-sm w-full p-6 md:p-7 rounded-2xl text-center">
+      <div class="text-4xl md:text-5xl mb-3">⏭️</div>
+      <h3 class="text-lg md:text-xl font-black mb-2" style="color:#1e40af;">Lewati Soal Ini?</h3>
+      <p class="text-xs md:text-sm font-bold mb-5 leading-relaxed" style="color:#1e3a5f;">Soal ini akan ditandai <b style="color:#1e40af;">dilewati</b> dan tidak dihitung benar/salah.</p>
+      <div class="flex gap-3">
+        <button type="button" id="btn-skip-cancel" class="flex-1 font-black py-3 rounded-xl text-xs md:text-sm cursor-pointer border-2" style="background: #fff; color:#1e3a5f; border-color: rgba(30,64,175,.20);">Batal</button>
+        <button type="button" id="btn-skip-confirm" class="flex-1 font-black py-3 rounded-xl text-xs md:text-sm cursor-pointer" style="background: linear-gradient(135deg,#1e40af,#06b6d4); color:#fff;">Ya, Lewati</button>
+      </div>
+    </div>
+  </div>
+
+  <section id="result-screen" class="is-hidden w-full max-w-2xl my-auto space-y-3 md:space-y-4" style="position:relative;">
+    <div id="achievement-stamp" class="achievement-stamp">✔ VERIFIED</div>
+
+    <div id="record-banner" class="is-hidden glass-panel p-4 md:p-5 rounded-2xl text-center" style="border-color: rgba(6,182,212,.5); background: linear-gradient(135deg, rgba(6,182,212,.10), rgba(245,158,11,.06));">
+      <h3 id="record-text" class="text-lg md:text-2xl font-black" style="color:#1e40af;">🎉 SKOR BARU TERBAIK!</h3>
+      <p id="record-subtext" class="text-xs md:text-sm font-bold" style="color:#1e3a5f;">Luar biasa!</p>
+    </div>
+
+    <div class="glass-panel p-5 md:p-9 rounded-2xl" style="border: 3px solid rgba(30,64,175,.30);">
+      <div class="border-b-2 border-dashed pb-4 mb-5 text-center" style="border-color: rgba(30,64,175,.20);">
+        <div class="text-lg md:text-2xl font-black tracking-wide" style="font-family:'Space Grotesk',sans-serif; background: linear-gradient(135deg, #1e40af, #3b82f6, #06b6d4, #6366f1); background-size:300% auto; -webkit-background-clip:text; background-clip:text; color:transparent; animation: shimmerText 4s ease-in-out infinite;">🛰️ KUIS INTERAKTIF GEOGRAFI</div>
+        <div class="school-name text-sm md:text-base tracking-widest mt-1">SMAN 3 KASONGAN</div>
+        <div class="text-[10px] md:text-xs font-black uppercase mt-1" style="color:#1e40af;">HASIL TUGAS INDIVIDU</div>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-center gap-5 md:gap-7 mb-6">
+        <div class="flex flex-col items-center gap-2">
+          <div id="result-avatar" class="w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center text-white font-black text-xl md:text-2xl" style="background: linear-gradient(135deg,#1e40af,#06b6d4); box-shadow: 0 12px 32px rgba(30,64,175,.35);">?</div>
+          <div class="text-[10px] md:text-xs font-black uppercase" style="color:#1e40af;">Avatar</div>
+        </div>
+        <div class="score-circle">
+          <svg viewBox="0 0 120 120">
+            <defs><linearGradient id="scGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1e40af"/><stop offset="50%" stop-color="#06b6d4"/><stop offset="100%" stop-color="#fbbf24"/></linearGradient></defs>
+            <circle class="track" cx="60" cy="60" r="50" stroke-width="9"/>
+            <circle class="bar" cx="60" cy="60" r="50" stroke-width="9" stroke="url(#scGrad)" stroke-dasharray="314.16" stroke-dashoffset="314.16" id="score-circle-bar"/>
+          </svg>
+          <div class="inner">
+            <div class="num" id="score-circle-num">0</div>
+            <div class="lbl">Skor</div>
+          </div>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <div id="grade-badge" class="grade-badge-big grade-A">A</div>
+          <div class="text-[10px] md:text-xs font-black uppercase" style="color:#1e40af;">Grade</div>
+        </div>
+      </div>
+
+      <div class="space-y-2 text-xs md:text-sm">
+        <div class="flex justify-between items-center py-2 border-b-2 gap-2" style="border-color: rgba(30,64,175,.10);"><span class="font-black shrink-0" style="color:#1e40af;">Nama Siswa:</span><span id="card-name" class="font-black text-sm md:text-base text-right overflow-safe" style="color:#0c1e3d;">—</span></div>
+        <div class="flex justify-between items-center py-2 border-b-2 gap-2" style="border-color: rgba(30,64,175,.10);"><span class="font-black shrink-0" style="color:#1e40af;">Materi:</span><span class="font-black text-right" style="color:#1e40af;">PENGINDERAAN JAUH</span></div>
+        <div class="flex justify-between items-center py-2 border-b-2 gap-2" style="border-color: rgba(30,64,175,.10);"><span class="font-black" style="color:#1e40af;">Jawaban Benar:</span><span id="card-correct" class="font-black font-mono" style="color:#06b6d4;">0 / 15</span></div>
+        <div class="flex justify-between items-center py-2 border-b-2 gap-2" style="border-color: rgba(30,64,175,.10);"><span class="font-black" style="color:#1e40af;">Salah:</span><span id="card-wrong" class="font-black font-mono" style="color:#c0392b;">0</span></div>
+        <div class="flex justify-between items-center py-2 border-b-2 gap-2" style="border-color: rgba(30,64,175,.10);"><span class="font-black" style="color:#1e40af;">Dilewati:</span><span id="card-skipped" class="font-black font-mono" style="color:#475569;">0</span></div>
+        <div class="flex justify-between items-center py-2 border-b-2 gap-2" style="border-color: rgba(30,64,175,.10);"><span class="font-black" style="color:#1e40af;">Skor Akhir:</span><span id="card-score" class="font-black text-lg md:text-xl font-mono" style="color:#1e40af;">0</span></div>
+        <div class="flex justify-between items-center py-2 border-b-2 gap-2" style="border-color: rgba(30,64,175,.10);"><span class="font-black" style="color:#1e40af;">XP Diperoleh:</span><span id="card-xp" class="font-black font-mono" style="color:#1e40af;">0 XP</span></div>
+        <div class="flex justify-between items-center py-2 border-b-2 gap-2" style="border-color: rgba(30,64,175,.10);"><span class="font-black" style="color:#1e40af;">Streak:</span><span id="card-streak" class="font-black font-mono" style="color:#8a6d00;">0 🔥</span></div>
+        <div class="flex justify-between items-center py-2 border-b-2 gap-2" style="border-color: rgba(30,64,175,.10);"><span class="font-black" style="color:#1e40af;">Gelar:</span><span id="card-title" class="font-black text-xs md:text-sm text-right overflow-safe" style="color:#b8860b;">🌱 PEMBELAJAR INDERAJA</span></div>
+        <div class="flex justify-between items-center py-2 gap-2"><span class="font-black" style="color:#1e40af;">Percobaan:</span><span id="card-attempt" class="font-black font-mono" style="color:#0c1e3d;">1</span></div>
+      </div>
+
+      <div class="mt-5 pt-4 border-t-2 text-center" style="border-color: rgba(30,64,175,.15);">
+        <div class="text-[10px] md:text-xs uppercase tracking-widest font-black mb-1" style="color:#1e40af;">Guru Pengampu</div>
+        <div class="text-sm md:text-base font-black" style="color:#1e40af;">SYAHRANI, S.Pd.</div>
+        <div class="text-[10px] md:text-xs font-bold font-mono" style="color:#475569;">NIP. 19751217200501 1 016</div>
+      </div>
+    </div>
+
+    <div id="mustRepeatWarning" class="is-hidden glass-panel p-5 md:p-6 rounded-2xl text-center"
+         style="border: 2px solid rgba(192,57,43,.5); background: linear-gradient(135deg, rgba(192,57,43,.10), rgba(127,29,29,.05));">
+      <div class="text-5xl md:text-6xl mb-2">🚫</div>
+      <div class="text-base md:text-xl font-black mb-2" style="color:#a04400;">
+        NILAI BELUM MEMENUHI SYARAT
+      </div>
+      <div class="text-sm md:text-base font-bold leading-relaxed mb-2" style="color:#7a1f16;">
+        Skormu <span id="mustRepeatScore" class="font-mono font-black text-xl md:text-2xl" style="color:#c0392b;">0</span> — belum mencapai batas minimum <b style="color:#c0392b;">75</b> (12 benar dari 15).
+      </div>
+      <div class="text-sm md:text-base font-black leading-relaxed" style="color:#c0392b;">
+        📚 Pelajari kembali materi <b>Penginderaan Jauh</b>,<br class="md:hidden">
+        lalu <b>WAJIB MENGULANG</b> kuis ini! 💪
+      </div>
+
+      <a id="btnLearnAgain"
+         href="https://maedafarhansyah-pixel.github.io/e-geografi-sman3kasongan/PENGINDERAANJAUH.html"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="mt-5 w-full font-black p-3.5 md:p-4 rounded-2xl text-sm md:text-base cursor-pointer border-2 transition-all block"
+         style="background: linear-gradient(135deg,#1e40af,#3b82f6,#06b6d4); color:#ffffff; border-color: rgba(255,255,255,.55); box-shadow: 0 8px 22px rgba(30,64,175,.4); text-align: center; text-decoration: none;">
+        📖 BELAJAR KEMBALI MATERI PENGINDERAAN JAUH
+      </a>
+
+      <div class="text-[10px] md:text-xs italic font-semibold mt-3" style="color:#7a1f16;">
+        💡 Buka materi di tab baru, lalu kembali ke sini untuk ulangi kuis
+      </div>
+    </div>
+
+    <button id="btnSendScore" type="button"
+      class="is-hidden w-full font-black p-4 md:p-5 rounded-2xl text-sm md:text-base cursor-pointer border-2 transition-all"
+      style="background: linear-gradient(135deg,#f59e0b,#fbbf24); color:#ffffff; border-color: rgba(255,255,255,.55); box-shadow: 0 8px 22px rgba(245,158,11,.5)"
+      aria-label="Kirim nilai ke guru">
+      📤 KIRIM NILAI KE GURU
+    </button>
+
+    <div id="sendStatus" class="is-hidden text-center text-xs md:text-sm font-black py-3 px-4 rounded-2xl"
+         style="background: rgba(6,182,212,.10); color:#1e40af; border: 1.5px solid rgba(30,64,175,.25)">
+      ⏳ Mengirim nilai...
+    </div>
+
+    <div class="grid grid-cols-2 gap-2 md:grid-cols-4">
+      <button type="button" id="btn-restart" class="font-black p-3 md:p-4 rounded-xl text-xs md:text-sm cursor-pointer shadow-lg" style="background: linear-gradient(135deg,#1e40af,#06b6d4); color:#fff;">🔄 MAIN LAGI</button>
+      <button type="button" id="btn-copy" class="font-black p-3 md:p-4 rounded-xl text-xs md:text-sm cursor-pointer border-2" style="background: #fff; color:#1e40af; border-color: rgba(30,64,175,.25);">📋 <span id="copy-btn-text">SALIN</span></button>
+      <button type="button" id="btn-review" class="font-black p-3 md:p-4 rounded-xl text-xs md:text-sm cursor-pointer border-2" style="background: #fff; color:#1e40af; border-color: rgba(30,64,175,.25);">📖 PEMBAHASAN</button>
+      <button type="button" id="btn-menu" class="font-black p-3 md:p-4 rounded-xl text-xs md:text-sm cursor-pointer border-2" style="background: #fff; color:#1e3a5f; border-color: rgba(30,64,175,.15);">🏠 MENU</button>
+    </div>
+  </section>
+
+  <div id="review-modal" class="is-hidden fixed inset-0 backdrop-blur-md z-50 flex items-center justify-center p-2 md:p-3" style="background: rgba(240,249,255,.92)">
+    <div class="glass-panel max-w-3xl w-full h-[90vh] md:h-[85vh] flex flex-col rounded-2xl p-4 md:p-5">
+      <div class="flex justify-between items-center pb-3 border-b-2 gap-2" style="border-color: rgba(30,64,175,.15);">
+        <h3 class="text-base md:text-xl font-black truncate" style="font-family:'Space Grotesk',sans-serif; color:#1e40af;">📖 Rangkuman Pembahasan</h3>
+        <button type="button" id="btn-close-review" class="p-1 text-2xl md:text-3xl cursor-pointer shrink-0 font-black" style="color:#1e40af;">×</button>
+      </div>
+      <div id="review-list" class="flex-1 overflow-y-auto custom-scrollbar my-4 space-y-3 pr-1"></div>
+      <button type="button" id="btn-close-review-2" class="font-black px-5 py-2.5 rounded-xl text-xs md:text-sm cursor-pointer self-end border-2" style="background: #fff; color:#1e3a5f; border-color: rgba(30,64,175,.20);">Tutup</button>
+    </div>
+  </div>
+</main>
+
+<footer class="w-full text-center py-4 px-3 text-[11px] md:text-xs font-bold border-t-2" style="color:#1e40af; border-color: rgba(30,64,175,.15); background: linear-gradient(90deg, rgba(255,255,255,.95), rgba(240,249,255,.95), rgba(255,255,255,.95));">
+  <div class="school-name text-xs md:text-sm mb-1">SMAN 3 KASONGAN</div>
+  <div style="color:#1e3a5f;">Kuis Interaktif Geografi • Guru Pengampu: SYAHRANI, S.Pd.</div>
+</footer>
+
+<script>
+"use strict";
+function show(id){const el=document.getElementById(id);if(el)el.classList.remove('is-hidden');}
+function hide(id){const el=document.getElementById(id);if(el)el.classList.add('is-hidden');}
+function setText(id,t){const el=document.getElementById(id);if(el)el.textContent=t;}
+function setHTML(id,h){const el=document.getElementById(id);if(el)el.innerHTML=h;}
+function bind(id,h){const el=document.getElementById(id);if(el)el.addEventListener('click',h);}
+
+/* ============================================================
+   KONFIGURASI
+   ============================================================ */
+const MIN_SCORE_TO_PASS = 75;   // 12 benar dari 15
+const TIMER_PER_QUESTION = 60;  // detik per soal
+
+/* ============================================================
+   SOUND PERSISTENCE (Fix #4)
+   ============================================================ */
+const SOUND_KEY = 'kuis_inderaja_sound_v1';
+let soundMuted = false;
+try {
+  soundMuted = localStorage.getItem(SOUND_KEY) === 'muted';
+} catch(e) { soundMuted = false; }
+
+let audioCtx=null;
+function playTone(freq,dur,type,vol,delay){
+  if(soundMuted)return;
+  try{
+    if(!audioCtx){const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;audioCtx=new AC();}
+    if(audioCtx.state==='suspended')audioCtx.resume();
+    const t=audioCtx.currentTime+(delay||0);
+    const osc=audioCtx.createOscillator(),gain=audioCtx.createGain();
+    osc.type=type||'sine';osc.frequency.setValueAtTime(freq,t);
+    gain.gain.setValueAtTime(0.0001,t);
+    gain.gain.exponentialRampToValueAtTime(vol||0.15,t+0.01);
+    gain.gain.exponentialRampToValueAtTime(0.0001,t+dur);
+    osc.connect(gain).connect(audioCtx.destination);
+    osc.start(t);osc.stop(t+dur+0.05);
+  }catch(e){}
+}
+function sfx(type){
+  try{
+    if(type==='correct'){[523.25,659.25,783.99,1046.5].forEach((f,i)=>playTone(f,.2,'triangle',.2,i*.1));}
+    else if(type==='wrong'){playTone(220,.25,'sawtooth',.2,0);playTone(110,.4,'sawtooth',.2,.2);}
+    else if(type==='click'){playTone(440,.05,'sine',.08,0);}
+    else if(type==='select'){playTone(660,.08,'sine',.12,0);playTone(880,.1,'sine',.1,.06);}
+    else if(type==='lock'){playTone(330,.1,'square',.1,0);playTone(220,.15,'square',.1,.08);}
+    else if(type==='win'){[440,554.37,659.25,880].forEach((f,i)=>playTone(f,.25,'sine',.2,i*.13));}
+    else if(type==='hint'){playTone(660,.1,'sine',.15,0);playTone(880,.15,'sine',.15,.08);}
+    else if(type==='skip'){playTone(330,.1,'sine',.1,0);playTone(220,.15,'sine',.1,.08);}
+    else if(type==='pin'){playTone(880,.08,'sine',.15,0);playTone(1320,.12,'sine',.12,.05);}
+    else if(type==='stamp'){playTone(220,.1,'square',.2,0);playTone(180,.15,'square',.2,.1);playTone(220,.2,'square',.2,.25);}
+    else if(type==='timeout'){playTone(300,.3,'sawtooth',.2,0);playTone(200,.5,'sawtooth',.2,.3);playTone(100,.7,'sawtooth',.2,.6);}
+    else if(type==='beep'){playTone(880,.12,'square',.15,0);}
+    else if(type==='beepFinal'){playTone(1100,.15,'square',.2,0);playTone(1400,.15,'square',.18,.08);}
+  }catch(e){}
+}
+function safeConfetti(o){try{if(typeof confetti==='function')confetti(o);}catch(e){}}
+
+function haptic(pattern){
+  try{
+    if(navigator.vibrate && !soundMuted){
+      if(typeof pattern === 'number') navigator.vibrate(pattern);
+      else navigator.vibrate(pattern);
+    }
+  }catch(e){}
+}
+
+/* ============================================================
+   BEFOREUNLOAD WARNING (Fix #3)
+   ============================================================ */
+let kuisAktif = false;
+window.addEventListener('beforeunload', function(e) {
+  if (kuisAktif) {
+    e.preventDefault();
+    e.returnValue = '';
+    return '';
+  }
+});
+
+/* ============================================================
+   EFFECTS
+   ============================================================ */
+function compassNeedleEffect(){
+  try{
+    const el = document.createElement('div');
+    el.className = 'compass-needle-fx';
+    el.innerHTML = '<svg viewBox="0 0 100 100" fill="none">'+
+      '<defs><linearGradient id="cnGrad" x1="0" y1="0" x2="1" y2="1">'+
+      '<stop offset="0%" stop-color="#06b6d4"/><stop offset="50%" stop-color="#1e40af"/><stop offset="100%" stop-color="#fbbf24"/></linearGradient></defs>'+
+      '<circle cx="50" cy="50" r="38" stroke="url(#cnGrad)" stroke-width="2.5" fill="none" opacity="0.5"/>'+
+      '<circle cx="50" cy="50" r="8" fill="#1e40af"/>'+
+      '<circle cx="50" cy="50" r="4" fill="#06b6d4"/>'+
+      '<rect x="20" y="46" width="14" height="8" fill="#3b82f6" rx="1"/>'+
+      '<rect x="66" y="46" width="14" height="8" fill="#3b82f6" rx="1"/>'+
+      '<ellipse cx="50" cy="50" rx="42" ry="12" stroke="url(#cnGrad)" stroke-width="1" fill="none" opacity="0.6"/>'+
+      '<ellipse cx="50" cy="50" rx="12" ry="42" stroke="url(#cnGrad)" stroke-width="1" fill="none" opacity="0.6"/>'+
+      '</svg>';
+    document.body.appendChild(el);
+    setTimeout(function(){el.remove();},1300);
+  }catch(e){}
+}
+
+function gpsPinDrop(btn){
+  try{
+    if(!btn) return;
+    const pin = document.createElement('div');
+    pin.className = 'gps-pin';
+    pin.textContent = '📡';
+    btn.style.position = 'relative';
+    btn.appendChild(pin);
+    const ripple = document.createElement('div');
+    ripple.className = 'gps-pin-ripple';
+    btn.appendChild(ripple);
+    sfx('pin');
+    setTimeout(function(){pin.remove();ripple.remove();},500);
+  }catch(e){}
+}
+
+function radarSweepEffect(){
+  try{
+    const el = document.createElement('div');
+    el.className = 'radar-sweep';
+    document.body.appendChild(el);
+    sfx('hint');
+    setTimeout(function(){el.remove();},1600);
+  }catch(e){}
+}
+
+function drawContourLines(){
+  try{
+    const bg = document.getElementById('contour-bg');
+    if(!bg) return;
+    bg.innerHTML = '';
+    const svgNS = 'http://www.w3.org/2000/svg';
+    const svg = document.createElementNS(svgNS,'svg');
+    svg.setAttribute('viewBox','0 0 400 300');
+    svg.setAttribute('preserveAspectRatio','none');
+    const defs = document.createElementNS(svgNS,'defs');
+    const grad = document.createElementNS(svgNS,'linearGradient');
+    grad.setAttribute('id','contourGrad');
+    grad.setAttribute('x1','0');grad.setAttribute('y1','0');
+    grad.setAttribute('x2','1');grad.setAttribute('y2','1');
+    const s1 = document.createElementNS(svgNS,'stop');
+    s1.setAttribute('offset','0%');s1.setAttribute('stop-color','#1e40af');s1.setAttribute('stop-opacity','.5');
+    const s2 = document.createElementNS(svgNS,'stop');
+    s2.setAttribute('offset','50%');s2.setAttribute('stop-color','#06b6d4');s2.setAttribute('stop-opacity','.4');
+    const s3 = document.createElementNS(svgNS,'stop');
+    s3.setAttribute('offset','100%');s3.setAttribute('stop-color','#fbbf24');s3.setAttribute('stop-opacity','.4');
+    grad.appendChild(s1);grad.appendChild(s2);grad.appendChild(s3);
+    defs.appendChild(grad);svg.appendChild(defs);
+    const paths = [
+      'M -20,80 Q 80,20 200,70 T 420,40',
+      'M -20,130 Q 100,80 220,120 T 420,90',
+      'M -20,180 Q 120,140 240,170 T 420,150',
+      'M -20,230 Q 140,200 260,220 T 420,210',
+      'M -20,280 Q 160,260 280,270 T 420,260'
+    ];
+    paths.forEach(function(d){
+      const p = document.createElementNS(svgNS,'path');
+      p.setAttribute('d',d);
+      svg.appendChild(p);
+    });
+    bg.appendChild(svg);
+  }catch(e){}
+}
+
+function tectonicShakeEffect(){
+  try{
+    const panel = document.getElementById('question-panel');
+    if(!panel) return;
+    panel.classList.add('tectonic-shake');
+    const fault = document.createElement('div');
+    fault.className = 'fault-line';
+    panel.appendChild(fault);
+    setTimeout(function(){
+      panel.classList.remove('tectonic-shake');
+      fault.remove();
+    },600);
+  }catch(e){}
+}
+
+function renderWaypointTrail(){
+  try{
+    const trail = document.getElementById('waypoint-trail');
+    const txt = document.getElementById('waypoint-text');
+    if(!trail) return;
+    const total = (currentQuestions && currentQuestions.length) ? currentQuestions.length : 15;
+    trail.innerHTML = '';
+    for(let i=0;i<total;i++){
+      const dot = document.createElement('div');
+      dot.className = 'waypoint-dot';
+      dot.id = 'wp-dot-'+i;
+      trail.appendChild(dot);
+      if(i < total-1){
+        const line = document.createElement('div');
+        line.className = 'waypoint-line';
+        line.id = 'wp-line-'+i;
+        trail.appendChild(line);
+      }
+    }
+    if(txt) txt.textContent = 'Soal '+(currentQuestionIndex+1)+' / '+total;
+    updateWaypointTrail();
+  }catch(e){}
+}
+function updateWaypointTrail(){
+  try{
+    const total = (currentQuestions && currentQuestions.length) ? currentQuestions.length : 15;
+    for(let i=0;i<total;i++){
+      const dot = document.getElementById('wp-dot-'+i);
+      const line = document.getElementById('wp-line-'+i);
+      if(!dot) continue;
+      dot.className = 'waypoint-dot';
+      if(i < currentQuestionIndex){
+        const hist = userAnswersHistory[i];
+        if(hist && hist.isSkipped) dot.classList.add('skipped');
+        else if(hist && hist.isTimedOut) dot.classList.add('timedout');
+        else dot.classList.add('done');
+      } else if(i === currentQuestionIndex){
+        dot.classList.add('active');
+      }
+      if(line){
+        line.className = 'waypoint-line';
+        if(i < currentQuestionIndex) line.classList.add('done');
+      }
+    }
+    const txt = document.getElementById('waypoint-text');
+    if(txt) txt.textContent = 'Soal '+(currentQuestionIndex+1)+' / '+total;
+  }catch(e){}
+}
+
+function showAchievementStamp(){
+  try{
+    const stamp = document.getElementById('achievement-stamp');
+    if(!stamp) return;
+    stamp.classList.remove('show');
+    void stamp.offsetWidth;
+    stamp.classList.add('show');
+    sfx('stamp');
+    setTimeout(function(){ stamp.classList.remove('show'); }, 3500);
+  }catch(e){}
+}
+
+(function(){
+  try{
+    const bar=document.getElementById('loader-bar'),pct=document.getElementById('loader-percent'),tip=document.getElementById('loader-tip');
+    const tips=["🛰️ Menyiapkan soal penginderaan jauh...","📡 Mengkalibrasi sensor satelit...","🌍 Mengorbitkan satelit...","📚 Menyusun bank soal...","✅ Siap dimulai!"];
+    let p=0;
+    const iv=setInterval(function(){
+      p+=Math.random()*20+8;
+      if(p>=100){p=100;clearInterval(iv);}
+      if(bar)bar.style.width=p+'%';
+      if(pct)pct.textContent=Math.round(p)+'%';
+      if(tip)tip.textContent=tips[Math.min(Math.floor(p/22),tips.length-1)];
+      if(p>=100)setTimeout(function(){const l=document.getElementById('loader');if(l)l.classList.add('fade-out');},500);
+    },180);
+    setTimeout(function(){const l=document.getElementById('loader');if(l)l.classList.add('fade-out');},4000);
+  }catch(e){}
+})();
+
+(function(){
+  try{
+    const layer=document.getElementById('particles');if(!layer)return;
+    const n = window.innerWidth < 640 ? 12 : 22;
+    for(let i=0;i<n;i++){
+      const p=document.createElement('div');p.className='particle';
+      const s=3+Math.random()*11;
+      p.style.width=s+'px';p.style.height=s+'px';
+      p.style.left=Math.random()*100+'vw';
+      p.style.animationDuration=(14+Math.random()*20)+'s';
+      p.style.animationDelay=(-Math.random()*22)+'s';
+      layer.appendChild(p);
+    }
+  }catch(e){}
+})();
+
+/* ============================================================
+   BANK SOAL — 30 SOAL PENGINDERAAN JAUH
+   ============================================================ */
+const questionsBankFull = [
+  { q:"Penginderaan jauh modern pertama kali dikembangkan secara intensif pada masa Perang Dunia I menggunakan...", options:["Pesawat terbang dan balon udara","Satelit luar angkasa","Drone tanpa awak","Radar darat"],correct:0, explanation:"Pada Perang Dunia I, penginderaan jauh dikembangkan menggunakan pesawat terbang dan balon udara untuk pengintaian militer.", topic:"Sejarah & Perkembangan",keyPoint:"PD I = pesawat + balon udara.",difficulty:"Mudah" },
+  { q:"Satelit Landsat 1 (ERTS-1) diluncurkan tahun 1972 oleh lembaga antariksa...", options:["ESA (Eropa)","NASA (Amerika Serikat)","JAXA (Jepang)","LAPAN (Indonesia)"],correct:1, explanation:"Landsat 1 (ERTS-1) diluncurkan NASA pada 23 Juli 1972 dan menjadi tonggak era penginderaan jauh satelit.", topic:"Satelit Landsat",keyPoint:"Landsat 1 = NASA 1972.",difficulty:"Sedang" },
+  { q:"Satelit SPOT yang memiliki kemampuan stereoskopik adalah milik negara...", options:["Amerika Serikat","Prancis","Jepang","India"],correct:1, explanation:"SPOT (Satellite Pour l'Observation de la Terre) dikembangkan oleh Prancis melalui CNES.", topic:"Satelit SPOT",keyPoint:"SPOT = Prancis.",difficulty:"Sedang" },
+  { q:"Satelit IKONOS yang diluncurkan tahun 1999 memiliki resolusi spasial sebesar...", options:["30 meter","10 meter","1 meter","0,5 meter"],correct:2, explanation:"IKONOS adalah satelit komersial pertama dengan resolusi 1 meter (pankromatik) dan 4 meter (multispektral).", topic:"Satelit Komersial",keyPoint:"IKONOS = 1 meter.",difficulty:"Sedang" },
+  { q:"Satelit QuickBird yang diluncurkan tahun 2001 memiliki resolusi pankromatik sebesar...", options:["1 meter","61 cm","30 cm","10 cm"],correct:1, explanation:"QuickBird memiliki resolusi pankromatik 61 cm dan multispektral 2,4 meter.", topic:"Satelit Komersial",keyPoint:"QuickBird = 61 cm.",difficulty:"Sulit" },
+  { q:"Sentinel-2 adalah satelit penginderaan jauh yang dikembangkan oleh lembaga...", options:["NASA","ESA","JAXA","ISRO"],correct:1, explanation:"Sentinel-2 dikembangkan ESA (European Space Agency) dalam program Copernicus.", topic:"Satelit Sentinel",keyPoint:"Sentinel = ESA.",difficulty:"Sedang" },
+  { q:"Konstelasi Sentinel-2 terdiri dari berapa satelit yang saling melengkapi?", options:["1 satelit","2 satelit (2A, 2B)","3 satelit","4 satelit"],correct:1, explanation:"Konstelasi Sentinel-2 terdiri dari 2A dan 2B yang saling melengkapi untuk cakupan global.", topic:"Satelit Sentinel",keyPoint:"Sentinel-2 = 2A + 2B.",difficulty:"Sedang" },
+  { q:"Satelit Sentinel-2A pertama kali diluncurkan pada tahun...", options:["2012","2015","2018","2020"],correct:1, explanation:"Sentinel-2A diluncurkan 23 Juni 2015, disusul Sentinel-2B pada 2017.", topic:"Satelit Sentinel",keyPoint:"Sentinel-2A = 2015.",difficulty:"Sulit" },
+  { q:"NDVI merupakan singkatan dari...", options:["Normalized Data Vegetation Index","Normalized Difference Vegetation Index","National Data Vegetation Index","Natural Digital Vegetation Index"],correct:1, explanation:"NDVI = Normalized Difference Vegetation Index, indeks untuk mengukur kerapatan dan kesehatan vegetasi.", topic:"Indeks Vegetasi",keyPoint:"NDVI = Normalized Difference Vegetation Index.",difficulty:"Mudah" },
+  { q:"Nilai NDVI untuk vegetasi sehat berkisar antara...", options:["-1 sampai 0","0 sampai 0,2","0,6 sampai 1","-1 sampai -0,5"],correct:2, explanation:"NDVI berkisar -1 hingga +1. Vegetasi sehat memiliki nilai NDVI tinggi (0,6–1), sedangkan air dan awan negatif.", topic:"Indeks Vegetasi",keyPoint:"Vegetasi sehat NDVI = 0,6–1.",difficulty:"Sedang" },
+  { q:"Rumus NDVI yang benar adalah...", options:["(Red + NIR) / (Red - NIR)","(NIR - Red) / (NIR + Red)","(Red × NIR) / (Red + NIR)","(NIR + Red) × (NIR - Red)"],correct:1, explanation:"NDVI = (NIR - Red) / (NIR + Red). Semakin tinggi nilainya, semakin sehat vegetasi.", topic:"Indeks Vegetasi",keyPoint:"NDVI = (NIR-Red)/(NIR+Red).",difficulty:"Sedang" },
+  { q:"Pada citra Landsat 8 OLI, band yang merekam spektrum warna MERAH adalah...", options:["Band 2","Band 3","Band 4","Band 5"],correct:2, explanation:"Landsat 8 OLI: Band 2 biru, Band 3 hijau, Band 4 merah, Band 5 NIR.", topic:"Band Landsat 8",keyPoint:"Landsat 8 = Band 4 merah.",difficulty:"Sulit" },
+  { q:"Klasifikasi citra yang memerlukan training area (sampel latih) disebut...", options:["Klasifikasi tak terbimbing","Klasifikasi terbimbing","Klasifikasi otomatis","Klasifikasi statistik"],correct:1, explanation:"Klasifikasi terbimbing (supervised) menggunakan training area untuk mengenali kelas tutupan lahan.", topic:"Klasifikasi Citra",keyPoint:"Supervised = training area.",difficulty:"Sedang" },
+  { q:"Koreksi geometrik pada citra penginderaan jauh bertujuan untuk...", options:["Memperbaiki warna citra","Menghilangkan distorsi geometri akibat kemiringan dan rotasi bumi","Menambah kontras citra","Menghitung luas area"],correct:1, explanation:"Koreksi geometrik mengoreksi distorsi geometri agar citra sesuai posisi sebenarnya di bumi.", topic:"Pengolahan Citra",keyPoint:"Koreksi geometrik = perbaiki posisi.",difficulty:"Sedang" },
+  { q:"Data lapangan yang digunakan untuk memvalidasi hasil interpretasi citra disebut...", options:["Ground truth","Training data","Metadata","Citra sintetis"],correct:0, explanation:"Ground truth adalah data lapangan untuk validasi hasil klasifikasi/interpretasi citra.", topic:"Pengolahan Citra",keyPoint:"Ground truth = validasi lapangan.",difficulty:"Sedang" },
+  { q:"Satelit LAPAN-A2/LAPAN-IPB milik Indonesia membawa muatan utama berupa...", options:["Sensor radar","Kamera digital","Spektrometer inframerah","Sensor gravitasi"],correct:1, explanation:"LAPAN-A2/LAPAN-IPB (Orari) membawa kamera digital untuk pemantauan lingkungan.", topic:"Inderaja Indonesia",keyPoint:"LAPAN-A2 = kamera digital.",difficulty:"Sedang" },
+  { q:"Radar SAR memiliki tiga band utama berdasarkan panjang gelombang, yaitu...", options:["A, B, C","X, C, L","P, Q, R","M, N, O"],correct:1, explanation:"Band SAR: X (3 cm), C (6 cm), L (24 cm). Semakin panjang gelombang, semakin tembus vegetasi.", topic:"Radar & SAR",keyPoint:"SAR bands = X, C, L.",difficulty:"Sulit" },
+  { q:"Band SAR yang paling panjang gelombangnya dan paling tembus vegetasi adalah...", options:["X-band","C-band","L-band","K-band"],correct:2, explanation:"L-band (24 cm) paling panjang dan paling tembus vegetasi/kanopi hutan.", topic:"Radar & SAR",keyPoint:"L-band = paling tembus vegetasi.",difficulty:"Sulit" },
+  { q:"Sensor MODIS (Moderate Resolution Imaging Spectroradiometer) berada di satelit...", options:["Landsat 8","Sentinel-2","Terra dan Aqua","SPOT 7"],correct:2, explanation:"MODIS dipasang pada satelit Terra (1999) dan Aqua (2002) milik NASA.", topic:"Satelit Lingkungan",keyPoint:"MODIS = Terra & Aqua.",difficulty:"Sulit" },
+  { q:"Satelit NOAA milik Amerika Serikat terutama digunakan untuk...", options:["Pemetaan properti","Pemantauan cuaca dan lingkungan","Pemetaan jalan raya","Pencarian minyak bumi"],correct:1, explanation:"Satelit NOAA seri AVHRR digunakan untuk pemantauan cuaca, suhu permukaan laut, dan lingkungan global.", topic:"Satelit Lingkungan",keyPoint:"NOAA = cuaca dan lingkungan.",difficulty:"Mudah" },
+  { q:"Satelit ALOS milik Jepang memiliki sensor AVNIR-2 dengan resolusi spasial...", options:["30 meter","20 meter","10 meter","2,5 meter"],correct:2, explanation:"ALOS AVNIR-2 memiliki resolusi 10 meter multispektral untuk pemantauan lingkungan.", topic:"Satelit Regional",keyPoint:"ALOS AVNIR-2 = 10 meter.",difficulty:"Sulit" },
+  { q:"Satelit Sentinel-3 difokuskan untuk pemantauan...", options:["Bangunan dan infrastruktur","Laut, atmosfer, dan daratan","Properti dan kadaster","Militer"],correct:1, explanation:"Sentinel-3 fokus pada pemantauan laut (suhu, warna), atmosfer, dan tutupan daratan.", topic:"Satelit Sentinel",keyPoint:"Sentinel-3 = laut & atmosfer.",difficulty:"Sedang" },
+  { q:"Kalibrasi radiometrik pada pengolahan citra satelit bertujuan untuk...", options:["Mengubah nilai DN menjadi nilai radian atau reflektan","Menghilangkan awan","Menambah kontras warna","Membuat peta tematik"],correct:0, explanation:"Kalibrasi radiometrik mengubah Digital Number (DN) menjadi nilai radian/reflektan untuk analisis kuantitatif.", topic:"Pengolahan Citra",keyPoint:"Kalibrasi radiometrik: DN → radian.",difficulty:"Sulit" },
+  { q:"Koreksi atmosferik pada citra penginderaan jauh bertujuan untuk...", options:["Memperbaiki geometri citra","Menghilangkan pengaruh hamburan dan serapan atmosfer","Menambah resolusi","Memperbaiki warna vegetasi"],correct:1, explanation:"Koreksi atmosferik mengoreksi hamburan (scattering) dan serapan (absorption) oleh atmosfer.", topic:"Pengolahan Citra",keyPoint:"Koreksi atmosfer = hilangkan hambatan atmosfer.",difficulty:"Sulit" },
+  { q:"Digital Number (DN) pada citra penginderaan jauh adalah...", options:["Nilai koordinat piksel","Nilai piksel sebelum dikalibrasi","Nilai suhu permukaan","Nilai luas area"],correct:1, explanation:"DN adalah nilai piksel mentah (raw) sebelum dikalibrasi menjadi nilai fisik.", topic:"Pengolahan Citra",keyPoint:"DN = nilai piksel mentah.",difficulty:"Sedang" },
+  { q:"Satelit Landsat 9 diluncurkan NASA pada tahun...", options:["2013","2019","2021","2023"],correct:2, explanation:"Landsat 9 diluncurkan 27 September 2021 dari Vandenberg, California.", topic:"Satelit Landsat",keyPoint:"Landsat 9 = 2021.",difficulty:"Sulit" },
+  { q:"Untuk pemetaan tutupan lahan skala nasional, pemerintah Indonesia umumnya menggunakan citra...", options:["IKONOS","Landsat dan Sentinel-2","QuickBird","WorldView"],correct:1, explanation:"Landsat dan Sentinel-2 digunakan untuk pemetaan tutupan lahan skala nasional karena gratis dan cakupan luas.", topic:"Inderaja Indonesia",keyPoint:"Skala nasional = Landsat/Sentinel-2.",difficulty:"Sedang" },
+  { q:"Sensor hiperspektral yang merekam ratusan band sempit disebut juga...", options:["Sensor radar","Imaging spectrometer","Sensor termal","Sensor gravitasi"],correct:1, explanation:"Sensor hiperspektral (imaging spectrometer) merekam ratusan band sempit, berguna untuk identifikasi mineral dan vegetasi spesifik.", topic:"Sensor Khusus",keyPoint:"Hiperspektral = imaging spectrometer.",difficulty:"Sulit" },
+  { q:"Satelit geostasioner untuk pemantauan cuaca yang dimiliki Jepang adalah...", options:["GOES","Himawari","Meteosat","INSAT"],correct:1, explanation:"Himawari (Jepang) adalah satelit geostasioner untuk pemantauan cuaca Asia-Pasifik. GOES milik AS, Meteosat milik Eropa.", topic:"Satelit Cuaca",keyPoint:"Himawari = Jepang.",difficulty:"Sedang" },
+  { q:"Resolusi temporal citra MODIS untuk cakupan global berkisar...", options:["1-2 hari","10 hari","16 hari","30 hari"],correct:0, explanation:"MODIS (Terra/Aqua) memiliki resolusi temporal 1–2 hari untuk cakupan global, ideal untuk pemantauan dinamis.", topic:"Satelit Lingkungan",keyPoint:"MODIS temporal = 1–2 hari.",difficulty:"Sulit" }
+];
+
+function shuffleArray(arr){
+  const a = arr.slice();
+  for(let i = a.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function getRandomQuestions(){
+  const selected = shuffleArray(questionsBankFull).slice(0, 15);
+  return selected.map(function(q){
+    const correctText = q.options[q.correct];
+    const shuffled = shuffleArray(q.options);
+    const newCorrectIndex = shuffled.indexOf(correctText);
+    return {
+      q: q.q,
+      options: shuffled,
+      correct: newCorrectIndex,
+      explanation: q.explanation,
+      topic: q.topic,
+      keyPoint: q.keyPoint,
+      difficulty: q.difficulty
+    };
+  });
+}
+
+/* ============================================================
+   PRIZE VALUES → XP (Fix #5)
+   ============================================================ */
+const prizeValues = [100, 200, 300, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 125000, 250000, 500000, 1000000];
+const prizeAmounts = [
+  "Lvl 1 — 100","Lvl 2 — 200","Lvl 3 — 300","Lvl 4 — 500","Lvl 5 — 1.000",
+  "Lvl 6 — 2.000","Lvl 7 — 4.000","Lvl 8 — 8.000","Lvl 9 — 16.000","Lvl 10 — 32.000",
+  "Lvl 11 — 64.000","Lvl 12 — 125.000","Lvl 13 — 250.000","Lvl 14 — 500.000","Lvl 15 — 1.000.000"
+];
+
+/* ============================================================
+   STATE
+   ============================================================ */
+let currentQuestions=[];let studentName="";let currentQuestionIndex=0;let score=0;
+let correctAnswersCount=0;let wrongAnswersCount=0;let skippedCount=0;
+let xpGained=0;let streak=0;let maxStreak=0;let attemptCount=0;
+let totalElapsed=0;  // total waktu total kuis (untuk durasi)
+let countdownInterval=null;  // interval countdown per soal
+let countdownTime=TIMER_PER_QUESTION;  // sisa waktu per soal
+let lastBeepSecond=-1;
+let userAnswersHistory=[];
+let lifelinesUsed={'5050':false,'hint':false,'skip':false};
+let selectedAnswerIndex=null;let answerLocked=false;
+const STORAGE_PREFIX="kuis_inderaja_interaktif_v1_";
+
+let scoreSent = false;
+/* ============================================================
+   GANTI SHEET_URL DI BAWAH JIKA PERLU
+   (Sama dengan Kuis Roda Berputar — Apps Script harus handle 2 format)
+   ============================================================ */
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyV__yZS4bzttuspA2DwcZWPKM4P9ya3pksmJm9L5DfA9aERS9pm2ETWric1T7nnMq6bw/exec';
+
+window.addEventListener('DOMContentLoaded',function(){
+  try{
+    // Init sound toggle
+    const st=document.getElementById('sound-toggle');
+    if(st){
+      st.textContent = soundMuted ? '🔇' : '🔊';
+      st.classList.toggle('muted', soundMuted);
+      st.addEventListener('click',function(){
+        soundMuted = !soundMuted;
+        st.textContent = soundMuted ? '🔇' : '🔊';
+        st.classList.toggle('muted', soundMuted);
+        try { localStorage.setItem(SOUND_KEY, soundMuted ? 'muted' : 'on'); } catch(e){}
+        if(!soundMuted)sfx('click');
+      });
+    }
+
+    const form=document.getElementById('start-form');
+    if(form)form.addEventListener('submit',function(e){e.preventDefault();startGame();});
+    bind('btn-lock-answer',confirmAnswer);
+    bind('btn-next',nextQuestion);
+    bind('btn-restart',restartGame);
+    bind('btn-copy',copyFormattedResult);
+    bind('btn-review',openReviewModal);
+    bind('btn-menu',returnToMainScreen);
+    bind('btn-close-review',closeReviewModal);
+    bind('btn-close-review-2',closeReviewModal);
+    bind('btnSendScore',function(){sendScoreToSheet();});
+    bind('lifeline-5050',function(){useFiftyFifty();});
+    bind('lifeline-hint',function(){useHint();});
+    bind('lifeline-skip',function(){openSkipModal();});
+    bind('btn-skip-cancel',function(){hide('skip-modal');});
+    bind('btn-skip-confirm',function(){confirmSkip();});
+    loadAttemptHistory();updateBestScoreSummary();
+    console.log('✅ Bank soal:',questionsBankFull.length);
+  }catch(e){console.error('Init error:',e);}
+});
+
+function loadAttemptHistory(){
+  try{
+    const s=localStorage.getItem(STORAGE_PREFIX+"attempts");
+    attemptCount = s ? parseInt(s) : 0;
+  }catch(e){ attemptCount = 0; }
+}
+function incrementAttempt(){
+  attemptCount++;
+  try{ localStorage.setItem(STORAGE_PREFIX+"attempts", attemptCount); }catch(e){}
+}
+
+function updateBestScoreSummary(){
+  try{
+    const bc=localStorage.getItem(STORAGE_PREFIX+"best_correct");
+    const bs=localStorage.getItem(STORAGE_PREFIX+"best_score");
+    const bt=localStorage.getItem(STORAGE_PREFIX+"best_title");
+    if(bs!==null){
+      show("best-score-summary");
+      setText("best-score-correct", bc + "/15");
+      setText("best-score-points", bs);
+      setText("best-score-title", bt);
+    }
+  }catch(e){}
+}
+
+function startGame(){
+  try{
+    sfx('click');
+    resetSendUI();
+    const ni=document.getElementById("student-name");
+    studentName=(ni?ni.value:"").trim();
+    if(!studentName){alert("Mohon isi nama terlebih dahulu.");return;}
+    currentQuestions=getRandomQuestions();
+    if(!currentQuestions||currentQuestions.length===0){alert("Bank soal kosong!");return;}
+    incrementAttempt();
+    currentQuestionIndex=0;score=0;correctAnswersCount=0;wrongAnswersCount=0;skippedCount=0;
+    xpGained=0;streak=0;maxStreak=0;totalElapsed=0;userAnswersHistory=[];
+    lifelinesUsed={'5050':false,'hint':false,'skip':false};
+    selectedAnswerIndex=null;answerLocked=false;
+    kuisAktif = true;
+    setText("player-display-name",studentName);
+    hide("start-screen");hide("result-screen");show("game-screen");
+    resetLifelineButtons();renderPrizeLadder();
+    renderWaypointTrail();drawContourLines();
+    loadQuestion();
+  }catch(e){console.error("startGame error:",e);alert("Terkesalahan: "+e.message);}
+}
+
+/* ============================================================
+   COUNTDOWN TIMER PER SOAL (Fix #6)
+   ============================================================ */
+function updateTimerDisplay(){
+  const el = document.getElementById('timer-display');
+  if(el) el.textContent = countdownTime;
+  const pill = document.getElementById('timer-pill');
+  if(!pill) return;
+  pill.classList.remove('timer-warning', 'timer-danger');
+  if(countdownTime <= 10 && countdownTime > 5){
+    pill.classList.add('timer-warning');
+  } else if(countdownTime <= 5){
+    pill.classList.add('timer-danger');
+  }
+}
+
+function startCountdown(){
+  clearInterval(countdownInterval);
+  countdownTime = TIMER_PER_QUESTION;
+  lastBeepSecond = -1;
+  updateTimerDisplay();
+  countdownInterval = setInterval(function(){
+    countdownTime--;
+    totalElapsed++;
+    updateTimerDisplay();
+
+    // Suara peringatan
+    if(countdownTime <= 10 && countdownTime >= 1 && countdownTime !== lastBeepSecond){
+      lastBeepSecond = countdownTime;
+      if(countdownTime > 5) sfx('beep');
+      else sfx('beepFinal');
+    }
+
+    if(countdownTime <= 0){
+      clearInterval(countdownInterval);
+      onTimeout();
+    }
+  }, 1000);
+}
+
+function stopCountdown(){
+  clearInterval(countdownInterval);
+  countdownInterval = null;
+}
+
+function onTimeout(){
+  if(answerLocked) return;
+  answerLocked = true;
+  sfx('timeout');
+  hide('lock-btn-container');
+  updateLifelineButtons();
+
+  const qData = currentQuestions[currentQuestionIndex];
+  if(!qData) return;
+
+  document.querySelectorAll('#answers-container button').forEach(function(b){b.disabled=true;});
+  const cb = document.getElementById('opt-btn-'+qData.correct);
+  if(cb) cb.classList.add('opt-correct');
+
+  showRevealOverlay("WAKTU HABIS", "timeout");
+  tectonicShakeEffect();
+  haptic([80,50,80]);
+
+  wrongAnswersCount++;
+  streak = 0;
+  hide("streak-container");
+
+  // Tandai jawaban sebagai timeout
+  userAnswersHistory.push({
+    questionNum: currentQuestionIndex + 1,
+    questionText: qData.q,
+    userAnswer: "— Waktu Habis —",
+    correctAnswer: ["A","B","C","D"][qData.correct] + ". " + qData.options[qData.correct],
+    explanation: qData.explanation,
+    topic: qData.topic,
+    keyPoint: qData.keyPoint,
+    difficulty: qData.difficulty,
+    isCorrect: false,
+    isSkipped: false,
+    isTimedOut: true
+  });
+
+  setTimeout(function(){
+    hideRevealOverlay();
+    showTimeoutFeedback(qData);
+  }, 1800);
+}
+
+function showTimeoutFeedback(qData){
+  try{
+    const mc=document.getElementById("feedback-modal-content");
+    const ib=document.getElementById("feedback-icon-bg");
+    const ti=document.getElementById("feedback-title");
+    const su=document.getElementById("feedback-subtitle");
+    const de=document.getElementById("feedback-details");
+    const ys=document.getElementById("fb-yours-section");
+
+    if(mc){mc.className="glass-panel max-w-lg w-full p-5 md:p-7 rounded-2xl my-auto";mc.style.border="3px solid rgba(245,158,11,.6)";}
+    if(ib){ib.style.background="linear-gradient(135deg, rgba(245,158,11,.20), rgba(217,119,6,.10))";ib.style.color="#a04400";ib.style.border="2px solid rgba(245,158,11,.50)";ib.textContent="⏰";}
+    if(ti){ti.style.color="#a04400";ti.textContent="⏰ WAKTU HABIS!";}
+    if(su){su.style.color="#475569";su.textContent="Soal ini ditandai belum dijawab — pelajari pembahasannya!";}
+    if(de)de.innerHTML='<div class="p-3 md:p-4 rounded-xl" style="background: rgba(245,158,11,.10); border: 2px solid rgba(245,158,11,.30)"><div class="text-xs font-black uppercase mb-1" style="color:#a04400;">Status:</div><div class="font-black text-sm md:text-base" style="color:#0c1e3d;">Tidak dijawab (waktu habis)</div></div>';
+    if(ys)ys.classList.add('is-hidden');
+
+    setText("fb-topic", qData.topic || "Penginderaan Jauh");
+    setText("fb-why", qData.explanation);
+    setText("fb-key", qData.keyPoint || "Baca kembali materi terkait.");
+    updateNextButtonText();
+    show("feedback-modal");
+  }catch(e){console.error('showTimeoutFeedback error:', e);}
+}
+
+function renderPrizeLadder(){
+  try{
+    const el=document.getElementById("prize-ladder");if(!el)return;el.innerHTML="";
+    for(let i=14;i>=0;i--){
+      const isM=(i===4||i===9||i===14);
+      const item=document.createElement("div");
+      item.id="ladder-step-"+i;
+      item.className="flex justify-between items-center px-3 py-1.5 rounded font-mono text-xs font-bold";
+      item.style.color = isM ? "#8a6d00" : "#1e40af";
+      item.innerHTML="<span>Soal "+(i+1)+"</span><span>"+prizeAmounts[i]+"</span>";
+      el.appendChild(item);
+    }
+  }catch(e){}
+}
+function updatePrizeLadderHighlight(){
+  try{
+    for(let i=0;i<15;i++){
+      const el=document.getElementById("ladder-step-"+i);if(!el)continue;
+      if(i===currentQuestionIndex){el.className="flex justify-between items-center px-3 py-1.5 rounded font-mono text-xs font-black shadow-md";el.style.background="linear-gradient(90deg,#1e40af,#06b6d4)";el.style.color="#fff";}
+      else if(i<currentQuestionIndex){
+        el.style.background="";
+        const st=userAnswersHistory[i];
+        if(st&&st.isSkipped){el.className="flex justify-between items-center px-3 py-1.5 rounded font-mono text-xs font-bold italic";el.style.color="#475569";}
+        else if(st&&st.isTimedOut){el.className="flex justify-between items-center px-3 py-1.5 rounded font-mono text-xs font-bold italic";el.style.color="#dc2626";}
+        else{el.className="flex justify-between items-center px-3 py-1.5 rounded font-mono text-xs font-bold "+(st&&st.isCorrect?"":"line-through opacity-70");el.style.color = (st&&st.isCorrect)?"#06b6d4":"#c0392b";}
+      } else { el.style.background=""; }
+    }
+  }catch(e){}
+}
+function getDifficultyClass(diff){
+  const d=(diff||"Mudah").toLowerCase();
+  if(d.indexOf("sangat")>=0)return "diff-sangat";
+  if(d.indexOf("sulit")>=0)return "diff-sulit";
+  if(d.indexOf("sedang")>=0)return "diff-sedang";
+  return "diff-mudah";
+}
+
+function loadQuestion(){
+  try{
+    updatePrizeLadderHighlight();
+    updateWaypointTrail();
+    drawContourLines();
+    selectedAnswerIndex=null;answerLocked=false;
+    const qData=currentQuestions[currentQuestionIndex];
+    if(!qData){console.error("Question not found");return;}
+    setText("current-q-num",currentQuestionIndex+1);
+    setText("reward-tag",prizeAmounts[currentQuestionIndex]);
+    setText("question-text",qData.q);
+    setText("xp-counter",xpGained);
+    hide("hint-panel");hide("lock-btn-container");
+    const lockBtn=document.getElementById('btn-lock-answer');
+    if(lockBtn) lockBtn.disabled = false;
+    const diffTag=document.getElementById("difficulty-tag");
+    if(diffTag){diffTag.className="diff-badge "+getDifficultyClass(qData.difficulty);diffTag.textContent=qData.difficulty||"Mudah";}
+    const prog=document.getElementById("q-progress");
+    if(prog)prog.style.width=((currentQuestionIndex)/15*100)+"%";
+    const c=document.getElementById("answers-container");if(!c)return;c.innerHTML="";
+    qData.options.forEach(function(opt,index){
+      const btn=document.createElement("button");
+      btn.type="button";btn.id="opt-btn-"+index;
+      btn.className="opt-btn overflow-safe";
+      const label = ["A","B","C","D"][index];
+      btn.textContent = label + ". " + opt;
+      btn.addEventListener("click",function(){selectAnswer(index);});
+      c.appendChild(btn);
+    });
+    updateLifelineButtons();
+    // Mulai countdown
+    startCountdown();
+  }catch(e){console.error("loadQuestion error:",e);}
+}
+function updateLifelineButtons(){
+  const configs=[
+    {id:'lifeline-5050',used:lifelinesUsed['5050']},
+    {id:'lifeline-hint',used:lifelinesUsed['hint']},
+    {id:'lifeline-skip',used:lifelinesUsed['skip']}
+  ];
+  configs.forEach(function(cfg){
+    const btn=document.getElementById(cfg.id);if(!btn)return;
+    if(cfg.used||answerLocked){btn.disabled=true;btn.style.opacity=".4";btn.style.cursor="not-allowed";}
+    else{btn.disabled=false;btn.style.opacity="";btn.style.cursor="pointer";}
+  });
+}
+function resetLifelineButtons(){lifelinesUsed={'5050':false,'hint':false,'skip':false};updateLifelineButtons();}
+
+function selectAnswer(index){
+  if(answerLocked)return;
+  try{
+    sfx('select');selectedAnswerIndex=index;
+    document.querySelectorAll('#answers-container button').forEach(function(b){b.classList.remove('opt-selected');});
+    const sb=document.getElementById("opt-btn-"+index);
+    if(sb){
+      sb.classList.add('opt-selected');
+      gpsPinDrop(sb);
+    }
+    show("lock-btn-container");
+    haptic(20);
+  }catch(e){}
+}
+
+function useFiftyFifty(){
+  try{
+    if(lifelinesUsed['5050']||answerLocked)return;
+    const qData=currentQuestions[currentQuestionIndex];if(!qData)return;
+    sfx('click');lifelinesUsed['5050']=true;
+    let wrongIdx=[0,1,2,3].filter(function(i){return i!==qData.correct;});
+    wrongIdx.sort(function(){return Math.random()-.5;});
+    const toRemove=wrongIdx.slice(0,2);
+    toRemove.forEach(function(i){
+      const b=document.getElementById("opt-btn-"+i);
+      if(b){b.classList.add('opt-eliminated');b.disabled=true;}
+    });
+    if(selectedAnswerIndex!==null&&toRemove.indexOf(selectedAnswerIndex)>=0){selectedAnswerIndex=null;hide("lock-btn-container");}
+    updateLifelineButtons();
+    showToast("✂️ 50:50 aktif — 2 jawaban salah dihapus");
+  }catch(e){}
+}
+function useHint(){
+  try{
+    if(lifelinesUsed['hint']||answerLocked)return;
+    const qData=currentQuestions[currentQuestionIndex];if(!qData)return;
+    radarSweepEffect();
+    lifelinesUsed['hint']=true;updateLifelineButtons();
+    const topic=qData.topic||"Penginderaan Jauh";const difficulty=qData.difficulty||"Mudah";
+
+    const topicHints = {
+      "Sejarah & Perkembangan": "Ingat PD I, era satelit 1972, dan perkembangan teknologi.",
+      "Satelit Landsat": "Landsat = NASA, diluncurkan 1972. Landsat 9 = 2021.",
+      "Satelit SPOT": "SPOT = Prancis (CNES), memiliki kemampuan stereoskopik.",
+      "Satelit Komersial": "IKONOS 1m, QuickBird 61cm — resolusi tinggi berbayar.",
+      "Satelit Sentinel": "Sentinel = ESA. Sentinel-2 (optik), Sentinel-3 (laut & atmosfer).",
+      "Indeks Vegetasi": "NDVI = (NIR-Red)/(NIR+Red). Vegetasi sehat nilainya tinggi.",
+      "Band Landsat 8": "Landsat 8: B2=biru, B3=hijau, B4=merah, B5=NIR.",
+      "Klasifikasi Citra": "Supervised=training area; Unsupervised=otomatis kluster.",
+      "Pengolahan Citra": "Koreksi: geometrik (posisi), radiometrik (DN→radian), atmosferik (hamburan).",
+      "Inderaja Indonesia": "LAPAN/LAPAN-A2 kamera digital; skala nasional pakai Landsat/Sentinel.",
+      "Radar & SAR": "X (3cm), C (6cm), L (24cm). L-band paling tembus vegetasi.",
+      "Satelit Lingkungan": "MODIS di Terra & Aqua; NOAA untuk cuaca.",
+      "Satelit Regional": "ALOS (Jepang) AVNIR-2 = 10 meter.",
+      "Sensor Khusus": "Hiperspektral = imaging spectrometer, ratusan band sempit.",
+      "Satelit Cuaca": "Himawari=Jepang, GOES=AS, Meteosat=Eropa."
+    };
+    const topicHint = topicHints[topic] || "Fokus pada konsep kunci topik ini.";
+    const nudges={
+      "Mudah":"Soal MUDAH — biasanya definisi/ciri dasar.",
+      "Sedang":"Soal SEDANG — perhatikan perbedaan antar pilihan.",
+      "Sulit":"Soal SULIT — sering memuat istilah teknis & angka.",
+      "Sangat Sulit":"Soal SANGAT SULIT — waspadai istilah teknis, baca teliti."
+    };
+    const nudge = nudges[difficulty] || "Perhatikan kata kunci soal.";
+
+    const ht=document.getElementById("hint-text");
+    if(ht){
+      ht.innerHTML=
+        '<div class="flex flex-wrap items-center gap-2 mb-2">'+
+          '<span class="px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider" style="background: rgba(30,64,175,.12); color:#1e40af; border: 1.5px solid rgba(30,64,175,.25)">Topik: '+topic+'</span>'+
+          '<span class="px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider" style="background: rgba(6,182,212,.12); color:#1e40af; border: 1.5px solid rgba(6,182,212,.25)">'+difficulty+'</span>'+
+        '</div>'+
+        '<div class="mb-1 font-bold" style="color:#1e40af;">💡 Konsep kunci: <span style="color:#0c1e3d;">'+topicHint+'</span></div>'+
+        '<div class="text-xs font-semibold" style="color:#1e3a5f;">'+nudge+'</div>'+
+        '<div class="mt-2 text-[10px] italic font-bold" style="color:#475569;">⚠️ Guru tidak membocorkan jawaban — gunakan nalar!</div>';
+    }
+    show("hint-panel");
+  }catch(e){}
+}
+function openSkipModal(){try{if(lifelinesUsed['skip']||answerLocked)return;sfx('click');show("skip-modal");}catch(e){}}
+function confirmSkip(){
+  try{
+    if(lifelinesUsed['skip'])return;
+    const qData=currentQuestions[currentQuestionIndex];if(!qData)return;
+    sfx('skip');lifelinesUsed['skip']=true;hide("skip-modal");
+    stopCountdown();
+    userAnswersHistory.push({
+      questionNum:currentQuestionIndex+1,
+      questionText:qData.q,
+      userAnswer:"— Dilewati —",
+      correctAnswer:["A","B","C","D"][qData.correct] + ". " + qData.options[qData.correct],
+      explanation:qData.explanation,
+      topic:qData.topic,
+      keyPoint:qData.keyPoint,
+      difficulty:qData.difficulty,
+      isCorrect:false,
+      isSkipped:true
+    });
+    skippedCount++;streak=0;hide("streak-container");
+    updateWaypointTrail();
+    showToast("⏭️ Soal dilewati — lanjut berikutnya");
+    setTimeout(function(){
+      currentQuestionIndex++;
+      if(currentQuestionIndex<currentQuestions.length){loadQuestion();}
+      else{endGame();}
+    },900);
+  }catch(e){}
+}
+function showToast(msg){
+  const t=document.createElement("div");
+  t.className="fixed top-20 left-1/2 transform -translate-x-1/2 z-50 px-5 py-3 rounded-xl font-black text-sm md:text-base shadow-2xl max-w-[90vw] text-center";
+  t.style.background="linear-gradient(135deg,#1e40af,#06b6d4)";
+  t.style.color="#fff";
+  t.style.animation="fadeInOut 2s ease";t.textContent=msg;
+  document.body.appendChild(t);setTimeout(function(){t.remove();},2000);
+}
+
+function confirmAnswer(){
+  if(answerLocked)return;
+  if(selectedAnswerIndex===null){alert("Pilih salah satu jawaban terlebih dahulu!");return;}
+  try{
+    answerLocked=true;sfx('lock');
+    const lockBtn=document.getElementById('btn-lock-answer');
+    if(lockBtn)lockBtn.disabled=true;
+    hide("lock-btn-container");
+    stopCountdown();
+    const qData=currentQuestions[currentQuestionIndex];if(!qData)return;
+    const isCorrect=(selectedAnswerIndex===qData.correct);
+    document.querySelectorAll('#answers-container button').forEach(function(b){b.disabled=true;});
+    updateLifelineButtons();
+    const sb=document.getElementById("opt-btn-"+selectedAnswerIndex);
+    const cb=document.getElementById("opt-btn-"+qData.correct);
+    if(sb)sb.classList.remove('opt-selected');
+    if(isCorrect){
+      if(sb)sb.classList.add('opt-correct');
+      showRevealOverlay("BENAR","benar");sfx('correct');
+      compassNeedleEffect();
+      haptic([30,40,30]);
+      correctAnswersCount++;streak++;
+      if(streak>maxStreak)maxStreak=streak;
+      // XP berdasarkan prize ladder (Fix #5)
+      const baseXP = prizeValues[currentQuestionIndex] || 100;
+      const streakBonus = Math.min(streak - 1, 5) * 0.1;
+      const earnedXP = Math.round(baseXP * (1 + streakBonus));
+      xpGained += earnedXP;
+      if(streak>=2){show("streak-container");setText("streak-counter",streak);}
+      setTimeout(function(){hideRevealOverlay();showFeedbackModal(qData,true,selectedAnswerIndex,earnedXP);},1400);
+    }else{
+      if(sb)sb.classList.add('opt-wrong');
+      if(cb)cb.classList.add('opt-correct');
+      showRevealOverlay("SALAH","salah");sfx('wrong');
+      tectonicShakeEffect();
+      haptic([50,80,50]);
+      wrongAnswersCount++;streak=0;hide("streak-container");
+      setTimeout(function(){hideRevealOverlay();showFeedbackModal(qData,false,selectedAnswerIndex,0);},1600);
+    }
+    const selectedLetter = ["A","B","C","D"][selectedAnswerIndex];
+    const correctLetter  = ["A","B","C","D"][qData.correct];
+    userAnswersHistory.push({
+      questionNum:currentQuestionIndex+1,
+      questionText:qData.q,
+      userAnswer: selectedLetter + ". " + qData.options[selectedAnswerIndex],
+      correctAnswer: correctLetter + ". " + qData.options[qData.correct],
+      explanation:qData.explanation,
+      topic:qData.topic,
+      keyPoint:qData.keyPoint,
+      difficulty:qData.difficulty,
+      isCorrect:isCorrect,
+      isSkipped:false
+    });
+  }catch(e){}
+}
+function showRevealOverlay(text,type){
+  const o=document.getElementById("reveal-overlay"),b=document.getElementById("reveal-badge");
+  if(!o||!b)return;
+  b.className="reveal-badge";b.textContent=text;
+  if(type==="benar"){b.classList.add("benar");createBurst(window.innerWidth/2,window.innerHeight/2,['#06b6d4','#3b82f6','#1e40af','#fbbf24']);}
+  else if(type==="timeout"){b.classList.add("timeout");createBurst(window.innerWidth/2,window.innerHeight/2,['#f59e0b','#fbbf24','#fb923c','#fde047']);}
+  else{b.classList.add("salah");createBurst(window.innerWidth/2,window.innerHeight/2,['#c0392b','#e74c3c','#f59e0b','#fbbf24']);}
+  o.classList.add("show");o.classList.add("backdrop");
+}
+function hideRevealOverlay(){const o=document.getElementById("reveal-overlay");if(!o)return;o.classList.remove("show");o.classList.remove("backdrop");}
+function createBurst(cx,cy,colors){
+  const count = window.innerWidth < 640 ? 20 : 32;
+  for(let i=0;i<count;i++){
+    const p=document.createElement("div");p.className="burst-particle";
+    p.style.left=cx+"px";p.style.top=cy+"px";p.style.background=colors[i%colors.length];
+    const angle=(Math.PI*2*i)/count;const dist=90+Math.random()*200;
+    p.style.setProperty('--tx',Math.cos(angle)*dist+'px');
+    p.style.setProperty('--ty',Math.sin(angle)*dist+'px');
+    p.style.animationDelay=(Math.random()*.15)+'s';
+    document.body.appendChild(p);setTimeout(function(){p.remove();},1300);
+  }
+}
+function showFeedbackModal(qData,isCorrect,selectedIdx,earnedXP){
+  try{
+    const mc=document.getElementById("feedback-modal-content");
+    const ib=document.getElementById("feedback-icon-bg");
+    const ti=document.getElementById("feedback-title");
+    const su=document.getElementById("feedback-subtitle");
+    const de=document.getElementById("feedback-details");
+    const ys=document.getElementById("fb-yours-section");
+    const letters=["A","B","C","D"];
+    if(isCorrect){
+      if(mc){mc.className="glass-panel max-w-lg w-full p-5 md:p-7 rounded-2xl my-auto";mc.style.border="3px solid rgba(6,182,212,.5)";}
+      if(ib){ib.style.background="linear-gradient(135deg, rgba(6,182,212,.20), rgba(30,64,175,.10))";ib.style.color="#1e40af";ib.style.border="2px solid rgba(6,182,212,.50)";ib.textContent="✓";}
+      if(ti){ti.style.color="#1e40af";ti.textContent="🎉 JAWABAN BENAR!";}
+      if(su){su.style.color="#475569";su.textContent="Luar biasa! +"+earnedXP.toLocaleString('id-ID')+" XP (Streak 🔥 "+streak+")";}
+      if(de)de.innerHTML='<div class="p-3 md:p-4 rounded-xl" style="background: linear-gradient(135deg, rgba(6,182,212,.10), rgba(30,64,175,.04)); border: 2px solid rgba(6,182,212,.30)"><div class="text-xs font-black uppercase mb-1" style="color:#1e40af;">Jawaban Kamu:</div><div class="font-black text-sm md:text-base overflow-safe" style="color:#0c1e3d;">'+letters[selectedIdx]+'. '+qData.options[selectedIdx]+'</div></div>';
+      if(ys)ys.classList.add('is-hidden');
+    }else{
+      if(mc){mc.className="glass-panel max-w-lg w-full p-5 md:p-7 rounded-2xl my-auto";mc.style.border="3px solid rgba(192,57,43,.5)";}
+      if(ib){ib.style.background="linear-gradient(135deg, rgba(192,57,43,.15), rgba(127,29,29,.08))";ib.style.color="#c0392b";ib.style.border="2px solid rgba(192,57,43,.40)";ib.textContent="✗";}
+      if(ti){ti.style.color="#c0392b";ti.textContent="❌ BELUM TEPAT";}
+      if(su){su.style.color="#475569";su.textContent="Jangan berkecil hati! Pelajari pembahasannya di bawah ini.";}
+      if(de)de.innerHTML='<div class="space-y-2"><div class="p-3 rounded-xl" style="background: rgba(192,57,43,.08); border: 2px solid rgba(192,57,43,.25)"><div class="text-xs font-black uppercase" style="color:#c0392b;">Jawaban Kamu:</div><div class="font-bold text-sm overflow-safe" style="color:#7a1f16;">'+letters[selectedIdx]+'. '+qData.options[selectedIdx]+'</div></div><div class="p-3 rounded-xl" style="background: rgba(6,182,212,.08); border: 2px solid rgba(6,182,212,.25)"><div class="text-xs font-black uppercase" style="color:#1e40af;">Jawaban Yang Benar:</div><div class="font-black text-sm overflow-safe" style="color:#0c1e3d;">'+letters[qData.correct]+'. '+qData.options[qData.correct]+'</div></div></div>';
+      if(ys)ys.classList.remove('is-hidden');
+      setHTML("fb-yours",'Kamu memilih <span class="badge-pick">'+letters[selectedIdx]+'</span><b>"'+qData.options[selectedIdx]+'"</b> — belum tepat. Bandingkan dengan jawaban benar <span class="badge-correct">'+letters[qData.correct]+'</span> <b>'+qData.options[qData.correct]+'</b>. Perhatikan kata kunci dan topik <b>'+(qData.topic||"penginderaan jauh")+'</b>.');
+    }
+    setText("fb-topic",qData.topic||"Penginderaan Jauh");
+    setText("fb-why",qData.explanation);
+    setText("fb-key",qData.keyPoint||"Baca kembali materi terkait.");
+    updateNextButtonText();
+    show("feedback-modal");
+  }catch(e){}
+}
+function nextQuestion(){
+  try{
+    sfx('click');hide("feedback-modal");
+    currentQuestionIndex++;
+    if(currentQuestionIndex<currentQuestions.length){
+      loadQuestion();
+    }
+    else{endGame();}
+  }catch(e){}
+}
+
+function updateNextButtonText(){
+  const btn=document.getElementById("btn-next");
+  if(!btn)return;
+  const isLast = (currentQuestionIndex === (currentQuestions.length - 1));
+  if(isLast){
+    btn.innerHTML = "🏆 LIHAT HASIL AKHIR";
+  } else {
+    btn.innerHTML = "➡ LANJUT KE SOAL BERIKUTNYA";
+  }
+}
+
+function calculateTitle(s){if(s>=90)return "🛰️ MASTER INDERAJA";if(s>=75)return "📡 AHLI PENGINDERAAN JAUH";if(s>=50)return "🌍 EXPLORER BUMI";return "🌱 PEMBELAJAR INDERAJA";}
+function calculateGrade(s){if(s>=90)return "A";if(s>=80)return "B";if(s>=70)return "C";if(s>=60)return "D";return "E";}
+
+function endGame(){
+  try{
+    stopCountdown();
+    kuisAktif = false;
+    hide("game-screen");show("result-screen");
+    const totalQ = currentQuestions.length || 15;
+    score = Math.round((correctAnswersCount / totalQ) * 100);
+    const earnedTitle=calculateTitle(score);const grade=calculateGrade(score);
+    const initials=studentName.trim().split(/\s+/).map(function(w){return w[0];}).join("").slice(0,2).toUpperCase()||"?";
+    setText("result-avatar",initials);
+    const CIRC=314.16;const bar=document.getElementById("score-circle-bar");
+    if(bar){bar.style.strokeDashoffset=CIRC;setTimeout(function(){bar.style.strokeDashoffset=CIRC*(1-score/100);},300);}
+    let counter=0;const ce=document.getElementById("score-circle-num");
+    const iv=setInterval(function(){counter+=Math.ceil(score/30)||1;if(counter>=score){counter=score;clearInterval(iv);}if(ce)ce.textContent=counter;},40);
+    const ge=document.getElementById("grade-badge");
+    if(ge){ge.textContent=grade;ge.className="grade-badge-big grade-"+grade;}
+    setText("card-name",studentName.toUpperCase());
+    setText("card-correct",correctAnswersCount+" / "+totalQ);
+    setText("card-wrong",wrongAnswersCount);
+    setText("card-skipped",skippedCount);
+    setText("card-score",score);
+    setText("card-xp",xpGained.toLocaleString('id-ID')+" XP");
+    setText("card-streak",maxStreak+" 🔥");
+    setText("card-title",earnedTitle);
+    setText("card-attempt",attemptCount);
+    let prevBest=null;try{prevBest=localStorage.getItem(STORAGE_PREFIX+"best_score");}catch(e){}
+
+    let isNewRecord = (prevBest===null || score>parseInt(prevBest));
+    if(isNewRecord){
+      try{
+        localStorage.setItem(STORAGE_PREFIX+"best_correct",correctAnswersCount);
+        localStorage.setItem(STORAGE_PREFIX+"best_score",score);
+        localStorage.setItem(STORAGE_PREFIX+"best_xp",xpGained);
+        localStorage.setItem(STORAGE_PREFIX+"best_title",earnedTitle);
+        localStorage.setItem(STORAGE_PREFIX+"best_attempt",attemptCount);
+      }catch(e){}
+    }
+
+    if(isNewRecord || score >= 75){
+      setTimeout(showAchievementStamp, 500);
+    }
+
+    show("record-banner");
+    const recordTextEl = document.getElementById("record-text");
+    const recordSubEl  = document.getElementById("record-subtext");
+    const bannerEl     = document.getElementById("record-banner");
+
+    let headerText = "", subText = "", bannerBg = "", bannerBorder = "", headerColor = "#1e40af";
+
+    if(isNewRecord && score>=90){
+      headerText = "🏆 SKOR BARU TERBAIK — LUAR BIASA!";
+      subText = "Kamu menjawab "+correctAnswersCount+" dari "+totalQ+" soal dengan benar. Master Inderaja sejati!";
+      bannerBg = "linear-gradient(135deg, rgba(6,182,212,.18), rgba(245,158,11,.10))";
+      bannerBorder = "rgba(6,182,212,.6)";
+    } else if(isNewRecord && score>=70){
+      headerText = "🎉 SKOR BARU TERBAIK!";
+      subText = "Kamu menjawab "+correctAnswersCount+" dari "+totalQ+" soal dengan benar. Pertahankan!";
+      bannerBg = "linear-gradient(135deg, rgba(6,182,212,.14), rgba(30,64,175,.06))";
+      bannerBorder = "rgba(6,182,212,.5)";
+    } else if(isNewRecord){
+      headerText = "📈 SKOR BARU TERBAIK!";
+      subText = "Kamu menjawab "+correctAnswersCount+" dari "+totalQ+" soal dengan benar. Tingkatkan lagi!";
+      bannerBg = "linear-gradient(135deg, rgba(245,158,11,.14), rgba(251,191,36,.06))";
+      bannerBorder = "rgba(245,158,11,.5)";
+      headerColor = "#8a6d00";
+    } else if(score>=90){
+      headerText = "🌟 LUAR BIASA!";
+      subText = "Kamu menjawab "+correctAnswersCount+" dari "+totalQ+" soal dengan benar. Hampir sempurna!";
+      bannerBg = "linear-gradient(135deg, rgba(6,182,212,.14), rgba(245,158,11,.08))";
+      bannerBorder = "rgba(6,182,212,.5)";
+    } else if(score>=70){
+      headerText = "👏 BAGUS SEKALI!";
+      subText = "Kamu menjawab "+correctAnswersCount+" dari "+totalQ+" soal dengan benar. Kamu sudah paham materi ini!";
+      bannerBg = "linear-gradient(135deg, rgba(6,182,212,.10), rgba(30,64,175,.04))";
+      bannerBorder = "rgba(6,182,212,.4)";
+    } else if(score>=50){
+      headerText = "💪 CUKUP BAIK, TINGKATKAN LAGI!";
+      subText = "Kamu menjawab "+correctAnswersCount+" dari "+totalQ+" soal dengan benar. Baca ulang materi dan coba lagi!";
+      bannerBg = "linear-gradient(135deg, rgba(245,158,11,.12), rgba(251,146,60,.06))";
+      bannerBorder = "rgba(245,158,11,.4)";
+      headerColor = "#8a6d00";
+    } else if(score>=30){
+      headerText = "📚 PERLU BELAJAR LAGI";
+      subText = "Kamu menjawab "+correctAnswersCount+" dari "+totalQ+" soal dengan benar. Pelajari kembali materi Penginderaan Jauh, lalu coba lagi!";
+      bannerBg = "linear-gradient(135deg, rgba(251,146,60,.12), rgba(192,57,43,.08))";
+      bannerBorder = "rgba(251,146,60,.5)";
+      headerColor = "#a04400";
+    } else {
+      headerText = "❗ JANGAN MENYERAH, COBA LAGI!";
+      subText = "Kamu menjawab "+correctAnswersCount+" dari "+totalQ+" soal dengan benar. Baca materi dengan teliti, lalu kerjakan ulang kuis ini!";
+      bannerBg = "linear-gradient(135deg, rgba(192,57,43,.12), rgba(127,29,29,.08))";
+      bannerBorder = "rgba(192,57,43,.5)";
+      headerColor = "#a04400";
+    }
+
+    if(recordTextEl){ recordTextEl.textContent = headerText; recordTextEl.style.color = headerColor; }
+    if(recordSubEl){ recordSubEl.textContent = subText; }
+    if(bannerEl){ bannerEl.style.background = bannerBg; bannerEl.style.borderColor = bannerBorder; }
+
+    if(isNewRecord || score>=70){ sfx('win'); triggerConfetti(true); }
+    else if(score>=50){ triggerConfetti(false); }
+    haptic([100,50,100]);
+
+    const sendBtn = document.getElementById('btnSendScore');
+    const warning = document.getElementById('mustRepeatWarning');
+    const sendStatus = document.getElementById('sendStatus');
+    const restartBtn = document.getElementById('btn-restart');
+
+    if (score >= MIN_SCORE_TO_PASS) {
+      if (sendBtn) {
+        sendBtn.classList.remove('is-hidden');
+        sendBtn.disabled = false;
+        sendBtn.innerHTML = '📤 KIRIM NILAI KE GURU';
+        sendBtn.style.background = 'linear-gradient(135deg,#f59e0b,#fbbf24)';
+        sendBtn.style.opacity = '1';
+        sendBtn.style.cursor = 'pointer';
+      }
+      if (warning) warning.classList.add('is-hidden');
+      if (sendStatus) sendStatus.classList.add('is-hidden');
+      if (restartBtn) {
+        restartBtn.innerHTML = '🔄 MAIN LAGI';
+        restartBtn.style.background = 'linear-gradient(135deg,#1e40af,#06b6d4)';
+        restartBtn.classList.remove('must-repeat');
+      }
+      scoreSent = false;
+    } else {
+      if (sendBtn) sendBtn.classList.add('is-hidden');
+      if (warning) {
+        warning.classList.remove('is-hidden');
+        setText('mustRepeatScore', score);
+      }
+      if (sendStatus) sendStatus.classList.add('is-hidden');
+      if (restartBtn) {
+        restartBtn.innerHTML = '🔄 ULANGI KUIS (WAJIB)';
+        restartBtn.style.background = 'linear-gradient(135deg,#c0392b,#e74c3c)';
+        restartBtn.classList.add('must-repeat');
+      }
+      scoreSent = true;
+    }
+
+    updateBestScoreSummary();
+  }catch(e){console.error('endGame error:',e);}
+}
+function triggerConfetti(isRecord){
+  const colors=['#06b6d4','#3b82f6','#1e40af','#fbbf24','#fb923c'];
+  safeConfetti({particleCount:80,spread:90,origin:{y:.6},colors:colors});
+  if(isRecord){
+    setTimeout(function(){safeConfetti({particleCount:60,angle:60,spread:70,origin:{x:0,y:.7},colors:colors});},300);
+    setTimeout(function(){safeConfetti({particleCount:60,angle:120,spread:70,origin:{x:1,y:.7},colors:colors});},500);
+  }
+}
+function copyFormattedResult(){
+  try{
+    sfx('click');
+    const earnedTitle=calculateTitle(score);const grade=calculateGrade(score);
+    const statusText = score >= MIN_SCORE_TO_PASS ? "✓ LULUS (boleh kirim)" : "✗ WAJIB ULANG (min "+MIN_SCORE_TO_PASS+")";
+    const durasi = Math.floor(totalElapsed/60) + 'm ' + (totalElapsed%60) + 's';
+    const txt="HASIL KUIS INTERAKTIF GEOGRAFI\nSekolah: SMAN 3 Kasongan\nKelas: X / Fase E\nGuru Pengampu: SYAHRANI, S.Pd.\nNIP. 19751217200501 1 016\nNama: "+studentName+"\nMateri: Penginderaan Jauh\n━━━━━━━━━━━━━━━━━━━━\nJawaban Benar: "+correctAnswersCount+"/15\nJawaban Salah: "+wrongAnswersCount+"\nDilewati: "+skippedCount+"\nSkor: "+score+"\nGrade: "+grade+"\nStatus: "+statusText+"\nXP: "+xpGained.toLocaleString('id-ID')+"\nStreak terbaik: "+maxStreak+"\nPercobaan: "+attemptCount+"\nDurasi: "+durasi+"\nGelar: "+earnedTitle+"\n━━━━━━━━━━━━━━━━━━━━";
+    function onSuccess(){
+      const cbt=document.getElementById("copy-btn-text");
+      if(cbt){cbt.textContent="TERSALIN! ✓";setTimeout(function(){cbt.textContent="SALIN";},2000);}
+    }
+    function onFail(){
+      try{
+        const ta=document.createElement('textarea');ta.value=txt;
+        ta.style.position='fixed';ta.style.left='-9999px';
+        document.body.appendChild(ta);ta.select();document.execCommand('copy');
+        document.body.removeChild(ta);onSuccess();
+      }catch(err){alert("Gagal menyalin. Coba salin manual.");}
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(onSuccess).catch(onFail);
+    } else { onFail(); }
+  }catch(e){alert("Gagal menyalin. Coba salin manual.");}
+}
+function openReviewModal(){
+  try{
+    sfx('click');
+    const l=document.getElementById("review-list");if(!l)return;l.innerHTML="";
+    userAnswersHistory.forEach(function(item){
+      const isC=item.isCorrect,isS=item.isSkipped,isTO=item.isTimedOut;
+      let cardStyle="background: rgba(192,57,43,.05); border: 2px solid rgba(192,57,43,.25)";
+      let statusText="✗ Soal "+item.questionNum+" — Belum tepat";let statusColor="#c0392b";
+      if(isC){cardStyle="background: rgba(6,182,212,.05); border: 2px solid rgba(6,182,212,.25)";statusText="✓ Soal "+item.questionNum+" — Benar";statusColor="#1e40af";}
+      else if(isTO){cardStyle="background: rgba(245,158,11,.06); border: 2px solid rgba(245,158,11,.25)";statusText="⏰ Soal "+item.questionNum+" — Waktu Habis";statusColor="#a04400";}
+      else if(isS){cardStyle="background: rgba(71,85,105,.08); border: 2px solid rgba(71,85,105,.20)";statusText="⏭️ Soal "+item.questionNum+" — Dilewati";statusColor="#475569";}
+      const card=document.createElement("div");
+      card.className="p-4 md:p-5 rounded-xl space-y-3 text-xs md:text-sm";
+      card.style.cssText = cardStyle;
+      card.innerHTML='<div class="flex items-center justify-between font-black flex-wrap gap-2"><span style="color:'+statusColor+';">'+statusText+'</span><span class="diff-badge '+getDifficultyClass(item.difficulty)+'">'+(item.difficulty||"Mudah")+'</span></div><p class="font-bold overflow-safe" style="color:#0c1e3d;">'+item.questionText+'</p><div class="p-3 rounded-lg" style="background: rgba(255,255,255,.8); border: 1.5px solid rgba(30,64,175,.10)"><div class="font-bold" style="color:#1e3a5f;">Jawabanmu: <span style="color:'+(isC?"#06b6d4":(isS?"#475569":"#c0392b"))+'; font-weight:900;">'+item.userAnswer+'</span></div>'+(!isC?'<div class="font-bold mt-1" style="color:#1e3a5f;">Jawaban Benar: <span style="color:#06b6d4; font-weight:900;">'+item.correctAnswer+'</span></div>':'')+'</div><div class="p-3 rounded-lg overflow-safe" style="background: rgba(30,64,175,.06); border: 1.5px solid rgba(30,64,175,.12); color:#0c1e3d;"><strong style="color:#1e40af;">📚 Topik:</strong> '+(item.topic||"Penginderaan Jauh")+'</div><div class="p-3 rounded-lg overflow-safe" style="background: rgba(30,64,175,.06); border: 1.5px solid rgba(30,64,175,.12); color:#0c1e3d;"><strong style="color:#1e40af;">📖 Pembahasan:</strong> '+item.explanation+'</div><div class="p-3 rounded-lg overflow-safe" style="background: rgba(245,158,11,.08); border: 1.5px solid rgba(245,158,11,.25); color:#0c1e3d;"><strong style="color:#b8860b;">🎯 Poin Kunci:</strong> '+(item.keyPoint||"—")+'</div>';
+      l.appendChild(card);
+    });
+    show("review-modal");
+  }catch(e){}
+}
+function closeReviewModal(){sfx('click');hide("review-modal");}
+function restartGame(){
+  try{
+    sfx('click');
+    resetSendUI();
+    incrementAttempt();
+    hide("result-screen");show("game-screen");
+    currentQuestions=getRandomQuestions();
+    currentQuestionIndex=0;score=0;correctAnswersCount=0;wrongAnswersCount=0;skippedCount=0;
+    xpGained=0;streak=0;maxStreak=0;totalElapsed=0;userAnswersHistory=[];
+    selectedAnswerIndex=null;answerLocked=false;
+    kuisAktif = true;
+    resetLifelineButtons();renderPrizeLadder();
+    renderWaypointTrail();drawContourLines();
+    loadQuestion();
+  }catch(e){}
+}
+
+/* ============================================================
+   KIRIM NILAI — FORMAT URLSearchParams (Fix #1)
+   Agar kompatibel dengan Apps Script yang sama seperti Kuis Roda Berputar
+   ============================================================ */
+async function sendScoreToSheet(){
+  const total = currentQuestions.length || 15;
+  const accuracy = Math.round((correctAnswersCount / total) * 100);
+
+  if (score < MIN_SCORE_TO_PASS) {
+    const w = document.getElementById('mustRepeatWarning');
+    if (w) {
+      w.classList.remove('is-hidden');
+      setText('mustRepeatScore', score);
+    }
+    return;
+  }
+  if (scoreSent) return;
+  scoreSent = true;
+
+  const sendBtn = document.getElementById('btnSendScore');
+  if (sendBtn) {
+    sendBtn.disabled = true;
+    sendBtn.innerHTML = '⏳ MENGIRIM...';
+    sendBtn.style.opacity = '0.75';
+    sendBtn.style.cursor = 'wait';
+  }
+
+  const earnedTitle = calculateTitle(score);
+  const grade = calculateGrade(score);
+  const durasi = Math.floor(totalElapsed/60) + 'm ' + (totalElapsed%60) + 's';
+
+  // Format URLSearchParams — sama dengan Kuis Roda Berputar
+  const params = new URLSearchParams();
+  params.append('nama',     studentName);
+  params.append('skor',     score);
+  params.append('benar',    correctAnswersCount);
+  params.append('salah',    wrongAnswersCount);
+  params.append('total',    total);
+  params.append('akurasi',  accuracy);
+  params.append('streak',   maxStreak);
+  params.append('gelar',    earnedTitle);
+  params.append('materi',   'Penginderaan Jauh');
+  params.append('kuis',     'Interaktif Penginderaan Jauh');
+  params.append('grade',    grade);
+  params.append('xp',       xpGained);
+  params.append('skipped',  skippedCount);
+  params.append('attempt',  attemptCount);
+  params.append('durasi',   durasi);
+
+  const statusEl = document.getElementById('sendStatus');
+  if (statusEl) {
+    statusEl.classList.remove('is-hidden');
+    statusEl.innerHTML = '⏳ Mengirim nilai ke guru...';
+    statusEl.style.color = '#1e40af';
+    statusEl.style.background = 'rgba(6,182,212,.10)';
+  }
+
+  try {
+    await fetch(SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: params
+    });
+    if (statusEl) {
+      statusEl.innerHTML = '✅ Nilai berhasil dikirim ke guru';
+      statusEl.style.color = '#1e40af';
+      statusEl.style.background = 'rgba(6,182,212,.18)';
+    }
+    if (sendBtn) {
+      sendBtn.innerHTML = '✅ NILAI TERKIRIM';
+      sendBtn.style.background = 'linear-gradient(135deg,#1e40af,#06b6d4)';
+    }
+  } catch (e) {
+    console.error('Gagal kirim:', e);
+    scoreSent = false;
+    if (statusEl) {
+      statusEl.innerHTML = '⚠️ Gagal kirim nilai. Periksa koneksi internet.';
+      statusEl.style.color = '#c0392b';
+      statusEl.style.background = 'rgba(192,57,43,.10)';
+    }
+    if (sendBtn) {
+      sendBtn.disabled = false;
+      sendBtn.innerHTML = '📤 COBA KIRIM LAGI';
+      sendBtn.style.opacity = '1';
+      sendBtn.style.cursor = 'pointer';
+    }
+  }
+}
+
+function resetSendUI(){
+  scoreSent = false;
+  const sb = document.getElementById('btnSendScore');
+  if (sb) {
+    sb.classList.add('is-hidden');
+    sb.disabled = false;
+    sb.innerHTML = '📤 KIRIM NILAI KE GURU';
+    sb.style.background = 'linear-gradient(135deg,#f59e0b,#fbbf24)';
+    sb.style.opacity = '1';
+    sb.style.cursor = 'pointer';
+  }
+  const w = document.getElementById('mustRepeatWarning');
+  if (w) w.classList.add('is-hidden');
+  const ss = document.getElementById('sendStatus');
+  if (ss) ss.classList.add('is-hidden');
+  const rb = document.getElementById('btn-restart');
+  if (rb) {
+    rb.innerHTML = '🔄 MAIN LAGI';
+    rb.style.background = 'linear-gradient(135deg,#1e40af,#06b6d4)';
+    rb.classList.remove('must-repeat');
+  }
+  const stamp = document.getElementById('achievement-stamp');
+  if (stamp) stamp.classList.remove('show');
+}
+
+function returnToMainScreen(){
+  sfx('click');
+  stopCountdown();
+  kuisAktif = false;
+  resetSendUI();
+  hide("result-screen");hide("game-screen");show("start-screen");
+  loadAttemptHistory();updateBestScoreSummary();
+}
+</script>
+</body>
+</html>
