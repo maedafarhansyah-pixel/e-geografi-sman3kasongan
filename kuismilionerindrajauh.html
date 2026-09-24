@@ -9,17 +9,7 @@
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
 <script>
-try {
-  tailwind.config = {
-    theme: { extend: {
-      fontFamily: {
-        sans: ['Inter','sans-serif'],
-        display: ['Space Grotesk','sans-serif'],
-        serif: ['Playfair Display','Georgia','serif']
-      }
-    }}
-  };
-} catch(e) {}
+try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-serif'], display: ['Space Grotesk','sans-serif'], serif: ['Playfair Display','Georgia','serif'] } } } }; } catch(e) {}
 </script>
 <style>
   @keyframes fadeInOut{0%{opacity:0;transform:translate(-50%,-10px)}15%{opacity:1;transform:translate(-50%,0)}85%{opacity:1;transform:translate(-50%,0)}100%{opacity:0;transform:translate(-50%,-10px)}}
@@ -58,445 +48,168 @@ try {
   @keyframes timerPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
   @keyframes timerDangerPulse{0%,100%{box-shadow:0 0 0 0 rgba(220,38,38,.5)}50%{box-shadow:0 0 0 8px rgba(220,38,38,0)}}
 
-  :root {
-    --primary: #1e40af;
-    --primary-light: #3b82f6;
-    --primary-bright: #06b6d4;
-    --accent: #0ea5e9;
-    --accent-deep: #6366f1;
-    --gold: #f59e0b;
-    --gold-bright: #fbbf24;
-    --bg: #f0f9ff;
-    --card-bg: #ffffff;
-    --text: #0c1e3d;
-    --text-light: #1e3a5f;
-    --text-muted: #475569;
-    --shadow: 0 12px 48px rgba(30,64,175,0.12);
-    --shadow-hover: 0 24px 64px rgba(6,182,212,0.20);
-    --radius: 20px;
-    --radius-sm: 12px;
-  }
-
-  * { -webkit-tap-highlight-color: transparent; margin:0; padding:0; box-sizing:border-box; }
-  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    margin: 0;
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 15px;
-    line-height: 1.7;
-    overflow-x: hidden;
-    position: relative;
-    font-weight: 500;
-  }
-
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    opacity: 0.6;
-    background-image:
-      radial-gradient(circle at 20% 30%, rgba(30,64,175, 0.10) 0%, transparent 60%),
-      radial-gradient(circle at 80% 70%, rgba(6,182,212, 0.08) 0%, transparent 50%),
-      repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(30,64,175, 0.025) 40px, rgba(30,64,175, 0.025) 41px),
-      repeating-linear-gradient(-45deg, transparent, transparent 40px, rgba(30,64,175, 0.025) 40px, rgba(30,64,175, 0.025) 41px);
-    background-size: 100% 100%, 100% 100%, 80px 80px, 80px 80px;
-  }
-
-  body::after {
-    content:'';
-    position: fixed;
-    inset: 0;
-    z-index: -2;
-    pointer-events: none;
-    opacity: .35;
-    background: linear-gradient(120deg,
-      rgba(6,182,212,.10) 0%,
-      rgba(30,64,175,.05) 25%,
-      rgba(99,102,241,.08) 50%,
-      rgba(14,165,233,.05) 75%,
-      rgba(6,182,212,.10) 100%);
-    background-size: 300% 300%;
-    animation: auroraShift 18s ease-in-out infinite;
-  }
-
+  :root{--primary:#1e40af;--primary-light:#3b82f6;--primary-bright:#06b6d4;--accent:#0ea5e9;--accent-deep:#6366f1;--gold:#f59e0b;--gold-bright:#fbbf24;--bg:#f0f9ff;--card-bg:#ffffff;--text:#0c1e3d;--text-light:#1e3a5f;--text-muted:#475569;--shadow:0 12px 48px rgba(30,64,175,.12);--shadow-hover:0 24px 64px rgba(6,182,212,.20);--radius:20px;--radius-sm:12px}
+  *{-webkit-tap-highlight-color:transparent;margin:0;padding:0;box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);min-height:100vh;margin:0;font-family:'Inter',system-ui,sans-serif;font-size:15px;line-height:1.7;overflow-x:hidden;position:relative;font-weight:500}
+  body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.6;background-image:radial-gradient(circle at 20% 30%, rgba(30,64,175,.10) 0%, transparent 60%),radial-gradient(circle at 80% 70%, rgba(6,182,212,.08) 0%, transparent 50%),repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(30,64,175,.025) 40px, rgba(30,64,175,.025) 41px),repeating-linear-gradient(-45deg, transparent, transparent 40px, rgba(30,64,175,.025) 40px, rgba(30,64,175,.025) 41px);background-size:100% 100%, 100% 100%, 80px 80px, 80px 80px}
+  body::after{content:'';position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.35;background:linear-gradient(120deg,rgba(6,182,212,.10) 0%,rgba(30,64,175,.05) 25%,rgba(99,102,241,.08) 50%,rgba(14,165,233,.05) 75%,rgba(6,182,212,.10) 100%);background-size:300% 300%;animation:auroraShift 18s ease-in-out infinite}
   .custom-scrollbar::-webkit-scrollbar{width:6px}
   .custom-scrollbar::-webkit-scrollbar-track{background:rgba(30,64,175,.06)}
   .custom-scrollbar::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--primary),var(--accent));border-radius:9999px}
-
-  .glass-panel {
-    position: relative;
-    background: var(--card-bg);
-    border: 1px solid rgba(30,64,175,.08);
-    box-shadow: var(--shadow);
-    border-radius: var(--radius);
-    overflow: hidden;
-    animation: fadeUp .8s cubic-bezier(.2,.9,.3,1) both;
-    transition: box-shadow .4s ease, transform .4s ease;
-  }
-  .glass-panel:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
-  .glass-panel::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--primary), var(--primary-bright), var(--gold-bright), var(--primary));
-    background-size: 300% auto;
-    animation: borderFlow 4s linear infinite;
-    z-index: 2;
-  }
-
+  .glass-panel{position:relative;background:var(--card-bg);border:1px solid rgba(30,64,175,.08);box-shadow:var(--shadow);border-radius:var(--radius);overflow:hidden;animation:fadeUp .8s cubic-bezier(.2,.9,.3,1) both;transition:box-shadow .4s ease,transform .4s ease}
+  .glass-panel:hover{box-shadow:var(--shadow-hover);transform:translateY(-2px)}
+  .glass-panel::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg, var(--primary), var(--primary-bright), var(--gold-bright), var(--primary));background-size:300% auto;animation:borderFlow 4s linear infinite;z-index:2}
   .is-hidden{display:none!important}
-
-  #loader{
-    position:fixed;inset:0;z-index:9999;
-    background: radial-gradient(circle at center, #ffffff 0%, #f0f9ff 60%, #dbeafe 100%);
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
-    transition:opacity .7s ease,visibility .7s ease;padding:16px;
-  }
+  #loader{position:fixed;inset:0;z-index:9999;background:radial-gradient(circle at center, #ffffff 0%, #f0f9ff 60%, #dbeafe 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .7s ease,visibility .7s ease;padding:16px}
   #loader.fade-out{opacity:0;visibility:hidden;pointer-events:none}
-  .loader-satellite{position:relative;width:100px;height:100px;animation:satelliteSpin 3.2s ease-in-out infinite;}
+  .loader-satellite{position:relative;width:100px;height:100px;animation:satelliteSpin 3.2s ease-in-out infinite}
   .loader-satellite svg{width:100%;height:100%;display:block;filter:drop-shadow(0 0 22px rgba(6,182,212,.5))}
-  .loader-ring{
-    position:absolute;top:-28px;left:-28px;width:156px;height:156px;border-radius:50%;
-    border:5px solid transparent;
-    border-top-color:var(--primary-bright);
-    border-right-color:var(--primary-light);
-    border-bottom-color:var(--gold-bright);
-    border-left-color:var(--primary);
-    animation:ringSpin 2.8s linear infinite;
-    box-shadow:0 0 40px rgba(6,182,212,.3);
-  }
-  .loader-ring::after{
-    content:'';position:absolute;inset:12px;border-radius:50%;
-    border:3px dashed rgba(30,64,175,.25);
-    animation:ringSpin 8s linear infinite reverse;
-  }
-  .loader-title{
-    font-family:'Space Grotesk',sans-serif;
-    font-size:clamp(2rem,7.5vw,3.6rem);
-    font-weight:900;letter-spacing:-1.2px;margin-top:30px;
-    background:linear-gradient(135deg, #1e40af, #3b82f6, #06b6d4, #6366f1, #3b82f6, #1e40af);
-    background-size:300% auto;
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-    animation:shimmerText 4s ease-in-out infinite;text-align:center;
-  }
-  .loader-sub{
-    font-size:0.75rem;font-weight:800;color:var(--primary);
-    margin-top:10px;letter-spacing:5px;text-transform:uppercase;text-align:center;
-    animation: softBounce 2s ease-in-out infinite;
-  }
-  .loader-bar-track{
-    width:min(340px,80vw);height:8px;background:rgba(30,64,175,.10);
-    border-radius:99px;margin-top:26px;overflow:hidden;
-    border:1px solid rgba(30,64,175,.15);
-  }
-  .loader-bar{
-    height:100%;width:0%;border-radius:99px;
-    background:linear-gradient(90deg,var(--primary),var(--primary-bright),var(--gold-bright));
-    transition:width .3s ease;
-  }
-  .loader-percent{color:var(--primary);font-size:.85rem;font-weight:900;margin-top:14px;letter-spacing:4px;font-family:'Space Grotesk',sans-serif;}
+  .loader-ring{position:absolute;top:-28px;left:-28px;width:156px;height:156px;border-radius:50%;border:5px solid transparent;border-top-color:var(--primary-bright);border-right-color:var(--primary-light);border-bottom-color:var(--gold-bright);border-left-color:var(--primary);animation:ringSpin 2.8s linear infinite;box-shadow:0 0 40px rgba(6,182,212,.3)}
+  .loader-ring::after{content:'';position:absolute;inset:12px;border-radius:50%;border:3px dashed rgba(30,64,175,.25);animation:ringSpin 8s linear infinite reverse}
+  .loader-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(2rem,7.5vw,3.6rem);font-weight:900;letter-spacing:-1.2px;margin-top:30px;background:linear-gradient(135deg, #1e40af, #3b82f6, #06b6d4, #6366f1, #3b82f6, #1e40af);background-size:300% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmerText 4s ease-in-out infinite;text-align:center}
+  .loader-sub{font-size:.75rem;font-weight:800;color:var(--primary);margin-top:10px;letter-spacing:5px;text-transform:uppercase;text-align:center;animation:softBounce 2s ease-in-out infinite}
+  .loader-bar-track{width:min(340px,80vw);height:8px;background:rgba(30,64,175,.10);border-radius:99px;margin-top:26px;overflow:hidden;border:1px solid rgba(30,64,175,.15)}
+  .loader-bar{height:100%;width:0%;border-radius:99px;background:linear-gradient(90deg,var(--primary),var(--primary-bright),var(--gold-bright));transition:width .3s ease}
+  .loader-percent{color:var(--primary);font-size:.85rem;font-weight:900;margin-top:14px;letter-spacing:4px;font-family:'Space Grotesk',sans-serif}
   .loader-tip{margin-top:18px;font-size:.75rem;color:var(--text-muted);font-style:italic;font-weight:600;text-align:center;max-width:280px}
-
   #particles{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
-  .particle{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(6,182,212,.7),transparent 70%);animation:floatUp linear infinite;filter: blur(.5px);}
-
-  .school-badge{
-    display:inline-flex;align-items:center;gap:8px;padding:8px 20px;
-    background:linear-gradient(135deg, rgba(30,64,175,.08), rgba(6,182,212,.10));
-    border:1.5px solid rgba(30,64,175,.20);border-radius:99px;
-    font-size:.68rem;font-weight:900;letter-spacing:2.5px;text-transform:uppercase;
-    position:relative;overflow:hidden;white-space:nowrap;color: var(--primary);
-  }
-  .school-badge::before{
-    content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
-    background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent);
-    animation:badgeShine 3.2s ease-in-out infinite;
-  }
-  .school-name{
-    background:linear-gradient(135deg, #1e40af 0%, #3b82f6 35%, #06b6d4 55%, #6366f1 80%, #1e40af 100%);
-    background-size:300% auto;
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-    font-weight:900;letter-spacing:2px;animation:shimmerText 4s ease-in-out infinite;
-  }
-
-  .fb-section{
-    padding:12px 14px;border-radius:var(--radius-sm);margin-bottom:8px;
-    background:linear-gradient(135deg, rgba(30,64,175,.04), rgba(6,182,212,.02));
-    border:1.5px solid rgba(30,64,175,.10);
-  }
-  .fb-section .fb-t{font-size:.65rem;font-weight:900;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;display:flex;align-items:center;gap:6px;color: var(--primary);}
+  .particle{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(6,182,212,.7),transparent 70%);animation:floatUp linear infinite;filter:blur(.5px)}
+  .school-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 20px;background:linear-gradient(135deg, rgba(30,64,175,.08), rgba(6,182,212,.10));border:1.5px solid rgba(30,64,175,.20);border-radius:99px;font-size:.68rem;font-weight:900;letter-spacing:2.5px;text-transform:uppercase;position:relative;overflow:hidden;white-space:nowrap;color:var(--primary)}
+  .school-badge::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent);animation:badgeShine 3.2s ease-in-out infinite}
+  .school-name{background:linear-gradient(135deg, #1e40af 0%, #3b82f6 35%, #06b6d4 55%, #6366f1 80%, #1e40af 100%);background-size:300% auto;-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:900;letter-spacing:2px;animation:shimmerText 4s ease-in-out infinite}
+  .fb-section{padding:12px 14px;border-radius:var(--radius-sm);margin-bottom:8px;background:linear-gradient(135deg, rgba(30,64,175,.04), rgba(6,182,212,.02));border:1.5px solid rgba(30,64,175,.10)}
+  .fb-section .fb-t{font-size:.65rem;font-weight:900;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;display:flex;align-items:center;gap:6px;color:var(--primary)}
   .fb-section .fb-b{font-size:.85rem;line-height:1.6;color:var(--text);font-weight:600}
   .fb-section.topic .fb-t{color:var(--primary)}
-  .fb-section.topic .fb-b{display:inline-block;padding:5px 14px;border-radius:99px;background:linear-gradient(135deg, rgba(30,64,175,.12), rgba(6,182,212,.10));color:#1e40af;font-weight:900;font-size:.72rem;letter-spacing:.5px;text-transform:uppercase;border: 1.5px solid rgba(30,64,175,.25);}
+  .fb-section.topic .fb-b{display:inline-block;padding:5px 14px;border-radius:99px;background:linear-gradient(135deg, rgba(30,64,175,.12), rgba(6,182,212,.10));color:#1e40af;font-weight:900;font-size:.72rem;letter-spacing:.5px;text-transform:uppercase;border:1.5px solid rgba(30,64,175,.25)}
   .fb-section.why .fb-t{color:#0ea5e9}
   .fb-section.yours .fb-t{color:#c0392b}
-  .fb-section.yours .fb-b{background:rgba(231,76,60,.06);padding:10px 12px;border-radius:9px;border-left:4px solid #c0392b;color:#7a1f16;}
+  .fb-section.yours .fb-b{background:rgba(231,76,60,.06);padding:10px 12px;border-radius:9px;border-left:4px solid #c0392b;color:#7a1f16}
   .fb-section.key .fb-t{color:#b8860b}
-  .fb-section.key .fb-b{background:linear-gradient(90deg, rgba(245,158,11,.10), rgba(251,191,36,.04));padding:10px 12px;border-radius:9px;border-left:4px solid #f59e0b;color:#6d4c00;font-weight:700;}
+  .fb-section.key .fb-b{background:linear-gradient(90deg, rgba(245,158,11,.10), rgba(251,191,36,.04));padding:10px 12px;border-radius:9px;border-left:4px solid #f59e0b;color:#6d4c00;font-weight:700}
   .badge-pick{display:inline-block;padding:2px 10px;border-radius:6px;background:rgba(192,57,43,.15);color:#7a1f16;font-weight:900;margin-right:4px}
   .badge-correct{display:inline-block;padding:2px 10px;border-radius:6px;background:rgba(6,182,212,.15);color:#0c4a6e;font-weight:900;margin-right:4px}
-
-  .grade-badge-big{
-    width:80px;height:80px;border-radius:20px;display:flex;align-items:center;justify-content:center;
-    font-size:2.4rem;font-weight:900;color:#fff;font-family:'Space Grotesk',sans-serif;
-    box-shadow:0 12px 32px rgba(30,64,175,.25);position: relative;animation: floatCard 4s ease-in-out infinite;
-  }
-  .grade-badge-big::after{content:'';position:absolute;inset:4px;border-radius:16px;border:1.5px solid rgba(255,255,255,.5);}
-  @media (min-width:480px){ .grade-badge-big{width:96px;height:96px;font-size:3rem;border-radius:24px;} .grade-badge-big::after{inset:5px;border-radius:20px;} }
+  .grade-badge-big{width:80px;height:80px;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:2.4rem;font-weight:900;color:#fff;font-family:'Space Grotesk',sans-serif;box-shadow:0 12px 32px rgba(30,64,175,.25);position:relative;animation:floatCard 4s ease-in-out infinite}
+  .grade-badge-big::after{content:'';position:absolute;inset:4px;border-radius:16px;border:1.5px solid rgba(255,255,255,.5)}
+  @media (min-width:480px){.grade-badge-big{width:96px;height:96px;font-size:3rem;border-radius:24px}.grade-badge-big::after{inset:5px;border-radius:20px}}
   .grade-A{background:linear-gradient(135deg,#06b6d4,#1e40af);color:#06b6d4}
   .grade-B{background:linear-gradient(135deg,#3b82f6,#06b6d4);color:#3b82f6}
   .grade-C{background:linear-gradient(135deg,#fbbf24,#d97706);color:#fbbf24}
   .grade-D{background:linear-gradient(135deg,#fb923c,#dc2626);color:#fb923c}
   .grade-E{background:linear-gradient(135deg,#dc2626,#7f1d1d);color:#dc2626}
-
   .score-circle{position:relative;width:110px;height:110px;flex-shrink:0}
-  @media (min-width:480px){ .score-circle{width:140px;height:140px;} }
+  @media (min-width:480px){.score-circle{width:140px;height:140px}}
   .score-circle svg{position:absolute;inset:0;transform:rotate(-90deg);width:100%;height:100%}
   .score-circle .track{stroke:rgba(30,64,175,.10);fill:none}
-  .score-circle .bar{fill:none;stroke-linecap:round;transition:stroke-dashoffset 1.5s cubic-bezier(.2,.9,.3,1.2);}
+  .score-circle .bar{fill:none;stroke-linecap:round;transition:stroke-dashoffset 1.5s cubic-bezier(.2,.9,.3,1.2)}
   .score-circle .inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-  .score-circle .num{font-size:2rem;font-weight:900;line-height:1;font-family:'Space Grotesk',sans-serif;background:linear-gradient(180deg,#1e40af,#06b6d4);-webkit-background-clip:text;background-clip:text;color:transparent;}
-  @media (min-width:480px){ .score-circle .num{font-size:2.4rem;} }
+  .score-circle .num{font-size:2rem;font-weight:900;line-height:1;font-family:'Space Grotesk',sans-serif;background:linear-gradient(180deg,#1e40af,#06b6d4);-webkit-background-clip:text;background-clip:text;color:transparent}
+  @media (min-width:480px){.score-circle .num{font-size:2.4rem}}
   .score-circle .lbl{font-size:.55rem;letter-spacing:2.5px;color:var(--primary);text-transform:uppercase;font-weight:900;margin-top:4px}
-
-  .diff-badge{font-size:.62rem;letter-spacing:1.2px;font-weight:900;padding:4px 12px;border-radius:99px;text-transform:uppercase;white-space:nowrap;}
+  .diff-badge{font-size:.62rem;letter-spacing:1.2px;font-weight:900;padding:4px 12px;border-radius:99px;text-transform:uppercase;white-space:nowrap}
   .diff-mudah{color:#0c4a6e;background:rgba(6,182,212,.15);border:1.5px solid rgba(6,182,212,.40)}
   .diff-sedang{color:#8a6d00;background:rgba(251,191,36,.18);border:1.5px solid rgba(251,191,36,.45)}
   .diff-sulit{color:#a04400;background:rgba(251,146,60,.15);border:1.5px solid rgba(251,146,60,.40)}
   .diff-sangat{color:#8a1f16;background:rgba(220,38,38,.15);border:1.5px solid rgba(220,38,38,.40)}
-
-  .opt-btn{
-    width:100%; text-align:left;background: var(--card-bg);
-    border:2px solid rgba(30,64,175,.12);border-radius:var(--radius-sm);
-    padding:14px 17px;font-size:.9rem;color:var(--text);font-weight:700;line-height:1.45;
-    transition:all .25s cubic-bezier(.4,0,.2,1);cursor:pointer;position:relative;overflow:hidden;font-family: inherit;
-  }
-  @media (min-width:768px){ .opt-btn{font-size:.95rem;padding:15px 19px;} }
-  .opt-btn:hover:not(:disabled){
-    background: linear-gradient(135deg, rgba(30,64,175,.06), rgba(6,182,212,.04));
-    border-color: var(--primary-light);color: var(--primary);
-    transform:translateY(-3px);box-shadow: 0 10px 24px rgba(30,64,175,.15);
-  }
+  .opt-btn{width:100%;text-align:left;background:var(--card-bg);border:2px solid rgba(30,64,175,.12);border-radius:var(--radius-sm);padding:14px 17px;font-size:.9rem;color:var(--text);font-weight:700;line-height:1.45;transition:all .25s cubic-bezier(.4,0,.2,1);cursor:pointer;position:relative;overflow:hidden;font-family:inherit}
+  @media (min-width:768px){.opt-btn{font-size:.95rem;padding:15px 19px}}
+  .opt-btn:hover:not(:disabled){background:linear-gradient(135deg, rgba(30,64,175,.06), rgba(6,182,212,.04));border-color:var(--primary-light);color:var(--primary);transform:translateY(-3px);box-shadow:0 10px 24px rgba(30,64,175,.15)}
   .opt-btn:active{transform:scale(.98)}
-  .opt-btn:disabled{cursor:not-allowed;}
-  .opt-selected{background:linear-gradient(135deg,#1e40af,#3b82f6)!important;border-color:var(--primary-bright)!important;color:#fff!important;box-shadow:0 10px 28px rgba(30,64,175,.40);transform:translateY(-2px);}
-  .opt-correct{background:linear-gradient(135deg,#0891b2,#06b6d4)!important;border-color:#22d3ee!important;color:#fff!important;box-shadow:0 10px 28px rgba(6,182,212,.45);animation:correctPulse .7s ease;}
-  .opt-wrong{background:linear-gradient(135deg,#c0392b,#e74c3c)!important;border-color:#c0392b!important;color:#fff!important;box-shadow:0 10px 28px rgba(192,57,43,.40);animation:wrongShake .5s ease;}
-  .opt-eliminated{opacity:.20!important;pointer-events:none!important;text-decoration:line-through;filter: blur(.5px)}
-
-  .gps-pin{
-    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
-    font-size:1.6rem;pointer-events:none;z-index:5;
-    animation:beaconPinDrop .4s cubic-bezier(.34,1.56,.64,1) forwards;
-    filter: drop-shadow(0 4px 10px rgba(30,64,175,.5));
-  }
-  .gps-pin-ripple{
-    position:absolute;left:50%;top:50%;width:20px;height:20px;border-radius:50%;
-    transform:translate(-50%,-50%);pointer-events:none;z-index:4;
-    border:2px solid rgba(6,182,212,.7);
-    animation:pinRipple .5s ease-out forwards;
-  }
-
-  .compass-needle-fx{
-    position:fixed;left:50%;top:50%;width:140px;height:140px;z-index:9999;
-    pointer-events:none;transform:translate(-50%,-50%);
-    animation:satelliteNeedleSpin 1.2s cubic-bezier(.2,.9,.3,1) forwards;
-  }
+  .opt-btn:disabled{cursor:not-allowed}
+  .opt-selected{background:linear-gradient(135deg,#1e40af,#3b82f6)!important;border-color:var(--primary-bright)!important;color:#fff!important;box-shadow:0 10px 28px rgba(30,64,175,.40);transform:translateY(-2px)}
+  .opt-correct{background:linear-gradient(135deg,#0891b2,#06b6d4)!important;border-color:#22d3ee!important;color:#fff!important;box-shadow:0 10px 28px rgba(6,182,212,.45);animation:correctPulse .7s ease}
+  .opt-wrong{background:linear-gradient(135deg,#c0392b,#e74c3c)!important;border-color:#c0392b!important;color:#fff!important;box-shadow:0 10px 28px rgba(192,57,43,.40);animation:wrongShake .5s ease}
+  .opt-eliminated{opacity:.20!important;pointer-events:none!important;text-decoration:line-through;filter:blur(.5px)}
+  .gps-pin{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:1.6rem;pointer-events:none;z-index:5;animation:beaconPinDrop .4s cubic-bezier(.34,1.56,.64,1) forwards;filter:drop-shadow(0 4px 10px rgba(30,64,175,.5))}
+  .gps-pin-ripple{position:absolute;left:50%;top:50%;width:20px;height:20px;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:4;border:2px solid rgba(6,182,212,.7);animation:pinRipple .5s ease-out forwards}
+  .compass-needle-fx{position:fixed;left:50%;top:50%;width:140px;height:140px;z-index:9999;pointer-events:none;transform:translate(-50%,-50%);animation:satelliteNeedleSpin 1.2s cubic-bezier(.2,.9,.3,1) forwards}
   .compass-needle-fx svg{width:100%;height:100%;filter:drop-shadow(0 0 20px rgba(6,182,212,.8))}
-
-  .radar-sweep{
-    position:fixed;left:50%;top:50%;width:min(80vw,420px);height:min(80vw,420px);
-    border-radius:50%;pointer-events:none;z-index:9998;
-    background:conic-gradient(from 0deg, transparent 0deg, rgba(6,182,212,.35) 30deg, transparent 60deg, transparent 360deg);
-    border:2px solid rgba(6,182,212,.3);
-    animation:radarSweep 1.5s ease-out forwards;
-    transform:translate(-50%,-50%);
-  }
-  .radar-sweep::before{content:'';position:absolute;inset:20%;border-radius:50%;border:1.5px solid rgba(6,182,212,.4);}
-  .radar-sweep::after{content:'';position:absolute;inset:40%;border-radius:50%;border:1.5px solid rgba(6,182,212,.5);}
-
-  .contour-bg{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+  .radar-sweep{position:fixed;left:50%;top:50%;width:min(80vw,420px);height:min(80vw,420px);border-radius:50%;pointer-events:none;z-index:9998;background:conic-gradient(from 0deg, transparent 0deg, rgba(6,182,212,.35) 30deg, transparent 60deg, transparent 360deg);border:2px solid rgba(6,182,212,.3);animation:radarSweep 1.5s ease-out forwards;transform:translate(-50%,-50%)}
+  .radar-sweep::before{content:'';position:absolute;inset:20%;border-radius:50%;border:1.5px solid rgba(6,182,212,.4)}
+  .radar-sweep::after{content:'';position:absolute;inset:40%;border-radius:50%;border:1.5px solid rgba(6,182,212,.5)}
+  .contour-bg{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden}
   .contour-bg svg{width:100%;height:100%;opacity:.55}
-  .contour-bg path{fill:none;stroke:url(#contourGrad);stroke-width:1.2;stroke-dasharray:2000;stroke-dashoffset:2000;animation:orbitDraw 2s ease-out forwards;}
+  .contour-bg path{fill:none;stroke:url(#contourGrad);stroke-width:1.2;stroke-dasharray:2000;stroke-dashoffset:2000;animation:orbitDraw 2s ease-out forwards}
   .contour-bg path:nth-child(2){animation-delay:.15s}
   .contour-bg path:nth-child(3){animation-delay:.3s}
   .contour-bg path:nth-child(4){animation-delay:.45s}
   .contour-bg path:nth-child(5){animation-delay:.6s}
-
   .tectonic-shake{animation:signalGlitch .5s ease}
-  .fault-line{position:absolute;top:50%;left:0;height:3px;z-index:10;pointer-events:none;background:linear-gradient(90deg,transparent,#dc2626,#ef4444,#fbbf24,#dc2626,transparent);animation:faultLine .5s ease-out forwards;box-shadow:0 0 20px rgba(220,38,38,.6);}
-
-  .waypoint-trail{display:flex;align-items:center;gap:2px;margin-top:4px;}
-  .waypoint-dot{width:6px;height:6px;border-radius:50%;background:rgba(30,64,175,.20);transition:all .4s ease;}
+  .fault-line{position:absolute;top:50%;left:0;height:3px;z-index:10;pointer-events:none;background:linear-gradient(90deg,transparent,#dc2626,#ef4444,#fbbf24,#dc2626,transparent);animation:faultLine .5s ease-out forwards;box-shadow:0 0 20px rgba(220,38,38,.6)}
+  .waypoint-trail{display:flex;align-items:center;gap:2px;margin-top:4px}
+  .waypoint-dot{width:6px;height:6px;border-radius:50%;background:rgba(30,64,175,.20);transition:all .4s ease}
   .waypoint-dot.done{background:linear-gradient(135deg,#1e40af,#06b6d4)}
-  .waypoint-dot.active{background:linear-gradient(135deg,#f59e0b,#fbbf24);animation:waypointPulse 1.5s ease-in-out infinite;width:8px;height:8px;}
+  .waypoint-dot.active{background:linear-gradient(135deg,#f59e0b,#fbbf24);animation:waypointPulse 1.5s ease-in-out infinite;width:8px;height:8px}
   .waypoint-dot.skipped{background:rgba(71,85,105,.4)}
   .waypoint-dot.timedout{background:rgba(220,38,38,.6)}
-  .waypoint-line{flex:1;height:2px;background:rgba(30,64,175,.10);min-width:2px;}
+  .waypoint-line{flex:1;height:2px;background:rgba(30,64,175,.10);min-width:2px}
   .waypoint-line.done{background:linear-gradient(90deg,#1e40af,#06b6d4)}
-
-  .achievement-stamp{
-    position:absolute;right:-10px;top:-10px;z-index:20;pointer-events:none;
-    padding:6px 14px;border-radius:6px;
-    background:linear-gradient(135deg,#f59e0b,#fbbf24);
-    color:#5c3a00;font-weight:900;font-size:.6rem;letter-spacing:2px;
-    border:2.5px dashed #5c3a00;
-    box-shadow:0 6px 20px rgba(245,158,11,.5);
-    animation:stampAppear .8s cubic-bezier(.34,1.56,.64,1) .3s both;
-    text-transform:uppercase;opacity:0;
-  }
+  .achievement-stamp{position:absolute;right:-10px;top:-10px;z-index:20;pointer-events:none;padding:6px 14px;border-radius:6px;background:linear-gradient(135deg,#f59e0b,#fbbf24);color:#5c3a00;font-weight:900;font-size:.6rem;letter-spacing:2px;border:2.5px dashed #5c3a00;box-shadow:0 6px 20px rgba(245,158,11,.5);animation:stampAppear .8s cubic-bezier(.34,1.56,.64,1) .3s both;text-transform:uppercase;opacity:0}
   .achievement-stamp.show{opacity:1}
-
-  .sound-toggle{width:40px;height:40px;border-radius:50%;background: var(--card-bg);border:1.5px solid rgba(30,64,175,.20);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;transition:all .25s;flex-shrink:0;}
-  .sound-toggle:hover{background: linear-gradient(135deg, rgba(6,182,212,.15), rgba(30,64,175,.08));transform:scale(1.10);border-color: var(--primary);}
+  .sound-toggle{width:40px;height:40px;border-radius:50%;background:var(--card-bg);border:1.5px solid rgba(30,64,175,.20);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;transition:all .25s;flex-shrink:0}
+  .sound-toggle:hover{background:linear-gradient(135deg, rgba(6,182,212,.15), rgba(30,64,175,.08));transform:scale(1.10);border-color:var(--primary)}
   .sound-toggle.muted{opacity:.5}
-
-  .q-progress{height:8px;background:rgba(30,64,175,.10);border-radius:99px;overflow:hidden;margin-bottom:14px;position: relative;}
-  .q-progress>i{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--primary),var(--primary-bright),var(--gold-bright));border-radius:99px;transition:width .6s cubic-bezier(.2,.9,.3,1.2);position: relative;}
-  .q-progress>i::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent);animation: barShine 2s linear infinite;}
-
+  .q-progress{height:8px;background:rgba(30,64,175,.10);border-radius:99px;overflow:hidden;margin-bottom:14px;position:relative}
+  .q-progress>i{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--primary),var(--primary-bright),var(--gold-bright));border-radius:99px;transition:width .6s cubic-bezier(.2,.9,.3,1.2);position:relative}
+  .q-progress>i::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent);animation:barShine 2s linear infinite}
   .lock-btn-container{margin-top:16px;display:flex;justify-content:center;animation:slideUp .4s ease}
-  .lock-btn{
-    padding:16px 40px;font-size:.95rem;font-weight:900;letter-spacing:2.5px;text-transform:uppercase;
-    font-family: 'Space Grotesk', sans-serif;color:#fff;
-    background:linear-gradient(135deg,#1e40af 0%,#3b82f6 50%,#06b6d4 100%);background-size:200% auto;
-    border-radius:60px;cursor:pointer;border:none;
-    box-shadow:0 14px 36px rgba(30,64,175,.35);
-    transition:all .3s ease;position:relative;overflow:hidden;
-    animation: glowPulse 2.5s ease-in-out infinite;
-  }
-  @media (min-width:480px){ .lock-btn{padding:18px 52px;font-size:1.05rem;letter-spacing:3px;} }
-  .lock-btn:disabled{opacity:.5;cursor:not-allowed;pointer-events:none;animation:none;}
-  .lock-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);animation:shineBtn 2.2s ease-in-out infinite;}
-  .lock-btn:hover:not(:disabled){transform:translateY(-4px) scale(1.03);background-position: 100% center;box-shadow:0 20px 48px rgba(30,64,175,.50);}
+  .lock-btn{padding:16px 40px;font-size:.95rem;font-weight:900;letter-spacing:2.5px;text-transform:uppercase;font-family:'Space Grotesk',sans-serif;color:#fff;background:linear-gradient(135deg,#1e40af 0%,#3b82f6 50%,#06b6d4 100%);background-size:200% auto;border-radius:60px;cursor:pointer;border:none;box-shadow:0 14px 36px rgba(30,64,175,.35);transition:all .3s ease;position:relative;overflow:hidden;animation:glowPulse 2.5s ease-in-out infinite}
+  @media (min-width:480px){.lock-btn{padding:18px 52px;font-size:1.05rem;letter-spacing:3px}}
+  .lock-btn:disabled{opacity:.5;cursor:not-allowed;pointer-events:none;animation:none}
+  .lock-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);animation:shineBtn 2.2s ease-in-out infinite}
+  .lock-btn:hover:not(:disabled){transform:translateY(-4px) scale(1.03);background-position:100% center;box-shadow:0 20px 48px rgba(30,64,175,.50)}
   .lock-btn:active:not(:disabled){transform:translateY(0) scale(.97)}
-
   #reveal-overlay{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;pointer-events:none;padding:16px}
   #reveal-overlay.show{display:flex}
-  #reveal-overlay.backdrop{backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);background:rgba(255,255,255,.85);pointer-events:auto;animation:fadeInBackdrop .3s ease;}
-  .reveal-badge{
-    font-size:clamp(1.7rem,7vw,3.8rem);font-weight:900;letter-spacing:3px;text-transform:uppercase;
-    font-family:'Space Grotesk',sans-serif;padding:20px 42px;border-radius:var(--radius);
-    position:relative;text-align:center;line-height:1.1;animation:revealPop .7s cubic-bezier(.34,1.56,.64,1);
-  }
-  @media (min-width:480px){ .reveal-badge{font-size:clamp(2.2rem,7.5vw,5rem);padding:26px 60px;letter-spacing:5px;border-radius:28px;} }
-  .reveal-badge.benar{color:#fff;background:linear-gradient(135deg,#1e40af 0%,#3b82f6 50%,#06b6d4 100%);box-shadow:0 0 60px rgba(6,182,212,.7),0 20px 50px rgba(30,64,175,.30);text-shadow:0 2px 10px rgba(0,0,0,.25);border:3px solid rgba(255,255,255,.6);}
-  .reveal-badge.benar::before{content:'✓';display:block;font-size:.6em;margin-bottom:-.1em;animation:checkPop .5s .25s cubic-bezier(.34,1.56,.64,1) both;}
-  .reveal-badge.salah{color:#fff;background:linear-gradient(135deg,#7f1d1d 0%,#c0392b 50%,#e74c3c 100%);box-shadow:0 0 60px rgba(192,57,43,.7),0 20px 50px rgba(127,29,29,.30);text-shadow:0 2px 10px rgba(0,0,0,.25);border:3px solid rgba(255,255,255,.6);animation:revealPop .7s cubic-bezier(.34,1.56,.64,1),salahShake .5s .7s ease;}
-  .reveal-badge.salah::before{content:'✗';display:block;font-size:.6em;margin-bottom:-.1em;animation:checkPop .5s .25s cubic-bezier(.34,1.56,.64,1) both;}
-  .reveal-badge.timeout{color:#fff;background:linear-gradient(135deg,#78350f 0%,#f59e0b 50%,#fbbf24 100%);box-shadow:0 0 60px rgba(245,158,11,.7),0 20px 50px rgba(120,53,15,.30);text-shadow:0 2px 10px rgba(0,0,0,.25);border:3px solid rgba(255,255,255,.6);animation:revealPop .7s cubic-bezier(.34,1.56,.64,1),salahShake .5s .7s ease;}
-  .reveal-badge.timeout::before{content:'⏰';display:block;font-size:.6em;margin-bottom:-.1em;animation:checkPop .5s .25s cubic-bezier(.34,1.56,.64,1) both;}
-
+  #reveal-overlay.backdrop{backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);background:rgba(255,255,255,.85);pointer-events:auto;animation:fadeInBackdrop .3s ease}
+  .reveal-badge{font-size:clamp(1.7rem,7vw,3.8rem);font-weight:900;letter-spacing:3px;text-transform:uppercase;font-family:'Space Grotesk',sans-serif;padding:20px 42px;border-radius:var(--radius);position:relative;text-align:center;line-height:1.1;animation:revealPop .7s cubic-bezier(.34,1.56,.64,1)}
+  @media (min-width:480px){.reveal-badge{font-size:clamp(2.2rem,7.5vw,5rem);padding:26px 60px;letter-spacing:5px;border-radius:28px}}
+  .reveal-badge.benar{color:#fff;background:linear-gradient(135deg,#1e40af 0%,#3b82f6 50%,#06b6d4 100%);box-shadow:0 0 60px rgba(6,182,212,.7),0 20px 50px rgba(30,64,175,.30);text-shadow:0 2px 10px rgba(0,0,0,.25);border:3px solid rgba(255,255,255,.6)}
+  .reveal-badge.benar::before{content:'✓';display:block;font-size:.6em;margin-bottom:-.1em;animation:checkPop .5s .25s cubic-bezier(.34,1.56,.64,1) both}
+  .reveal-badge.salah{color:#fff;background:linear-gradient(135deg,#7f1d1d 0%,#c0392b 50%,#e74c3c 100%);box-shadow:0 0 60px rgba(192,57,43,.7),0 20px 50px rgba(127,29,29,.30);text-shadow:0 2px 10px rgba(0,0,0,.25);border:3px solid rgba(255,255,255,.6);animation:revealPop .7s cubic-bezier(.34,1.56,.64,1),salahShake .5s .7s ease}
+  .reveal-badge.salah::before{content:'✗';display:block;font-size:.6em;margin-bottom:-.1em;animation:checkPop .5s .25s cubic-bezier(.34,1.56,.64,1) both}
+  .reveal-badge.timeout{color:#fff;background:linear-gradient(135deg,#78350f 0%,#f59e0b 50%,#fbbf24 100%);box-shadow:0 0 60px rgba(245,158,11,.7),0 20px 50px rgba(120,53,15,.30);text-shadow:0 2px 10px rgba(0,0,0,.25);border:3px solid rgba(255,255,255,.6);animation:revealPop .7s cubic-bezier(.34,1.56,.64,1),salahShake .5s .7s ease}
+  .reveal-badge.timeout::before{content:'⏰';display:block;font-size:.6em;margin-bottom:-.1em;animation:checkPop .5s .25s cubic-bezier(.34,1.56,.64,1) both}
   .burst-particle{position:absolute;width:10px;height:10px;border-radius:50%;pointer-events:none;animation:burstOut 1.1s cubic-bezier(.2,.9,.3,1) forwards}
-
-  .btn-primary-gradient{
-    background:linear-gradient(135deg,#1e40af 0%,#3b82f6 50%,#06b6d4 100%);background-size:200% auto;
-    color:#fff;font-weight:900;letter-spacing:2px;padding:17px 32px;border-radius:60px;border:none;
-    box-shadow:0 12px 36px rgba(30,64,175,.30);transition:all .3s;cursor:pointer;position:relative;overflow:hidden;
-    font-size:1rem;width:100%;font-family: 'Space Grotesk', sans-serif;text-transform: uppercase;
-  }
-  @media (min-width:480px){ .btn-primary-gradient{padding:18px 36px;font-size:1.05rem;} }
-  .btn-primary-gradient:hover{transform:translateY(-4px);background-position: 100% center;box-shadow:0 20px 48px rgba(30,64,175,.45);}
+  .btn-primary-gradient{background:linear-gradient(135deg,#1e40af 0%,#3b82f6 50%,#06b6d4 100%);background-size:200% auto;color:#fff;font-weight:900;letter-spacing:2px;padding:17px 32px;border-radius:60px;border:none;box-shadow:0 12px 36px rgba(30,64,175,.30);transition:all .3s;cursor:pointer;position:relative;overflow:hidden;font-size:1rem;width:100%;font-family:'Space Grotesk',sans-serif;text-transform:uppercase}
+  @media (min-width:480px){.btn-primary-gradient{padding:18px 36px;font-size:1.05rem}}
+  .btn-primary-gradient:hover{transform:translateY(-4px);background-position:100% center;box-shadow:0 20px 48px rgba(30,64,175,.45)}
   .btn-primary-gradient:active{transform:translateY(0) scale(.98)}
-  .btn-primary-gradient::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);animation:shineBtn 2.6s ease-in-out infinite;}
-
-  .navy-input{
-    background: var(--card-bg);border:2px solid rgba(30,64,175,.18);color:var(--text);transition:all .25s;
-    width:100%;border-radius:var(--radius-sm);padding:14px 18px;font-size:1rem;font-weight:600;font-family:inherit;
-  }
-  .navy-input:focus{outline:none;border-color:var(--primary-light);box-shadow:0 0 0 5px rgba(6,182,212,.15);}
+  .btn-primary-gradient::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);animation:shineBtn 2.6s ease-in-out infinite}
+  .navy-input{background:var(--card-bg);border:2px solid rgba(30,64,175,.18);color:var(--text);transition:all .25s;width:100%;border-radius:var(--radius-sm);padding:14px 18px;font-size:1rem;font-weight:600;font-family:inherit}
+  .navy-input:focus{outline:none;border-color:var(--primary-light);box-shadow:0 0 0 5px rgba(6,182,212,.15)}
   .navy-input::placeholder{color:var(--text-muted);opacity:.6;font-weight:500}
-
-  /* ===== SELECT DROPDOWN KELAS ===== */
-  .navy-select {
-    background: var(--card-bg);
-    border: 2px solid rgba(30,64,175,.18);
-    color: var(--text);
-    transition: all .25s;
-    width: 100%;
-    border-radius: var(--radius-sm);
-    padding: 14px 44px 14px 18px;
-    font-size: 1rem;
-    font-weight: 700;
-    font-family: inherit;
-    cursor: pointer;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231e40af' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
-    background-repeat: no-repeat;
-    background-position: right 14px center;
-    background-size: 20px;
-  }
-  .navy-select:focus {
-    outline: none;
-    border-color: var(--primary-light);
-    box-shadow: 0 0 0 5px rgba(6,182,212,.15);
-  }
-  .navy-select:valid {
-    color: var(--text);
-  }
-  .navy-select.placeholder-active {
-    color: var(--text-muted);
-    font-weight: 500;
-  }
-
+  .navy-select{background:var(--card-bg);border:2px solid rgba(30,64,175,.18);color:var(--text);transition:all .25s;width:100%;border-radius:var(--radius-sm);padding:14px 44px 14px 18px;font-size:1rem;font-weight:700;font-family:inherit;cursor:pointer;appearance:none;-webkit-appearance:none;-moz-appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231e40af' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");background-repeat:no-repeat;background-position:right 14px center;background-size:20px}
+  .navy-select:focus{outline:none;border-color:var(--primary-light);box-shadow:0 0 0 5px rgba(6,182,212,.15)}
+  .navy-select.placeholder-active{color:var(--text-muted);font-weight:500}
   .game-frame{width:100%;max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:14px}
-  @media (min-width:1024px){ .game-frame{grid-template-columns:1fr 300px;gap:16px;} }
-
-  .question-text{font-size:1rem;font-weight:800;color:var(--text);line-height:1.55;word-wrap:break-word;font-family: 'Inter', sans-serif;}
-  @media (min-width:480px){ .question-text{font-size:1.08rem;} }
-  @media (min-width:768px){ .question-text{font-size:1.18rem;} }
-
+  @media (min-width:1024px){.game-frame{grid-template-columns:1fr 300px;gap:16px}}
+  .question-text{font-size:1rem;font-weight:800;color:var(--text);line-height:1.55;word-wrap:break-word;font-family:'Inter',sans-serif}
+  @media (min-width:480px){.question-text{font-size:1.08rem}}
+  @media (min-width:768px){.question-text{font-size:1.18rem}}
   .overflow-safe{word-wrap:break-word;overflow-wrap:break-word;hyphens:auto}
-
-  .lifeline-item{
-    padding:12px 6px;font-size:.75rem;border-radius:var(--radius-sm);
-    background: linear-gradient(135deg, #ffffff, #f0f9ff);
-    border:1.5px solid rgba(30,64,175,.18);transition: all .25s;color: var(--primary);font-weight: 800;
-  }
-  .lifeline-item:hover:not(:disabled){background: linear-gradient(135deg, rgba(6,182,212,.12), rgba(30,64,175,.06));border-color: var(--primary-light);transform: translateY(-3px);}
-  @media (min-width:640px){ .lifeline-item{padding:14px 8px;font-size:.8rem;} }
-
-  .timer-pill { transition: all 0.3s ease; }
-  .timer-pill.timer-warning { background: linear-gradient(135deg, rgba(245,158,11,.15), rgba(251,191,36,.10)) !important; border-color: rgba(245,158,11,.5) !important; animation: timerPulse 0.8s ease-in-out infinite; }
-  .timer-pill.timer-warning #timer-display { color: #8a6d00 !important; }
-  .timer-pill.timer-danger { background: linear-gradient(135deg, rgba(220,38,38,.15), rgba(192,57,43,.10)) !important; border-color: rgba(220,38,38,.6) !important; animation: timerDangerPulse 0.6s ease-in-out infinite; }
-  .timer-pill.timer-danger #timer-display { color: #dc2626 !important; font-weight: 900; }
-
-  input[type="text"], textarea, select { font-size: 16px !important; font-family: inherit; }
-  @media (min-width:640px){ input[type="text"], textarea, select { font-size: 1rem !important; } }
-
-  @media (max-width:640px){
-    .glass-panel{padding:14px}
-    .game-frame{gap:10px}
-    main{padding:12px 10px 20px !important}
-    header{padding:10px 12px !important}
-    footer{padding:10px 12px !important}
-  }
-  @media (max-width:380px){
-    body{font-size:14px}
-    .opt-btn{padding:12px 14px;font-size:.85rem;border-radius:10px}
-    .reveal-badge{font-size:1.5rem;padding:14px 28px;letter-spacing:2px}
-    .lock-btn{padding:14px 28px;font-size:.82rem;letter-spacing:1.8px}
-  }
-
-  #mustRepeatWarning{animation: fadeUp .6s cubic-bezier(.2,.9,.3,1.3) both;}
-  #mustRepeatWarning::before{content:''; position:absolute; top:0; left:8%; right:8%; height:3px; background: linear-gradient(90deg, transparent, #c0392b, #e74c3c, #c0392b, transparent); background-size: 200% 100%; animation: borderFlow 3s linear infinite;}
-  #btnSendScore{animation: fadeUp .5s cubic-bezier(.2,.9,.3,1.3) both;}
-  #btnSendScore:not(:disabled):hover{transform: translateY(-3px) scale(1.02);box-shadow: 0 14px 36px rgba(245,158,11,.65) !important;}
-  #btnSendScore:not(:disabled):active{transform: translateY(0) scale(.98);}
-  #btn-restart.must-repeat{animation: pulseRed 2s ease-in-out infinite;}
-  #btnLearnAgain {animation: learnPulse 2.2s ease-in-out infinite;text-decoration: none;}
-  #btnLearnAgain:hover {transform: translateY(-3px) scale(1.02);box-shadow: 0 16px 40px rgba(6,182,212,.7) !important;background: linear-gradient(135deg,#1e40af,#06b6d4,#3b82f6) !important;}
-  #btnLearnAgain:active {transform: translateY(0) scale(.98);}
+  .lifeline-item{padding:12px 6px;font-size:.75rem;border-radius:var(--radius-sm);background:linear-gradient(135deg, #ffffff, #f0f9ff);border:1.5px solid rgba(30,64,175,.18);transition:all .25s;color:var(--primary);font-weight:800}
+  .lifeline-item:hover:not(:disabled){background:linear-gradient(135deg, rgba(6,182,212,.12), rgba(30,64,175,.06));border-color:var(--primary-light);transform:translateY(-3px)}
+  @media (min-width:640px){.lifeline-item{padding:14px 8px;font-size:.8rem}}
+  .timer-pill{transition:all .3s ease}
+  .timer-pill.timer-warning{background:linear-gradient(135deg, rgba(245,158,11,.15), rgba(251,191,36,.10))!important;border-color:rgba(245,158,11,.5)!important;animation:timerPulse .8s ease-in-out infinite}
+  .timer-pill.timer-warning #timer-display{color:#8a6d00!important}
+  .timer-pill.timer-danger{background:linear-gradient(135deg, rgba(220,38,38,.15), rgba(192,57,43,.10))!important;border-color:rgba(220,38,38,.6)!important;animation:timerDangerPulse .6s ease-in-out infinite}
+  .timer-pill.timer-danger #timer-display{color:#dc2626!important;font-weight:900}
+  input[type="text"],textarea,select{font-size:16px!important;font-family:inherit}
+  @media (min-width:640px){input[type="text"],textarea,select{font-size:1rem!important}}
+  @media (max-width:640px){.glass-panel{padding:14px}.game-frame{gap:10px}main{padding:12px 10px 20px!important}header{padding:10px 12px!important}footer{padding:10px 12px!important}}
+  @media (max-width:380px){body{font-size:14px}.opt-btn{padding:12px 14px;font-size:.85rem;border-radius:10px}.reveal-badge{font-size:1.5rem;padding:14px 28px;letter-spacing:2px}.lock-btn{padding:14px 28px;font-size:.82rem;letter-spacing:1.8px}}
+  #mustRepeatWarning{animation:fadeUp .6s cubic-bezier(.2,.9,.3,1.3) both}
+  #mustRepeatWarning::before{content:'';position:absolute;top:0;left:8%;right:8%;height:3px;background:linear-gradient(90deg, transparent, #c0392b, #e74c3c, #c0392b, transparent);background-size:200% 100%;animation:borderFlow 3s linear infinite}
+  #btnSendScore{animation:fadeUp .5s cubic-bezier(.2,.9,.3,1.3) both}
+  #btnSendScore:not(:disabled):hover{transform:translateY(-3px) scale(1.02);box-shadow:0 14px 36px rgba(245,158,11,.65)!important}
+  #btnSendScore:not(:disabled):active{transform:translateY(0) scale(.98)}
+  #btn-restart.must-repeat{animation:pulseRed 2s ease-in-out infinite}
+  #btnLearnAgain{animation:learnPulse 2.2s ease-in-out infinite;text-decoration:none}
+  #btnLearnAgain:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 16px 40px rgba(6,182,212,.7)!important;background:linear-gradient(135deg,#1e40af,#06b6d4,#3b82f6)!important}
+  #btnLearnAgain:active{transform:translateY(0) scale(.98)}
 </style>
 </head>
 <body>
@@ -505,23 +218,12 @@ try {
   <div class="loader-satellite">
     <div class="loader-ring"></div>
     <svg viewBox="0 0 100 100" fill="none">
-      <defs>
-        <linearGradient id="satGrad" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#06b6d4"/>
-          <stop offset="50%" stop-color="#1e40af"/>
-          <stop offset="100%" stop-color="#fbbf24"/>
-        </linearGradient>
-      </defs>
-      <circle cx="50" cy="50" r="8" fill="#1e40af"/>
-      <circle cx="50" cy="50" r="4" fill="#06b6d4"/>
-      <rect x="20" y="46" width="14" height="8" fill="#3b82f6" rx="1"/>
-      <rect x="66" y="46" width="14" height="8" fill="#3b82f6" rx="1"/>
-      <line x1="34" y1="50" x2="42" y2="50" stroke="#1e40af" stroke-width="1.5"/>
-      <line x1="58" y1="50" x2="66" y2="50" stroke="#1e40af" stroke-width="1.5"/>
-      <circle cx="50" cy="26" r="3" fill="#fbbf24"/>
-      <line x1="50" y1="29" x2="50" y2="42" stroke="#1e40af" stroke-width="1"/>
-      <line x1="50" y1="58" x2="50" y2="74" stroke="#1e40af" stroke-width="1"/>
-      <circle cx="50" cy="26" r="8" fill="none" stroke="#fbbf24" stroke-width="1" opacity="0.5"/>
+      <defs><linearGradient id="satGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#06b6d4"/><stop offset="50%" stop-color="#1e40af"/><stop offset="100%" stop-color="#fbbf24"/></linearGradient></defs>
+      <circle cx="50" cy="50" r="8" fill="#1e40af"/><circle cx="50" cy="50" r="4" fill="#06b6d4"/>
+      <rect x="20" y="46" width="14" height="8" fill="#3b82f6" rx="1"/><rect x="66" y="46" width="14" height="8" fill="#3b82f6" rx="1"/>
+      <line x1="34" y1="50" x2="42" y2="50" stroke="#1e40af" stroke-width="1.5"/><line x1="58" y1="50" x2="66" y2="50" stroke="#1e40af" stroke-width="1.5"/>
+      <circle cx="50" cy="26" r="3" fill="#fbbf24"/><line x1="50" y1="29" x2="50" y2="42" stroke="#1e40af" stroke-width="1"/>
+      <line x1="50" y1="58" x2="50" y2="74" stroke="#1e40af" stroke-width="1"/><circle cx="50" cy="26" r="8" fill="none" stroke="#fbbf24" stroke-width="1" opacity="0.5"/>
       <ellipse cx="50" cy="50" rx="42" ry="12" stroke="url(#satGrad)" stroke-width="1" fill="none" opacity="0.4"/>
       <ellipse cx="50" cy="50" rx="12" ry="42" stroke="url(#satGrad)" stroke-width="1" fill="none" opacity="0.4"/>
     </svg>
@@ -530,7 +232,7 @@ try {
   <div class="loader-sub">Kuis Interaktif Geografi</div>
   <div class="loader-bar-track"><div class="loader-bar" id="loader-bar"></div></div>
   <div class="loader-percent" id="loader-percent">0%</div>
-  <div class="loader-tip" id="loader-tip">🛰️ Menyiapkan soal penginderaan jauh...</div>
+  <div class="loader-tip" id="loader-tip">🛰️ Menyiapkan 50 soal penginderaan jauh...</div>
 </div>
 
 <div id="particles"></div>
@@ -538,26 +240,14 @@ try {
 <header class="w-full border-b-2 border-blue-700/20 backdrop-blur-xl sticky top-0 z-40 px-3 py-2.5" style="background: linear-gradient(90deg, rgba(255,255,255,.95), rgba(240,249,255,.95), rgba(255,255,255,.95))">
   <div class="max-w-6xl mx-auto flex items-center justify-between gap-2">
     <div class="flex items-center gap-2 min-w-0 flex-1">
-      <div class="w-10 h-10 md:w-11 md:h-11 rounded-xl flex items-center justify-center text-white font-black text-lg md:text-xl shrink-0"
-        style="background: linear-gradient(135deg,#1e40af,#06b6d4); box-shadow: 0 6px 20px rgba(30,64,175,.30)">
-        🛰️
-      </div>
+      <div class="w-10 h-10 md:w-11 md:h-11 rounded-xl flex items-center justify-center text-white font-black text-lg md:text-xl shrink-0" style="background: linear-gradient(135deg,#1e40af,#06b6d4); box-shadow: 0 6px 20px rgba(30,64,175,.30)">🛰️</div>
       <div class="min-w-0 flex-1">
-        <h1 class="text-[12px] sm:text-sm md:text-lg font-black tracking-wide truncate"
-          style="font-family:'Space Grotesk',sans-serif; color:#1e40af;">
-          KUIS INTERAKTIF GEOGRAFI
-        </h1>
-        <p class="text-[10px] md:text-[12px] font-bold truncate">
-          <span class="school-name">SMAN 3 KASONGAN</span>
-          <span style="color:#3b82f6;"> • </span>
-          <span style="color:#1e40af; font-weight:900;">Kelas X / Fase E</span>
-        </p>
+        <h1 class="text-[12px] sm:text-sm md:text-lg font-black tracking-wide truncate" style="font-family:'Space Grotesk',sans-serif; color:#1e40af;">KUIS INTERAKTIF GEOGRAFI</h1>
+        <p class="text-[10px] md:text-[12px] font-bold truncate"><span class="school-name">SMAN 3 KASONGAN</span><span style="color:#3b82f6;"> • </span><span style="color:#1e40af; font-weight:900;">Kelas X / Fase E</span></p>
       </div>
     </div>
     <div class="flex items-center gap-1.5 shrink-0">
-      <div class="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full border-2" style="background: linear-gradient(135deg, rgba(30,64,175,.08), rgba(6,182,212,.06)); border-color: rgba(30,64,175,.20);">
-        <span class="text-[11px] font-black" style="color:#1e40af;">🛰️ PENGINDERAAN JAUH</span>
-      </div>
+      <div class="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full border-2" style="background: linear-gradient(135deg, rgba(30,64,175,.08), rgba(6,182,212,.06)); border-color: rgba(30,64,175,.20);"><span class="text-[11px] font-black" style="color:#1e40af;">🛰️ PENGINDERAAN JAUH</span></div>
       <button class="sound-toggle" id="sound-toggle" type="button" aria-label="Toggle suara">🔊</button>
     </div>
   </div>
@@ -566,55 +256,28 @@ try {
 <main class="max-w-5xl mx-auto w-full px-3 py-4 md:px-4 md:py-6 flex-1 flex flex-col justify-center items-center relative">
 
   <section id="start-screen" class="w-full max-w-lg glass-panel p-5 md:p-7 lg:p-9 rounded-2xl my-auto">
-    <div class="text-center mb-5">
-      <div class="school-badge mb-4">
-        <span>🏫</span>
-        <span class="school-name">SMAN 3 KASONGAN</span>
-      </div>
-    </div>
+    <div class="text-center mb-5"><div class="school-badge mb-4"><span>🏫</span><span class="school-name">SMAN 3 KASONGAN</span></div></div>
 
     <div class="text-center mb-6">
       <div class="text-5xl md:text-6xl mb-3" style="filter: drop-shadow(0 6px 20px rgba(30,64,175,.30)); animation: floatCard 3s ease-in-out infinite;">🛰️</div>
-      <h2 class="text-2xl md:text-3xl lg:text-4xl font-black mb-2 leading-tight"
-        style="font-family:'Space Grotesk',sans-serif; background: linear-gradient(135deg, #1e40af, #3b82f6, #06b6d4, #6366f1, #1e40af); background-size: 300% auto; -webkit-background-clip:text; background-clip:text; color:transparent; animation: shimmerText 4s ease-in-out infinite;">
-        KUIS INTERAKTIF GEOGRAFI
-      </h2>
-      <p class="text-sm md:text-base font-bold" style="color:#1e40af;">
-        Materi: <span style="color:#0e7490; font-weight:900; background: linear-gradient(135deg, rgba(6,182,212,.15), rgba(30,64,175,.10)); padding: 3px 12px; border-radius: 20px;">Penginderaan Jauh</span>
-      </p>
+      <h2 class="text-2xl md:text-3xl lg:text-4xl font-black mb-2 leading-tight" style="font-family:'Space Grotesk',sans-serif; background: linear-gradient(135deg, #1e40af, #3b82f6, #06b6d4, #6366f1, #1e40af); background-size: 300% auto; -webkit-background-clip:text; background-clip:text; color:transparent; animation: shimmerText 4s ease-in-out infinite;">KUIS INTERAKTIF GEOGRAFI</h2>
+      <p class="text-sm md:text-base font-bold" style="color:#1e40af;">Materi: <span style="color:#0e7490; font-weight:900; background: linear-gradient(135deg, rgba(6,182,212,.15), rgba(30,64,175,.10)); padding: 3px 12px; border-radius: 20px;">Penginderaan Jauh</span></p>
     </div>
 
     <div class="rounded-xl p-4 md:p-5 mb-6 space-y-3 text-sm md:text-base border-2" style="background: linear-gradient(135deg, rgba(30,64,175,.04), rgba(6,182,212,.02)); border-color: rgba(30,64,175,.12);">
-      <div class="flex items-center gap-3">
-        <span class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-black shrink-0" style="background: linear-gradient(135deg, #1e40af, #06b6d4); color:#fff;">1</span>
-        <span style="color:#0c1e3d; font-weight:700;">Jawab <b style="color:#1e40af;">15 soal</b> dari bank <b style="color:#1e40af;">30 soal</b></span>
-      </div>
-      <div class="flex items-center gap-3">
-        <span class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-black shrink-0" style="background: linear-gradient(135deg, #1e40af, #06b6d4); color:#fff;">2</span>
-        <span style="color:#0c1e3d; font-weight:700;">Waktu <b style="color:#1e40af;">60 detik</b> per soal — jangan kelamaan!</span>
-      </div>
-      <div class="flex items-center gap-3">
-        <span class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-black shrink-0" style="background: linear-gradient(135deg, #1e40af, #06b6d4); color:#fff;">3</span>
-        <span style="color:#0c1e3d; font-weight:700;">Gunakan <b style="color:#1e40af;">3 bantuan</b>: 50:50, Petunjuk, Lewati</span>
-      </div>
-      <div class="flex items-center gap-3">
-        <span class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-black shrink-0" style="background: linear-gradient(135deg, #f59e0b, #fbbf24); color:#fff;">4</span>
-        <span style="color:#0c1e3d; font-weight:700;">Skor minimal <b style="color:#c0392b;">75</b> (12 benar dari 15) untuk bisa kirim — kalau belum, <b style="color:#c0392b;">wajib ulang!</b></span>
-      </div>
+      <div class="flex items-center gap-3"><span class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-black shrink-0" style="background: linear-gradient(135deg, #1e40af, #06b6d4); color:#fff;">1</span><span style="color:#0c1e3d; font-weight:700;">Jawab <b style="color:#1e40af;">15 soal</b> dari bank <b style="color:#1e40af;">50 soal</b></span></div>
+      <div class="flex items-center gap-3"><span class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-black shrink-0" style="background: linear-gradient(135deg, #1e40af, #06b6d4); color:#fff;">2</span><span style="color:#0c1e3d; font-weight:700;">Soal <b style="color:#1e40af;">anti-berulang</b> — setiap mengulang dapat soal berbeda!</span></div>
+      <div class="flex items-center gap-3"><span class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-black shrink-0" style="background: linear-gradient(135deg, #1e40af, #06b6d4); color:#fff;">3</span><span style="color:#0c1e3d; font-weight:700;">Waktu <b style="color:#1e40af;">60 detik</b>/soal + <b style="color:#1e40af;">3 bantuan</b>: 50:50, Petunjuk, Lewati</span></div>
+      <div class="flex items-center gap-3"><span class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-black shrink-0" style="background: linear-gradient(135deg, #f59e0b, #fbbf24); color:#fff;">4</span><span style="color:#0c1e3d; font-weight:700;">Skor minimal <b style="color:#c0392b;">75</b> (12 benar dari 15) untuk kirim — kalau belum, <b style="color:#c0392b;">wajib ulang!</b></span></div>
     </div>
 
     <form id="start-form" class="space-y-4">
       <div>
-        <label for="student-name" class="block text-xs md:text-sm font-black uppercase tracking-wider mb-2" style="color:#1e40af;">
-          Nama Siswa <span style="color:#c0392b;">*</span>
-        </label>
+        <label for="student-name" class="block text-xs md:text-sm font-black uppercase tracking-wider mb-2" style="color:#1e40af;">Nama Siswa <span style="color:#c0392b;">*</span></label>
         <input type="text" id="student-name" required placeholder="Tulis namamu di sini..." class="navy-input">
       </div>
-
       <div>
-        <label for="student-class" class="block text-xs md:text-sm font-black uppercase tracking-wider mb-2" style="color:#1e40af;">
-          Kelas <span style="color:#c0392b;">*</span>
-        </label>
+        <label for="student-class" class="block text-xs md:text-sm font-black uppercase tracking-wider mb-2" style="color:#1e40af;">Kelas <span style="color:#c0392b;">*</span></label>
         <select id="student-class" required class="navy-select placeholder-active">
           <option value="" disabled selected>— Pilih Kelas —</option>
           <option value="KELAS X - A">KELAS X - A</option>
@@ -622,27 +285,17 @@ try {
           <option value="KELAS X - C">KELAS X - C</option>
         </select>
       </div>
-
       <button type="submit" id="btn-start" class="btn-primary-gradient">▶ MULAI KUIS</button>
     </form>
 
     <div id="best-score-summary" class="is-hidden mt-5 pt-5 border-t-2 text-center" style="border-color: rgba(30,64,175,.12);">
       <div class="text-xs uppercase tracking-widest font-black mb-2" style="color:#1e40af;">🏆 Skor Terbaikmu</div>
       <div class="flex justify-center gap-4 text-sm">
-        <div>
-          <div class="text-[10px] uppercase font-black" style="color:#3b82f6;">Benar</div>
-          <div id="best-score-correct" class="font-black text-base" style="color:#06b6d4;">0/15</div>
-        </div>
+        <div><div class="text-[10px] uppercase font-black" style="color:#3b82f6;">Benar</div><div id="best-score-correct" class="font-black text-base" style="color:#06b6d4;">0/15</div></div>
         <div class="border-l-2" style="border-color: rgba(30,64,175,.12);"></div>
-        <div>
-          <div class="text-[10px] uppercase font-black" style="color:#3b82f6;">Skor</div>
-          <div id="best-score-points" class="font-black text-base" style="color:#1e40af;">0</div>
-        </div>
+        <div><div class="text-[10px] uppercase font-black" style="color:#3b82f6;">Skor</div><div id="best-score-points" class="font-black text-base" style="color:#1e40af;">0</div></div>
         <div class="border-l-2" style="border-color: rgba(30,64,175,.12);"></div>
-        <div>
-          <div class="text-[10px] uppercase font-black" style="color:#3b82f6;">Gelar</div>
-          <div id="best-score-title" class="font-black text-xs mt-0.5" style="color:#b8860b;">—</div>
-        </div>
+        <div><div class="text-[10px] uppercase font-black" style="color:#3b82f6;">Gelar</div><div id="best-score-title" class="font-black text-xs mt-0.5" style="color:#b8860b;">—</div></div>
       </div>
     </div>
 
@@ -653,23 +306,13 @@ try {
     <div class="space-y-3 md:space-y-4 min-w-0">
       <div class="glass-panel p-3 md:p-4 rounded-xl flex items-center justify-between text-xs md:text-sm flex-wrap gap-2">
         <div class="flex items-center gap-2 flex-wrap">
-          <div class="px-3 py-1.5 rounded-lg border-2 flex items-center gap-1.5" style="background: linear-gradient(135deg, rgba(30,64,175,.06), rgba(6,182,212,.04)); border-color: rgba(30,64,175,.15);">
-            👤 <span id="player-display-name" class="font-black max-w-[110px] md:max-w-none truncate" style="color:#1e40af;">Siswa</span>
-          </div>
-          <div class="px-3 py-1.5 rounded-lg border-2 flex items-center gap-1.5" style="background: linear-gradient(135deg, rgba(99,102,241,.10), rgba(30,64,175,.06)); border-color: rgba(99,102,241,.30);">
-            🎓 <span id="player-display-class" class="font-black max-w-[100px] md:max-w-none truncate" style="color:#4338ca;">-</span>
-          </div>
-          <div class="px-3 py-1.5 rounded-lg border-2" style="background: linear-gradient(135deg, rgba(6,182,212,.10), rgba(30,64,175,.06)); border-color: rgba(6,182,212,.30);">
-            ⚡ <span id="xp-counter" class="font-black" style="color:#1e40af;">0</span>
-          </div>
+          <div class="px-3 py-1.5 rounded-lg border-2 flex items-center gap-1.5" style="background: linear-gradient(135deg, rgba(30,64,175,.06), rgba(6,182,212,.04)); border-color: rgba(30,64,175,.15);">👤 <span id="player-display-name" class="font-black max-w-[110px] md:max-w-none truncate" style="color:#1e40af;">Siswa</span></div>
+          <div class="px-3 py-1.5 rounded-lg border-2 flex items-center gap-1.5" style="background: linear-gradient(135deg, rgba(99,102,241,.10), rgba(30,64,175,.06)); border-color: rgba(99,102,241,.30);">🎓 <span id="player-display-class" class="font-black max-w-[100px] md:max-w-none truncate" style="color:#4338ca;">-</span></div>
+          <div class="px-3 py-1.5 rounded-lg border-2" style="background: linear-gradient(135deg, rgba(6,182,212,.10), rgba(30,64,175,.06)); border-color: rgba(6,182,212,.30);">⚡ <span id="xp-counter" class="font-black" style="color:#1e40af;">0</span></div>
         </div>
         <div class="flex items-center gap-2">
-          <div id="streak-container" class="is-hidden px-3 py-1.5 rounded-lg border-2" style="background: linear-gradient(135deg, rgba(245,158,11,.15), rgba(251,191,36,.10)); border-color: rgba(245,158,11,.35);">
-            🔥 <span id="streak-counter" class="font-black" style="color:#8a6d00;">0</span>
-          </div>
-          <div id="timer-pill" class="timer-pill px-3 py-1.5 rounded-lg border-2" style="background: linear-gradient(135deg, rgba(30,64,175,.06), rgba(6,182,212,.04)); border-color: rgba(30,64,175,.15);">
-            ⏱️ <span id="timer-display" class="font-mono font-black" style="color:#1e40af;">60</span>
-          </div>
+          <div id="streak-container" class="is-hidden px-3 py-1.5 rounded-lg border-2" style="background: linear-gradient(135deg, rgba(245,158,11,.15), rgba(251,191,36,.10)); border-color: rgba(245,158,11,.35);">🔥 <span id="streak-counter" class="font-black" style="color:#8a6d00;">0</span></div>
+          <div id="timer-pill" class="timer-pill px-3 py-1.5 rounded-lg border-2" style="background: linear-gradient(135deg, rgba(30,64,175,.06), rgba(6,182,212,.04)); border-color: rgba(30,64,175,.15);">⏱️ <span id="timer-display" class="font-mono font-black" style="color:#1e40af;">60</span></div>
         </div>
       </div>
 
@@ -684,18 +327,9 @@ try {
       <div class="glass-panel p-3 md:p-4 rounded-xl">
         <div class="text-[10px] md:text-xs font-black text-center mb-2 tracking-widest uppercase" style="color:#1e40af;">Bantuan (masing-masing 1x pakai)</div>
         <div class="flex justify-center gap-2 md:gap-3">
-          <button id="lifeline-5050" type="button" class="lifeline-item flex-1 max-w-[150px] cursor-pointer" aria-label="Bantuan 50:50">
-            <div class="flex items-center justify-center gap-1">✂️ <span>50:50</span></div>
-            <div class="text-[9px] md:text-[10px] mt-0.5 font-semibold" style="color:#475569;">Hapus 2 salah</div>
-          </button>
-          <button id="lifeline-hint" type="button" class="lifeline-item flex-1 max-w-[150px] cursor-pointer" aria-label="Bantuan Petunjuk">
-            <div class="flex items-center justify-center gap-1">💡 <span>Petunjuk</span></div>
-            <div class="text-[9px] md:text-[10px] mt-0.5 font-semibold" style="color:#475569;">Guru memberi hint</div>
-          </button>
-          <button id="lifeline-skip" type="button" class="lifeline-item flex-1 max-w-[150px] cursor-pointer" aria-label="Bantuan Lewati">
-            <div class="flex items-center justify-center gap-1">⏭️ <span>Lewati</span></div>
-            <div class="text-[9px] md:text-[10px] mt-0.5 font-semibold" style="color:#475569;">Tanpa pengurangan</div>
-          </button>
+          <button id="lifeline-5050" type="button" class="lifeline-item flex-1 max-w-[150px] cursor-pointer" aria-label="Bantuan 50:50"><div class="flex items-center justify-center gap-1">✂️ <span>50:50</span></div><div class="text-[9px] md:text-[10px] mt-0.5 font-semibold" style="color:#475569;">Hapus 2 salah</div></button>
+          <button id="lifeline-hint" type="button" class="lifeline-item flex-1 max-w-[150px] cursor-pointer" aria-label="Bantuan Petunjuk"><div class="flex items-center justify-center gap-1">💡 <span>Petunjuk</span></div><div class="text-[9px] md:text-[10px] mt-0.5 font-semibold" style="color:#475569;">Guru memberi hint</div></button>
+          <button id="lifeline-skip" type="button" class="lifeline-item flex-1 max-w-[150px] cursor-pointer" aria-label="Bantuan Lewati"><div class="flex items-center justify-center gap-1">⏭️ <span>Lewati</span></div><div class="text-[9px] md:text-[10px] mt-0.5 font-semibold" style="color:#475569;">Tanpa pengurangan</div></button>
         </div>
       </div>
 
@@ -710,7 +344,6 @@ try {
           </div>
         </div>
         <h3 id="question-text" class="question-text overflow-safe" style="position:relative;z-index:1;">Memuat pertanyaan...</h3>
-
         <div id="hint-panel" class="is-hidden mt-4 p-4 rounded-xl" style="background: linear-gradient(135deg, rgba(6,182,212,.10), rgba(30,64,175,.04)); border: 2px solid rgba(6,182,212,.30); position:relative; z-index:1;">
           <div class="text-xs font-black tracking-widest mb-2 flex items-center gap-1.5" style="color:#1e40af;">💡 Petunjuk dari Guru</div>
           <div class="text-xs md:text-sm font-semibold leading-relaxed overflow-safe" style="color:#0c1e3d;" id="hint-text"></div>
@@ -718,16 +351,11 @@ try {
       </div>
 
       <div id="answers-container" class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4"></div>
-
-      <div id="lock-btn-container" class="lock-btn-container is-hidden">
-        <button id="btn-lock-answer" type="button" class="lock-btn">🔒 KUNCI JAWABAN</button>
-      </div>
+      <div id="lock-btn-container" class="lock-btn-container is-hidden"><button id="btn-lock-answer" type="button" class="lock-btn">🔒 KUNCI JAWABAN</button></div>
     </div>
 
     <div class="glass-panel p-4 rounded-2xl hidden lg:flex flex-col">
-      <div class="text-sm font-black uppercase mb-3 flex items-center gap-1.5" style="color:#1e40af;">
-        <span>🏆</span> Progres Level
-      </div>
+      <div class="text-sm font-black uppercase mb-3 flex items-center gap-1.5" style="color:#1e40af;"><span>🏆</span> Progres Level</div>
       <div id="prize-ladder" class="space-y-1 text-xs font-mono"></div>
     </div>
   </section>
@@ -738,10 +366,7 @@ try {
     <div class="glass-panel max-w-lg w-full p-5 md:p-7 rounded-2xl my-auto" id="feedback-modal-content" style="border: 3px solid rgba(6,182,212,.5)">
       <div class="flex items-center gap-3 mb-4">
         <div id="feedback-icon-bg" class="w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center text-2xl md:text-3xl font-black shrink-0" style="background: linear-gradient(135deg, rgba(6,182,212,.20), rgba(30,64,175,.10)); color:#1e40af; border: 2px solid rgba(6,182,212,.50);">✓</div>
-        <div class="min-w-0">
-          <h3 id="feedback-title" class="text-lg md:text-2xl font-black truncate" style="font-family:'Space Grotesk',sans-serif; color:#1e40af;">🎉 BENAR!</h3>
-          <p id="feedback-subtitle" class="text-xs md:text-sm font-bold" style="color:#475569;">Apresiasi dan Penjelasan</p>
-        </div>
+        <div class="min-w-0"><h3 id="feedback-title" class="text-lg md:text-2xl font-black truncate" style="font-family:'Space Grotesk',sans-serif; color:#1e40af;">🎉 BENAR!</h3><p id="feedback-subtitle" class="text-xs md:text-sm font-bold" style="color:#475569;">Apresiasi dan Penjelasan</p></div>
       </div>
       <div id="feedback-details" class="my-4"></div>
       <div class="my-4">
@@ -750,10 +375,7 @@ try {
         <div class="fb-section yours" id="fb-yours-section"><div class="fb-t">⚠️ Analisis Pilihanmu</div><div class="fb-b" id="fb-yours">—</div></div>
         <div class="fb-section key"><div class="fb-t">🎯 Poin Kunci untuk Diingat</div><div class="fb-b" id="fb-key">—</div></div>
       </div>
-      <button type="button" id="btn-next" class="w-full font-black py-4 px-5 rounded-xl cursor-pointer transition text-sm md:text-base"
-        style="background: linear-gradient(135deg,#1e40af,#3b82f6,#06b6d4); background-size:200% auto; color:#fff; font-family:'Space Grotesk',sans-serif; letter-spacing:1.5px;">
-        ➡ LANJUT KE SOAL BERIKUTNYA
-      </button>
+      <button type="button" id="btn-next" class="w-full font-black py-4 px-5 rounded-xl cursor-pointer transition text-sm md:text-base" style="background: linear-gradient(135deg,#1e40af,#3b82f6,#06b6d4); background-size:200% auto; color:#fff; font-family:'Space Grotesk',sans-serif; letter-spacing:1.5px;">➡ LANJUT KE SOAL BERIKUTNYA</button>
     </div>
   </div>
 
@@ -795,10 +417,7 @@ try {
             <circle class="track" cx="60" cy="60" r="50" stroke-width="9"/>
             <circle class="bar" cx="60" cy="60" r="50" stroke-width="9" stroke="url(#scGrad)" stroke-dasharray="314.16" stroke-dashoffset="314.16" id="score-circle-bar"/>
           </svg>
-          <div class="inner">
-            <div class="num" id="score-circle-num">0</div>
-            <div class="lbl">Skor</div>
-          </div>
+          <div class="inner"><div class="num" id="score-circle-num">0</div><div class="lbl">Skor</div></div>
         </div>
         <div class="flex flex-col items-center gap-2">
           <div id="grade-badge" class="grade-badge-big grade-A">A</div>
@@ -827,45 +446,17 @@ try {
       </div>
     </div>
 
-    <div id="mustRepeatWarning" class="is-hidden glass-panel p-5 md:p-6 rounded-2xl text-center"
-         style="border: 2px solid rgba(192,57,43,.5); background: linear-gradient(135deg, rgba(192,57,43,.10), rgba(127,29,29,.05));">
+    <div id="mustRepeatWarning" class="is-hidden glass-panel p-5 md:p-6 rounded-2xl text-center" style="border: 2px solid rgba(192,57,43,.5); background: linear-gradient(135deg, rgba(192,57,43,.10), rgba(127,29,29,.05));">
       <div class="text-5xl md:text-6xl mb-2">🚫</div>
-      <div class="text-base md:text-xl font-black mb-2" style="color:#a04400;">
-        NILAI BELUM MEMENUHI SYARAT
-      </div>
-      <div class="text-sm md:text-base font-bold leading-relaxed mb-2" style="color:#7a1f16;">
-        Skormu <span id="mustRepeatScore" class="font-mono font-black text-xl md:text-2xl" style="color:#c0392b;">0</span> — belum mencapai batas minimum <b style="color:#c0392b;">75</b> (12 benar dari 15).
-      </div>
-      <div class="text-sm md:text-base font-black leading-relaxed" style="color:#c0392b;">
-        📚 Pelajari kembali materi <b>Penginderaan Jauh</b>,<br class="md:hidden">
-        lalu <b>WAJIB MENGULANG</b> kuis ini! 💪
-      </div>
-
-      <a id="btnLearnAgain"
-         href="https://maedafarhansyah-pixel.github.io/e-geografi-sman3kasongan/PENGINDERAANJAUH.html"
-         target="_blank"
-         rel="noopener noreferrer"
-         class="mt-5 w-full font-black p-3.5 md:p-4 rounded-2xl text-sm md:text-base cursor-pointer border-2 transition-all block"
-         style="background: linear-gradient(135deg,#1e40af,#3b82f6,#06b6d4); color:#ffffff; border-color: rgba(255,255,255,.55); box-shadow: 0 8px 22px rgba(30,64,175,.4); text-align: center; text-decoration: none;">
-        📖 BELAJAR KEMBALI MATERI PENGINDERAAN JAUH
-      </a>
-
-      <div class="text-[10px] md:text-xs italic font-semibold mt-3" style="color:#7a1f16;">
-        💡 Buka materi di tab baru, lalu kembali ke sini untuk ulangi kuis
-      </div>
+      <div class="text-base md:text-xl font-black mb-2" style="color:#a04400;">NILAI BELUM MEMENUHI SYARAT</div>
+      <div class="text-sm md:text-base font-bold leading-relaxed mb-2" style="color:#7a1f16;">Skormu <span id="mustRepeatScore" class="font-mono font-black text-xl md:text-2xl" style="color:#c0392b;">0</span> — belum mencapai batas minimum <b style="color:#c0392b;">75</b> (12 benar dari 15).</div>
+      <div class="text-sm md:text-base font-black leading-relaxed" style="color:#c0392b;">📚 Pelajari kembali materi <b>Penginderaan Jauh</b>,<br class="md:hidden">lalu <b>WAJIB MENGULANG</b> kuis ini! 💪</div>
+      <a id="btnLearnAgain" href="https://maedafarhansyah-pixel.github.io/e-geografi-sman3kasongan/PENGINDERAANJAUH.html" target="_blank" rel="noopener noreferrer" class="mt-5 w-full font-black p-3.5 md:p-4 rounded-2xl text-sm md:text-base cursor-pointer border-2 transition-all block" style="background: linear-gradient(135deg,#1e40af,#3b82f6,#06b6d4); color:#ffffff; border-color: rgba(255,255,255,.55); box-shadow: 0 8px 22px rgba(30,64,175,.4); text-align: center; text-decoration: none;">📖 BELAJAR KEMBALI MATERI PENGINDERAAN JAUH</a>
+      <div class="text-[10px] md:text-xs italic font-semibold mt-3" style="color:#7a1f16;">💡 Buka materi di tab baru, lalu kembali ke sini untuk ulangi kuis</div>
     </div>
 
-    <button id="btnSendScore" type="button"
-      class="is-hidden w-full font-black p-4 md:p-5 rounded-2xl text-sm md:text-base cursor-pointer border-2 transition-all"
-      style="background: linear-gradient(135deg,#f59e0b,#fbbf24); color:#ffffff; border-color: rgba(255,255,255,.55); box-shadow: 0 8px 22px rgba(245,158,11,.5)"
-      aria-label="Kirim nilai ke guru">
-      📤 KIRIM NILAI KE GURU
-    </button>
-
-    <div id="sendStatus" class="is-hidden text-center text-xs md:text-sm font-black py-3 px-4 rounded-2xl"
-         style="background: rgba(6,182,212,.10); color:#1e40af; border: 1.5px solid rgba(30,64,175,.25)">
-      ⏳ Mengirim nilai...
-    </div>
+    <button id="btnSendScore" type="button" class="is-hidden w-full font-black p-4 md:p-5 rounded-2xl text-sm md:text-base cursor-pointer border-2 transition-all" style="background: linear-gradient(135deg,#f59e0b,#fbbf24); color:#ffffff; border-color: rgba(255,255,255,.55); box-shadow: 0 8px 22px rgba(245,158,11,.5)" aria-label="Kirim nilai ke guru">📤 KIRIM NILAI KE GURU</button>
+    <div id="sendStatus" class="is-hidden text-center text-xs md:text-sm font-black py-3 px-4 rounded-2xl" style="background: rgba(6,182,212,.10); color:#1e40af; border: 1.5px solid rgba(30,64,175,.25)">⏳ Mengirim nilai...</div>
 
     <div class="grid grid-cols-2 gap-2 md:grid-cols-4">
       <button type="button" id="btn-restart" class="font-black p-3 md:p-4 rounded-xl text-xs md:text-sm cursor-pointer shadow-lg" style="background: linear-gradient(135deg,#1e40af,#06b6d4); color:#fff;">🔄 MAIN LAGI</button>
@@ -900,20 +491,12 @@ function setText(id,t){const el=document.getElementById(id);if(el)el.textContent
 function setHTML(id,h){const el=document.getElementById(id);if(el)el.innerHTML=h;}
 function bind(id,h){const el=document.getElementById(id);if(el)el.addEventListener('click',h);}
 
-/* ============================================================
-   KONFIGURASI
-   ============================================================ */
-const MIN_SCORE_TO_PASS = 75;   // 12 benar dari 15
-const TIMER_PER_QUESTION = 60;  // detik per soal
+const MIN_SCORE_TO_PASS = 75;
+const TIMER_PER_QUESTION = 60;
 
-/* ============================================================
-   SOUND PERSISTENCE
-   ============================================================ */
 const SOUND_KEY = 'kuis_inderaja_sound_v1';
 let soundMuted = false;
-try {
-  soundMuted = localStorage.getItem(SOUND_KEY) === 'muted';
-} catch(e) { soundMuted = false; }
+try { soundMuted = localStorage.getItem(SOUND_KEY) === 'muted'; } catch(e) { soundMuted = false; }
 
 let audioCtx=null;
 function playTone(freq,dur,type,vol,delay){
@@ -949,67 +532,34 @@ function sfx(type){
   }catch(e){}
 }
 function safeConfetti(o){try{if(typeof confetti==='function')confetti(o);}catch(e){}}
+function haptic(pattern){try{if(navigator.vibrate && !soundMuted){navigator.vibrate(pattern);}}catch(e){}}
 
-function haptic(pattern){
-  try{
-    if(navigator.vibrate && !soundMuted){
-      if(typeof pattern === 'number') navigator.vibrate(pattern);
-      else navigator.vibrate(pattern);
-    }
-  }catch(e){}
-}
-
-/* ============================================================
-   BEFOREUNLOAD WARNING
-   ============================================================ */
 let kuisAktif = false;
 window.addEventListener('beforeunload', function(e) {
-  if (kuisAktif) {
-    e.preventDefault();
-    e.returnValue = '';
-    return '';
-  }
+  if (kuisAktif) { e.preventDefault(); e.returnValue = ''; return ''; }
 });
 
-/* ============================================================
-   EFFECTS
-   ============================================================ */
 function compassNeedleEffect(){
   try{
     const el = document.createElement('div');
     el.className = 'compass-needle-fx';
-    el.innerHTML = '<svg viewBox="0 0 100 100" fill="none">'+
-      '<defs><linearGradient id="cnGrad" x1="0" y1="0" x2="1" y2="1">'+
-      '<stop offset="0%" stop-color="#06b6d4"/><stop offset="50%" stop-color="#1e40af"/><stop offset="100%" stop-color="#fbbf24"/></linearGradient></defs>'+
-      '<circle cx="50" cy="50" r="38" stroke="url(#cnGrad)" stroke-width="2.5" fill="none" opacity="0.5"/>'+
-      '<circle cx="50" cy="50" r="8" fill="#1e40af"/>'+
-      '<circle cx="50" cy="50" r="4" fill="#06b6d4"/>'+
-      '<rect x="20" y="46" width="14" height="8" fill="#3b82f6" rx="1"/>'+
-      '<rect x="66" y="46" width="14" height="8" fill="#3b82f6" rx="1"/>'+
-      '<ellipse cx="50" cy="50" rx="42" ry="12" stroke="url(#cnGrad)" stroke-width="1" fill="none" opacity="0.6"/>'+
-      '<ellipse cx="50" cy="50" rx="12" ry="42" stroke="url(#cnGrad)" stroke-width="1" fill="none" opacity="0.6"/>'+
-      '</svg>';
+    el.innerHTML = '<svg viewBox="0 0 100 100" fill="none"><defs><linearGradient id="cnGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#06b6d4"/><stop offset="50%" stop-color="#1e40af"/><stop offset="100%" stop-color="#fbbf24"/></linearGradient></defs><circle cx="50" cy="50" r="38" stroke="url(#cnGrad)" stroke-width="2.5" fill="none" opacity="0.5"/><circle cx="50" cy="50" r="8" fill="#1e40af"/><circle cx="50" cy="50" r="4" fill="#06b6d4"/><rect x="20" y="46" width="14" height="8" fill="#3b82f6" rx="1"/><rect x="66" y="46" width="14" height="8" fill="#3b82f6" rx="1"/><ellipse cx="50" cy="50" rx="42" ry="12" stroke="url(#cnGrad)" stroke-width="1" fill="none" opacity="0.6"/><ellipse cx="50" cy="50" rx="12" ry="42" stroke="url(#cnGrad)" stroke-width="1" fill="none" opacity="0.6"/></svg>';
     document.body.appendChild(el);
     setTimeout(function(){el.remove();},1300);
   }catch(e){}
 }
-
 function gpsPinDrop(btn){
   try{
     if(!btn) return;
     const pin = document.createElement('div');
-    pin.className = 'gps-pin';
-    pin.textContent = '📡';
-    btn.style.position = 'relative';
-    btn.appendChild(pin);
+    pin.className = 'gps-pin'; pin.textContent = '📡';
+    btn.style.position = 'relative'; btn.appendChild(pin);
     const ripple = document.createElement('div');
-    ripple.className = 'gps-pin-ripple';
-    btn.appendChild(ripple);
+    ripple.className = 'gps-pin-ripple'; btn.appendChild(ripple);
     sfx('pin');
     setTimeout(function(){pin.remove();ripple.remove();},500);
   }catch(e){}
 }
-
 function radarSweepEffect(){
   try{
     const el = document.createElement('div');
@@ -1019,7 +569,6 @@ function radarSweepEffect(){
     setTimeout(function(){el.remove();},1600);
   }catch(e){}
 }
-
 function drawContourLines(){
   try{
     const bg = document.getElementById('contour-bg');
@@ -1027,52 +576,30 @@ function drawContourLines(){
     bg.innerHTML = '';
     const svgNS = 'http://www.w3.org/2000/svg';
     const svg = document.createElementNS(svgNS,'svg');
-    svg.setAttribute('viewBox','0 0 400 300');
-    svg.setAttribute('preserveAspectRatio','none');
+    svg.setAttribute('viewBox','0 0 400 300'); svg.setAttribute('preserveAspectRatio','none');
     const defs = document.createElementNS(svgNS,'defs');
     const grad = document.createElementNS(svgNS,'linearGradient');
-    grad.setAttribute('id','contourGrad');
-    grad.setAttribute('x1','0');grad.setAttribute('y1','0');
-    grad.setAttribute('x2','1');grad.setAttribute('y2','1');
-    const s1 = document.createElementNS(svgNS,'stop');
-    s1.setAttribute('offset','0%');s1.setAttribute('stop-color','#1e40af');s1.setAttribute('stop-opacity','.5');
-    const s2 = document.createElementNS(svgNS,'stop');
-    s2.setAttribute('offset','50%');s2.setAttribute('stop-color','#06b6d4');s2.setAttribute('stop-opacity','.4');
-    const s3 = document.createElementNS(svgNS,'stop');
-    s3.setAttribute('offset','100%');s3.setAttribute('stop-color','#fbbf24');s3.setAttribute('stop-opacity','.4');
+    grad.setAttribute('id','contourGrad'); grad.setAttribute('x1','0');grad.setAttribute('y1','0'); grad.setAttribute('x2','1');grad.setAttribute('y2','1');
+    const s1 = document.createElementNS(svgNS,'stop'); s1.setAttribute('offset','0%');s1.setAttribute('stop-color','#1e40af');s1.setAttribute('stop-opacity','.5');
+    const s2 = document.createElementNS(svgNS,'stop'); s2.setAttribute('offset','50%');s2.setAttribute('stop-color','#06b6d4');s2.setAttribute('stop-opacity','.4');
+    const s3 = document.createElementNS(svgNS,'stop'); s3.setAttribute('offset','100%');s3.setAttribute('stop-color','#fbbf24');s3.setAttribute('stop-opacity','.4');
     grad.appendChild(s1);grad.appendChild(s2);grad.appendChild(s3);
     defs.appendChild(grad);svg.appendChild(defs);
-    const paths = [
-      'M -20,80 Q 80,20 200,70 T 420,40',
-      'M -20,130 Q 100,80 220,120 T 420,90',
-      'M -20,180 Q 120,140 240,170 T 420,150',
-      'M -20,230 Q 140,200 260,220 T 420,210',
-      'M -20,280 Q 160,260 280,270 T 420,260'
-    ];
-    paths.forEach(function(d){
-      const p = document.createElementNS(svgNS,'path');
-      p.setAttribute('d',d);
-      svg.appendChild(p);
-    });
+    const paths = ['M -20,80 Q 80,20 200,70 T 420,40','M -20,130 Q 100,80 220,120 T 420,90','M -20,180 Q 120,140 240,170 T 420,150','M -20,230 Q 140,200 260,220 T 420,210','M -20,280 Q 160,260 280,270 T 420,260'];
+    paths.forEach(function(d){ const p = document.createElementNS(svgNS,'path'); p.setAttribute('d',d); svg.appendChild(p); });
     bg.appendChild(svg);
   }catch(e){}
 }
-
 function tectonicShakeEffect(){
   try{
     const panel = document.getElementById('question-panel');
     if(!panel) return;
     panel.classList.add('tectonic-shake');
-    const fault = document.createElement('div');
-    fault.className = 'fault-line';
+    const fault = document.createElement('div'); fault.className = 'fault-line';
     panel.appendChild(fault);
-    setTimeout(function(){
-      panel.classList.remove('tectonic-shake');
-      fault.remove();
-    },600);
+    setTimeout(function(){ panel.classList.remove('tectonic-shake'); fault.remove(); },600);
   }catch(e){}
 }
-
 function renderWaypointTrail(){
   try{
     const trail = document.getElementById('waypoint-trail');
@@ -1081,16 +608,9 @@ function renderWaypointTrail(){
     const total = (currentQuestions && currentQuestions.length) ? currentQuestions.length : 15;
     trail.innerHTML = '';
     for(let i=0;i<total;i++){
-      const dot = document.createElement('div');
-      dot.className = 'waypoint-dot';
-      dot.id = 'wp-dot-'+i;
+      const dot = document.createElement('div'); dot.className = 'waypoint-dot'; dot.id = 'wp-dot-'+i;
       trail.appendChild(dot);
-      if(i < total-1){
-        const line = document.createElement('div');
-        line.className = 'waypoint-line';
-        line.id = 'wp-line-'+i;
-        trail.appendChild(line);
-      }
+      if(i < total-1){ const line = document.createElement('div'); line.className = 'waypoint-line'; line.id = 'wp-line-'+i; trail.appendChild(line); }
     }
     if(txt) txt.textContent = 'Soal '+(currentQuestionIndex+1)+' / '+total;
     updateWaypointTrail();
@@ -1109,19 +629,13 @@ function updateWaypointTrail(){
         if(hist && hist.isSkipped) dot.classList.add('skipped');
         else if(hist && hist.isTimedOut) dot.classList.add('timedout');
         else dot.classList.add('done');
-      } else if(i === currentQuestionIndex){
-        dot.classList.add('active');
-      }
-      if(line){
-        line.className = 'waypoint-line';
-        if(i < currentQuestionIndex) line.classList.add('done');
-      }
+      } else if(i === currentQuestionIndex){ dot.classList.add('active'); }
+      if(line){ line.className = 'waypoint-line'; if(i < currentQuestionIndex) line.classList.add('done'); }
     }
     const txt = document.getElementById('waypoint-text');
     if(txt) txt.textContent = 'Soal '+(currentQuestionIndex+1)+' / '+total;
   }catch(e){}
 }
-
 function showAchievementStamp(){
   try{
     const stamp = document.getElementById('achievement-stamp');
@@ -1137,7 +651,7 @@ function showAchievementStamp(){
 (function(){
   try{
     const bar=document.getElementById('loader-bar'),pct=document.getElementById('loader-percent'),tip=document.getElementById('loader-tip');
-    const tips=["🛰️ Menyiapkan soal penginderaan jauh...","📡 Mengkalibrasi sensor satelit...","🌍 Mengorbitkan satelit...","📚 Menyusun bank soal...","✅ Siap dimulai!"];
+    const tips=["🛰️ Menyiapkan 50 soal penginderaan jauh...","📡 Mengkalibrasi sensor satelit...","🌍 Mengorbitkan satelit...","📚 Menyusun bank soal...","✅ Siap dimulai!"];
     let p=0;
     const iv=setInterval(function(){
       p+=Math.random()*20+8;
@@ -1168,9 +682,11 @@ function showAchievementStamp(){
 })();
 
 /* ============================================================
-   BANK SOAL — 30 SOAL PENGINDERAAN JAUH
+   BANK SOAL — 50 SOAL PENGINDERAAN JAUH
+   20 soal baru (#31–#50) ditambahkan
    ============================================================ */
 const questionsBankFull = [
+  /* ===== 30 SOAL ASLI ===== */
   { q:"Penginderaan jauh modern pertama kali dikembangkan secara intensif pada masa Perang Dunia I menggunakan...", options:["Pesawat terbang dan balon udara","Satelit luar angkasa","Drone tanpa awak","Radar darat"],correct:0, explanation:"Pada Perang Dunia I, penginderaan jauh dikembangkan menggunakan pesawat terbang dan balon udara untuk pengintaian militer.", topic:"Sejarah & Perkembangan",keyPoint:"PD I = pesawat + balon udara.",difficulty:"Mudah" },
   { q:"Satelit Landsat 1 (ERTS-1) diluncurkan tahun 1972 oleh lembaga antariksa...", options:["ESA (Eropa)","NASA (Amerika Serikat)","JAXA (Jepang)","LAPAN (Indonesia)"],correct:1, explanation:"Landsat 1 (ERTS-1) diluncurkan NASA pada 23 Juli 1972 dan menjadi tonggak era penginderaan jauh satelit.", topic:"Satelit Landsat",keyPoint:"Landsat 1 = NASA 1972.",difficulty:"Sedang" },
   { q:"Satelit SPOT yang memiliki kemampuan stereoskopik adalah milik negara...", options:["Amerika Serikat","Prancis","Jepang","India"],correct:1, explanation:"SPOT (Satellite Pour l'Observation de la Terre) dikembangkan oleh Prancis melalui CNES.", topic:"Satelit SPOT",keyPoint:"SPOT = Prancis.",difficulty:"Sedang" },
@@ -1200,7 +716,48 @@ const questionsBankFull = [
   { q:"Untuk pemetaan tutupan lahan skala nasional, pemerintah Indonesia umumnya menggunakan citra...", options:["IKONOS","Landsat dan Sentinel-2","QuickBird","WorldView"],correct:1, explanation:"Landsat dan Sentinel-2 digunakan untuk pemetaan tutupan lahan skala nasional karena gratis dan cakupan luas.", topic:"Inderaja Indonesia",keyPoint:"Skala nasional = Landsat/Sentinel-2.",difficulty:"Sedang" },
   { q:"Sensor hiperspektral yang merekam ratusan band sempit disebut juga...", options:["Sensor radar","Imaging spectrometer","Sensor termal","Sensor gravitasi"],correct:1, explanation:"Sensor hiperspektral (imaging spectrometer) merekam ratusan band sempit, berguna untuk identifikasi mineral dan vegetasi spesifik.", topic:"Sensor Khusus",keyPoint:"Hiperspektral = imaging spectrometer.",difficulty:"Sulit" },
   { q:"Satelit geostasioner untuk pemantauan cuaca yang dimiliki Jepang adalah...", options:["GOES","Himawari","Meteosat","INSAT"],correct:1, explanation:"Himawari (Jepang) adalah satelit geostasioner untuk pemantauan cuaca Asia-Pasifik. GOES milik AS, Meteosat milik Eropa.", topic:"Satelit Cuaca",keyPoint:"Himawari = Jepang.",difficulty:"Sedang" },
-  { q:"Resolusi temporal citra MODIS untuk cakupan global berkisar...", options:["1-2 hari","10 hari","16 hari","30 hari"],correct:0, explanation:"MODIS (Terra/Aqua) memiliki resolusi temporal 1–2 hari untuk cakupan global, ideal untuk pemantauan dinamis.", topic:"Satelit Lingkungan",keyPoint:"MODIS temporal = 1–2 hari.",difficulty:"Sulit" }
+  { q:"Resolusi temporal citra MODIS untuk cakupan global berkisar...", options:["1-2 hari","10 hari","16 hari","30 hari"],correct:0, explanation:"MODIS (Terra/Aqua) memiliki resolusi temporal 1–2 hari untuk cakupan global, ideal untuk pemantauan dinamis.", topic:"Satelit Lingkungan",keyPoint:"MODIS temporal = 1–2 hari.",difficulty:"Sulit" },
+
+  /* ===== 20 SOAL BARU (#31–#50) ===== */
+  { q:"Satelit WorldView-3 yang diluncurkan tahun 2014 memiliki resolusi pankromatik sebesar...", options:["1 meter","61 cm","46 cm","31 cm"],correct:3, explanation:"WorldView-3 memiliki resolusi pankromatik 31 cm dan multispektral 1,24 meter — salah satu yang tertinggi di satelit komersial.", topic:"Satelit Komersial",keyPoint:"WorldView-3 = 31 cm.",difficulty:"Sulit" },
+
+  { q:"Satelit GeoEye-1 yang diluncurkan tahun 2008 memiliki resolusi pankromatik sebesar...", options:["1 meter","41 cm","61 cm","2,5 meter"],correct:1, explanation:"GeoEye-1 memiliki resolusi pankromatik 41 cm dan multispektral 1,65 meter.", topic:"Satelit Komersial",keyPoint:"GeoEye-1 = 41 cm.",difficulty:"Sulit" },
+
+  { q:"Wahana penginderaan jauh yang terbang rendah, biaya murah, dan cocok untuk pemetaan area kecil adalah...", options:["Satelit geostasioner","Drone/UAV","Balon stratosfer","Kapal laut"],correct:1, explanation:"Drone/UAV (Unmanned Aerial Vehicle) terbang rendah dengan biaya murah, ideal untuk pemetaan detail area kecil seperti lahan pertanian atau proyek konstruksi.", topic:"Wahana Inderaja",keyPoint:"UAV/Drone = pemetaan detail area kecil.",difficulty:"Mudah" },
+
+  { q:"Platform cloud computing gratis dari Google untuk analisis citra satelit skala besar disebut...", options:["Google Maps","Google Earth","Google Earth Engine","Google Drive"],correct:2, explanation:"Google Earth Engine (GEE) adalah platform cloud computing gratis untuk analisis citra satelit skala besar (petabyte), banyak digunakan peneliti dan akademisi.", topic:"Platform Inderaja",keyPoint:"GEE = cloud computing analisis citra.",difficulty:"Sedang" },
+
+  { q:"Perbedaan utama citra multispektral dan hiperspektral terletak pada...", options:["Resolusi spasialnya","Jumlah dan lebar band spektralnya","Wahana yang membawanya","Harga citranya"],correct:1, explanation:"Multispektral memiliki beberapa band (biasanya 4-10 band lebar), sedangkan hiperspektral memiliki ratusan band yang lebih sempit dan kontinu.", topic:"Sensor Khusus",keyPoint:"Hiperspektral = ratusan band sempit.",difficulty:"Sulit" },
+
+  { q:"SAR polarimetri merekam citra dalam kombinasi polarisasi HH, HV, VV, VH yang berfungsi untuk...", options:["Mempercepat perekaman","Menganalisis struktur, tekstur, dan jenis permukaan","Menghemat memori","Menghilangkan awan"],correct:1, explanation:"SAR polarimetri menganalisis berbagai kombinasi polarisasi untuk identifikasi jenis tutupan lahan, kelembaban, dan tekstur permukaan.", topic:"Radar & SAR",keyPoint:"SAR polarimetri = analisis 4 kombinasi polarisasi.",difficulty:"Sulit" },
+
+  { q:"Rasio antara energi yang dipantulkan terhadap energi yang datang pada suatu objek disebut...", options:["Albedo","Reflektansi spektral","Emisivitas","Transmitansi"],correct:1, explanation:"Reflektansi spektral adalah rasio energi yang dipantulkan terhadap energi yang datang pada objek, menjadi dasar pengukuran signatur spektral.", topic:"Signatur Spektral",keyPoint:"Reflektansi = rasio energi pantul/datang.",difficulty:"Sedang" },
+
+  { q:"Kemampuan permukaan bumi memantulkan radiasi matahari secara keseluruhan disebut...", options:["Reflektansi","Albedo","Emisivitas","Absorpsi"],correct:1, explanation:"Albedo adalah perbandingan antara radiasi yang dipantulkan dengan radiasi yang diterima permukaan. Contoh: salju albedo tinggi, hutan albedo rendah.", topic:"Signatur Spektral",keyPoint:"Albedo = rasio pemantulan global.",difficulty:"Sedang" },
+
+  { q:"Proses menandai atau menghilangkan awan pada citra satelit sebelum analisis disebut...", options:["Cloud masking","Cloud seeding","Cloud computing","Cloud storing"],correct:0, explanation:"Cloud masking adalah proses menandai/menghilangkan piksel awan dan bayangannya pada citra agar analisis tutupan lahan lebih akurat.", topic:"Pengolahan Citra",keyPoint:"Cloud masking = hilangkan awan.",difficulty:"Sedang" },
+
+  { q:"Penggabungan beberapa scene citra yang bersebelahan menjadi satu citra besar yang kontinu disebut...", options:["Cropping","Mosaik citra","Subsetting","Resampling"],correct:1, explanation:"Mosaik citra adalah penggabungan beberapa scene citra menjadi satu citra besar tanpa garis batas, biasanya untuk pemetaan skala besar.", topic:"Pengolahan Citra",keyPoint:"Mosaik = gabung scene jadi satu citra.",difficulty:"Sedang" },
+
+  { q:"Teknik menggabungkan citra pankromatik resolusi tinggi dengan citra multispektral resolusi rendah disebut...", options:["Pansharpening","Stacking","Mosaicking","Layer stacking"],correct:0, explanation:"Pansharpening menggabungkan detail spasial citra pankromatik dengan informasi warna citra multispektral, menghasilkan citra resolusi tinggi berwarna.", topic:"Pengolahan Citra",keyPoint:"Pansharpening = gabung pankromatik + multispektral.",difficulty:"Sulit" },
+
+  { q:"Koreksi geometrik yang menghilangkan distorsi topografi agar citra sesuai koordinat bumi disebut...", options:["Registrasi","Orthorektifikasi","Rektifikasi radiometrik","Georeferensi"],correct:1, explanation:"Orthorektifikasi mengoreksi distorsi akibat relief topografi (bukan hanya kemiringan citra), sehingga citra memiliki skala seragam dan sesuai koordinat.", topic:"Pengolahan Citra",keyPoint:"Orthorektifikasi = koreksi topografi.",difficulty:"Sulit" },
+
+  { q:"Lembaga penelitian antariksa Indonesia yang dulunya bernama LAPAN, sejak 2021 bergabung menjadi bagian dari...", options:["BMKG","BIG","BRIN","Bappenas"],correct:2, explanation:"Sejak 2021, LAPAN bergabung ke BRIN (Badan Riset dan Inovasi Nasional) bersama lembaga penelitian lain di Indonesia.", topic:"Inderaja Indonesia",keyPoint:"LAPAN → BRIN (2021).",difficulty:"Sedang" },
+
+  { q:"Pemanfaatan Inderaja untuk memantau kesehatan tanaman, dosis pupuk presisi, dan estimasi panen disebut...", options:["Pertanian presisi","Pertanian organik","Hidroponik","Agroforestri"],correct:0, explanation:"Pertanian presisi (precision agriculture) menggunakan citra satelit dan drone untuk memantau kesehatan tanaman, mengatur dosis pupuk, dan memprediksi hasil panen.", topic:"Aplikasi Pertanian",keyPoint:"Pertanian presisi = inderaja untuk pertanian.",difficulty:"Mudah" },
+
+  { q:"Inderaja digunakan untuk mendeteksi illegal logging, kebakaran hutan, dan laju deforestasi. Aplikasi ini di bidang...", options:["Pertanian","Kehutanan","Kelautan","Perkotaan"],correct:1, explanation:"Di bidang kehutanan, inderaja memantau tutupan hutan, mendeteksi kebakaran (hotspot), dan mengukur laju deforestasi dari waktu ke waktu.", topic:"Aplikasi Kehutanan",keyPoint:"Kehutanan = pantau hutan & deforestasi.",difficulty:"Mudah" },
+
+  { q:"Pemanfaatan Inderaja untuk pemetaan tata guna lahan, pertumbuhan kota, dan pemetaan jalan termasuk bidang...", options:["Geologi","Perencanaan tata kota","Pertanian","Militer"],correct:1, explanation:"Di bidang perencanaan tata kota, inderaja memetakan tata guna lahan, memantau urban sprawl, dan menganalisis jaringan jalan.", topic:"Aplikasi Tata Kota",keyPoint:"Tata kota = tata guna lahan & urban sprawl.",difficulty:"Mudah" },
+
+  { q:"Satelit Landsat 5 memiliki rekor operasional terpanjang (1984–2013) selama hampir...", options:["10 tahun","15 tahun","29 tahun","40 tahun"],correct:2, explanation:"Landsat 5 beroperasi hampir 29 tahun (Maret 1984 – Juni 2013), menjadikannya satelit pengamat bumi dengan masa operasi terpanjang.", topic:"Satelit Landsat",keyPoint:"Landsat 5 = ~29 tahun beroperasi.",difficulty:"Sulit" },
+
+  { q:"Sentinel-1 adalah satelit SAR (radar) milik ESA yang digunakan untuk...", options:["Pemetaan warna lautan","Pemantauan banjir, deformasi tanah, dan kapal laut","Pemantauan suhu atmosfer","Navigasi GPS"],correct:1, explanation:"Sentinel-1 membawa sensor SAR C-band yang mampu menembus awan dan malam, ideal untuk memantau banjir, tanah longsor, deformasi tanah, dan deteksi kapal.", topic:"Satelit Sentinel",keyPoint:"Sentinel-1 = SAR untuk banjir & deformasi.",difficulty:"Sulit" },
+
+  { q:"Teknik membagi nilai dua band untuk memperkuat kenampakan objek tertentu (misal NDVI, NDWI) disebut...", options:["Band ratio","Band stacking","Band resampling","Band filtering"],correct:0, explanation:"Band ratio adalah teknik membagi nilai dua band untuk menonjolkan objek tertentu. Contoh: NDVI (NIR-Red)/(NIR+Red) untuk vegetasi, NDWI untuk badan air.", topic:"Pengolahan Citra",keyPoint:"Band ratio = bagi dua band.",difficulty:"Sedang" },
+
+  { q:"NDWI (Normalized Difference Water Index) digunakan untuk...", options:["Mendeteksi dan memetakan badan air","Mendeteksi vegetasi sehat","Mendeteksi suhu permukaan","Mendeteksi mineral tanah"],correct:0, explanation:"NDWI = (Green - NIR)/(Green + NIR), digunakan untuk mendeteksi dan memetakan badan air (danau, sungai, banjir) berdasarkan pantulan hijau dan NIR.", topic:"Indeks Vegetasi",keyPoint:"NDWI = indeks badan air.",difficulty:"Sulit" }
 ];
 
 function shuffleArray(arr){
@@ -1212,8 +769,49 @@ function shuffleArray(arr){
   return a;
 }
 
+/* ============================================================
+   ANTI-REPEAT: track soal yang sudah pernah dikerjakan per siswa
+   ============================================================ */
+function getSeenKey(){
+  const safeName = (studentName || '').toLowerCase().replace(/[^a-z0-9]/g,'_').slice(0,40);
+  return STORAGE_PREFIX + 'seen_' + safeName;
+}
+function getSeenList(){
+  try { return JSON.parse(localStorage.getItem(getSeenKey()) || '[]'); } catch(e) { return []; }
+}
+function saveSeenList(list){
+  try { localStorage.setItem(getSeenKey(), JSON.stringify(list)); } catch(e){}
+}
+
 function getRandomQuestions(){
-  const selected = shuffleArray(questionsBankFull).slice(0, 15);
+  const seenList = getSeenList();
+
+  // Prioritas: soal yang belum pernah dikerjakan
+  let pool = questionsBankFull.filter(function(q){ return seenList.indexOf(q.q) === -1; });
+
+  // Kalau soal unseen < 15 → reset riwayat (mulai putaran baru dari semua soal)
+  if(pool.length < 15){
+    pool = questionsBankFull.slice();
+    saveSeenList([]);   // reset riwayat untuk siswa ini
+  }
+
+  // Ambil 15 soal acak dari pool
+  const selected = shuffleArray(pool).slice(0, 15);
+
+  // Simpan 15 soal terpilih ke daftar seen (per siswa)
+  const newSeen = (pool === questionsBankFull && getSeenList().length === 0) ? [] : getSeenList();
+  selected.forEach(function(q){
+    if(newSeen.indexOf(q.q) === -1) newSeen.push(q.q);
+  });
+
+  // Kalau sudah hampir semua pernah dikerjakan (≥80%), reset agar siswa bisa mengulang dari awal
+  if(newSeen.length >= Math.floor(questionsBankFull.length * 0.8)){
+    saveSeenList([]);
+  } else {
+    saveSeenList(newSeen);
+  }
+
+  // Acak opsi tiap soal
   return selected.map(function(q){
     const correctText = q.options[q.correct];
     const shuffled = shuffleArray(q.options);
@@ -1231,24 +829,13 @@ function getRandomQuestions(){
 }
 
 const prizeValues = [100, 200, 300, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 125000, 250000, 500000, 1000000];
-const prizeAmounts = [
-  "Lvl 1 — 100","Lvl 2 — 200","Lvl 3 — 300","Lvl 4 — 500","Lvl 5 — 1.000",
-  "Lvl 6 — 2.000","Lvl 7 — 4.000","Lvl 8 — 8.000","Lvl 9 — 16.000","Lvl 10 — 32.000",
-  "Lvl 11 — 64.000","Lvl 12 — 125.000","Lvl 13 — 250.000","Lvl 14 — 500.000","Lvl 15 — 1.000.000"
-];
+const prizeAmounts = ["Lvl 1 — 100","Lvl 2 — 200","Lvl 3 — 300","Lvl 4 — 500","Lvl 5 — 1.000","Lvl 6 — 2.000","Lvl 7 — 4.000","Lvl 8 — 8.000","Lvl 9 — 16.000","Lvl 10 — 32.000","Lvl 11 — 64.000","Lvl 12 — 125.000","Lvl 13 — 250.000","Lvl 14 — 500.000","Lvl 15 — 1.000.000"];
 
-/* ============================================================
-   STATE
-   ============================================================ */
 let currentQuestions=[];let studentName="";let studentClass="";let currentQuestionIndex=0;let score=0;
 let correctAnswersCount=0;let wrongAnswersCount=0;let skippedCount=0;
 let xpGained=0;let streak=0;let maxStreak=0;let attemptCount=0;
-let totalElapsed=0;
-let countdownInterval=null;
-let countdownTime=TIMER_PER_QUESTION;
-let lastBeepSecond=-1;
-let userAnswersHistory=[];
-let lifelinesUsed={'5050':false,'hint':false,'skip':false};
+let totalElapsed=0;let countdownInterval=null;let countdownTime=TIMER_PER_QUESTION;let lastBeepSecond=-1;
+let userAnswersHistory=[];let lifelinesUsed={'5050':false,'hint':false,'skip':false};
 let selectedAnswerIndex=null;let answerLocked=false;
 const STORAGE_PREFIX="kuis_inderaja_interaktif_v1_";
 
@@ -1269,19 +856,13 @@ window.addEventListener('DOMContentLoaded',function(){
         if(!soundMuted)sfx('click');
       });
     }
-
-    /* ===== SELECT KELAS: aktifkan placeholder warna ===== */
     const selClass = document.getElementById('student-class');
     if(selClass){
       selClass.addEventListener('change', function(){
-        if(selClass.value){
-          selClass.classList.remove('placeholder-active');
-        } else {
-          selClass.classList.add('placeholder-active');
-        }
+        if(selClass.value) selClass.classList.remove('placeholder-active');
+        else selClass.classList.add('placeholder-active');
       });
     }
-
     const form=document.getElementById('start-form');
     if(form)form.addEventListener('submit',function(e){e.preventDefault();startGame();});
     bind('btn-lock-answer',confirmAnswer);
@@ -1304,16 +885,12 @@ window.addEventListener('DOMContentLoaded',function(){
 });
 
 function loadAttemptHistory(){
-  try{
-    const s=localStorage.getItem(STORAGE_PREFIX+"attempts");
-    attemptCount = s ? parseInt(s) : 0;
-  }catch(e){ attemptCount = 0; }
+  try{ const s=localStorage.getItem(STORAGE_PREFIX+"attempts"); attemptCount = s ? parseInt(s) : 0; }catch(e){ attemptCount = 0; }
 }
 function incrementAttempt(){
   attemptCount++;
   try{ localStorage.setItem(STORAGE_PREFIX+"attempts", attemptCount); }catch(e){}
 }
-
 function updateBestScoreSummary(){
   try{
     const bc=localStorage.getItem(STORAGE_PREFIX+"best_correct");
@@ -1338,12 +915,9 @@ function startGame(){
 
     const selClass = document.getElementById("student-class");
     studentClass = selClass ? selClass.value : "";
-    if(!studentClass){
-      alert("Mohon pilih kelas terlebih dahulu.");
-      selClass && selClass.focus();
-      return;
-    }
+    if(!studentClass){alert("Mohon pilih kelas terlebih dahulu.");selClass && selClass.focus();return;}
 
+    // getRandomQuestions() menggunakan studentName untuk filter anti-repeat
     currentQuestions=getRandomQuestions();
     if(!currentQuestions||currentQuestions.length===0){alert("Bank soal kosong!");return;}
     incrementAttempt();
@@ -1367,13 +941,9 @@ function updateTimerDisplay(){
   const pill = document.getElementById('timer-pill');
   if(!pill) return;
   pill.classList.remove('timer-warning', 'timer-danger');
-  if(countdownTime <= 10 && countdownTime > 5){
-    pill.classList.add('timer-warning');
-  } else if(countdownTime <= 5){
-    pill.classList.add('timer-danger');
-  }
+  if(countdownTime <= 10 && countdownTime > 5){ pill.classList.add('timer-warning'); }
+  else if(countdownTime <= 5){ pill.classList.add('timer-danger'); }
 }
-
 function startCountdown(){
   clearInterval(countdownInterval);
   countdownTime = TIMER_PER_QUESTION;
@@ -1388,17 +958,10 @@ function startCountdown(){
       if(countdownTime > 5) sfx('beep');
       else sfx('beepFinal');
     }
-    if(countdownTime <= 0){
-      clearInterval(countdownInterval);
-      onTimeout();
-    }
+    if(countdownTime <= 0){ clearInterval(countdownInterval); onTimeout(); }
   }, 1000);
 }
-
-function stopCountdown(){
-  clearInterval(countdownInterval);
-  countdownInterval = null;
-}
+function stopCountdown(){ clearInterval(countdownInterval); countdownInterval = null; }
 
 function onTimeout(){
   if(answerLocked) return;
@@ -1406,66 +969,42 @@ function onTimeout(){
   sfx('timeout');
   hide('lock-btn-container');
   updateLifelineButtons();
-
   const qData = currentQuestions[currentQuestionIndex];
   if(!qData) return;
-
   document.querySelectorAll('#answers-container button').forEach(function(b){b.disabled=true;});
   const cb = document.getElementById('opt-btn-'+qData.correct);
   if(cb) cb.classList.add('opt-correct');
-
   showRevealOverlay("WAKTU HABIS", "timeout");
   tectonicShakeEffect();
   haptic([80,50,80]);
-
   wrongAnswersCount++;
   streak = 0;
   hide("streak-container");
-
   userAnswersHistory.push({
-    questionNum: currentQuestionIndex + 1,
-    questionText: qData.q,
+    questionNum: currentQuestionIndex + 1, questionText: qData.q,
     userAnswer: "— Waktu Habis —",
     correctAnswer: ["A","B","C","D"][qData.correct] + ". " + qData.options[qData.correct],
-    explanation: qData.explanation,
-    topic: qData.topic,
-    keyPoint: qData.keyPoint,
-    difficulty: qData.difficulty,
-    isCorrect: false,
-    isSkipped: false,
-    isTimedOut: true
+    explanation: qData.explanation, topic: qData.topic, keyPoint: qData.keyPoint, difficulty: qData.difficulty,
+    isCorrect: false, isSkipped: false, isTimedOut: true
   });
-
-  setTimeout(function(){
-    hideRevealOverlay();
-    showTimeoutFeedback(qData);
-  }, 1800);
+  setTimeout(function(){ hideRevealOverlay(); showTimeoutFeedback(qData); }, 1800);
 }
-
 function showTimeoutFeedback(qData){
   try{
-    const mc=document.getElementById("feedback-modal-content");
-    const ib=document.getElementById("feedback-icon-bg");
-    const ti=document.getElementById("feedback-title");
-    const su=document.getElementById("feedback-subtitle");
-    const de=document.getElementById("feedback-details");
-    const ys=document.getElementById("fb-yours-section");
-
+    const mc=document.getElementById("feedback-modal-content"), ib=document.getElementById("feedback-icon-bg"), ti=document.getElementById("feedback-title"), su=document.getElementById("feedback-subtitle"), de=document.getElementById("feedback-details"), ys=document.getElementById("fb-yours-section");
     if(mc){mc.className="glass-panel max-w-lg w-full p-5 md:p-7 rounded-2xl my-auto";mc.style.border="3px solid rgba(245,158,11,.6)";}
     if(ib){ib.style.background="linear-gradient(135deg, rgba(245,158,11,.20), rgba(217,119,6,.10))";ib.style.color="#a04400";ib.style.border="2px solid rgba(245,158,11,.50)";ib.textContent="⏰";}
     if(ti){ti.style.color="#a04400";ti.textContent="⏰ WAKTU HABIS!";}
     if(su){su.style.color="#475569";su.textContent="Soal ini ditandai belum dijawab — pelajari pembahasannya!";}
     if(de)de.innerHTML='<div class="p-3 md:p-4 rounded-xl" style="background: rgba(245,158,11,.10); border: 2px solid rgba(245,158,11,.30)"><div class="text-xs font-black uppercase mb-1" style="color:#a04400;">Status:</div><div class="font-black text-sm md:text-base" style="color:#0c1e3d;">Tidak dijawab (waktu habis)</div></div>';
     if(ys)ys.classList.add('is-hidden');
-
     setText("fb-topic", qData.topic || "Penginderaan Jauh");
     setText("fb-why", qData.explanation);
     setText("fb-key", qData.keyPoint || "Baca kembali materi terkait.");
     updateNextButtonText();
     show("feedback-modal");
-  }catch(e){console.error('showTimeoutFeedback error:', e);}
+  }catch(e){}
 }
-
 function renderPrizeLadder(){
   try{
     const el=document.getElementById("prize-ladder");if(!el)return;el.innerHTML="";
@@ -1502,7 +1041,6 @@ function getDifficultyClass(diff){
   if(d.indexOf("sedang")>=0)return "diff-sedang";
   return "diff-mudah";
 }
-
 function loadQuestion(){
   try{
     updatePrizeLadderHighlight();
@@ -1537,11 +1075,7 @@ function loadQuestion(){
   }catch(e){console.error("loadQuestion error:",e);}
 }
 function updateLifelineButtons(){
-  const configs=[
-    {id:'lifeline-5050',used:lifelinesUsed['5050']},
-    {id:'lifeline-hint',used:lifelinesUsed['hint']},
-    {id:'lifeline-skip',used:lifelinesUsed['skip']}
-  ];
+  const configs=[{id:'lifeline-5050',used:lifelinesUsed['5050']},{id:'lifeline-hint',used:lifelinesUsed['hint']},{id:'lifeline-skip',used:lifelinesUsed['skip']}];
   configs.forEach(function(cfg){
     const btn=document.getElementById(cfg.id);if(!btn)return;
     if(cfg.used||answerLocked){btn.disabled=true;btn.style.opacity=".4";btn.style.cursor="not-allowed";}
@@ -1549,7 +1083,6 @@ function updateLifelineButtons(){
   });
 }
 function resetLifelineButtons(){lifelinesUsed={'5050':false,'hint':false,'skip':false};updateLifelineButtons();}
-
 function selectAnswer(index){
   if(answerLocked)return;
   try{
@@ -1557,11 +1090,9 @@ function selectAnswer(index){
     document.querySelectorAll('#answers-container button').forEach(function(b){b.classList.remove('opt-selected');});
     const sb=document.getElementById("opt-btn-"+index);
     if(sb){ sb.classList.add('opt-selected'); gpsPinDrop(sb); }
-    show("lock-btn-container");
-    haptic(20);
+    show("lock-btn-container"); haptic(20);
   }catch(e){}
 }
-
 function useFiftyFifty(){
   try{
     if(lifelinesUsed['5050']||answerLocked)return;
@@ -1570,10 +1101,7 @@ function useFiftyFifty(){
     let wrongIdx=[0,1,2,3].filter(function(i){return i!==qData.correct;});
     wrongIdx.sort(function(){return Math.random()-.5;});
     const toRemove=wrongIdx.slice(0,2);
-    toRemove.forEach(function(i){
-      const b=document.getElementById("opt-btn-"+i);
-      if(b){b.classList.add('opt-eliminated');b.disabled=true;}
-    });
+    toRemove.forEach(function(i){ const b=document.getElementById("opt-btn-"+i); if(b){b.classList.add('opt-eliminated');b.disabled=true;} });
     if(selectedAnswerIndex!==null&&toRemove.indexOf(selectedAnswerIndex)>=0){selectedAnswerIndex=null;hide("lock-btn-container");}
     updateLifelineButtons();
     showToast("✂️ 50:50 aktif — 2 jawaban salah dihapus");
@@ -1583,36 +1111,34 @@ function useHint(){
   try{
     if(lifelinesUsed['hint']||answerLocked)return;
     const qData=currentQuestions[currentQuestionIndex];if(!qData)return;
-    radarSweepEffect();
-    lifelinesUsed['hint']=true;updateLifelineButtons();
-    const topic=qData.topic||"Penginderaan Jauh";const difficulty=qData.difficulty||"Mudah";
-
+    radarSweepEffect(); lifelinesUsed['hint']=true; updateLifelineButtons();
+    const topic=qData.topic||"Penginderaan Jauh"; const difficulty=qData.difficulty||"Mudah";
     const topicHints = {
-      "Sejarah & Perkembangan": "Ingat PD I, era satelit 1972, dan perkembangan teknologi.",
-      "Satelit Landsat": "Landsat = NASA, diluncurkan 1972. Landsat 9 = 2021.",
-      "Satelit SPOT": "SPOT = Prancis (CNES), memiliki kemampuan stereoskopik.",
-      "Satelit Komersial": "IKONOS 1m, QuickBird 61cm — resolusi tinggi berbayar.",
-      "Satelit Sentinel": "Sentinel = ESA. Sentinel-2 (optik), Sentinel-3 (laut & atmosfer).",
-      "Indeks Vegetasi": "NDVI = (NIR-Red)/(NIR+Red). Vegetasi sehat nilainya tinggi.",
-      "Band Landsat 8": "Landsat 8: B2=biru, B3=hijau, B4=merah, B5=NIR.",
-      "Klasifikasi Citra": "Supervised=training area; Unsupervised=otomatis kluster.",
-      "Pengolahan Citra": "Koreksi: geometrik (posisi), radiometrik (DN→radian), atmosferik (hamburan).",
-      "Inderaja Indonesia": "LAPAN/LAPAN-A2 kamera digital; skala nasional pakai Landsat/Sentinel.",
-      "Radar & SAR": "X (3cm), C (6cm), L (24cm). L-band paling tembus vegetasi.",
-      "Satelit Lingkungan": "MODIS di Terra & Aqua; NOAA untuk cuaca.",
-      "Satelit Regional": "ALOS (Jepang) AVNIR-2 = 10 meter.",
-      "Sensor Khusus": "Hiperspektral = imaging spectrometer, ratusan band sempit.",
-      "Satelit Cuaca": "Himawari=Jepang, GOES=AS, Meteosat=Eropa."
+      "Sejarah & Perkembangan":"Ingat PD I, era satelit 1972.",
+      "Satelit Landsat":"Landsat=NASA. Landsat 1=1972, 5=terlama, 8/9=terbaru.",
+      "Satelit SPOT":"SPOT=Prancis (CNES), stereoskopik.",
+      "Satelit Komersial":"IKONOS 1m, QuickBird 61cm, GeoEye-1 41cm, WorldView-3 31cm.",
+      "Satelit Sentinel":"Sentinel=ESA. Sentinel-1 SAR, Sentinel-2 optik, Sentinel-3 laut.",
+      "Indeks Vegetasi":"NDVI = (NIR-Red)/(NIR+Red). Vegetasi sehat tinggi.",
+      "Band Landsat 8":"B2=biru, B3=hijau, B4=merah, B5=NIR.",
+      "Klasifikasi Citra":"Supervised=training area; Unsupervised=otomatis kluster.",
+      "Pengolahan Citra":"Koreksi: geometrik, radiometrik (DN→radian), atmosferik, orthorektifikasi.",
+      "Inderaja Indonesia":"LAPAN→BRIN (2021). Skala nasional=Landsat/Sentinel.",
+      "Radar & SAR":"X=3cm, C=6cm, L=24cm. L=paling tembus vegetasi.",
+      "Satelit Lingkungan":"MODIS di Terra & Aqua; NOAA untuk cuaca; temporal MODIS 1-2 hari.",
+      "Satelit Regional":"ALOS (Jepang) AVNIR-2 = 10 meter.",
+      "Sensor Khusus":"Hiperspektral=imaging spectrometer, ratusan band sempit.",
+      "Satelit Cuaca":"Himawari=Jepang, GOES=AS, Meteosat=Eropa.",
+      "Wahana Inderaja":"UAV/Drone untuk area kecil; satelit untuk area luas.",
+      "Platform Inderaja":"Google Earth Engine (GEE) = cloud gratis analisis citra.",
+      "Signatur Spektral":"Reflektansi=rasio pantul/datang. Albedo=pemantulan global.",
+      "Aplikasi Pertanian":"Pertanian presisi: pantau tanaman, pupuk, estimasi panen.",
+      "Aplikasi Kehutanan":"Deteksi illegal logging, hotspot kebakaran, deforestasi.",
+      "Aplikasi Tata Kota":"Tata guna lahan, urban sprawl, jaringan jalan."
     };
     const topicHint = topicHints[topic] || "Fokus pada konsep kunci topik ini.";
-    const nudges={
-      "Mudah":"Soal MUDAH — biasanya definisi/ciri dasar.",
-      "Sedang":"Soal SEDANG — perhatikan perbedaan antar pilihan.",
-      "Sulit":"Soal SULIT — sering memuat istilah teknis & angka.",
-      "Sangat Sulit":"Soal SANGAT SULIT — waspadai istilah teknis, baca teliti."
-    };
+    const nudges={"Mudah":"Soal MUDAH — definisi/ciri dasar.","Sedang":"Soal SEDANG — perhatikan perbedaan antar pilihan.","Sulit":"Soal SULIT — sering memuat istilah teknis & angka.","Sangat Sulit":"Soal SANGAT SULIT — waspadai istilah teknis, baca teliti."};
     const nudge = nudges[difficulty] || "Perhatikan kata kunci soal.";
-
     const ht=document.getElementById("hint-text");
     if(ht){
       ht.innerHTML=
@@ -1635,19 +1161,13 @@ function confirmSkip(){
     sfx('skip');lifelinesUsed['skip']=true;hide("skip-modal");
     stopCountdown();
     userAnswersHistory.push({
-      questionNum:currentQuestionIndex+1,
-      questionText:qData.q,
+      questionNum:currentQuestionIndex+1, questionText:qData.q,
       userAnswer:"— Dilewati —",
       correctAnswer:["A","B","C","D"][qData.correct] + ". " + qData.options[qData.correct],
-      explanation:qData.explanation,
-      topic:qData.topic,
-      keyPoint:qData.keyPoint,
-      difficulty:qData.difficulty,
-      isCorrect:false,
-      isSkipped:true
+      explanation:qData.explanation, topic:qData.topic, keyPoint:qData.keyPoint, difficulty:qData.difficulty,
+      isCorrect:false, isSkipped:true
     });
-    skippedCount++;streak=0;hide("streak-container");
-    updateWaypointTrail();
+    skippedCount++;streak=0;hide("streak-container");updateWaypointTrail();
     showToast("⏭️ Soal dilewati — lanjut berikutnya");
     setTimeout(function(){
       currentQuestionIndex++;
@@ -1659,12 +1179,10 @@ function confirmSkip(){
 function showToast(msg){
   const t=document.createElement("div");
   t.className="fixed top-20 left-1/2 transform -translate-x-1/2 z-50 px-5 py-3 rounded-xl font-black text-sm md:text-base shadow-2xl max-w-[90vw] text-center";
-  t.style.background="linear-gradient(135deg,#1e40af,#06b6d4)";
-  t.style.color="#fff";
+  t.style.background="linear-gradient(135deg,#1e40af,#06b6d4)";t.style.color="#fff";
   t.style.animation="fadeInOut 2s ease";t.textContent=msg;
   document.body.appendChild(t);setTimeout(function(){t.remove();},2000);
 }
-
 function confirmAnswer(){
   if(answerLocked)return;
   if(selectedAnswerIndex===null){alert("Pilih salah satu jawaban terlebih dahulu!");return;}
@@ -1672,8 +1190,7 @@ function confirmAnswer(){
     answerLocked=true;sfx('lock');
     const lockBtn=document.getElementById('btn-lock-answer');
     if(lockBtn)lockBtn.disabled=true;
-    hide("lock-btn-container");
-    stopCountdown();
+    hide("lock-btn-container"); stopCountdown();
     const qData=currentQuestions[currentQuestionIndex];if(!qData)return;
     const isCorrect=(selectedAnswerIndex===qData.correct);
     document.querySelectorAll('#answers-container button').forEach(function(b){b.disabled=true;});
@@ -1684,8 +1201,7 @@ function confirmAnswer(){
     if(isCorrect){
       if(sb)sb.classList.add('opt-correct');
       showRevealOverlay("BENAR","benar");sfx('correct');
-      compassNeedleEffect();
-      haptic([30,40,30]);
+      compassNeedleEffect(); haptic([30,40,30]);
       correctAnswersCount++;streak++;
       if(streak>maxStreak)maxStreak=streak;
       const baseXP = prizeValues[currentQuestionIndex] || 100;
@@ -1698,24 +1214,18 @@ function confirmAnswer(){
       if(sb)sb.classList.add('opt-wrong');
       if(cb)cb.classList.add('opt-correct');
       showRevealOverlay("SALAH","salah");sfx('wrong');
-      tectonicShakeEffect();
-      haptic([50,80,50]);
+      tectonicShakeEffect(); haptic([50,80,50]);
       wrongAnswersCount++;streak=0;hide("streak-container");
       setTimeout(function(){hideRevealOverlay();showFeedbackModal(qData,false,selectedAnswerIndex,0);},1600);
     }
     const selectedLetter = ["A","B","C","D"][selectedAnswerIndex];
     const correctLetter  = ["A","B","C","D"][qData.correct];
     userAnswersHistory.push({
-      questionNum:currentQuestionIndex+1,
-      questionText:qData.q,
+      questionNum:currentQuestionIndex+1, questionText:qData.q,
       userAnswer: selectedLetter + ". " + qData.options[selectedAnswerIndex],
       correctAnswer: correctLetter + ". " + qData.options[qData.correct],
-      explanation:qData.explanation,
-      topic:qData.topic,
-      keyPoint:qData.keyPoint,
-      difficulty:qData.difficulty,
-      isCorrect:isCorrect,
-      isSkipped:false
+      explanation:qData.explanation, topic:qData.topic, keyPoint:qData.keyPoint, difficulty:qData.difficulty,
+      isCorrect:isCorrect, isSkipped:false
     });
   }catch(e){}
 }
@@ -1743,12 +1253,7 @@ function createBurst(cx,cy,colors){
 }
 function showFeedbackModal(qData,isCorrect,selectedIdx,earnedXP){
   try{
-    const mc=document.getElementById("feedback-modal-content");
-    const ib=document.getElementById("feedback-icon-bg");
-    const ti=document.getElementById("feedback-title");
-    const su=document.getElementById("feedback-subtitle");
-    const de=document.getElementById("feedback-details");
-    const ys=document.getElementById("fb-yours-section");
+    const mc=document.getElementById("feedback-modal-content"), ib=document.getElementById("feedback-icon-bg"), ti=document.getElementById("feedback-title"), su=document.getElementById("feedback-subtitle"), de=document.getElementById("feedback-details"), ys=document.getElementById("fb-yours-section");
     const letters=["A","B","C","D"];
     if(isCorrect){
       if(mc){mc.className="glass-panel max-w-lg w-full p-5 md:p-7 rounded-2xl my-auto";mc.style.border="3px solid rgba(6,182,212,.5)";}
@@ -1764,7 +1269,7 @@ function showFeedbackModal(qData,isCorrect,selectedIdx,earnedXP){
       if(su){su.style.color="#475569";su.textContent="Jangan berkecil hati! Pelajari pembahasannya di bawah ini.";}
       if(de)de.innerHTML='<div class="space-y-2"><div class="p-3 rounded-xl" style="background: rgba(192,57,43,.08); border: 2px solid rgba(192,57,43,.25)"><div class="text-xs font-black uppercase" style="color:#c0392b;">Jawaban Kamu:</div><div class="font-bold text-sm overflow-safe" style="color:#7a1f16;">'+letters[selectedIdx]+'. '+qData.options[selectedIdx]+'</div></div><div class="p-3 rounded-xl" style="background: rgba(6,182,212,.08); border: 2px solid rgba(6,182,212,.25)"><div class="text-xs font-black uppercase" style="color:#1e40af;">Jawaban Yang Benar:</div><div class="font-black text-sm overflow-safe" style="color:#0c1e3d;">'+letters[qData.correct]+'. '+qData.options[qData.correct]+'</div></div></div>';
       if(ys)ys.classList.remove('is-hidden');
-      setHTML("fb-yours",'Kamu memilih <span class="badge-pick">'+letters[selectedIdx]+'</span><b>"'+qData.options[selectedIdx]+'"</b> — belum tepat. Bandingkan dengan jawaban benar <span class="badge-correct">'+letters[qData.correct]+'</span> <b>'+qData.options[qData.correct]+'</b>. Perhatikan kata kunci dan topik <b>'+(qData.topic||"penginderaan jauh")+'</b>.');
+      setHTML("fb-yours",'Kamu memilih <span class="badge-pick">'+letters[selectedIdx]+'</span><b>"'+qData.options[selectedIdx]+'"</b> — belum tepat. Bandingkan dengan jawaban benar <span class="badge-correct">'+letters[qData.correct]+'</span> <b>'+qData.options[qData.correct]+'</b>. Perhatikan topik <b>'+(qData.topic||"penginderaan jauh")+'</b>.');
     }
     setText("fb-topic",qData.topic||"Penginderaan Jauh");
     setText("fb-why",qData.explanation);
@@ -1777,24 +1282,17 @@ function nextQuestion(){
   try{
     sfx('click');hide("feedback-modal");
     currentQuestionIndex++;
-    if(currentQuestionIndex<currentQuestions.length){
-      loadQuestion();
-    }
-    else{endGame();}
+    if(currentQuestionIndex<currentQuestions.length){ loadQuestion(); }
+    else{ endGame(); }
   }catch(e){}
 }
-
 function updateNextButtonText(){
   const btn=document.getElementById("btn-next");
   if(!btn)return;
   const isLast = (currentQuestionIndex === (currentQuestions.length - 1));
-  if(isLast){
-    btn.innerHTML = "🏆 LIHAT HASIL AKHIR";
-  } else {
-    btn.innerHTML = "➡ LANJUT KE SOAL BERIKUTNYA";
-  }
+  if(isLast){ btn.innerHTML = "🏆 LIHAT HASIL AKHIR"; }
+  else { btn.innerHTML = "➡ LANJUT KE SOAL BERIKUTNYA"; }
 }
-
 function calculateTitle(s){if(s>=90)return "🛰️ MASTER INDERAJA";if(s>=75)return "📡 AHLI PENGINDERAAN JAUH";if(s>=50)return "🌍 EXPLORER BUMI";return "🌱 PEMBELAJAR INDERAJA";}
 function calculateGrade(s){if(s>=90)return "A";if(s>=80)return "B";if(s>=70)return "C";if(s>=60)return "D";return "E";}
 
@@ -1825,7 +1323,6 @@ function endGame(){
     setText("card-title",earnedTitle);
     setText("card-attempt",attemptCount);
     let prevBest=null;try{prevBest=localStorage.getItem(STORAGE_PREFIX+"best_score");}catch(e){}
-
     let isNewRecord = (prevBest===null || score>parseInt(prevBest));
     if(isNewRecord){
       try{
@@ -1836,18 +1333,12 @@ function endGame(){
         localStorage.setItem(STORAGE_PREFIX+"best_attempt",attemptCount);
       }catch(e){}
     }
-
-    if(isNewRecord || score >= 75){
-      setTimeout(showAchievementStamp, 500);
-    }
-
+    if(isNewRecord || score >= 75){ setTimeout(showAchievementStamp, 500); }
     show("record-banner");
     const recordTextEl = document.getElementById("record-text");
     const recordSubEl  = document.getElementById("record-subtext");
     const bannerEl     = document.getElementById("record-banner");
-
     let headerText = "", subText = "", bannerBg = "", bannerBorder = "", headerColor = "#1e40af";
-
     if(isNewRecord && score>=90){
       headerText = "🏆 SKOR BARU TERBAIK — LUAR BIASA!";
       subText = "Kamu menjawab "+correctAnswersCount+" dari "+totalQ+" soal dengan benar. Master Inderaja sejati!";
@@ -1862,8 +1353,7 @@ function endGame(){
       headerText = "📈 SKOR BARU TERBAIK!";
       subText = "Kamu menjawab "+correctAnswersCount+" dari "+totalQ+" soal dengan benar. Tingkatkan lagi!";
       bannerBg = "linear-gradient(135deg, rgba(245,158,11,.14), rgba(251,191,36,.06))";
-      bannerBorder = "rgba(245,158,11,.5)";
-      headerColor = "#8a6d00";
+      bannerBorder = "rgba(245,158,11,.5)"; headerColor = "#8a6d00";
     } else if(score>=90){
       headerText = "🌟 LUAR BIASA!";
       subText = "Kamu menjawab "+correctAnswersCount+" dari "+totalQ+" soal dengan benar. Hampir sempurna!";
@@ -1878,67 +1368,41 @@ function endGame(){
       headerText = "💪 CUKUP BAIK, TINGKATKAN LAGI!";
       subText = "Kamu menjawab "+correctAnswersCount+" dari "+totalQ+" soal dengan benar. Baca ulang materi dan coba lagi!";
       bannerBg = "linear-gradient(135deg, rgba(245,158,11,.12), rgba(251,146,60,.06))";
-      bannerBorder = "rgba(245,158,11,.4)";
-      headerColor = "#8a6d00";
+      bannerBorder = "rgba(245,158,11,.4)"; headerColor = "#8a6d00";
     } else if(score>=30){
       headerText = "📚 PERLU BELAJAR LAGI";
       subText = "Kamu menjawab "+correctAnswersCount+" dari "+totalQ+" soal dengan benar. Pelajari kembali materi Penginderaan Jauh, lalu coba lagi!";
       bannerBg = "linear-gradient(135deg, rgba(251,146,60,.12), rgba(192,57,43,.08))";
-      bannerBorder = "rgba(251,146,60,.5)";
-      headerColor = "#a04400";
+      bannerBorder = "rgba(251,146,60,.5)"; headerColor = "#a04400";
     } else {
       headerText = "❗ JANGAN MENYERAH, COBA LAGI!";
       subText = "Kamu menjawab "+correctAnswersCount+" dari "+totalQ+" soal dengan benar. Baca materi dengan teliti, lalu kerjakan ulang kuis ini!";
       bannerBg = "linear-gradient(135deg, rgba(192,57,43,.12), rgba(127,29,29,.08))";
-      bannerBorder = "rgba(192,57,43,.5)";
-      headerColor = "#a04400";
+      bannerBorder = "rgba(192,57,43,.5)"; headerColor = "#a04400";
     }
-
     if(recordTextEl){ recordTextEl.textContent = headerText; recordTextEl.style.color = headerColor; }
     if(recordSubEl){ recordSubEl.textContent = subText; }
     if(bannerEl){ bannerEl.style.background = bannerBg; bannerEl.style.borderColor = bannerBorder; }
-
     if(isNewRecord || score>=70){ sfx('win'); triggerConfetti(true); }
     else if(score>=50){ triggerConfetti(false); }
     haptic([100,50,100]);
-
     const sendBtn = document.getElementById('btnSendScore');
     const warning = document.getElementById('mustRepeatWarning');
     const sendStatus = document.getElementById('sendStatus');
     const restartBtn = document.getElementById('btn-restart');
-
     if (score >= MIN_SCORE_TO_PASS) {
-      if (sendBtn) {
-        sendBtn.classList.remove('is-hidden');
-        sendBtn.disabled = false;
-        sendBtn.innerHTML = '📤 KIRIM NILAI KE GURU';
-        sendBtn.style.background = 'linear-gradient(135deg,#f59e0b,#fbbf24)';
-        sendBtn.style.opacity = '1';
-        sendBtn.style.cursor = 'pointer';
-      }
+      if (sendBtn) { sendBtn.classList.remove('is-hidden'); sendBtn.disabled = false; sendBtn.innerHTML = '📤 KIRIM NILAI KE GURU'; sendBtn.style.background = 'linear-gradient(135deg,#f59e0b,#fbbf24)'; sendBtn.style.opacity = '1'; sendBtn.style.cursor = 'pointer'; }
       if (warning) warning.classList.add('is-hidden');
       if (sendStatus) sendStatus.classList.add('is-hidden');
-      if (restartBtn) {
-        restartBtn.innerHTML = '🔄 MAIN LAGI';
-        restartBtn.style.background = 'linear-gradient(135deg,#1e40af,#06b6d4)';
-        restartBtn.classList.remove('must-repeat');
-      }
+      if (restartBtn) { restartBtn.innerHTML = '🔄 MAIN LAGI'; restartBtn.style.background = 'linear-gradient(135deg,#1e40af,#06b6d4)'; restartBtn.classList.remove('must-repeat'); }
       scoreSent = false;
     } else {
       if (sendBtn) sendBtn.classList.add('is-hidden');
-      if (warning) {
-        warning.classList.remove('is-hidden');
-        setText('mustRepeatScore', score);
-      }
+      if (warning) { warning.classList.remove('is-hidden'); setText('mustRepeatScore', score); }
       if (sendStatus) sendStatus.classList.add('is-hidden');
-      if (restartBtn) {
-        restartBtn.innerHTML = '🔄 ULANGI KUIS (WAJIB)';
-        restartBtn.style.background = 'linear-gradient(135deg,#c0392b,#e74c3c)';
-        restartBtn.classList.add('must-repeat');
-      }
+      if (restartBtn) { restartBtn.innerHTML = '🔄 ULANGI KUIS (WAJIB)'; restartBtn.style.background = 'linear-gradient(135deg,#c0392b,#e74c3c)'; restartBtn.classList.add('must-repeat'); }
       scoreSent = true;
     }
-
     updateBestScoreSummary();
   }catch(e){console.error('endGame error:',e);}
 }
@@ -1957,21 +1421,10 @@ function copyFormattedResult(){
     const statusText = score >= MIN_SCORE_TO_PASS ? "✓ LULUS (boleh kirim)" : "✗ WAJIB ULANG (min "+MIN_SCORE_TO_PASS+")";
     const durasi = Math.floor(totalElapsed/60) + 'm ' + (totalElapsed%60) + 's';
     const txt="HASIL KUIS INTERAKTIF GEOGRAFI\nSekolah: SMAN 3 Kasongan\nKelas: "+(studentClass||"-")+"\nGuru Pengampu: SYAHRANI, S.Pd.\nNIP. 19751217200501 1 016\nNama: "+studentName+"\nMateri: Penginderaan Jauh\n━━━━━━━━━━━━━━━━━━━━\nJawaban Benar: "+correctAnswersCount+"/15\nJawaban Salah: "+wrongAnswersCount+"\nDilewati: "+skippedCount+"\nSkor: "+score+"\nGrade: "+grade+"\nStatus: "+statusText+"\nXP: "+xpGained.toLocaleString('id-ID')+"\nStreak terbaik: "+maxStreak+"\nPercobaan: "+attemptCount+"\nDurasi: "+durasi+"\nGelar: "+earnedTitle+"\n━━━━━━━━━━━━━━━━━━━━";
-    function onSuccess(){
-      const cbt=document.getElementById("copy-btn-text");
-      if(cbt){cbt.textContent="TERSALIN! ✓";setTimeout(function(){cbt.textContent="SALIN";},2000);}
-    }
-    function onFail(){
-      try{
-        const ta=document.createElement('textarea');ta.value=txt;
-        ta.style.position='fixed';ta.style.left='-9999px';
-        document.body.appendChild(ta);ta.select();document.execCommand('copy');
-        document.body.removeChild(ta);onSuccess();
-      }catch(err){alert("Gagal menyalin. Coba salin manual.");}
-    }
-    if(navigator.clipboard && navigator.clipboard.writeText){
-      navigator.clipboard.writeText(txt).then(onSuccess).catch(onFail);
-    } else { onFail(); }
+    function onSuccess(){ const cbt=document.getElementById("copy-btn-text"); if(cbt){cbt.textContent="TERSALIN! ✓";setTimeout(function(){cbt.textContent="SALIN";},2000);} }
+    function onFail(){ try{ const ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.left='-9999px';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);onSuccess(); }catch(err){alert("Gagal menyalin. Coba salin manual.");} }
+    if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(onSuccess).catch(onFail); }
+    else { onFail(); }
   }catch(e){alert("Gagal menyalin. Coba salin manual.");}
 }
 function openReviewModal(){
@@ -1997,10 +1450,9 @@ function openReviewModal(){
 function closeReviewModal(){sfx('click');hide("review-modal");}
 function restartGame(){
   try{
-    sfx('click');
-    resetSendUI();
-    incrementAttempt();
+    sfx('click'); resetSendUI(); incrementAttempt();
     hide("result-screen");show("game-screen");
+    // Student name & class tetap sama, jadi anti-repeat tetap berlaku
     currentQuestions=getRandomQuestions();
     currentQuestionIndex=0;score=0;correctAnswersCount=0;wrongAnswersCount=0;skippedCount=0;
     xpGained=0;streak=0;maxStreak=0;totalElapsed=0;userAnswersHistory=[];
@@ -2015,33 +1467,16 @@ function restartGame(){
 async function sendScoreToSheet(){
   const total = currentQuestions.length || 15;
   const accuracy = Math.round((correctAnswersCount / total) * 100);
-
-  if (score < MIN_SCORE_TO_PASS) {
-    const w = document.getElementById('mustRepeatWarning');
-    if (w) {
-      w.classList.remove('is-hidden');
-      setText('mustRepeatScore', score);
-    }
-    return;
-  }
-  if (scoreSent) return;
-  scoreSent = true;
-
+  if (score < MIN_SCORE_TO_PASS) { const w = document.getElementById('mustRepeatWarning'); if (w) { w.classList.remove('is-hidden'); setText('mustRepeatScore', score); } return; }
+  if (scoreSent) return; scoreSent = true;
   const sendBtn = document.getElementById('btnSendScore');
-  if (sendBtn) {
-    sendBtn.disabled = true;
-    sendBtn.innerHTML = '⏳ MENGIRIM...';
-    sendBtn.style.opacity = '0.75';
-    sendBtn.style.cursor = 'wait';
-  }
-
+  if (sendBtn) { sendBtn.disabled = true; sendBtn.innerHTML = '⏳ MENGIRIM...'; sendBtn.style.opacity = '0.75'; sendBtn.style.cursor = 'wait'; }
   const earnedTitle = calculateTitle(score);
   const grade = calculateGrade(score);
   const durasi = Math.floor(totalElapsed/60) + 'm ' + (totalElapsed%60) + 's';
-
   const params = new URLSearchParams();
   params.append('nama',     studentName);
-  params.append('kelas',    studentClass);       // BARU
+  params.append('kelas',    studentClass);
   params.append('skor',     score);
   params.append('benar',    correctAnswersCount);
   params.append('salah',    wrongAnswersCount);
@@ -2056,88 +1491,35 @@ async function sendScoreToSheet(){
   params.append('skipped',  skippedCount);
   params.append('attempt',  attemptCount);
   params.append('durasi',   durasi);
-
   const statusEl = document.getElementById('sendStatus');
-  if (statusEl) {
-    statusEl.classList.remove('is-hidden');
-    statusEl.innerHTML = '⏳ Mengirim nilai ke guru...';
-    statusEl.style.color = '#1e40af';
-    statusEl.style.background = 'rgba(6,182,212,.10)';
-  }
-
+  if (statusEl) { statusEl.classList.remove('is-hidden'); statusEl.innerHTML = '⏳ Mengirim nilai ke guru...'; statusEl.style.color = '#1e40af'; statusEl.style.background = 'rgba(6,182,212,.10)'; }
   try {
-    await fetch(SHEET_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      body: params
-    });
-    if (statusEl) {
-      statusEl.innerHTML = '✅ Nilai berhasil dikirim ke guru';
-      statusEl.style.color = '#1e40af';
-      statusEl.style.background = 'rgba(6,182,212,.18)';
-    }
-    if (sendBtn) {
-      sendBtn.innerHTML = '✅ NILAI TERKIRIM';
-      sendBtn.style.background = 'linear-gradient(135deg,#1e40af,#06b6d4)';
-    }
+    await fetch(SHEET_URL, { method: 'POST', mode: 'no-cors', body: params });
+    if (statusEl) { statusEl.innerHTML = '✅ Nilai berhasil dikirim ke guru'; statusEl.style.color = '#1e40af'; statusEl.style.background = 'rgba(6,182,212,.18)'; }
+    if (sendBtn) { sendBtn.innerHTML = '✅ NILAI TERKIRIM'; sendBtn.style.background = 'linear-gradient(135deg,#1e40af,#06b6d4)'; }
   } catch (e) {
     console.error('Gagal kirim:', e);
     scoreSent = false;
-    if (statusEl) {
-      statusEl.innerHTML = '⚠️ Gagal kirim nilai. Periksa koneksi internet.';
-      statusEl.style.color = '#c0392b';
-      statusEl.style.background = 'rgba(192,57,43,.10)';
-    }
-    if (sendBtn) {
-      sendBtn.disabled = false;
-      sendBtn.innerHTML = '📤 COBA KIRIM LAGI';
-      sendBtn.style.opacity = '1';
-      sendBtn.style.cursor = 'pointer';
-    }
+    if (statusEl) { statusEl.innerHTML = '⚠️ Gagal kirim nilai. Periksa koneksi internet.'; statusEl.style.color = '#c0392b'; statusEl.style.background = 'rgba(192,57,43,.10)'; }
+    if (sendBtn) { sendBtn.disabled = false; sendBtn.innerHTML = '📤 COBA KIRIM LAGI'; sendBtn.style.opacity = '1'; sendBtn.style.cursor = 'pointer'; }
   }
 }
-
 function resetSendUI(){
   scoreSent = false;
   const sb = document.getElementById('btnSendScore');
-  if (sb) {
-    sb.classList.add('is-hidden');
-    sb.disabled = false;
-    sb.innerHTML = '📤 KIRIM NILAI KE GURU';
-    sb.style.background = 'linear-gradient(135deg,#f59e0b,#fbbf24)';
-    sb.style.opacity = '1';
-    sb.style.cursor = 'pointer';
-  }
-  const w = document.getElementById('mustRepeatWarning');
-  if (w) w.classList.add('is-hidden');
-  const ss = document.getElementById('sendStatus');
-  if (ss) ss.classList.add('is-hidden');
+  if (sb) { sb.classList.add('is-hidden'); sb.disabled = false; sb.innerHTML = '📤 KIRIM NILAI KE GURU'; sb.style.background = 'linear-gradient(135deg,#f59e0b,#fbbf24)'; sb.style.opacity = '1'; sb.style.cursor = 'pointer'; }
+  const w = document.getElementById('mustRepeatWarning'); if (w) w.classList.add('is-hidden');
+  const ss = document.getElementById('sendStatus'); if (ss) ss.classList.add('is-hidden');
   const rb = document.getElementById('btn-restart');
-  if (rb) {
-    rb.innerHTML = '🔄 MAIN LAGI';
-    rb.style.background = 'linear-gradient(135deg,#1e40af,#06b6d4)';
-    rb.classList.remove('must-repeat');
-  }
-  const stamp = document.getElementById('achievement-stamp');
-  if (stamp) stamp.classList.remove('show');
+  if (rb) { rb.innerHTML = '🔄 MAIN LAGI'; rb.style.background = 'linear-gradient(135deg,#1e40af,#06b6d4)'; rb.classList.remove('must-repeat'); }
+  const stamp = document.getElementById('achievement-stamp'); if (stamp) stamp.classList.remove('show');
 }
-
 function returnToMainScreen(){
-  sfx('click');
-  stopCountdown();
-  kuisAktif = false;
-  resetSendUI();
+  sfx('click'); stopCountdown(); kuisAktif = false; resetSendUI();
   hide("result-screen");hide("game-screen");show("start-screen");
-
-  /* Reset form & select kelas */
-  const nameInput = document.getElementById('student-name');
-  if(nameInput) nameInput.value = '';
+  const nameInput = document.getElementById('student-name'); if(nameInput) nameInput.value = '';
   const selClass = document.getElementById('student-class');
-  if(selClass) {
-    selClass.value = '';
-    selClass.classList.add('placeholder-active');
-  }
-
+  if(selClass) { selClass.value = ''; selClass.classList.add('placeholder-active'); }
   loadAttemptHistory();updateBestScoreSummary();
 }
 </script>
