@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="Game edukasi interaktif atmosfer untuk Geografi Kelas X: 5 lapisan atmosfer, 20 soal HOTS, achievement, dan sertifikat." />
+<meta name="description" content="Atmosphere Mission — game edukasi atmosfer dengan Tactical HUD: 40 soal, 5 lapisan, achievement, dan visual canggih." />
 <meta name="theme-color" content="#0b1026" />
 <meta name="color-scheme" content="dark" />
-<title>🌍 Atmosphere Mission — Geografi Kelas X</title>
+<title>🌍 Atmosphere Mission — Tactical Edition</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🌍%3C/text%3E%3C/svg%3E" />
 <style>
   :root{
@@ -14,361 +14,279 @@
     --panel2:rgba(255,255,255,.08);
     --border:rgba(255,255,255,.14);
     --text:#e6ecff;
-    --muted:#8b95b8;
+    --muted:#9aa4c5;
     --accent:#63e6ff;
     --accent2:#a78bfa;
     --good:#34d399;
     --bad:#f87171;
     --warn:#fbbf24;
+    --unk:#facc15;
     --radius:14px;
     --shadow:0 12px 40px rgba(0,0,0,.5);
+    --hud:#63e6ff;
   }
   *,*::before,*::after{box-sizing:border-box}
-  html,body{margin:0;padding:0}
-  body{
-    background:#050810;
-    color:var(--text);
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    min-height:100vh;
-    overflow-x:hidden;
-    -webkit-font-smoothing:antialiased;
-    line-height:1.5;
-  }
+  html,body{margin:0;padding:0;overflow-x:hidden}
+  body{background:#03060d;color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;min-height:100vh;-webkit-font-smoothing:antialiased;line-height:1.5}
 
-  /* ---------- SKY (berubah per lapisan) ---------- */
-  #sky{
-    position:fixed;inset:0;z-index:-2;
-    transition: background 1.6s cubic-bezier(.4,0,.2,1);
-    background: radial-gradient(1200px 800px at 80% -10%, #1a2350 0%, transparent 60%),
-                radial-gradient(900px 700px at -10% 110%, #1c1740 0%, transparent 55%),
-                #0b1026;
-  }
-  #sky[data-level="troposfer"]{
-    background:
-      radial-gradient(900px 500px at 80% 0%, rgba(255,200,120,.15) 0%, transparent 60%),
-      linear-gradient(180deg, #0b1026 0%, #1e3a5f 55%, #3a6a8f 100%);
-  }
-  #sky[data-level="stratosfer"]{
-    background:
-      radial-gradient(900px 500px at 50% 0%, rgba(99,230,255,.12) 0%, transparent 60%),
-      linear-gradient(180deg, #06122e 0%, #0b2050 55%, #123a7a 100%);
-  }
-  #sky[data-level="mesosfer"]{
-    background:
-      radial-gradient(900px 500px at 30% 10%, rgba(167,139,250,.15) 0%, transparent 60%),
-      linear-gradient(180deg, #0a0a2a 0%, #1a0f3f 55%, #2a1555 100%);
-  }
-  #sky[data-level="termosfer"]{
-    background:
-      radial-gradient(700px 400px at 20% 20%, rgba(52,211,153,.22) 0%, transparent 60%),
-      radial-gradient(700px 400px at 80% 30%, rgba(167,139,250,.2) 0%, transparent 60%),
-      linear-gradient(180deg, #000510 0%, #001a3a 40%, #003a5a 70%, #005a4a 100%);
-  }
-  #sky[data-level="eksosfer"]{
-    background:
-      radial-gradient(ellipse at 50% 130%, #1a1a40 0%, #050510 45%, #000000 100%);
-  }
+  /* ============ LAYERED BACKGROUNDS ============ */
+  #sky{position:fixed;inset:0;z-index:-3;transition:background 1.6s cubic-bezier(.4,0,.2,1);background:radial-gradient(1200px 800px at 80% -10%,#1a2350 0%,transparent 60%),radial-gradient(900px 700px at -10% 110%,#1c1740 0%,transparent 55%),#0b1026}
+  #sky[data-level="troposfer"]{background:radial-gradient(900px 500px at 80% 0%,rgba(255,200,120,.15) 0%,transparent 60%),linear-gradient(180deg,#0b1026 0%,#1e3a5f 55%,#3a6a8f 100%)}
+  #sky[data-level="stratosfer"]{background:radial-gradient(900px 500px at 50% 0%,rgba(99,230,255,.12) 0%,transparent 60%),linear-gradient(180deg,#06122e 0%,#0b2050 55%,#123a7a 100%)}
+  #sky[data-level="mesosfer"]{background:radial-gradient(900px 500px at 30% 10%,rgba(167,139,250,.15) 0%,transparent 60%),linear-gradient(180deg,#0a0a2a 0%,#1a0f3f 55%,#2a1555 100%)}
+  #sky[data-level="termosfer"]{background:radial-gradient(700px 400px at 20% 20%,rgba(52,211,153,.22) 0%,transparent 60%),radial-gradient(700px 400px at 80% 30%,rgba(167,139,250,.2) 0%,transparent 60%),linear-gradient(180deg,#000510 0%,#001a3a 40%,#003a5a 70%,#005a4a 100%)}
+  #sky[data-level="eksosfer"]{background:radial-gradient(ellipse at 50% 130%,#1a1a40 0%,#050510 45%,#000000 100%)}
 
-  #starfield{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+  /* Starfield base */
+  #starfield{position:fixed;inset:0;width:100%;height:100%;z-index:-2;pointer-events:none}
+  /* Particle layer per environment */
+  #particles{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+  /* FX layer (confetti) */
   #fx{position:fixed;inset:0;width:100%;height:100%;z-index:60;pointer-events:none}
 
+  /* ============ SCANLINE OVERLAY ============ */
+  .scanlines{position:fixed;inset:0;z-index:55;pointer-events:none;opacity:.06;background:repeating-linear-gradient(0deg,transparent 0px,transparent 2px,rgba(255,255,255,.4) 2px,rgba(255,255,255,.4) 3px);mix-blend-mode:overlay}
+  @media (prefers-reduced-motion: no-preference){
+    .scanlines::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 0%,rgba(99,230,255,.05) 50%,transparent 100%);height:200px;animation:scan 6s linear infinite}
+    @keyframes scan{0%{transform:translateY(-200px)}100%{transform:translateY(100vh)}}
+  }
+
+  /* ============ SCI-FI FRAME ============ */
+  .hud-frame{position:fixed;inset:10px;z-index:54;pointer-events:none;border-radius:8px}
+  .hud-frame .corner{position:absolute;width:24px;height:24px;border-color:var(--hud);border-style:solid;opacity:.6;filter:drop-shadow(0 0 6px var(--hud))}
+  .hud-frame .tl{top:0;left:0;border-width:2px 0 0 2px}
+  .hud-frame .tr{top:0;right:0;border-width:2px 2px 0 0}
+  .hud-frame .bl{bottom:0;left:0;border-width:0 0 2px 2px}
+  .hud-frame .br{bottom:0;right:0;border-width:0 2px 2px 0}
+
+  /* ============ ALTIMETER (kiri) ============ */
+  .altimeter{position:fixed;left:14px;top:50%;transform:translateY(-50%);z-index:53;display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:none;opacity:0;transition:opacity .5s ease}
+  .altimeter.show{opacity:1}
+  .alt-track{position:relative;width:6px;height:min(60vh,420px);border-radius:999px;background:linear-gradient(180deg,#63e6ff 0%,#a78bfa 25%,#f472b6 50%,#fbbf24 75%,#34d399 100%);box-shadow:0 0 24px rgba(99,230,255,.35);overflow:hidden}
+  .alt-track::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(180deg,transparent 0px,transparent 8px,rgba(0,0,0,.4) 8px,rgba(0,0,0,.4) 9px)}
+  .alt-marker{position:absolute;left:50%;transform:translate(-50%,-50%);width:14px;height:14px;border-radius:50%;background:#fff;border:2px solid var(--hud);box-shadow:0 0 14px var(--hud);transition:top .9s cubic-bezier(.5,0,.2,1);top:100%}
+  .alt-rocket{position:absolute;left:50%;transform:translate(-50%,-50%);font-size:16px;transition:top .9s cubic-bezier(.5,0,.2,1);top:100%;filter:drop-shadow(0 0 8px var(--hud))}
+  .alt-label{font-size:10px;font-weight:800;letter-spacing:1.5px;color:var(--hud);text-shadow:0 0 8px var(--hud);font-variant-numeric:tabular-nums;background:rgba(0,0,0,.5);padding:4px 10px;border-radius:8px;border:1px solid rgba(99,230,255,.35)}
+  .alt-tick{position:absolute;right:-10px;font-size:9px;color:var(--muted);font-weight:700;letter-spacing:.5px;transform:translateY(-50%);white-space:nowrap;text-shadow:0 0 4px #000}
+  @media (max-width:600px){ .altimeter{display:none} }
+
+  /* ============ SOUND VISUALIZER (kanan bawah) ============ */
+  .visualizer{position:fixed;right:14px;bottom:14px;z-index:53;display:flex;align-items:flex-end;gap:3px;height:26px;padding:5px 8px;background:rgba(13,19,48,.7);border:1px solid rgba(99,230,255,.3);border-radius:10px;backdrop-filter:blur(8px);opacity:0;transition:opacity .4s}
+  .visualizer.show{opacity:1}
+  .visualizer span{display:block;width:3px;background:linear-gradient(180deg,var(--accent),var(--accent2));border-radius:2px;animation:viz 1s ease-in-out infinite}
+  .visualizer span:nth-child(1){animation-delay:0s}
+  .visualizer span:nth-child(2){animation-delay:.15s}
+  .visualizer span:nth-child(3){animation-delay:.3s}
+  .visualizer span:nth-child(4){animation-delay:.45s}
+  .visualizer span:nth-child(5){animation-delay:.6s}
+  @keyframes viz{0%,100%{height:3px}50%{height:18px}}
+  .visualizer.paused span{animation-play-state:paused;height:3px}
+  @media (max-width:600px){ .visualizer{display:none} }
+
+  /* ============ BOOT / LOADING SCREEN ============ */
+  .boot{position:fixed;inset:0;z-index:9999;background:radial-gradient(circle at 50% 50%,#0a1530 0%,#03060d 70%);display:grid;place-items:center;opacity:1;transition:opacity .8s ease;overflow:hidden}
+  .boot.hidden{opacity:0;pointer-events:none}
+  .boot-inner{display:flex;flex-direction:column;align-items:center;gap:26px;position:relative;z-index:2}
+  .planet{width:110px;height:110px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#63e6ff 0%,#3b82f6 30%,#1e3a8a 60%,#0b1026 100%);box-shadow:0 0 80px rgba(99,230,255,.5),inset -12px -12px 40px rgba(0,0,0,.7),inset 8px 8px 24px rgba(255,255,255,.15);position:relative;animation:spinPlanet 12s linear infinite}
+  .planet::after{content:'';position:absolute;top:-18px;left:-28px;right:-28px;bottom:-18px;border-radius:50%;border:2px solid transparent;background:linear-gradient(135deg,rgba(99,230,255,.5),rgba(167,139,250,.5)) border-box;-webkit-mask:linear-gradient(#fff 0 0) padding-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;transform:rotate(-25deg);animation:spinRing 8s linear infinite}
+  @keyframes spinPlanet{0%{background-position:0 0}100%{background-position:220px 0}}
+  @keyframes spinRing{0%{transform:rotate(-25deg) rotateZ(0deg)}100%{transform:rotate(-25deg) rotateZ(360deg)}}
+  .boot-text{font-size:13px;letter-spacing:5px;font-weight:800;color:var(--accent);text-shadow:0 0 20px var(--hud);text-align:center}
+  .boot-sub{font-size:10px;letter-spacing:3px;color:var(--muted);margin-top:-18px}
+  .boot-bar{width:min(320px,70vw);height:3px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden}
+  .boot-bar > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));box-shadow:0 0 12px var(--hud);transition:width .3s ease}
+
+  /* ============ WRAP ============ */
   .wrap{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:16px 16px 64px}
 
-  /* ---------- Header / HUD ---------- */
-  .hud{
-    display:flex;align-items:center;justify-content:space-between;gap:12px;
-    padding:12px 14px;margin:8px 0 22px;
-    background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-    border:1px solid var(--border);border-radius:var(--radius);
-    backdrop-filter: blur(8px);
-    flex-wrap:wrap;
-  }
+  /* ============ HUD (top bar) ============ */
+  .hud{position:relative;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;margin:8px 0 22px;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid var(--border);border-radius:var(--radius);backdrop-filter:blur(12px);flex-wrap:wrap;box-shadow:0 8px 32px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.08)}
+  .hud::before{content:'';position:absolute;top:0;left:20%;right:20%;height:1px;background:linear-gradient(90deg,transparent,var(--hud),transparent);opacity:.7;animation:hudLine 4s ease-in-out infinite}
+  @keyframes hudLine{0%,100%{transform:translateX(-20%);opacity:.3}50%{transform:translateX(20%);opacity:.9}}
   .hud-left{display:flex;align-items:center;gap:12px;min-width:0}
-  .logo{font-size:28px;filter:drop-shadow(0 0 12px rgba(99,230,255,.6))}
-  .hud-title{font-weight:800;letter-spacing:.5px;font-size:14px}
-  .hud-sub{font-size:11px;color:var(--muted);letter-spacing:.3px}
+  .logo{font-size:28px;filter:drop-shadow(0 0 12px rgba(99,230,255,.6));animation:logoFloat 4s ease-in-out infinite}
+  @keyframes logoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+  .hud-title{font-weight:800;letter-spacing:1px;font-size:13px;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hud-sub{font-size:10.5px;color:var(--muted);letter-spacing:.5px}
   .hud-right{display:flex;align-items:center;gap:10px}
-  .xp{font-size:12px;font-weight:700;color:var(--accent);min-width:64px;text-align:right;font-variant-numeric:tabular-nums}
-  .xpbar{
-    width:120px;height:8px;border-radius:999px;
-    background:rgba(255,255,255,.08);overflow:hidden;
-    border:1px solid rgba(255,255,255,.06);
-  }
-  #xpFill{
-    height:100%;width:0%;
-    background:linear-gradient(90deg,var(--accent),var(--accent2));
-    transition:width .5s cubic-bezier(.4,0,.2,1);
-    box-shadow:0 0 12px rgba(99,230,255,.5);
-  }
-  .avatar{
-    width:38px;height:38px;border-radius:12px;
-    display:grid;place-items:center;font-size:20px;
-    background:linear-gradient(135deg, rgba(99,230,255,.15), rgba(167,139,250,.15));
-    border:1px solid rgba(99,230,255,.35);
-    transition: transform .4s cubic-bezier(.34,1.56,.64,1), box-shadow .4s ease;
-    flex-shrink:0;
-  }
-  .avatar.bump{transform:scale(1.25) rotate(-8deg);box-shadow:0 0 24px rgba(251,191,36,.7)}
-  .iconbtn{
-    width:34px;height:34px;border-radius:10px;
-    background:var(--panel);color:var(--text);border:1px solid var(--border);
-    cursor:pointer;font-size:15px;display:grid;place-items:center;
-    transition:transform .15s ease, background .2s ease;
-  }
-  .iconbtn:hover{background:var(--panel2);transform:translateY(-1px)}
-  .iconbtn:active{transform:translateY(0)}
+  .xp{font-size:12px;font-weight:800;color:var(--accent);min-width:64px;text-align:right;font-variant-numeric:tabular-nums;text-shadow:0 0 10px rgba(99,230,255,.5)}
+  .xpbar{width:120px;height:8px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden;border:1px solid rgba(99,230,255,.2);position:relative}
+  #xpFill{height:100%;width:0%;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .5s cubic-bezier(.4,0,.2,1);box-shadow:0 0 12px rgba(99,230,255,.6);position:relative}
+  #xpFill::after{content:'';position:absolute;top:0;right:0;bottom:0;width:20px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.8));animation:xpShine 2s ease-in-out infinite}
+  @keyframes xpShine{0%,100%{opacity:0}50%{opacity:1}}
+  .avatar{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;font-size:20px;background:linear-gradient(135deg,rgba(99,230,255,.15),rgba(167,139,250,.15));border:1px solid rgba(99,230,255,.35);transition:transform .4s cubic-bezier(.34,1.56,.64,1),box-shadow .4s ease;flex-shrink:0;box-shadow:0 0 16px rgba(99,230,255,.2)}
+  .avatar.bump{transform:scale(1.25) rotate(-8deg);box-shadow:0 0 32px rgba(251,191,36,.85)}
+  .iconbtn{width:34px;height:34px;border-radius:10px;background:var(--panel);color:var(--text);border:1px solid var(--border);cursor:pointer;font-size:15px;display:grid;place-items:center;transition:all .15s ease}
+  .iconbtn:hover{background:var(--panel2);border-color:rgba(99,230,255,.5);box-shadow:0 0 12px rgba(99,230,255,.3)}
 
-  /* ---------- Buttons ---------- */
-  .btn{
-    display:inline-flex;align-items:center;justify-content:center;gap:8px;
-    padding:12px 22px;border-radius:12px;border:1px solid transparent;
-    font-weight:700;font-size:14px;cursor:pointer;letter-spacing:.2px;
-    transition:transform .12s ease, box-shadow .2s ease, background .2s ease;
-    font-family:inherit;
-  }
+  /* ============ BUTTONS ============ */
+  .btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;border-radius:12px;border:1px solid transparent;font-weight:700;font-size:14px;cursor:pointer;letter-spacing:.3px;transition:all .15s ease;font-family:inherit;overflow:hidden}
   .btn:active{transform:scale(.97)}
-  .btn-primary{
-    background:linear-gradient(135deg,var(--accent),var(--accent2));
-    color:#04122b;box-shadow:0 8px 24px rgba(99,230,255,.25);
-  }
-  .btn-primary:hover{box-shadow:0 10px 32px rgba(99,230,255,.4)}
+  .btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#04122b;box-shadow:0 8px 24px rgba(99,230,255,.3),inset 0 1px 0 rgba(255,255,255,.4)}
+  .btn-primary::before{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.5) 50%,transparent 70%);transform:translateX(-100%);transition:transform .6s}
+  .btn-primary:hover::before{transform:translateX(100%)}
+  .btn-primary:hover{box-shadow:0 10px 32px rgba(99,230,255,.55)}
   .btn-ghost{background:var(--panel);border-color:var(--border);color:var(--text)}
-  .btn-ghost:hover{background:var(--panel2)}
+  .btn-ghost:hover{background:var(--panel2);border-color:rgba(99,230,255,.4)}
   .btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
 
-  /* ---------- Screen ---------- */
+  /* ============ SCREENS ============ */
   .screen{animation:fadeUp .4s ease both}
   @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
-  .hero{
-    text-align:center;padding:34px 22px;border-radius:20px;
-    background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.01));
-    border:1px solid var(--border);box-shadow:var(--shadow);
-  }
-  .hero .badge{
-    display:inline-block;font-size:11px;letter-spacing:1.5px;font-weight:800;
-    padding:6px 14px;border-radius:999px;
-    background:rgba(99,230,255,.12);color:var(--accent);
-    border:1px solid rgba(99,230,255,.3);margin-bottom:16px;
-  }
+  /* HERO */
+  .hero{text-align:center;padding:34px 22px;border-radius:20px;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.01));border:1px solid var(--border);box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .hero::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--hud),var(--accent2),transparent);opacity:.6}
+  .hero .badge{display:inline-block;font-size:11px;letter-spacing:2px;font-weight:800;padding:6px 16px;border-radius:999px;background:rgba(99,230,255,.1);color:var(--accent);border:1px solid rgba(99,230,255,.4);margin-bottom:16px;text-shadow:0 0 8px rgba(99,230,255,.5);box-shadow:0 0 20px rgba(99,230,255,.2)}
   .hero h1{margin:0 0 10px;font-size:clamp(24px,4.5vw,38px);letter-spacing:-.5px}
-  .hero h1 .grad{
-    background:linear-gradient(135deg,var(--accent),var(--accent2));
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-  }
+  .hero h1 .grad{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 20px rgba(99,230,255,.5))}
   .hero p{color:var(--muted);max-width:560px;margin:0 auto 22px;font-size:14px}
   .field{display:flex;gap:10px;max-width:420px;margin:0 auto 18px;flex-wrap:wrap}
-  .field input{
-    flex:1;min-width:180px;padding:12px 14px;border-radius:12px;
-    background:rgba(0,0,0,.3);border:1px solid var(--border);
-    color:var(--text);font-size:14px;font-family:inherit;outline:none;
-    transition:border-color .2s ease, box-shadow .2s ease;
-  }
-  .field input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(99,230,255,.18)}
+  .field input{flex:1;min-width:180px;padding:12px 14px;border-radius:12px;background:rgba(0,0,0,.4);border:1px solid var(--border);color:var(--text);font-size:14px;font-family:inherit;outline:none;transition:all .2s ease}
+  .field input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(99,230,255,.18),0 0 20px rgba(99,230,255,.3)}
+  .profile-chips{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-bottom:16px}
+  .profile-chip{font-size:11px;padding:6px 14px;border-radius:999px;background:var(--panel);border:1px solid var(--border);color:var(--muted);cursor:pointer;font-family:inherit;transition:all .2s}
+  .profile-chip:hover{background:rgba(99,230,255,.1);color:var(--accent);border-color:var(--accent);box-shadow:0 0 12px rgba(99,230,255,.3)}
   .cp-list{list-style:none;padding:0;margin:22px auto 0;max-width:560px;text-align:left;display:grid;gap:8px}
-  .cp-list li{
-    display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--muted);
-    padding:10px 12px;background:var(--panel);border-radius:10px;border:1px solid var(--border);
-  }
+  .cp-list li{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--muted);padding:10px 12px;background:var(--panel);border-radius:10px;border:1px solid var(--border)}
   .cp-list li::before{content:"▸";color:var(--accent);font-weight:900}
 
-  /* ---------- MAP ---------- */
-  .section-title{font-size:13px;letter-spacing:2px;color:var(--muted);font-weight:800;margin:6px 0 14px;text-transform:uppercase}
-  .map{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
-  .level{
-    position:relative;text-align:left;padding:18px;border-radius:16px;cursor:pointer;
-    background:var(--panel);border:1px solid var(--border);
-    color:var(--text);font-family:inherit;
-    transition:transform .15s ease, border-color .2s ease, background .2s ease;
-  }
-  .level:hover:not([disabled]){transform:translateY(-2px);background:var(--panel2);border-color:rgba(255,255,255,.22)}
+  /* MAP */
+  .section-title{font-size:12px;letter-spacing:2.5px;color:var(--muted);font-weight:800;margin:6px 0 14px;text-transform:uppercase}
+  .map{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+  .level{position:relative;text-align:left;padding:18px;border-radius:16px;cursor:pointer;background:linear-gradient(145deg,rgba(255,255,255,.05),rgba(255,255,255,.02));border:1px solid var(--border);color:var(--text);font-family:inherit;transition:all .2s ease;overflow:hidden}
+  .level::before{content:'';position:absolute;inset:0;border-radius:16px;padding:1px;background:linear-gradient(135deg,transparent 40%,var(--accent),transparent 60%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .3s;animation:borderSpin 4s linear infinite;background-size:200% 200%}
+  @keyframes borderSpin{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+  .level:hover:not([disabled])::before{opacity:1}
+  .level:hover:not([disabled]){transform:translateY(-3px);background:rgba(255,255,255,.06);box-shadow:0 12px 32px rgba(0,0,0,.5),0 0 24px rgba(99,230,255,.15)}
   .level:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
   .level[disabled]{opacity:.45;cursor:not-allowed}
   .level .row1{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
-  .level .icon{font-size:26px}
+  .level .icon{font-size:26px;filter:drop-shadow(0 0 8px rgba(99,230,255,.5))}
   .level .tag{font-size:10px;font-weight:800;letter-spacing:1px;padding:3px 9px;border-radius:999px;background:rgba(255,255,255,.06);color:var(--muted)}
-  .level[data-done="1"] .tag{background:rgba(52,211,153,.15);color:var(--good)}
-  .level h3{margin:0 0 4px;font-size:16px}
+  .level[data-done="1"] .tag{background:rgba(52,211,153,.15);color:var(--good);box-shadow:0 0 12px rgba(52,211,153,.3)}
+  .level h3{margin:0 0 4px;font-size:16px;letter-spacing:.2px}
   .level p{margin:0;font-size:12px;color:var(--muted)}
   .level .bar{height:5px;border-radius:999px;background:rgba(255,255,255,.08);margin-top:12px;overflow:hidden}
-  .level .bar > i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0;transition:width .4s ease}
+  .level .bar > i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0;transition:width .4s ease;box-shadow:0 0 8px var(--hud)}
 
-  /* ---------- QUESTION ---------- */
+  /* QUESTION */
   .quiz-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;flex-wrap:wrap}
-  .crumbs{font-size:12px;color:var(--muted);letter-spacing:.5px}
+  .crumbs{font-size:12px;color:var(--muted);letter-spacing:.5px;font-weight:600}
   .crumbs b{color:var(--text)}
-  .combo{
-    font-size:12px;font-weight:800;padding:5px 12px;border-radius:999px;
-    background:rgba(251,191,36,.15);color:var(--warn);border:1px solid rgba(251,191,36,.35);
-    opacity:0;transition:opacity .3s ease;
-  }
+  .combo{font-size:12px;font-weight:800;padding:5px 14px;border-radius:999px;background:rgba(251,191,36,.15);color:var(--warn);border:1px solid rgba(251,191,36,.4);opacity:0;transition:opacity .3s ease;text-shadow:0 0 8px rgba(251,191,36,.5)}
   .combo.on{opacity:1}
   .combo.pulse{animation:comboPulse .6s cubic-bezier(.34,1.56,.64,1)}
-  @keyframes comboPulse{
-    0%{transform:scale(1)}
-    40%{transform:scale(1.4);box-shadow:0 0 24px rgba(251,191,36,.8)}
-    100%{transform:scale(1)}
-  }
+  @keyframes comboPulse{0%{transform:scale(1)}40%{transform:scale(1.4);box-shadow:0 0 24px rgba(251,191,36,.8)}100%{transform:scale(1)}}
 
-  .qcard{
-    padding:24px;border-radius:18px;
-    background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.015));
-    border:1px solid var(--border);box-shadow:var(--shadow);
-  }
+  .qcard{position:relative;padding:26px;border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.015));border:1px solid var(--border);box-shadow:var(--shadow);overflow:hidden}
+  .qcard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--hud),var(--accent2),transparent);opacity:.8;background-size:200% 100%;animation:topFlow 3s linear infinite}
+  @keyframes topFlow{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+  .qcard::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent2),transparent);opacity:.5}
   .qcard.shake{animation:shake .4s cubic-bezier(.36,.07,.19,.97)}
-  @keyframes shake{
-    10%,90%{transform:translateX(-2px)}
-    20%,80%{transform:translateX(4px)}
-    30%,50%,70%{transform:translateX(-6px)}
-    40%,60%{transform:translateX(6px)}
-  }
-  .bloom{
-    display:inline-block;font-size:10px;font-weight:900;letter-spacing:1.2px;
-    padding:4px 10px;border-radius:6px;margin-bottom:12px;
-    background:rgba(167,139,250,.15);color:var(--accent2);
-    border:1px solid rgba(167,139,250,.35);
-  }
+  @keyframes shake{10%,90%{transform:translateX(-2px)}20%,80%{transform:translateX(4px)}30%,50%,70%{transform:translateX(-6px)}40%,60%{transform:translateX(6px)}}
+  .qcard.correct-flash{animation:correctFlash .7s ease}
+  @keyframes correctFlash{0%{box-shadow:var(--shadow)}30%{box-shadow:0 0 60px rgba(52,211,153,.8),var(--shadow)}100%{box-shadow:var(--shadow)}}
+
+  .bloom{display:inline-block;font-size:10px;font-weight:900;letter-spacing:1.2px;padding:4px 10px;border-radius:6px;margin-bottom:12px;background:rgba(167,139,250,.15);color:var(--accent2);border:1px solid rgba(167,139,250,.4);text-shadow:0 0 8px rgba(167,139,250,.5)}
+  .bloom.stim{background:rgba(52,211,153,.15);color:var(--good);border-color:rgba(52,211,153,.4);text-shadow:0 0 8px rgba(52,211,153,.5)}
   .qtext{font-size:16px;line-height:1.55;margin:0 0 20px;font-weight:600}
+  .stimulus{margin:0 0 18px;padding:14px 16px;background:rgba(99,230,255,.05);border-left:3px solid var(--accent);border-radius:8px;font-size:13.5px;color:#c9d2f0;line-height:1.65;font-style:italic;box-shadow:inset 0 0 20px rgba(99,230,255,.05)}
+  .stimulus b{color:var(--accent);font-style:normal;text-shadow:0 0 8px rgba(99,230,255,.5)}
   .options{display:grid;gap:10px}
-  .opt{
-    display:flex;align-items:flex-start;gap:12px;width:100%;text-align:left;
-    padding:14px 16px;border-radius:12px;cursor:pointer;
-    background:rgba(255,255,255,.03);border:1px solid var(--border);
-    color:var(--text);font-size:14px;font-family:inherit;line-height:1.45;
-    transition:all .15s ease;
-  }
-  .opt:hover:not([disabled]){background:var(--panel2);border-color:rgba(99,230,255,.4);transform:translateX(2px)}
+  .opt{position:relative;display:flex;align-items:flex-start;gap:12px;width:100%;text-align:left;padding:14px 16px;border-radius:12px;cursor:pointer;background:rgba(255,255,255,.03);border:1px solid var(--border);color:var(--text);font-size:14px;font-family:inherit;line-height:1.45;transition:all .15s ease;overflow:hidden}
+  .opt::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:transparent;transition:background .2s}
+  .opt:hover:not([disabled]){background:var(--panel2);border-color:rgba(99,230,255,.4);transform:translateX(3px)}
+  .opt:hover:not([disabled])::before{background:var(--accent);box-shadow:0 0 12px var(--hud)}
   .opt:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-  .opt .key{
-    flex:0 0 26px;height:26px;border-radius:8px;
-    background:rgba(255,255,255,.08);display:grid;place-items:center;
-    font-size:11px;font-weight:900;color:var(--muted);
-  }
-  .opt[data-state="sel"]{border-color:var(--accent);background:rgba(99,230,255,.08)}
-  .opt[data-state="sel"] .key{background:var(--accent);color:#04122b}
-  .opt[data-state="correct"]{border-color:var(--good);background:rgba(52,211,153,.12)}
-  .opt[data-state="correct"] .key{background:var(--good);color:#04122b}
-  .opt[data-state="correct"]{animation:pop .35s cubic-bezier(.34,1.56,.64,1)}
+  .opt .key{flex:0 0 26px;height:26px;border-radius:8px;background:rgba(255,255,255,.08);display:grid;place-items:center;font-size:11px;font-weight:900;color:var(--muted);transition:all .2s}
+  .opt[data-state="sel"]{border-color:var(--accent);background:rgba(99,230,255,.08);box-shadow:0 0 20px rgba(99,230,255,.2)}
+  .opt[data-state="sel"]::before{background:var(--accent)}
+  .opt[data-state="sel"] .key{background:var(--accent);color:#04122b;box-shadow:0 0 12px var(--hud)}
+  .opt[data-state="correct"]{border-color:var(--good);background:rgba(52,211,153,.12);animation:pop .35s cubic-bezier(.34,1.56,.64,1);box-shadow:0 0 20px rgba(52,211,153,.4)}
+  .opt[data-state="correct"]::before{background:var(--good)}
+  .opt[data-state="correct"] .key{background:var(--good);color:#04122b;box-shadow:0 0 12px var(--good)}
   @keyframes pop{0%{transform:scale(1)}50%{transform:scale(1.03)}100%{transform:scale(1)}}
-  .opt[data-state="wrong"]{border-color:var(--bad);background:rgba(248,113,113,.1)}
-  .opt[data-state="wrong"] .key{background:var(--bad);color:#2b0404}
+  .opt[data-state="wrong"]{border-color:var(--bad);background:rgba(248,113,113,.1);box-shadow:0 0 20px rgba(248,113,113,.3)}
+  .opt[data-state="wrong"]::before{background:var(--bad)}
+  .opt[data-state="wrong"] .key{background:var(--bad);color:#2b0404;box-shadow:0 0 12px var(--bad)}
   .opt[disabled]{cursor:default}
 
-  .fb{
-    margin-top:16px;padding:16px 18px;border-radius:14px;
-    border:1px solid var(--border);background:var(--panel);
-    animation:fadeUp .3s ease both;
-  }
+  .unk-btn{width:100%;margin-top:10px;padding:12px 16px;border-radius:12px;border:1px dashed rgba(250,204,21,.5);background:rgba(250,204,21,.05);color:var(--warn);font-family:inherit;font-weight:700;font-size:13px;cursor:pointer;transition:all .2s}
+  .unk-btn:hover:not([disabled]){background:rgba(250,204,21,.12);border-style:solid;box-shadow:0 0 16px rgba(250,204,21,.3)}
+  .unk-btn[disabled]{cursor:default;opacity:.5}
+
+  .fb{margin-top:16px;padding:16px 18px;border-radius:14px;border:1px solid var(--border);background:var(--panel);animation:fadeUp .3s ease both;position:relative;overflow:hidden}
+  .fb::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px}
   .fb.good{border-color:rgba(52,211,153,.5);background:rgba(52,211,153,.07)}
+  .fb.good::before{background:var(--good);box-shadow:0 0 12px var(--good)}
   .fb.bad{border-color:rgba(248,113,113,.5);background:rgba(248,113,113,.07)}
-  .fb h4{margin:0 0 8px;font-size:14px;display:flex;align-items:center;gap:8px}
+  .fb.bad::before{background:var(--bad);box-shadow:0 0 12px var(--bad)}
+  .fb.unk{border-color:rgba(250,204,21,.5);background:rgba(250,204,21,.06)}
+  .fb.unk::before{background:var(--unk);box-shadow:0 0 12px var(--unk)}
+  .fb h4{margin:0 0 8px;font-size:14px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
   .fb.good h4{color:var(--good)}
   .fb.bad h4{color:var(--bad)}
+  .fb.unk h4{color:var(--warn)}
   .fb p{margin:0;font-size:13.5px;color:#c9d2f0;line-height:1.6}
   .fb .hint{margin-top:10px;font-size:13px;color:var(--warn)}
 
-  .quiz-actions{display:flex;justify-content:space-between;gap:10px;margin-top:18px;flex-wrap:wrap}
-  .kbd-hint{font-size:11px;color:var(--muted);align-self:center}
+  .quiz-actions{display:flex;justify-content:space-between;gap:10px;margin-top:18px;flex-wrap:wrap;align-items:center}
+  .kbd-hint{font-size:11px;color:var(--muted)}
   .kbd{display:inline-block;padding:1px 6px;margin:0 1px;background:rgba(255,255,255,.08);border:1px solid var(--border);border-radius:5px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px}
 
-  /* ---------- RESULT ---------- */
-  .result{
-    padding:28px;border-radius:20px;text-align:center;
-    background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.01));
-    border:1px solid var(--border);box-shadow:var(--shadow);
-  }
-  .result .trophy{font-size:56px;line-height:1;margin-bottom:10px;filter:drop-shadow(0 0 24px rgba(251,191,36,.5))}
+  /* Professor */
+  .professor{display:flex;gap:14px;align-items:flex-start;margin-bottom:18px;padding:14px 16px;border-radius:14px;background:linear-gradient(135deg,rgba(99,230,255,.08),rgba(167,139,250,.05));border:1px solid rgba(99,230,255,.3);animation:fadeUp .5s ease both;box-shadow:0 0 32px rgba(99,230,255,.15);position:relative;overflow:hidden}
+  .professor::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 0% 50%,rgba(99,230,255,.1),transparent 70%);pointer-events:none}
+  .professor .pic{font-size:36px;line-height:1;flex-shrink:0;filter:drop-shadow(0 0 12px rgba(99,230,255,.7));animation:picBob 3s ease-in-out infinite}
+  @keyframes picBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+  .professor .bubble{font-size:13.5px;color:#c9d2f0;line-height:1.55;position:relative;z-index:1}
+  .professor .name{font-weight:800;font-size:12px;color:var(--accent);letter-spacing:1px;margin-bottom:3px;text-shadow:0 0 8px rgba(99,230,255,.5)}
+
+  /* RESULT */
+  .result{padding:28px;border-radius:20px;text-align:center;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.01));border:1px solid var(--border);box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .result::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--hud),var(--accent2),transparent);opacity:.7}
+  .result .trophy{font-size:56px;line-height:1;margin-bottom:10px;filter:drop-shadow(0 0 24px rgba(251,191,36,.6));animation:trophyBob 3s ease-in-out infinite}
+  @keyframes trophyBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
   .result h2{margin:0 0 6px;font-size:22px}
-  .result .rank{color:var(--accent);font-weight:800;letter-spacing:1px;font-size:13px;margin-bottom:20px}
+  .result .rank{color:var(--accent);font-weight:800;letter-spacing:1.5px;font-size:13px;margin-bottom:20px;text-shadow:0 0 12px rgba(99,230,255,.5)}
   .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin:20px 0}
-  .stat{padding:14px;border-radius:12px;background:var(--panel);border:1px solid var(--border)}
-  .stat b{display:block;font-size:22px;color:var(--accent);font-variant-numeric:tabular-nums}
+  .stat{padding:14px;border-radius:12px;background:var(--panel);border:1px solid var(--border);position:relative;overflow:hidden}
+  .stat::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:.6}
+  .stat b{display:block;font-size:22px;color:var(--accent);font-variant-numeric:tabular-nums;text-shadow:0 0 12px rgba(99,230,255,.4)}
   .stat span{font-size:11px;color:var(--muted);letter-spacing:.5px;text-transform:uppercase}
   .result .actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:8px}
-  .achievements{display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));margin-top:16px;text-align:left}
-  .ach{
-    padding:10px 12px;border-radius:12px;
-    background:linear-gradient(135deg, rgba(251,191,36,.12), rgba(167,139,250,.08));
-    border:1px solid rgba(251,191,36,.3);
-    display:flex;gap:10px;align-items:center;font-size:12px;
-  }
-  .ach .i{font-size:22px}
+  .achievements{display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));margin-top:16px;text-align:left}
+  .ach{padding:10px 12px;border-radius:12px;background:linear-gradient(135deg,rgba(251,191,36,.12),rgba(167,139,250,.08));border:1px solid rgba(251,191,36,.35);display:flex;gap:10px;align-items:center;font-size:12px;box-shadow:0 0 16px rgba(251,191,36,.15)}
+  .ach .i{font-size:22px;flex-shrink:0;filter:drop-shadow(0 0 8px rgba(251,191,36,.6))}
   .ach .t{font-weight:800;color:var(--warn);font-size:12px}
   .ach .d{color:var(--muted);font-size:11px;line-height:1.3}
 
-  /* ---------- Toast (achievement popup) ---------- */
-  .toast{
-    position:fixed;top:16px;right:16px;z-index:80;
-    display:flex;gap:12px;align-items:center;
-    padding:14px 18px;border-radius:14px;
-    background:linear-gradient(135deg, rgba(30,40,80,.95), rgba(40,25,70,.95));
-    border:1px solid rgba(251,191,36,.5);
-    box-shadow:0 12px 40px rgba(0,0,0,.6), 0 0 30px rgba(251,191,36,.25);
-    transform:translateX(120%);
-    transition:transform .4s cubic-bezier(.34,1.56,.64,1);
-    max-width:320px;pointer-events:none;
-  }
+  /* Toast */
+  .toast{position:fixed;top:16px;right:16px;z-index:80;display:flex;gap:12px;align-items:center;padding:14px 18px;border-radius:14px;background:linear-gradient(135deg,rgba(30,40,80,.95),rgba(40,25,70,.95));border:1px solid rgba(251,191,36,.5);box-shadow:0 12px 40px rgba(0,0,0,.6),0 0 40px rgba(251,191,36,.35);transform:translateX(120%);transition:transform .4s cubic-bezier(.34,1.56,.64,1);max-width:320px;pointer-events:none;backdrop-filter:blur(8px)}
   .toast.show{transform:translateX(0)}
-  .toast-icon{font-size:32px;filter:drop-shadow(0 0 12px rgba(251,191,36,.6))}
-  .toast-title{font-weight:900;font-size:13px;color:var(--warn);letter-spacing:.3px}
+  .toast-icon{font-size:32px;filter:drop-shadow(0 0 12px rgba(251,191,36,.7))}
+  .toast-title{font-weight:900;font-size:13px;color:var(--warn);letter-spacing:.3px;text-shadow:0 0 8px rgba(251,191,36,.5)}
   .toast-desc{font-size:12px;color:#c9d2f0;margin-top:2px}
 
-  /* ---------- ROCKET overlay ---------- */
-  #rocket{
-    position:fixed;inset:0;z-index:70;
-    display:grid;place-items:center;
-    background:radial-gradient(circle at 50% 100%, rgba(99,230,255,.1), transparent 60%),
-              linear-gradient(180deg, #000308 0%, #050920 100%);
-    opacity:0;pointer-events:none;
-    transition:opacity .35s ease;
-    overflow:hidden;
-  }
+  /* Rocket */
+  #rocket{position:fixed;inset:0;z-index:70;display:grid;place-items:center;background:radial-gradient(circle at 50% 100%,rgba(99,230,255,.15),transparent 60%),linear-gradient(180deg,#000308 0%,#050920 100%);opacity:0;pointer-events:none;transition:opacity .35s ease;overflow:hidden}
   #rocket.active{opacity:1;pointer-events:auto}
-  .speedlines{
-    position:absolute;inset:0;
-    background:
-      repeating-linear-gradient(0deg,
-        transparent 0px, transparent 40px,
-        rgba(180,220,255,.15) 40px, rgba(180,220,255,.15) 42px,
-        transparent 42px, transparent 90px);
-    animation:streak 0.8s linear infinite;
-  }
+  .speedlines{position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0px,transparent 40px,rgba(180,220,255,.15) 40px,rgba(180,220,255,.15) 42px,transparent 42px,transparent 90px);animation:streak .8s linear infinite}
   @keyframes streak{from{transform:translateY(0)}to{transform:translateY(90px)}}
-  .rocket-icon{
-    font-size:72px;z-index:2;
-    transform:translateY(-40vh) rotate(-45deg);
-    filter:drop-shadow(0 0 24px rgba(99,230,255,.8));
-    animation:launch 2.4s cubic-bezier(.5,0,.9,1) forwards;
-  }
-  @keyframes launch{
-    0%{transform:translateY(60vh) rotate(-45deg) scale(.7)}
-    100%{transform:translateY(-60vh) rotate(-45deg) scale(1.1)}
-  }
-  .rocket-level{
-    position:absolute;bottom:22%;
-    font-size:14px;letter-spacing:3px;font-weight:900;
-    color:var(--accent);
-    text-shadow:0 0 20px rgba(99,230,255,.6);
-    opacity:0;animation:levelFlash 2.4s ease forwards;
-  }
-  @keyframes levelFlash{
-    0%,30%{opacity:0;transform:translateY(10px)}
-    50%,80%{opacity:1;transform:translateY(0)}
-    100%{opacity:0}
-  }
+  .rocket-icon{font-size:72px;z-index:2;transform:translateY(-40vh) rotate(-45deg);filter:drop-shadow(0 0 24px rgba(99,230,255,.9));animation:launch 2.4s cubic-bezier(.5,0,.9,1) forwards}
+  @keyframes launch{0%{transform:translateY(60vh) rotate(-45deg) scale(.7)}100%{transform:translateY(-60vh) rotate(-45deg) scale(1.1)}}
+  .rocket-level{position:absolute;bottom:22%;font-size:14px;letter-spacing:3px;font-weight:900;color:var(--accent);text-shadow:0 0 20px var(--hud);opacity:0;animation:levelFlash 2.4s ease forwards}
+  @keyframes levelFlash{0%,30%{opacity:0;transform:translateY(10px)}50%,80%{opacity:1;transform:translateY(0)}100%{opacity:0}}
 
-  /* ---------- Drawer ---------- */
-  .drawer{
-    position:fixed;inset:auto 0 0 0;z-index:20;
-    background:#0d1330;border-top:1px solid var(--border);
-    transform:translateY(100%);transition:transform .3s ease;
-    max-height:70vh;overflow:auto;
-  }
+  /* Drawer */
+  .drawer{position:fixed;inset:auto 0 0 0;z-index:20;background:linear-gradient(180deg,#0d1330,#0a0f24);border-top:1px solid var(--border);transform:translateY(100%);transition:transform .3s ease;max-height:70vh;overflow:auto;box-shadow:0 -12px 40px rgba(0,0,0,.7)}
   .drawer.open{transform:translateY(0)}
   .drawer-inner{max-width:1000px;margin:0 auto;padding:20px 18px 40px}
   .drawer h3{margin:0 0 12px;font-size:15px;display:flex;justify-content:space-between;align-items:center}
   .glossary{display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
-  .glossary div{padding:10px 12px;border-radius:10px;background:var(--panel);border:1px solid var(--border);font-size:12.5px}
+  .glossary div{padding:10px 12px;border-radius:10px;background:var(--panel);border:1px solid var(--border);font-size:12.5px;transition:all .2s}
+  .glossary div:hover{border-color:rgba(99,230,255,.4);background:rgba(99,230,255,.05)}
   .glossary b{color:var(--accent);display:block;margin-bottom:3px;font-size:12.5px}
 
   .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
@@ -383,20 +301,14 @@
     .qtext{font-size:15px}
     .toast{top:auto;bottom:16px;right:16px;left:16px;max-width:none}
   }
-
   @media (prefers-reduced-motion: reduce){
-    *,*::before,*::after{
-      animation-duration:.01ms !important;
-      animation-iteration-count:1 !important;
-      transition-duration:.01ms !important;
-      scroll-behavior:auto !important;
-    }
-    .speedlines{display:none}
+    *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
+    .speedlines,.scanlines,.hud-frame::after{display:none}
+    .planet{animation:none}
   }
-
   @media print{
     body{background:#fff;color:#111}
-    #sky,#starfield,#fx,.hud,.iconbtn,.actions,footer,.kbd-hint,.combo,#rocket,.toast{display:none !important}
+    #sky,#starfield,#particles,#fx,.scanlines,.hud-frame,.altimeter,.visualizer,.boot,.hud,.iconbtn,.actions,footer,.kbd-hint,.combo,#rocket,.toast,.professor{display:none !important}
     .wrap{max-width:100%;padding:0}
     .result{border:2px solid #111;box-shadow:none;background:#fff;color:#111}
     .result .rank{color:#444}
@@ -406,15 +318,52 @@
 </style>
 </head>
 <body>
+
 <noscript>
-  <div class="noscript">
-    <div><h1>🌍 Atmosphere Mission</h1><p>Aktifkan JavaScript di browser kamu untuk menjalankan game ini.</p></div>
-  </div>
+  <div class="noscript"><div><h1>🌍 Atmosphere Mission</h1><p>Aktifkan JavaScript untuk menjalankan game ini.</p></div></div>
 </noscript>
 
+<!-- ====== BOOT / LOADING ====== -->
+<div class="boot" id="boot" role="status" aria-label="Memuat game">
+  <div class="boot-inner">
+    <div class="planet" aria-hidden="true"></div>
+    <div class="boot-text" id="bootText">MENYIAPKAN MISI</div>
+    <div class="boot-sub">ATMOSPHERE MISSION · TACTICAL EDITION</div>
+    <div class="boot-bar"><i id="bootFill"></i></div>
+  </div>
+</div>
+
+<!-- ====== HUD FRAME ====== -->
+<div class="hud-frame" aria-hidden="true">
+  <span class="corner tl"></span><span class="corner tr"></span>
+  <span class="corner bl"></span><span class="corner br"></span>
+</div>
+<div class="scanlines" aria-hidden="true"></div>
+
+<!-- ====== LAYERS ====== -->
 <div id="sky" aria-hidden="true" data-level=""></div>
 <canvas id="starfield" aria-hidden="true"></canvas>
+<canvas id="particles" aria-hidden="true"></canvas>
 <canvas id="fx" aria-hidden="true"></canvas>
+
+<!-- ====== ALTIMETER ====== -->
+<aside class="altimeter" id="altimeter" aria-hidden="true">
+  <div class="alt-track">
+    <div class="alt-tick" style="top:0%">500+ km</div>
+    <div class="alt-tick" style="top:20%">85 km</div>
+    <div class="alt-tick" style="top:45%">50 km</div>
+    <div class="alt-tick" style="top:70%">12 km</div>
+    <div class="alt-tick" style="top:95%">0 km</div>
+    <div class="alt-marker" id="altMarker"></div>
+    <div class="alt-rocket" id="altRocket">🚀</div>
+  </div>
+  <div class="alt-label" id="altLabel">0 km</div>
+</aside>
+
+<!-- ====== SOUND VIZ ====== -->
+<div class="visualizer" id="visualizer" aria-hidden="true">
+  <span></span><span></span><span></span><span></span><span></span>
+</div>
 
 <div class="wrap">
   <header class="hud">
@@ -428,19 +377,16 @@
     </div>
     <div class="hud-right">
       <div class="xp" aria-live="polite" aria-atomic="true"><span id="xpVal">0</span> XP</div>
-      <div class="xpbar" id="xpBar" role="progressbar" aria-label="Progres XP" aria-valuemin="0" aria-valuemax="1500" aria-valuenow="0">
-        <div id="xpFill"></div>
-      </div>
+      <div class="xpbar" id="xpBar" role="progressbar" aria-label="Progres XP" aria-valuemin="0" aria-valuemax="1500" aria-valuenow="0"><div id="xpFill"></div></div>
       <button class="iconbtn" id="soundBtn" type="button" aria-label="Matikan suara" title="Suara on/off">🔊</button>
+      <button class="iconbtn" id="switchBtn" type="button" aria-label="Ganti pemain" title="Ganti pemain">👥</button>
       <button class="iconbtn" id="resetBtn" type="button" aria-label="Reset progres" title="Reset progres">↺</button>
     </div>
   </header>
 
   <main id="stage" tabindex="-1"></main>
 
-  <footer>
-    Atmosphere Mission · Media pembelajaran Geografi Kelas X · <span id="footYear"></span>
-  </footer>
+  <footer>Atmosphere Mission · Tactical Edition · Geografi Kelas X · <span id="footYear"></span></footer>
 </div>
 
 <div id="rocket" aria-hidden="true">
@@ -451,10 +397,7 @@
 
 <div class="drawer" id="drawer" aria-hidden="true" role="dialog" aria-label="Glosarium">
   <div class="drawer-inner">
-    <h3>
-      <span>📖 Glosarium Atmosfer</span>
-      <button class="iconbtn" id="closeDrawer" type="button" aria-label="Tutup glosarium">✕</button>
-    </h3>
+    <h3><span>📖 Glosarium Atmosfer</span><button class="iconbtn" id="closeDrawer" type="button" aria-label="Tutup glosarium">✕</button></h3>
     <div class="glossary" id="glossary"></div>
   </div>
 </div>
@@ -465,16 +408,22 @@
 (() => {
   'use strict';
 
-  /* =====================================================
-     1. DATA
-     ===================================================== */
+  /* ================= LEVELS ================= */
   const LEVELS = [
-    { id:'troposfer',  name:'Troposfer',  icon:'🌤️', range:'0 – 12 km',  desc:'Dapur cuaca planet Bumi' },
-    { id:'stratosfer', name:'Stratosfer', icon:'🛡️', range:'12 – 50 km', desc:'Perisai ozon pelindung UV' },
-    { id:'mesosfer',   name:'Mesosfer',   icon:'☄️', range:'50 – 85 km', desc:'Pemanggang meteor masuk' },
-    { id:'termosfer',  name:'Termosfer',  icon:'🌌', range:'85 – 500 km',desc:'Aurora & stasiun antariksa' },
-    { id:'eksosfer',   name:'Eksosfer',   icon:'🚀', range:'> 500 km',   desc:'Gerbang terakhir ke angkasa' }
+    { id:'troposfer',  name:'Troposfer',  icon:'🌤️', range:'0 – 12 km',  desc:'Dapur cuaca planet Bumi', altMid:6 },
+    { id:'stratosfer', name:'Stratosfer', icon:'🛡️', range:'12 – 50 km', desc:'Perisai ozon pelindung UV', altMid:31 },
+    { id:'mesosfer',   name:'Mesosfer',   icon:'☄️', range:'50 – 85 km', desc:'Pemanggang meteor masuk', altMid:67 },
+    { id:'termosfer',  name:'Termosfer',  icon:'🌌', range:'85 – 500 km',desc:'Aurora & stasiun antariksa', altMid:250 },
+    { id:'eksosfer',   name:'Eksosfer',   icon:'🚀', range:'> 500 km',   desc:'Gerbang terakhir ke angkasa', altMid:600 }
   ];
+
+  const PROFESSOR_INTRO = {
+    troposfer:'Selamat datang, Detektif! Aku Profesor Atmos. Mulai dari Troposfer — lapisan tempat kita hidup dan merasakan cuaca.',
+    stratosfer:'Naik satu lapisan! Ini wilayah ozon. Banyak salah paham soal "lubang ozon" — buktikan kamu tidak termasuk.',
+    mesosfer:'Hati-hati, ini zona terdingin! Di sini meteor terbakar habis sebelum sampai Bumi.',
+    termosfer:'Kamu sudah di ketinggian ISS dan aurora. Jangan tertipu angka — 1.500°C di sini tidak terasa seperti di Bumi.',
+    eksosfer:'Lapisan terakhir. Partikel lepas ke angkasa, batas Bumi dengan kosmos jadi kabur. Selesaikan misi!'
+  };
 
   const AMBIENT = {
     troposfer:  { freq: 90,  type:'sine',     lfo:0.15, depth:12, vol:0.03 },
@@ -484,356 +433,292 @@
     eksosfer:   { freq: 45,  type:'sine',     lfo:0.05, depth:5,  vol:0.03 }
   };
 
+  /* ================= BANK SOAL (40) ================= */
   const BANK = {
     troposfer: [
-      { bloom:'C1',
-        q:'Lapisan atmosfer tempat seluruh peristiwa cuaca (awan, hujan, angin) berlangsung adalah...',
-        options:['Troposfer','Stratosfer','Mesosfer','Termosfer'], answer:0,
-        explain:'Troposfer adalah lapisan terbawah (0–12 km) yang mengandung sekitar 80% massa atmosfer dan hampir seluruh uap air, sehingga semua cuaca terjadi di sini.',
-        misconception:{
-          1:'Stratosfer punya awan tipis (nacreous), tetapi cuaca utama BUKAN di sini — stratosfer terlalu kering dan stabil.',
-          2:'Mesosfer adalah tempat meteor terbakar, bukan tempat terbentuknya cuaca.',
-          3:'Termosfer adalah lapisan aurora dan sangat renggang, bukan tempat awan terbentuk.'
-        }
+      { id:'tro-01', bloom:'C1', q:'Atmosfer berasal dari bahasa Yunani "atmos" yang artinya...',
+        options:['Uap air','Bumi','Lapisan','Gas','Udara'], answer:0,
+        explain:'Kata "atmos" berarti uap air, dan "sphaira" berarti lapisan/bola. Jadi atmosfer = lapisan uap air yang menyelubungi Bumi.',
+        misconception:{1:'"Bumi" dalam bahasa Yunani adalah "geo".',2:'"Lapisan" adalah arti "sphaira".',3:'"Gas" adalah "khaos".',4:'"Udara" adalah "aer".'}
       },
-      { bloom:'C2',
-        q:'Mengapa suhu udara di troposfer menurun ketika ketinggian bertambah?',
-        options:[
-          'Karena troposfer makin dekat dengan Matahari',
-          'Karena pemanasan utama berasal dari permukaan Bumi yang memancarkan panas ke atas',
-          'Karena tekanan udara di atas lebih besar',
-          'Karena ozon menyerap seluruh panas di lapisan ini'
-        ], answer:1,
-        explain:'Troposfer dipanaskan dari bawah: radiasi Matahari menembus atmosfer, memanaskan permukaan Bumi, lalu permukaan itu memancarkan panas ke udara di atasnya. Semakin tinggi, semakin jauh dari sumber panas, sehingga suhu turun (lapse rate ≈ 0,6°C per 100 m).',
-        misconception:{
-          0:'Justru karena troposfer paling dekat Bumi, bukan paling dekat Matahari, suhunya paling hangat di bawah.',
-          2:'Tekanan memang menurun dengan ketinggian — tapi yang mengatur suhu adalah sumber panas, bukan tekanan.',
-          3:'Ozon berperan penting di stratosfer, bukan troposfer.'
-        }
+      { id:'tro-02', bloom:'C1', q:'Lapisan atmosfer tempat seluruh peristiwa cuaca berlangsung adalah...',
+        options:['Troposfer','Stratosfer','Mesosfer','Termosfer','Eksosfer'], answer:0,
+        explain:'Troposfer (0–12 km) mengandung 80% massa atmosfer dan hampir seluruh uap air, sehingga semua cuaca terjadi di sini.',
+        misconception:{1:'Stratosfer terlalu kering dan stabil.',2:'Mesosfer tempat meteor terbakar.',3:'Termosfer sangat renggang.',4:'Eksosfer hampir hampa.'}
       },
-      { bloom:'C4',
-        q:'Suhu permukaan Jakarta 32°C. Dengan lapse rate 0,6°C per 100 m, perkiraan suhu udara di Puncak (ketinggian ±1.500 m) adalah...',
-        options:['26°C','23°C','18°C','32°C'], answer:1,
-        explain:'Penurunan suhu = (1.500 ÷ 100) × 0,6 = 15 × 0,6 = 9°C. Maka suhu di Puncak ≈ 32 − 9 = 23°C. Inilah mengapa daerah pegunungan seperti Puncak, Bromo, atau Dieng selalu lebih sejuk.',
-        misconception:{
-          0:'Perhitungan ini hanya memakai 1.000 m, bukan 1.500 m — kalikan dulu dengan 15, bukan 10.',
-          2:'Angka ini terlalu rendah; kamu mungkin salah mengalikan lapse rate (0,6 bukan 0,9).',
-          3:'Suhu tidak konstan di semua ketinggian — justru menurun seiring naik.'
-        }
+      { id:'tro-03', bloom:'C1', q:'Alat untuk mengukur suhu udara adalah...',
+        options:['Termometer','Barometer','Higrometer','Anemometer','Ombrometer'], answer:0,
+        explain:'Termometer mengukur suhu. Barometer = tekanan, higrometer = kelembaban, anemometer = kecepatan angin, ombrometer = curah hujan.',
+        misconception:{1:'Barometer mengukur tekanan udara.',2:'Higrometer mengukur kelembaban.',3:'Anemometer mengukur angin.',4:'Ombrometer mengukur curah hujan.'}
       },
-      { bloom:'C4',
-        q:'Mengapa awan Cumulonimbus dapat menjulang sangat tinggi di troposfer, sementara awan lain hanya tipis?',
-        options:[
-          'Karena Cumulonimbus didorong angin stratosfer',
-          'Karena udara panas dan lembap naik cepat (konveksi kuat) lalu mengembun, melepas panas laten yang mendorong awan makin tinggi',
-          'Karena Cumulonimbus terbentuk dari uap air yang sangat dingin di mesosfer',
-          'Karena Cumulonimbus mengandung banyak ozon'
-        ], answer:1,
-        explain:'Ketika udara lembap yang panas naik, uap air mengembun dan melepaskan panas laten. Panas ini membuat udara di sekitarnya makin hangat dan terus naik — proses konveksi kuat inilah yang membuat Cumulonimbus menjulang sampai batas tropopause (belasan km).',
-        misconception:{
-          0:'Angin stratosfer tidak mendorong awan dari bawah; awan tumbuh dari konveksi troposfer.',
-          2:'Awan tropis tumbuh di troposfer, bukan mesosfer (mesosfer terlalu kering & dingin).',
-          3:'Ozon tidak berperan dalam pertumbuhan awan Cumulonimbus.'
-        }
+      { id:'tro-04', bloom:'C2', q:'Perbedaan utama cuaca dan iklim adalah...',
+        options:['Cuaca sementara (jam–hari), iklim rata-rata jangka panjang (min. 30 tahun)','Cuaca terjadi di daratan, iklim di lautan','Cuaca tetap, iklim sementara','Cuaca malam, iklim siang','Cuaca diukur dengan barometer, iklim dengan termometer'], answer:0,
+        explain:'Cuaca = keadaan atmosfer pada waktu & tempat tertentu. Iklim = rata-rata kondisi cuaca jangka panjang minimal 30 tahun.',
+        misconception:{1:'Cuaca dan iklim bisa terjadi di darat maupun laut.',2:'Justru terbalik.',3:'Keduanya berlangsung 24 jam.',4:'Keduanya diukur berbagai alat meteorologi.'}
+      },
+      { id:'tro-05', bloom:'C2', q:'Mengapa suhu troposfer menurun seiring ketinggian?',
+        options:['Karena pemanasan utama berasal dari permukaan Bumi yang memancarkan panas ke atas','Karena troposfer makin dekat dengan Matahari','Karena tekanan udara di atas lebih besar','Karena ozon menyerap seluruh panas','Karena angin troposfer kencang'], answer:0,
+        explain:'Troposfer dipanaskan dari bawah: radiasi Matahari memanaskan permukaan Bumi, permukaan memancarkan panas ke udara di atasnya. Semakin tinggi, semakin jauh dari sumber → suhu turun (lapse rate ≈ 0,6°C/100 m).',
+        misconception:{1:'Troposfer paling dekat Bumi, bukan Matahari.',2:'Tekanan menurun dengan ketinggian — bukan penyebab suhu.',3:'Ozon berperan di stratosfer.',4:'Angin tidak menurunkan suhu sistematis.'}
+      },
+      { id:'tro-06', bloom:'C4', stim:'Suhu permukaan Jakarta 32°C. Lapse rate rata-rata troposfer = 0,6°C per 100 m.',
+        q:'Perkiraan suhu udara di Puncak (ketinggian ±1.500 m)?',
+        options:['23°C','26°C','18°C','32°C','28°C'], answer:0,
+        explain:'(1.500 ÷ 100) × 0,6 = 9°C. Suhu Puncak ≈ 32 − 9 = 23°C. Inilah mengapa daerah pegunungan selalu lebih sejuk.',
+        misconception:{1:'Kamu pakai 1.000 m, bukan 1.500 m.',2:'Angka terlalu rendah — cek lapse rate.',3:'Suhu tidak konstan.',4:'Angka tidak realistis.'}
+      },
+      { id:'tro-07', bloom:'C4', q:'Mengapa awan Cumulonimbus menjulang sangat tinggi?',
+        options:['Karena udara panas lembap naik cepat (konveksi kuat), mengembun, melepas panas laten yang mendorong awan makin tinggi','Karena didorong angin stratosfer','Karena terbentuk dari uap air di mesosfer','Karena mengandung ozon','Karena ditarik gravitasi Matahari'], answer:0,
+        explain:'Konveksi kuat + pelepasan panas laten membuat Cumulonimbus menjulang sampai batas tropopause (belasan km).',
+        misconception:{1:'Awan tumbuh dari konveksi troposfer.',2:'Awan tropis tumbuh di troposfer.',3:'Ozon tidak berperan.',4:'Gravitasi Matahari tidak signifikan.'}
+      },
+      { id:'tro-08', bloom:'C2', q:'Pergerakan air melalui evaporasi, kondensasi, presipitasi disebut...',
+        options:['Siklus hidrologi','Siklus batuan','Siklus karbon','Siklus nitrogen','Siklus fosfor'], answer:0,
+        explain:'Siklus hidrologi = perpindahan air terus-menerus melalui evaporasi → kondensasi → presipitasi → limpasan → kembali ke laut/daratan.',
+        misconception:{1:'Siklus batuan tentang jenis batuan.',2:'Siklus karbon tentang perpindahan karbon.',3:'Siklus nitrogen tentang fiksasi nitrogen.',4:'Siklus fosfor tentang batuan fosfat.'}
       }
     ],
     stratosfer: [
-      { bloom:'C1',
-        q:'Lapisan ozon (ozonosfer) yang menyerap sebagian besar ultraviolet Matahari terletak di...',
-        options:['Troposfer','Stratosfer','Mesosfer','Eksosfer'], answer:1,
-        explain:'Ozon (O₃) terkonsentrasi di stratosfer, sekitar 15–35 km. Lapisan ini menyerap 95% lebih UV-B dan UV-C, melindungi makhluk hidup di permukaan Bumi.',
-        misconception:{
-          0:'Troposfer mengandung ozon dalam jumlah kecil, tetapi bukan lapisan ozon utama.',
-          2:'Mesosfer terlalu tinggi dan terlalu renggang untuk menampung ozonosfer.',
-          3:'Eksosfer jauh di atas dan hampir hampa udara.'
-        }
+      { id:'stra-01', bloom:'C1', q:'Lapisan ozon yang menyerap UV Matahari terletak di...',
+        options:['Stratosfer','Troposfer','Mesosfer','Termosfer','Eksosfer'], answer:0,
+        explain:'Ozon (O₃) terkonsentrasi di stratosfer 15–35 km, menyerap >95% UV-B dan UV-C.',
+        misconception:{1:'Troposfer hanya sedikit ozon.',2:'Mesosfer terlalu renggang.',3:'Termosfer jauh di atas.',4:'Eksosfer hampir hampa.'}
       },
-      { bloom:'C2',
-        q:'Berbeda dari troposfer, suhu di stratosfer justru NAIK seiring ketinggian. Mengapa?',
-        options:[
-          'Karena stratosfer mendapat radiasi langsung dari Matahari tanpa disaring',
-          'Karena ozon menyerap radiasi ultraviolet dan mengubahnya menjadi panas',
-          'Karena stratosfer mengandung uap air paling banyak',
-          'Karena tekanan stratosfer lebih tinggi daripada troposfer'
-        ], answer:1,
-        explain:'Ozon menyerap radiasi UV Matahari, memecah molekul O₃ lalu membentuknya kembali sambil melepaskan panas. Akibatnya, suhu di stratosfer atas lebih tinggi daripada stratosfer bawah — disebut inversi suhu.',
-        misconception:{
-          0:'Semua lapisan menerima radiasi Matahari, tetapi hanya stratosfer yang mengandung ozon penyerap UV dalam jumlah besar.',
-          2:'Uap air justru terkonsentrasi di troposfer, bukan stratosfer.',
-          3:'Tekanan stratosfer justru lebih rendah daripada troposfer (semakin ke atas, tekanan menurun).'
-        }
+      { id:'stra-02', bloom:'C1', q:'Gas paling melimpah di atmosfer adalah...',
+        options:['Nitrogen (N₂)','Oksigen (O₂)','Argon (Ar)','Karbon dioksida (CO₂)','Uap air (H₂O)'], answer:0,
+        explain:'N₂ ≈ 78%, O₂ ≈ 21%, Ar ≈ 0,93%, CO₂ ≈ 0,04%.',
+        misconception:{1:'Oksigen hanya 21%.',2:'Argon hanya 0,93%.',3:'CO₂ hanya 0,04%.',4:'Uap air bervariasi 0–4%.'}
       },
-      { bloom:'C4',
-        q:'Pesawat jet komersial sering terbang di batas bawah stratosfer (sekitar 10–12 km). Alasan utamanya adalah...',
-        options:[
-          'Supaya penumpang bisa melihat aurora',
-          'Agar terhindar dari turbulensi cuaca dan menghemat bahan bakar karena udara lebih tipis',
-          'Karena gravitasi di stratosfer lebih kecil',
-          'Karena mesin jet tidak bisa bekerja di troposfer'
-        ], answer:1,
-        explain:'Troposfer penuh turbulensi cuaca (awan, badai). Di stratosfer bawah udara jauh lebih stabil, sehingga penerbangan nyaman. Ditambah udara yang lebih tipis mengurangi hambatan, sehingga pesawat lebih efisien bahan bakar.',
-        misconception:{
-          0:'Aurora ada di termosfer, bukan stratosfer.',
-          2:'Gravitasi hampir sama di kedua lapisan; tidak signifikan untuk pemilihan ketinggian terbang.',
-          3:'Mesin jet tetap bekerja di troposfer, tetapi tidak efisien karena turbulensi & hambatan besar.'
-        }
+      { id:'stra-03', bloom:'C2', q:'Mengapa suhu stratosfer NAIK seiring ketinggian?',
+        options:['Karena ozon menyerap UV dan mengubahnya menjadi panas','Karena stratosfer menerima radiasi langsung tanpa disaring','Karena stratosfer mengandung uap air paling banyak','Karena tekanan stratosfer lebih tinggi','Karena tidak ada angin di stratosfer'], answer:0,
+        explain:'Ozon menyerap UV, memecah O₃ lalu membentuk kembali sambil melepaskan panas. Terjadi inversi suhu.',
+        misconception:{1:'Semua lapisan menerima radiasi Matahari.',2:'Uap air terkonsentrasi di troposfer.',3:'Tekanan stratosfer lebih rendah.',4:'Stratosfer tetap punya aliran udara.'}
       },
-      { bloom:'C5',
-        q:'Banyak orang menyamakan "lubang ozon" dengan "pemanasan global". Pernyataan yang paling tepat adalah...',
-        options:[
-          'Keduanya sama, hanya beda nama',
-          'Lubang ozon meningkatkan pemanasan global secara langsung',
-          'Lubang ozon adalah menipisnya O₃ di stratosfer akibat CFC, sedangkan pemanasan global disebabkan penumpukan gas rumah kaca di troposfer — dua masalah berbeda',
-          'Pemanasan global penyebab utama lubang ozon'
-        ], answer:2,
-        explain:'Ini miskonsepsi paling umum! Keduanya berbeda: (1) lubang ozon = penipisan O₃ stratosfer oleh CFC/halon, dampaknya UV berlebih; (2) pemanasan global = akumulasi gas rumah kaca (CO₂, CH₄) yang memerangkap panas di troposfer. Keduanya terkait aktivitas manusia, tetapi mekanismenya berbeda.',
-        misconception:{
-          0:'Meskipun keduanya isu lingkungan, mekanisme dan lokasinya berbeda.',
-          1:'Menipisnya ozon tidak menambah efek rumah kaca secara langsung.',
-          3:'Justru sebaliknya — dua proses ini independen, meski bisa saling memengaruhi secara tidak langsung.'
-        },
-        tag:'ozone'
+      { id:'stra-04', bloom:'C4', q:'Mengapa jet komersial terbang di batas bawah stratosfer?',
+        options:['Menghindari turbulensi cuaca dan menghemat bahan bakar karena udara tipis','Supaya penumpang melihat aurora','Karena gravitasi lebih kecil','Karena mesin jet tidak bisa di troposfer','Karena UV lebih sedikit'], answer:0,
+        explain:'Stratosfer bawah stabil → penerbangan nyaman. Udara tipis → hambatan kecil → hemat bahan bakar.',
+        misconception:{1:'Aurora ada di termosfer.',2:'Gravitasi hampir sama.',3:'Mesin jet tetap bekerja di troposfer.',4:'UV justru lebih kuat di stratosfer bawah.'}
+      },
+      { id:'stra-05', bloom:'C5', q:'Banyak orang menyamakan "lubang ozon" dengan "pemanasan global". Pernyataan tepat adalah...',
+        options:['Lubang ozon = penipisan O₃ stratosfer akibat CFC; pemanasan global = penumpukan gas rumah kaca di troposfer — dua masalah berbeda','Keduanya sama','Lubang ozon langsung meningkatkan pemanasan global','Pemanasan global penyebab lubang ozon','Keduanya disebabkan CO₂'], answer:0,
+        explain:'Miskonsepsi paling umum! Lokasi, penyebab, dampaknya berbeda. Perusak ozon = CFC/halon, gas rumah kaca = CO₂/CH₄.',
+        misconception:{1:'Mekanisme dan lokasi berbeda.',2:'Tidak langsung menambah efek rumah kaca.',3:'Pemanasan global tidak menyebabkan lubang ozon.',4:'CO₂ bukan perusak ozon.'}
+      },
+      { id:'stra-06', bloom:'C2', q:'Manfaat utama atmosfer dari sisi perlindungan adalah...',
+        options:['Melindungi Bumi dari UV dan radiasi berbahaya Matahari','Menyebabkan banjir','Menyebabkan kekeringan','Menyebabkan angin topan','Mempercepat erosi'], answer:0,
+        explain:'Ozon menyerap UV, atmosfer membakar meteor, dan efek rumah kaca alami menjaga suhu Bumi.',
+        misconception:{1:'Banjir fenomena hidrometeorologi.',2:'Kekeringan dampak cuaca ekstrem.',3:'Topan fenomena merugikan.',4:'Erosi proses geologi.'}
+      },
+      { id:'stra-07', bloom:'C4', stim:'Protokol Montreal (1987) melarang penggunaan CFC secara global. Sejak saat itu, lubang ozon Antartika mulai mengecil perlahan.',
+        q:'Mengapa Protokol Montreal dianggap salah satu perjanjian lingkungan paling sukses?',
+        options:['Berhasil menurunkan emisi CFC global dan lubang ozon mulai pulih','Berhasil menghentikan pemanasan global total','Berhasil melarang semua industri kimia','Berhasil menambah ozon buatan','Berhasil memindahkan ozon dari kutub ke tropis'], answer:0,
+        explain:'Emisi CFC turun drastis, data satelit menunjukkan lubang ozon Antartika mengecil. Namun butuh puluhan tahun untuk pulih sepenuhnya.',
+        misconception:{1:'Fokus ozon, bukan pemanasan global.',2:'Industri kimia masih berjalan.',3:'Ozon tidak bisa ditambah buatan.',4:'Ozon tidak bisa dipindah antar wilayah.'}
+      },
+      { id:'stra-08', bloom:'C5', q:'Jika lapisan ozon hilang total, dampak paling langsung adalah...',
+        options:['UV-B berlebih → kanker kulit, katarak, kerusakan ekosistem laut','Bumi mendingin karena UV berkurang','Gravitasi hilang','Troposfer ikut hilang','Hujan berhenti total'], answer:0,
+        explain:'UV-B berlebih merusak DNA. Manusia berisiko kanker kulit & katarak, plankton laut menurun, rantai makanan laut bisa kolaps.',
+        misconception:{1:'Justru UV berlebih masuk.',2:'Gravitasi ditentukan massa Bumi.',3:'Troposfer tetap ada.',4:'Hujan tetap terjadi.'}
       }
     ],
     mesosfer: [
-      { bloom:'C1',
-        q:'Meteor yang masuk ke atmosfer Bumi umumnya terbakar dan habis di lapisan...',
-        options:['Troposfer','Stratosfer','Mesosfer','Eksosfer'], answer:2,
-        explain:'Mesosfer (50–85 km) adalah "pemanggang" meteor. Udara di lapisan ini cukup padat untuk menggesek meteor dengan kecepatan tinggi, menimbulkan panas yang membakarnya sebelum mencapai Bumi.',
-        misconception:{
-          0:'Troposfer terlalu rendah — sebagian besar meteor sudah habis sebelum sampai sini.',
-          1:'Stratosfer tidak cukup padat untuk membakar meteor besar.',
-          3:'Eksosfer hampir hampa, tidak bisa menggesek meteor secara signifikan.'
-        }
+      { id:'mes-01', bloom:'C1', q:'Meteor terbakar habis di lapisan...',
+        options:['Mesosfer','Troposfer','Stratosfer','Termosfer','Eksosfer'], answer:0,
+        explain:'Mesosfer (50–85 km) adalah "pemanggang" meteor. Udara cukup padat untuk menggesek meteor berkecepatan tinggi.',
+        misconception:{1:'Troposfer terlalu rendah.',2:'Stratosfer tidak cukup padat.',3:'Termosfer terlalu renggang.',4:'Eksosfer hampir hampa.'}
       },
-      { bloom:'C2',
-        q:'Mesosfer adalah lapisan atmosfer dengan suhu terdingin, bisa mencapai −90°C di mesopause. Penyebab utamanya adalah...',
-        options:[
-          'Karena mesosfer paling jauh dari Bumi',
-          'Karena mesosfer tidak memiliki penyerap radiasi seperti ozon, dan berada di atas sumber panas utama',
-          'Karena mesosfer mengandung banyak es',
-          'Karena angin di mesosfer sangat kencang'
-        ], answer:1,
-        explain:'Mesosfer tidak memiliki lapisan penyerap radiasi seperti ozon di stratosfer. Berada jauh di atas permukaan Bumi (sumber panas troposfer), lapisan ini kehilangan energi dan menjadi sangat dingin hingga −90°C di mesopause.',
-        misconception:{
-          0:'"Jauh dari Bumi" saja tidak cukup menjelaskan — sebab utamanya tidak adanya penyerap radiasi.',
-          2:'Mesosfer terlalu kering untuk membentuk es; uap air sudah habis di bawah.',
-          3:'Angin kencang tidak menurunkan suhu; yang menentukan adalah keseimbangan energi.'
-        }
+      { id:'mes-02', bloom:'C2', q:'Mesosfer adalah lapisan terdingin (hingga −90°C). Penyebab utamanya...',
+        options:['Tidak punya penyerap radiasi seperti ozon, dan jauh dari sumber panas utama','Paling jauh dari Bumi','Mengandung banyak es','Angin kencang','Ditarik gravitasi Bulan'], answer:0,
+        explain:'Tanpa ozon dan jauh dari Bumi, mesosfer kehilangan energi → suhu turun hingga −90°C di mesopause.',
+        misconception:{1:'"Jauh dari Bumi" tidak cukup.',2:'Mesosfer terlalu kering untuk es.',3:'Angin tidak menurunkan suhu.',4:'Gravitasi Bulan tidak memengaruhi suhu.'}
       },
-      { bloom:'C3',
-        q:'Fenomena "noctilucent clouds" — awan bercahaya di malam hari yang tampak di langit kutub — terbentuk di lapisan...',
-        options:['Troposfer','Stratosfer','Mesosfer','Termosfer'], answer:2,
-        explain:'Noctilucent clouds terbentuk di bagian atas mesosfer (sekitar 80–85 km), tempat suhu ekstrem dingin (−120°C) memungkinkan kristal es terbentuk dari sisa uap air dan debu meteor.',
-        misconception:{
-          0:'Awan troposfer tidak terlihat di malam hari karena tidak terkena cahaya Matahari saat Bumi berputar.',
-          1:'Stratosfer terlalu kering untuk noctilucent clouds.',
-          3:'Termosfer terlalu renggang; tidak cukup partikel untuk membentuk awan.'
-        }
+      { id:'mes-03', bloom:'C3', q:'Fenomena "noctilucent clouds" terbentuk di...',
+        options:['Mesosfer','Troposfer','Stratosfer','Termosfer','Eksosfer'], answer:0,
+        explain:'Noctilucent clouds terbentuk di bagian atas mesosfer (80–85 km), suhu −120°C memungkinkan kristal es dari sisa uap air dan debu meteor.',
+        misconception:{1:'Awan troposfer tidak terlihat malam.',2:'Stratosfer terlalu kering.',3:'Termosfer terlalu renggang.',4:'Eksosfer hampir hampa.'}
       },
-      { bloom:'C4',
-        q:'Ketika kamu melihat "bintang jatuh", sebenarnya yang kamu lihat adalah...',
-        options:[
-          'Bintang yang benar-benar jatuh dari langit',
-          'Cahaya meteoroid yang terbakar akibat gesekan dengan molekul udara di mesosfer',
-          'Petir dari awan di stratosfer',
-          'Pantulan cahaya satelit di eksosfer'
-        ], answer:1,
-        explain:'"Bintang jatuh" adalah meteor — meteoroid yang masuk atmosfer dan terbakar karena gesekan udara di mesosfer. Bukan bintang sungguhan yang jatuh, dan bukan petir. Cahaya terang di langit hanyalah jalur panas dari material yang menguap.',
-        misconception:{
-          0:'Bintang tidak "jatuh" dari langit — mereka adalah matahari jauh yang tetap pada posisinya.',
-          2:'Petir hanya terjadi di troposfer (di dalam awan Cumulonimbus).',
-          3:'Satelit memantulkan cahaya tetapi tidak bergerak cepat melintas seperti meteor.'
-        }
+      { id:'mes-04', bloom:'C4', q:'"Bintang jatuh" sebenarnya adalah...',
+        options:['Cahaya meteoroid yang terbakar akibat gesekan dengan molekul udara di mesosfer','Bintang yang jatuh','Petir dari awan stratosfer','Pantulan cahaya satelit','Kilatan aurora'], answer:0,
+        explain:'"Bintang jatuh" = meteor, meteoroid yang terbakar di mesosfer. Bukan bintang jatuh, bukan petir.',
+        misconception:{1:'Bintang tidak jatuh dari langit.',2:'Petir hanya di troposfer.',3:'Satelit tidak bergerak cepat seperti meteor.',4:'Aurora ada di termosfer.'}
+      },
+      { id:'mes-05', bloom:'C4', stim:'Setiap Agustus, warga Indonesia bisa menyaksikan hujan meteor Perseid tanpa alat bantu.',
+        q:'Mengapa hujan meteor Perseid terjadi periodik setiap tahun?',
+        options:['Karena Bumi melintasi jejak debu komet Swift-Tuttle pada orbit yang sama setiap tahun','Karena bintang Perseus meledak tiap tahun','Karena Bulan menarik meteor','Karena Matahari mengeluarkan meteor','Karena gravitasi Bumi berubah'], answer:0,
+        explain:'Setiap tahun Bumi melewati orbit komet Swift-Tuttle yang meninggalkan debu. Debu terbakar di mesosfer — itulah Perseid.',
+        misconception:{1:'Bintang tidak meledak periodik.',2:'Bulan tidak menarik meteor.',3:'Matahari tidak mengeluarkan meteor.',4:'Gravitasi Bumi stabil.'}
+      },
+      { id:'mes-06', bloom:'C2', q:'Mengapa suhu mesosfer turun dari stratopause (≈0°C) ke mesopause (−90°C)?',
+        options:['Tidak ada lagi penyerap radiasi seperti ozon, sementara sumber panas utama (Bumi) sudah jauh di bawah','Angin kutub mendinginkan mesosfer','Banyak gas hidrogen','Lebih dekat ruang angkasa dingin','Ada lubang di mesosfer'], answer:0,
+        explain:'Setelah stratopause, konsentrasi ozon turun drastis. Tanpa penyerap radiasi dan jauh dari Bumi → molekul kehilangan energi → suhu turun.',
+        misconception:{1:'Angin kutub tidak signifikan.',2:'Hidrogen sangat sedikit.',3:'Ruang angkasa bukan penyebab utama.',4:'Tidak ada "lubang" di mesosfer.'}
+      },
+      { id:'mes-07', bloom:'C3', q:'Perbedaan tropopause dan mesopause?',
+        options:['Tropopause batas troposfer–stratosfer (±12 km), mesopause batas mesosfer–termosfer (±85 km) dan tempat terdingin atmosfer','Keduanya ketinggian sama','Tropopause lebih tinggi','Tropopause tempat aurora','Keduanya di stratosfer'], answer:0,
+        explain:'Tropopause ±12 km (troposfer–stratosfer). Mesopause ±85 km (mesosfer–termosfer), sekaligus tempat terdingin atmosfer.',
+        misconception:{1:'Ketinggian sangat berbeda.',2:'Mesopause jauh lebih tinggi.',3:'Aurora di termosfer.',4:'Berbeda zona.'}
+      },
+      { id:'mes-08', bloom:'C5', q:'Mengapa mesosfer dianggap "perisai alami" Bumi?',
+        options:['Sebagian besar meteoroid terbakar habis di mesosfer sebelum mencapai permukaan Bumi','Mesosfer memantulkan meteor','Mesosfer menarik meteor','Mesosfer punya magnet penolak','Mesosfer menembakkan laser'], answer:0,
+        explain:'Meteoroid masuk dengan kecepatan puluhan km/detik. Gesekan udara menimbulkan panas ekstrem yang membakarnya. Tanpa mesosfer, Bumi terus dihujani benda langit.',
+        misconception:{1:'Tidak memantulkan.',2:'Gravitasi mesosfer terlalu kecil.',3:'Tidak ada magnet khusus.',4:'Tidak ada laser.'}
       }
     ],
     termosfer: [
-      { bloom:'C1',
-        q:'Fenomena aurora (cahaya utara/selatan) terbentuk di lapisan...',
-        options:['Troposfer','Stratosfer','Mesosfer','Termosfer'], answer:3,
-        explain:'Aurora terbentuk di termosfer (sekitar 100–300 km), ketika partikel bermuatan dari Matahari berinteraksi dengan atom oksigen dan nitrogen, menghasilkan cahaya hijau, merah, dan ungu.',
-        misconception:{
-          0:'Troposfer terlalu rendah untuk aurora; partikel Matahari berinteraksi di ketinggian yang jauh lebih tinggi.',
-          1:'Stratosfer tidak cukup renggang untuk aurora.',
-          2:'Mesosfer terlalu rendah untuk aurora utama.'
-        }
+      { id:'ter-01', bloom:'C1', q:'Aurora terbentuk di lapisan...',
+        options:['Termosfer','Troposfer','Stratosfer','Mesosfer','Eksosfer'], answer:0,
+        explain:'Aurora di termosfer (100–300 km), partikel Matahari berinteraksi dengan oksigen & nitrogen menghasilkan cahaya hijau/merah/ungu.',
+        misconception:{1:'Troposfer terlalu rendah.',2:'Stratosfer tidak cukup renggang.',3:'Mesosfer terlalu rendah.',4:'Eksosfer terlalu tinggi.'}
       },
-      { bloom:'C2',
-        q:'Suhu di termosfer bisa mencapai 1.500°C, tetapi astronot di sana tidak "terbakar". Mengapa?',
-        options:[
-          'Karena termosfer tidak benar-benar panas',
-          'Karena jumlah molekul di termosfer sangat sedikit, sehingga perpindahan panas ke benda sangat kecil',
-          'Karena astronot memakai baju anti-panas',
-          'Karena termosfer hanya panas di siang hari'
-        ], answer:1,
-        explain:'Ini pelajaran penting tentang perbedaan "suhu" dan "panas". Suhu mengukur energi kinetik rata-rata partikel; panas mengukur total energi. Karena termosfer sangat renggang (sedikit molekul), meski tiap molekul sangat energik, jumlah total tumbukan ke tubuh astronot sangat sedikit — sehingga tidak terasa panas.',
-        misconception:{
-          0:'Termosfer memang sangat panas secara suhu, tetapi tidak terasa panas karena kepadatan rendah.',
-          2:'Baju antariksa melindungi dari radiasi & suhu ekstrem, tetapi alasan utamanya adalah kepadatan partikel.',
-          3:'Termosfer tidak "dingin di malam hari" seperti troposfer; suhunya tetap tinggi karena partikel tereksitasi oleh radiasi Matahari.'
-        }
+      { id:'ter-02', bloom:'C2', q:'Suhu termosfer 1.500°C, tapi astronot tidak terbakar. Mengapa?',
+        options:['Jumlah molekul di termosfer sangat sedikit, sehingga perpindahan panas ke benda sangat kecil','Termosfer tidak benar-benar panas','Astronot pakai baju anti-panas','Termosfer hanya panas siang','Gravitasi sangat kecil'], answer:0,
+        explain:'Perbedaan suhu vs panas: suhu = energi kinetik rata-rata partikel; panas = total energi. Termosfer renggang → total tumbukan sedikit → tidak terasa panas.',
+        misconception:{1:'Termosfer memang panas secara suhu.',2:'Bukan alasan utama.',3:'Panas sepanjang waktu.',4:'Gravitasi tidak menentukan suhu.'}
       },
-      { bloom:'C3',
-        q:'Lapisan ionosfer di dalam termosfer penting bagi kehidupan modern karena...',
-        options:[
-          'Menyerap sinar ultraviolet',
-          'Memantulkan gelombang radio sehingga komunikasi jarak jauh dapat dilakukan',
-          'Membakar meteor besar',
-          'Menghasilkan medan magnet Bumi'
-        ], answer:1,
-        explain:'Ionosfer mengandung ion-ion bebas yang mampu memantulkan gelombang radio (khususnya HF). Inilah alasan komunikasi radio jarak jauh dan siaran gelombang pendek bisa melintasi benua tanpa satelit.',
-        misconception:{
-          0:'Penyerapan UV utama terjadi di stratosfer oleh ozon, bukan ionosfer.',
-          2:'Meteor terbakar di mesosfer, bukan termosfer.',
-          3:'Medan magnet Bumi dihasilkan oleh inti Bumi, bukan termosfer.'
-        }
+      { id:'ter-03', bloom:'C3', q:'Ionosfer penting karena...',
+        options:['Memantulkan gelombang radio sehingga komunikasi jarak jauh mungkin tanpa satelit','Menyerap sinar UV','Membakar meteor besar','Menghasilkan medan magnet','Menghasilkan oksigen'], answer:0,
+        explain:'Ionosfer mengandung ion bebas yang memantulkan gelombang radio HF. Komunikasi radio jarak jauh bisa lintasi benua tanpa satelit.',
+        misconception:{1:'UV diserap di stratosfer.',2:'Meteor di mesosfer.',3:'Medan magnet dari inti Bumi.',4:'Oksigen dari fotosintesis.'}
       },
-      { bloom:'C4',
-        q:'Stasiun Antariksa Internasional (ISS) mengorbit pada ketinggian ±400 km, yaitu di lapisan...',
-        options:['Stratosfer','Mesosfer','Termosfer','Eksosfer'], answer:2,
-        explain:'ISS mengorbit pada ketinggian sekitar 400 km, yang masuk ke dalam termosfer (85–500 km). Meski berada di termosfer, ISS tetap harus dilindungi dari radiasi, sampah antariksa, dan sisa molekul udara yang menimbulkan drag.',
-        misconception:{
-          0:'Stratosfer hanya sampai 50 km — terlalu rendah untuk ISS.',
-          1:'Mesosfer hanya sampai 85 km — jauh di bawah orbit ISS.',
-          3:'Eksosfer baru dimulai di atas 500 km; ISS masih di termosfer.'
-        }
+      { id:'ter-04', bloom:'C4', q:'ISS mengorbit pada ±400 km — di lapisan...',
+        options:['Termosfer','Stratosfer','Mesosfer','Eksosfer','Troposfer'], answer:0,
+        explain:'ISS di termosfer (85–500 km). Tetap butuh perlindungan dari radiasi, sampah antariksa, dan drag sisa molekul.',
+        misconception:{1:'Stratosfer sampai 50 km.',2:'Mesosfer sampai 85 km.',3:'Eksosfer di atas 500 km.',4:'Troposfer sampai 12 km.'}
+      },
+      { id:'ter-05', bloom:'C2', q:'Mengapa suhu termosfer bisa sangat tinggi?',
+        options:['Atom menyerap UV ekstrem dan sinar-X Matahari sehingga tereksitasi dan bergerak sangat cepat','Termosfer paling dekat Matahari','Ada reaksi nuklir','Gesekan meteor','Banyak gas rumah kaca'], answer:0,
+        explain:'Atom termosfer menyerap UV ekstrem dan sinar-X → bergerak cepat → suhu tinggi meski jumlah partikel sedikit.',
+        misconception:{1:'Semua lapisan hampir sama jaraknya.',2:'Tidak ada reaksi nuklir.',3:'Gesekan meteor hanya lokal.',4:'Gas rumah kaca di troposfer.'}
+      },
+      { id:'ter-06', bloom:'C3', q:'Mengapa ionosfer bisa mengganggu akurasi GPS?',
+        options:['Ion-ion bebas memperlambat dan membelokkan sinyal radio dari satelit','Ionosfer memantulkan semua sinyal GPS','Ionosfer menyerap sinyal sepenuhnya','Ionosfer memancarkan gangguan','Gravitasi ionosfer menarik satelit'], answer:0,
+        explain:'Ion bebas memperlambat & membelokkan sinyal → "ionospheric delay". GPS modern mengoreksi dengan model ionosfer dan sinyal dual-frekuensi.',
+        misconception:{1:'Sebagian besar lolos dengan delay.',2:'Tidak diserap sepenuhnya.',3:'Tidak memancarkan gangguan.',4:'Gravitasi tidak signifikan.'}
+      },
+      { id:'ter-07', bloom:'C4', stim:'Satelit Palapa (Indonesia, sejak 1976) mengorbit pada ±35.786 km, di eksosfer.',
+        q:'Mengapa satelit di eksosfer tetap butuh koreksi orbit berkala?',
+        options:['Karena masih ada partikel sangat renggang yang memberi sedikit hambatan','Eksosfer sepadat troposfer','Palapa orbit di mesosfer','Eksosfer bukan bagian atmosfer','Palapa tidak butuh koreksi'], answer:0,
+        explain:'Eksosfer masih bagian atmosfer. Partikel tipisnya memberi hambatan kecil → operator koreksi orbit berkala, meski jauh lebih jarang dari satelit LEO.',
+        misconception:{1:'Eksosfer sangat renggang.',2:'Mesosfer sampai 85 km.',3:'Eksosfer bagian terluar atmosfer.',4:'Satelit tetap butuh koreksi.'}
+      },
+      { id:'ter-08', bloom:'C5', q:'Mengapa termosfer & ionosfer penting bagi peradaban modern?',
+        options:['Memungkinkan komunikasi radio jarak jauh dan menjadi wilayah orbit satelit komunikasi, cuaca, navigasi','Tempat tinggal manusia','Menghasilkan oksigen Bumi','Melindungi dari asteroid besar','Menyimpan air bersih'], answer:0,
+        explain:'Ionosfer memantulkan gelombang radio; termosfer jalur orbit ISS, GPS, cuaca, komunikasi. Tanpa keduanya, peradaban digital tidak mungkin.',
+        misconception:{1:'Belum ada tempat tinggal permanen.',2:'Oksigen dari fotosintesis.',3:'Asteroid besar biasanya tidak habis di termosfer.',4:'Air tidak disimpan di termosfer.'}
       }
     ],
     eksosfer: [
-      { bloom:'C1',
-        q:'Lapisan paling luar atmosfer Bumi yang berbatasan langsung dengan ruang antariksa adalah...',
-        options:['Mesosfer','Termosfer','Ionosfer','Eksosfer'], answer:3,
-        explain:'Eksosfer adalah lapisan terluar atmosfer, dimulai sekitar 500 km di atas permukaan Bumi. Di sini partikel sangat renggang dan sebagian dapat lepas ke ruang antariksa.',
-        misconception:{
-          0:'Mesosfer berada jauh di bawah eksosfer (50–85 km).',
-          1:'Termosfer masih di bawah eksosfer (85–500 km).',
-          2:'Ionosfer adalah bagian dari termosfer, bukan lapisan terluar.'
-        }
+      { id:'eks-01', bloom:'C1', q:'Lapisan paling luar atmosfer Bumi...',
+        options:['Eksosfer','Mesosfer','Termosfer','Ionosfer','Stratosfer'], answer:0,
+        explain:'Eksosfer adalah lapisan terluar, mulai ±500 km. Partikel sangat renggang dan sebagian bisa lepas ke ruang antariksa.',
+        misconception:{1:'Mesosfer 50–85 km.',2:'Termosfer 85–500 km.',3:'Ionosfer bagian termosfer.',4:'Stratosfer sampai 50 km.'}
       },
-      { bloom:'C2',
-        q:'Mengapa gas ringan seperti hidrogen dan helium dapat lepas dari eksosfer ke ruang antariksa?',
-        options:[
-          'Karena gravitasi Bumi tidak berlaku di eksosfer',
-          'Karena molekul gas ringan di eksosfer bergerak sangat cepat sehingga bisa melebihi kecepatan lepas Bumi',
-          'Karena eksosfer terlalu dingin untuk menahan gas',
-          'Karena tekanan udara di eksosfer sangat tinggi'
-        ], answer:1,
-        explain:'Di eksosfer, partikel sangat jarang bertumbukan sehingga sebagian bergerak bebas dengan kecepatan sangat tinggi. Molekul ringan (H₂, He) yang kecepatannya melebihi kecepatan lepas Bumi (~11,2 km/s) akan lepas ke angkasa. Karena itu Bumi kehilangan hidrogen & helium secara perlahan.',
-        misconception:{
-          0:'Gravitasi Bumi masih berlaku, hanya melemah karena jarak.',
-          2:'Suhu bukan satu-satunya faktor — kecepatan molekul dan kecepatan lepas yang menentukan.',
-          3:'Tekanan di eksosfer hampir nol, bukan tinggi.'
-        }
+      { id:'eks-02', bloom:'C2', q:'Mengapa hidrogen & helium bisa lepas dari eksosfer?',
+        options:['Molekul ringan bergerak sangat cepat sehingga bisa melebihi kecepatan lepas Bumi','Gravitasi Bumi tidak berlaku','Eksosfer terlalu dingin','Tekanan udara sangat tinggi','Bereaksi dengan sinar Matahari'], answer:0,
+        explain:'Partikel sangat jarang bertumbukan → bergerak bebas cepat. Molekul H₂ & He yang melebihi kecepatan lepas (~11,2 km/s) lepas ke angkasa.',
+        misconception:{1:'Gravitasi masih berlaku.',2:'Suhu bukan faktor tunggal.',3:'Tekanan hampir nol.',4:'Tidak ada reaksi.'}
       },
-      { bloom:'C3',
-        q:'Satelit komunikasi geostasioner mengorbit pada ketinggian ±35.786 km dari permukaan Bumi, yaitu di lapisan...',
-        options:['Termosfer','Eksosfer','Mesosfer','Troposfer'], answer:1,
-        explain:'Satelit geostasioner berada jauh di atas termosfer, di wilayah eksosfer. Pada ketinggian ini, periode orbitnya sama dengan rotasi Bumi (24 jam), sehingga satelit tampak "diam" di satu titik langit — ideal untuk komunikasi dan TV.',
-        misconception:{
-          0:'Termosfer hanya sampai sekitar 500 km — jauh di bawah orbit geostasioner.',
-          2:'Mesosfer berakhir di 85 km, jauh lebih rendah lagi.',
-          3:'Troposfer hanya 0–12 km; tidak mungkin menampung satelit.'
-        }
+      { id:'eks-03', bloom:'C3', q:'Satelit geostasioner mengorbit di lapisan...',
+        options:['Eksosfer','Termosfer','Mesosfer','Troposfer','Stratosfer'], answer:0,
+        explain:'Satelit geostasioner ±35.786 km di eksosfer. Periode orbit = rotasi Bumi (24 jam) → tampak "diam" di satu titik langit.',
+        misconception:{1:'Termosfer sampai 500 km.',2:'Mesosfer sampai 85 km.',3:'Troposfer 0–12 km.',4:'Stratosfer sampai 50 km.'}
       },
-      { bloom:'C4',
-        q:'Batas ketinggian 100 km di atas permukaan laut yang sering dianggap sebagai "awal antariksa" disebut...',
-        options:['Garis Kármán','Garis Wallace','Garis tropopause','Garis mesopause'], answer:0,
-        explain:'Garis Kármán (Kármán line), di ketinggian 100 km, adalah batas yang diakui internasional sebagai awal ruang angkasa. Di atas garis ini, kendaraan harus menggunakan propulsi roket karena udara terlalu tipis untuk gaya angkat aerodinamis.',
-        misconception:{
-          1:'Garis Wallace adalah batas biogeografi antara Asia dan Australasia, bukan antariksa.',
-          2:'Tropopause adalah batas antara troposfer & stratosfer (±12 km).',
-          3:'Mesopause adalah batas antara mesosfer & termosfer (±85 km).'
-        }
+      { id:'eks-04', bloom:'C4', q:'Batas 100 km yang dianggap awal antariksa disebut...',
+        options:['Garis Kármán','Garis Wallace','Tropopause','Mesopause','Ekuator'], answer:0,
+        explain:'Garis Kármán (100 km) diakui internasional sebagai awal ruang angkasa. Di atasnya harus pakai propulsi roket.',
+        misconception:{1:'Wallace = batas biogeografi.',2:'Tropopause ±12 km.',3:'Mesopause ±85 km.',4:'Ekuator = lintang 0°.'}
+      },
+      { id:'eks-05', bloom:'C2', q:'Mengapa eksosfer tidak punya batas atas yang tegas?',
+        options:['Kepadatan partikel menurun bertahap hingga tidak terasa, peralihan ke antariksa terjadi perlahan','Eksosfer terus bertambah tinggi','Ada dinding tak terlihat','Eksosfer bukan bagian atmosfer','Dipisahkan medan magnet'], answer:0,
+        explain:'Kepadatan partikel menurun perlahan tanpa batas fisik. "Batas" ditetapkan konvensi (Garis Kármán 100 km), bukan alami.',
+        misconception:{1:'Ketinggian stabil.',2:'Tidak ada dinding.',3:'Eksosfer bagian atmosfer.',4:'Bukan pemisah tegas.'}
+      },
+      { id:'eks-06', bloom:'C4', stim:'Satelit Palapa (Indonesia) dan ribuan satelit lain di orbit geostasioner mengorbit di eksosfer.',
+        q:'Mengapa orbit geostasioner ideal untuk satelit komunikasi & TV?',
+        options:['Satelit tampak "diam" di langit (periode orbit = rotasi Bumi), antena di Bumi tidak perlu bergerak','Paling dekat Bumi','Bebas gravitasi Bumi','Tidak butuh energi sama sekali','Berada di troposfer'], answer:0,
+        explain:'Pada ±35.786 km, periode orbit = 24 jam. Satelit "diam" di satu titik → antena parabola tetap. Ideal untuk TV, telepon, internet.',
+        misconception:{1:'Sangat jauh dari Bumi.',2:'Gravitasi masih berlaku.',3:'Butuh energi koreksi.',4:'Troposfer hanya sampai 12 km.'}
+      },
+      { id:'eks-07', bloom:'C5', q:'Mengapa Bumi kehilangan hidrogen & helium, sementara Jupiter tidak?',
+        options:['Gravitasi Bumi lebih lemah, molekul ringan bisa melebihi kecepatan lepas; Jupiter jauh lebih besar sehingga menahan gas ringan','Bumi lebih dekat Matahari','Bumi tidak punya medan magnet','Jupiter punya ozon lebih banyak','Karena ukuran bukan faktor'], answer:0,
+        explain:'Kecepatan lepas Bumi ≈ 11,2 km/s; Jupiter ≈ 60 km/s. H₂ & He lepas dari Bumi, tapi tidak dari Jupiter. Karena itu Jupiter kaya H₂/He, Bumi miskin.',
+        misconception:{1:'Jarak ke Matahari tidak menentukan retensi.',2:'Medan magnet melindungi dari angin Matahari, bukan lepasnya gas.',3:'Ozon tidak berkaitan.',4:'Ukuran (massa) justru faktor utama.'}
+      },
+      { id:'eks-08', bloom:'C4', q:'Satelit di orbit rendah (LEO, 200–400 km) butuh koreksi orbit berkala. Mengapa?',
+        options:['Sisa molekul atmosfer (termosfer) menimbulkan hambatan (drag) dan menurunkan ketinggian satelit perlahan','Satelit kehilangan massa tiap hari','Gravitasi Bulan menarik satelit','Tersedot medan magnet','Ditarik rotasi Bumi'], answer:0,
+        explain:'Meski di ketinggian ratusan km, masih ada sisa molekul atmosfer. Drag menurunkan satelit perlahan. Operator menyalakan thruster berkala untuk menaikkan orbit.',
+        misconception:{1:'Massa satelit tidak berkurang signifikan.',2:'Bulan terlalu jauh.',3:'Medan magnet tidak menyedot.',4:'Rotasi Bumi tidak menarik satelit.'}
       }
     ]
   };
 
   const GLOSSARY = [
-    { t:'Atmosfer',    d:'Lapisan gas yang menyelubungi Bumi dan menahan gaya gravitasi.' },
-    { t:'Lapse rate',  d:'Laju penurunan suhu terhadap ketinggian; di troposfer ≈ 0,6°C/100 m.' },
-    { t:'Tropopause',  d:'Batas atas troposfer, tempat suhu berhenti turun.' },
-    { t:'Ozon (O₃)',   d:'Molekul yang menyerap UV; terkonsentrasi di stratosfer.' },
-    { t:'Inversi suhu',d:'Kondisi suhu naik seiring ketinggian, terjadi di stratosfer.' },
-    { t:'Mesopause',   d:'Batas atas mesosfer, tempat terdingin di atmosfer (−90°C).' },
-    { t:'Ionosfer',    d:'Bagian termosfer yang terionisasi, memantulkan gelombang radio.' },
-    { t:'Aurora',      d:'Cahaya di termosfer akibat interaksi partikel Matahari dengan atom gas.' },
-    { t:'Eksosfer',    d:'Lapisan terluar atmosfer; partikel ringan bisa lepas ke angkasa.' },
-    { t:'Garis Kármán',d:'Batas 100 km yang dianggap sebagai awal ruang angkasa.' },
-    { t:'Gas rumah kaca', d:'Gas seperti CO₂ & CH₄ yang memerangkap panas di troposfer.' },
-    { t:'CFC',         d:'Klorofluorokarbon, perusak ozon stratosfer.' }
+    { t:'Atmosfer', d:'Lapisan gas yang menyelubungi Bumi dan menahan gaya gravitasi.' },
+    { t:'Lapse rate', d:'Laju penurunan suhu terhadap ketinggian; di troposfer ≈ 0,6°C/100 m.' },
+    { t:'Tropopause', d:'Batas atas troposfer (±12 km).' },
+    { t:'Stratopause', d:'Batas atas stratosfer (±50 km).' },
+    { t:'Mesopause', d:'Batas atas mesosfer (±85 km), tempat terdingin atmosfer (−90°C).' },
+    { t:'Ozon (O₃)', d:'Molekul penyerap UV; terkonsentrasi di stratosfer.' },
+    { t:'Inversi suhu', d:'Suhu naik seiring ketinggian, terjadi di stratosfer.' },
+    { t:'Ionosfer', d:'Bagian termosfer yang terionisasi, memantulkan gelombang radio.' },
+    { t:'Aurora', d:'Cahaya di termosfer akibat interaksi partikel Matahari dengan atom gas.' },
+    { t:'Eksosfer', d:'Lapisan terluar atmosfer; partikel ringan bisa lepas ke angkasa.' },
+    { t:'Garis Kármán', d:'Batas 100 km yang dianggap awal ruang angkasa.' },
+    { t:'Siklus hidrologi', d:'Pergerakan air melalui evaporasi, kondensasi, presipitasi.' },
+    { t:'Lubang ozon', d:'Penipisan O₃ stratosfer oleh CFC — BEDA dari pemanasan global.' },
+    { t:'CFC', d:'Klorofluorokarbon, perusak ozon stratosfer.' }
   ];
 
   const ACHIEVEMENTS = [
     { id:'first_step',  icon:'🎯', name:'Langkah Pertama',   desc:'Jawab 1 soal dengan benar',     check:S => S.totalCorrect >= 1 },
-    { id:'perfect_tro', icon:'🌤️', name:'Dapur Cuaca',       desc:'Sempurna di Troposfer (4/4)',   check:S => S.results.troposfer && S.results.troposfer.correct === 4 },
-    { id:'combo_5',     icon:'🔥', name:'On Fire',           desc:'Combo 5 berturut-turut',        check:S => S.bestCombo >= 5 },
-    { id:'combo_10',    icon:'⚡', name:'Tak Terbendung',    desc:'Combo 10 berturut-turut',       check:S => S.bestCombo >= 10 },
-    { id:'ozone_master',icon:'🧠', name:'Anti-Miskonsepsi',  desc:'Benar di soal lubang ozon vs pemanasan global', check:S => S.masteredOzone === true },
+    { id:'perfect_tro', icon:'🌤️', name:'Dapur Cuaca',       desc:'Sempurna di Troposfer',         check:S => S.results.troposfer && S.results.troposfer.correct === S.results.troposfer.total },
+    { id:'combo_4',     icon:'🔥', name:'On Fire',           desc:'Combo 4 berturut-turut',        check:S => S.bestCombo >= 4 },
+    { id:'combo_8',     icon:'⚡', name:'Tak Terbendung',    desc:'Combo 8 berturut-turut',        check:S => S.bestCombo >= 8 },
+    { id:'ozone_master',icon:'🧠', name:'Anti-Miskonsepsi',  desc:'Benar di soal lubang ozon',     check:S => S.masteredOzone === true },
     { id:'all_levels',  icon:'🌍', name:'Penjelajah Langit', desc:'Selesaikan semua 5 lapisan',    check:S => Object.keys(S.results).length === 5 },
-    { id:'rank_ahli',   icon:'🧙', name:'Ahli Atmosfer',     desc:'Capai peringkat Ahli (1200 XP)', check:S => S.xp >= 1200 },
-    { id:'perfectionist',icon:'💎',name:'Sempurna Total',    desc:'Skor 20/20 di semua lapisan',   check:S => {
-      const keys = Object.keys(S.results);
-      return keys.length === 5 && keys.every(k => S.results[k].correct === S.results[k].total);
-    }}
+    { id:'rank_ahli',   icon:'🧙', name:'Ahli Atmosfer',     desc:'Capai 1200 XP',                 check:S => S.xp >= 1200 },
+    { id:'honest',      icon:'💭', name:'Jujur itu Hebat',   desc:'Pakai "Belum tahu" ≥3×',        check:S => (S.unknownCount||0) >= 3 }
   ];
 
-  /* =====================================================
-     2. STATE
-     ===================================================== */
-  const STORAGE_KEY = 'atm-mission-v2';
+  /* ================= STATE ================= */
+  const PROFILES_KEY = 'atm-profiles-v4';
+  const ACTIVE_KEY = 'atm-active-v4';
   const XP_PER_CORRECT = 50;
   const XP_COMBO_BONUS = 20;
   const XP_PER_LEVEL_BONUS = 100;
   const XP_MAX = 1500;
+  const QUESTIONS_PER_SESSION = 4;
 
   let State = null;
+  let allProfiles = {};
 
-  function defaultState(){
-    return {
-      screen:'start',
-      playerName:'',
-      xp:0, combo:0, bestCombo:0,
-      unlocked:1,
-      currentLevel:0, currentQ:0,
-      sessionQuestions:[], sessionAnswers:[],
-      results:{},
-      achievements:[],
-      totalCorrect:0,
-      masteredOzone:false,
-      soundOn:true
-    };
+  function defaultProfile(){
+    return { playerName:'', xp:0, combo:0, bestCombo:0, unlocked:1, results:{}, achievements:[], totalCorrect:0, unknownCount:0, masteredOzone:false };
   }
-
+  function defaultState(){
+    return Object.assign(defaultProfile(), { screen:'start', currentLevel:0, currentQ:0, sessionQuestions:[], sessionAnswers:[], soundOn:true });
+  }
   function save(){
     try{
-      const snap = {
-        playerName:State.playerName, xp:State.xp, unlocked:State.unlocked,
-        results:State.results, bestCombo:State.bestCombo, soundOn:State.soundOn,
-        achievements:State.achievements, totalCorrect:State.totalCorrect,
-        masteredOzone:State.masteredOzone
-      };
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(snap));
+      allProfiles[State.playerName || '__guest'] = Object.assign({}, State);
+      localStorage.setItem(PROFILES_KEY, JSON.stringify(allProfiles));
+      localStorage.setItem(ACTIVE_KEY, State.playerName || '__guest');
     }catch(e){}
   }
-  function load(){
+  function loadAllProfiles(){ try{ return JSON.parse(localStorage.getItem(PROFILES_KEY)) || {}; }catch(e){ return {}; } }
+  function clearSave(){
     try{
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if(!raw) return null;
-      return Object.assign(defaultState(), JSON.parse(raw));
-    }catch(e){ return null; }
+      if(State.playerName && allProfiles[State.playerName]) delete allProfiles[State.playerName];
+      localStorage.setItem(PROFILES_KEY, JSON.stringify(allProfiles));
+      localStorage.removeItem(ACTIVE_KEY);
+    }catch(e){}
   }
-  function clearSave(){ try{ localStorage.removeItem(STORAGE_KEY); }catch(e){} }
 
-  /* =====================================================
-     3. AUDIO
-     ===================================================== */
+  /* ================= AUDIO ================= */
   let audioCtx = null;
   function ensureAudio(){
     if(audioCtx) return audioCtx;
-    try{
-      const AC = window.AudioContext || window.webkitAudioContext;
-      if(AC) audioCtx = new AC();
-    }catch(e){ audioCtx = null; }
+    try{ const AC = window.AudioContext || window.webkitAudioContext; if(AC) audioCtx = new AC(); }catch(e){ audioCtx = null; }
     return audioCtx;
   }
   function beep(freq, dur, type, vol){
@@ -850,15 +735,15 @@
     o.start(t); o.stop(t + dur);
   }
   const sfx = {
-    click:  () => beep(420, 0.06, 'triangle', 0.05),
-    select: () => beep(620, 0.07, 'sine', 0.05),
-    good:   () => { beep(660, 0.12, 'sine', 0.08); setTimeout(()=>beep(990, 0.18, 'sine', 0.08), 110); },
-    bad:    () => { beep(220, 0.16, 'sawtooth', 0.06); setTimeout(()=>beep(160, 0.22, 'sawtooth', 0.06), 130); },
-    unlock: () => { beep(880, 0.1, 'sine', 0.07); setTimeout(()=>beep(1180, 0.14, 'sine', 0.07), 90); setTimeout(()=>beep(1480, 0.18, 'sine', 0.07), 180); },
-    achievement: () => { beep(660, 0.1, 'sine', 0.06); setTimeout(()=>beep(880, 0.12, 'sine', 0.06), 90); setTimeout(()=>beep(1320, 0.2, 'sine', 0.06), 200); }
+    click:() => beep(420, 0.06, 'triangle', 0.05),
+    select:() => beep(620, 0.07, 'sine', 0.05),
+    good:() => { beep(660, 0.12, 'sine', 0.08); setTimeout(()=>beep(990, 0.18, 'sine', 0.08), 110); },
+    bad:() => { beep(220, 0.16, 'sawtooth', 0.06); setTimeout(()=>beep(160, 0.22, 'sawtooth', 0.06), 130); },
+    unknown:() => { beep(500, 0.1, 'triangle', 0.05); setTimeout(()=>beep(400, 0.14, 'triangle', 0.05), 100); },
+    unlock:() => { beep(880, 0.1, 'sine', 0.07); setTimeout(()=>beep(1180, 0.14, 'sine', 0.07), 90); },
+    achievement:() => { beep(660, 0.1, 'sine', 0.06); setTimeout(()=>beep(880, 0.12, 'sine', 0.06), 90); setTimeout(()=>beep(1320, 0.2, 'sine', 0.06), 200); }
   };
 
-  /* ----- Ambient per lapisan ----- */
   let ambient = null;
   function startAmbient(levelId){
     if(!State || !State.soundOn) return;
@@ -867,48 +752,37 @@
     if(ctx.state === 'suspended') ctx.resume().catch(()=>{});
     stopAmbient();
     try{
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      const lfo = ctx.createOscillator();
-      const lfoGain = ctx.createGain();
-      osc.frequency.value = cfg.freq;
-      osc.type = cfg.type;
-      lfo.frequency.value = cfg.lfo;
-      lfoGain.gain.value = cfg.depth;
-      lfo.connect(lfoGain);
-      lfoGain.connect(gain.gain);
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      gain.gain.value = 0;
-      osc.start(); lfo.start();
+      const osc = ctx.createOscillator(), gain = ctx.createGain(), lfo = ctx.createOscillator(), lfoGain = ctx.createGain();
+      osc.frequency.value = cfg.freq; osc.type = cfg.type;
+      lfo.frequency.value = cfg.lfo; lfoGain.gain.value = cfg.depth;
+      lfo.connect(lfoGain); lfoGain.connect(gain.gain);
+      osc.connect(gain); gain.connect(ctx.destination);
+      gain.gain.value = 0; osc.start(); lfo.start();
       gain.gain.linearRampToValueAtTime(cfg.vol, ctx.currentTime + 1.2);
       ambient = { osc, lfo, gain, ctx };
+      $('#visualizer').classList.add('show');
+      $('#visualizer').classList.remove('paused');
     }catch(e){ ambient = null; }
   }
   function stopAmbient(){
-    if(!ambient) return;
+    if(!ambient){ $('#visualizer').classList.remove('show'); return; }
     const a = ambient; ambient = null;
     try{
       a.gain.gain.cancelScheduledValues(a.ctx.currentTime);
       a.gain.gain.linearRampToValueAtTime(0, a.ctx.currentTime + 0.5);
       setTimeout(()=>{ try{ a.osc.stop(); a.lfo.stop(); }catch(e){} }, 600);
     }catch(e){}
+    $('#visualizer').classList.remove('show');
   }
 
-  /* =====================================================
-     4. UTIL
-     ===================================================== */
+  /* ================= UTIL ================= */
   const $  = (s, r) => (r||document).querySelector(s);
   const $$ = (s, r) => Array.prototype.slice.call((r||document).querySelectorAll(s));
   const stage = $('#stage');
   const live  = $('#live');
 
-  function announce(msg){
-    live.textContent = '';
-    setTimeout(()=>{ live.textContent = msg; }, 30);
-  }
+  function announce(msg){ live.textContent = ''; setTimeout(()=>{ live.textContent = msg; }, 30); }
 
-  // ★ FIX utama: abaikan attrs null/undefined
   function el(tag, attrs, children){
     const n = document.createElement(tag);
     if(attrs){
@@ -931,7 +805,6 @@
     return a;
   }
   function totalQuestions(){ return Object.keys(BANK).reduce((s,k)=> s + BANK[k].length, 0); }
-
   function xpToRank(xp){
     if(xp >= 1200) return { name:'Ahli Atmosfer', icon:'🧙' };
     if(xp >= 800)  return { name:'Peneliti Atmosfer', icon:'🔬' };
@@ -939,9 +812,9 @@
     if(xp >= 150)  return { name:'Pengamat Langit', icon:'🔭' };
     return { name:'Pemula', icon:'🥚' };
   }
-
   function pickSession(levelId){
-    return shuffle(BANK[levelId]).map(q => {
+    const pool = shuffle(BANK[levelId]);
+    return pool.slice(0, QUESTIONS_PER_SESSION).map(q => {
       const idx = q.options.map((_,i)=>i);
       const sh = shuffle(idx);
       const newOptions = sh.map(i => q.options[i]);
@@ -953,13 +826,11 @@
           if(ni >= 0) newMis[ni] = q.misconception[k];
         }
       }
-      return { bloom:q.bloom, q:q.q, options:newOptions, answer:newAnswer, explain:q.explain, misconception:newMis, tag:q.tag };
+      return { id:q.id, bloom:q.bloom, q:q.q, stim:q.stim || null, options:newOptions, answer:newAnswer, explain:q.explain, misconception:newMis };
     });
   }
 
-  /* =====================================================
-     5. STARFIELD (canvas background)
-     ===================================================== */
+  /* ================= STARFIELD ================= */
   (function initStarfield(){
     const canvas = $('#starfield'); if(!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -970,21 +841,16 @@
       w = window.innerWidth; h = window.innerHeight;
       canvas.width = Math.floor(w*dpr); canvas.height = Math.floor(h*dpr);
       canvas.style.width = w+'px'; canvas.style.height = h+'px';
-      ctx.setTransform(dpr,0,0,dpr,0,0);
-      build();
+      ctx.setTransform(dpr,0,0,dpr,0,0); build();
     }
     function build(){
       const count = Math.min(Math.floor((w*h)/9000), 140);
       stars = [];
-      for(let i=0;i<count;i++){
-        stars.push({ x:Math.random()*w, y:Math.random()*h, r:Math.random()*1.3+0.2, a:Math.random()*.6+.2, tw:Math.random()*Math.PI*2, sp:Math.random()*.02+.005 });
-      }
+      for(let i=0;i<count;i++) stars.push({ x:Math.random()*w, y:Math.random()*h, r:Math.random()*1.3+0.2, a:Math.random()*.6+.2, tw:Math.random()*Math.PI*2, sp:Math.random()*.02+.005 });
     }
     function spawnShooting(){
       if(reduce) return;
-      if(Math.random() > 0.995){
-        shooting.push({ x:Math.random()*w*.8, y:Math.random()*h*.4, vx:3+Math.random()*3, vy:1+Math.random()*2, life:1 });
-      }
+      if(Math.random() > 0.995) shooting.push({ x:Math.random()*w*.8, y:Math.random()*h*.4, vx:3+Math.random()*3, vy:1+Math.random()*2, life:1 });
     }
     function draw(t){
       if(!lastTime) lastTime = t;
@@ -994,8 +860,7 @@
         const s = stars[i]; s.tw += s.sp*dt;
         const alpha = s.a + Math.sin(s.tw)*0.15;
         ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
-        ctx.fillStyle = 'rgba(180,205,255,'+Math.max(0,Math.min(1,alpha))+')';
-        ctx.fill();
+        ctx.fillStyle = 'rgba(180,205,255,'+Math.max(0,Math.min(1,alpha))+')'; ctx.fill();
       }
       spawnShooting();
       for(let i=shooting.length-1;i>=0;i--){
@@ -1012,12 +877,8 @@
       raf = requestAnimationFrame(draw);
     }
     resize();
-    window.addEventListener('resize', () => {
-      cancelAnimationFrame(raf); resize();
-      if(!reduce) raf = requestAnimationFrame(draw); else draw(performance.now());
-    });
-    if(reduce) draw(performance.now());
-    else raf = requestAnimationFrame(draw);
+    window.addEventListener('resize', () => { cancelAnimationFrame(raf); resize(); if(!reduce) raf = requestAnimationFrame(draw); else draw(performance.now()); });
+    if(reduce) draw(performance.now()); else raf = requestAnimationFrame(draw);
     document.addEventListener('visibilitychange', () => {
       if(reduce) return;
       if(document.hidden) cancelAnimationFrame(raf);
@@ -1025,41 +886,232 @@
     });
   })();
 
-  /* =====================================================
-     6. FX canvas (confetti & partikel)
-     ===================================================== */
-  const fxCanvas = $('#fx');
-  const fxCtx = fxCanvas.getContext('2d');
-  let fxParticles = [];
-  let fxRunning = false;
-  let fxDpr = 1;
+  /* ================= PARTICLES PER LAYER ================= */
+  (function initParticles(){
+    const canvas = $('#particles'); if(!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let w=0,h=0,dpr=1, raf=null, lastTime=0;
+    let currentLevel = null;
+    let particles = [];
+    let auroraPhase = 0;
 
+    function resize(){
+      dpr = Math.min(window.devicePixelRatio||1, 2);
+      w = window.innerWidth; h = window.innerHeight;
+      canvas.width = Math.floor(w*dpr); canvas.height = Math.floor(h*dpr);
+      canvas.style.width = w+'px'; canvas.style.height = h+'px';
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      rebuild();
+    }
+
+    function rebuild(){
+      particles = [];
+      if(!currentLevel) return;
+      if(currentLevel === 'troposfer'){
+        // awan + butiran hujan
+        for(let i=0;i<14;i++){
+          particles.push({ type:'cloud', x:Math.random()*w, y:Math.random()*h*0.7, r:60+Math.random()*90, vx:0.15+Math.random()*0.25, alpha:0.06+Math.random()*0.06 });
+        }
+        for(let i=0;i<40;i++){
+          particles.push({ type:'drop', x:Math.random()*w, y:Math.random()*h, vy:1+Math.random()*2, alpha:0.15+Math.random()*0.25, len:4+Math.random()*8 });
+        }
+      } else if(currentLevel === 'stratosfer'){
+        // partikel ozon biru + sinar UV
+        for(let i=0;i<60;i++){
+          particles.push({ type:'ozone', x:Math.random()*w, y:Math.random()*h, r:1+Math.random()*2, vy:-0.15-Math.random()*0.3, alpha:0.3+Math.random()*0.4, tw:Math.random()*Math.PI*2, hue:180+Math.random()*40 });
+        }
+        for(let i=0;i<8;i++){
+          particles.push({ type:'uv', x:Math.random()*w, y:-50-Math.random()*200, vx:0.3+Math.random()*0.5, vy:0.8+Math.random()*0.6, alpha:0.08, len:60+Math.random()*80 });
+        }
+      } else if(currentLevel === 'mesosfer'){
+        // meteor jatuh + debu
+        for(let i=0;i<30;i++){
+          particles.push({ type:'dust', x:Math.random()*w, y:Math.random()*h, r:0.5+Math.random()*0.8, alpha:0.2+Math.random()*0.3, tw:Math.random()*Math.PI*2 });
+        }
+        for(let i=0;i<5;i++){
+          particles.push({ type:'meteor', x:Math.random()*w, y:-100-Math.random()*300, vx:2+Math.random()*3, vy:4+Math.random()*4, alpha:0.9, life:1, delay:Math.random()*5 });
+        }
+      } else if(currentLevel === 'termosfer'){
+        // aurora bergerak
+        for(let i=0;i<3;i++){
+          particles.push({ type:'aurora', offset:Math.random()*Math.PI*2, hue:120+i*50, y:h*0.2+i*h*0.15, alpha:0.15 });
+        }
+        for(let i=0;i<80;i++){
+          particles.push({ type:'star', x:Math.random()*w, y:Math.random()*h, r:Math.random()*1.2, tw:Math.random()*Math.PI*2, sp:Math.random()*0.03+0.01, alpha:0.3+Math.random()*0.5 });
+        }
+      } else if(currentLevel === 'eksosfer'){
+        // satelit mengorbit + bintang terang
+        for(let i=0;i<100;i++){
+          particles.push({ type:'star', x:Math.random()*w, y:Math.random()*h, r:Math.random()*1.5, tw:Math.random()*Math.PI*2, sp:Math.random()*0.02+0.005, alpha:0.4+Math.random()*0.6 });
+        }
+        for(let i=0;i<2;i++){
+          particles.push({ type:'satellite', angle:Math.random()*Math.PI*2, speed:0.002+Math.random()*0.002, radius:Math.min(w,h)*0.35, cx:w*0.5, cy:h*0.6 });
+        }
+      }
+    }
+
+    function draw(t){
+      if(!lastTime) lastTime = t;
+      const dt = Math.min((t-lastTime)/16.67, 3); lastTime = t;
+      ctx.clearRect(0,0,w,h);
+
+      // Troposfer — awan + hujan
+      if(currentLevel === 'troposfer'){
+        particles.forEach(p => {
+          if(p.type === 'cloud'){
+            const grd = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r);
+            grd.addColorStop(0, 'rgba(220,235,255,'+p.alpha+')');
+            grd.addColorStop(1, 'rgba(220,235,255,0)');
+            ctx.fillStyle = grd;
+            ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2); ctx.fill();
+            p.x += p.vx * dt;
+            if(p.x > w + p.r) { p.x = -p.r; p.y = Math.random()*h*0.7; }
+          } else if(p.type === 'drop'){
+            ctx.strokeStyle = 'rgba(180,220,255,'+p.alpha+')';
+            ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(p.x, p.y+p.len); ctx.stroke();
+            p.y += p.vy * dt;
+            if(p.y > h) { p.y = -10; p.x = Math.random()*w; }
+          }
+        });
+      }
+      // Stratosfer — ozon + UV
+      else if(currentLevel === 'stratosfer'){
+        particles.forEach(p => {
+          if(p.type === 'ozone'){
+            p.tw += 0.05 * dt;
+            const a = p.alpha * (0.6 + Math.sin(p.tw)*0.4);
+            ctx.fillStyle = 'hsla('+p.hue+',100%,70%,'+a+')';
+            ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2); ctx.fill();
+            p.y += p.vy * dt;
+            if(p.y < -5) { p.y = h+5; p.x = Math.random()*w; }
+          } else if(p.type === 'uv'){
+            const grd = ctx.createLinearGradient(p.x, p.y, p.x+p.len, p.y+p.len*1.5);
+            grd.addColorStop(0, 'rgba(255,220,140,0)');
+            grd.addColorStop(0.5, 'rgba(255,220,140,'+p.alpha+')');
+            grd.addColorStop(1, 'rgba(255,220,140,0)');
+            ctx.strokeStyle = grd; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(p.x+p.len, p.y+p.len*1.5); ctx.stroke();
+            p.x += p.vx * dt; p.y += p.vy * dt;
+            if(p.x > w+100 || p.y > h+100) { p.x = -100; p.y = -50-Math.random()*200; }
+          }
+        });
+      }
+      // Mesosfer — meteor + debu
+      else if(currentLevel === 'mesosfer'){
+        particles.forEach(p => {
+          if(p.type === 'dust'){
+            p.tw += 0.02 * dt;
+            const a = p.alpha * (0.5 + Math.sin(p.tw)*0.5);
+            ctx.fillStyle = 'rgba(200,210,240,'+a+')';
+            ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2); ctx.fill();
+          } else if(p.type === 'meteor'){
+            if(p.delay > 0){ p.delay -= 0.016 * dt; return; }
+            const grd = ctx.createLinearGradient(p.x, p.y, p.x-p.vx*10, p.y-p.vy*10);
+            grd.addColorStop(0, 'rgba(255,240,180,'+p.alpha+')');
+            grd.addColorStop(0.4, 'rgba(255,180,90,'+p.alpha*0.6+')');
+            grd.addColorStop(1, 'rgba(255,120,40,0)');
+            ctx.strokeStyle = grd; ctx.lineWidth = 2.5;
+            ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(p.x-p.vx*10, p.y-p.vy*10); ctx.stroke();
+            ctx.fillStyle = 'rgba(255,255,220,'+p.alpha+')';
+            ctx.beginPath(); ctx.arc(p.x, p.y, 2, 0, Math.PI*2); ctx.fill();
+            p.x += p.vx * dt; p.y += p.vy * dt;
+            if(p.x > w+100 || p.y > h+100){ p.x = -100-Math.random()*200; p.y = -100-Math.random()*200; p.delay = Math.random()*5; }
+          }
+        });
+      }
+      // Termosfer — aurora + bintang
+      else if(currentLevel === 'termosfer'){
+        auroraPhase += 0.008 * dt;
+        particles.forEach(p => {
+          if(p.type === 'aurora'){
+            const amp = 40 + Math.sin(auroraPhase + p.offset) * 20;
+            const grd = ctx.createLinearGradient(0, p.y-amp, 0, p.y+amp);
+            grd.addColorStop(0, 'hsla('+p.hue+',90%,60%,0)');
+            grd.addColorStop(0.5, 'hsla('+p.hue+',90%,60%,'+p.alpha+')');
+            grd.addColorStop(1, 'hsla('+p.hue+',90%,60%,0)');
+            ctx.fillStyle = grd;
+            ctx.beginPath();
+            ctx.moveTo(0, p.y);
+            for(let x=0; x<=w; x+=20){
+              const y = p.y + Math.sin(auroraPhase*2 + x*0.008 + p.offset) * amp;
+              ctx.lineTo(x, y);
+            }
+            ctx.lineTo(w, p.y + amp*2);
+            ctx.lineTo(0, p.y + amp*2);
+            ctx.closePath();
+            ctx.fill();
+          } else if(p.type === 'star'){
+            p.tw += p.sp * dt;
+            const a = p.alpha * (0.5 + Math.sin(p.tw)*0.5);
+            ctx.fillStyle = 'rgba(220,240,255,'+a+')';
+            ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2); ctx.fill();
+          }
+        });
+      }
+      // Eksosfer — bintang terang + satelit orbit
+      else if(currentLevel === 'eksosfer'){
+        particles.forEach(p => {
+          if(p.type === 'star'){
+            p.tw += p.sp * dt;
+            const a = p.alpha * (0.5 + Math.sin(p.tw)*0.5);
+            const r = p.r + Math.sin(p.tw)*0.3;
+            ctx.fillStyle = 'rgba(255,255,255,'+a+')';
+            ctx.beginPath(); ctx.arc(p.x, p.y, r, 0, Math.PI*2); ctx.fill();
+            if(p.r > 1){
+              ctx.shadowBlur = 8; ctx.shadowColor = 'rgba(180,220,255,.8)';
+              ctx.beginPath(); ctx.arc(p.x, p.y, r, 0, Math.PI*2); ctx.fill();
+              ctx.shadowBlur = 0;
+            }
+          } else if(p.type === 'satellite'){
+            p.angle += p.speed * dt;
+            const x = p.cx + Math.cos(p.angle) * p.radius;
+            const y = p.cy + Math.sin(p.angle) * p.radius * 0.4;
+            ctx.fillStyle = 'rgba(255,255,255,.9)';
+            ctx.beginPath(); ctx.arc(x, y, 2.5, 0, Math.PI*2); ctx.fill();
+            ctx.strokeStyle = 'rgba(99,230,255,.3)'; ctx.lineWidth = 0.5;
+            ctx.beginPath(); ctx.ellipse(p.cx, p.cy, p.radius, p.radius*0.4, 0, 0, Math.PI*2); ctx.stroke();
+          }
+        });
+      }
+
+      if(reduce) return;
+      raf = requestAnimationFrame(draw);
+    }
+
+    resize();
+    window.addEventListener('resize', () => { cancelAnimationFrame(raf); resize(); if(!reduce) raf = requestAnimationFrame(draw); else draw(performance.now()); });
+    if(reduce) draw(performance.now()); else raf = requestAnimationFrame(draw);
+
+    // expose setter
+    window.__setParticleLevel = function(levelId){
+      currentLevel = levelId;
+      rebuild();
+      lastTime = 0;
+    };
+
+    document.addEventListener('visibilitychange', () => {
+      if(reduce) return;
+      if(document.hidden) cancelAnimationFrame(raf);
+      else { lastTime = 0; raf = requestAnimationFrame(draw); }
+    });
+  })();
+
+  /* ================= FX (confetti) ================= */
+  const fxCanvas = $('#fx'); const fxCtx = fxCanvas.getContext('2d');
+  let fxParticles = [], fxRunning = false, fxDpr = 1;
   function fxResize(){
     fxDpr = Math.min(window.devicePixelRatio||1, 2);
-    fxCanvas.width = Math.floor(window.innerWidth*fxDpr);
-    fxCanvas.height = Math.floor(window.innerHeight*fxDpr);
-    fxCanvas.style.width = window.innerWidth+'px';
-    fxCanvas.style.height = window.innerHeight+'px';
+    fxCanvas.width = Math.floor(window.innerWidth*fxDpr); fxCanvas.height = Math.floor(window.innerHeight*fxDpr);
+    fxCanvas.style.width = window.innerWidth+'px'; fxCanvas.style.height = window.innerHeight+'px';
     fxCtx.setTransform(fxDpr,0,0,fxDpr,0,0);
   }
-  fxResize();
-  window.addEventListener('resize', fxResize);
-
+  fxResize(); window.addEventListener('resize', fxResize);
   function burst(x, y, colors){
     const palette = colors || ['#63e6ff','#a78bfa','#34d399','#fbbf24','#f87171','#ffffff'];
-    const n = 32;
-    for(let i=0;i<n;i++){
-      fxParticles.push({
-        x, y,
-        vx: (Math.random()-.5)*14,
-        vy: -Math.random()*9 - 2,
-        g: 0.35,
-        life: 1,
-        color: palette[Math.floor(Math.random()*palette.length)],
-        size: Math.random()*5 + 3,
-        rot: Math.random()*Math.PI*2,
-        vr: (Math.random()-.5)*.35
-      });
+    for(let i=0;i<32;i++){
+      fxParticles.push({ x, y, vx:(Math.random()-.5)*14, vy:-Math.random()*9-2, g:0.35, life:1, color:palette[Math.floor(Math.random()*palette.length)], size:Math.random()*5+3, rot:Math.random()*Math.PI*2, vr:(Math.random()-.5)*.35 });
     }
     if(!fxRunning) fxLoop();
   }
@@ -1069,24 +1121,17 @@
     fxCtx.clearRect(0,0,W,H);
     for(let i=fxParticles.length-1;i>=0;i--){
       const p = fxParticles[i];
-      p.x += p.vx; p.y += p.vy; p.vy += p.g;
-      p.vx *= 0.995; p.rot += p.vr;
-      p.life -= 0.014;
+      p.x += p.vx; p.y += p.vy; p.vy += p.g; p.vx *= 0.995; p.rot += p.vr; p.life -= 0.014;
       if(p.life <= 0 || p.y > H + 30){ fxParticles.splice(i,1); continue; }
-      fxCtx.save();
-      fxCtx.translate(p.x, p.y); fxCtx.rotate(p.rot);
-      fxCtx.globalAlpha = Math.max(0, p.life);
-      fxCtx.fillStyle = p.color;
-      fxCtx.fillRect(-p.size/2, -p.size/2, p.size, p.size*0.6);
-      fxCtx.restore();
+      fxCtx.save(); fxCtx.translate(p.x, p.y); fxCtx.rotate(p.rot);
+      fxCtx.globalAlpha = Math.max(0, p.life); fxCtx.fillStyle = p.color;
+      fxCtx.fillRect(-p.size/2, -p.size/2, p.size, p.size*0.6); fxCtx.restore();
     }
     if(fxParticles.length > 0) requestAnimationFrame(fxLoop);
     else { fxRunning = false; fxCtx.clearRect(0,0,W,H); }
   }
 
-  /* =====================================================
-     7. TOAST / ACHIEVEMENTS
-     ===================================================== */
+  /* ================= TOAST / ACHIEVEMENTS ================= */
   function showToast(icon, title, desc){
     const t = el('div', { class:'toast' });
     t.appendChild(el('div', { class:'toast-icon', text: icon }));
@@ -1097,12 +1142,8 @@
     document.body.appendChild(t);
     requestAnimationFrame(() => t.classList.add('show'));
     sfx.achievement();
-    setTimeout(() => {
-      t.classList.remove('show');
-      setTimeout(() => t.remove(), 500);
-    }, 3600);
+    setTimeout(() => { t.classList.remove('show'); setTimeout(() => t.remove(), 500); }, 3600);
   }
-
   function checkAchievements(){
     ACHIEVEMENTS.forEach(a => {
       if(!State.achievements.includes(a.id)){
@@ -1117,28 +1158,37 @@
     });
   }
 
-  /* =====================================================
-     8. SKY & AVATAR
-     ===================================================== */
-  function setSky(levelId){
-    $('#sky').setAttribute('data-level', levelId || '');
-  }
-  function renderAvatar(){
-    const a = $('#avatar');
-    const rank = xpToRank(State.xp);
-    const prev = a.textContent;
-    a.textContent = rank.icon;
-    a.title = 'Pangkat: ' + rank.name;
-    if(prev && prev !== rank.icon){
-      a.classList.add('bump');
-      setTimeout(() => a.classList.remove('bump'), 600);
-    }
-    $('#hudSub').textContent = rank.name + ' · ' + State.xp + ' XP';
+  /* ================= ALTIMETER ================= */
+  function updateAltimeter(levelId){
+    const al = $('#altimeter');
+    if(!levelId){ al.classList.remove('show'); return; }
+    al.classList.add('show');
+    const lv = LEVELS.find(l => l.id === levelId);
+    if(!lv) return;
+    // konversi altMid (km) → posisi vertikal (0% = atas/500+ km, 100% = bawah/0 km)
+    // Pakai skala logaritmik agar merata
+    const alt = lv.altMid;
+    const logAlt = Math.log10(alt + 1);       // 0 → 0.78 (Troposfer) hingga 600 → 2.78 (Eksosfer)
+    const maxLog = Math.log10(650);
+    const pct = Math.max(3, Math.min(97, 100 - (logAlt / maxLog) * 100));
+    $('#altMarker').style.top = pct + '%';
+    $('#altRocket').style.top = pct + '%';
+    $('#altLabel').textContent = alt + ' km';
   }
 
-  /* =====================================================
-     9. HUD
-     ===================================================== */
+  /* ================= SKY / AVATAR / HUD ================= */
+  function setSky(levelId){
+    $('#sky').setAttribute('data-level', levelId || '');
+    if(window.__setParticleLevel) window.__setParticleLevel(levelId || null);
+    updateAltimeter(levelId || null);
+  }
+  function renderAvatar(){
+    const a = $('#avatar'); const rank = xpToRank(State.xp);
+    const prev = a.textContent;
+    a.textContent = rank.icon; a.title = 'Pangkat: ' + rank.name;
+    if(prev && prev !== rank.icon){ a.classList.add('bump'); setTimeout(() => a.classList.remove('bump'), 600); }
+    $('#hudSub').textContent = (State.playerName ? State.playerName + ' · ' : '') + rank.name;
+  }
   function updateHUD(){
     $('#xpVal').textContent = State.xp;
     const pct = Math.min(100, (State.xp / XP_MAX) * 100);
@@ -1153,19 +1203,12 @@
     renderAvatar();
   }
 
-  /* =====================================================
-     10. SCREENS
-     ===================================================== */
+  /* ================= SCREENS ================= */
   function setScreen(name){ State.screen = name; render(); }
-
   function render(){
     stage.innerHTML = '';
-    // atur sky sesuai screen
-    if(State.screen === 'question' || State.screen === 'result'){
-      setSky(LEVELS[State.currentLevel].id);
-    } else {
-      setSky('');
-    }
+    if(State.screen === 'question' || State.screen === 'result') setSky(LEVELS[State.currentLevel].id);
+    else setSky('');
     switch(State.screen){
       case 'start':    return renderStart();
       case 'map':      return renderMap();
@@ -1174,81 +1217,83 @@
     }
   }
 
-  /* ----- START ----- */
   function renderStart(){
     const wrap = el('section', { class:'screen' });
     const hero = el('div', { class:'hero' });
-    hero.appendChild(el('span', { class:'badge', text:'MISI PEMBELAJARAN · GEOGRAFI KELAS X' }));
+    hero.appendChild(el('span', { class:'badge', text:'TACTICAL EDITION · GEOGRAFI KELAS X' }));
     const h1 = el('h1');
     h1.appendChild(document.createTextNode('Selamat datang di '));
     h1.appendChild(el('span', { class:'grad', text:'Atmosphere Mission' }));
     hero.appendChild(h1);
-    hero.appendChild(el('p', {
-      text:'Jelajahi 5 lapisan atmosfer Bumi, jawab 20 soal tantangan, kumpulkan lencana, dan buktikan bahwa kamu adalah Detektif Atmosfer sejati.'
-    }));
+    hero.appendChild(el('p', { text:'Bank 40 soal atmosfer dalam 5 lapisan. Setiap percobaan, soal & jawaban diacak ulang. Naik melalui altitude meter dan selesaikan misi.' }));
+
+    const profiles = Object.keys(allProfiles).filter(k => k !== '__guest');
+    if(profiles.length > 0){
+      const chips = el('div', { class:'profile-chips' });
+      profiles.forEach(name => {
+        const p = allProfiles[name];
+        chips.appendChild(el('button', { class:'profile-chip', type:'button', onclick:() => {
+          const restored = Object.assign(defaultState(), p); restored.screen = 'map';
+          State = restored; save(); sfx.click(); render();
+          announce('Melanjutkan sesi ' + name);
+        }}, [document.createTextNode('👤 ' + name + ' · ' + (p.xp||0) + ' XP')]));
+      });
+      hero.appendChild(chips);
+    }
+
     const field = el('div', { class:'field' });
-    const input = el('input', {
-      type:'text', id:'playerName', placeholder:'Tulis namamu di sini…',
-      maxlength:'40', autocomplete:'name', 'aria-label':'Nama pemain'
-    });
+    const input = el('input', { type:'text', id:'playerName', placeholder:'Tulis namamu…', maxlength:'40', autocomplete:'name', 'aria-label':'Nama pemain' });
     input.value = State.playerName || '';
     field.appendChild(input); hero.appendChild(field);
 
     hero.appendChild(el('button', {
       class:'btn btn-primary', type:'button',
-      onclick: () => {
+      onclick:() => {
         const name = (input.value || '').trim().slice(0,40);
-        if(!name){ input.focus(); input.style.borderColor = 'var(--bad)'; announce('Silakan tulis namamu dulu.'); return; }
-        State.playerName = name;
+        if(!name){ input.focus(); input.style.borderColor = 'var(--bad)'; announce('Tulis namamu dulu.'); return; }
+        if(allProfiles[name] && allProfiles[name].xp > 0){
+          const cont = confirm('Nama "' + name + '" sudah ada dengan ' + allProfiles[name].xp + ' XP.\n\nOK = lanjutkan\nCancel = mulai ulang dari nol');
+          if(cont){
+            const restored = Object.assign(defaultState(), allProfiles[name]);
+            restored.screen = 'map'; restored.soundOn = State.soundOn;
+            State = restored; save(); sfx.click(); render();
+            announce('Melanjutkan sesi ' + name); return;
+          } else { delete allProfiles[name]; }
+        }
+        State = defaultState(); State.playerName = name;
         State.screen = 'map'; save(); sfx.click(); render();
-        announce('Peta misi terbuka. Pilih Troposfer untuk mulai.');
+        announce('Peta misi terbuka.');
       }
     }, [document.createTextNode('🚀 Mulai Misi')]));
 
     const cp = el('ul', { class:'cp-list' });
     [
-      'Menjelaskan karakteristik 5 lapisan atmosfer Bumi.',
-      'Menganalisis hubungan ketinggian, suhu, dan tekanan udara.',
-      'Membedakan miskonsepsi lubang ozon vs pemanasan global.',
-      'Menerapkan konsep atmosfer pada fenomena di Indonesia.'
+      '40 soal dalam bank — soal & jawaban diacak setiap percobaan',
+      'Altitude meter menunjukkan posisi kamu di lapisan atmosfer',
+      'Particle system per lapisan: awan, ozon, meteor, aurora, satelit',
+      'Opsi "Belum tahu" agar jujur tanpa takut salah',
+      'Konteks Indonesia: lapse rate, Perseid, satelit Palapa'
     ].forEach(t => cp.appendChild(el('li', { text:t })));
     hero.appendChild(cp);
 
-    if(State.xp > 0 || State.unlocked > 1){
-      hero.appendChild(el('p', {
-        style:'margin-top:18px;font-size:12px;color:var(--muted)',
-        text:'💾 Progres ditemukan — lanjutkan dari peta misi.'
-      }));
-    }
-    if(State.achievements.length > 0){
-      hero.appendChild(el('p', {
-        style:'margin-top:8px;font-size:12px;color:var(--warn)',
-        text:'🏅 ' + State.achievements.length + ' dari ' + ACHIEVEMENTS.length + ' lencana terkumpul.'
-      }));
-    }
+    if(State.xp > 0){ hero.appendChild(el('p', { style:'margin-top:18px;font-size:12px;color:var(--muted)', text:'💾 Progres ditemukan — lanjutkan dari peta misi.' })); }
     wrap.appendChild(hero); stage.appendChild(wrap);
     setTimeout(() => input.focus(), 60);
   }
 
-  /* ----- MAP ----- */
   function renderMap(){
     const wrap = el('section', { class:'screen' });
     wrap.appendChild(el('div', { class:'section-title', text:'Peta Misi · Pilih Lapisan Atmosfer' }));
-    wrap.appendChild(el('p', {
-      style:'margin:0 0 18px;color:var(--muted);font-size:13px',
-      text:'Selesaikan tiap lapisan untuk membuka lapisan berikutnya. Setiap jawaban benar = 50 XP.'
-    }));
+    wrap.appendChild(el('p', { style:'margin:0 0 18px;color:var(--muted);font-size:13px', text:'Selesaikan tiap lapisan untuk membuka berikutnya. Setiap sesi = 4 soal acak dari bank 8 soal per lapisan.' }));
     const grid = el('div', { class:'map' });
     LEVELS.forEach((lv, idx) => {
       const unlocked = idx < State.unlocked;
       const result = State.results[lv.id];
       const done = !!result;
       const attrs = {
-        class:'level', type:'button',
-        'data-done': done ? '1' : '0',
-        'data-locked': unlocked ? '0' : '1',
+        class:'level', type:'button', 'data-done': done ? '1' : '0', 'data-locked': unlocked ? '0' : '1',
         'aria-label': unlocked ? ('Buka level ' + lv.name) : ('Level terkunci: ' + lv.name),
-        onclick: () => {
+        onclick:() => {
           if(!unlocked) return;
           State.currentLevel = idx; State.currentQ = 0;
           State.sessionQuestions = pickSession(lv.id);
@@ -1276,30 +1321,23 @@
     wrap.appendChild(grid);
 
     const actions = el('div', { style:'margin-top:22px;display:flex;gap:10px;flex-wrap:wrap' });
-    actions.appendChild(el('button', {
-      class:'btn btn-ghost', type:'button', onclick:() => openDrawer()
-    }, [document.createTextNode('📖 Glosarium')]));
-    actions.appendChild(el('button', {
-      class:'btn btn-ghost', type:'button',
-      onclick:() => {
-        if(confirm('Reset semua progres?')){ clearSave(); State = defaultState(); updateHUD(); setScreen('start'); announce('Progres direset.'); }
-      }
-    }, [document.createTextNode('↺ Reset Progres')]));
+    actions.appendChild(el('button', { class:'btn btn-ghost', type:'button', onclick:() => openDrawer() }, [document.createTextNode('📖 Glosarium')]));
+    actions.appendChild(el('button', { class:'btn btn-ghost', type:'button', onclick:() => {
+      if(confirm('Reset progres untuk akun "' + State.playerName + '"?')){ clearSave(); State = defaultState(); updateHUD(); setScreen('start'); announce('Progres direset.'); }
+    }}, [document.createTextNode('↺ Reset Progres')]));
     wrap.appendChild(actions);
 
-    // recap achievement di map
     if(State.achievements.length > 0){
       wrap.appendChild(el('div', { class:'section-title', style:'margin-top:26px', text:'Lencana Kamu (' + State.achievements.length + '/' + ACHIEVEMENTS.length + ')' }));
       const box = el('div', { class:'achievements' });
       ACHIEVEMENTS.forEach(a => {
         const has = State.achievements.includes(a.id);
-        const card = el('div', { class:'ach', style: has ? '' : 'opacity:.35;filter:grayscale(1)' });
-        card.appendChild(el('div', { class:'i', text: has ? a.icon : '🔒' }));
+        const c = el('div', { class:'ach', style: has ? '' : 'opacity:.35;filter:grayscale(1)' });
+        c.appendChild(el('div', { class:'i', text: has ? a.icon : '🔒' }));
         const b = el('div');
         b.appendChild(el('div', { class:'t', text: a.name }));
         b.appendChild(el('div', { class:'d', text: a.desc }));
-        card.appendChild(b);
-        box.appendChild(card);
+        c.appendChild(b); box.appendChild(c);
       });
       wrap.appendChild(box);
     }
@@ -1324,33 +1362,38 @@
     head.appendChild(combo);
     wrap.appendChild(head);
 
+    if(State.currentQ === 0 && PROFESSOR_INTRO[lv.id]){
+      const prof = el('div', { class:'professor' });
+      prof.appendChild(el('div', { class:'pic', text: lv.icon }));
+      const bubble = el('div');
+      bubble.appendChild(el('div', { class:'name', text:'PROFESOR ATMOS' }));
+      bubble.appendChild(el('div', { class:'bubble', text: PROFESSOR_INTRO[lv.id] }));
+      prof.appendChild(bubble);
+      wrap.appendChild(prof);
+    }
+
     const card = el('div', { class:'qcard', id:'qcard' });
-    card.appendChild(el('span', { class:'bloom', text:'Level kognitif ' + q.bloom }));
+    card.appendChild(el('span', { class:'bloom' + (q.stim ? ' stim' : ''), text: q.stim ? 'Soal Stimulus · Level ' + q.bloom : 'Level kognitif ' + q.bloom }));
+    if(q.stim) card.appendChild(el('div', { class:'stimulus', html: '<b>📌 Stimulus:</b> ' + q.stim }));
     card.appendChild(el('p', { class:'qtext', text: q.q }));
 
     const opts = el('div', { class:'options', role:'radiogroup', 'aria-label':'Pilihan jawaban' });
     const letters = ['A','B','C','D','E'];
     q.options.forEach((optText, i) => {
-      const b = el('button', {
-        class:'opt', type:'button', role:'radio', 'aria-checked':'false', 'data-idx':i,
-        onclick:() => selectOption(i)
-      });
+      const b = el('button', { class:'opt', type:'button', role:'radio', 'aria-checked':'false', 'data-idx':i, onclick:() => selectOption(i) });
       b.appendChild(el('span', { class:'key', text: letters[i] }));
       b.appendChild(el('span', { text: optText }));
       opts.appendChild(b);
     });
     card.appendChild(opts);
+
+    const unkBtn = el('button', { class:'unk-btn', type:'button', id:'unknownBtn', onclick: submitUnknown }, [document.createTextNode('🤔 Aku belum tahu — tunjukkan jawabannya')]);
+    card.appendChild(unkBtn);
     card.appendChild(el('div', { id:'fbSlot' }));
 
     const actions = el('div', { class:'quiz-actions' });
-    actions.appendChild(el('span', {
-      class:'kbd-hint',
-      html:'Pilih: <span class="kbd">1</span>–<span class="kbd">4</span> · Kirim: <span class="kbd">Enter</span>'
-    }));
-    const submitBtn = el('button', {
-      class:'btn btn-primary', type:'button', id:'submitBtn',
-      disabled:'true', onclick: submitAnswer
-    }, [document.createTextNode('Kirim Jawaban')]);
+    actions.appendChild(el('span', { class:'kbd-hint', html:'Pilih: <span class="kbd">1</span>–<span class="kbd">4</span> · Kirim: <span class="kbd">Enter</span> · Belum tahu: <span class="kbd">?</span>' }));
+    const submitBtn = el('button', { class:'btn btn-primary', type:'button', id:'submitBtn', disabled:'true', onclick: submitAnswer }, [document.createTextNode('Kirim Jawaban')]);
     actions.appendChild(submitBtn);
     card.appendChild(actions);
     wrap.appendChild(card);
@@ -1389,44 +1432,31 @@
 
     let gained = 0;
     if(isCorrect){
-      State.combo += 1;
-      State.totalCorrect += 1;
+      State.combo += 1; State.totalCorrect += 1;
       if(State.combo > State.bestCombo) State.bestCombo = State.combo;
       gained = XP_PER_CORRECT;
       if(State.combo >= 2) gained += XP_COMBO_BONUS * Math.min(State.combo - 1, 3);
       State.xp += gained;
       sfx.good();
-      // confetti dari posisi opsi yang benar
-      if(correctEl){
-        const r = correctEl.getBoundingClientRect();
-        burst(r.left + r.width/2, r.top + r.height/2);
-      }
-      // combo pulse
+      if(correctEl){ const r = correctEl.getBoundingClientRect(); burst(r.left + r.width/2, r.top + r.height/2); }
+      const qcard = $('#qcard'); if(qcard){ qcard.classList.remove('correct-flash'); void qcard.offsetWidth; qcard.classList.add('correct-flash'); }
       const badge = $('#comboBadge');
-      if(badge && State.combo >= 2){
-        badge.textContent = '🔥 Combo ×' + State.combo;
-        badge.classList.add('on');
-        badge.classList.remove('pulse');
-        void badge.offsetWidth;
-        badge.classList.add('pulse');
-      }
-      // tanda khusus soal ozon
-      if(q.tag === 'ozone') State.masteredOzone = true;
+      if(badge && State.combo >= 2){ badge.textContent = '🔥 Combo ×' + State.combo; badge.classList.add('on'); badge.classList.remove('pulse'); void badge.offsetWidth; badge.classList.add('pulse'); }
+      if(q.id === 'stra-05') State.masteredOzone = true;
     } else {
-      State.combo = 0;
-      sfx.bad();
-      const qcard = $('#qcard');
-      if(qcard){ qcard.classList.remove('shake'); void qcard.offsetWidth; qcard.classList.add('shake'); }
+      State.combo = 0; sfx.bad();
+      const qcard = $('#qcard'); if(qcard){ qcard.classList.remove('shake'); void qcard.offsetWidth; qcard.classList.add('shake'); }
     }
-    State.sessionAnswers.push({ idx:selectedOption, correct:isCorrect, gained });
+    State.sessionAnswers.push({ idx:selectedOption, correct:isCorrect, gained, unknown:false });
 
     if(!State.results[lv.id]) State.results[lv.id] = { correct:0, total:State.sessionQuestions.length, xp:0 };
     if(isCorrect) State.results[lv.id].correct += 1;
     State.results[lv.id].xp += gained;
 
-    updateHUD();
-    save();
-    renderFeedback(q, isCorrect, gained);
+    const ub = $('#unknownBtn'); if(ub) ub.setAttribute('disabled','true');
+
+    updateHUD(); save();
+    renderFeedback(q, isCorrect ? 'good' : 'bad', gained);
     checkAchievements();
 
     const submitBtn = $('#submitBtn');
@@ -1437,23 +1467,59 @@
       submitBtn.onclick = nextQuestion;
       submitBtn.focus();
     }
-    announce(isCorrect ? ('Jawaban benar! +' + gained + ' XP.') : 'Jawaban belum tepat. Baca pembahasannya.');
+    announce(isCorrect ? ('Benar! +' + gained + ' XP.') : 'Belum tepat. Baca pembahasannya.');
   }
 
-  function renderFeedback(q, isCorrect, gained){
+  function submitUnknown(){
+    const lv = LEVELS[State.currentLevel];
+    const q = State.sessionQuestions[State.currentQ];
+    if(!q) return;
+
+    const opts = $$('.opt');
+    opts.forEach((o, idx) => {
+      o.setAttribute('disabled','true');
+      if(idx === q.answer) o.setAttribute('data-state','correct');
+    });
+
+    State.combo = 0;
+    State.unknownCount = (State.unknownCount || 0) + 1;
+    State.sessionAnswers.push({ idx:-1, correct:false, gained:0, unknown:true });
+    sfx.unknown();
+
+    if(!State.results[lv.id]) State.results[lv.id] = { correct:0, total:State.sessionQuestions.length, xp:0 };
+
+    const ub = $('#unknownBtn'); if(ub) ub.setAttribute('disabled','true');
+
+    updateHUD(); save();
+    renderFeedback(q, 'unk', 0);
+    checkAchievements();
+
+    const submitBtn = $('#submitBtn');
+    if(submitBtn){
+      submitBtn.textContent = (State.currentQ + 1 >= State.sessionQuestions.length) ? 'Selesaikan Level →' : 'Soal Berikutnya →';
+      submitBtn.disabled = false;
+      submitBtn.setAttribute('aria-label', submitBtn.textContent);
+      submitBtn.onclick = nextQuestion;
+      submitBtn.focus();
+    }
+    announce('Jawaban ditampilkan. Baca pembahasannya.');
+  }
+
+  function renderFeedback(q, kind, gained){
     const slot = $('#fbSlot'); if(!slot) return;
-    const fb = el('div', { class:'fb ' + (isCorrect ? 'good' : 'bad') });
+    const fb = el('div', { class:'fb ' + kind });
     const h4 = el('h4');
-    h4.appendChild(document.createTextNode(isCorrect ? '✅ Benar!' : '❌ Belum Tepat'));
-    if(isCorrect && gained) h4.appendChild(el('span', { style:'color:var(--warn);font-weight:800;font-size:12px;margin-left:8px', text:'+' + gained + ' XP' }));
+    if(kind === 'good'){
+      h4.appendChild(document.createTextNode('✅ Benar!'));
+      if(gained) h4.appendChild(el('span', { style:'color:var(--warn);font-weight:800;font-size:12px;margin-left:8px', text:'+' + gained + ' XP' }));
+    } else if(kind === 'bad'){ h4.appendChild(document.createTextNode('❌ Belum Tepat')); }
+    else { h4.appendChild(document.createTextNode('💭 Belum Tahu — Oke, Mari Belajar')); }
     fb.appendChild(h4);
     fb.appendChild(el('p', { text: q.explain }));
-    if(!isCorrect && q.misconception && q.misconception[selectedOption]){
+    if(kind === 'bad' && q.misconception && q.misconception[selectedOption]){
       fb.appendChild(el('p', { class:'hint', text:'💡 ' + q.misconception[selectedOption] }));
     }
-    if(isCorrect && State.combo >= 3){
-      fb.appendChild(el('p', { class:'hint', text:'🔥 Combo ×' + State.combo + '! Pertahankan!' }));
-    }
+    if(kind === 'good' && State.combo >= 3){ fb.appendChild(el('p', { class:'hint', text:'🔥 Combo ×' + State.combo + '! Pertahankan!' })); }
     slot.appendChild(fb);
     fb.scrollIntoView({ behavior:'smooth', block:'nearest' });
   }
@@ -1463,10 +1529,8 @@
     if(State.currentQ >= State.sessionQuestions.length){
       const lv = LEVELS[State.currentLevel];
       const res = State.results[lv.id];
-      if(res.correct === res.total){ State.xp += XP_PER_LEVEL_BONUS; }
-      if(State.currentLevel + 1 >= State.unlocked && State.currentLevel + 1 < LEVELS.length){
-        State.unlocked = State.currentLevel + 2;
-      }
+      if(res.correct === res.total && res.total > 0){ State.xp += XP_PER_LEVEL_BONUS; }
+      if(State.currentLevel + 1 >= State.unlocked && State.currentLevel + 1 < LEVELS.length){ State.unlocked = State.currentLevel + 2; }
       save(); updateHUD(); checkAchievements(); stopAmbient();
       setScreen('result');
       return;
@@ -1479,34 +1543,40 @@
   function renderResult(){
     const lv = LEVELS[State.currentLevel];
     const res = State.results[lv.id] || { correct:0, total:State.sessionQuestions.length, xp:0 };
+    const sessionAns = State.sessionAnswers || [];
+    const sessionUnknown = sessionAns.filter(a => a.unknown).length;
+    const sessionCorrect = sessionAns.filter(a => a.correct).length;
     const totalCorrect = Object.keys(State.results).reduce((s,k)=> s + State.results[k].correct, 0);
     const pct = Math.round((totalCorrect / totalQuestions()) * 100);
     const rank = xpToRank(State.xp);
 
     const wrap = el('section', { class:'screen' });
     const card = el('div', { class:'result' });
-
     card.appendChild(el('div', { class:'trophy', text: pct >= 80 ? '🏆' : (pct >= 60 ? '🎖️' : '📘') }));
     card.appendChild(el('h2', { text: 'Misi Selesai, ' + State.playerName + '!' }));
     card.appendChild(el('div', { class:'rank', text: rank.icon + ' Peringkat: ' + rank.name }));
 
     const stats = el('div', { class:'stats' });
     stats.appendChild(el('div', { class:'stat' }, [ el('b', { text:String(State.xp) }), el('span', { text:'Total XP' }) ]));
-    stats.appendChild(el('div', { class:'stat' }, [ el('b', { text: res.correct + '/' + res.total }), el('span', { text:'Level Ini' }) ]));
-    stats.appendChild(el('div', { class:'stat' }, [ el('b', { text: pct + '%' }), el('span', { text:'Akurasi Total' }) ]));
-    stats.appendChild(el('div', { class:'stat' }, [ el('b', { text: '×' + State.bestCombo }), el('span', { text:'Combo Terbaik' }) ]));
+    stats.appendChild(el('div', { class:'stat' }, [ el('b', { text: sessionCorrect + '/' + State.sessionQuestions.length }), el('span', { text:'Benar Sesi Ini' }) ]));
+    stats.appendChild(el('div', { class:'stat' }, [ el('b', { text: sessionUnknown + '' }), el('span', { text:'Belum Tahu' }) ]));
+    stats.appendChild(el('div', { class:'stat' }, [ el('b', { text: pct + '%' }), el('span', { text:'Akurasi Bank' }) ]));
     card.appendChild(stats);
 
-    const summary = el('div', { style:'text-align:left;font-size:13px;color:#c9d2f0;max-width:560px;margin:0 auto 18px;line-height:1.7' });
-    summary.appendChild(el('p', {
-      style:'margin:0 0 8px',
-      text: pct >= 80 ? '🎉 Luar biasa! Kamu sudah menguasai karakteristik 5 lapisan atmosfer.'
-           : pct >= 60 ? '👍 Bagus! Baca ulang pembahasan soal yang salah, lalu ulangi levelnya.'
-           : '💪 Jangan menyerah! Baca glosarium dulu, lalu ulangi dari Troposfer.'
-    }));
-    card.appendChild(summary);
+    const summaryText = pct >= 80
+      ? '🎉 Luar biasa! Kamu sudah menguasai karakteristik 5 lapisan atmosfer.'
+      : pct >= 60
+      ? '👍 Bagus! Baca ulang pembahasan pada soal yang salah, lalu ulangi levelnya — soal akan diacak ulang.'
+      : '💪 Jangan menyerah! Baca glosarium dulu, lalu ulangi dari Troposfer.';
 
-    // achievement khusus
+    card.appendChild(el('div', { style:'text-align:left;font-size:13px;color:#c9d2f0;max-width:560px;margin:0 auto 18px;line-height:1.7' }, [
+      el('p', { style:'margin:0 0 8px', text: summaryText })
+    ]));
+
+    if(sessionUnknown >= 2){
+      card.appendChild(el('p', { style:'font-size:12px;color:var(--warn);margin-bottom:14px', text:'💭 Kamu pakai "Belum tahu" ' + sessionUnknown + '×. Soal itu akan muncul lagi di percobaan berikutnya dengan urutan berbeda.' }));
+    }
+
     if(State.achievements.length > 0){
       card.appendChild(el('div', { class:'section-title', style:'margin-top:10px;text-align:center', text:'Lencana Terkumpul (' + State.achievements.length + '/' + ACHIEVEMENTS.length + ')' }));
       const box = el('div', { class:'achievements' });
@@ -1517,38 +1587,34 @@
         const b = el('div');
         b.appendChild(el('div', { class:'t', text: a.name }));
         b.appendChild(el('div', { class:'d', text: a.desc }));
-        c.appendChild(b);
-        box.appendChild(c);
+        c.appendChild(b); box.appendChild(c);
       });
       card.appendChild(box);
     }
 
     const actions = el('div', { class:'actions' });
     if(State.currentLevel + 1 < LEVELS.length){
-      actions.appendChild(el('button', {
-        class:'btn btn-primary', type:'button',
-        onclick: () => {
-          const nextLevel = LEVELS[State.currentLevel + 1];
-          rocketTransition(nextLevel.name, () => {
-            State.currentLevel += 1; State.currentQ = 0;
-            State.sessionQuestions = pickSession(nextLevel.id);
-            State.sessionAnswers = []; State.combo = 0;
-            setScreen('question');
-            startAmbient(nextLevel.id);
-            announce('Memulai level ' + nextLevel.name + '.');
-          });
-        }
-      }, [document.createTextNode('🚀 Lanjut: ' + LEVELS[State.currentLevel + 1].name)]));
+      actions.appendChild(el('button', { class:'btn btn-primary', type:'button', onclick:() => {
+        const nextLevel = LEVELS[State.currentLevel + 1];
+        rocketTransition(nextLevel.name, () => {
+          State.currentLevel += 1; State.currentQ = 0;
+          State.sessionQuestions = pickSession(nextLevel.id);
+          State.sessionAnswers = []; State.combo = 0;
+          setScreen('question'); startAmbient(nextLevel.id);
+          announce('Memulai level ' + nextLevel.name + '.');
+        });
+      }}, [document.createTextNode('🚀 Lanjut: ' + LEVELS[State.currentLevel + 1].name)]));
     }
-    actions.appendChild(el('button', {
-      class:'btn btn-ghost', type:'button', onclick:() => { setScreen('map'); sfx.click(); }
-    }, [document.createTextNode('🗺️ Peta Misi')]));
-    actions.appendChild(el('button', {
-      class:'btn btn-ghost', type:'button', onclick:() => window.print()
-    }, [document.createTextNode('🖨️ Cetak Hasil')]));
+    actions.appendChild(el('button', { class:'btn btn-ghost', type:'button', onclick:() => {
+      State.currentQ = 0; State.sessionQuestions = pickSession(lv.id);
+      State.sessionAnswers = []; State.combo = 0;
+      setScreen('question'); startAmbient(lv.id); sfx.click();
+      announce('Mengulang level ' + lv.name + ' dengan soal baru.');
+    }}, [document.createTextNode('🔄 Ulangi (Soal Baru)')]));
+    actions.appendChild(el('button', { class:'btn btn-ghost', type:'button', onclick:() => { setScreen('map'); sfx.click(); } }, [document.createTextNode('🗺️ Peta Misi')]));
+    actions.appendChild(el('button', { class:'btn btn-ghost', type:'button', onclick:() => window.print() }, [document.createTextNode('🖨️ Cetak Hasil')]));
     card.appendChild(actions);
 
-    // rekap per lapisan
     const recap = el('div', { style:'margin-top:24px;text-align:left' });
     recap.appendChild(el('div', { class:'section-title', style:'margin-bottom:10px', text:'Rekap Per Lapisan' }));
     LEVELS.forEach(l => {
@@ -1563,28 +1629,17 @@
 
     wrap.appendChild(card); stage.appendChild(wrap);
 
-    // confetti meriah kalau akurasi tinggi
-    if(pct >= 80){
-      setTimeout(() => burst(window.innerWidth/2, window.innerHeight*0.3, ['#fbbf24','#63e6ff','#a78bfa','#34d399']), 200);
-    }
-    announce('Level selesai. Skor ' + res.correct + ' dari ' + res.total + '.');
+    if(pct >= 80) setTimeout(() => burst(window.innerWidth/2, window.innerHeight*0.3, ['#fbbf24','#63e6ff','#a78bfa','#34d399']), 200);
+    announce('Level selesai. ' + sessionCorrect + ' benar, ' + sessionUnknown + ' belum tahu.');
   }
 
-  /* ----- ROCKET TRANSITION ----- */
   function rocketTransition(nextName, callback){
     const overlay = $('#rocket');
     $('#rocketLevel').textContent = 'NAIK KE ' + nextName.toUpperCase();
     const icon = overlay.querySelector('.rocket-icon');
-    // reset animasi
-    icon.style.animation = 'none';
-    void icon.offsetWidth;
-    icon.style.animation = '';
-    $('#rocketLevel').style.animation = 'none';
-    void $('#rocketLevel').offsetWidth;
-    $('#rocketLevel').style.animation = '';
-
+    icon.style.animation = 'none'; void icon.offsetWidth; icon.style.animation = '';
+    $('#rocketLevel').style.animation = 'none'; void $('#rocketLevel').offsetWidth; $('#rocketLevel').style.animation = '';
     overlay.classList.add('active');
-    // sound: whoosh naik
     if(State.soundOn){
       const ctx = ensureAudio();
       if(ctx){
@@ -1599,15 +1654,10 @@
         o.start(); o.stop(ctx.currentTime + 2.4);
       }
     }
-    setTimeout(() => {
-      overlay.classList.remove('active');
-      setTimeout(callback, 350);
-    }, 2400);
+    setTimeout(() => { overlay.classList.remove('active'); setTimeout(callback, 350); }, 2400);
   }
 
-  /* =====================================================
-     11. GLOSSARY
-     ===================================================== */
+  /* ================= GLOSSARY ================= */
   function buildGlossary(){
     const box = $('#glossary'); box.innerHTML = '';
     GLOSSARY.forEach(g => {
@@ -1618,21 +1668,11 @@
     });
   }
   let drawerOpen = false;
-  function openDrawer(){
-    const d = $('#drawer');
-    d.classList.add('open'); d.setAttribute('aria-hidden','false');
-    drawerOpen = true; $('#closeDrawer').focus();
-  }
-  function closeDrawer(){
-    const d = $('#drawer');
-    d.classList.remove('open'); d.setAttribute('aria-hidden','true');
-    drawerOpen = false; stage.focus();
-  }
+  function openDrawer(){ const d = $('#drawer'); d.classList.add('open'); d.setAttribute('aria-hidden','false'); drawerOpen = true; $('#closeDrawer').focus(); }
+  function closeDrawer(){ const d = $('#drawer'); d.classList.remove('open'); d.setAttribute('aria-hidden','true'); drawerOpen = false; stage.focus(); }
   $('#closeDrawer').addEventListener('click', closeDrawer);
 
-  /* =====================================================
-     12. GLOBAL EVENTS
-     ===================================================== */
+  /* ================= EVENTS ================= */
   document.addEventListener('keydown', (e) => {
     if(e.key === 'Escape' && drawerOpen){ closeDrawer(); return; }
     if(drawerOpen) return;
@@ -1645,6 +1685,9 @@
       } else if(e.key === 'Enter'){
         const btn = $('#submitBtn');
         if(btn && !btn.disabled){ btn.click(); e.preventDefault(); }
+      } else if(e.key === '?'){
+        const ub = $('#unknownBtn');
+        if(ub && !ub.disabled){ ub.click(); e.preventDefault(); }
       } else if(/^[a-dA-D]$/.test(e.key)){
         const idx = 'abcd'.indexOf(e.key.toLowerCase());
         const opts = $$('.opt');
@@ -1652,43 +1695,69 @@
         e.preventDefault();
       }
     } else if(State.screen === 'map' || State.screen === 'result' || State.screen === 'start'){
-      if(e.key === 'g' || e.key === 'G'){ openDrawer(); }
+      if(e.key === 'g' || e.key === 'G') openDrawer();
     }
   });
 
   $('#soundBtn').addEventListener('click', () => {
     State.soundOn = !State.soundOn;
-    if(State.soundOn){
-      ensureAudio(); sfx.click();
-      if(State.screen === 'question') startAmbient(LEVELS[State.currentLevel].id);
-    } else {
-      stopAmbient();
-    }
+    if(State.soundOn){ ensureAudio(); sfx.click(); if(State.screen === 'question') startAmbient(LEVELS[State.currentLevel].id); }
+    else { stopAmbient(); }
     updateHUD(); save();
     announce(State.soundOn ? 'Suara dinyalakan' : 'Suara dimatikan');
   });
 
+  $('#switchBtn').addEventListener('click', () => {
+    save(); stopAmbient();
+    State = defaultState(); State.screen = 'start';
+    render(); updateHUD();
+    announce('Ganti pemain.');
+  });
+
   $('#resetBtn').addEventListener('click', () => {
-    if(confirm('Reset semua progres?')){
+    if(confirm('Reset progres untuk akun "' + State.playerName + '"?')){
       clearSave(); State = defaultState(); stopAmbient(); updateHUD(); setScreen('start');
       announce('Progres direset.');
     }
   });
 
-  window.addEventListener('online',  () => announce('Kembali online.'));
+  window.addEventListener('online', () => announce('Kembali online.'));
   window.addEventListener('offline', () => announce('Game tetap jalan offline.'));
 
-  /* =====================================================
-     13. BOOT
-     ===================================================== */
+  /* ================= BOOT SEQUENCE ================= */
+  function runBoot(){
+    const boot = $('#boot');
+    const fill = $('#bootFill');
+    const txt = $('#bootText');
+    const steps = ['MEMUAT BANK SOAL','MENYIAPKAN LAPISAN','KALIBRASI ALTIMETER','MENGAKTIFKAN PROFESOR','SIAP'];
+    let i = 0;
+    const tick = () => {
+      if(i >= steps.length){
+        setTimeout(() => { boot.classList.add('hidden'); setTimeout(()=>{ boot.style.display = 'none'; }, 900); }, 200);
+        return;
+      }
+      txt.textContent = steps[i];
+      fill.style.width = ((i+1)/steps.length*100) + '%';
+      i++;
+      setTimeout(tick, 350 + Math.random()*250);
+    };
+    tick();
+  }
+
+  /* ================= BOOT ================= */
   function boot(){
-    const saved = load();
-    State = saved || defaultState();
-    if(!State.screen || State.screen === 'question') State.screen = saved ? 'map' : 'start';
+    allProfiles = loadAllProfiles();
+    const activeName = (() => { try{ return localStorage.getItem(ACTIVE_KEY); }catch(e){ return null; } })();
+    if(activeName && allProfiles[activeName] && allProfiles[activeName].playerName){
+      const restored = Object.assign(defaultState(), allProfiles[activeName]);
+      restored.screen = 'map'; restored.soundOn = true;
+      State = restored;
+    } else { State = defaultState(); }
     buildGlossary();
     updateHUD();
     render();
     $('#footYear').textContent = new Date().getFullYear();
+    runBoot();
   }
   boot();
 
