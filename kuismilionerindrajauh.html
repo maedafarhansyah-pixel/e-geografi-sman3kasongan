@@ -46,66 +46,17 @@ try {
   @keyframes pulseRed{0%,100%{box-shadow:0 8px 22px rgba(192,57,43,.4)}50%{box-shadow:0 14px 36px rgba(192,57,43,.7)}}
   @keyframes learnPulse{0%,100%{box-shadow:0 8px 22px rgba(30,64,175,.4)}50%{box-shadow:0 14px 36px rgba(6,182,212,.65)}}
   @keyframes auroraShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-
-  @keyframes satelliteNeedleSpin{
-    0%{transform:rotate(0deg) scale(1);opacity:0}
-    15%{opacity:1;transform:rotate(720deg) scale(1.2)}
-    60%{transform:rotate(1080deg) scale(1.15)}
-    85%{transform:rotate(1440deg) scale(1.05)}
-    100%{transform:rotate(1440deg) scale(1);opacity:0}
-  }
-  @keyframes beaconPinDrop{
-    0%{transform:translateY(-60px) scale(.4);opacity:0}
-    40%{transform:translateY(0) scale(1.15);opacity:1}
-    60%{transform:translateY(-6px) scale(1)}
-    100%{transform:translateY(0) scale(1);opacity:1}
-  }
-  @keyframes pinRipple{
-    0%{transform:scale(0);opacity:.8}
-    100%{transform:scale(3.5);opacity:0}
-  }
-  @keyframes radarSweep{
-    0%{transform:translate(-50%,-50%) rotate(0deg);opacity:0}
-    10%{opacity:1}
-    90%{opacity:1}
-    100%{transform:translate(-50%,-50%) rotate(360deg);opacity:0}
-  }
-  @keyframes orbitDraw{
-    0%{stroke-dashoffset:2000;opacity:0}
-    20%{opacity:.55}
-    100%{stroke-dashoffset:0;opacity:.35}
-  }
-  @keyframes signalGlitch{
-    0%,100%{transform:translate(0,0) rotate(0)}
-    15%{transform:translate(-6px,3px) rotate(-.7deg)}
-    30%{transform:translate(6px,-3px) rotate(.7deg)}
-    45%{transform:translate(-5px,-2px) rotate(-.5deg)}
-    60%{transform:translate(5px,2px) rotate(.5deg)}
-    80%{transform:translate(-2px,1px) rotate(-.2deg)}
-  }
-  @keyframes faultLine{
-    0%{width:0;opacity:0}
-    20%{opacity:1}
-    100%{width:100%;opacity:0}
-  }
-  @keyframes stampAppear{
-    0%{transform:scale(2.5) rotate(-25deg);opacity:0}
-    50%{transform:scale(1) rotate(-12deg);opacity:1}
-    75%{transform:scale(1.05) rotate(-12deg)}
-    100%{transform:scale(1) rotate(-12deg);opacity:1}
-  }
-  @keyframes waypointPulse{
-    0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(6,182,212,.6)}
-    50%{transform:scale(1.15);box-shadow:0 0 0 6px rgba(6,182,212,0)}
-  }
-  @keyframes timerPulse{
-    0%,100%{transform:scale(1)}
-    50%{transform:scale(1.12)}
-  }
-  @keyframes timerDangerPulse{
-    0%,100%{box-shadow:0 0 0 0 rgba(220,38,38,.5)}
-    50%{box-shadow:0 0 0 8px rgba(220,38,38,0)}
-  }
+  @keyframes satelliteNeedleSpin{0%{transform:rotate(0deg) scale(1);opacity:0}15%{opacity:1;transform:rotate(720deg) scale(1.2)}60%{transform:rotate(1080deg) scale(1.15)}85%{transform:rotate(1440deg) scale(1.05)}100%{transform:rotate(1440deg) scale(1);opacity:0}}
+  @keyframes beaconPinDrop{0%{transform:translateY(-60px) scale(.4);opacity:0}40%{transform:translateY(0) scale(1.15);opacity:1}60%{transform:translateY(-6px) scale(1)}100%{transform:translateY(0) scale(1);opacity:1}}
+  @keyframes pinRipple{0%{transform:scale(0);opacity:.8}100%{transform:scale(3.5);opacity:0}}
+  @keyframes radarSweep{0%{transform:translate(-50%,-50%) rotate(0deg);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translate(-50%,-50%) rotate(360deg);opacity:0}}
+  @keyframes orbitDraw{0%{stroke-dashoffset:2000;opacity:0}20%{opacity:.55}100%{stroke-dashoffset:0;opacity:.35}}
+  @keyframes signalGlitch{0%,100%{transform:translate(0,0) rotate(0)}15%{transform:translate(-6px,3px) rotate(-.7deg)}30%{transform:translate(6px,-3px) rotate(.7deg)}45%{transform:translate(-5px,-2px) rotate(-.5deg)}60%{transform:translate(5px,2px) rotate(.5deg)}80%{transform:translate(-2px,1px) rotate(-.2deg)}}
+  @keyframes faultLine{0%{width:0;opacity:0}20%{opacity:1}100%{width:100%;opacity:0}}
+  @keyframes stampAppear{0%{transform:scale(2.5) rotate(-25deg);opacity:0}50%{transform:scale(1) rotate(-12deg);opacity:1}75%{transform:scale(1.05) rotate(-12deg)}100%{transform:scale(1) rotate(-12deg);opacity:1}}
+  @keyframes waypointPulse{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(6,182,212,.6)}50%{transform:scale(1.15);box-shadow:0 0 0 6px rgba(6,182,212,0)}}
+  @keyframes timerPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+  @keyframes timerDangerPulse{0%,100%{box-shadow:0 0 0 0 rgba(220,38,38,.5)}50%{box-shadow:0 0 0 8px rgba(220,38,38,0)}}
 
   :root {
     --primary: #1e40af;
@@ -124,9 +75,6 @@ try {
     --shadow-hover: 0 24px 64px rgba(6,182,212,0.20);
     --radius: 20px;
     --radius-sm: 12px;
-    --timer-normal: #1e40af;
-    --timer-warning: #f59e0b;
-    --timer-danger: #dc2626;
   }
 
   * { -webkit-tap-highlight-color: transparent; margin:0; padding:0; box-sizing:border-box; }
@@ -371,34 +319,19 @@ try {
     animation:radarSweep 1.5s ease-out forwards;
     transform:translate(-50%,-50%);
   }
-  .radar-sweep::before{
-    content:'';position:absolute;inset:20%;border-radius:50%;
-    border:1.5px solid rgba(6,182,212,.4);
-  }
-  .radar-sweep::after{
-    content:'';position:absolute;inset:40%;border-radius:50%;
-    border:1.5px solid rgba(6,182,212,.5);
-  }
+  .radar-sweep::before{content:'';position:absolute;inset:20%;border-radius:50%;border:1.5px solid rgba(6,182,212,.4);}
+  .radar-sweep::after{content:'';position:absolute;inset:40%;border-radius:50%;border:1.5px solid rgba(6,182,212,.5);}
 
   .contour-bg{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
   .contour-bg svg{width:100%;height:100%;opacity:.55}
-  .contour-bg path{
-    fill:none;stroke:url(#contourGrad);stroke-width:1.2;
-    stroke-dasharray:2000;stroke-dashoffset:2000;
-    animation:orbitDraw 2s ease-out forwards;
-  }
+  .contour-bg path{fill:none;stroke:url(#contourGrad);stroke-width:1.2;stroke-dasharray:2000;stroke-dashoffset:2000;animation:orbitDraw 2s ease-out forwards;}
   .contour-bg path:nth-child(2){animation-delay:.15s}
   .contour-bg path:nth-child(3){animation-delay:.3s}
   .contour-bg path:nth-child(4){animation-delay:.45s}
   .contour-bg path:nth-child(5){animation-delay:.6s}
 
   .tectonic-shake{animation:signalGlitch .5s ease}
-  .fault-line{
-    position:absolute;top:50%;left:0;height:3px;z-index:10;pointer-events:none;
-    background:linear-gradient(90deg,transparent,#dc2626,#ef4444,#fbbf24,#dc2626,transparent);
-    animation:faultLine .5s ease-out forwards;
-    box-shadow:0 0 20px rgba(220,38,38,.6);
-  }
+  .fault-line{position:absolute;top:50%;left:0;height:3px;z-index:10;pointer-events:none;background:linear-gradient(90deg,transparent,#dc2626,#ef4444,#fbbf24,#dc2626,transparent);animation:faultLine .5s ease-out forwards;box-shadow:0 0 20px rgba(220,38,38,.6);}
 
   .waypoint-trail{display:flex;align-items:center;gap:2px;margin-top:4px;}
   .waypoint-dot{width:6px;height:6px;border-radius:50%;background:rgba(30,64,175,.20);transition:all .4s ease;}
@@ -417,8 +350,7 @@ try {
     border:2.5px dashed #5c3a00;
     box-shadow:0 6px 20px rgba(245,158,11,.5);
     animation:stampAppear .8s cubic-bezier(.34,1.56,.64,1) .3s both;
-    text-transform:uppercase;
-    opacity:0;
+    text-transform:uppercase;opacity:0;
   }
   .achievement-stamp.show{opacity:1}
 
@@ -482,6 +414,40 @@ try {
   .navy-input:focus{outline:none;border-color:var(--primary-light);box-shadow:0 0 0 5px rgba(6,182,212,.15);}
   .navy-input::placeholder{color:var(--text-muted);opacity:.6;font-weight:500}
 
+  /* ===== SELECT DROPDOWN KELAS ===== */
+  .navy-select {
+    background: var(--card-bg);
+    border: 2px solid rgba(30,64,175,.18);
+    color: var(--text);
+    transition: all .25s;
+    width: 100%;
+    border-radius: var(--radius-sm);
+    padding: 14px 44px 14px 18px;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231e40af' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 20px;
+  }
+  .navy-select:focus {
+    outline: none;
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 5px rgba(6,182,212,.15);
+  }
+  .navy-select:valid {
+    color: var(--text);
+  }
+  .navy-select.placeholder-active {
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
   .game-frame{width:100%;max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:14px}
   @media (min-width:1024px){ .game-frame{grid-template-columns:1fr 300px;gap:16px;} }
 
@@ -499,27 +465,11 @@ try {
   .lifeline-item:hover:not(:disabled){background: linear-gradient(135deg, rgba(6,182,212,.12), rgba(30,64,175,.06));border-color: var(--primary-light);transform: translateY(-3px);}
   @media (min-width:640px){ .lifeline-item{padding:14px 8px;font-size:.8rem;} }
 
-  /* ===== TIMER COUNTDOWN STATES ===== */
-  .timer-pill {
-    transition: all 0.3s ease;
-  }
-  .timer-pill.timer-warning {
-    background: linear-gradient(135deg, rgba(245,158,11,.15), rgba(251,191,36,.10)) !important;
-    border-color: rgba(245,158,11,.5) !important;
-    animation: timerPulse 0.8s ease-in-out infinite;
-  }
-  .timer-pill.timer-warning #timer-display {
-    color: #8a6d00 !important;
-  }
-  .timer-pill.timer-danger {
-    background: linear-gradient(135deg, rgba(220,38,38,.15), rgba(192,57,43,.10)) !important;
-    border-color: rgba(220,38,38,.6) !important;
-    animation: timerDangerPulse 0.6s ease-in-out infinite;
-  }
-  .timer-pill.timer-danger #timer-display {
-    color: #dc2626 !important;
-    font-weight: 900;
-  }
+  .timer-pill { transition: all 0.3s ease; }
+  .timer-pill.timer-warning { background: linear-gradient(135deg, rgba(245,158,11,.15), rgba(251,191,36,.10)) !important; border-color: rgba(245,158,11,.5) !important; animation: timerPulse 0.8s ease-in-out infinite; }
+  .timer-pill.timer-warning #timer-display { color: #8a6d00 !important; }
+  .timer-pill.timer-danger { background: linear-gradient(135deg, rgba(220,38,38,.15), rgba(192,57,43,.10)) !important; border-color: rgba(220,38,38,.6) !important; animation: timerDangerPulse 0.6s ease-in-out infinite; }
+  .timer-pill.timer-danger #timer-display { color: #dc2626 !important; font-weight: 900; }
 
   input[type="text"], textarea, select { font-size: 16px !important; font-family: inherit; }
   @media (min-width:640px){ input[type="text"], textarea, select { font-size: 1rem !important; } }
@@ -539,12 +489,7 @@ try {
   }
 
   #mustRepeatWarning{animation: fadeUp .6s cubic-bezier(.2,.9,.3,1.3) both;}
-  #mustRepeatWarning::before{
-    content:''; position:absolute; top:0; left:8%; right:8%; height:3px;
-    background: linear-gradient(90deg, transparent, #c0392b, #e74c3c, #c0392b, transparent);
-    background-size: 200% 100%;
-    animation: borderFlow 3s linear infinite;
-  }
+  #mustRepeatWarning::before{content:''; position:absolute; top:0; left:8%; right:8%; height:3px; background: linear-gradient(90deg, transparent, #c0392b, #e74c3c, #c0392b, transparent); background-size: 200% 100%; animation: borderFlow 3s linear infinite;}
   #btnSendScore{animation: fadeUp .5s cubic-bezier(.2,.9,.3,1.3) both;}
   #btnSendScore:not(:disabled):hover{transform: translateY(-3px) scale(1.02);box-shadow: 0 14px 36px rgba(245,158,11,.65) !important;}
   #btnSendScore:not(:disabled):active{transform: translateY(0) scale(.98);}
@@ -665,6 +610,19 @@ try {
         </label>
         <input type="text" id="student-name" required placeholder="Tulis namamu di sini..." class="navy-input">
       </div>
+
+      <div>
+        <label for="student-class" class="block text-xs md:text-sm font-black uppercase tracking-wider mb-2" style="color:#1e40af;">
+          Kelas <span style="color:#c0392b;">*</span>
+        </label>
+        <select id="student-class" required class="navy-select placeholder-active">
+          <option value="" disabled selected>— Pilih Kelas —</option>
+          <option value="KELAS X - A">KELAS X - A</option>
+          <option value="KELAS X - B">KELAS X - B</option>
+          <option value="KELAS X - C">KELAS X - C</option>
+        </select>
+      </div>
+
       <button type="submit" id="btn-start" class="btn-primary-gradient">▶ MULAI KUIS</button>
     </form>
 
@@ -697,6 +655,9 @@ try {
         <div class="flex items-center gap-2 flex-wrap">
           <div class="px-3 py-1.5 rounded-lg border-2 flex items-center gap-1.5" style="background: linear-gradient(135deg, rgba(30,64,175,.06), rgba(6,182,212,.04)); border-color: rgba(30,64,175,.15);">
             👤 <span id="player-display-name" class="font-black max-w-[110px] md:max-w-none truncate" style="color:#1e40af;">Siswa</span>
+          </div>
+          <div class="px-3 py-1.5 rounded-lg border-2 flex items-center gap-1.5" style="background: linear-gradient(135deg, rgba(99,102,241,.10), rgba(30,64,175,.06)); border-color: rgba(99,102,241,.30);">
+            🎓 <span id="player-display-class" class="font-black max-w-[100px] md:max-w-none truncate" style="color:#4338ca;">-</span>
           </div>
           <div class="px-3 py-1.5 rounded-lg border-2" style="background: linear-gradient(135deg, rgba(6,182,212,.10), rgba(30,64,175,.06)); border-color: rgba(6,182,212,.30);">
             ⚡ <span id="xp-counter" class="font-black" style="color:#1e40af;">0</span>
@@ -847,6 +808,7 @@ try {
 
       <div class="space-y-2 text-xs md:text-sm">
         <div class="flex justify-between items-center py-2 border-b-2 gap-2" style="border-color: rgba(30,64,175,.10);"><span class="font-black shrink-0" style="color:#1e40af;">Nama Siswa:</span><span id="card-name" class="font-black text-sm md:text-base text-right overflow-safe" style="color:#0c1e3d;">—</span></div>
+        <div class="flex justify-between items-center py-2 border-b-2 gap-2" style="border-color: rgba(30,64,175,.10);"><span class="font-black shrink-0" style="color:#1e40af;">Kelas:</span><span id="card-class" class="font-black text-sm md:text-base text-right" style="color:#4338ca;">—</span></div>
         <div class="flex justify-between items-center py-2 border-b-2 gap-2" style="border-color: rgba(30,64,175,.10);"><span class="font-black shrink-0" style="color:#1e40af;">Materi:</span><span class="font-black text-right" style="color:#1e40af;">PENGINDERAAN JAUH</span></div>
         <div class="flex justify-between items-center py-2 border-b-2 gap-2" style="border-color: rgba(30,64,175,.10);"><span class="font-black" style="color:#1e40af;">Jawaban Benar:</span><span id="card-correct" class="font-black font-mono" style="color:#06b6d4;">0 / 15</span></div>
         <div class="flex justify-between items-center py-2 border-b-2 gap-2" style="border-color: rgba(30,64,175,.10);"><span class="font-black" style="color:#1e40af;">Salah:</span><span id="card-wrong" class="font-black font-mono" style="color:#c0392b;">0</span></div>
@@ -945,7 +907,7 @@ const MIN_SCORE_TO_PASS = 75;   // 12 benar dari 15
 const TIMER_PER_QUESTION = 60;  // detik per soal
 
 /* ============================================================
-   SOUND PERSISTENCE (Fix #4)
+   SOUND PERSISTENCE
    ============================================================ */
 const SOUND_KEY = 'kuis_inderaja_sound_v1';
 let soundMuted = false;
@@ -998,7 +960,7 @@ function haptic(pattern){
 }
 
 /* ============================================================
-   BEFOREUNLOAD WARNING (Fix #3)
+   BEFOREUNLOAD WARNING
    ============================================================ */
 let kuisAktif = false;
 window.addEventListener('beforeunload', function(e) {
@@ -1268,9 +1230,6 @@ function getRandomQuestions(){
   });
 }
 
-/* ============================================================
-   PRIZE VALUES → XP (Fix #5)
-   ============================================================ */
 const prizeValues = [100, 200, 300, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 125000, 250000, 500000, 1000000];
 const prizeAmounts = [
   "Lvl 1 — 100","Lvl 2 — 200","Lvl 3 — 300","Lvl 4 — 500","Lvl 5 — 1.000",
@@ -1281,12 +1240,12 @@ const prizeAmounts = [
 /* ============================================================
    STATE
    ============================================================ */
-let currentQuestions=[];let studentName="";let currentQuestionIndex=0;let score=0;
+let currentQuestions=[];let studentName="";let studentClass="";let currentQuestionIndex=0;let score=0;
 let correctAnswersCount=0;let wrongAnswersCount=0;let skippedCount=0;
 let xpGained=0;let streak=0;let maxStreak=0;let attemptCount=0;
-let totalElapsed=0;  // total waktu total kuis (untuk durasi)
-let countdownInterval=null;  // interval countdown per soal
-let countdownTime=TIMER_PER_QUESTION;  // sisa waktu per soal
+let totalElapsed=0;
+let countdownInterval=null;
+let countdownTime=TIMER_PER_QUESTION;
 let lastBeepSecond=-1;
 let userAnswersHistory=[];
 let lifelinesUsed={'5050':false,'hint':false,'skip':false};
@@ -1294,15 +1253,10 @@ let selectedAnswerIndex=null;let answerLocked=false;
 const STORAGE_PREFIX="kuis_inderaja_interaktif_v1_";
 
 let scoreSent = false;
-/* ============================================================
-   GANTI SHEET_URL DI BAWAH JIKA PERLU
-   (Sama dengan Kuis Roda Berputar — Apps Script harus handle 2 format)
-   ============================================================ */
 const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyV__yZS4bzttuspA2DwcZWPKM4P9ya3pksmJm9L5DfA9aERS9pm2ETWric1T7nnMq6bw/exec';
 
 window.addEventListener('DOMContentLoaded',function(){
   try{
-    // Init sound toggle
     const st=document.getElementById('sound-toggle');
     if(st){
       st.textContent = soundMuted ? '🔇' : '🔊';
@@ -1313,6 +1267,18 @@ window.addEventListener('DOMContentLoaded',function(){
         st.classList.toggle('muted', soundMuted);
         try { localStorage.setItem(SOUND_KEY, soundMuted ? 'muted' : 'on'); } catch(e){}
         if(!soundMuted)sfx('click');
+      });
+    }
+
+    /* ===== SELECT KELAS: aktifkan placeholder warna ===== */
+    const selClass = document.getElementById('student-class');
+    if(selClass){
+      selClass.addEventListener('change', function(){
+        if(selClass.value){
+          selClass.classList.remove('placeholder-active');
+        } else {
+          selClass.classList.add('placeholder-active');
+        }
       });
     }
 
@@ -1368,7 +1334,16 @@ function startGame(){
     resetSendUI();
     const ni=document.getElementById("student-name");
     studentName=(ni?ni.value:"").trim();
-    if(!studentName){alert("Mohon isi nama terlebih dahulu.");return;}
+    if(!studentName){alert("Mohon isi nama terlebih dahulu.");ni && ni.focus();return;}
+
+    const selClass = document.getElementById("student-class");
+    studentClass = selClass ? selClass.value : "";
+    if(!studentClass){
+      alert("Mohon pilih kelas terlebih dahulu.");
+      selClass && selClass.focus();
+      return;
+    }
+
     currentQuestions=getRandomQuestions();
     if(!currentQuestions||currentQuestions.length===0){alert("Bank soal kosong!");return;}
     incrementAttempt();
@@ -1378,6 +1353,7 @@ function startGame(){
     selectedAnswerIndex=null;answerLocked=false;
     kuisAktif = true;
     setText("player-display-name",studentName);
+    setText("player-display-class",studentClass);
     hide("start-screen");hide("result-screen");show("game-screen");
     resetLifelineButtons();renderPrizeLadder();
     renderWaypointTrail();drawContourLines();
@@ -1385,9 +1361,6 @@ function startGame(){
   }catch(e){console.error("startGame error:",e);alert("Terkesalahan: "+e.message);}
 }
 
-/* ============================================================
-   COUNTDOWN TIMER PER SOAL (Fix #6)
-   ============================================================ */
 function updateTimerDisplay(){
   const el = document.getElementById('timer-display');
   if(el) el.textContent = countdownTime;
@@ -1410,14 +1383,11 @@ function startCountdown(){
     countdownTime--;
     totalElapsed++;
     updateTimerDisplay();
-
-    // Suara peringatan
     if(countdownTime <= 10 && countdownTime >= 1 && countdownTime !== lastBeepSecond){
       lastBeepSecond = countdownTime;
       if(countdownTime > 5) sfx('beep');
       else sfx('beepFinal');
     }
-
     if(countdownTime <= 0){
       clearInterval(countdownInterval);
       onTimeout();
@@ -1452,7 +1422,6 @@ function onTimeout(){
   streak = 0;
   hide("streak-container");
 
-  // Tandai jawaban sebagai timeout
   userAnswersHistory.push({
     questionNum: currentQuestionIndex + 1,
     questionText: qData.q,
@@ -1564,7 +1533,6 @@ function loadQuestion(){
       c.appendChild(btn);
     });
     updateLifelineButtons();
-    // Mulai countdown
     startCountdown();
   }catch(e){console.error("loadQuestion error:",e);}
 }
@@ -1588,10 +1556,7 @@ function selectAnswer(index){
     sfx('select');selectedAnswerIndex=index;
     document.querySelectorAll('#answers-container button').forEach(function(b){b.classList.remove('opt-selected');});
     const sb=document.getElementById("opt-btn-"+index);
-    if(sb){
-      sb.classList.add('opt-selected');
-      gpsPinDrop(sb);
-    }
+    if(sb){ sb.classList.add('opt-selected'); gpsPinDrop(sb); }
     show("lock-btn-container");
     haptic(20);
   }catch(e){}
@@ -1723,7 +1688,6 @@ function confirmAnswer(){
       haptic([30,40,30]);
       correctAnswersCount++;streak++;
       if(streak>maxStreak)maxStreak=streak;
-      // XP berdasarkan prize ladder (Fix #5)
       const baseXP = prizeValues[currentQuestionIndex] || 100;
       const streakBonus = Math.min(streak - 1, 5) * 0.1;
       const earnedXP = Math.round(baseXP * (1 + streakBonus));
@@ -1851,6 +1815,7 @@ function endGame(){
     const ge=document.getElementById("grade-badge");
     if(ge){ge.textContent=grade;ge.className="grade-badge-big grade-"+grade;}
     setText("card-name",studentName.toUpperCase());
+    setText("card-class",studentClass||"-");
     setText("card-correct",correctAnswersCount+" / "+totalQ);
     setText("card-wrong",wrongAnswersCount);
     setText("card-skipped",skippedCount);
@@ -1991,7 +1956,7 @@ function copyFormattedResult(){
     const earnedTitle=calculateTitle(score);const grade=calculateGrade(score);
     const statusText = score >= MIN_SCORE_TO_PASS ? "✓ LULUS (boleh kirim)" : "✗ WAJIB ULANG (min "+MIN_SCORE_TO_PASS+")";
     const durasi = Math.floor(totalElapsed/60) + 'm ' + (totalElapsed%60) + 's';
-    const txt="HASIL KUIS INTERAKTIF GEOGRAFI\nSekolah: SMAN 3 Kasongan\nKelas: X / Fase E\nGuru Pengampu: SYAHRANI, S.Pd.\nNIP. 19751217200501 1 016\nNama: "+studentName+"\nMateri: Penginderaan Jauh\n━━━━━━━━━━━━━━━━━━━━\nJawaban Benar: "+correctAnswersCount+"/15\nJawaban Salah: "+wrongAnswersCount+"\nDilewati: "+skippedCount+"\nSkor: "+score+"\nGrade: "+grade+"\nStatus: "+statusText+"\nXP: "+xpGained.toLocaleString('id-ID')+"\nStreak terbaik: "+maxStreak+"\nPercobaan: "+attemptCount+"\nDurasi: "+durasi+"\nGelar: "+earnedTitle+"\n━━━━━━━━━━━━━━━━━━━━";
+    const txt="HASIL KUIS INTERAKTIF GEOGRAFI\nSekolah: SMAN 3 Kasongan\nKelas: "+(studentClass||"-")+"\nGuru Pengampu: SYAHRANI, S.Pd.\nNIP. 19751217200501 1 016\nNama: "+studentName+"\nMateri: Penginderaan Jauh\n━━━━━━━━━━━━━━━━━━━━\nJawaban Benar: "+correctAnswersCount+"/15\nJawaban Salah: "+wrongAnswersCount+"\nDilewati: "+skippedCount+"\nSkor: "+score+"\nGrade: "+grade+"\nStatus: "+statusText+"\nXP: "+xpGained.toLocaleString('id-ID')+"\nStreak terbaik: "+maxStreak+"\nPercobaan: "+attemptCount+"\nDurasi: "+durasi+"\nGelar: "+earnedTitle+"\n━━━━━━━━━━━━━━━━━━━━";
     function onSuccess(){
       const cbt=document.getElementById("copy-btn-text");
       if(cbt){cbt.textContent="TERSALIN! ✓";setTimeout(function(){cbt.textContent="SALIN";},2000);}
@@ -2047,10 +2012,6 @@ function restartGame(){
   }catch(e){}
 }
 
-/* ============================================================
-   KIRIM NILAI — FORMAT URLSearchParams (Fix #1)
-   Agar kompatibel dengan Apps Script yang sama seperti Kuis Roda Berputar
-   ============================================================ */
 async function sendScoreToSheet(){
   const total = currentQuestions.length || 15;
   const accuracy = Math.round((correctAnswersCount / total) * 100);
@@ -2078,9 +2039,9 @@ async function sendScoreToSheet(){
   const grade = calculateGrade(score);
   const durasi = Math.floor(totalElapsed/60) + 'm ' + (totalElapsed%60) + 's';
 
-  // Format URLSearchParams — sama dengan Kuis Roda Berputar
   const params = new URLSearchParams();
   params.append('nama',     studentName);
+  params.append('kelas',    studentClass);       // BARU
   params.append('skor',     score);
   params.append('benar',    correctAnswersCount);
   params.append('salah',    wrongAnswersCount);
@@ -2167,6 +2128,16 @@ function returnToMainScreen(){
   kuisAktif = false;
   resetSendUI();
   hide("result-screen");hide("game-screen");show("start-screen");
+
+  /* Reset form & select kelas */
+  const nameInput = document.getElementById('student-name');
+  if(nameInput) nameInput.value = '';
+  const selClass = document.getElementById('student-class');
+  if(selClass) {
+    selClass.value = '';
+    selClass.classList.add('placeholder-active');
+  }
+
   loadAttemptHistory();updateBestScoreSummary();
 }
 </script>
