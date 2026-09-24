@@ -1,0 +1,1698 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Game edukasi interaktif atmosfer untuk Geografi Kelas X: 5 lapisan atmosfer, 20 soal HOTS, achievement, dan sertifikat." />
+<meta name="theme-color" content="#0b1026" />
+<meta name="color-scheme" content="dark" />
+<title>🌍 Atmosphere Mission — Geografi Kelas X</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🌍%3C/text%3E%3C/svg%3E" />
+<style>
+  :root{
+    --panel:rgba(255,255,255,.045);
+    --panel2:rgba(255,255,255,.08);
+    --border:rgba(255,255,255,.14);
+    --text:#e6ecff;
+    --muted:#8b95b8;
+    --accent:#63e6ff;
+    --accent2:#a78bfa;
+    --good:#34d399;
+    --bad:#f87171;
+    --warn:#fbbf24;
+    --radius:14px;
+    --shadow:0 12px 40px rgba(0,0,0,.5);
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:#050810;
+    color:var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    min-height:100vh;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+
+  /* ---------- SKY (berubah per lapisan) ---------- */
+  #sky{
+    position:fixed;inset:0;z-index:-2;
+    transition: background 1.6s cubic-bezier(.4,0,.2,1);
+    background: radial-gradient(1200px 800px at 80% -10%, #1a2350 0%, transparent 60%),
+                radial-gradient(900px 700px at -10% 110%, #1c1740 0%, transparent 55%),
+                #0b1026;
+  }
+  #sky[data-level="troposfer"]{
+    background:
+      radial-gradient(900px 500px at 80% 0%, rgba(255,200,120,.15) 0%, transparent 60%),
+      linear-gradient(180deg, #0b1026 0%, #1e3a5f 55%, #3a6a8f 100%);
+  }
+  #sky[data-level="stratosfer"]{
+    background:
+      radial-gradient(900px 500px at 50% 0%, rgba(99,230,255,.12) 0%, transparent 60%),
+      linear-gradient(180deg, #06122e 0%, #0b2050 55%, #123a7a 100%);
+  }
+  #sky[data-level="mesosfer"]{
+    background:
+      radial-gradient(900px 500px at 30% 10%, rgba(167,139,250,.15) 0%, transparent 60%),
+      linear-gradient(180deg, #0a0a2a 0%, #1a0f3f 55%, #2a1555 100%);
+  }
+  #sky[data-level="termosfer"]{
+    background:
+      radial-gradient(700px 400px at 20% 20%, rgba(52,211,153,.22) 0%, transparent 60%),
+      radial-gradient(700px 400px at 80% 30%, rgba(167,139,250,.2) 0%, transparent 60%),
+      linear-gradient(180deg, #000510 0%, #001a3a 40%, #003a5a 70%, #005a4a 100%);
+  }
+  #sky[data-level="eksosfer"]{
+    background:
+      radial-gradient(ellipse at 50% 130%, #1a1a40 0%, #050510 45%, #000000 100%);
+  }
+
+  #starfield{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+  #fx{position:fixed;inset:0;width:100%;height:100%;z-index:60;pointer-events:none}
+
+  .wrap{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:16px 16px 64px}
+
+  /* ---------- Header / HUD ---------- */
+  .hud{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    padding:12px 14px;margin:8px 0 22px;
+    background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+    border:1px solid var(--border);border-radius:var(--radius);
+    backdrop-filter: blur(8px);
+    flex-wrap:wrap;
+  }
+  .hud-left{display:flex;align-items:center;gap:12px;min-width:0}
+  .logo{font-size:28px;filter:drop-shadow(0 0 12px rgba(99,230,255,.6))}
+  .hud-title{font-weight:800;letter-spacing:.5px;font-size:14px}
+  .hud-sub{font-size:11px;color:var(--muted);letter-spacing:.3px}
+  .hud-right{display:flex;align-items:center;gap:10px}
+  .xp{font-size:12px;font-weight:700;color:var(--accent);min-width:64px;text-align:right;font-variant-numeric:tabular-nums}
+  .xpbar{
+    width:120px;height:8px;border-radius:999px;
+    background:rgba(255,255,255,.08);overflow:hidden;
+    border:1px solid rgba(255,255,255,.06);
+  }
+  #xpFill{
+    height:100%;width:0%;
+    background:linear-gradient(90deg,var(--accent),var(--accent2));
+    transition:width .5s cubic-bezier(.4,0,.2,1);
+    box-shadow:0 0 12px rgba(99,230,255,.5);
+  }
+  .avatar{
+    width:38px;height:38px;border-radius:12px;
+    display:grid;place-items:center;font-size:20px;
+    background:linear-gradient(135deg, rgba(99,230,255,.15), rgba(167,139,250,.15));
+    border:1px solid rgba(99,230,255,.35);
+    transition: transform .4s cubic-bezier(.34,1.56,.64,1), box-shadow .4s ease;
+    flex-shrink:0;
+  }
+  .avatar.bump{transform:scale(1.25) rotate(-8deg);box-shadow:0 0 24px rgba(251,191,36,.7)}
+  .iconbtn{
+    width:34px;height:34px;border-radius:10px;
+    background:var(--panel);color:var(--text);border:1px solid var(--border);
+    cursor:pointer;font-size:15px;display:grid;place-items:center;
+    transition:transform .15s ease, background .2s ease;
+  }
+  .iconbtn:hover{background:var(--panel2);transform:translateY(-1px)}
+  .iconbtn:active{transform:translateY(0)}
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:12px 22px;border-radius:12px;border:1px solid transparent;
+    font-weight:700;font-size:14px;cursor:pointer;letter-spacing:.2px;
+    transition:transform .12s ease, box-shadow .2s ease, background .2s ease;
+    font-family:inherit;
+  }
+  .btn:active{transform:scale(.97)}
+  .btn-primary{
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    color:#04122b;box-shadow:0 8px 24px rgba(99,230,255,.25);
+  }
+  .btn-primary:hover{box-shadow:0 10px 32px rgba(99,230,255,.4)}
+  .btn-ghost{background:var(--panel);border-color:var(--border);color:var(--text)}
+  .btn-ghost:hover{background:var(--panel2)}
+  .btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+
+  /* ---------- Screen ---------- */
+  .screen{animation:fadeUp .4s ease both}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+  .hero{
+    text-align:center;padding:34px 22px;border-radius:20px;
+    background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.01));
+    border:1px solid var(--border);box-shadow:var(--shadow);
+  }
+  .hero .badge{
+    display:inline-block;font-size:11px;letter-spacing:1.5px;font-weight:800;
+    padding:6px 14px;border-radius:999px;
+    background:rgba(99,230,255,.12);color:var(--accent);
+    border:1px solid rgba(99,230,255,.3);margin-bottom:16px;
+  }
+  .hero h1{margin:0 0 10px;font-size:clamp(24px,4.5vw,38px);letter-spacing:-.5px}
+  .hero h1 .grad{
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p{color:var(--muted);max-width:560px;margin:0 auto 22px;font-size:14px}
+  .field{display:flex;gap:10px;max-width:420px;margin:0 auto 18px;flex-wrap:wrap}
+  .field input{
+    flex:1;min-width:180px;padding:12px 14px;border-radius:12px;
+    background:rgba(0,0,0,.3);border:1px solid var(--border);
+    color:var(--text);font-size:14px;font-family:inherit;outline:none;
+    transition:border-color .2s ease, box-shadow .2s ease;
+  }
+  .field input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(99,230,255,.18)}
+  .cp-list{list-style:none;padding:0;margin:22px auto 0;max-width:560px;text-align:left;display:grid;gap:8px}
+  .cp-list li{
+    display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--muted);
+    padding:10px 12px;background:var(--panel);border-radius:10px;border:1px solid var(--border);
+  }
+  .cp-list li::before{content:"▸";color:var(--accent);font-weight:900}
+
+  /* ---------- MAP ---------- */
+  .section-title{font-size:13px;letter-spacing:2px;color:var(--muted);font-weight:800;margin:6px 0 14px;text-transform:uppercase}
+  .map{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+  .level{
+    position:relative;text-align:left;padding:18px;border-radius:16px;cursor:pointer;
+    background:var(--panel);border:1px solid var(--border);
+    color:var(--text);font-family:inherit;
+    transition:transform .15s ease, border-color .2s ease, background .2s ease;
+  }
+  .level:hover:not([disabled]){transform:translateY(-2px);background:var(--panel2);border-color:rgba(255,255,255,.22)}
+  .level:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  .level[disabled]{opacity:.45;cursor:not-allowed}
+  .level .row1{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+  .level .icon{font-size:26px}
+  .level .tag{font-size:10px;font-weight:800;letter-spacing:1px;padding:3px 9px;border-radius:999px;background:rgba(255,255,255,.06);color:var(--muted)}
+  .level[data-done="1"] .tag{background:rgba(52,211,153,.15);color:var(--good)}
+  .level h3{margin:0 0 4px;font-size:16px}
+  .level p{margin:0;font-size:12px;color:var(--muted)}
+  .level .bar{height:5px;border-radius:999px;background:rgba(255,255,255,.08);margin-top:12px;overflow:hidden}
+  .level .bar > i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0;transition:width .4s ease}
+
+  /* ---------- QUESTION ---------- */
+  .quiz-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;flex-wrap:wrap}
+  .crumbs{font-size:12px;color:var(--muted);letter-spacing:.5px}
+  .crumbs b{color:var(--text)}
+  .combo{
+    font-size:12px;font-weight:800;padding:5px 12px;border-radius:999px;
+    background:rgba(251,191,36,.15);color:var(--warn);border:1px solid rgba(251,191,36,.35);
+    opacity:0;transition:opacity .3s ease;
+  }
+  .combo.on{opacity:1}
+  .combo.pulse{animation:comboPulse .6s cubic-bezier(.34,1.56,.64,1)}
+  @keyframes comboPulse{
+    0%{transform:scale(1)}
+    40%{transform:scale(1.4);box-shadow:0 0 24px rgba(251,191,36,.8)}
+    100%{transform:scale(1)}
+  }
+
+  .qcard{
+    padding:24px;border-radius:18px;
+    background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.015));
+    border:1px solid var(--border);box-shadow:var(--shadow);
+  }
+  .qcard.shake{animation:shake .4s cubic-bezier(.36,.07,.19,.97)}
+  @keyframes shake{
+    10%,90%{transform:translateX(-2px)}
+    20%,80%{transform:translateX(4px)}
+    30%,50%,70%{transform:translateX(-6px)}
+    40%,60%{transform:translateX(6px)}
+  }
+  .bloom{
+    display:inline-block;font-size:10px;font-weight:900;letter-spacing:1.2px;
+    padding:4px 10px;border-radius:6px;margin-bottom:12px;
+    background:rgba(167,139,250,.15);color:var(--accent2);
+    border:1px solid rgba(167,139,250,.35);
+  }
+  .qtext{font-size:16px;line-height:1.55;margin:0 0 20px;font-weight:600}
+  .options{display:grid;gap:10px}
+  .opt{
+    display:flex;align-items:flex-start;gap:12px;width:100%;text-align:left;
+    padding:14px 16px;border-radius:12px;cursor:pointer;
+    background:rgba(255,255,255,.03);border:1px solid var(--border);
+    color:var(--text);font-size:14px;font-family:inherit;line-height:1.45;
+    transition:all .15s ease;
+  }
+  .opt:hover:not([disabled]){background:var(--panel2);border-color:rgba(99,230,255,.4);transform:translateX(2px)}
+  .opt:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .opt .key{
+    flex:0 0 26px;height:26px;border-radius:8px;
+    background:rgba(255,255,255,.08);display:grid;place-items:center;
+    font-size:11px;font-weight:900;color:var(--muted);
+  }
+  .opt[data-state="sel"]{border-color:var(--accent);background:rgba(99,230,255,.08)}
+  .opt[data-state="sel"] .key{background:var(--accent);color:#04122b}
+  .opt[data-state="correct"]{border-color:var(--good);background:rgba(52,211,153,.12)}
+  .opt[data-state="correct"] .key{background:var(--good);color:#04122b}
+  .opt[data-state="correct"]{animation:pop .35s cubic-bezier(.34,1.56,.64,1)}
+  @keyframes pop{0%{transform:scale(1)}50%{transform:scale(1.03)}100%{transform:scale(1)}}
+  .opt[data-state="wrong"]{border-color:var(--bad);background:rgba(248,113,113,.1)}
+  .opt[data-state="wrong"] .key{background:var(--bad);color:#2b0404}
+  .opt[disabled]{cursor:default}
+
+  .fb{
+    margin-top:16px;padding:16px 18px;border-radius:14px;
+    border:1px solid var(--border);background:var(--panel);
+    animation:fadeUp .3s ease both;
+  }
+  .fb.good{border-color:rgba(52,211,153,.5);background:rgba(52,211,153,.07)}
+  .fb.bad{border-color:rgba(248,113,113,.5);background:rgba(248,113,113,.07)}
+  .fb h4{margin:0 0 8px;font-size:14px;display:flex;align-items:center;gap:8px}
+  .fb.good h4{color:var(--good)}
+  .fb.bad h4{color:var(--bad)}
+  .fb p{margin:0;font-size:13.5px;color:#c9d2f0;line-height:1.6}
+  .fb .hint{margin-top:10px;font-size:13px;color:var(--warn)}
+
+  .quiz-actions{display:flex;justify-content:space-between;gap:10px;margin-top:18px;flex-wrap:wrap}
+  .kbd-hint{font-size:11px;color:var(--muted);align-self:center}
+  .kbd{display:inline-block;padding:1px 6px;margin:0 1px;background:rgba(255,255,255,.08);border:1px solid var(--border);border-radius:5px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px}
+
+  /* ---------- RESULT ---------- */
+  .result{
+    padding:28px;border-radius:20px;text-align:center;
+    background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.01));
+    border:1px solid var(--border);box-shadow:var(--shadow);
+  }
+  .result .trophy{font-size:56px;line-height:1;margin-bottom:10px;filter:drop-shadow(0 0 24px rgba(251,191,36,.5))}
+  .result h2{margin:0 0 6px;font-size:22px}
+  .result .rank{color:var(--accent);font-weight:800;letter-spacing:1px;font-size:13px;margin-bottom:20px}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin:20px 0}
+  .stat{padding:14px;border-radius:12px;background:var(--panel);border:1px solid var(--border)}
+  .stat b{display:block;font-size:22px;color:var(--accent);font-variant-numeric:tabular-nums}
+  .stat span{font-size:11px;color:var(--muted);letter-spacing:.5px;text-transform:uppercase}
+  .result .actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+  .achievements{display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));margin-top:16px;text-align:left}
+  .ach{
+    padding:10px 12px;border-radius:12px;
+    background:linear-gradient(135deg, rgba(251,191,36,.12), rgba(167,139,250,.08));
+    border:1px solid rgba(251,191,36,.3);
+    display:flex;gap:10px;align-items:center;font-size:12px;
+  }
+  .ach .i{font-size:22px}
+  .ach .t{font-weight:800;color:var(--warn);font-size:12px}
+  .ach .d{color:var(--muted);font-size:11px;line-height:1.3}
+
+  /* ---------- Toast (achievement popup) ---------- */
+  .toast{
+    position:fixed;top:16px;right:16px;z-index:80;
+    display:flex;gap:12px;align-items:center;
+    padding:14px 18px;border-radius:14px;
+    background:linear-gradient(135deg, rgba(30,40,80,.95), rgba(40,25,70,.95));
+    border:1px solid rgba(251,191,36,.5);
+    box-shadow:0 12px 40px rgba(0,0,0,.6), 0 0 30px rgba(251,191,36,.25);
+    transform:translateX(120%);
+    transition:transform .4s cubic-bezier(.34,1.56,.64,1);
+    max-width:320px;pointer-events:none;
+  }
+  .toast.show{transform:translateX(0)}
+  .toast-icon{font-size:32px;filter:drop-shadow(0 0 12px rgba(251,191,36,.6))}
+  .toast-title{font-weight:900;font-size:13px;color:var(--warn);letter-spacing:.3px}
+  .toast-desc{font-size:12px;color:#c9d2f0;margin-top:2px}
+
+  /* ---------- ROCKET overlay ---------- */
+  #rocket{
+    position:fixed;inset:0;z-index:70;
+    display:grid;place-items:center;
+    background:radial-gradient(circle at 50% 100%, rgba(99,230,255,.1), transparent 60%),
+              linear-gradient(180deg, #000308 0%, #050920 100%);
+    opacity:0;pointer-events:none;
+    transition:opacity .35s ease;
+    overflow:hidden;
+  }
+  #rocket.active{opacity:1;pointer-events:auto}
+  .speedlines{
+    position:absolute;inset:0;
+    background:
+      repeating-linear-gradient(0deg,
+        transparent 0px, transparent 40px,
+        rgba(180,220,255,.15) 40px, rgba(180,220,255,.15) 42px,
+        transparent 42px, transparent 90px);
+    animation:streak 0.8s linear infinite;
+  }
+  @keyframes streak{from{transform:translateY(0)}to{transform:translateY(90px)}}
+  .rocket-icon{
+    font-size:72px;z-index:2;
+    transform:translateY(-40vh) rotate(-45deg);
+    filter:drop-shadow(0 0 24px rgba(99,230,255,.8));
+    animation:launch 2.4s cubic-bezier(.5,0,.9,1) forwards;
+  }
+  @keyframes launch{
+    0%{transform:translateY(60vh) rotate(-45deg) scale(.7)}
+    100%{transform:translateY(-60vh) rotate(-45deg) scale(1.1)}
+  }
+  .rocket-level{
+    position:absolute;bottom:22%;
+    font-size:14px;letter-spacing:3px;font-weight:900;
+    color:var(--accent);
+    text-shadow:0 0 20px rgba(99,230,255,.6);
+    opacity:0;animation:levelFlash 2.4s ease forwards;
+  }
+  @keyframes levelFlash{
+    0%,30%{opacity:0;transform:translateY(10px)}
+    50%,80%{opacity:1;transform:translateY(0)}
+    100%{opacity:0}
+  }
+
+  /* ---------- Drawer ---------- */
+  .drawer{
+    position:fixed;inset:auto 0 0 0;z-index:20;
+    background:#0d1330;border-top:1px solid var(--border);
+    transform:translateY(100%);transition:transform .3s ease;
+    max-height:70vh;overflow:auto;
+  }
+  .drawer.open{transform:translateY(0)}
+  .drawer-inner{max-width:1000px;margin:0 auto;padding:20px 18px 40px}
+  .drawer h3{margin:0 0 12px;font-size:15px;display:flex;justify-content:space-between;align-items:center}
+  .glossary{display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+  .glossary div{padding:10px 12px;border-radius:10px;background:var(--panel);border:1px solid var(--border);font-size:12.5px}
+  .glossary b{color:var(--accent);display:block;margin-bottom:3px;font-size:12.5px}
+
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  .noscript{position:fixed;inset:0;z-index:99;display:grid;place-items:center;background:#0b1026;color:#e6ecff;font-size:15px;padding:24px;text-align:center}
+  footer{margin-top:26px;text-align:center;font-size:11px;color:var(--muted);letter-spacing:.4px}
+
+  @media (max-width:520px){
+    .hud-sub{display:none}
+    .xpbar{width:80px}
+    .hero{padding:24px 16px}
+    .qcard{padding:18px}
+    .qtext{font-size:15px}
+    .toast{top:auto;bottom:16px;right:16px;left:16px;max-width:none}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{
+      animation-duration:.01ms !important;
+      animation-iteration-count:1 !important;
+      transition-duration:.01ms !important;
+      scroll-behavior:auto !important;
+    }
+    .speedlines{display:none}
+  }
+
+  @media print{
+    body{background:#fff;color:#111}
+    #sky,#starfield,#fx,.hud,.iconbtn,.actions,footer,.kbd-hint,.combo,#rocket,.toast{display:none !important}
+    .wrap{max-width:100%;padding:0}
+    .result{border:2px solid #111;box-shadow:none;background:#fff;color:#111}
+    .result .rank{color:#444}
+    .stat,.ach{background:#f4f4f4;border-color:#ddd}
+    .stat b{color:#111}
+  }
+</style>
+</head>
+<body>
+<noscript>
+  <div class="noscript">
+    <div><h1>🌍 Atmosphere Mission</h1><p>Aktifkan JavaScript di browser kamu untuk menjalankan game ini.</p></div>
+  </div>
+</noscript>
+
+<div id="sky" aria-hidden="true" data-level=""></div>
+<canvas id="starfield" aria-hidden="true"></canvas>
+<canvas id="fx" aria-hidden="true"></canvas>
+
+<div class="wrap">
+  <header class="hud">
+    <div class="hud-left">
+      <span class="logo" aria-hidden="true">🌍</span>
+      <div class="avatar" id="avatar" title="Pangkatmu">🥚</div>
+      <div>
+        <div class="hud-title">ATMOSPHERE MISSION</div>
+        <div class="hud-sub" id="hudSub">Geografi Kelas X · Detektif Atmosfer</div>
+      </div>
+    </div>
+    <div class="hud-right">
+      <div class="xp" aria-live="polite" aria-atomic="true"><span id="xpVal">0</span> XP</div>
+      <div class="xpbar" id="xpBar" role="progressbar" aria-label="Progres XP" aria-valuemin="0" aria-valuemax="1500" aria-valuenow="0">
+        <div id="xpFill"></div>
+      </div>
+      <button class="iconbtn" id="soundBtn" type="button" aria-label="Matikan suara" title="Suara on/off">🔊</button>
+      <button class="iconbtn" id="resetBtn" type="button" aria-label="Reset progres" title="Reset progres">↺</button>
+    </div>
+  </header>
+
+  <main id="stage" tabindex="-1"></main>
+
+  <footer>
+    Atmosphere Mission · Media pembelajaran Geografi Kelas X · <span id="footYear"></span>
+  </footer>
+</div>
+
+<div id="rocket" aria-hidden="true">
+  <div class="speedlines"></div>
+  <div class="rocket-icon">🚀</div>
+  <div class="rocket-level" id="rocketLevel">NAIK KE STRATOSFER</div>
+</div>
+
+<div class="drawer" id="drawer" aria-hidden="true" role="dialog" aria-label="Glosarium">
+  <div class="drawer-inner">
+    <h3>
+      <span>📖 Glosarium Atmosfer</span>
+      <button class="iconbtn" id="closeDrawer" type="button" aria-label="Tutup glosarium">✕</button>
+    </h3>
+    <div class="glossary" id="glossary"></div>
+  </div>
+</div>
+
+<div id="live" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+
+<script>
+(() => {
+  'use strict';
+
+  /* =====================================================
+     1. DATA
+     ===================================================== */
+  const LEVELS = [
+    { id:'troposfer',  name:'Troposfer',  icon:'🌤️', range:'0 – 12 km',  desc:'Dapur cuaca planet Bumi' },
+    { id:'stratosfer', name:'Stratosfer', icon:'🛡️', range:'12 – 50 km', desc:'Perisai ozon pelindung UV' },
+    { id:'mesosfer',   name:'Mesosfer',   icon:'☄️', range:'50 – 85 km', desc:'Pemanggang meteor masuk' },
+    { id:'termosfer',  name:'Termosfer',  icon:'🌌', range:'85 – 500 km',desc:'Aurora & stasiun antariksa' },
+    { id:'eksosfer',   name:'Eksosfer',   icon:'🚀', range:'> 500 km',   desc:'Gerbang terakhir ke angkasa' }
+  ];
+
+  const AMBIENT = {
+    troposfer:  { freq: 90,  type:'sine',     lfo:0.15, depth:12, vol:0.03 },
+    stratosfer: { freq: 65,  type:'sine',     lfo:0.08, depth:8,  vol:0.025 },
+    mesosfer:   { freq: 140, type:'triangle', lfo:0.30, depth:20, vol:0.02 },
+    termosfer:  { freq: 220, type:'sine',     lfo:0.50, depth:30, vol:0.018 },
+    eksosfer:   { freq: 45,  type:'sine',     lfo:0.05, depth:5,  vol:0.03 }
+  };
+
+  const BANK = {
+    troposfer: [
+      { bloom:'C1',
+        q:'Lapisan atmosfer tempat seluruh peristiwa cuaca (awan, hujan, angin) berlangsung adalah...',
+        options:['Troposfer','Stratosfer','Mesosfer','Termosfer'], answer:0,
+        explain:'Troposfer adalah lapisan terbawah (0–12 km) yang mengandung sekitar 80% massa atmosfer dan hampir seluruh uap air, sehingga semua cuaca terjadi di sini.',
+        misconception:{
+          1:'Stratosfer punya awan tipis (nacreous), tetapi cuaca utama BUKAN di sini — stratosfer terlalu kering dan stabil.',
+          2:'Mesosfer adalah tempat meteor terbakar, bukan tempat terbentuknya cuaca.',
+          3:'Termosfer adalah lapisan aurora dan sangat renggang, bukan tempat awan terbentuk.'
+        }
+      },
+      { bloom:'C2',
+        q:'Mengapa suhu udara di troposfer menurun ketika ketinggian bertambah?',
+        options:[
+          'Karena troposfer makin dekat dengan Matahari',
+          'Karena pemanasan utama berasal dari permukaan Bumi yang memancarkan panas ke atas',
+          'Karena tekanan udara di atas lebih besar',
+          'Karena ozon menyerap seluruh panas di lapisan ini'
+        ], answer:1,
+        explain:'Troposfer dipanaskan dari bawah: radiasi Matahari menembus atmosfer, memanaskan permukaan Bumi, lalu permukaan itu memancarkan panas ke udara di atasnya. Semakin tinggi, semakin jauh dari sumber panas, sehingga suhu turun (lapse rate ≈ 0,6°C per 100 m).',
+        misconception:{
+          0:'Justru karena troposfer paling dekat Bumi, bukan paling dekat Matahari, suhunya paling hangat di bawah.',
+          2:'Tekanan memang menurun dengan ketinggian — tapi yang mengatur suhu adalah sumber panas, bukan tekanan.',
+          3:'Ozon berperan penting di stratosfer, bukan troposfer.'
+        }
+      },
+      { bloom:'C4',
+        q:'Suhu permukaan Jakarta 32°C. Dengan lapse rate 0,6°C per 100 m, perkiraan suhu udara di Puncak (ketinggian ±1.500 m) adalah...',
+        options:['26°C','23°C','18°C','32°C'], answer:1,
+        explain:'Penurunan suhu = (1.500 ÷ 100) × 0,6 = 15 × 0,6 = 9°C. Maka suhu di Puncak ≈ 32 − 9 = 23°C. Inilah mengapa daerah pegunungan seperti Puncak, Bromo, atau Dieng selalu lebih sejuk.',
+        misconception:{
+          0:'Perhitungan ini hanya memakai 1.000 m, bukan 1.500 m — kalikan dulu dengan 15, bukan 10.',
+          2:'Angka ini terlalu rendah; kamu mungkin salah mengalikan lapse rate (0,6 bukan 0,9).',
+          3:'Suhu tidak konstan di semua ketinggian — justru menurun seiring naik.'
+        }
+      },
+      { bloom:'C4',
+        q:'Mengapa awan Cumulonimbus dapat menjulang sangat tinggi di troposfer, sementara awan lain hanya tipis?',
+        options:[
+          'Karena Cumulonimbus didorong angin stratosfer',
+          'Karena udara panas dan lembap naik cepat (konveksi kuat) lalu mengembun, melepas panas laten yang mendorong awan makin tinggi',
+          'Karena Cumulonimbus terbentuk dari uap air yang sangat dingin di mesosfer',
+          'Karena Cumulonimbus mengandung banyak ozon'
+        ], answer:1,
+        explain:'Ketika udara lembap yang panas naik, uap air mengembun dan melepaskan panas laten. Panas ini membuat udara di sekitarnya makin hangat dan terus naik — proses konveksi kuat inilah yang membuat Cumulonimbus menjulang sampai batas tropopause (belasan km).',
+        misconception:{
+          0:'Angin stratosfer tidak mendorong awan dari bawah; awan tumbuh dari konveksi troposfer.',
+          2:'Awan tropis tumbuh di troposfer, bukan mesosfer (mesosfer terlalu kering & dingin).',
+          3:'Ozon tidak berperan dalam pertumbuhan awan Cumulonimbus.'
+        }
+      }
+    ],
+    stratosfer: [
+      { bloom:'C1',
+        q:'Lapisan ozon (ozonosfer) yang menyerap sebagian besar ultraviolet Matahari terletak di...',
+        options:['Troposfer','Stratosfer','Mesosfer','Eksosfer'], answer:1,
+        explain:'Ozon (O₃) terkonsentrasi di stratosfer, sekitar 15–35 km. Lapisan ini menyerap 95% lebih UV-B dan UV-C, melindungi makhluk hidup di permukaan Bumi.',
+        misconception:{
+          0:'Troposfer mengandung ozon dalam jumlah kecil, tetapi bukan lapisan ozon utama.',
+          2:'Mesosfer terlalu tinggi dan terlalu renggang untuk menampung ozonosfer.',
+          3:'Eksosfer jauh di atas dan hampir hampa udara.'
+        }
+      },
+      { bloom:'C2',
+        q:'Berbeda dari troposfer, suhu di stratosfer justru NAIK seiring ketinggian. Mengapa?',
+        options:[
+          'Karena stratosfer mendapat radiasi langsung dari Matahari tanpa disaring',
+          'Karena ozon menyerap radiasi ultraviolet dan mengubahnya menjadi panas',
+          'Karena stratosfer mengandung uap air paling banyak',
+          'Karena tekanan stratosfer lebih tinggi daripada troposfer'
+        ], answer:1,
+        explain:'Ozon menyerap radiasi UV Matahari, memecah molekul O₃ lalu membentuknya kembali sambil melepaskan panas. Akibatnya, suhu di stratosfer atas lebih tinggi daripada stratosfer bawah — disebut inversi suhu.',
+        misconception:{
+          0:'Semua lapisan menerima radiasi Matahari, tetapi hanya stratosfer yang mengandung ozon penyerap UV dalam jumlah besar.',
+          2:'Uap air justru terkonsentrasi di troposfer, bukan stratosfer.',
+          3:'Tekanan stratosfer justru lebih rendah daripada troposfer (semakin ke atas, tekanan menurun).'
+        }
+      },
+      { bloom:'C4',
+        q:'Pesawat jet komersial sering terbang di batas bawah stratosfer (sekitar 10–12 km). Alasan utamanya adalah...',
+        options:[
+          'Supaya penumpang bisa melihat aurora',
+          'Agar terhindar dari turbulensi cuaca dan menghemat bahan bakar karena udara lebih tipis',
+          'Karena gravitasi di stratosfer lebih kecil',
+          'Karena mesin jet tidak bisa bekerja di troposfer'
+        ], answer:1,
+        explain:'Troposfer penuh turbulensi cuaca (awan, badai). Di stratosfer bawah udara jauh lebih stabil, sehingga penerbangan nyaman. Ditambah udara yang lebih tipis mengurangi hambatan, sehingga pesawat lebih efisien bahan bakar.',
+        misconception:{
+          0:'Aurora ada di termosfer, bukan stratosfer.',
+          2:'Gravitasi hampir sama di kedua lapisan; tidak signifikan untuk pemilihan ketinggian terbang.',
+          3:'Mesin jet tetap bekerja di troposfer, tetapi tidak efisien karena turbulensi & hambatan besar.'
+        }
+      },
+      { bloom:'C5',
+        q:'Banyak orang menyamakan "lubang ozon" dengan "pemanasan global". Pernyataan yang paling tepat adalah...',
+        options:[
+          'Keduanya sama, hanya beda nama',
+          'Lubang ozon meningkatkan pemanasan global secara langsung',
+          'Lubang ozon adalah menipisnya O₃ di stratosfer akibat CFC, sedangkan pemanasan global disebabkan penumpukan gas rumah kaca di troposfer — dua masalah berbeda',
+          'Pemanasan global penyebab utama lubang ozon'
+        ], answer:2,
+        explain:'Ini miskonsepsi paling umum! Keduanya berbeda: (1) lubang ozon = penipisan O₃ stratosfer oleh CFC/halon, dampaknya UV berlebih; (2) pemanasan global = akumulasi gas rumah kaca (CO₂, CH₄) yang memerangkap panas di troposfer. Keduanya terkait aktivitas manusia, tetapi mekanismenya berbeda.',
+        misconception:{
+          0:'Meskipun keduanya isu lingkungan, mekanisme dan lokasinya berbeda.',
+          1:'Menipisnya ozon tidak menambah efek rumah kaca secara langsung.',
+          3:'Justru sebaliknya — dua proses ini independen, meski bisa saling memengaruhi secara tidak langsung.'
+        },
+        tag:'ozone'
+      }
+    ],
+    mesosfer: [
+      { bloom:'C1',
+        q:'Meteor yang masuk ke atmosfer Bumi umumnya terbakar dan habis di lapisan...',
+        options:['Troposfer','Stratosfer','Mesosfer','Eksosfer'], answer:2,
+        explain:'Mesosfer (50–85 km) adalah "pemanggang" meteor. Udara di lapisan ini cukup padat untuk menggesek meteor dengan kecepatan tinggi, menimbulkan panas yang membakarnya sebelum mencapai Bumi.',
+        misconception:{
+          0:'Troposfer terlalu rendah — sebagian besar meteor sudah habis sebelum sampai sini.',
+          1:'Stratosfer tidak cukup padat untuk membakar meteor besar.',
+          3:'Eksosfer hampir hampa, tidak bisa menggesek meteor secara signifikan.'
+        }
+      },
+      { bloom:'C2',
+        q:'Mesosfer adalah lapisan atmosfer dengan suhu terdingin, bisa mencapai −90°C di mesopause. Penyebab utamanya adalah...',
+        options:[
+          'Karena mesosfer paling jauh dari Bumi',
+          'Karena mesosfer tidak memiliki penyerap radiasi seperti ozon, dan berada di atas sumber panas utama',
+          'Karena mesosfer mengandung banyak es',
+          'Karena angin di mesosfer sangat kencang'
+        ], answer:1,
+        explain:'Mesosfer tidak memiliki lapisan penyerap radiasi seperti ozon di stratosfer. Berada jauh di atas permukaan Bumi (sumber panas troposfer), lapisan ini kehilangan energi dan menjadi sangat dingin hingga −90°C di mesopause.',
+        misconception:{
+          0:'"Jauh dari Bumi" saja tidak cukup menjelaskan — sebab utamanya tidak adanya penyerap radiasi.',
+          2:'Mesosfer terlalu kering untuk membentuk es; uap air sudah habis di bawah.',
+          3:'Angin kencang tidak menurunkan suhu; yang menentukan adalah keseimbangan energi.'
+        }
+      },
+      { bloom:'C3',
+        q:'Fenomena "noctilucent clouds" — awan bercahaya di malam hari yang tampak di langit kutub — terbentuk di lapisan...',
+        options:['Troposfer','Stratosfer','Mesosfer','Termosfer'], answer:2,
+        explain:'Noctilucent clouds terbentuk di bagian atas mesosfer (sekitar 80–85 km), tempat suhu ekstrem dingin (−120°C) memungkinkan kristal es terbentuk dari sisa uap air dan debu meteor.',
+        misconception:{
+          0:'Awan troposfer tidak terlihat di malam hari karena tidak terkena cahaya Matahari saat Bumi berputar.',
+          1:'Stratosfer terlalu kering untuk noctilucent clouds.',
+          3:'Termosfer terlalu renggang; tidak cukup partikel untuk membentuk awan.'
+        }
+      },
+      { bloom:'C4',
+        q:'Ketika kamu melihat "bintang jatuh", sebenarnya yang kamu lihat adalah...',
+        options:[
+          'Bintang yang benar-benar jatuh dari langit',
+          'Cahaya meteoroid yang terbakar akibat gesekan dengan molekul udara di mesosfer',
+          'Petir dari awan di stratosfer',
+          'Pantulan cahaya satelit di eksosfer'
+        ], answer:1,
+        explain:'"Bintang jatuh" adalah meteor — meteoroid yang masuk atmosfer dan terbakar karena gesekan udara di mesosfer. Bukan bintang sungguhan yang jatuh, dan bukan petir. Cahaya terang di langit hanyalah jalur panas dari material yang menguap.',
+        misconception:{
+          0:'Bintang tidak "jatuh" dari langit — mereka adalah matahari jauh yang tetap pada posisinya.',
+          2:'Petir hanya terjadi di troposfer (di dalam awan Cumulonimbus).',
+          3:'Satelit memantulkan cahaya tetapi tidak bergerak cepat melintas seperti meteor.'
+        }
+      }
+    ],
+    termosfer: [
+      { bloom:'C1',
+        q:'Fenomena aurora (cahaya utara/selatan) terbentuk di lapisan...',
+        options:['Troposfer','Stratosfer','Mesosfer','Termosfer'], answer:3,
+        explain:'Aurora terbentuk di termosfer (sekitar 100–300 km), ketika partikel bermuatan dari Matahari berinteraksi dengan atom oksigen dan nitrogen, menghasilkan cahaya hijau, merah, dan ungu.',
+        misconception:{
+          0:'Troposfer terlalu rendah untuk aurora; partikel Matahari berinteraksi di ketinggian yang jauh lebih tinggi.',
+          1:'Stratosfer tidak cukup renggang untuk aurora.',
+          2:'Mesosfer terlalu rendah untuk aurora utama.'
+        }
+      },
+      { bloom:'C2',
+        q:'Suhu di termosfer bisa mencapai 1.500°C, tetapi astronot di sana tidak "terbakar". Mengapa?',
+        options:[
+          'Karena termosfer tidak benar-benar panas',
+          'Karena jumlah molekul di termosfer sangat sedikit, sehingga perpindahan panas ke benda sangat kecil',
+          'Karena astronot memakai baju anti-panas',
+          'Karena termosfer hanya panas di siang hari'
+        ], answer:1,
+        explain:'Ini pelajaran penting tentang perbedaan "suhu" dan "panas". Suhu mengukur energi kinetik rata-rata partikel; panas mengukur total energi. Karena termosfer sangat renggang (sedikit molekul), meski tiap molekul sangat energik, jumlah total tumbukan ke tubuh astronot sangat sedikit — sehingga tidak terasa panas.',
+        misconception:{
+          0:'Termosfer memang sangat panas secara suhu, tetapi tidak terasa panas karena kepadatan rendah.',
+          2:'Baju antariksa melindungi dari radiasi & suhu ekstrem, tetapi alasan utamanya adalah kepadatan partikel.',
+          3:'Termosfer tidak "dingin di malam hari" seperti troposfer; suhunya tetap tinggi karena partikel tereksitasi oleh radiasi Matahari.'
+        }
+      },
+      { bloom:'C3',
+        q:'Lapisan ionosfer di dalam termosfer penting bagi kehidupan modern karena...',
+        options:[
+          'Menyerap sinar ultraviolet',
+          'Memantulkan gelombang radio sehingga komunikasi jarak jauh dapat dilakukan',
+          'Membakar meteor besar',
+          'Menghasilkan medan magnet Bumi'
+        ], answer:1,
+        explain:'Ionosfer mengandung ion-ion bebas yang mampu memantulkan gelombang radio (khususnya HF). Inilah alasan komunikasi radio jarak jauh dan siaran gelombang pendek bisa melintasi benua tanpa satelit.',
+        misconception:{
+          0:'Penyerapan UV utama terjadi di stratosfer oleh ozon, bukan ionosfer.',
+          2:'Meteor terbakar di mesosfer, bukan termosfer.',
+          3:'Medan magnet Bumi dihasilkan oleh inti Bumi, bukan termosfer.'
+        }
+      },
+      { bloom:'C4',
+        q:'Stasiun Antariksa Internasional (ISS) mengorbit pada ketinggian ±400 km, yaitu di lapisan...',
+        options:['Stratosfer','Mesosfer','Termosfer','Eksosfer'], answer:2,
+        explain:'ISS mengorbit pada ketinggian sekitar 400 km, yang masuk ke dalam termosfer (85–500 km). Meski berada di termosfer, ISS tetap harus dilindungi dari radiasi, sampah antariksa, dan sisa molekul udara yang menimbulkan drag.',
+        misconception:{
+          0:'Stratosfer hanya sampai 50 km — terlalu rendah untuk ISS.',
+          1:'Mesosfer hanya sampai 85 km — jauh di bawah orbit ISS.',
+          3:'Eksosfer baru dimulai di atas 500 km; ISS masih di termosfer.'
+        }
+      }
+    ],
+    eksosfer: [
+      { bloom:'C1',
+        q:'Lapisan paling luar atmosfer Bumi yang berbatasan langsung dengan ruang antariksa adalah...',
+        options:['Mesosfer','Termosfer','Ionosfer','Eksosfer'], answer:3,
+        explain:'Eksosfer adalah lapisan terluar atmosfer, dimulai sekitar 500 km di atas permukaan Bumi. Di sini partikel sangat renggang dan sebagian dapat lepas ke ruang antariksa.',
+        misconception:{
+          0:'Mesosfer berada jauh di bawah eksosfer (50–85 km).',
+          1:'Termosfer masih di bawah eksosfer (85–500 km).',
+          2:'Ionosfer adalah bagian dari termosfer, bukan lapisan terluar.'
+        }
+      },
+      { bloom:'C2',
+        q:'Mengapa gas ringan seperti hidrogen dan helium dapat lepas dari eksosfer ke ruang antariksa?',
+        options:[
+          'Karena gravitasi Bumi tidak berlaku di eksosfer',
+          'Karena molekul gas ringan di eksosfer bergerak sangat cepat sehingga bisa melebihi kecepatan lepas Bumi',
+          'Karena eksosfer terlalu dingin untuk menahan gas',
+          'Karena tekanan udara di eksosfer sangat tinggi'
+        ], answer:1,
+        explain:'Di eksosfer, partikel sangat jarang bertumbukan sehingga sebagian bergerak bebas dengan kecepatan sangat tinggi. Molekul ringan (H₂, He) yang kecepatannya melebihi kecepatan lepas Bumi (~11,2 km/s) akan lepas ke angkasa. Karena itu Bumi kehilangan hidrogen & helium secara perlahan.',
+        misconception:{
+          0:'Gravitasi Bumi masih berlaku, hanya melemah karena jarak.',
+          2:'Suhu bukan satu-satunya faktor — kecepatan molekul dan kecepatan lepas yang menentukan.',
+          3:'Tekanan di eksosfer hampir nol, bukan tinggi.'
+        }
+      },
+      { bloom:'C3',
+        q:'Satelit komunikasi geostasioner mengorbit pada ketinggian ±35.786 km dari permukaan Bumi, yaitu di lapisan...',
+        options:['Termosfer','Eksosfer','Mesosfer','Troposfer'], answer:1,
+        explain:'Satelit geostasioner berada jauh di atas termosfer, di wilayah eksosfer. Pada ketinggian ini, periode orbitnya sama dengan rotasi Bumi (24 jam), sehingga satelit tampak "diam" di satu titik langit — ideal untuk komunikasi dan TV.',
+        misconception:{
+          0:'Termosfer hanya sampai sekitar 500 km — jauh di bawah orbit geostasioner.',
+          2:'Mesosfer berakhir di 85 km, jauh lebih rendah lagi.',
+          3:'Troposfer hanya 0–12 km; tidak mungkin menampung satelit.'
+        }
+      },
+      { bloom:'C4',
+        q:'Batas ketinggian 100 km di atas permukaan laut yang sering dianggap sebagai "awal antariksa" disebut...',
+        options:['Garis Kármán','Garis Wallace','Garis tropopause','Garis mesopause'], answer:0,
+        explain:'Garis Kármán (Kármán line), di ketinggian 100 km, adalah batas yang diakui internasional sebagai awal ruang angkasa. Di atas garis ini, kendaraan harus menggunakan propulsi roket karena udara terlalu tipis untuk gaya angkat aerodinamis.',
+        misconception:{
+          1:'Garis Wallace adalah batas biogeografi antara Asia dan Australasia, bukan antariksa.',
+          2:'Tropopause adalah batas antara troposfer & stratosfer (±12 km).',
+          3:'Mesopause adalah batas antara mesosfer & termosfer (±85 km).'
+        }
+      }
+    ]
+  };
+
+  const GLOSSARY = [
+    { t:'Atmosfer',    d:'Lapisan gas yang menyelubungi Bumi dan menahan gaya gravitasi.' },
+    { t:'Lapse rate',  d:'Laju penurunan suhu terhadap ketinggian; di troposfer ≈ 0,6°C/100 m.' },
+    { t:'Tropopause',  d:'Batas atas troposfer, tempat suhu berhenti turun.' },
+    { t:'Ozon (O₃)',   d:'Molekul yang menyerap UV; terkonsentrasi di stratosfer.' },
+    { t:'Inversi suhu',d:'Kondisi suhu naik seiring ketinggian, terjadi di stratosfer.' },
+    { t:'Mesopause',   d:'Batas atas mesosfer, tempat terdingin di atmosfer (−90°C).' },
+    { t:'Ionosfer',    d:'Bagian termosfer yang terionisasi, memantulkan gelombang radio.' },
+    { t:'Aurora',      d:'Cahaya di termosfer akibat interaksi partikel Matahari dengan atom gas.' },
+    { t:'Eksosfer',    d:'Lapisan terluar atmosfer; partikel ringan bisa lepas ke angkasa.' },
+    { t:'Garis Kármán',d:'Batas 100 km yang dianggap sebagai awal ruang angkasa.' },
+    { t:'Gas rumah kaca', d:'Gas seperti CO₂ & CH₄ yang memerangkap panas di troposfer.' },
+    { t:'CFC',         d:'Klorofluorokarbon, perusak ozon stratosfer.' }
+  ];
+
+  const ACHIEVEMENTS = [
+    { id:'first_step',  icon:'🎯', name:'Langkah Pertama',   desc:'Jawab 1 soal dengan benar',     check:S => S.totalCorrect >= 1 },
+    { id:'perfect_tro', icon:'🌤️', name:'Dapur Cuaca',       desc:'Sempurna di Troposfer (4/4)',   check:S => S.results.troposfer && S.results.troposfer.correct === 4 },
+    { id:'combo_5',     icon:'🔥', name:'On Fire',           desc:'Combo 5 berturut-turut',        check:S => S.bestCombo >= 5 },
+    { id:'combo_10',    icon:'⚡', name:'Tak Terbendung',    desc:'Combo 10 berturut-turut',       check:S => S.bestCombo >= 10 },
+    { id:'ozone_master',icon:'🧠', name:'Anti-Miskonsepsi',  desc:'Benar di soal lubang ozon vs pemanasan global', check:S => S.masteredOzone === true },
+    { id:'all_levels',  icon:'🌍', name:'Penjelajah Langit', desc:'Selesaikan semua 5 lapisan',    check:S => Object.keys(S.results).length === 5 },
+    { id:'rank_ahli',   icon:'🧙', name:'Ahli Atmosfer',     desc:'Capai peringkat Ahli (1200 XP)', check:S => S.xp >= 1200 },
+    { id:'perfectionist',icon:'💎',name:'Sempurna Total',    desc:'Skor 20/20 di semua lapisan',   check:S => {
+      const keys = Object.keys(S.results);
+      return keys.length === 5 && keys.every(k => S.results[k].correct === S.results[k].total);
+    }}
+  ];
+
+  /* =====================================================
+     2. STATE
+     ===================================================== */
+  const STORAGE_KEY = 'atm-mission-v2';
+  const XP_PER_CORRECT = 50;
+  const XP_COMBO_BONUS = 20;
+  const XP_PER_LEVEL_BONUS = 100;
+  const XP_MAX = 1500;
+
+  let State = null;
+
+  function defaultState(){
+    return {
+      screen:'start',
+      playerName:'',
+      xp:0, combo:0, bestCombo:0,
+      unlocked:1,
+      currentLevel:0, currentQ:0,
+      sessionQuestions:[], sessionAnswers:[],
+      results:{},
+      achievements:[],
+      totalCorrect:0,
+      masteredOzone:false,
+      soundOn:true
+    };
+  }
+
+  function save(){
+    try{
+      const snap = {
+        playerName:State.playerName, xp:State.xp, unlocked:State.unlocked,
+        results:State.results, bestCombo:State.bestCombo, soundOn:State.soundOn,
+        achievements:State.achievements, totalCorrect:State.totalCorrect,
+        masteredOzone:State.masteredOzone
+      };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(snap));
+    }catch(e){}
+  }
+  function load(){
+    try{
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if(!raw) return null;
+      return Object.assign(defaultState(), JSON.parse(raw));
+    }catch(e){ return null; }
+  }
+  function clearSave(){ try{ localStorage.removeItem(STORAGE_KEY); }catch(e){} }
+
+  /* =====================================================
+     3. AUDIO
+     ===================================================== */
+  let audioCtx = null;
+  function ensureAudio(){
+    if(audioCtx) return audioCtx;
+    try{
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if(AC) audioCtx = new AC();
+    }catch(e){ audioCtx = null; }
+    return audioCtx;
+  }
+  function beep(freq, dur, type, vol){
+    if(!State || !State.soundOn) return;
+    const ctx = ensureAudio(); if(!ctx) return;
+    if(ctx.state === 'suspended') ctx.resume().catch(()=>{});
+    dur = dur || 0.1; type = type || 'sine'; vol = (vol == null) ? 0.07 : vol;
+    const o = ctx.createOscillator(), g = ctx.createGain();
+    o.type = type; o.frequency.value = freq;
+    o.connect(g); g.connect(ctx.destination);
+    const t = ctx.currentTime;
+    g.gain.setValueAtTime(vol, t);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.start(t); o.stop(t + dur);
+  }
+  const sfx = {
+    click:  () => beep(420, 0.06, 'triangle', 0.05),
+    select: () => beep(620, 0.07, 'sine', 0.05),
+    good:   () => { beep(660, 0.12, 'sine', 0.08); setTimeout(()=>beep(990, 0.18, 'sine', 0.08), 110); },
+    bad:    () => { beep(220, 0.16, 'sawtooth', 0.06); setTimeout(()=>beep(160, 0.22, 'sawtooth', 0.06), 130); },
+    unlock: () => { beep(880, 0.1, 'sine', 0.07); setTimeout(()=>beep(1180, 0.14, 'sine', 0.07), 90); setTimeout(()=>beep(1480, 0.18, 'sine', 0.07), 180); },
+    achievement: () => { beep(660, 0.1, 'sine', 0.06); setTimeout(()=>beep(880, 0.12, 'sine', 0.06), 90); setTimeout(()=>beep(1320, 0.2, 'sine', 0.06), 200); }
+  };
+
+  /* ----- Ambient per lapisan ----- */
+  let ambient = null;
+  function startAmbient(levelId){
+    if(!State || !State.soundOn) return;
+    const cfg = AMBIENT[levelId]; if(!cfg) return;
+    const ctx = ensureAudio(); if(!ctx) return;
+    if(ctx.state === 'suspended') ctx.resume().catch(()=>{});
+    stopAmbient();
+    try{
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      const lfo = ctx.createOscillator();
+      const lfoGain = ctx.createGain();
+      osc.frequency.value = cfg.freq;
+      osc.type = cfg.type;
+      lfo.frequency.value = cfg.lfo;
+      lfoGain.gain.value = cfg.depth;
+      lfo.connect(lfoGain);
+      lfoGain.connect(gain.gain);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      gain.gain.value = 0;
+      osc.start(); lfo.start();
+      gain.gain.linearRampToValueAtTime(cfg.vol, ctx.currentTime + 1.2);
+      ambient = { osc, lfo, gain, ctx };
+    }catch(e){ ambient = null; }
+  }
+  function stopAmbient(){
+    if(!ambient) return;
+    const a = ambient; ambient = null;
+    try{
+      a.gain.gain.cancelScheduledValues(a.ctx.currentTime);
+      a.gain.gain.linearRampToValueAtTime(0, a.ctx.currentTime + 0.5);
+      setTimeout(()=>{ try{ a.osc.stop(); a.lfo.stop(); }catch(e){} }, 600);
+    }catch(e){}
+  }
+
+  /* =====================================================
+     4. UTIL
+     ===================================================== */
+  const $  = (s, r) => (r||document).querySelector(s);
+  const $$ = (s, r) => Array.prototype.slice.call((r||document).querySelectorAll(s));
+  const stage = $('#stage');
+  const live  = $('#live');
+
+  function announce(msg){
+    live.textContent = '';
+    setTimeout(()=>{ live.textContent = msg; }, 30);
+  }
+
+  // ★ FIX utama: abaikan attrs null/undefined
+  function el(tag, attrs, children){
+    const n = document.createElement(tag);
+    if(attrs){
+      for(const k in attrs){
+        const v = attrs[k];
+        if(v === null || v === undefined) continue;
+        if(k === 'class')      n.className = v;
+        else if(k === 'text')  n.textContent = v;
+        else if(k === 'html')  n.innerHTML = v;
+        else if(k.slice(0,2) === 'on') n.addEventListener(k.slice(2).toLowerCase(), v);
+        else n.setAttribute(k, v);
+      }
+    }
+    (children||[]).forEach(c => n.appendChild(c));
+    return n;
+  }
+  function shuffle(arr){
+    const a = arr.slice();
+    for(let i=a.length-1;i>0;i--){ const j = Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+    return a;
+  }
+  function totalQuestions(){ return Object.keys(BANK).reduce((s,k)=> s + BANK[k].length, 0); }
+
+  function xpToRank(xp){
+    if(xp >= 1200) return { name:'Ahli Atmosfer', icon:'🧙' };
+    if(xp >= 800)  return { name:'Peneliti Atmosfer', icon:'🔬' };
+    if(xp >= 400)  return { name:'Detektif Cuaca', icon:'🕵️' };
+    if(xp >= 150)  return { name:'Pengamat Langit', icon:'🔭' };
+    return { name:'Pemula', icon:'🥚' };
+  }
+
+  function pickSession(levelId){
+    return shuffle(BANK[levelId]).map(q => {
+      const idx = q.options.map((_,i)=>i);
+      const sh = shuffle(idx);
+      const newOptions = sh.map(i => q.options[i]);
+      const newAnswer = sh.indexOf(q.answer);
+      const newMis = {};
+      if(q.misconception){
+        for(const k in q.misconception){
+          const ni = sh.indexOf(parseInt(k,10));
+          if(ni >= 0) newMis[ni] = q.misconception[k];
+        }
+      }
+      return { bloom:q.bloom, q:q.q, options:newOptions, answer:newAnswer, explain:q.explain, misconception:newMis, tag:q.tag };
+    });
+  }
+
+  /* =====================================================
+     5. STARFIELD (canvas background)
+     ===================================================== */
+  (function initStarfield(){
+    const canvas = $('#starfield'); if(!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let w=0,h=0,dpr=1, stars=[], shooting=[], raf=null, lastTime=0;
+    function resize(){
+      dpr = Math.min(window.devicePixelRatio||1, 2);
+      w = window.innerWidth; h = window.innerHeight;
+      canvas.width = Math.floor(w*dpr); canvas.height = Math.floor(h*dpr);
+      canvas.style.width = w+'px'; canvas.style.height = h+'px';
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      build();
+    }
+    function build(){
+      const count = Math.min(Math.floor((w*h)/9000), 140);
+      stars = [];
+      for(let i=0;i<count;i++){
+        stars.push({ x:Math.random()*w, y:Math.random()*h, r:Math.random()*1.3+0.2, a:Math.random()*.6+.2, tw:Math.random()*Math.PI*2, sp:Math.random()*.02+.005 });
+      }
+    }
+    function spawnShooting(){
+      if(reduce) return;
+      if(Math.random() > 0.995){
+        shooting.push({ x:Math.random()*w*.8, y:Math.random()*h*.4, vx:3+Math.random()*3, vy:1+Math.random()*2, life:1 });
+      }
+    }
+    function draw(t){
+      if(!lastTime) lastTime = t;
+      const dt = Math.min((t-lastTime)/16.67, 3); lastTime = t;
+      ctx.clearRect(0,0,w,h);
+      for(let i=0;i<stars.length;i++){
+        const s = stars[i]; s.tw += s.sp*dt;
+        const alpha = s.a + Math.sin(s.tw)*0.15;
+        ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+        ctx.fillStyle = 'rgba(180,205,255,'+Math.max(0,Math.min(1,alpha))+')';
+        ctx.fill();
+      }
+      spawnShooting();
+      for(let i=shooting.length-1;i>=0;i--){
+        const sh = shooting[i];
+        sh.x += sh.vx*dt; sh.y += sh.vy*dt; sh.life -= 0.012*dt;
+        if(sh.life<=0 || sh.x>w+50 || sh.y>h+50){ shooting.splice(i,1); continue; }
+        const grd = ctx.createLinearGradient(sh.x, sh.y, sh.x-sh.vx*8, sh.y-sh.vy*8);
+        grd.addColorStop(0, 'rgba(160,220,255,'+sh.life+')');
+        grd.addColorStop(1, 'rgba(160,220,255,0)');
+        ctx.strokeStyle = grd; ctx.lineWidth = 1.5;
+        ctx.beginPath(); ctx.moveTo(sh.x, sh.y); ctx.lineTo(sh.x-sh.vx*8, sh.y-sh.vy*8); ctx.stroke();
+      }
+      if(reduce) return;
+      raf = requestAnimationFrame(draw);
+    }
+    resize();
+    window.addEventListener('resize', () => {
+      cancelAnimationFrame(raf); resize();
+      if(!reduce) raf = requestAnimationFrame(draw); else draw(performance.now());
+    });
+    if(reduce) draw(performance.now());
+    else raf = requestAnimationFrame(draw);
+    document.addEventListener('visibilitychange', () => {
+      if(reduce) return;
+      if(document.hidden) cancelAnimationFrame(raf);
+      else { lastTime = 0; raf = requestAnimationFrame(draw); }
+    });
+  })();
+
+  /* =====================================================
+     6. FX canvas (confetti & partikel)
+     ===================================================== */
+  const fxCanvas = $('#fx');
+  const fxCtx = fxCanvas.getContext('2d');
+  let fxParticles = [];
+  let fxRunning = false;
+  let fxDpr = 1;
+
+  function fxResize(){
+    fxDpr = Math.min(window.devicePixelRatio||1, 2);
+    fxCanvas.width = Math.floor(window.innerWidth*fxDpr);
+    fxCanvas.height = Math.floor(window.innerHeight*fxDpr);
+    fxCanvas.style.width = window.innerWidth+'px';
+    fxCanvas.style.height = window.innerHeight+'px';
+    fxCtx.setTransform(fxDpr,0,0,fxDpr,0,0);
+  }
+  fxResize();
+  window.addEventListener('resize', fxResize);
+
+  function burst(x, y, colors){
+    const palette = colors || ['#63e6ff','#a78bfa','#34d399','#fbbf24','#f87171','#ffffff'];
+    const n = 32;
+    for(let i=0;i<n;i++){
+      fxParticles.push({
+        x, y,
+        vx: (Math.random()-.5)*14,
+        vy: -Math.random()*9 - 2,
+        g: 0.35,
+        life: 1,
+        color: palette[Math.floor(Math.random()*palette.length)],
+        size: Math.random()*5 + 3,
+        rot: Math.random()*Math.PI*2,
+        vr: (Math.random()-.5)*.35
+      });
+    }
+    if(!fxRunning) fxLoop();
+  }
+  function fxLoop(){
+    fxRunning = true;
+    const W = window.innerWidth, H = window.innerHeight;
+    fxCtx.clearRect(0,0,W,H);
+    for(let i=fxParticles.length-1;i>=0;i--){
+      const p = fxParticles[i];
+      p.x += p.vx; p.y += p.vy; p.vy += p.g;
+      p.vx *= 0.995; p.rot += p.vr;
+      p.life -= 0.014;
+      if(p.life <= 0 || p.y > H + 30){ fxParticles.splice(i,1); continue; }
+      fxCtx.save();
+      fxCtx.translate(p.x, p.y); fxCtx.rotate(p.rot);
+      fxCtx.globalAlpha = Math.max(0, p.life);
+      fxCtx.fillStyle = p.color;
+      fxCtx.fillRect(-p.size/2, -p.size/2, p.size, p.size*0.6);
+      fxCtx.restore();
+    }
+    if(fxParticles.length > 0) requestAnimationFrame(fxLoop);
+    else { fxRunning = false; fxCtx.clearRect(0,0,W,H); }
+  }
+
+  /* =====================================================
+     7. TOAST / ACHIEVEMENTS
+     ===================================================== */
+  function showToast(icon, title, desc){
+    const t = el('div', { class:'toast' });
+    t.appendChild(el('div', { class:'toast-icon', text: icon }));
+    const body = el('div');
+    body.appendChild(el('div', { class:'toast-title', text: title }));
+    body.appendChild(el('div', { class:'toast-desc', text: desc }));
+    t.appendChild(body);
+    document.body.appendChild(t);
+    requestAnimationFrame(() => t.classList.add('show'));
+    sfx.achievement();
+    setTimeout(() => {
+      t.classList.remove('show');
+      setTimeout(() => t.remove(), 500);
+    }, 3600);
+  }
+
+  function checkAchievements(){
+    ACHIEVEMENTS.forEach(a => {
+      if(!State.achievements.includes(a.id)){
+        try{
+          if(a.check(State)){
+            State.achievements.push(a.id);
+            showToast(a.icon, 'LENCANA BARU!', a.name + ' — ' + a.desc);
+            save();
+          }
+        }catch(e){}
+      }
+    });
+  }
+
+  /* =====================================================
+     8. SKY & AVATAR
+     ===================================================== */
+  function setSky(levelId){
+    $('#sky').setAttribute('data-level', levelId || '');
+  }
+  function renderAvatar(){
+    const a = $('#avatar');
+    const rank = xpToRank(State.xp);
+    const prev = a.textContent;
+    a.textContent = rank.icon;
+    a.title = 'Pangkat: ' + rank.name;
+    if(prev && prev !== rank.icon){
+      a.classList.add('bump');
+      setTimeout(() => a.classList.remove('bump'), 600);
+    }
+    $('#hudSub').textContent = rank.name + ' · ' + State.xp + ' XP';
+  }
+
+  /* =====================================================
+     9. HUD
+     ===================================================== */
+  function updateHUD(){
+    $('#xpVal').textContent = State.xp;
+    const pct = Math.min(100, (State.xp / XP_MAX) * 100);
+    $('#xpFill').style.width = pct + '%';
+    const bar = $('#xpBar');
+    bar.setAttribute('aria-valuenow', String(State.xp));
+    bar.setAttribute('aria-valuemax', String(XP_MAX));
+    bar.setAttribute('aria-valuetext', State.xp + ' dari ' + XP_MAX + ' XP');
+    const sBtn = $('#soundBtn');
+    sBtn.textContent = State.soundOn ? '🔊' : '🔇';
+    sBtn.setAttribute('aria-label', State.soundOn ? 'Matikan suara' : 'Nyalakan suara');
+    renderAvatar();
+  }
+
+  /* =====================================================
+     10. SCREENS
+     ===================================================== */
+  function setScreen(name){ State.screen = name; render(); }
+
+  function render(){
+    stage.innerHTML = '';
+    // atur sky sesuai screen
+    if(State.screen === 'question' || State.screen === 'result'){
+      setSky(LEVELS[State.currentLevel].id);
+    } else {
+      setSky('');
+    }
+    switch(State.screen){
+      case 'start':    return renderStart();
+      case 'map':      return renderMap();
+      case 'question': return renderQuestion();
+      case 'result':   return renderResult();
+    }
+  }
+
+  /* ----- START ----- */
+  function renderStart(){
+    const wrap = el('section', { class:'screen' });
+    const hero = el('div', { class:'hero' });
+    hero.appendChild(el('span', { class:'badge', text:'MISI PEMBELAJARAN · GEOGRAFI KELAS X' }));
+    const h1 = el('h1');
+    h1.appendChild(document.createTextNode('Selamat datang di '));
+    h1.appendChild(el('span', { class:'grad', text:'Atmosphere Mission' }));
+    hero.appendChild(h1);
+    hero.appendChild(el('p', {
+      text:'Jelajahi 5 lapisan atmosfer Bumi, jawab 20 soal tantangan, kumpulkan lencana, dan buktikan bahwa kamu adalah Detektif Atmosfer sejati.'
+    }));
+    const field = el('div', { class:'field' });
+    const input = el('input', {
+      type:'text', id:'playerName', placeholder:'Tulis namamu di sini…',
+      maxlength:'40', autocomplete:'name', 'aria-label':'Nama pemain'
+    });
+    input.value = State.playerName || '';
+    field.appendChild(input); hero.appendChild(field);
+
+    hero.appendChild(el('button', {
+      class:'btn btn-primary', type:'button',
+      onclick: () => {
+        const name = (input.value || '').trim().slice(0,40);
+        if(!name){ input.focus(); input.style.borderColor = 'var(--bad)'; announce('Silakan tulis namamu dulu.'); return; }
+        State.playerName = name;
+        State.screen = 'map'; save(); sfx.click(); render();
+        announce('Peta misi terbuka. Pilih Troposfer untuk mulai.');
+      }
+    }, [document.createTextNode('🚀 Mulai Misi')]));
+
+    const cp = el('ul', { class:'cp-list' });
+    [
+      'Menjelaskan karakteristik 5 lapisan atmosfer Bumi.',
+      'Menganalisis hubungan ketinggian, suhu, dan tekanan udara.',
+      'Membedakan miskonsepsi lubang ozon vs pemanasan global.',
+      'Menerapkan konsep atmosfer pada fenomena di Indonesia.'
+    ].forEach(t => cp.appendChild(el('li', { text:t })));
+    hero.appendChild(cp);
+
+    if(State.xp > 0 || State.unlocked > 1){
+      hero.appendChild(el('p', {
+        style:'margin-top:18px;font-size:12px;color:var(--muted)',
+        text:'💾 Progres ditemukan — lanjutkan dari peta misi.'
+      }));
+    }
+    if(State.achievements.length > 0){
+      hero.appendChild(el('p', {
+        style:'margin-top:8px;font-size:12px;color:var(--warn)',
+        text:'🏅 ' + State.achievements.length + ' dari ' + ACHIEVEMENTS.length + ' lencana terkumpul.'
+      }));
+    }
+    wrap.appendChild(hero); stage.appendChild(wrap);
+    setTimeout(() => input.focus(), 60);
+  }
+
+  /* ----- MAP ----- */
+  function renderMap(){
+    const wrap = el('section', { class:'screen' });
+    wrap.appendChild(el('div', { class:'section-title', text:'Peta Misi · Pilih Lapisan Atmosfer' }));
+    wrap.appendChild(el('p', {
+      style:'margin:0 0 18px;color:var(--muted);font-size:13px',
+      text:'Selesaikan tiap lapisan untuk membuka lapisan berikutnya. Setiap jawaban benar = 50 XP.'
+    }));
+    const grid = el('div', { class:'map' });
+    LEVELS.forEach((lv, idx) => {
+      const unlocked = idx < State.unlocked;
+      const result = State.results[lv.id];
+      const done = !!result;
+      const attrs = {
+        class:'level', type:'button',
+        'data-done': done ? '1' : '0',
+        'data-locked': unlocked ? '0' : '1',
+        'aria-label': unlocked ? ('Buka level ' + lv.name) : ('Level terkunci: ' + lv.name),
+        onclick: () => {
+          if(!unlocked) return;
+          State.currentLevel = idx; State.currentQ = 0;
+          State.sessionQuestions = pickSession(lv.id);
+          State.sessionAnswers = []; State.combo = 0;
+          State.screen = 'question'; save(); sfx.click(); render();
+          startAmbient(lv.id);
+          announce('Memulai level ' + lv.name + '. Soal 1 dari ' + State.sessionQuestions.length + '.');
+        }
+      };
+      if(!unlocked) attrs.disabled = 'true';
+      const card = el('button', attrs);
+      const row1 = el('div', { class:'row1' });
+      row1.appendChild(el('span', { class:'icon', text: unlocked ? lv.icon : '🔒' }));
+      row1.appendChild(el('span', { class:'tag', text: !unlocked ? 'TERKUNCI' : (done ? 'SELESAI' : 'TERBUKA') }));
+      card.appendChild(row1);
+      card.appendChild(el('h3', { text: lv.name }));
+      card.appendChild(el('p', { text: lv.range + ' · ' + lv.desc }));
+      const bar = el('div', { class:'bar' });
+      const fill = el('i');
+      const total = BANK[lv.id].length;
+      fill.style.width = ((result ? result.correct : 0) / total * 100) + '%';
+      bar.appendChild(fill); card.appendChild(bar);
+      grid.appendChild(card);
+    });
+    wrap.appendChild(grid);
+
+    const actions = el('div', { style:'margin-top:22px;display:flex;gap:10px;flex-wrap:wrap' });
+    actions.appendChild(el('button', {
+      class:'btn btn-ghost', type:'button', onclick:() => openDrawer()
+    }, [document.createTextNode('📖 Glosarium')]));
+    actions.appendChild(el('button', {
+      class:'btn btn-ghost', type:'button',
+      onclick:() => {
+        if(confirm('Reset semua progres?')){ clearSave(); State = defaultState(); updateHUD(); setScreen('start'); announce('Progres direset.'); }
+      }
+    }, [document.createTextNode('↺ Reset Progres')]));
+    wrap.appendChild(actions);
+
+    // recap achievement di map
+    if(State.achievements.length > 0){
+      wrap.appendChild(el('div', { class:'section-title', style:'margin-top:26px', text:'Lencana Kamu (' + State.achievements.length + '/' + ACHIEVEMENTS.length + ')' }));
+      const box = el('div', { class:'achievements' });
+      ACHIEVEMENTS.forEach(a => {
+        const has = State.achievements.includes(a.id);
+        const card = el('div', { class:'ach', style: has ? '' : 'opacity:.35;filter:grayscale(1)' });
+        card.appendChild(el('div', { class:'i', text: has ? a.icon : '🔒' }));
+        const b = el('div');
+        b.appendChild(el('div', { class:'t', text: a.name }));
+        b.appendChild(el('div', { class:'d', text: a.desc }));
+        card.appendChild(b);
+        box.appendChild(card);
+      });
+      wrap.appendChild(box);
+    }
+    stage.appendChild(wrap);
+  }
+
+  /* ----- QUESTION ----- */
+  let selectedOption = null;
+
+  function renderQuestion(){
+    const lv = LEVELS[State.currentLevel];
+    const q = State.sessionQuestions[State.currentQ];
+    if(!q) return renderResult();
+
+    const wrap = el('section', { class:'screen' });
+    const head = el('div', { class:'quiz-head' });
+    const crumbs = el('div', { class:'crumbs' });
+    crumbs.appendChild(el('b', { text: lv.icon + ' ' + lv.name }));
+    crumbs.appendChild(document.createTextNode(' · Soal ' + (State.currentQ+1) + ' / ' + State.sessionQuestions.length));
+    head.appendChild(crumbs);
+    const combo = el('div', { class:'combo' + (State.combo >= 2 ? ' on' : ''), id:'comboBadge', text:'🔥 Combo ×' + State.combo });
+    head.appendChild(combo);
+    wrap.appendChild(head);
+
+    const card = el('div', { class:'qcard', id:'qcard' });
+    card.appendChild(el('span', { class:'bloom', text:'Level kognitif ' + q.bloom }));
+    card.appendChild(el('p', { class:'qtext', text: q.q }));
+
+    const opts = el('div', { class:'options', role:'radiogroup', 'aria-label':'Pilihan jawaban' });
+    const letters = ['A','B','C','D','E'];
+    q.options.forEach((optText, i) => {
+      const b = el('button', {
+        class:'opt', type:'button', role:'radio', 'aria-checked':'false', 'data-idx':i,
+        onclick:() => selectOption(i)
+      });
+      b.appendChild(el('span', { class:'key', text: letters[i] }));
+      b.appendChild(el('span', { text: optText }));
+      opts.appendChild(b);
+    });
+    card.appendChild(opts);
+    card.appendChild(el('div', { id:'fbSlot' }));
+
+    const actions = el('div', { class:'quiz-actions' });
+    actions.appendChild(el('span', {
+      class:'kbd-hint',
+      html:'Pilih: <span class="kbd">1</span>–<span class="kbd">4</span> · Kirim: <span class="kbd">Enter</span>'
+    }));
+    const submitBtn = el('button', {
+      class:'btn btn-primary', type:'button', id:'submitBtn',
+      disabled:'true', onclick: submitAnswer
+    }, [document.createTextNode('Kirim Jawaban')]);
+    actions.appendChild(submitBtn);
+    card.appendChild(actions);
+    wrap.appendChild(card);
+    stage.appendChild(wrap);
+
+    selectedOption = null;
+    updateHUD();
+    setTimeout(() => { const f = $('.opt', opts); if(f) f.focus(); }, 40);
+  }
+
+  function selectOption(i){
+    if(State.screen !== 'question') return;
+    const opts = $$('.opt');
+    opts.forEach((o, idx) => {
+      if(idx === i){ o.setAttribute('data-state','sel'); o.setAttribute('aria-checked','true'); }
+      else { o.removeAttribute('data-state'); o.setAttribute('aria-checked','false'); }
+    });
+    selectedOption = i;
+    const btn = $('#submitBtn'); if(btn) btn.disabled = false;
+    sfx.select();
+  }
+
+  function submitAnswer(){
+    if(selectedOption == null) return;
+    const lv = LEVELS[State.currentLevel];
+    const q = State.sessionQuestions[State.currentQ];
+    const isCorrect = selectedOption === q.answer;
+
+    const opts = $$('.opt');
+    let correctEl = null;
+    opts.forEach((o, idx) => {
+      o.setAttribute('disabled','true');
+      if(idx === q.answer){ o.setAttribute('data-state','correct'); correctEl = o; }
+      else if(idx === selectedOption) o.setAttribute('data-state','wrong');
+    });
+
+    let gained = 0;
+    if(isCorrect){
+      State.combo += 1;
+      State.totalCorrect += 1;
+      if(State.combo > State.bestCombo) State.bestCombo = State.combo;
+      gained = XP_PER_CORRECT;
+      if(State.combo >= 2) gained += XP_COMBO_BONUS * Math.min(State.combo - 1, 3);
+      State.xp += gained;
+      sfx.good();
+      // confetti dari posisi opsi yang benar
+      if(correctEl){
+        const r = correctEl.getBoundingClientRect();
+        burst(r.left + r.width/2, r.top + r.height/2);
+      }
+      // combo pulse
+      const badge = $('#comboBadge');
+      if(badge && State.combo >= 2){
+        badge.textContent = '🔥 Combo ×' + State.combo;
+        badge.classList.add('on');
+        badge.classList.remove('pulse');
+        void badge.offsetWidth;
+        badge.classList.add('pulse');
+      }
+      // tanda khusus soal ozon
+      if(q.tag === 'ozone') State.masteredOzone = true;
+    } else {
+      State.combo = 0;
+      sfx.bad();
+      const qcard = $('#qcard');
+      if(qcard){ qcard.classList.remove('shake'); void qcard.offsetWidth; qcard.classList.add('shake'); }
+    }
+    State.sessionAnswers.push({ idx:selectedOption, correct:isCorrect, gained });
+
+    if(!State.results[lv.id]) State.results[lv.id] = { correct:0, total:State.sessionQuestions.length, xp:0 };
+    if(isCorrect) State.results[lv.id].correct += 1;
+    State.results[lv.id].xp += gained;
+
+    updateHUD();
+    save();
+    renderFeedback(q, isCorrect, gained);
+    checkAchievements();
+
+    const submitBtn = $('#submitBtn');
+    if(submitBtn){
+      submitBtn.textContent = (State.currentQ + 1 >= State.sessionQuestions.length) ? 'Selesaikan Level →' : 'Soal Berikutnya →';
+      submitBtn.disabled = false;
+      submitBtn.setAttribute('aria-label', submitBtn.textContent);
+      submitBtn.onclick = nextQuestion;
+      submitBtn.focus();
+    }
+    announce(isCorrect ? ('Jawaban benar! +' + gained + ' XP.') : 'Jawaban belum tepat. Baca pembahasannya.');
+  }
+
+  function renderFeedback(q, isCorrect, gained){
+    const slot = $('#fbSlot'); if(!slot) return;
+    const fb = el('div', { class:'fb ' + (isCorrect ? 'good' : 'bad') });
+    const h4 = el('h4');
+    h4.appendChild(document.createTextNode(isCorrect ? '✅ Benar!' : '❌ Belum Tepat'));
+    if(isCorrect && gained) h4.appendChild(el('span', { style:'color:var(--warn);font-weight:800;font-size:12px;margin-left:8px', text:'+' + gained + ' XP' }));
+    fb.appendChild(h4);
+    fb.appendChild(el('p', { text: q.explain }));
+    if(!isCorrect && q.misconception && q.misconception[selectedOption]){
+      fb.appendChild(el('p', { class:'hint', text:'💡 ' + q.misconception[selectedOption] }));
+    }
+    if(isCorrect && State.combo >= 3){
+      fb.appendChild(el('p', { class:'hint', text:'🔥 Combo ×' + State.combo + '! Pertahankan!' }));
+    }
+    slot.appendChild(fb);
+    fb.scrollIntoView({ behavior:'smooth', block:'nearest' });
+  }
+
+  function nextQuestion(){
+    State.currentQ += 1;
+    if(State.currentQ >= State.sessionQuestions.length){
+      const lv = LEVELS[State.currentLevel];
+      const res = State.results[lv.id];
+      if(res.correct === res.total){ State.xp += XP_PER_LEVEL_BONUS; }
+      if(State.currentLevel + 1 >= State.unlocked && State.currentLevel + 1 < LEVELS.length){
+        State.unlocked = State.currentLevel + 2;
+      }
+      save(); updateHUD(); checkAchievements(); stopAmbient();
+      setScreen('result');
+      return;
+    }
+    sfx.click(); render();
+    announce('Soal ' + (State.currentQ + 1) + ' dari ' + State.sessionQuestions.length + '.');
+  }
+
+  /* ----- RESULT ----- */
+  function renderResult(){
+    const lv = LEVELS[State.currentLevel];
+    const res = State.results[lv.id] || { correct:0, total:State.sessionQuestions.length, xp:0 };
+    const totalCorrect = Object.keys(State.results).reduce((s,k)=> s + State.results[k].correct, 0);
+    const pct = Math.round((totalCorrect / totalQuestions()) * 100);
+    const rank = xpToRank(State.xp);
+
+    const wrap = el('section', { class:'screen' });
+    const card = el('div', { class:'result' });
+
+    card.appendChild(el('div', { class:'trophy', text: pct >= 80 ? '🏆' : (pct >= 60 ? '🎖️' : '📘') }));
+    card.appendChild(el('h2', { text: 'Misi Selesai, ' + State.playerName + '!' }));
+    card.appendChild(el('div', { class:'rank', text: rank.icon + ' Peringkat: ' + rank.name }));
+
+    const stats = el('div', { class:'stats' });
+    stats.appendChild(el('div', { class:'stat' }, [ el('b', { text:String(State.xp) }), el('span', { text:'Total XP' }) ]));
+    stats.appendChild(el('div', { class:'stat' }, [ el('b', { text: res.correct + '/' + res.total }), el('span', { text:'Level Ini' }) ]));
+    stats.appendChild(el('div', { class:'stat' }, [ el('b', { text: pct + '%' }), el('span', { text:'Akurasi Total' }) ]));
+    stats.appendChild(el('div', { class:'stat' }, [ el('b', { text: '×' + State.bestCombo }), el('span', { text:'Combo Terbaik' }) ]));
+    card.appendChild(stats);
+
+    const summary = el('div', { style:'text-align:left;font-size:13px;color:#c9d2f0;max-width:560px;margin:0 auto 18px;line-height:1.7' });
+    summary.appendChild(el('p', {
+      style:'margin:0 0 8px',
+      text: pct >= 80 ? '🎉 Luar biasa! Kamu sudah menguasai karakteristik 5 lapisan atmosfer.'
+           : pct >= 60 ? '👍 Bagus! Baca ulang pembahasan soal yang salah, lalu ulangi levelnya.'
+           : '💪 Jangan menyerah! Baca glosarium dulu, lalu ulangi dari Troposfer.'
+    }));
+    card.appendChild(summary);
+
+    // achievement khusus
+    if(State.achievements.length > 0){
+      card.appendChild(el('div', { class:'section-title', style:'margin-top:10px;text-align:center', text:'Lencana Terkumpul (' + State.achievements.length + '/' + ACHIEVEMENTS.length + ')' }));
+      const box = el('div', { class:'achievements' });
+      ACHIEVEMENTS.forEach(a => {
+        if(!State.achievements.includes(a.id)) return;
+        const c = el('div', { class:'ach' });
+        c.appendChild(el('div', { class:'i', text: a.icon }));
+        const b = el('div');
+        b.appendChild(el('div', { class:'t', text: a.name }));
+        b.appendChild(el('div', { class:'d', text: a.desc }));
+        c.appendChild(b);
+        box.appendChild(c);
+      });
+      card.appendChild(box);
+    }
+
+    const actions = el('div', { class:'actions' });
+    if(State.currentLevel + 1 < LEVELS.length){
+      actions.appendChild(el('button', {
+        class:'btn btn-primary', type:'button',
+        onclick: () => {
+          const nextLevel = LEVELS[State.currentLevel + 1];
+          rocketTransition(nextLevel.name, () => {
+            State.currentLevel += 1; State.currentQ = 0;
+            State.sessionQuestions = pickSession(nextLevel.id);
+            State.sessionAnswers = []; State.combo = 0;
+            setScreen('question');
+            startAmbient(nextLevel.id);
+            announce('Memulai level ' + nextLevel.name + '.');
+          });
+        }
+      }, [document.createTextNode('🚀 Lanjut: ' + LEVELS[State.currentLevel + 1].name)]));
+    }
+    actions.appendChild(el('button', {
+      class:'btn btn-ghost', type:'button', onclick:() => { setScreen('map'); sfx.click(); }
+    }, [document.createTextNode('🗺️ Peta Misi')]));
+    actions.appendChild(el('button', {
+      class:'btn btn-ghost', type:'button', onclick:() => window.print()
+    }, [document.createTextNode('🖨️ Cetak Hasil')]));
+    card.appendChild(actions);
+
+    // rekap per lapisan
+    const recap = el('div', { style:'margin-top:24px;text-align:left' });
+    recap.appendChild(el('div', { class:'section-title', style:'margin-bottom:10px', text:'Rekap Per Lapisan' }));
+    LEVELS.forEach(l => {
+      const r = State.results[l.id];
+      const done = !!r;
+      const line = el('div', { style:'display:flex;justify-content:space-between;padding:10px 12px;background:var(--panel);border:1px solid var(--border);border-radius:10px;margin-bottom:6px;font-size:13px' });
+      line.appendChild(el('span', { text: l.icon + ' ' + l.name }));
+      line.appendChild(el('span', { style:'color:' + (done ? 'var(--accent)' : 'var(--muted)'), text: done ? (r.correct + '/' + r.total + ' benar') : 'Belum dimainkan' }));
+      recap.appendChild(line);
+    });
+    card.appendChild(recap);
+
+    wrap.appendChild(card); stage.appendChild(wrap);
+
+    // confetti meriah kalau akurasi tinggi
+    if(pct >= 80){
+      setTimeout(() => burst(window.innerWidth/2, window.innerHeight*0.3, ['#fbbf24','#63e6ff','#a78bfa','#34d399']), 200);
+    }
+    announce('Level selesai. Skor ' + res.correct + ' dari ' + res.total + '.');
+  }
+
+  /* ----- ROCKET TRANSITION ----- */
+  function rocketTransition(nextName, callback){
+    const overlay = $('#rocket');
+    $('#rocketLevel').textContent = 'NAIK KE ' + nextName.toUpperCase();
+    const icon = overlay.querySelector('.rocket-icon');
+    // reset animasi
+    icon.style.animation = 'none';
+    void icon.offsetWidth;
+    icon.style.animation = '';
+    $('#rocketLevel').style.animation = 'none';
+    void $('#rocketLevel').offsetWidth;
+    $('#rocketLevel').style.animation = '';
+
+    overlay.classList.add('active');
+    // sound: whoosh naik
+    if(State.soundOn){
+      const ctx = ensureAudio();
+      if(ctx){
+        if(ctx.state === 'suspended') ctx.resume().catch(()=>{});
+        const o = ctx.createOscillator(), g = ctx.createGain();
+        o.type = 'sawtooth';
+        o.frequency.setValueAtTime(120, ctx.currentTime);
+        o.frequency.exponentialRampToValueAtTime(900, ctx.currentTime + 1.8);
+        g.gain.setValueAtTime(0.05, ctx.currentTime);
+        g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 2.2);
+        o.connect(g); g.connect(ctx.destination);
+        o.start(); o.stop(ctx.currentTime + 2.4);
+      }
+    }
+    setTimeout(() => {
+      overlay.classList.remove('active');
+      setTimeout(callback, 350);
+    }, 2400);
+  }
+
+  /* =====================================================
+     11. GLOSSARY
+     ===================================================== */
+  function buildGlossary(){
+    const box = $('#glossary'); box.innerHTML = '';
+    GLOSSARY.forEach(g => {
+      const d = el('div');
+      d.appendChild(el('b', { text: g.t }));
+      d.appendChild(document.createTextNode(g.d));
+      box.appendChild(d);
+    });
+  }
+  let drawerOpen = false;
+  function openDrawer(){
+    const d = $('#drawer');
+    d.classList.add('open'); d.setAttribute('aria-hidden','false');
+    drawerOpen = true; $('#closeDrawer').focus();
+  }
+  function closeDrawer(){
+    const d = $('#drawer');
+    d.classList.remove('open'); d.setAttribute('aria-hidden','true');
+    drawerOpen = false; stage.focus();
+  }
+  $('#closeDrawer').addEventListener('click', closeDrawer);
+
+  /* =====================================================
+     12. GLOBAL EVENTS
+     ===================================================== */
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape' && drawerOpen){ closeDrawer(); return; }
+    if(drawerOpen) return;
+    if(State.screen === 'question'){
+      const n = parseInt(e.key, 10);
+      if(n >= 1 && n <= 4){
+        const opts = $$('.opt');
+        if(opts[n-1] && !opts[n-1].disabled){ selectOption(n-1); opts[n-1].focus(); }
+        e.preventDefault();
+      } else if(e.key === 'Enter'){
+        const btn = $('#submitBtn');
+        if(btn && !btn.disabled){ btn.click(); e.preventDefault(); }
+      } else if(/^[a-dA-D]$/.test(e.key)){
+        const idx = 'abcd'.indexOf(e.key.toLowerCase());
+        const opts = $$('.opt');
+        if(opts[idx] && !opts[idx].disabled){ selectOption(idx); opts[idx].focus(); }
+        e.preventDefault();
+      }
+    } else if(State.screen === 'map' || State.screen === 'result' || State.screen === 'start'){
+      if(e.key === 'g' || e.key === 'G'){ openDrawer(); }
+    }
+  });
+
+  $('#soundBtn').addEventListener('click', () => {
+    State.soundOn = !State.soundOn;
+    if(State.soundOn){
+      ensureAudio(); sfx.click();
+      if(State.screen === 'question') startAmbient(LEVELS[State.currentLevel].id);
+    } else {
+      stopAmbient();
+    }
+    updateHUD(); save();
+    announce(State.soundOn ? 'Suara dinyalakan' : 'Suara dimatikan');
+  });
+
+  $('#resetBtn').addEventListener('click', () => {
+    if(confirm('Reset semua progres?')){
+      clearSave(); State = defaultState(); stopAmbient(); updateHUD(); setScreen('start');
+      announce('Progres direset.');
+    }
+  });
+
+  window.addEventListener('online',  () => announce('Kembali online.'));
+  window.addEventListener('offline', () => announce('Game tetap jalan offline.'));
+
+  /* =====================================================
+     13. BOOT
+     ===================================================== */
+  function boot(){
+    const saved = load();
+    State = saved || defaultState();
+    if(!State.screen || State.screen === 'question') State.screen = saved ? 'map' : 'start';
+    buildGlossary();
+    updateHUD();
+    render();
+    $('#footYear').textContent = new Date().getFullYear();
+  }
+  boot();
+
+})();
+</script>
+</body>
+</html>
