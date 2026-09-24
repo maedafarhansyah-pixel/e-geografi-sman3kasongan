@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#f4f9ff" id="themeColorMeta">
 <title>Kuis Roda Berputar — Penginderaan Jauh SMAN 3 Kasongan</title>
 <script src="https://cdn.tailwindcss.com"></script>
@@ -24,10 +24,8 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
     --border-light: #e2e8f0;
     --shadow: 0 12px 40px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.02);
     --shadow-hover: 0 20px 60px rgba(37,99,235,0.08), 0 8px 24px rgba(0,0,0,0.02);
-    --particle-shadow: rgba(0,0,0,0.15);
   }
 
-  /* ============ DARK MODE ============ */
   body.dark-mode {
     --primary: #60a5fa; --primary-light: #93c5fd; --primary-soft: #1e3a8a;
     --secondary: #22d3ee; --accent: #a78bfa; --accent-soft: #4c1d95;
@@ -40,13 +38,6 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
     --border-light: #334155;
     --shadow: 0 12px 40px rgba(0,0,0,0.35), 0 4px 16px rgba(0,0,0,0.2);
     --shadow-hover: 0 20px 60px rgba(96,165,250,0.15), 0 8px 24px rgba(0,0,0,0.3);
-    --particle-shadow: rgba(0,0,0,0.6);
-  }
-  body.dark-mode::before {
-    background:
-      radial-gradient(ellipse at 20% 50%, rgba(96,165,250,0.08) 0%, transparent 60%),
-      radial-gradient(ellipse at 80% 50%, rgba(167,139,250,0.08) 0%, transparent 60%),
-      radial-gradient(ellipse at 50% 100%, rgba(52,211,153,0.06) 0%, transparent 50%);
   }
 
   * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; margin: 0; padding: 0; }
@@ -66,6 +57,12 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
       radial-gradient(ellipse at 80% 50%, rgba(139,92,246,0.04) 0%, transparent 60%),
       radial-gradient(ellipse at 50% 100%, rgba(16,185,129,0.03) 0%, transparent 50%);
     transition: background 0.5s ease;
+  }
+  body.dark-mode .bg-pattern {
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(96,165,250,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 50%, rgba(167,139,250,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 50% 100%, rgba(52,211,153,0.06) 0%, transparent 50%);
   }
 
   .orb {
@@ -425,7 +422,7 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
   }
   .loader-sub { font-size: 0.7rem; color: var(--text-muted); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 28px; }
   .loader-bar { width: 100%; height: 5px; background: var(--border-light); border-radius: 99px; overflow: hidden; margin-bottom: 14px; }
-  .loader-bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--primary), var(--accent), var(--green)); border-radius: 99px; animation: loadFill 2s ease-in-out forwards; box-shadow: 0 0 16px rgba(37,99,235,.4); }
+  .loader-bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--primary), var(--accent), var(--green)); border-radius: 99px; animation: loadFill 1.4s ease-in-out forwards; box-shadow: 0 0 16px rgba(37,99,235,.4); }
   @keyframes loadFill { 0% { width: 0%; } 100% { width: 100%; } }
   .loader-text { font-size: 0.65rem; color: var(--text-muted); letter-spacing: 3px; text-transform: uppercase; font-weight: 700; animation: blinkText 1.4s ease-in-out infinite; }
   @keyframes blinkText { 0%,100% { opacity: .6; } 50% { opacity: 1; } }
@@ -436,44 +433,22 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
   .glow-text { text-shadow: 0 0 20px rgba(37,99,235,0.3), 0 0 40px rgba(139,92,246,0.15); }
   body.dark-mode .glow-text { text-shadow: 0 0 20px rgba(96,165,250,0.4), 0 0 40px rgba(167,139,250,0.25); }
 
-  /* ============================================
-     THEME TOGGLE BUTTON
-     ============================================ */
-  #themeToggle {
-    position: relative; overflow: hidden;
-  }
-  #themeToggle .theme-icon {
-    display: inline-block; transition: transform 0.6s cubic-bezier(0.34,1.56,0.64,1);
-  }
-  body.dark-mode #themeToggle .theme-icon {
-    transform: rotate(360deg);
-  }
+  #themeToggle { position: relative; overflow: hidden; }
+  #themeToggle .theme-icon { display: inline-block; transition: transform 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+  body.dark-mode #themeToggle .theme-icon { transform: rotate(360deg); }
 
-  /* ============================================
-     PAGE TRANSITIONS
-     ============================================ */
-  .screen {
-    animation: screenIn 0.6s cubic-bezier(0.22,1,0.36,1) both;
-  }
+  /* ===== PAGE TRANSITIONS ===== */
   @keyframes screenIn {
     0% { opacity: 0; transform: translateY(30px) scale(0.98); filter: blur(4px); }
     100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
-  }
-  .screen.slide-out-left {
-    animation: slideOutLeft 0.4s cubic-bezier(0.4,0,0.2,1) both;
-  }
-  .screen.slide-in-right {
-    animation: slideInRight 0.5s cubic-bezier(0.22,1,0.36,1) both;
-  }
-  @keyframes slideOutLeft {
-    to { opacity: 0; transform: translateX(-40px) scale(0.98); filter: blur(4px); }
   }
   @keyframes slideInRight {
     from { opacity: 0; transform: translateX(40px) scale(0.98); filter: blur(4px); }
     to { opacity: 1; transform: translateX(0) scale(1); filter: blur(0); }
   }
+  .anim-screen-in { animation: screenIn 0.6s cubic-bezier(0.22,1,0.36,1) both; }
+  .anim-slide-in-right { animation: slideInRight 0.5s cubic-bezier(0.22,1,0.36,1) both; }
 
-  /* Fade transition overlay */
   #screenTransition {
     position: fixed; inset: 0; z-index: 90;
     background: var(--bg-body);
@@ -482,28 +457,13 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
   }
   #screenTransition.active { opacity: 1; pointer-events: auto; }
 
-  /* ============================================
-     TIMER SOUND WAVE PULSE
-     ============================================ */
-  .timer-ring.sound-beat {
-    animation: soundBeat 0.4s ease-out;
-  }
-  @keyframes soundBeat {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.12); }
-    100% { transform: scale(1); }
-  }
-  .timer-ring.danger.sound-beat .ring-fill {
-    filter: drop-shadow(0 0 8px var(--rose));
-  }
+  .timer-ring.sound-beat { animation: soundBeat 0.4s ease-out; }
+  @keyframes soundBeat { 0%{transform:scale(1)} 50%{transform:scale(1.12)} 100%{transform:scale(1)} }
+  .timer-ring.danger.sound-beat .ring-fill { filter: drop-shadow(0 0 8px var(--rose)); }
 
-  /* ============================================
-     THEME TRANSITION OVERLAY
-     ============================================ */
   #themeOverlay {
     position: fixed; inset: 0; z-index: 9998; pointer-events: none;
-    background: radial-gradient(circle at var(--cx, 50%) var(--cy, 50%),
-      rgba(37,99,235,0.15) 0%, transparent 70%);
+    background: radial-gradient(circle at var(--cx, 50%) var(--cy, 50%), rgba(37,99,235,0.15) 0%, transparent 70%);
     opacity: 0; transition: opacity 0.5s ease;
   }
   #themeOverlay.active { opacity: 1; }
@@ -515,12 +475,10 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
 <div class="orb orb-1"></div>
 <div class="orb orb-2"></div>
 <div class="orb orb-3"></div>
-
-<!-- Transition overlay -->
 <div id="screenTransition"></div>
 <div id="themeOverlay"></div>
 
-<!-- ========== LOADING SCREEN ========== -->
+<!-- LOADING -->
 <div id="loadingScreen">
   <div class="loader-content">
     <div class="loader-ring-container">
@@ -565,7 +523,7 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
 <main class="max-w-5xl mx-auto w-full px-3 py-4 md:px-4 md:py-6 flex-1 flex flex-col justify-center items-center relative z-10">
 
   <!-- START SCREEN -->
-  <section id="startScreen" class="screen w-full max-w-lg glass-panel p-5 md:p-7 rounded-2xl my-auto reveal">
+  <section id="startScreen" class="w-full max-w-lg glass-panel p-5 md:p-7 rounded-2xl my-auto reveal">
     <div class="text-center mb-5">
       <div class="school-badge"><span class="school-name">SMAN 3 KASONGAN</span></div>
     </div>
@@ -621,7 +579,7 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
   </section>
 
   <!-- WHEEL SCREEN -->
-  <section id="wheelScreen" class="screen is-hidden w-full max-w-2xl my-auto">
+  <section id="wheelScreen" class="is-hidden w-full max-w-2xl my-auto">
     <div class="glass-panel p-4 md:p-5 rounded-2xl">
       <div class="flex items-center justify-between gap-2 flex-wrap mb-3">
         <div class="stat-pill">👤 <span id="playerName" style="color: var(--primary); font-weight:700;">Siswa</span></div>
@@ -646,7 +604,7 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
   </section>
 
   <!-- QUESTION SCREEN -->
-  <section id="questionScreen" class="screen is-hidden w-full max-w-2xl my-auto">
+  <section id="questionScreen" class="is-hidden w-full max-w-2xl my-auto">
     <div class="glass-panel p-4 md:p-6 rounded-2xl">
       <div class="flex items-center justify-between gap-2 flex-wrap mb-3">
         <div class="stat-pill"><span class="lbl">Putaran</span> <span id="qRoundCounter" style="color: var(--primary); font-family:monospace;">1/12</span></div>
@@ -676,7 +634,7 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
   </section>
 
   <!-- RESULT SCREEN -->
-  <section id="resultScreen" class="screen is-hidden w-full max-w-2xl my-auto space-y-3">
+  <section id="resultScreen" class="is-hidden w-full max-w-2xl my-auto space-y-3">
     <div class="kuis-selesai-banner">
       <div class="kuis-selesai-title">KUIS SELESAI</div>
       <div class="kuis-selesai-sub">🎉 12 Putaran Telah Selesai 🎉</div>
@@ -751,12 +709,14 @@ try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-
 <script>
 "use strict";
 
+/* ============ HELPERS ============ */
 const $ = id => document.getElementById(id);
 function show(id){const e=$(id);if(e)e.classList.remove('is-hidden');}
 function hide(id){const e=$(id);if(e)e.classList.add('is-hidden');}
 function setText(id,t){const e=$(id);if(e)e.textContent=t;}
 function safeConfetti(o){try{if(typeof confetti==='function')confetti(o);}catch(e){}}
 
+/* ============ AUDIO ============ */
 let audioCtx=null,soundMuted=false;
 function playTone(freq,dur,type,vol,delay){
   if(soundMuted)return;
@@ -788,11 +748,12 @@ function sfx(type){
   }catch(e){}
 }
 
-/* =========================================================
-   THEME TOGGLE
-   ========================================================= */
+/* ============ THEME TOGGLE ============ */
 const THEME_KEY = 'kuis_roda_theme';
-function applyTheme(dark, e) {
+let wheelBuiltOnce = false;
+let themeChangeInProgress = false;
+
+function applyTheme(dark) {
   if (dark) {
     document.body.classList.add('dark-mode');
     $('themeIcon').textContent = '☀️';
@@ -808,17 +769,16 @@ function applyTheme(dark, e) {
 function initTheme() {
   let saved = 'light';
   try { saved = localStorage.getItem(THEME_KEY) || 'light'; } catch(e) {}
-  // Cek preferensi sistem kalau belum ada
   if (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
     saved = 'dark';
   }
   applyTheme(saved === 'dark');
 
-  $('themeToggle').addEventListener('click', (e) => {
+  $('themeToggle').addEventListener('click', () => {
+    if (themeChangeInProgress) return;
+    themeChangeInProgress = true;
     sfx('theme');
-    const willBeDark = !document.body.classList.contains('dark-mode');
 
-    // Radial expand overlay dari tombol
     const rect = $('themeToggle').getBoundingClientRect();
     const cx = ((rect.left + rect.width/2) / window.innerWidth) * 100;
     const cy = ((rect.top + rect.height/2) / window.innerHeight) * 100;
@@ -828,48 +788,58 @@ function initTheme() {
     overlay.classList.add('active');
     setTimeout(() => overlay.classList.remove('active'), 500);
 
+    const willBeDark = !document.body.classList.contains('dark-mode');
     applyTheme(willBeDark);
+
+    // Rebuild wheel dengan warna tema baru (setelah transition bg selesai)
+    setTimeout(() => {
+      buildWheel();
+      themeChangeInProgress = false;
+    }, 350);
   });
 }
 
-/* =========================================================
-   PAGE TRANSITION
-   ========================================================= */
+/* ============ PAGE TRANSITION ============ */
 function switchScreen(fromId, toId, direction) {
-  // direction: 'forward' | 'back'
-  const fromEl = $(fromId);
+  const fromEl = fromId ? $(fromId) : null;
   const toEl = $(toId);
   const trans = $('screenTransition');
 
-  // Kalau tidak ada from, langsung tampil
+  if (!toEl) return;
+
+  // Jika from null atau tidak visible → langsung tampil dengan animasi
   if (!fromEl || fromEl.classList.contains('is-hidden')) {
-    if (toEl) { toEl.classList.remove('is-hidden','slide-in-right','slide-out-left'); }
+    toEl.classList.remove('is-hidden', 'anim-slide-in-right', 'anim-screen-in');
+    void toEl.offsetWidth;
+    toEl.classList.add('anim-screen-in');
     if (trans) { trans.classList.add('active'); setTimeout(() => trans.classList.remove('active'), 300); }
     return;
   }
 
-  // Fade overlay
-  trans.classList.add('active');
+  if (trans) trans.classList.add('active');
 
   setTimeout(() => {
+    // Sembunyikan from & bersihkan class animasi
     fromEl.classList.add('is-hidden');
-    fromEl.classList.remove('slide-in-right', 'slide-out-left');
+    fromEl.classList.remove('anim-slide-in-right', 'anim-screen-in');
 
-    if (toEl) {
-      toEl.classList.remove('is-hidden');
-      toEl.classList.remove('slide-out-left');
-      void toEl.offsetWidth; // force reflow
-      toEl.classList.add(direction === 'back' ? 'slide-in-right' : 'screen');
-      setTimeout(() => toEl.classList.remove('slide-in-right'), 600);
+    // Tampilkan to & bersihkan dulu agar animasi bisa re-trigger
+    toEl.classList.remove('is-hidden', 'anim-slide-in-right', 'anim-screen-in');
+    void toEl.offsetWidth; // FORCE REFLOW
+
+    if (direction === 'back') {
+      toEl.classList.add('anim-slide-in-right');
+      setTimeout(() => toEl.classList.remove('anim-slide-in-right'), 600);
+    } else {
+      toEl.classList.add('anim-screen-in');
+      setTimeout(() => toEl.classList.remove('anim-screen-in'), 700);
     }
 
-    setTimeout(() => trans.classList.remove('active'), 200);
+    setTimeout(() => { if (trans) trans.classList.remove('active'); }, 200);
   }, 300);
 }
 
-/* =========================================================
-   KATEGORI & SOAL
-   ========================================================= */
+/* ============ KATEGORI ============ */
 const CATEGORIES = [
   { id:'pengertian',   name:'Pengertian & Prinsip Dasar', short:'Pengertian',   icon:'📡', color:'#2563eb', points:100 },
   { id:'komponen',     name:'Komponen Sistem Inderaja',   short:'Komponen',     icon:'🛰️', color:'#0ea5e9', points:150 },
@@ -882,6 +852,7 @@ const CATEGORIES = [
   { id:'tokoh',        name:'Tokoh & Sejarah Inderaja',   short:'Tokoh',        icon:'👨‍🔬', color:'#ec4899', points:600 }
 ];
 
+/* ============ BANK SOAL ============ */
 const QUESTIONS = [
   { cat:'pengertian', q:"Penginderaan jauh atau remote sensing adalah ilmu dan seni untuk memperoleh informasi tentang objek, area, atau fenomena melalui...", options:["Kontak langsung dengan objek","Analisis data yang diperoleh dengan alat tanpa kontak langsung","Pengamatan visual di lapangan","Wawancara dengan penduduk lokal"], correct:1, explanation:"Penginderaan jauh memperoleh informasi melalui analisis data dengan alat tanpa kontak langsung dengan objek yang dikaji.", keyPoint:"Penginderaan jauh = tanpa kontak langsung." },
   { cat:'pengertian', q:"Prinsip dasar penginderaan jauh bekerja berdasarkan interaksi antara...", options:["Gelombang elektromagnetik dengan objek di permukaan bumi","Gelombang suara dengan atmosfer","Cahaya tampak dengan lensa kamera","Panas bumi dengan satelit"], correct:0, explanation:"Penginderaan jauh bekerja berdasarkan interaksi antara gelombang elektromagnetik dengan objek di permukaan bumi.", keyPoint:"Interaksi gelombang elektromagnetik dengan objek." },
@@ -930,9 +901,7 @@ const QUESTIONS = [
   { cat:'tokoh', q:"Satelit Sentinel-2 yang diluncurkan ESA memiliki resolusi temporal sekitar...", options:["1 hari","5 hari","16 hari","30 hari"], correct:1, explanation:"Konstelasi Sentinel-2 memberikan resolusi temporal 5 hari di ekuator.", keyPoint:"Sentinel-2 = resolusi temporal 5 hari." }
 ];
 
-/* =========================================================
-   TIMER + SOUND
-   ========================================================= */
+/* ============ TIMER ============ */
 const TIMER_SECONDS = 30;
 const CIRCUMFERENCE = 2 * Math.PI * 26;
 let timerInterval = null;
@@ -958,15 +927,10 @@ function startTimer() {
       ring.classList.remove('warning');
     }
 
-    // === SUARA DETIK-DETIK TERAKHIR ===
     if (timeLeft <= 5 && timeLeft >= 1 && timeLeft !== lastBeepSecond) {
       lastBeepSecond = timeLeft;
-      if (timeLeft > 3) {
-        sfx('beep'); // beep biasa 5-4
-      } else {
-        sfx('beepFinal'); // beep final 3-2-1
-      }
-      // Pulse visual
+      if (timeLeft > 3) sfx('beep');
+      else sfx('beepFinal');
       ring.classList.remove('sound-beat');
       void ring.offsetWidth;
       ring.classList.add('sound-beat');
@@ -1011,9 +975,7 @@ function onTimerEnd() {
   setTimeout(() => { hideRevealOverlay(); showFeedback(false, 0, cat, true); }, 1500);
 }
 
-/* =========================================================
-   STATE
-   ========================================================= */
+/* ============ STATE ============ */
 function shuffleOptions(q) {
   const arr = q.options.slice();
   const correctText = arr[q.correct];
@@ -1040,6 +1002,7 @@ window.addEventListener('beforeunload', function(e) {
   if (kuisAktif && !state.gameFinished) { e.preventDefault(); e.returnValue = ''; return ''; }
 });
 
+/* ============ GOOGLE APPS SCRIPT ============ */
 const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzYAkxiJ6UYTua_XwpeaK8UFZhZqzL6Haf7tGeSmixppNxAS1QD-SonsChuQi9Ioc1t7A/exec";
 
 function kirimNilai() {
@@ -1078,11 +1041,10 @@ function updateProgressBars() {
   ['wheelProgressBar','questionProgressBar'].forEach(id => { const e = $(id); if(e) e.style.width = pct + '%'; });
 }
 
-/* =========================================================
-   BUILD WHEEL
-   ========================================================= */
+/* ============ BUILD WHEEL ============ */
 function buildWheel() {
   const svg = $('wheelSvg');
+  if (!svg) return;
   const cx = 100, cy = 100, r = 92;
   const total = CATEGORIES.length;
   const segAngle = 360 / total;
@@ -1156,9 +1118,7 @@ function pickQuestion(catId) {
   return chosen;
 }
 
-/* =========================================================
-   SPIN
-   ========================================================= */
+/* ============ SPIN ============ */
 function spin() {
   if (state.gameFinished || state.spinning) return;
   state.spinning = true;
@@ -1189,7 +1149,11 @@ function spin() {
     t += 30 + progress * progress * 260;
   }
 
-  setTimeout(() => { state.spinning = false; $('spinBtn').disabled = false; onSpinComplete(targetIdx); }, duration + 100);
+  // ✅ FIX #1: JANGAN re-enable spinBtn di sini. Hanya panggil onSpinComplete.
+  setTimeout(() => {
+    state.spinning = false;
+    onSpinComplete(targetIdx);
+  }, duration + 100);
 }
 
 function onSpinComplete(targetIdx) {
@@ -1204,15 +1168,12 @@ function onSpinComplete(targetIdx) {
   setTimeout(() => startQuestion(cat), 1400);
 }
 
-/* =========================================================
-   QUESTION
-   ========================================================= */
+/* ============ QUESTION ============ */
 function startQuestion(cat) {
   if (state.gameFinished) return;
   state.currentQuestion = shuffleOptions(pickQuestion(cat.id));
   state.answerLocked = false; state.selectedAnswerIndex = null;
 
-  // Transition wheel → question
   switchScreen('wheelScreen', 'questionScreen', 'forward');
 
   setText('qRoundCounter', `${state.currentRound + 1}/${state.totalRounds}`);
@@ -1238,6 +1199,11 @@ function startQuestion(cat) {
   });
 
   hide('qFeedback'); hide('qActions');
+
+  // ✅ FIX #1 lanjutan: Re-enable spinBtn SETELAH pindah ke question screen.
+  const spinBtn = $('spinBtn');
+  if (spinBtn) spinBtn.disabled = false;
+
   setTimeout(() => startTimer(), 800);
 }
 
@@ -1450,8 +1416,15 @@ function returnToMainScreen() {
   const wheel = $('wheelSvg'); wheel.style.transition = 'none'; wheel.style.transform = 'rotate(0deg)';
   const nameInput = $('studentName'); if (nameInput) nameInput.value = '';
 
-  switchScreen('resultScreen', 'startScreen', 'back');
-  hide('wheelScreen'); hide('questionScreen'); hide('categoryResult'); hide('wheelInstruction'); hide('qFeedback'); hide('qActions');
+  // Reset spin button state
+  const spinBtn = $('spinBtn'); if (spinBtn) spinBtn.disabled = false;
+
+  // Hide semua screen dulu biar bersih
+  ['wheelScreen','questionScreen','resultScreen'].forEach(hide);
+  hide('categoryResult'); hide('wheelInstruction'); hide('qFeedback'); hide('qActions');
+
+  // Pindah ke start
+  switchScreen(null, 'startScreen', 'back');
   updateProgressBars();
 
   try {
@@ -1462,12 +1435,18 @@ function returnToMainScreen() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+/* ============ INIT ============ */
 function init() {
   initTheme();
   buildWheel();
+  wheelBuiltOnce = true;
 
-  // Rebuild wheel saat tema berubah (supaya stroke & gradient ikut)
-  const themeObserver = new MutationObserver(() => buildWheel());
+  // ✅ FIX #3: Observer hanya rebuild kalau sudah pernah build sekali
+  const themeObserver = new MutationObserver(() => {
+    if (!wheelBuiltOnce) return;
+    if (themeChangeInProgress) return; // hindari double-build
+    buildWheel();
+  });
   themeObserver.observe(document.body, { attributes: true, attributeFilter: ['class'] });
 
   $('soundToggle').addEventListener('click', () => {
@@ -1514,8 +1493,8 @@ document.addEventListener('DOMContentLoaded', init);
 window.addEventListener('load', () => {
   setTimeout(() => {
     const ls = document.getElementById('loadingScreen');
-    if (ls) { ls.classList.add('hidden'); setTimeout(() => ls.remove(), 800); }
-  }, 2200);
+    if (ls) { ls.classList.add('hidden'); setTimeout(() => ls.remove(), 700); }
+  }, 1400);
 });
 </script>
 </body>
