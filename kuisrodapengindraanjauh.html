@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+<meta name="theme-color" content="#f4f9ff" id="themeColorMeta">
+<title>Kuis Roda Berputar — Penginderaan Jauh SMAN 3 Kasongan</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<script>
+try { tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-serif'], display: ['Space Grotesk','sans-serif'] } } } }; } catch(e){}
+</script>
+<style>
+  :root {
+    --primary: #2563eb; --primary-light: #3b82f6; --primary-soft: #dbeafe;
+    --secondary: #0ea5e9; --accent: #8b5cf6; --accent-soft: #ede9fe;
+    --green: #10b981; --green-soft: #d1fae5;
+    --orange: #f59e0b; --orange-soft: #fef3c7;
+    --rose: #f43f5e; --rose-soft: #ffe4e6;
+    --bg-body: #f4f9ff; --bg-card: rgba(255,255,255,0.82); --bg-card-solid: #ffffff;
+    --bg-soft: #f0f7ff; --bg-header: rgba(255,255,255,0.88);
+    --text-dark: #0f172a; --text-muted: #475569;
+    --border-light: #e2e8f0;
+    --shadow: 0 12px 40px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.02);
+    --shadow-hover: 0 20px 60px rgba(37,99,235,0.08), 0 8px 24px rgba(0,0,0,0.02);
+    --particle-shadow: rgba(0,0,0,0.15);
+  }
+
+  /* ============ DARK MODE ============ */
+  body.dark-mode {
+    --primary: #60a5fa; --primary-light: #93c5fd; --primary-soft: #1e3a8a;
+    --secondary: #22d3ee; --accent: #a78bfa; --accent-soft: #4c1d95;
+    --green: #34d399; --green-soft: #064e3b;
+    --orange: #fbbf24; --orange-soft: #78350f;
+    --rose: #fb7185; --rose-soft: #7f1d1d;
+    --bg-body: #0a0f1e; --bg-card: rgba(17,24,39,0.82); --bg-card-solid: #111827;
+    --bg-soft: #1e293b; --bg-header: rgba(17,24,39,0.88);
+    --text-dark: #f1f5f9; --text-muted: #94a3b8;
+    --border-light: #334155;
+    --shadow: 0 12px 40px rgba(0,0,0,0.35), 0 4px 16px rgba(0,0,0,0.2);
+    --shadow-hover: 0 20px 60px rgba(96,165,250,0.15), 0 8px 24px rgba(0,0,0,0.3);
+    --particle-shadow: rgba(0,0,0,0.6);
+  }
+  body.dark-mode::before {
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(96,165,250,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 50%, rgba(167,139,250,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 50% 100%, rgba(52,211,153,0.06) 0%, transparent 50%);
+  }
+
+  * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body {
+    background: var(--bg-body); color: var(--text-dark); line-height: 1.7;
+    font-family: 'Inter', system-ui, sans-serif; font-size: 15px;
+    overflow-x: hidden; min-height: 100vh; position: relative;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+
+  .bg-pattern {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(37,99,235,0.04) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 50%, rgba(139,92,246,0.04) 0%, transparent 60%),
+      radial-gradient(ellipse at 50% 100%, rgba(16,185,129,0.03) 0%, transparent 50%);
+    transition: background 0.5s ease;
+  }
+
+  .orb {
+    position: fixed; border-radius: 50%; pointer-events: none; z-index: 0;
+    filter: blur(60px); opacity: 0.35;
+    animation: orbFloat 18s ease-in-out infinite alternate;
+    transition: opacity 0.5s ease;
+  }
+  body.dark-mode .orb { opacity: 0.22; }
+  .orb-1 { width: 300px; height: 300px; top: -80px; left: -80px; background: rgba(37,99,235,0.25); }
+  .orb-2 { width: 250px; height: 250px; bottom: -60px; right: -60px; background: rgba(139,92,246,0.22); animation-delay: -6s; }
+  .orb-3 { width: 200px; height: 200px; top: 40%; right: 10%; background: rgba(16,185,129,0.18); animation-delay: -12s; }
+  @keyframes orbFloat { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(30px,-30px) scale(1.15); } }
+
+  .is-hidden{display:none!important}
+
+  .glass-panel {
+    background: var(--bg-card);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border: 1px solid var(--border-light);
+    box-shadow: var(--shadow);
+    border-radius: 20px;
+    position: relative; overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.22,1,0.36,1);
+  }
+  .glass-panel:hover { box-shadow: var(--shadow-hover); border-color: var(--primary-light); transform: translateY(-2px); }
+  .glass-panel::before {
+    content:''; position: absolute; top:0; left:10%; right:10%; height:1px;
+    background: linear-gradient(90deg, transparent, rgba(37,99,235,0.3), transparent);
+  }
+
+  .school-badge {
+    display:inline-flex; align-items:center; justify-content:center;
+    padding:10px 28px;
+    background: linear-gradient(135deg, var(--primary-soft), var(--bg-card-solid));
+    border: 2.5px solid var(--primary-light);
+    border-radius: 99px;
+    font-size: 1rem; font-weight: 900; letter-spacing: 3px;
+    text-transform: uppercase; position: relative; overflow: hidden;
+    box-shadow: 0 8px 30px rgba(37,99,235,0.12), inset 0 1px 0 rgba(255,255,255,0.8);
+    white-space: nowrap;
+  }
+  @media (min-width:480px){ .school-badge{ padding:12px 36px; font-size:1.15rem; letter-spacing:4px; } }
+  @media (min-width:768px){ .school-badge{ padding:14px 44px; font-size:1.35rem; letter-spacing:5px; } }
+  .school-badge::before {
+    content:''; position: absolute; top:0; left:-100%; width:100%; height:100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+    animation: badgeShine 3s ease-in-out infinite;
+  }
+  @keyframes badgeShine{0%{left:-100%}60%,100%{left:100%}}
+
+  .school-name {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 50%, var(--secondary) 100%);
+    background-size: 300% auto;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    font-weight: 900; letter-spacing: 3px;
+    animation: shimmerText 3s ease-in-out infinite;
+  }
+  @keyframes shimmerText{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+
+  .teacher-name {
+    background: linear-gradient(135deg, var(--green) 0%, #34d399 30%, #10b981 60%, #6ee7b7 100%);
+    background-size: 250% auto;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    font-weight: 900; letter-spacing: 1.5px;
+    animation: shimmerText 3.5s ease-in-out infinite;
+  }
+  .nip-text { color: var(--green); font-family: monospace; font-weight: 700; letter-spacing: .5px; }
+
+  .navy-input {
+    background: var(--bg-card-solid); border: 1.5px solid var(--border-light);
+    color: var(--text-dark); transition: all .22s; width: 100%; border-radius: 12px;
+    padding: 13px 16px; font-size: 16px; font-weight: 500;
+  }
+  @media (min-width:640px){ .navy-input{font-size:.95rem;} }
+  .navy-input:focus{ outline:none; border-color: var(--primary-light); box-shadow: 0 0 0 4px rgba(37,99,235,0.12), 0 0 30px rgba(37,99,235,0.15); }
+  .navy-input::placeholder{color: var(--text-muted); opacity:0.6;}
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    color: #fff; font-weight: 900; letter-spacing: 2px;
+    padding: 15px 28px; border-radius: 14px;
+    border: 1px solid rgba(37,99,235,0.4);
+    box-shadow: 0 10px 34px rgba(37,99,235,0.25), 0 1px 0 rgba(255,255,255,0.4) inset;
+    transition: all .22s; cursor: pointer; font-size: .92rem;
+    width: 100%; font-family: 'Space Grotesk', sans-serif; text-transform: uppercase;
+    position: relative; overflow: hidden;
+  }
+  @media (min-width:480px){ .btn-primary{padding:16px 32px;font-size:1rem;} }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow: 0 14px 46px rgba(37,99,235,0.35); }
+  .btn-primary:active{ transform:translateY(0) scale(.98); }
+  .btn-primary::after {
+    content:''; position: absolute; top:0; left:-100%; width:100%; height:100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: shineBtn 2.6s ease-in-out infinite;
+  }
+  @keyframes shineBtn{0%{left:-100%}60%,100%{left:100%}}
+
+  .wheel-stage {
+    position: relative; width: min(88vw, 430px); aspect-ratio: 1;
+    margin: 20px auto;
+    filter: drop-shadow(0 20px 60px rgba(37,99,235,0.15));
+  }
+  #wheelSvg {
+    width: 100%; height: 100%; display: block;
+    transform-origin: center center; will-change: transform;
+    filter: drop-shadow(0 0 30px rgba(139,92,246,0.2));
+    cursor: pointer; overflow: visible;
+  }
+
+  .wheel-pointer {
+    position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+    width: 0; height: 0;
+    border-left: 30px solid transparent; border-right: 30px solid transparent;
+    border-top: 56px solid var(--orange);
+    filter: drop-shadow(0 4px 12px rgba(245,158,11,0.5));
+    z-index: 5; animation: pointerBounce 2s ease-in-out infinite;
+  }
+  @media (min-width:480px){ .wheel-pointer{ border-left-width:34px; border-right-width:34px; border-top-width:64px; top:-12px; } }
+  @keyframes pointerBounce{0%,100%{transform: translateX(-50%) translateY(0);}50%{transform: translateX(-50%) translateY(-5px);}}
+
+  .spin-btn {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    width: 33%; aspect-ratio: 1; border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, var(--bg-card-solid), var(--primary-soft) 40%, var(--primary-light) 100%);
+    border: 5px solid var(--bg-card-solid);
+    color: var(--primary);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 900; letter-spacing: 1px; font-size: clamp(0.85rem, 3.4vw, 1.2rem);
+    cursor: pointer;
+    box-shadow: 0 0 0 5px rgba(37,99,235,0.12), 0 12px 34px rgba(37,99,235,0.25), inset 0 3px 0 rgba(255,255,255,0.9);
+    z-index: 4; transition: transform .2s ease, box-shadow .2s;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    line-height: 1.05; animation: spinPulse 2.4s ease-in-out infinite;
+  }
+  @keyframes spinPulse{
+    0%,100%{ box-shadow: 0 0 0 5px rgba(37,99,235,0.12), 0 12px 34px rgba(37,99,235,0.25), inset 0 3px 0 rgba(255,255,255,0.9); }
+    50%    { box-shadow: 0 0 0 9px rgba(37,99,235,0.06), 0 12px 40px rgba(37,99,235,0.35), inset 0 3px 0 rgba(255,255,255,0.9); }
+  }
+  .spin-btn:hover{ transform: translate(-50%,-50%) scale(1.07); }
+  .spin-btn:active{ transform: translate(-50%,-50%) scale(.95); }
+  .spin-btn:disabled{ opacity: .65; cursor: wait; animation: none; }
+  .spin-btn .spin-icon{ font-size: 2.1em; display: block; animation: spinIcon 4s linear infinite; }
+  @keyframes spinIcon{ to { transform: rotate(360deg); } }
+
+  .opt-btn {
+    width: 100%; text-align: left;
+    background: var(--bg-card-solid);
+    border: 1.5px solid var(--border-light);
+    border-radius: 14px; padding: 13px 15px;
+    font-size: .85rem; color: var(--text-dark); font-weight: 500;
+    line-height: 1.4; transition: all .22s cubic-bezier(.4,0,.2,1);
+    cursor: pointer; position: relative; overflow: hidden;
+  }
+  @media (min-width:768px){ .opt-btn{font-size:.9rem;padding:14px 17px;} }
+  .opt-btn:hover {
+    background: var(--bg-soft); border-color: var(--primary-light);
+    transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,99,235,0.1);
+  }
+  .opt-btn:active{ transform: scale(.99); }
+  .opt-btn:disabled{ cursor: not-allowed; }
+  .opt-correct{ background: linear-gradient(135deg,#16a34a,#22c55e) !important; border-color: #4ade80 !important; color: #fff !important; box-shadow: 0 0 36px rgba(34,197,94,.4); }
+  .opt-wrong{ background: linear-gradient(135deg,#dc2626,#ef4444) !important; border-color: #f87171 !important; color: #fff !important; box-shadow: 0 0 36px rgba(239,68,68,.4); }
+
+  .cat-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 18px; border-radius: 99px;
+    font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+    font-size: .72rem;
+    box-shadow: 0 4px 20px currentColor, inset 0 1px 0 rgba(255,255,255,.5);
+    animation: catPop .5s cubic-bezier(.2,.9,.3,1.4);
+    white-space: nowrap;
+  }
+  @keyframes catPop{ 0%{opacity:0;transform:scale(.6)} 60%{transform:scale(1.08)} 100%{opacity:1;transform:scale(1)} }
+
+  .fb-section{ padding:11px 13px; border-radius:12px; margin-bottom:8px; background: var(--bg-soft); border:1px solid var(--border-light); }
+  .fb-section .fb-t{ font-size:.6rem; font-weight:900; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; display:flex; align-items:center; gap:6px; }
+  .fb-section .fb-b{ font-size:.8rem; line-height:1.55; color: var(--text-muted); }
+  .fb-section.why .fb-t{color: var(--green);}
+  .fb-section.key .fb-t{color: var(--primary);}
+  .fb-section.key .fb-b{ background: linear-gradient(90deg, var(--primary-soft), transparent); padding:9px 11px; border-radius:9px; border-left:3px solid var(--primary-light); color: var(--primary); font-weight:600; }
+
+  .stat-pill {
+    display: flex; align-items: center; gap: 6px;
+    padding: 7px 12px; border-radius: 99px;
+    background: var(--bg-card-solid); border: 1px solid var(--border-light);
+    font-size: .72rem; font-weight: 700;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  }
+  .stat-pill .lbl{ color: var(--text-muted); font-size:.62rem; text-transform:uppercase; letter-spacing:1px; }
+
+  .timer-ring { position: relative; width: 64px; height: 64px; flex-shrink: 0; }
+  .timer-ring svg { transform: rotate(-90deg); }
+  .timer-ring .ring-bg { fill: none; stroke: var(--border-light); stroke-width: 5; }
+  .timer-ring .ring-fill { fill: none; stroke: var(--primary-light); stroke-width: 5; stroke-linecap: round; transition: stroke-dashoffset 1s linear, stroke 0.3s; }
+  .timer-ring .ring-text {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 900; font-size: 1.1rem; color: var(--text-dark);
+  }
+  .timer-ring.warning .ring-fill { stroke: var(--orange); }
+  .timer-ring.danger .ring-fill { stroke: var(--rose); }
+  .timer-ring.danger .ring-text { color: var(--rose); animation: timerPulse 0.5s ease-in-out infinite; }
+  @keyframes timerPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.1)} }
+
+  #revealOverlay{ position: fixed; inset: 0; z-index: 100; display: none; align-items: center; justify-content: center; pointer-events: none; padding: 16px; }
+  #revealOverlay.show{ display: flex; }
+  #revealOverlay.backdrop{ backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); background: rgba(244,249,255,.75); pointer-events: auto; animation: fadeInBackdrop .25s ease; }
+  body.dark-mode #revealOverlay.backdrop{ background: rgba(10,15,30,.82); }
+  @keyframes fadeInBackdrop{ from{opacity:0} to{opacity:1} }
+  .reveal-badge{
+    font-size: clamp(1.6rem, 6.5vw, 3.5rem); font-weight: 900;
+    letter-spacing: 3px; text-transform: uppercase;
+    font-family: 'Space Grotesk', sans-serif;
+    padding: 16px 36px; border-radius: 20px;
+    text-align: center; line-height: 1.1;
+    animation: revealPop .7s cubic-bezier(.34,1.56,.64,1);
+  }
+  @media (min-width:480px){ .reveal-badge{ font-size: clamp(2rem,7vw,4.5rem); padding: 22px 52px; letter-spacing: 4px; border-radius: 24px; } }
+  @keyframes revealPop{ 0%{opacity:0;transform:scale(.4) rotate(-8deg)} 50%{transform:scale(1.1) rotate(2deg)} 100%{opacity:1;transform:scale(1) rotate(0)} }
+  .reveal-badge.benar{
+    color:#fff; background: linear-gradient(135deg,#15803d 0%,#22c55e 50%,#4ade80 100%);
+    box-shadow: 0 0 60px rgba(34,197,94,.5), 0 16px 44px rgba(0,0,0,.15), inset 0 2px 0 rgba(255,255,255,.5);
+    text-shadow: 0 0 18px rgba(255,255,255,.6); border: 2.5px solid rgba(255,255,255,.8);
+  }
+  .reveal-badge.benar::before{ content:'✓'; display:block; font-size:.6em; margin-bottom:-.1em; animation: checkPop .5s .25s cubic-bezier(.34,1.56,.64,1) both; }
+  .reveal-badge.salah{
+    color:#fff; background: linear-gradient(135deg,#7f1d1d 0%,#dc2626 50%,#f87171 100%);
+    box-shadow: 0 0 60px rgba(239,68,68,.5), 0 16px 44px rgba(0,0,0,.15), inset 0 2px 0 rgba(255,255,255,.5);
+    text-shadow: 0 0 18px rgba(255,255,255,.6); border: 2.5px solid rgba(255,255,255,.8);
+    animation: revealPop .7s cubic-bezier(.34,1.56,.64,1), salahShake .5s .7s ease;
+  }
+  .reveal-badge.salah::before{ content:'✗'; display:block; font-size:.6em; margin-bottom:-.1em; animation: checkPop .5s .25s cubic-bezier(.34,1.56,.64,1) both; }
+  .reveal-badge.timeout{
+    color:#fff; background: linear-gradient(135deg,#78350f 0%,#f59e0b 50%,#fbbf24 100%);
+    box-shadow: 0 0 60px rgba(245,158,11,.6), 0 16px 44px rgba(0,0,0,.15), inset 0 2px 0 rgba(255,255,255,.5);
+    text-shadow: 0 0 18px rgba(255,255,255,.6); border: 2.5px solid rgba(255,255,255,.8);
+    animation: revealPop .7s cubic-bezier(.34,1.56,.64,1), salahShake .5s .7s ease;
+  }
+  .reveal-badge.timeout::before{ content:'⏰'; display:block; font-size:.6em; margin-bottom:-.1em; animation: checkPop .5s .25s cubic-bezier(.34,1.56,.64,1) both; }
+  @keyframes checkPop{0%{opacity:0;transform:scale(0)}100%{opacity:1;transform:scale(1)}}
+  @keyframes salahShake{ 0%,100%{transform:translateX(0) rotate(0)} 20%{transform:translateX(-8px) rotate(-1.5deg)} 40%{transform:translateX(8px) rotate(1.5deg)} 60%{transform:translateX(-5px) rotate(-.8deg)} 80%{transform:translateX(5px) rotate(.8deg)} }
+
+  .burst-particle{ position: absolute; width: 10px; height: 10px; border-radius: 50%; pointer-events: none; animation: burstOut 1.1s cubic-bezier(.2,.9,.3,1) forwards; }
+  @keyframes burstOut{ 0%{opacity:1;transform:translate(0,0) scale(1)} 100%{opacity:0;transform:translate(var(--tx),var(--ty)) scale(.2)} }
+
+  .achievement-card{
+    position: relative; padding: 14px 16px; border-radius: 16px;
+    border: 2px solid; overflow: hidden;
+    animation: achIn .7s cubic-bezier(.2,.9,.3,1.3);
+  }
+  @keyframes achIn{0%{opacity:0;transform:scale(.85) translateY(20px)}100%{opacity:1;transform:scale(1) translateY(0)}}
+  .achievement-card::before{ content:''; position: absolute; inset: 0; background: radial-gradient(circle at 30% 20%, rgba(255,255,255,.4), transparent 60%); pointer-events: none; }
+  .ach-tier-gold{ background: linear-gradient(135deg, rgba(251,191,36,.15), rgba(245,158,11,.05)); border-color: rgba(251,191,36,.6); box-shadow: 0 0 40px rgba(251,191,36,.2); }
+  .ach-tier-emerald{ background: linear-gradient(135deg, rgba(34,197,94,.15), rgba(34,197,94,.05)); border-color: rgba(34,197,94,.6); box-shadow: 0 0 40px rgba(34,197,94,.2); }
+  .ach-tier-blue{ background: linear-gradient(135deg, rgba(37,99,235,.15), rgba(37,99,235,.05)); border-color: rgba(37,99,235,.6); box-shadow: 0 0 40px rgba(37,99,235,.2); }
+  .ach-tier-violet{ background: linear-gradient(135deg, rgba(139,92,246,.15), rgba(139,92,246,.05)); border-color: rgba(139,92,246,.6); box-shadow: 0 0 40px rgba(139,92,246,.2); }
+  .ach-tier-slate{ background: linear-gradient(135deg, rgba(148,163,184,.15), rgba(148,163,184,.05)); border-color: rgba(148,163,184,.6); box-shadow: 0 0 40px rgba(148,163,184,.2); }
+  .ach-icon{ width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; flex-shrink: 0; background: var(--bg-card-solid); border: 1px solid var(--border-light); }
+
+  .cat-stat-row{ display: flex; align-items: center; gap: 8px; padding: 8px 10px; border-radius: 10px; background: var(--bg-soft); border: 1px solid var(--border-light); }
+  .cat-stat-bar{ flex: 1; height: 6px; border-radius: 99px; background: var(--border-light); overflow: hidden; }
+  .cat-stat-bar > i{ display: block; height: 100%; border-radius: 99px; transition: width 1.2s cubic-bezier(.2,.9,.3,1.2); }
+
+  .kuis-selesai-banner{
+    text-align: center; padding: 20px 16px; border-radius: 20px;
+    background: linear-gradient(135deg, var(--primary-soft), var(--accent-soft), var(--green-soft));
+    border: 2px solid rgba(37,99,235,.3);
+    box-shadow: 0 0 50px rgba(37,99,235,.1);
+    margin-bottom: 18px; animation: selesaiIn .9s cubic-bezier(.2,.9,.3,1.3);
+    position: relative; overflow: hidden;
+  }
+  .kuis-selesai-banner::before{ content:''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 0%, rgba(37,99,235,.15), transparent 60%); pointer-events: none; }
+  @keyframes selesaiIn{0%{opacity:0;transform:scale(.7) translateY(-30px)}60%{transform:scale(1.05) translateY(4px)}100%{opacity:1;transform:scale(1) translateY(0)}}
+  .kuis-selesai-title{
+    font-family: 'Space Grotesk', sans-serif; font-size: 2.2rem; font-weight: 900;
+    letter-spacing: 3px; text-transform: uppercase;
+    background: linear-gradient(135deg, var(--primary), var(--accent), var(--secondary));
+    background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent;
+    animation: shimmerText 3s ease-in-out infinite; line-height: 1; margin-bottom: 8px;
+  }
+  @media (min-width:480px){ .kuis-selesai-title{ font-size: 3rem; letter-spacing: 5px; } }
+  @media (min-width:768px){ .kuis-selesai-title{ font-size: 3.8rem; letter-spacing: 6px; } }
+  .kuis-selesai-sub{ font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); font-weight: 700; }
+  @media (min-width:480px){ .kuis-selesai-sub{ font-size: .85rem; } }
+
+  .btn-home{
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 50%, var(--secondary) 100%);
+    color: #fff; font-weight: 900; letter-spacing: 2px;
+    padding: 18px 28px; border-radius: 16px;
+    border: 2px solid rgba(37,99,235,.4);
+    box-shadow: 0 0 40px rgba(37,99,235,.25), 0 14px 40px rgba(0,0,0,.08), inset 0 1px 0 rgba(255,255,255,.5);
+    transition: all .22s; cursor: pointer; font-size: 1rem; width: 100%;
+    font-family: 'Space Grotesk', sans-serif; text-transform: uppercase;
+    position: relative; overflow: hidden;
+    animation: homePulse 2s ease-in-out infinite;
+  }
+  @media (min-width:480px){ .btn-home{ padding: 20px 36px; font-size: 1.15rem; letter-spacing: 3px; } }
+  @keyframes homePulse{
+    0%,100%{ box-shadow: 0 0 40px rgba(37,99,235,.25), 0 14px 40px rgba(0,0,0,.08), inset 0 1px 0 rgba(255,255,255,.5); }
+    50%    { box-shadow: 0 0 70px rgba(139,92,246,.5), 0 14px 40px rgba(0,0,0,.08), inset 0 1px 0 rgba(255,255,255,.5); }
+  }
+  .btn-home:hover{ transform: translateY(-3px) scale(1.02); }
+  .btn-home:active{ transform: translateY(0) scale(.98); }
+  .btn-home::after{ content:''; position: absolute; top:0; left:-100%; width:100%; height:100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,.5), transparent); animation: shineBtn 2.6s ease-in-out infinite; }
+
+  .progress-container{ width: 100%; height: 8px; border-radius: 99px; background: var(--border-light); overflow: hidden; }
+  .progress-fill{ height: 100%; width: 0%; border-radius: 99px; background: linear-gradient(90deg, var(--primary), var(--accent), var(--green)); box-shadow: 0 0 12px rgba(37,99,235,.3); transition: width .5s cubic-bezier(.4,0,.2,1); }
+
+  @media (max-width: 640px){
+    .glass-panel{ padding: 14px; }
+    main{ padding: 12px 10px 20px !important; }
+    header{ padding: 10px 12px !important; }
+    .wheel-stage{ width: min(92vw, 380px); margin: 14px auto; }
+    .wheel-pointer{ border-left-width:26px; border-right-width:26px; border-top-width:48px; top:-8px; }
+    .opt-btn{ min-height: 48px; padding: 14px 16px; font-size: 0.9rem; }
+    .btn-primary, .btn-home{ min-height: 48px; }
+    #spinBtn{ min-width: 88px; min-height: 88px; }
+  }
+  @media (max-width: 380px){
+    body{ font-size: 14px; }
+    .opt-btn{ padding: 13px 12px; font-size: .85rem; border-radius: 12px; min-height: 48px; }
+    .wheel-stage{ width: min(94vw, 330px); }
+    .school-badge{ padding: 8px 18px; font-size:.85rem; letter-spacing:2px; }
+    .kuis-selesai-title{ font-size: 1.8rem; }
+  }
+  .overflow-safe{ word-wrap: break-word; overflow-wrap: break-word; }
+
+  .opt-btn:focus-visible, .btn-primary:focus-visible, .btn-home:focus-visible,
+  .spin-btn:focus-visible, #spinBtn:focus-visible, #soundToggle:focus-visible, #themeToggle:focus-visible{
+    outline: 3px solid var(--primary-light); outline-offset: 3px;
+  }
+
+  #loadingScreen {
+    position: fixed; inset: 0; z-index: 9999;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(244,249,255,0.96);
+    backdrop-filter: blur(12px);
+    transition: opacity 0.7s ease, visibility 0.7s ease;
+    flex-direction: column; padding: 20px;
+  }
+  body.dark-mode #loadingScreen{ background: rgba(10,15,30,0.96); }
+  #loadingScreen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+  .loader-content { text-align: center; max-width: 340px; width: 100%; }
+  .loader-ring-container { position: relative; width: 140px; height: 140px; margin: 0 auto; }
+  .loader-ring { position: absolute; border-radius: 50%; border: 4px solid transparent; animation: spinReverse 1.4s cubic-bezier(0.34,1.56,0.64,1) infinite; }
+  .loader-ring:nth-child(1) { width: 140px; height: 140px; border-top-color: var(--rose); border-right-color: var(--rose); animation-duration: 1.2s; }
+  .loader-ring:nth-child(2) { width: 110px; height: 110px; top: 15px; left: 15px; border-bottom-color: var(--orange); border-left-color: var(--orange); animation-direction: reverse; animation-duration: 1.0s; }
+  .loader-ring:nth-child(3) { width: 80px; height: 80px; top: 30px; left: 30px; border-top-color: var(--green); border-right-color: var(--green); animation-duration: 0.8s; }
+  @keyframes spinReverse { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  .loader-title {
+    font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem; font-weight: 900;
+    letter-spacing: 4px; text-transform: uppercase;
+    background: linear-gradient(135deg, var(--primary), var(--accent), var(--secondary));
+    background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent;
+    animation: shimmerText 2s ease-in-out infinite; margin-bottom: 6px; line-height: 1.2;
+  }
+  .loader-sub { font-size: 0.7rem; color: var(--text-muted); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 28px; }
+  .loader-bar { width: 100%; height: 5px; background: var(--border-light); border-radius: 99px; overflow: hidden; margin-bottom: 14px; }
+  .loader-bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--primary), var(--accent), var(--green)); border-radius: 99px; animation: loadFill 2s ease-in-out forwards; box-shadow: 0 0 16px rgba(37,99,235,.4); }
+  @keyframes loadFill { 0% { width: 0%; } 100% { width: 100%; } }
+  .loader-text { font-size: 0.65rem; color: var(--text-muted); letter-spacing: 3px; text-transform: uppercase; font-weight: 700; animation: blinkText 1.4s ease-in-out infinite; }
+  @keyframes blinkText { 0%,100% { opacity: .6; } 50% { opacity: 1; } }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: all 0.8s cubic-bezier(0.22,1,0.36,1); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  .glow-text { text-shadow: 0 0 20px rgba(37,99,235,0.3), 0 0 40px rgba(139,92,246,0.15); }
+  body.dark-mode .glow-text { text-shadow: 0 0 20px rgba(96,165,250,0.4), 0 0 40px rgba(167,139,250,0.25); }
+
+  /* ============================================
+     THEME TOGGLE BUTTON
+     ============================================ */
+  #themeToggle {
+    position: relative; overflow: hidden;
+  }
+  #themeToggle .theme-icon {
+    display: inline-block; transition: transform 0.6s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  body.dark-mode #themeToggle .theme-icon {
+    transform: rotate(360deg);
+  }
+
+  /* ============================================
+     PAGE TRANSITIONS
+     ============================================ */
+  .screen {
+    animation: screenIn 0.6s cubic-bezier(0.22,1,0.36,1) both;
+  }
+  @keyframes screenIn {
+    0% { opacity: 0; transform: translateY(30px) scale(0.98); filter: blur(4px); }
+    100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+  }
+  .screen.slide-out-left {
+    animation: slideOutLeft 0.4s cubic-bezier(0.4,0,0.2,1) both;
+  }
+  .screen.slide-in-right {
+    animation: slideInRight 0.5s cubic-bezier(0.22,1,0.36,1) both;
+  }
+  @keyframes slideOutLeft {
+    to { opacity: 0; transform: translateX(-40px) scale(0.98); filter: blur(4px); }
+  }
+  @keyframes slideInRight {
+    from { opacity: 0; transform: translateX(40px) scale(0.98); filter: blur(4px); }
+    to { opacity: 1; transform: translateX(0) scale(1); filter: blur(0); }
+  }
+
+  /* Fade transition overlay */
+  #screenTransition {
+    position: fixed; inset: 0; z-index: 90;
+    background: var(--bg-body);
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  #screenTransition.active { opacity: 1; pointer-events: auto; }
+
+  /* ============================================
+     TIMER SOUND WAVE PULSE
+     ============================================ */
+  .timer-ring.sound-beat {
+    animation: soundBeat 0.4s ease-out;
+  }
+  @keyframes soundBeat {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.12); }
+    100% { transform: scale(1); }
+  }
+  .timer-ring.danger.sound-beat .ring-fill {
+    filter: drop-shadow(0 0 8px var(--rose));
+  }
+
+  /* ============================================
+     THEME TRANSITION OVERLAY
+     ============================================ */
+  #themeOverlay {
+    position: fixed; inset: 0; z-index: 9998; pointer-events: none;
+    background: radial-gradient(circle at var(--cx, 50%) var(--cy, 50%),
+      rgba(37,99,235,0.15) 0%, transparent 70%);
+    opacity: 0; transition: opacity 0.5s ease;
+  }
+  #themeOverlay.active { opacity: 1; }
+</style>
+</head>
+<body>
+
+<div class="bg-pattern"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<!-- Transition overlay -->
+<div id="screenTransition"></div>
+<div id="themeOverlay"></div>
+
+<!-- ========== LOADING SCREEN ========== -->
+<div id="loadingScreen">
+  <div class="loader-content">
+    <div class="loader-ring-container">
+      <div class="loader-ring"></div>
+      <div class="loader-ring"></div>
+      <div class="loader-ring"></div>
+    </div>
+    <div class="loader-title">KUIS RODA BERPUTAR</div>
+    <div class="loader-sub">Geografi • Penginderaan Jauh</div>
+    <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+    <div class="loader-text">Memuat...</div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="w-full border-b backdrop-blur-xl sticky top-0 z-40 px-3 py-2.5" style="background: var(--bg-header); border-color: var(--border-light); transition: background-color 0.5s ease;">
+  <div class="max-w-6xl mx-auto flex items-center justify-between gap-2">
+    <div class="flex items-center gap-2 min-w-0 flex-1">
+      <div class="w-9 h-9 md:w-10 md:h-10 rounded-xl flex items-center justify-center text-white font-black text-lg md:text-xl shrink-0"
+        style="background: linear-gradient(135deg, var(--primary), var(--accent)); box-shadow: 0 4px 16px rgba(37,99,235,.25);">🛰️</div>
+      <div class="min-w-0 flex-1">
+        <h1 class="text-[11px] sm:text-sm md:text-lg font-black tracking-wide truncate glow-text"
+          style="font-family:'Space Grotesk',sans-serif; color: var(--text-dark);">KUIS RODA BERPUTAR</h1>
+        <p class="text-[9px] md:text-[11px] font-medium truncate">
+          <span class="school-name">SMAN 3 KASONGAN</span>
+          <span style="color: var(--primary-light);"> • </span>
+          <span style="color: var(--primary); font-weight: 600;">Penginderaan Jauh</span>
+        </p>
+      </div>
+    </div>
+    <div class="flex items-center gap-1.5 shrink-0">
+      <button class="w-9 h-9 rounded-full flex items-center justify-center border cursor-pointer transition-all hover:scale-110"
+        style="background: var(--bg-card-solid); border-color: var(--border-light);" id="themeToggle" type="button" aria-label="Ganti mode gelap/terang">
+        <span class="theme-icon" id="themeIcon">🌙</span>
+      </button>
+      <button class="w-9 h-9 rounded-full flex items-center justify-center border cursor-pointer transition-all hover:scale-110"
+        style="background: var(--bg-card-solid); border-color: var(--border-light);" id="soundToggle" type="button" aria-label="Aktifkan atau matikan suara">🔊</button>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-5xl mx-auto w-full px-3 py-4 md:px-4 md:py-6 flex-1 flex flex-col justify-center items-center relative z-10">
+
+  <!-- START SCREEN -->
+  <section id="startScreen" class="screen w-full max-w-lg glass-panel p-5 md:p-7 rounded-2xl my-auto reveal">
+    <div class="text-center mb-5">
+      <div class="school-badge"><span class="school-name">SMAN 3 KASONGAN</span></div>
+    </div>
+    <div class="text-center mb-5">
+      <div class="text-5xl md:text-6xl mb-2" style="filter:drop-shadow(0 8px 24px rgba(37,99,235,.2))">🛰️</div>
+      <h2 class="text-xl md:text-2xl lg:text-3xl font-black mb-1.5 leading-tight glow-text"
+        style="font-family:'Space Grotesk',sans-serif; color: var(--text-dark);">KUIS RODA BERPUTAR</h2>
+      <p class="text-xs md:text-sm" style="color: var(--text-muted);">Penginderaan Jauh • Geografi Kelas X / Fase E</p>
+    </div>
+
+    <div class="rounded-xl p-3 md:p-4 mb-5 space-y-2 text-xs md:text-sm" style="background: var(--bg-soft); border: 1px solid var(--border-light);">
+      <div class="flex items-center gap-2.5">
+        <span class="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0"
+          style="background: var(--primary-soft); color: var(--primary); border: 1px solid var(--primary-light);">1</span>
+        <span style="color: var(--text-muted);">Putar roda untuk memilih <b style="color: var(--primary);">kategori soal</b></span>
+      </div>
+      <div class="flex items-center gap-2.5">
+        <span class="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0"
+          style="background: var(--primary-soft); color: var(--primary); border: 1px solid var(--primary-light);">2</span>
+        <span style="color: var(--text-muted);">Jawab dalam <b style="color: var(--primary);">30 detik</b> → dapat <b style="color: var(--primary);">poin</b></span>
+      </div>
+      <div class="flex items-center gap-2.5">
+        <span class="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0"
+          style="background: var(--primary-soft); color: var(--primary); border: 1px solid var(--primary-light);">3</span>
+        <span style="color: var(--text-muted);">Mainkan <b style="color: var(--primary);">12 putaran</b> — kumpulkan poin tertinggi!</span>
+      </div>
+    </div>
+
+    <form id="startForm" class="space-y-3.5">
+      <div>
+        <label for="studentName" class="block text-[11px] md:text-xs font-bold uppercase tracking-wider mb-1.5" style="color: var(--primary);">
+          Nama Siswa <span style="color: var(--rose);">*</span>
+        </label>
+        <input type="text" id="studentName" required placeholder="Tulis namamu di sini..." class="navy-input">
+      </div>
+      <button type="submit" class="btn-primary">▶ MULAI PERMAINAN</button>
+    </form>
+
+    <div id="bestScoreSummary" class="is-hidden mt-4 pt-4 text-center" style="border-top: 1px solid var(--border-light);">
+      <div class="text-[10px] uppercase tracking-widest font-bold mb-1.5" style="color: var(--primary);">🏆 Skor Terbaikmu</div>
+      <div class="flex justify-center gap-3 text-xs">
+        <div><div class="text-[10px] uppercase" style="color: var(--text-muted);">Total Poin</div>
+          <div id="bestScorePoints" class="font-bold text-sm md:text-base" style="color: var(--primary);">0</div></div>
+        <div style="border-left: 1px solid var(--border-light);"></div>
+        <div><div class="text-[10px] uppercase" style="color: var(--text-muted);">Akurasi</div>
+          <div id="bestScoreAcc" class="font-bold text-sm md:text-base" style="color: var(--green);">0%</div></div>
+        <div style="border-left: 1px solid var(--border-light);"></div>
+        <div><div class="text-[10px] uppercase" style="color: var(--text-muted);">Gelar</div>
+          <div id="bestScoreTitle" class="font-bold text-[11px] mt-0.5" style="color: var(--orange);">—</div></div>
+      </div>
+    </div>
+    <div class="text-center mt-4 text-[10px]" style="color: var(--text-muted);">© SMAN 3 Kasongan • Geografi Kelas X / Fase E</div>
+  </section>
+
+  <!-- WHEEL SCREEN -->
+  <section id="wheelScreen" class="screen is-hidden w-full max-w-2xl my-auto">
+    <div class="glass-panel p-4 md:p-5 rounded-2xl">
+      <div class="flex items-center justify-between gap-2 flex-wrap mb-3">
+        <div class="stat-pill">👤 <span id="playerName" style="color: var(--primary); font-weight:700;">Siswa</span></div>
+        <div class="flex gap-1.5 flex-wrap">
+          <div class="stat-pill"><span class="lbl">Putaran</span> <span id="roundCounter" style="color: var(--primary); font-family:monospace;">1/12</span></div>
+          <div class="stat-pill">⚡ <span id="scoreCounter" style="color: var(--green); font-family:monospace;">0</span></div>
+        </div>
+      </div>
+      <div class="progress-container mb-3"><div id="wheelProgressBar" class="progress-fill"></div></div>
+      <div class="wheel-stage">
+        <div class="wheel-pointer"></div>
+        <svg id="wheelSvg" viewBox="0 0 200 200" role="img" aria-label="Roda putar kategori soal penginderaan jauh"></svg>
+        <button id="spinBtn" class="spin-btn" type="button" aria-label="Putar roda untuk memilih kategori soal">
+          <span class="spin-icon">🎯</span><span>PUTAR</span>
+        </button>
+      </div>
+      <div id="wheelInstruction" class="text-center mt-3 md:mt-4">
+        <div class="text-xs md:text-sm font-semibold" style="color: var(--primary);">👆 Tekan tombol <b>PUTAR</b> di tengah roda untuk memilih kategori!</div>
+      </div>
+      <div id="categoryResult" class="is-hidden text-center mt-3 md:mt-4" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- QUESTION SCREEN -->
+  <section id="questionScreen" class="screen is-hidden w-full max-w-2xl my-auto">
+    <div class="glass-panel p-4 md:p-6 rounded-2xl">
+      <div class="flex items-center justify-between gap-2 flex-wrap mb-3">
+        <div class="stat-pill"><span class="lbl">Putaran</span> <span id="qRoundCounter" style="color: var(--primary); font-family:monospace;">1/12</span></div>
+        <div class="flex items-center gap-2">
+          <div class="timer-ring" id="timerRing">
+            <svg width="64" height="64" viewBox="0 0 64 64">
+              <circle class="ring-bg" cx="32" cy="32" r="26"></circle>
+              <circle class="ring-fill" cx="32" cy="32" r="26" id="timerRingFill" stroke-dasharray="163.36" stroke-dashoffset="0"></circle>
+            </svg>
+            <div class="ring-text" id="timerText">30</div>
+          </div>
+          <div class="stat-pill">⚡ <span id="qScoreCounter" style="color: var(--green); font-family:monospace;">0</span></div>
+        </div>
+      </div>
+      <div class="progress-container mb-3"><div id="questionProgressBar" class="progress-fill"></div></div>
+      <div id="qCatBadge" class="text-center mb-3"></div>
+      <div class="rounded-xl p-3.5 md:p-5 mb-3" style="background: var(--bg-soft); border: 1px solid var(--border-light);">
+        <div class="text-[10px] uppercase tracking-widest font-bold mb-1.5" style="color: var(--primary);">❓ Pertanyaan</div>
+        <h3 id="qText" class="text-base md:text-lg font-bold leading-relaxed overflow-safe" style="color: var(--text-dark);" aria-live="polite">Memuat...</h3>
+      </div>
+      <div id="qOptions" class="grid grid-cols-1 md:grid-cols-2 gap-2.5 md:gap-3 mb-3" role="radiogroup" aria-label="Pilihan Jawaban"></div>
+      <div id="qFeedback" class="is-hidden" aria-live="polite" aria-atomic="true"></div>
+      <div id="qActions" class="is-hidden flex gap-2 mt-3">
+        <button id="btnNextSpin" type="button" class="btn-primary flex-1" style="background: linear-gradient(135deg,var(--primary),var(--accent));">🎡 PUTAR LAGI</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULT SCREEN -->
+  <section id="resultScreen" class="screen is-hidden w-full max-w-2xl my-auto space-y-3">
+    <div class="kuis-selesai-banner">
+      <div class="kuis-selesai-title">KUIS SELESAI</div>
+      <div class="kuis-selesai-sub">🎉 12 Putaran Telah Selesai 🎉</div>
+    </div>
+    <div class="glass-panel p-4 md:p-8 rounded-2xl" style="border: 2px solid rgba(37,99,235,.2);">
+      <div class="border-b-2 border-dashed pb-3 mb-4 text-center" style="border-color: var(--border-light);">
+        <div class="school-name text-base md:text-lg tracking-widest mt-2">SMAN 3 KASONGAN</div>
+        <div class="text-[9px] md:text-[10px] font-bold uppercase mt-1" style="color: var(--primary);">HASIL TUGAS INDIVIDU</div>
+      </div>
+      <div class="text-center mb-5">
+        <div class="text-[10px] uppercase tracking-widest font-bold mb-1" style="color: var(--text-muted);">Nama Siswa</div>
+        <div id="rName" class="text-xl md:text-3xl font-black leading-tight overflow-safe glow-text"
+          style="font-family:'Space Grotesk',sans-serif; color: var(--text-dark);">—</div>
+      </div>
+      <div id="achievementWrap" class="mb-5"></div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4">
+        <div class="p-2.5 rounded-xl text-center" style="background: var(--green-soft); border: 1px solid var(--green);">
+          <div class="text-[9px] uppercase tracking-widest font-bold mb-0.5" style="color: var(--green);">Benar</div>
+          <div id="rCorrect" class="text-lg md:text-2xl font-black" style="color: var(--green); font-family:'Space Grotesk',sans-serif;">0</div>
+        </div>
+        <div class="p-2.5 rounded-xl text-center" style="background: var(--rose-soft); border: 1px solid var(--rose);">
+          <div class="text-[9px] uppercase tracking-widest font-bold mb-0.5" style="color: var(--rose);">Salah</div>
+          <div id="rWrong" class="text-lg md:text-2xl font-black" style="color: var(--rose); font-family:'Space Grotesk',sans-serif;">0</div>
+        </div>
+        <div class="p-2.5 rounded-xl text-center" style="background: var(--primary-soft); border: 1px solid var(--primary);">
+          <div class="text-[9px] uppercase tracking-widest font-bold mb-0.5" style="color: var(--primary);">Akurasi</div>
+          <div id="rAcc" class="text-lg md:text-2xl font-black" style="color: var(--primary); font-family:'Space Grotesk',sans-serif;">0%</div>
+        </div>
+        <div class="p-2.5 rounded-xl text-center" style="background: var(--orange-soft); border: 1px solid var(--orange);">
+          <div class="text-[9px] uppercase tracking-widest font-bold mb-0.5" style="color: var(--orange);">Streak</div>
+          <div id="rStreak" class="text-lg md:text-2xl font-black" style="color: var(--orange); font-family:'Space Grotesk',sans-serif;">0🔥</div>
+        </div>
+      </div>
+      <div class="p-4 rounded-xl text-center mb-4" style="background: linear-gradient(135deg, var(--primary-soft), var(--accent-soft)); border: 1px solid var(--primary-light);">
+        <div class="text-[10px] uppercase tracking-widest font-bold mb-1" style="color: var(--primary);">⚡ Total Poin Diperoleh</div>
+        <div id="totalScoreDisplay" class="text-4xl md:text-6xl font-black glow-text"
+          style="font-family:'Space Grotesk',sans-serif; color: var(--primary);">0</div>
+      </div>
+      <div class="mb-4">
+        <div class="text-[10px] uppercase tracking-widest font-bold mb-2 text-center" style="color: var(--text-muted);">📊 Capaian per Kategori</div>
+        <div id="catBreakdown" class="space-y-1.5"></div>
+      </div>
+      <div class="mt-4 pt-4 text-center" style="border-top: 1px solid var(--border-light);">
+        <div class="text-[9px] md:text-[10px] uppercase tracking-widest font-black mb-1.5 flex items-center justify-center gap-1.5" style="color: var(--green);">
+          <span>👨‍🏫</span> GURU PENGAMPU
+        </div>
+        <div class="teacher-name text-sm md:text-base">SYAHRANI, S.Pd.</div>
+        <div class="nip-text text-[10px] md:text-[11px] mt-0.5">NIP. 197512172005011016</div>
+      </div>
+    </div>
+    <button id="btnHome" type="button" class="btn-home">🏠 KEMBALI KE HALAMAN UTAMA</button>
+    <button id="btnCopy" type="button" class="w-full font-bold p-3 rounded-xl text-xs cursor-pointer transition-all hover:scale-[1.02]"
+      style="background: linear-gradient(135deg, var(--primary), var(--accent)); color:#fff; border: 1px solid var(--primary-light);">📋 SALIN HASIL</button>
+    <button id="btnKirim" type="button" class="btn-home" style="background: linear-gradient(135deg,#22c55e 0%,#16a34a 50%,#15803d 100%); border-color: rgba(74,222,128,.6);">📤 KIRIM NILAI KE GURU</button>
+    <div id="kirimStatus" class="is-hidden text-center text-xs font-bold px-3 py-2 rounded-xl"
+      style="background: var(--bg-soft); border:1px solid var(--border-light);" aria-live="polite"></div>
+  </section>
+
+</main>
+
+<div id="revealOverlay" aria-hidden="true">
+  <div class="reveal-badge" id="revealBadge">BENAR</div>
+</div>
+
+<footer class="w-full text-center py-3 px-3" style="background: var(--bg-header); border-top: 1px solid var(--border-light); transition: background-color 0.5s ease;">
+  <div class="text-[10px] md:text-[11px] font-semibold tracking-wider" style="color: var(--text-muted);">
+    🛰️ <span class="school-name">SMAN 3 KASONGAN</span> • Geografi Kelas X / Fase E • Penginderaan Jauh
+  </div>
+  <div class="text-[9px] mt-1" style="color: var(--text-muted); opacity:.6;">© 2024 — Media Pembelajaran Interaktif</div>
+</footer>
+
+<script>
+"use strict";
+
+const $ = id => document.getElementById(id);
+function show(id){const e=$(id);if(e)e.classList.remove('is-hidden');}
+function hide(id){const e=$(id);if(e)e.classList.add('is-hidden');}
+function setText(id,t){const e=$(id);if(e)e.textContent=t;}
+function safeConfetti(o){try{if(typeof confetti==='function')confetti(o);}catch(e){}}
+
+let audioCtx=null,soundMuted=false;
+function playTone(freq,dur,type,vol,delay){
+  if(soundMuted)return;
+  try{
+    if(!audioCtx){const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;audioCtx=new AC();}
+    if(audioCtx.state==='suspended')audioCtx.resume();
+    const t=audioCtx.currentTime+(delay||0);
+    const osc=audioCtx.createOscillator(),gain=audioCtx.createGain();
+    osc.type=type||'sine';osc.frequency.setValueAtTime(freq,t);
+    gain.gain.setValueAtTime(0.0001,t);
+    gain.gain.exponentialRampToValueAtTime(vol||0.15,t+0.01);
+    gain.gain.exponentialRampToValueAtTime(0.0001,t+dur);
+    osc.connect(gain).connect(audioCtx.destination);
+    osc.start(t);osc.stop(t+dur+0.05);
+  }catch(e){}
+}
+function sfx(type){
+  try{
+    if(type==='correct'){[523.25,659.25,783.99,1046.5].forEach((f,i)=>playTone(f,.2,'triangle',.2,i*.1));}
+    else if(type==='wrong'){playTone(220,.25,'sawtooth',.2,0);playTone(110,.4,'sawtooth',.2,.2);}
+    else if(type==='click'){playTone(440,.05,'sine',.08,0);}
+    else if(type==='tick'){playTone(1200,.03,'square',.06,0);}
+    else if(type==='spin'){playTone(400,.5,'sawtooth',.08,0);}
+    else if(type==='win'){[440,554.37,659.25,880].forEach((f,i)=>playTone(f,.25,'sine',.2,i*.13));}
+    else if(type==='timeout'){playTone(300,.3,'sawtooth',.2,0);playTone(200,.5,'sawtooth',.2,.3);playTone(100,.7,'sawtooth',.2,.6);}
+    else if(type==='beep'){playTone(880,.12,'square',.15,0);}
+    else if(type==='beepFinal'){playTone(1100,.15,'square',.2,0);playTone(1400,.15,'square',.18,.08);}
+    else if(type==='theme'){playTone(523.25,.15,'triangle',.15,0);playTone(784,.2,'triangle',.15,.1);}
+  }catch(e){}
+}
+
+/* =========================================================
+   THEME TOGGLE
+   ========================================================= */
+const THEME_KEY = 'kuis_roda_theme';
+function applyTheme(dark, e) {
+  if (dark) {
+    document.body.classList.add('dark-mode');
+    $('themeIcon').textContent = '☀️';
+    $('themeColorMeta').setAttribute('content', '#0a0f1e');
+  } else {
+    document.body.classList.remove('dark-mode');
+    $('themeIcon').textContent = '🌙';
+    $('themeColorMeta').setAttribute('content', '#f4f9ff');
+  }
+  try { localStorage.setItem(THEME_KEY, dark ? 'dark' : 'light'); } catch(err) {}
+}
+
+function initTheme() {
+  let saved = 'light';
+  try { saved = localStorage.getItem(THEME_KEY) || 'light'; } catch(e) {}
+  // Cek preferensi sistem kalau belum ada
+  if (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    saved = 'dark';
+  }
+  applyTheme(saved === 'dark');
+
+  $('themeToggle').addEventListener('click', (e) => {
+    sfx('theme');
+    const willBeDark = !document.body.classList.contains('dark-mode');
+
+    // Radial expand overlay dari tombol
+    const rect = $('themeToggle').getBoundingClientRect();
+    const cx = ((rect.left + rect.width/2) / window.innerWidth) * 100;
+    const cy = ((rect.top + rect.height/2) / window.innerHeight) * 100;
+    const overlay = $('themeOverlay');
+    overlay.style.setProperty('--cx', cx + '%');
+    overlay.style.setProperty('--cy', cy + '%');
+    overlay.classList.add('active');
+    setTimeout(() => overlay.classList.remove('active'), 500);
+
+    applyTheme(willBeDark);
+  });
+}
+
+/* =========================================================
+   PAGE TRANSITION
+   ========================================================= */
+function switchScreen(fromId, toId, direction) {
+  // direction: 'forward' | 'back'
+  const fromEl = $(fromId);
+  const toEl = $(toId);
+  const trans = $('screenTransition');
+
+  // Kalau tidak ada from, langsung tampil
+  if (!fromEl || fromEl.classList.contains('is-hidden')) {
+    if (toEl) { toEl.classList.remove('is-hidden','slide-in-right','slide-out-left'); }
+    if (trans) { trans.classList.add('active'); setTimeout(() => trans.classList.remove('active'), 300); }
+    return;
+  }
+
+  // Fade overlay
+  trans.classList.add('active');
+
+  setTimeout(() => {
+    fromEl.classList.add('is-hidden');
+    fromEl.classList.remove('slide-in-right', 'slide-out-left');
+
+    if (toEl) {
+      toEl.classList.remove('is-hidden');
+      toEl.classList.remove('slide-out-left');
+      void toEl.offsetWidth; // force reflow
+      toEl.classList.add(direction === 'back' ? 'slide-in-right' : 'screen');
+      setTimeout(() => toEl.classList.remove('slide-in-right'), 600);
+    }
+
+    setTimeout(() => trans.classList.remove('active'), 200);
+  }, 300);
+}
+
+/* =========================================================
+   KATEGORI & SOAL
+   ========================================================= */
+const CATEGORIES = [
+  { id:'pengertian',   name:'Pengertian & Prinsip Dasar', short:'Pengertian',   icon:'📡', color:'#2563eb', points:100 },
+  { id:'komponen',     name:'Komponen Sistem Inderaja',   short:'Komponen',     icon:'🛰️', color:'#0ea5e9', points:150 },
+  { id:'sensor',       name:'Sensor Pasif vs Aktif',      short:'Sensor',       icon:'📷', color:'#14b8a6', points:200 },
+  { id:'resolusi',     name:'Jenis Citra & Resolusi',     short:'Resolusi',     icon:'🖼️', color:'#10b981', points:250 },
+  { id:'interpretasi', name:'Interpretasi Citra',         short:'Interpretasi', icon:'🔍', color:'#22c55e', points:300 },
+  { id:'spektrum',     name:'Spektrum Elektromagnetik',   short:'Spektrum',     icon:'🌈', color:'#3b82f6', points:350 },
+  { id:'signatur',     name:'Signatur Spektral Objek',    short:'Signatur',     icon:'🎨', color:'#8b5cf6', points:400 },
+  { id:'aplikasi',     name:'Pemanfaatan & Aplikasi',     short:'Aplikasi',     icon:'🗺️', color:'#a855f7', points:500 },
+  { id:'tokoh',        name:'Tokoh & Sejarah Inderaja',   short:'Tokoh',        icon:'👨‍🔬', color:'#ec4899', points:600 }
+];
+
+const QUESTIONS = [
+  { cat:'pengertian', q:"Penginderaan jauh atau remote sensing adalah ilmu dan seni untuk memperoleh informasi tentang objek, area, atau fenomena melalui...", options:["Kontak langsung dengan objek","Analisis data yang diperoleh dengan alat tanpa kontak langsung","Pengamatan visual di lapangan","Wawancara dengan penduduk lokal"], correct:1, explanation:"Penginderaan jauh memperoleh informasi melalui analisis data dengan alat tanpa kontak langsung dengan objek yang dikaji.", keyPoint:"Penginderaan jauh = tanpa kontak langsung." },
+  { cat:'pengertian', q:"Prinsip dasar penginderaan jauh bekerja berdasarkan interaksi antara...", options:["Gelombang elektromagnetik dengan objek di permukaan bumi","Gelombang suara dengan atmosfer","Cahaya tampak dengan lensa kamera","Panas bumi dengan satelit"], correct:0, explanation:"Penginderaan jauh bekerja berdasarkan interaksi antara gelombang elektromagnetik dengan objek di permukaan bumi.", keyPoint:"Interaksi gelombang elektromagnetik dengan objek." },
+  { cat:'pengertian', q:"Istilah 'remote sensing' dalam bahasa Indonesia secara resmi disebut...", options:["Penginderaan jarak jauh","Penginderaan dekat","Pengamatan satelit","Pemetaan digital"], correct:0, explanation:"Istilah 'remote sensing' diterjemahkan menjadi 'penginderaan jauh' atau 'penginderaan jarak jauh'.", keyPoint:"Remote sensing = penginderaan jauh." },
+  { cat:'pengertian', q:"Berikut yang BUKAN merupakan keunggulan penginderaan jauh dibanding survei terestris adalah...", options:["Menjangkau wilayah luas","Dapat mengamati wilayah berbahaya","Biaya relatif murah","Hasil langsung detail per objek kecil"], correct:3, explanation:"Penginderaan jauh unggul di area luas dan berbahaya, namun tidak bisa langsung memberikan detail per objek kecil.", keyPoint:"Inderaja = area luas, bukan detail kecil." },
+  { cat:'pengertian', q:"Data yang dihasilkan penginderaan jauh berupa...", options:["Angka statistik","Citra (gambar) digital atau analog","Teks naratif","Rekaman suara"], correct:1, explanation:"Hasil utama penginderaan jauh adalah citra, baik digital maupun analog.", keyPoint:"Output inderaja = citra." },
+  { cat:'komponen', q:"Sistem penginderaan jauh terdiri dari 6 komponen. Berikut yang BUKAN termasuk komponen tersebut adalah...", options:["Sumber energi","Atmosfer","Sensor","Aplikasi media sosial"], correct:3, explanation:"6 komponen: sumber energi, atmosfer, interaksi objek, sensor, wahana, dan data/informasi.", keyPoint:"6 komponen: energi, atmosfer, interaksi, sensor, wahana, data." },
+  { cat:'komponen', q:"Wahana dalam sistem penginderaan jauh berfungsi sebagai...", options:["Perekam data","Platform pembawa sensor","Pengolah data","Sumber energi"], correct:1, explanation:"Wahana adalah platform pembawa sensor seperti satelit, pesawat terbang, drone, atau balon udara.", keyPoint:"Wahana = platform pembawa sensor." },
+  { cat:'komponen', q:"Sensor dalam sistem penginderaan jauh berfungsi untuk...", options:["Menerbangkan wahana","Merekam energi yang dipantulkan/dipancarkan objek","Mengolah data di laboratorium","Mengirim data ke pengguna"], correct:1, explanation:"Sensor adalah alat perekam energi elektromagnetik yang dipantulkan atau dipancarkan objek.", keyPoint:"Sensor = perekam energi." },
+  { cat:'komponen', q:"Atmosfer dalam sistem penginderaan jauh berperan sebagai...", options:["Media perambatan gelombang","Sumber energi","Penyimpan data","Pengolah citra"], correct:0, explanation:"Atmosfer menjadi media perambatan gelombang elektromagnetik dari sumber energi ke objek lalu ke sensor.", keyPoint:"Atmosfer = media perambatan gelombang." },
+  { cat:'komponen', q:"Sumber energi utama dalam penginderaan jauh sistem pasif adalah...", options:["Matahari","Bulan","Baterai satelit","Panas bumi"], correct:0, explanation:"Matahari adalah sumber energi utama pada penginderaan jauh sistem pasif.", keyPoint:"Sumber energi pasif = matahari." },
+  { cat:'sensor', q:"Sensor yang merekam energi alami (matahari) yang dipantulkan objek disebut...", options:["Sensor aktif","Sensor pasif","Sensor termal","Sensor radar"], correct:1, explanation:"Sensor pasif merekam energi alami dari matahari yang dipantulkan objek.", keyPoint:"Sensor pasif = energi alami matahari." },
+  { cat:'sensor', q:"Sensor yang memancarkan energi sendiri lalu merekam pantulannya disebut...", options:["Sensor pasif","Sensor aktif","Sensor optik","Sensor termal"], correct:1, explanation:"Sensor aktif memancarkan energi sendiri lalu merekam pantulannya. Contoh: SAR, LiDAR.", keyPoint:"Sensor aktif = memancarkan energi sendiri." },
+  { cat:'sensor', q:"Keunggulan utama sensor aktif (SAR/Radar) dibandingkan sensor pasif adalah...", options:["Lebih murah","Dapat beroperasi 24 jam dan tembus awan","Resolusi lebih rendah","Tidak perlu daya listrik"], correct:1, explanation:"Sensor aktif dapat beroperasi siang-malam dan tembus awan.", keyPoint:"Sensor aktif = 24 jam, tembus awan." },
+  { cat:'sensor', q:"Berikut yang termasuk contoh sensor pasif adalah...", options:["SAR Sentinel-1","OLI Landsat 8","LiDAR","Radar cuaca"], correct:1, explanation:"OLI (Operational Land Imager) di Landsat 8 adalah sensor pasif.", keyPoint:"OLI Landsat 8 = sensor pasif." },
+  { cat:'sensor', q:"Sensor LiDAR bekerja dengan cara...", options:["Merekam cahaya matahari yang dipantulkan objek","Memancarkan pulsa laser lalu mengukur waktu pantulannya","Mendeteksi suara objek","Mengukur suhu permukaan"], correct:1, explanation:"LiDAR memancarkan pulsa laser dan mengukur waktu pantulannya untuk menghasilkan model permukaan bumi 3D.", keyPoint:"LiDAR = pulsa laser, model 3D." },
+  { cat:'resolusi', q:"Resolusi spasial citra Landsat 8 OLI adalah...", options:["10 meter","30 meter","80 meter","1 meter"], correct:1, explanation:"Landsat 8 OLI memiliki resolusi spasial 30 meter per piksel.", keyPoint:"Landsat 8 = resolusi spasial 30 m." },
+  { cat:'resolusi', q:"Resolusi yang menunjukkan kemampuan sensor membedakan panjang gelombang disebut...", options:["Resolusi spasial","Resolusi spektral","Resolusi temporal","Resolusi radiometrik"], correct:1, explanation:"Resolusi spektral adalah kemampuan sensor membedakan panjang gelombang elektromagnetik.", keyPoint:"Resolusi spektral = bedakan panjang gelombang." },
+  { cat:'resolusi', q:"Resolusi temporal suatu citra menunjukkan...", options:["Ukuran terkecil objek","Kemampuan bedakan panjang gelombang","Waktu jeda perekaman ulang di area yang sama","Jumlah bit informasi"], correct:2, explanation:"Resolusi temporal adalah waktu jeda perekaman ulang pada area yang sama.", keyPoint:"Resolusi temporal = waktu perekaman ulang." },
+  { cat:'resolusi', q:"Resolusi radiometrik suatu citra menunjukkan...", options:["Jumlah bit informasi tiap piksel","Ukuran objek terkecil","Frekuensi perekaman","Sudut liputan sensor"], correct:0, explanation:"Resolusi radiometrik adalah jumlah bit informasi per piksel (kedalaman warna).", keyPoint:"Resolusi radiometrik = kedalaman bit." },
+  { cat:'resolusi', q:"Citra dengan resolusi spasial SANGAT TINGGI (sub-meter) umumnya digunakan untuk...", options:["Pemantauan skala global","Pemetaan detail perkotaan & properti","Analisis iklim dunia","Navigasi kapal laut"], correct:1, explanation:"Resolusi sub-meter cocok untuk pemetaan detail perkotaan, bangunan, dan properti.", keyPoint:"Resolusi sub-meter = pemetaan detail." },
+  { cat:'interpretasi', q:"Kegiatan mengidentifikasi objek melalui citra penginderaan jauh disebut...", options:["Klasifikasi","Interpretasi citra","Digitasi","Georeferensi"], correct:1, explanation:"Interpretasi citra adalah kegiatan mengidentifikasi objek melalui citra penginderaan jauh.", keyPoint:"Interpretasi citra = identifikasi objek." },
+  { cat:'interpretasi', q:"Tiga rangkaian kegiatan utama dalam interpretasi citra adalah...", options:["Deteksi, identifikasi, analisis","Input, proses, output","Ukur, hitung, lapor","Lihat, foto, simpan"], correct:0, explanation:"Tiga rangkaian kegiatan utama interpretasi citra: deteksi, identifikasi, dan analisis.", keyPoint:"Deteksi → identifikasi → analisis." },
+  { cat:'interpretasi', q:"Unsur interpretasi yang menyatakan tingkat kehitaman/keperakan objek disebut...", options:["Bentuk","Rona","Tekstur","Ukuran"], correct:1, explanation:"Rona adalah tingkat kehitaman/keperakan objek pada citra.", keyPoint:"Rona = tingkat kehitaman." },
+  { cat:'interpretasi', q:"Unsur interpretasi yang menyatakan frekuensi perubahan rona dalam citra disebut...", options:["Bentuk","Rona","Tekstur","Situs"], correct:2, explanation:"Tekstur adalah frekuensi perubahan rona dalam citra.", keyPoint:"Tekstur = frekuensi perubahan rona." },
+  { cat:'interpretasi', q:"Unsur interpretasi yang menyatakan kedudukan objek terhadap objek lain di sekitarnya disebut...", options:["Ukuran","Pola","Asosiasi","Situs"], correct:3, explanation:"Situs adalah letak objek terhadap objek lain di sekitarnya.", keyPoint:"Situs = letak relatif terhadap lingkungan." },
+  { cat:'spektrum', q:"Gelombang inframerah dekat (NIR) digunakan untuk...", options:["Deteksi mineral","Kesehatan vegetasi (NDVI)","Deteksi kebakaran","Tembus awan"], correct:1, explanation:"NIR digunakan untuk memantau kesehatan vegetasi (NDVI) dan biomassa.", keyPoint:"NIR = kesehatan vegetasi (NDVI)." },
+  { cat:'spektrum', q:"Gelombang mikro (radar) memiliki keunggulan...", options:["Resolusi tertinggi","Tembus awan, malam hari, deteksi kelembaban","Murah biaya","Tidak perlu sensor"], correct:1, explanation:"Gelombang mikro dapat menembus awan, beroperasi malam hari, dan mendeteksi kelembaban.", keyPoint:"Gelombang mikro = tembus awan." },
+  { cat:'spektrum', q:"Spektrum tampak (visible) mencakup panjang gelombang...", options:["0.1–0.4 μm","0.4–0.7 μm","0.7–1.3 μm","1.3–3.0 μm"], correct:1, explanation:"Spektrum tampak mencakup panjang gelombang 0.4–0.7 μm.", keyPoint:"Visible = 0.4–0.7 μm." },
+  { cat:'spektrum', q:"Gelombang inframerah termal (TIR) dimanfaatkan untuk...", options:["Deteksi suhu permukaan & titik panas kebakaran","Deteksi kelembaban tanah","Pemetaan jalan raya","Mengukur kedalaman laut"], correct:0, explanation:"TIR merekam emisi panas objek sehingga dapat mendeteksi suhu permukaan dan titik panas.", keyPoint:"TIR = suhu permukaan & titik panas." },
+  { cat:'spektrum', q:"Mengapa gelombang ultraviolet (UV) kurang dimanfaatkan dalam penginderaan jauh satelit?", options:["Terlalu panjang gelombangnya","Banyak diserap atmosfer (ozon)","Tidak terlihat mata","Terlalu murah"], correct:1, explanation:"UV banyak diserap oleh lapisan ozon di atmosfer.", keyPoint:"UV = banyak diserap ozon." },
+  { cat:'signatur', q:"Vegetasi sehat memiliki nilai NDVI yang...", options:["Rendah","Tinggi","Netral","Negatif"], correct:1, explanation:"Vegetasi sehat memantulkan NIR sangat kuat dan merah rendah, menghasilkan NDVI tinggi.", keyPoint:"Vegetasi sehat = NDVI tinggi." },
+  { cat:'signatur', q:"Air jernih pada citra penginderaan jauh akan tampak...", options:["Cerah","Gelap","Merah","Hijau"], correct:1, explanation:"Air jernih menyerap hampir semua gelombang tampak dan inframerah sehingga tampak gelap.", keyPoint:"Air jernih = gelap di citra." },
+  { cat:'signatur', q:"Air keruh atau mengandung sedimen tinggi pada citra akan tampak...", options:["Lebih gelap dari air jernih","Lebih cerah dari air jernih","Berwarna merah","Berwarna hijau"], correct:1, explanation:"Air keruh memantulkan lebih banyak cahaya tampak karena partikel sedimen.", keyPoint:"Air keruh = lebih cerah." },
+  { cat:'signatur', q:"Tanah kering dan gundul pada citra umumnya tampak...", options:["Gelap seperti air","Cerah kecoklatan/terang","Berwarna hijau","Berwarna biru"], correct:1, explanation:"Tanah kering dan gundul memantulkan cukup banyak energi sehingga tampak cerah kecoklatan.", keyPoint:"Tanah kering = cerah kecoklatan." },
+  { cat:'signatur', q:"Awan tebal pada citra penginderaan jauh optik akan tampak...", options:["Gelap total","Sangat cerah/putih","Berwarna merah","Transparan"], correct:1, explanation:"Awan tebal memantulkan hampir seluruh cahaya tampak sehingga tampak sangat cerah.", keyPoint:"Awan tebal = sangat cerah." },
+  { cat:'aplikasi', q:"Pemanfaatan penginderaan jauh di bidang geologi adalah...", options:["Pemantauan wilayah bencana","Pemetaan daerah gunung api","Analisis pasar saham","Prediksi cuaca harian"], correct:1, explanation:"Di bidang geologi, penginderaan jauh digunakan untuk pemetaan daerah gunung api dan pemantauan bencana.", keyPoint:"Geologi = pemetaan gunung api & bencana." },
+  { cat:'aplikasi', q:"Untuk memantau deforestasi di Kalimantan, metode yang lebih efektif adalah...", options:["Observasi lapangan langsung","Penginderaan jauh (Landsat/Sentinel)","Survei wawancara","Pengukuran manual"], correct:1, explanation:"Penginderaan jauh lebih efektif untuk area luas dan akses sulit.", keyPoint:"Deforestasi luas = penginderaan jauh." },
+  { cat:'aplikasi', q:"Di bidang pertanian, penginderaan jauh digunakan untuk...", options:["Menentukan harga gabah","Memantau kesehatan tanaman & estimasi panen","Menjual hasil panen","Menghitung populasi petani"], correct:1, explanation:"Di bidang pertanian, inderaja digunakan untuk pemetaan jenis tanaman dan estimasi hasil panen.", keyPoint:"Pertanian = pantau tanaman & estimasi panen." },
+  { cat:'aplikasi', q:"Penginderaan jauh di bidang kelautan dimanfaatkan untuk...", options:["Pemetaan terumbu karang & suhu permukaan laut","Menghitung jumlah kapal dagang","Mengatur lalu lintas pelabuhan","Menentukan harga ikan"], correct:0, explanation:"Di bidang kelautan, inderaja untuk pemetaan terumbu karang dan pemantauan suhu permukaan laut.", keyPoint:"Kelautan = terumbu karang & suhu laut." },
+  { cat:'aplikasi', q:"Untuk mitigasi bencana banjir, penginderaan jauh membantu dengan cara...", options:["Membangun tanggul","Memetakan daerah rawan banjir & genangan","Menyediakan air bersih","Mengatur jadwal evakuasi"], correct:1, explanation:"Penginderaan jauh memetakan daerah rawan banjir, memantau genangan, dan menganalisis perubahan tutupan lahan.", keyPoint:"Banjir = pemetaan rawan & genangan." },
+  { cat:'tokoh', q:"Orang yang mempopulerkan istilah 'remote sensing' pada 1950-an adalah...", options:["Gaspard-Félix Tournachon","Evelyn L. Pruitt","William T. Pecora","Sutanto"], correct:1, explanation:"Evelyn L. Pruitt, ahli geografi, mempopulerkan istilah 'remote sensing' pada 1950-an.", keyPoint:"Evelyn L. Pruitt = 'remote sensing'." },
+  { cat:'tokoh', q:"Bapak Penginderaan Jauh Indonesia yang menulis buku klasik adalah...", options:["Ralph B. Hoover","Sutanto","William T. Pecora","Gaspard-Félix Tournachon"], correct:1, explanation:"Sutanto dikenal sebagai Bapak Penginderaan Jauh Indonesia.", keyPoint:"Sutanto = Bapak Inderaja Indonesia." },
+  { cat:'tokoh', q:"Gaspard-Félix Tournachon (Nadar) pada 1858 melakukan pemotretan udara pertama dari...", options:["Pesawat terbang","Balon udara","Satelit","Helikopter"], correct:1, explanation:"Nadar pada 1858 memotret Paris dari balon udara — awal mula foto udara.", keyPoint:"Nadar 1858 = foto udara dari balon." },
+  { cat:'tokoh', q:"Satelit Landsat pertama (Landsat 1) diluncurkan pada tahun...", options:["1957","1972","1986","2000"], correct:1, explanation:"Landsat 1 diluncurkan NASA pada 23 Juli 1972.", keyPoint:"Landsat 1 = 1972." },
+  { cat:'tokoh', q:"Satelit Sentinel-2 yang diluncurkan ESA memiliki resolusi temporal sekitar...", options:["1 hari","5 hari","16 hari","30 hari"], correct:1, explanation:"Konstelasi Sentinel-2 memberikan resolusi temporal 5 hari di ekuator.", keyPoint:"Sentinel-2 = resolusi temporal 5 hari." }
+];
+
+/* =========================================================
+   TIMER + SOUND
+   ========================================================= */
+const TIMER_SECONDS = 30;
+const CIRCUMFERENCE = 2 * Math.PI * 26;
+let timerInterval = null;
+let timeLeft = TIMER_SECONDS;
+let lastBeepSecond = -1;
+
+function startTimer() {
+  clearInterval(timerInterval);
+  timeLeft = TIMER_SECONDS;
+  lastBeepSecond = -1;
+  updateTimerDisplay();
+  const ring = $('timerRing');
+  ring.classList.remove('warning', 'danger', 'sound-beat');
+
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    updateTimerDisplay();
+
+    if (timeLeft <= 5 && timeLeft > 3) {
+      ring.classList.add('warning');
+    } else if (timeLeft <= 3 && timeLeft >= 1) {
+      ring.classList.add('danger');
+      ring.classList.remove('warning');
+    }
+
+    // === SUARA DETIK-DETIK TERAKHIR ===
+    if (timeLeft <= 5 && timeLeft >= 1 && timeLeft !== lastBeepSecond) {
+      lastBeepSecond = timeLeft;
+      if (timeLeft > 3) {
+        sfx('beep'); // beep biasa 5-4
+      } else {
+        sfx('beepFinal'); // beep final 3-2-1
+      }
+      // Pulse visual
+      ring.classList.remove('sound-beat');
+      void ring.offsetWidth;
+      ring.classList.add('sound-beat');
+      setTimeout(() => ring.classList.remove('sound-beat'), 400);
+    }
+
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      onTimerEnd();
+    }
+  }, 1000);
+}
+
+function updateTimerDisplay() {
+  const fill = $('timerRingFill');
+  const text = $('timerText');
+  const offset = CIRCUMFERENCE * (1 - timeLeft / TIMER_SECONDS);
+  fill.style.strokeDashoffset = offset;
+  text.textContent = timeLeft;
+}
+
+function stopTimer() { clearInterval(timerInterval); timerInterval = null; }
+
+function onTimerEnd() {
+  if (state.answerLocked) return;
+  sfx('timeout');
+  state.answerLocked = true;
+  const q = state.currentQuestion;
+  const cat = state.currentCategory;
+  if (!state.catStats[cat.id]) state.catStats[cat.id] = { total: 0, correct: 0, points: 0 };
+  state.catStats[cat.id].total++;
+  const btns = document.querySelectorAll('#qOptions .opt-btn');
+  btns.forEach(b => { b.disabled = true; b.setAttribute('aria-checked', 'false'); });
+  btns[q.correct].classList.add('opt-correct');
+  showRevealOverlay('WAKTU HABIS', 'timeout');
+  state.wrongCount++; state.streak = 0;
+  state.history.push({
+    round: state.currentRound + 1, cat: cat.name, catColor: cat.color, catIcon: cat.icon,
+    question: q.q, userAnswer: '(tidak dijawab)', correctAnswer: q.options[q.correct],
+    explanation: q.explanation, keyPoint: q.keyPoint, isCorrect: false, points: 0
+  });
+  setTimeout(() => { hideRevealOverlay(); showFeedback(false, 0, cat, true); }, 1500);
+}
+
+/* =========================================================
+   STATE
+   ========================================================= */
+function shuffleOptions(q) {
+  const arr = q.options.slice();
+  const correctText = arr[q.correct];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const tmp = arr[i]; arr[i] = arr[j]; arr[j] = tmp;
+  }
+  return { cat: q.cat, q: q.q, options: arr, correct: arr.indexOf(correctText), explanation: q.explanation, keyPoint: q.keyPoint };
+}
+
+const state = {
+  studentName: '', currentRound: 0, totalRounds: 12,
+  totalScore: 0, correctCount: 0, wrongCount: 0,
+  streak: 0, maxStreak: 0,
+  currentCategory: null, currentQuestion: null,
+  currentRotation: 0, spinning: false, answerLocked: false,
+  gameFinished: false,
+  selectedAnswerIndex: null, usedQuestions: new Set(), history: [], catStats: {}
+};
+const STORAGE_PREFIX = 'kuis_roda_inderaja_v3_';
+let kuisAktif = false;
+
+window.addEventListener('beforeunload', function(e) {
+  if (kuisAktif && !state.gameFinished) { e.preventDefault(); e.returnValue = ''; return ''; }
+});
+
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzYAkxiJ6UYTua_XwpeaK8UFZhZqzL6Haf7tGeSmixppNxAS1QD-SonsChuQi9Ioc1t7A/exec";
+
+function kirimNilai() {
+  if (!state.studentName) { alert("Nama siswa tidak ditemukan."); return; }
+  const btn = $('btnKirim'), statusEl = $('kirimStatus');
+  const sendKey = 'kuis_inderaja_terkirim_' + state.studentName + '_' + state.totalScore;
+  try { if (localStorage.getItem(sendKey) === 'ya') { btn.textContent = '✓ SUDAH TERKIRIM'; btn.disabled = true; statusEl.textContent = '✅ Nilai sudah terkirim sebelumnya.'; statusEl.className = 'text-center text-xs font-bold px-3 py-2 rounded-xl'; statusEl.style.color = 'var(--green)'; statusEl.classList.remove('is-hidden'); return; } } catch(e) {}
+  btn.disabled = true; btn.innerHTML = '⏳ MENGIRIM...'; statusEl.classList.add('is-hidden');
+  const accuracy = Math.round((state.correctCount / state.totalRounds) * 100);
+  const ach = getAchievement(accuracy, state.correctCount, state.totalRounds);
+  const params = new URLSearchParams();
+  params.append('nama', state.studentName); params.append('skor', state.totalScore);
+  params.append('benar', state.correctCount); params.append('salah', state.wrongCount);
+  params.append('total', state.totalRounds); params.append('akurasi', accuracy);
+  params.append('streak', state.maxStreak); params.append('gelar', ach.title);
+  fetch(APPS_SCRIPT_URL, { method: 'POST', body: params, mode: 'no-cors' })
+    .then(function() {
+      try { localStorage.setItem(sendKey, 'ya'); } catch(e) {}
+      btn.innerHTML = '✓ NILAI TERKIRIM';
+      btn.style.background = 'linear-gradient(135deg,#16a34a 0%,#15803d 100%)';
+      btn.style.animation = 'none';
+      statusEl.textContent = '✅ Nilai berhasil dikirim. Terima kasih, ' + state.studentName + '!';
+      statusEl.className = 'text-center text-xs font-bold px-3 py-2 rounded-xl'; statusEl.style.color = 'var(--green)';
+      statusEl.classList.remove('is-hidden'); sfx('win');
+    })
+    .catch(function() {
+      btn.disabled = false; btn.innerHTML = '📤 KIRIM NILAI KE GURU';
+      statusEl.textContent = '❌ Gagal mengirim. Cek koneksi lalu coba lagi.';
+      statusEl.className = 'text-center text-xs font-bold px-3 py-2 rounded-xl'; statusEl.style.color = 'var(--rose)';
+      statusEl.classList.remove('is-hidden');
+    });
+}
+
+function updateProgressBars() {
+  const pct = Math.round((state.currentRound / state.totalRounds) * 100);
+  ['wheelProgressBar','questionProgressBar'].forEach(id => { const e = $(id); if(e) e.style.width = pct + '%'; });
+}
+
+/* =========================================================
+   BUILD WHEEL
+   ========================================================= */
+function buildWheel() {
+  const svg = $('wheelSvg');
+  const cx = 100, cy = 100, r = 92;
+  const total = CATEGORIES.length;
+  const segAngle = 360 / total;
+  const half = segAngle / 2;
+  const isDark = document.body.classList.contains('dark-mode');
+  const strokeCol = isDark ? '#111827' : '#ffffff';
+
+  let defsHtml = `<radialGradient id="wheelInner" cx="50%" cy="50%">
+      <stop offset="0%" stop-color="${isDark ? '#0a0f1e' : '#ffffff'}" stop-opacity="0.85"/>
+      <stop offset="62%" stop-color="${isDark ? '#0a0f1e' : '#ffffff'}" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="${isDark ? '#0a0f1e' : '#ffffff'}" stop-opacity="0"/>
+    </radialGradient>`;
+
+  let segHtml = '';
+  for (let i = 0; i < total; i++) {
+    const cat = CATEGORIES[i];
+    const centerDeg = -90 + i * segAngle;
+    const rad = centerDeg * Math.PI / 180;
+    const a0 = (centerDeg - half) * Math.PI / 180;
+    const a1 = (centerDeg + half) * Math.PI / 180;
+    const sx = cx + r * Math.cos(a0), sy = cy + r * Math.sin(a0);
+    const ex = cx + r * Math.cos(a1), ey = cy + r * Math.sin(a1);
+    const wedge = `M ${cx} ${cy} L ${sx.toFixed(2)} ${sy.toFixed(2)} A ${r} ${r} 0 0 1 ${ex.toFixed(2)} ${ey.toFixed(2)} Z`;
+
+    segHtml += `<path d="${wedge}" fill="${cat.color}" fill-opacity="0.9" stroke="${strokeCol}" stroke-width="1.5"/>`;
+    segHtml += `<path d="${wedge}" fill="url(#wheelInner)" fill-opacity="0.15"/>`;
+
+    const label = cat.short.toUpperCase();
+    let fontSize = 6.2;
+    if (label.length > 10) fontSize = 5.2;
+    else if (label.length > 8) fontSize = 5.7;
+    const labelR = r * 0.66;
+    const lx = cx + labelR * Math.cos(rad);
+    const ly = cy + labelR * Math.sin(rad);
+    let rotDeg = centerDeg;
+    if (Math.cos(rad) < 0) rotDeg = centerDeg + 180;
+
+    segHtml += `<text x="${lx.toFixed(2)}" y="${ly.toFixed(2)}" font-size="${fontSize}" font-weight="900" fill="#fff" text-anchor="middle" dominant-baseline="central" font-family="'Space Grotesk','Inter',sans-serif" transform="rotate(${rotDeg.toFixed(2)} ${lx.toFixed(2)} ${ly.toFixed(2)})" style="paint-order:stroke;stroke:rgba(0,0,0,.25);stroke-width:1.5px;stroke-linejoin:round;letter-spacing:0.3">${label}</text>`;
+
+    const iconR = r * 0.9;
+    const icx = cx + iconR * Math.cos(rad);
+    const icy = cy + iconR * Math.sin(rad);
+    segHtml += `<g transform="translate(${icx.toFixed(2)} ${icy.toFixed(2)})">
+        <circle r="7" fill="rgba(255,255,255,.85)" stroke="rgba(0,0,0,.1)" stroke-width="0.6"/>
+        <text x="0" y="2.7" text-anchor="middle" font-size="8.2" font-family="'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif">${cat.icon}</text>
+      </g>`;
+  }
+
+  let html = `<defs>${defsHtml}</defs>`;
+  html += `<circle cx="${cx}" cy="${cy}" r="${r + 4}" fill="${isDark ? '#111827' : '#fff'}" stroke="var(--primary-light)" stroke-width="2" opacity="0.5"/>`;
+  html += segHtml;
+  html += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${strokeCol}" stroke-width="1.6" opacity="0.8"/>`;
+
+  const dots = total * 2;
+  for (let i = 0; i < dots; i++) {
+    const ang = (i * (360 / dots)) * Math.PI / 180;
+    const dx = cx + (r + 2) * Math.cos(ang);
+    const dy = cy + (r + 2) * Math.sin(ang);
+    html += `<circle cx="${dx.toFixed(2)}" cy="${dy.toFixed(2)}" r="0.9" fill="${strokeCol}" opacity="0.7"/>`;
+  }
+
+  svg.innerHTML = html;
+}
+
+function pickQuestion(catId) {
+  const pool = QUESTIONS.filter(q => q.cat === catId);
+  const unused = pool.filter(q => !state.usedQuestions.has(q.q));
+  const source = unused.length > 0 ? unused : pool;
+  const chosen = source[Math.floor(Math.random() * source.length)];
+  state.usedQuestions.add(chosen.q);
+  return chosen;
+}
+
+/* =========================================================
+   SPIN
+   ========================================================= */
+function spin() {
+  if (state.gameFinished || state.spinning) return;
+  state.spinning = true;
+  $('spinBtn').disabled = true;
+  hide('categoryResult'); hide('wheelInstruction');
+  sfx('spin');
+
+  const targetIdx = Math.floor(Math.random() * CATEGORIES.length);
+  const segAngle = 360 / CATEGORIES.length;
+  const extraSpins = 5 + Math.floor(Math.random() * 3);
+  const jitter = (Math.random() - 0.5) * (segAngle * 0.6);
+  const baseTarget = -targetIdx * segAngle + jitter;
+  const currentMod = ((state.currentRotation % 360) + 360) % 360;
+  const targetMod = ((baseTarget % 360) + 360) % 360;
+  const delta = ((targetMod - currentMod) + 360) % 360;
+  const finalRotation = state.currentRotation + extraSpins * 360 + delta;
+  state.currentRotation = finalRotation;
+
+  const wheel = $('wheelSvg');
+  const duration = 5000;
+  wheel.style.transition = `transform ${duration}ms cubic-bezier(0.15, 0.9, 0.25, 1)`;
+  wheel.style.transform = `rotate(${finalRotation}deg)`;
+
+  let t = 0;
+  while (t < duration) {
+    const progress = t / duration;
+    setTimeout(() => sfx('tick'), t);
+    t += 30 + progress * progress * 260;
+  }
+
+  setTimeout(() => { state.spinning = false; $('spinBtn').disabled = false; onSpinComplete(targetIdx); }, duration + 100);
+}
+
+function onSpinComplete(targetIdx) {
+  const cat = CATEGORIES[targetIdx];
+  state.currentCategory = cat;
+  const res = $('categoryResult');
+  res.innerHTML = `<div class="cat-badge" style="background: linear-gradient(135deg, ${cat.color}, ${cat.color}cc); color: #fff; border: 2px solid ${cat.color}">
+      <span style="font-size: 1.2em">${cat.icon}</span><span>${cat.name}</span>
+      <span class="ml-1 px-2 py-0.5 rounded-full font-mono text-[10px]" style="background: rgba(0,0,0,.15)">+${cat.points}</span></div>`;
+  show('categoryResult');
+  playTone(660, .1, 'sine', .15, 0); playTone(880, .15, 'sine', .15, .1);
+  setTimeout(() => startQuestion(cat), 1400);
+}
+
+/* =========================================================
+   QUESTION
+   ========================================================= */
+function startQuestion(cat) {
+  if (state.gameFinished) return;
+  state.currentQuestion = shuffleOptions(pickQuestion(cat.id));
+  state.answerLocked = false; state.selectedAnswerIndex = null;
+
+  // Transition wheel → question
+  switchScreen('wheelScreen', 'questionScreen', 'forward');
+
+  setText('qRoundCounter', `${state.currentRound + 1}/${state.totalRounds}`);
+  setText('qScoreCounter', state.totalScore);
+  updateProgressBars();
+
+  $('qCatBadge').innerHTML = `<div class="cat-badge" style="background: linear-gradient(135deg, ${cat.color}, ${cat.color}cc); color: #fff; border: 2px solid ${cat.color}">
+      <span>${cat.icon}</span><span>${cat.name}</span>
+      <span class="ml-1 px-2 py-0.5 rounded-full font-mono text-[10px]" style="background: rgba(0,0,0,.15)">+${cat.points} poin</span></div>`;
+
+  setText('qText', state.currentQuestion.q);
+
+  const opts = $('qOptions'); opts.innerHTML = '';
+  state.currentQuestion.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.type = 'button'; btn.className = 'opt-btn overflow-safe';
+    btn.setAttribute('role', 'radio'); btn.setAttribute('aria-checked', 'false');
+    const letter = String.fromCharCode(65 + i);
+    btn.textContent = letter + '. ' + opt;
+    btn.setAttribute('aria-label', `Pilihan ${letter}: ${opt}`);
+    btn.addEventListener('click', () => selectAnswer(i));
+    opts.appendChild(btn);
+  });
+
+  hide('qFeedback'); hide('qActions');
+  setTimeout(() => startTimer(), 800);
+}
+
+function selectAnswer(idx) {
+  if (state.answerLocked) return;
+  state.answerLocked = true; state.selectedAnswerIndex = idx;
+  stopTimer(); sfx('click');
+
+  const q = state.currentQuestion;
+  const isCorrect = idx === q.correct;
+  const cat = state.currentCategory;
+
+  if (!state.catStats[cat.id]) state.catStats[cat.id] = { total: 0, correct: 0, points: 0 };
+  state.catStats[cat.id].total++;
+
+  const btns = document.querySelectorAll('#qOptions .opt-btn');
+  btns.forEach((b, i) => { b.disabled = true; b.setAttribute('aria-checked', i === idx ? 'true' : 'false'); });
+  btns[idx].classList.add(isCorrect ? 'opt-correct' : 'opt-wrong');
+  if (!isCorrect) btns[q.correct].classList.add('opt-correct');
+
+  showRevealOverlay(isCorrect ? 'BENAR' : 'SALAH', isCorrect ? 'benar' : 'salah');
+
+  let earnedPoints = 0;
+  if (isCorrect) {
+    sfx('correct'); state.correctCount++; state.streak++;
+    if (state.streak > state.maxStreak) state.maxStreak = state.streak;
+    const streakBonus = Math.min(state.streak - 1, 5) * 0.1;
+    earnedPoints = Math.round(cat.points * (1 + streakBonus));
+    state.totalScore += earnedPoints;
+    state.catStats[cat.id].correct++; state.catStats[cat.id].points += earnedPoints;
+  } else {
+    sfx('wrong'); state.wrongCount++; state.streak = 0;
+  }
+
+  state.history.push({
+    round: state.currentRound + 1, cat: cat.name, catColor: cat.color, catIcon: cat.icon,
+    question: q.q, userAnswer: q.options[idx], correctAnswer: q.options[q.correct],
+    explanation: q.explanation, keyPoint: q.keyPoint, isCorrect, points: earnedPoints
+  });
+
+  setTimeout(() => { hideRevealOverlay(); showFeedback(isCorrect, earnedPoints, cat); }, 1500);
+}
+
+function showFeedback(isCorrect, earnedPoints, cat, timeout) {
+  const q = state.currentQuestion;
+  const fb = $('qFeedback');
+  let html = '';
+  if (isCorrect) {
+    html += `<div class="p-3 rounded-xl mb-2" style="background: var(--green-soft); border: 1px solid var(--green);">
+      <div class="text-[10px] font-bold uppercase mb-1" style="color: var(--green);">✓ Jawaban Benar</div>
+      <div class="font-bold text-xs md:text-sm overflow-safe" style="color: var(--green);">${q.options[state.selectedAnswerIndex]}</div>
+      <div class="text-[11px] mt-1.5 font-bold" style="color: var(--green);">+${earnedPoints} poin ${state.streak >= 2 ? `(🔥 Streak x${state.streak})` : ''}</div></div>`;
+  } else {
+    html += `<div class="space-y-2 mb-2">
+      <div class="p-2.5 rounded-xl" style="background: var(--rose-soft); border: 1px solid var(--rose);">
+        <div class="text-[10px] font-bold uppercase" style="color: var(--rose);">✗ Jawabanmu:</div>
+        <div class="font-semibold text-xs md:text-sm overflow-safe" style="color: var(--rose);">${timeout ? '(Tidak dijawab — waktu habis)' : q.options[state.selectedAnswerIndex]}</div></div>
+      <div class="p-2.5 rounded-xl" style="background: var(--green-soft); border: 1px solid var(--green);">
+        <div class="text-[10px] font-bold uppercase" style="color: var(--green);">✓ Jawaban Benar:</div>
+        <div class="font-bold text-xs md:text-sm overflow-safe" style="color: var(--green);">${q.options[q.correct]}</div></div></div>`;
+  }
+  html += `<div class="fb-section why"><div class="fb-t">💡 Pembahasan</div><div class="fb-b">${q.explanation}</div></div>`;
+  html += `<div class="fb-section key"><div class="fb-t">🎯 Poin Kunci</div><div class="fb-b">${q.keyPoint}</div></div>`;
+  fb.innerHTML = html; show('qFeedback');
+
+  const btn = $('btnNextSpin');
+  if (state.currentRound >= state.totalRounds - 1) {
+    btn.innerHTML = '🏁 LIHAT HASIL KUIS';
+    btn.style.background = 'linear-gradient(135deg,var(--orange),#f59e0b)';
+  } else {
+    btn.innerHTML = '🎡 PUTAR LAGI';
+    btn.style.background = 'linear-gradient(135deg,var(--primary),var(--accent))';
+  }
+  show('qActions'); setText('qScoreCounter', state.totalScore);
+
+  if (isCorrect && state.streak >= 3) {
+    safeConfetti({ particleCount: 40, spread: 60, origin: { y: .7 }, colors: ['#2563eb','#8b5cf6','#10b981'] });
+  }
+}
+
+function nextRound() {
+  sfx('click'); stopTimer();
+  if (state.gameFinished) return;
+  state.currentRound++;
+  if (state.currentRound >= state.totalRounds) {
+    state.gameFinished = true;
+    switchScreen('questionScreen', 'resultScreen', 'forward');
+    setTimeout(() => endGame(), 500);
+    return;
+  }
+  switchScreen('questionScreen', 'wheelScreen', 'back');
+  setText('roundCounter', `${state.currentRound + 1}/${state.totalRounds}`);
+  setText('scoreCounter', state.totalScore);
+  show('wheelInstruction'); hide('categoryResult');
+  updateProgressBars();
+}
+
+function showRevealOverlay(text, type) {
+  const o = $('revealOverlay'), b = $('revealBadge');
+  b.className = 'reveal-badge'; b.textContent = text;
+  if (type === 'benar') { b.classList.add('benar'); createBurst(window.innerWidth/2, window.innerHeight/2, ['#22c55e','#4ade80','#34d399','#86efac']); }
+  else if (type === 'timeout') { b.classList.add('timeout'); createBurst(window.innerWidth/2, window.innerHeight/2, ['#f59e0b','#fbbf24','#f97316','#fde047']); }
+  else { b.classList.add('salah'); createBurst(window.innerWidth/2, window.innerHeight/2, ['#ef4444','#f87171','#f59e0b','#fca5a5']); }
+  o.classList.add('show', 'backdrop');
+}
+function hideRevealOverlay() { const o = $('revealOverlay'); o.classList.remove('show', 'backdrop'); }
+function createBurst(cx, cy, colors) {
+  const count = window.innerWidth < 640 ? 18 : 28;
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    p.className = 'burst-particle';
+    p.style.left = cx + 'px'; p.style.top = cy + 'px'; p.style.background = colors[i % colors.length];
+    const angle = (Math.PI * 2 * i) / count, dist = 90 + Math.random() * 200;
+    p.style.setProperty('--tx', Math.cos(angle) * dist + 'px');
+    p.style.setProperty('--ty', Math.sin(angle) * dist + 'px');
+    p.style.animationDelay = (Math.random() * .15) + 's';
+    p.style.boxShadow = '0 0 14px ' + colors[i % colors.length];
+    document.body.appendChild(p); setTimeout(() => p.remove(), 1300);
+  }
+}
+
+function getAchievement(accuracy, correct, total) {
+  if (accuracy >= 95) return { tier: 'gold', icon: '👑', title: 'LEGENDA INDERAJA', desc: 'Sempurna! Kamu menguasai materi Penginderaan Jauh dengan sangat luar biasa.', color: '#f59e0b' };
+  if (accuracy >= 85) return { tier: 'gold', icon: '🏆', title: 'MASTER PENGINDERAAN JAUH', desc: 'Luar biasa! Pemahamanmu tentang penginderaan jauh sangat tinggi.', color: '#f59e0b' };
+  if (accuracy >= 70) return { tier: 'emerald', icon: '🌟', title: 'AHLI CITRA SATELIT', desc: 'Hebat! Kamu sudah menguasai sebagian besar konsep inderaja.', color: '#10b981' };
+  if (accuracy >= 55) return { tier: 'blue', icon: '🧭', title: 'PENJELAJAH BUMI', desc: 'Bagus! Kemampuanmu sudah baik, terus tingkatkan lagi.', color: '#2563eb' };
+  if (accuracy >= 40) return { tier: 'violet', icon: '📜', title: 'PEMBELAJAR AKTIF', desc: 'Cukup baik! Pelajari kembali materi yang belum dikuasai.', color: '#8b5cf6' };
+  return { tier: 'slate', icon: '🌱', title: 'PEMULA SEMANGAT', desc: 'Jangan menyerah! Setiap perjalanan dimulai dari langkah pertama.', color: '#64748b' };
+}
+
+function endGame() {
+  kuisAktif = false; stopTimer();
+  const total = state.totalRounds, correct = state.correctCount, wrong = state.wrongCount;
+  const accuracy = Math.round((correct / total) * 100), score = state.totalScore;
+  const ach = getAchievement(accuracy, correct, total);
+  setText('rName', state.studentName.toUpperCase());
+  $('achievementWrap').innerHTML = `
+    <div class="achievement-card ach-tier-${ach.tier}">
+      <div class="flex items-center gap-3 relative z-10">
+        <div class="ach-icon">${ach.icon}</div>
+        <div class="flex-1 min-w-0">
+          <div class="text-[10px] uppercase tracking-widest font-black mb-1" style="color: ${ach.color};">🏅 KATEGORI CAPAIAN</div>
+          <div class="text-lg md:text-2xl font-black leading-tight overflow-safe" style="color: ${ach.color}; font-family:'Space Grotesk',sans-serif;">${ach.title}</div>
+          <div class="text-[11px] md:text-xs mt-1.5 leading-snug" style="color: var(--text-muted);">${ach.desc}</div></div></div></div>`;
+  setText('rCorrect', correct); setText('rWrong', wrong); setText('rAcc', accuracy + '%'); setText('rStreak', state.maxStreak + '🔥');
+
+  let counter = 0; const step = Math.max(1, Math.ceil(score / 40));
+  const iv = setInterval(() => { counter += step; if (counter >= score) { counter = score; clearInterval(iv); } $('totalScoreDisplay').textContent = counter; }, 30);
+
+  const breakdown = $('catBreakdown'); breakdown.innerHTML = '';
+  CATEGORIES.forEach(cat => {
+    const s = state.catStats[cat.id]; if (!s || s.total === 0) return;
+    const pct = Math.round((s.correct / s.total) * 100);
+    const row = document.createElement('div'); row.className = 'cat-stat-row';
+    row.innerHTML = `<span class="text-base shrink-0">${cat.icon}</span>
+      <div class="flex-1 min-w-0"><div class="flex items-center justify-between gap-2 mb-1">
+          <span class="text-[10px] md:text-[11px] font-bold truncate" style="color: ${cat.color};">${cat.name}</span>
+          <span class="text-[10px] md:text-[11px] font-mono font-bold shrink-0" style="color: var(--text-muted);">${s.correct}/${s.total} • ${s.points} poin</span></div>
+        <div class="cat-stat-bar"><i style="width: ${pct}%; background: linear-gradient(90deg, ${cat.color}, ${cat.color}cc);"></i></div></div>`;
+    breakdown.appendChild(row);
+  });
+
+  let prev = null; try { prev = localStorage.getItem(STORAGE_PREFIX + 'best_score'); } catch(e) {}
+  if (prev === null || score > parseInt(prev)) {
+    try { localStorage.setItem(STORAGE_PREFIX + 'best_score', score); localStorage.setItem(STORAGE_PREFIX + 'best_acc', accuracy); localStorage.setItem(STORAGE_PREFIX + 'best_title', ach.title); } catch(e) {}
+    sfx('win');
+    safeConfetti({ particleCount: 100, spread: 100, origin: { y: .6 }, colors: ['#2563eb','#8b5cf6','#10b981','#f59e0b'] });
+    setTimeout(() => safeConfetti({ particleCount: 60, angle: 60, spread: 70, origin: { x: 0, y: .7 }, colors: ['#2563eb','#0ea5e9'] }), 300);
+    setTimeout(() => safeConfetti({ particleCount: 60, angle: 120, spread: 70, origin: { x: 1, y: .7 }, colors: ['#10b981','#8b5cf6'] }), 500);
+  } else { if (accuracy >= 60) safeConfetti({ particleCount: 40, spread: 80, origin: { y: .6 } }); }
+}
+
+function copyResult() {
+  sfx('click');
+  const total = state.totalRounds, accuracy = Math.round((state.correctCount / total) * 100);
+  const ach = getAchievement(accuracy, state.correctCount, total);
+  let catBreakdownText = '';
+  CATEGORIES.forEach(cat => { const s = state.catStats[cat.id]; if (!s || s.total === 0) return; catBreakdownText += `  • ${cat.name}: ${s.correct}/${s.total} (${s.points} poin)\n`; });
+  const txt = `HASIL KUIS RODA BERPUTAR — PENGINDERAAN JAUH
+Sekolah: SMAN 3 Kasongan
+Kelas: X / Fase E
+Guru Pengampu: SYAHRANI, S.Pd.
+NIP. 197512172005011016
+━━━━━━━━━━━━━━━━━━━━
+Nama Siswa: ${state.studentName}
+Materi: Penginderaan Jauh (Remote Sensing)
+━━━━━━━━━━━━━━━━━━━━
+🏅 KATEGORI CAPAIAN: ${ach.title}
+${ach.icon} ${ach.desc}
+━━━━━━━━━━━━━━━━━━━━
+📊 STATISTIK:
+  • Total Poin: ${state.totalScore}
+  • Jawaban Benar: ${state.correctCount}/${total}
+  • Jawaban Salah: ${state.wrongCount}
+  • Akurasi: ${accuracy}%
+  • Streak Terbaik: ${state.maxStreak}
+━━━━━━━━━━━━━━━━━━━━
+📚 CAPAIAN PER KATEGORI:
+${catBreakdownText}━━━━━━━━━━━━━━━━━━━━`;
+  const ta = document.createElement('textarea'); ta.value = txt;
+  document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+  const btn = $('btnCopy'), oldText = btn.textContent; btn.textContent = '✓ TERSALIN!';
+  setTimeout(() => { btn.textContent = oldText; }, 2000);
+}
+
+function returnToMainScreen() {
+  sfx('click'); kuisAktif = false; stopTimer();
+  Object.assign(state, { studentName: '', currentRound: 0, totalScore: 0, correctCount: 0, wrongCount: 0, streak: 0, maxStreak: 0, currentRotation: 0, catStats: {}, currentCategory: null, currentQuestion: null, selectedAnswerIndex: null, answerLocked: false, spinning: false, gameFinished: false });
+  state.usedQuestions.clear(); state.history = [];
+  const wheel = $('wheelSvg'); wheel.style.transition = 'none'; wheel.style.transform = 'rotate(0deg)';
+  const nameInput = $('studentName'); if (nameInput) nameInput.value = '';
+
+  switchScreen('resultScreen', 'startScreen', 'back');
+  hide('wheelScreen'); hide('questionScreen'); hide('categoryResult'); hide('wheelInstruction'); hide('qFeedback'); hide('qActions');
+  updateProgressBars();
+
+  try {
+    const bs = localStorage.getItem(STORAGE_PREFIX + 'best_score'), ba = localStorage.getItem(STORAGE_PREFIX + 'best_acc'), bt = localStorage.getItem(STORAGE_PREFIX + 'best_title');
+    if (bs !== null) { show('bestScoreSummary'); setText('bestScorePoints', bs); setText('bestScoreAcc', ba + '%'); setText('bestScoreTitle', bt); }
+    else hide('bestScoreSummary');
+  } catch(e) {}
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function init() {
+  initTheme();
+  buildWheel();
+
+  // Rebuild wheel saat tema berubah (supaya stroke & gradient ikut)
+  const themeObserver = new MutationObserver(() => buildWheel());
+  themeObserver.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+  $('soundToggle').addEventListener('click', () => {
+    soundMuted = !soundMuted;
+    $('soundToggle').textContent = soundMuted ? '🔇' : '🔊';
+    $('soundToggle').style.opacity = soundMuted ? '0.5' : '1';
+    if (!soundMuted) sfx('click');
+  });
+
+  $('startForm').addEventListener('submit', e => {
+    e.preventDefault(); sfx('click');
+    const name = $('studentName').value.trim();
+    if (!name) { alert('Mohon isi nama terlebih dahulu.'); return; }
+    Object.assign(state, { studentName: name, currentRound: 0, totalScore: 0, correctCount: 0, wrongCount: 0, streak: 0, maxStreak: 0, currentRotation: 0, catStats: {}, gameFinished: false });
+    state.usedQuestions.clear(); state.history = [];
+    kuisAktif = true;
+    const btn = $('btnNextSpin'); if (btn) { btn.innerHTML = '🎡 PUTAR LAGI'; btn.style.background = 'linear-gradient(135deg,var(--primary),var(--accent))'; }
+    setText('playerName', name); setText('roundCounter', `1/${state.totalRounds}`); setText('scoreCounter', state.totalScore);
+    switchScreen('startScreen', 'wheelScreen', 'forward');
+    show('wheelInstruction'); hide('categoryResult');
+    updateProgressBars();
+  });
+
+  $('spinBtn').addEventListener('click', spin);
+  $('wheelSvg').addEventListener('click', () => { if (!state.spinning && !state.gameFinished) spin(); });
+  $('btnNextSpin').addEventListener('click', nextRound);
+  $('btnHome').addEventListener('click', returnToMainScreen);
+  $('btnCopy').addEventListener('click', copyResult);
+  $('btnKirim').addEventListener('click', kirimNilai);
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  try {
+    const bs = localStorage.getItem(STORAGE_PREFIX + 'best_score'), ba = localStorage.getItem(STORAGE_PREFIX + 'best_acc'), bt = localStorage.getItem(STORAGE_PREFIX + 'best_title');
+    if (bs !== null) { show('bestScoreSummary'); setText('bestScorePoints', bs); setText('bestScoreAcc', ba + '%'); setText('bestScoreTitle', bt); }
+  } catch(e) {}
+}
+
+document.addEventListener('DOMContentLoaded', init);
+
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const ls = document.getElementById('loadingScreen');
+    if (ls) { ls.classList.add('hidden'); setTimeout(() => ls.remove(), 800); }
+  }, 2200);
+});
+</script>
+</body>
+</html>
