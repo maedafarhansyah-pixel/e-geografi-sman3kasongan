@@ -57,239 +57,89 @@ body{
 body.loading{overflow:hidden;}
 
 /* ============================================================
-   LOADING — tema BUMI / GEOGRAFI
+   LOADING
    ============================================================ */
-.loader{
-    position:fixed;
-    inset:0;
-    z-index:9999;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    background:radial-gradient(ellipse at center, #1e3a2e 0%, #0a1a0f 100%);
-    overflow:hidden;
-    transition:opacity .7s ease, visibility .7s ease;
+#loader {
+    position: fixed;
+    inset: 0;
+    background: rgba(10,14,26,0.75);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
 }
-.loader.hide{
-    opacity:0;
-    visibility:hidden;
-    pointer-events:none;
+#loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+.loader-ring-container { position: relative; width: 120px; height: 120px; }
+.loader-ring {
+    width: 120px; height: 120px; border-radius: 50%;
+    border: 4px solid transparent;
+    border-top-color: #6c5ce7;
+    border-right-color: #00cec9;
+    border-bottom-color: #fd79a8;
+    border-left-color: #fdcb6e;
+    animation: spinRing 1.2s cubic-bezier(0.34,1.56,0.64,1) infinite;
 }
-
-.loader-stars{
-    position:absolute;
-    inset:0;
-    pointer-events:none;
-    z-index:0;
+.loader-ring::after {
+    content: '';
+    position: absolute;
+    inset: 16px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-bottom-color: #00b894;
+    border-left-color: #0984e3;
+    animation: spinRing 0.8s linear infinite reverse;
 }
-.loader-stars i{
-    position:absolute;
-    color:rgba(134,239,172,.12);
-    font-size:1rem;
-    font-style:normal;
-    animation:starTwinkle 4s infinite alternate;
+.loader-ring::before {
+    content: '🌍';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    animation: pulseGlow 1.5s ease-in-out infinite alternate;
 }
-@keyframes starTwinkle{
-    0%{opacity:.05;transform:scale(.8);}
-    100%{opacity:.28;transform:scale(1.2);}
+@keyframes spinRing { to { transform: rotate(360deg); } }
+@keyframes pulseGlow {
+    0% { transform: scale(0.8); opacity: 0.6; }
+    100% { transform: scale(1.2); opacity: 1; }
 }
-
-.loader-sparkles{
-    position:absolute;
-    inset:0;
-    pointer-events:none;
-    z-index:1;
-    overflow:hidden;
+.loader-title {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 900;
+    margin-top: 20px;
+    background: linear-gradient(135deg, #6c5ce7, #00cec9, #fd79a8, #fdcb6e);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: gradientMove 3s ease-in-out infinite;
+    letter-spacing: 2px;
 }
-.loader-sparkles span{
-    position:absolute;
-    width:4px;
-    height:4px;
-    background:var(--green-500);
-    border-radius:50%;
-    box-shadow:0 0 10px var(--green-500), 0 0 30px var(--green-500);
-    opacity:0;
-    animation:sparkleFloat 3s infinite alternate ease-in-out;
+@keyframes gradientMove {
+    0%,100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
 }
-@keyframes sparkleFloat{
-    0%{opacity:0;transform:translate(0,0) scale(.5);}
-    50%{opacity:1;transform:translate(var(--tx),var(--ty)) scale(1.5);}
-    100%{opacity:0;transform:translate(var(--tx2),var(--ty2)) scale(.3);}
+.loader-sub { color: rgba(255,255,255,0.3); font-size: 0.9rem; letter-spacing: 4px; font-weight: 300; margin-top: 4px; }
+.loader-bar-track { width: clamp(200px, 40vw, 400px); height: 6px; background: rgba(255,255,255,0.05); border-radius: 10px; margin-top: 20px; overflow: hidden; position: relative; }
+.loader-bar {
+    height: 100%; width: 0%; border-radius: 10px;
+    background: linear-gradient(90deg, #6c5ce7, #00cec9, #fd79a8, #fdcb6e, #00b894);
+    background-size: 300% 100%;
+    animation: barShine 2s linear infinite;
+    transition: width 0.3s ease;
+    box-shadow: 0 0 30px rgba(108,92,231,0.3);
 }
-
-.loader-globe-wrapper{
-    position:relative;
-    width:120px;
-    height:120px;
-    perspective:600px;
-    margin-bottom:22px;
-    z-index:2;
+@keyframes barShine {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 300% 0%; }
 }
-.loader-globe{
-    width:100%;
-    height:100%;
-    position:relative;
-    transform-style:preserve-3d;
-    animation:spinGlobe 5s infinite linear;
-}
-.loader-globe .face{
-    position:absolute;
-    width:80px;
-    height:80px;
-    top:50%;
-    left:50%;
-    margin:-40px 0 0 -40px;
-    border-radius:12px;
-    background:rgba(34,197,94,.10);
-    border:2px solid var(--green-500);
-    box-shadow:0 0 30px rgba(34,197,94,.22), inset 0 0 30px rgba(34,197,94,.06);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:2rem;
-    backface-visibility:visible;
-}
-.face-front { transform:rotateY(0deg)    translateZ(40px); }
-.face-back  { transform:rotateY(180deg)  translateZ(40px); }
-.face-right { transform:rotateY(90deg)   translateZ(40px); }
-.face-left  { transform:rotateY(-90deg)  translateZ(40px); }
-.face-top   { transform:rotateX(90deg)   translateZ(40px); }
-.face-bottom{ transform:rotateX(-90deg)  translateZ(40px); }
-@keyframes spinGlobe{
-    0%{transform:rotateX(-20deg) rotateY(0deg);}
-    100%{transform:rotateX(-20deg) rotateY(360deg);}
-}
-
-.loader-ring-glow{
-    position:absolute;
-    width:160px;
-    height:160px;
-    top:50%;
-    left:50%;
-    margin:-80px 0 0 -80px;
-    border-radius:50%;
-    background:conic-gradient(from 0deg, transparent, var(--green-500), transparent, var(--teal-light), transparent);
-    animation:rotateGlow 3s linear infinite;
-    filter:blur(8px);
-    opacity:.35;
-    z-index:1;
-}
-@keyframes rotateGlow{
-    0%{transform:rotate(0deg);}
-    100%{transform:rotate(360deg);}
-}
-
-.loader-title{
-    position:relative;
-    z-index:2;
-    display:inline-block;
-    padding:0 18px;
-    font-size:clamp(1.2rem,4.2vw,2.5rem);
-    font-weight:900;
-    letter-spacing:4px;
-    text-align:center;
-    line-height:1.2;
-    background:linear-gradient(135deg,#bbf7d0 0%, #4ade80 35%, #16a34a 65%, #4ade80 100%);
-    background-size:300% 300%;
-    -webkit-background-clip:text;
-    background-clip:text;
-    -webkit-text-fill-color:transparent;
-    color:transparent;
-    filter:drop-shadow(0 0 40px rgba(34,197,94,.45));
-    animation:titlePulse 2.5s ease-in-out infinite, gradientMove 5s ease-in-out infinite;
-}
-.loader-title::after{
-    content:'';
-    position:absolute;
-    bottom:-9px;
-    left:10%;
-    width:80%;
-    height:3px;
-    border-radius:4px;
-    background:linear-gradient(90deg,transparent,var(--teal-light),transparent);
-    animation:titleUnderline 2s ease-in-out infinite;
-}
-@keyframes titlePulse{
-    0%,100%{transform:scale(1);}
-    50%{transform:scale(1.02);}
-}
-@keyframes titleUnderline{
-    0%,100%{width:20%;left:40%;opacity:.4;}
-    50%{width:80%;left:10%;opacity:1;}
-}
-@keyframes gradientMove{
-    0%{background-position:0% 50%;}
-    100%{background-position:300% 50%;}
-}
-
-.loader-percent{
-    z-index:2;
-    margin-top:16px;
-    font-size:1.1rem;
-    font-weight:700;
-    letter-spacing:2px;
-    color:var(--green-300);
-    font-variant-numeric:tabular-nums;
-}
-.loader-percent b{
-    color:var(--teal-light);
-    font-weight:800;
-}
-
-.loader-tagline{
-    margin-top:26px;
-    z-index:2;
-    text-align:center;
-    padding:0 20px;
-    opacity:0;
-    animation:taglineReveal 1.2s cubic-bezier(.23,1,.32,1) .4s forwards;
-}
-.loader-tagline .tagline-divider{
-    display:block;
-    width:64px;
-    height:2px;
-    margin:0 auto 14px;
-    border-radius:4px;
-    background:linear-gradient(90deg,transparent,var(--green-500),transparent);
-    opacity:.65;
-}
-.loader-tagline .tagline-line{
-    display:block;
-    font-size:clamp(.82rem,1.5vw,1.1rem);
-    font-weight:500;
-    letter-spacing:1.4px;
-    line-height:1.9;
-    color:rgba(220,252,231,.78);
-    text-shadow:0 0 20px rgba(34,197,94,.15);
-}
-.loader-tagline .tagline-line .highlight{
-    color:var(--green-400);
-    font-weight:700;
-    text-shadow:0 0 26px rgba(74,222,128,.55);
-}
-.loader-tagline .tagline-line .highlight-gold{
-    color:var(--amber-light);
-    font-weight:700;
-    text-shadow:0 0 26px rgba(251,191,36,.55);
-}
-.loader-tagline .tagline-ornament{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:12px;
-    margin-top:10px;
-}
-.loader-tagline .tagline-ornament i{
-    font-style:normal;
-    color:var(--green-400);
-    font-size:.62rem;
-    opacity:.55;
-}
-@keyframes taglineReveal{
-    0%{opacity:0;transform:translateY(20px) scale(.96);}
-    100%{opacity:1;transform:translateY(0) scale(1);}
-}
+.loader-percent { color: rgba(255,255,255,0.2); font-size: 0.7rem; margin-top: 6px; font-weight: 500; letter-spacing: 2px; }
 
 body.loading .header::before,
 body.loading .header *,
@@ -962,12 +812,6 @@ body.loading .bg-decor *{
     .button{width:100%;justify-content:center;padding:15px 22px;}
     .bg-decor .blob{filter:blur(55px);opacity:.4;}
     .header h1 .sub{letter-spacing:.10em;}
-
-    .loader-globe-wrapper{transform:scale(.78);margin-bottom:4px;}
-    .loader-ring-glow{opacity:.28;}
-    .loader-title{letter-spacing:2.5px;padding:0 12px;font-size:clamp(1rem,5vw,1.6rem);}
-    .loader-percent{font-size:1rem;}
-    .loader-tagline{margin-top:20px;}
 }
 
 @media (prefers-reduced-motion:reduce){
@@ -982,36 +826,18 @@ body.loading .bg-decor *{
 <body class="loading">
 
 <!-- ==================== LOADING ==================== -->
-<div class="loader" id="loader" role="status" aria-live="polite" aria-label="Memuat halaman">
-    <div class="loader-stars" id="loaderStars"></div>
-    <div class="loader-sparkles" id="loaderSparkles"></div>
-
-    <div class="loader-globe-wrapper">
-        <div class="loader-ring-glow"></div>
-        <div class="loader-globe">
-            <div class="face face-front">🌍</div>
-            <div class="face face-back">🗺️</div>
-            <div class="face face-right">🌋</div>
-            <div class="face face-left">🌊</div>
-            <div class="face face-top">🛰️</div>
-            <div class="face face-bottom">🧭</div>
-        </div>
+<div id="loader" role="status" aria-live="polite" aria-label="Memuat halaman">
+    <div class="loader-ring-container">
+        <div class="loader-ring"></div>
     </div>
 
     <div class="loader-title">E-GEOGRAFI</div>
-    <div class="loader-percent"><b id="loaderPct">0</b>%</div>
+    <div class="loader-sub">SMAN 3 KASONGAN</div>
 
-    <div class="loader-tagline">
-        <div class="tagline-divider"></div>
-        <span class="tagline-line">
-            <span class="highlight">Mengenal</span> Bumi,
-            <span class="highlight-gold">Memahami</span> Ruang,
-            <span class="highlight">Menjaga</span> Lingkungan
-        </span>
-        <div class="tagline-ornament">
-            <i>★</i><i>•</i><i>★</i>
-        </div>
+    <div class="loader-bar-track">
+        <div class="loader-bar" id="loaderBar"></div>
     </div>
+    <div class="loader-percent"><span id="loaderPct">0</span>%</div>
 </div>
 
 <!-- Ornamen latar -->
@@ -1294,50 +1120,14 @@ body.loading .bg-decor *{
 
 <script>
 /* ============================================================
-   LOADER — tema bumi / geografi (globe 3D + partikel)
+   LOADER
    Durasi 2 detik
    ============================================================ */
 (function () {
-    var loader  = document.getElementById('loader');
-    var pctEl   = document.getElementById('loaderPct');
+    var loader = document.getElementById('loader');
+    var pctEl  = document.getElementById('loaderPct');
+    var barEl  = document.getElementById('loaderBar');
     var DURATION = 2000;
-
-    var starsBox = document.getElementById('loaderStars');
-    if (starsBox) {
-        for (var i = 0; i < 42; i++) {
-            var s = document.createElement('i');
-            s.textContent = '★';
-            s.style.left = (Math.random() * 100) + '%';
-            s.style.top  = (Math.random() * 100) + '%';
-            s.style.fontSize = (0.4 + Math.random() * 0.8) + 'rem';
-            s.style.animationDelay = (Math.random() * 4) + 's';
-            s.style.animationDuration = (3 + Math.random() * 4) + 's';
-            starsBox.appendChild(s);
-        }
-    }
-
-    var sparkBox = document.getElementById('loaderSparkles');
-    if (sparkBox) {
-        for (var j = 0; j < 24; j++) {
-            var sp = document.createElement('span');
-            var size = 2 + Math.random() * 5;
-            sp.style.width  = size + 'px';
-            sp.style.height = size + 'px';
-            sp.style.left = (Math.random() * 100) + '%';
-            sp.style.top  = (Math.random() * 100) + '%';
-
-            var tx = (Math.random() - 0.5) * 200;
-            var ty = (Math.random() - 0.5) * 200;
-            sp.style.setProperty('--tx',  tx + 'px');
-            sp.style.setProperty('--ty',  ty + 'px');
-            sp.style.setProperty('--tx2', (tx * 1.5) + 'px');
-            sp.style.setProperty('--ty2', (ty * 1.5) + 'px');
-
-            sp.style.animationDelay    = (Math.random() * 2) + 's';
-            sp.style.animationDuration = (2 + Math.random() * 3) + 's';
-            sparkBox.appendChild(sp);
-        }
-    }
 
     var startTime = null;
     var finished  = false;
@@ -1352,6 +1142,7 @@ body.loading .bg-decor *{
         var p = Math.round(easeOutCubic(t) * 100);
 
         pctEl.textContent = p;
+        if (barEl) barEl.style.width = p + '%';
 
         if (t < 1) {
             requestAnimationFrame(step);
@@ -1363,14 +1154,14 @@ body.loading .bg-decor *{
 
     function hideLoader() {
         setTimeout(function () {
-            loader.classList.add('hide');
+            loader.classList.add('hidden');
             document.body.classList.remove('loading');
 
             setTimeout(function () {
                 if (loader && loader.parentNode) {
                     loader.parentNode.removeChild(loader);
                 }
-            }, 750);
+            }, 850);
         }, 200);
     }
 
@@ -1387,6 +1178,7 @@ body.loading .bg-decor *{
         if (!finished) {
             finished = true;
             pctEl.textContent = '100';
+            if (barEl) barEl.style.width = '100%';
             hideLoader();
         }
     }, 2600);
