@@ -4,9 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
 <meta name="theme-color" content="#7a1626" />
-<title>GeoExplorer – Litosfer Kelas X</title>
+<meta name="description" content="GeoExplorer Premium — Modul Litosfer Kelas X Fase E. Pembelajaran mendalam, asesmen autentik, dan diferensiasi untuk Kurikulum Merdeka." />
+<title>GeoExplorer Premium – Litosfer Kelas X · Fase E</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Playfair+Display:wght@600;700;900&display=swap" rel="stylesheet" />
 <style>
 /* ============ RESET ============ */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -14,6 +15,7 @@
   --primary:#7a1626;--primary-light:#a52a3d;--primary-dark:#4a0c16;
   --primary-rgb:122,22,38;--accent:#c1121f;--accent-rgb:193,18,31;
   --gold:#c8952b;--gold-rgb:200,149,43;
+  --emerald:#27ae60;--violet:#9b59b6;--sky:#2c7fb8;
   --bg:#fbf6f5;--bg-soft:#f6e9e7;--card-bg:#ffffff;--card-alt:#fffafa;
   --text:#2b1418;--text-light:#4e3036;--text-muted:#8a6a70;
   --line:rgba(122,22,38,.10);--line-soft:rgba(122,22,38,.055);
@@ -25,8 +27,16 @@
   --ease:.35s cubic-bezier(.22,1,.36,1);
   --header-h:64px;
 }
+html[data-theme="dark"]{
+  --bg:#15090c;--bg-soft:#1f0f14;--card-bg:#211015;--card-alt:#1a0c10;
+  --text:#f5e6e9;--text-light:#dcc3c8;--text-muted:#9e7c84;
+  --line:rgba(255,255,255,.10);--line-soft:rgba(255,255,255,.06);
+  --shadow:0 10px 34px rgba(0,0,0,.45);
+  --shadow-hover:0 20px 56px rgba(0,0,0,.6);
+  --shadow-sm:0 4px 16px rgba(0,0,0,.4);
+}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.75;overflow-x:hidden;min-height:100vh}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.75;overflow-x:hidden;min-height:100vh;transition:background .4s ease,color .4s ease}
 h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.25}
 
 /* ============ BACKGROUND ============ */
@@ -43,6 +53,7 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
 #loader{position:fixed;inset:0;background:rgba(251,246,245,.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
   display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:99999;
   transition:opacity .7s ease,visibility .7s ease;padding:20px;text-align:center}
+html[data-theme="dark"] #loader{background:rgba(21,9,12,.97)}
 #loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
 .loader-geo{width:100px;height:100px;position:relative;animation:spinGeo 3.2s ease-in-out infinite}
 .loader-geo svg{width:100%;height:100%;display:block;filter:drop-shadow(0 8px 20px rgba(122,22,38,.25))}
@@ -69,19 +80,27 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
   background:rgba(255,255,255,.92);
   backdrop-filter:blur(22px) saturate(160%);-webkit-backdrop-filter:blur(22px) saturate(160%);
   border-bottom:1px solid var(--line-soft);z-index:1000;display:flex;align-items:center;justify-content:space-between;
-  padding:0 clamp(12px,2.4vw,28px);gap:10px;transition:box-shadow .3s ease}
+  padding:0 clamp(12px,2.4vw,28px);gap:10px;transition:box-shadow .3s ease,background .4s ease}
+html[data-theme="dark"] .site-header{background:rgba(33,16,21,.92)}
 .site-header.scrolled{box-shadow:0 6px 30px rgba(122,22,38,.10)}
 .site-header .brand{display:flex;align-items:center;gap:10px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;
   font-size:clamp(1rem,2.2vw,1.2rem);color:var(--primary);text-decoration:none;letter-spacing:-.4px;flex-shrink:0;cursor:pointer}
+html[data-theme="dark"] .site-header .brand{color:var(--gold)}
 .site-header .brand .logo-dot{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;
   background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;font-size:1rem;
   box-shadow:0 6px 18px rgba(122,22,38,.28);transition:transform var(--transition)}
 .site-header .brand:hover .logo-dot{transform:rotate(-10deg) scale(1.08)}
 .site-header .nav-links{display:flex;align-items:center;gap:2px;list-style:none;flex-wrap:nowrap;overflow:hidden;flex:1;justify-content:center}
-.site-header .nav-links a{display:inline-block;padding:6px 12px;border-radius:30px;font-size:.72rem;font-weight:600;
+.site-header .nav-links a{display:inline-block;padding:6px 11px;border-radius:30px;font-size:.7rem;font-weight:600;
   color:var(--text-light);text-decoration:none;transition:all .28s ease;cursor:pointer;white-space:nowrap}
 .site-header .nav-links a:hover{background:rgba(122,22,38,.07);color:var(--primary)}
+html[data-theme="dark"] .site-header .nav-links a:hover{background:rgba(200,149,43,.14);color:var(--gold)}
 .site-header .nav-links a.active{background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;box-shadow:0 4px 14px rgba(122,22,38,.28)}
+.site-header .header-actions{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.site-header .icon-btn{width:38px;height:38px;border-radius:12px;border:1px solid var(--line);
+  background:var(--card-bg);color:var(--primary);cursor:pointer;display:grid;place-items:center;font-size:.92rem;transition:all var(--ease)}
+html[data-theme="dark"] .site-header .icon-btn{color:var(--gold)}
+.site-header .icon-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary);transform:translateY(-2px)}
 .site-header .menu-toggle{display:none;width:38px;height:38px;border-radius:12px;border:1px solid var(--line);
   background:var(--card-bg);font-size:1rem;color:var(--primary);cursor:pointer;align-items:center;justify-content:center;flex-shrink:0}
 
@@ -99,9 +118,10 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
   font-size:1.1rem;color:var(--text);cursor:pointer;margin-bottom:18px;display:grid;place-items:center;margin-left:auto;transition:all var(--transition)}
 .mobile-drawer .close-btn:hover{background:var(--primary);color:#fff}
 .mobile-drawer .dw-head{font-size:.7rem;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--text-muted);margin:0 4px 10px}
-.mobile-drawer a{display:flex;align-items:center;gap:12px;padding:13px 16px;border-radius:14px;font-weight:600;font-size:.92rem;
+.mobile-drawer a{display:flex;align-items:center;gap:12px;padding:13px 16px;border-radius:14px;font-weight:600;font-size:.9rem;
   color:var(--text-light);text-decoration:none;transition:all .3s ease;cursor:pointer;margin-bottom:4px}
 .mobile-drawer a:hover,.mobile-drawer a.active{background:rgba(122,22,38,.07);color:var(--primary)}
+html[data-theme="dark"] .mobile-drawer a:hover,html[data-theme="dark"] .mobile-drawer a.active{background:rgba(200,149,43,.14);color:var(--gold)}
 .mobile-drawer a.active{background:linear-gradient(135deg,rgba(122,22,38,.10),rgba(193,18,31,.06));font-weight:700}
 .drawer-overlay{position:fixed;inset:0;background:rgba(30,6,10,.45);backdrop-filter:blur(3px);z-index:1001;opacity:0;visibility:hidden;transition:all .4s ease}
 .drawer-overlay.open{opacity:1;visibility:visible}
@@ -125,6 +145,7 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
 .section-header h2 small{display:block;font-weight:400;font-size:.82rem;color:var(--text-muted);margin-top:3px;letter-spacing:0}
 .section-header .badge{background:rgba(122,22,38,.07);color:var(--primary-light);padding:5px 16px;border-radius:40px;
   font-size:.7rem;font-weight:700;letter-spacing:.5px;border:1px solid var(--line);white-space:nowrap;align-self:center}
+html[data-theme="dark"] .section-header .badge{color:var(--gold)}
 .section-header .badge.badge-time{background:rgba(193,18,31,.08);color:var(--accent);border-color:rgba(193,18,31,.12)}
 .section-header .badge.badge-asesmen{background:rgba(200,149,43,.12);color:var(--gold);border-color:rgba(200,149,43,.16)}
 
@@ -140,6 +161,17 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
 .pertemuan-banner .info p{font-size:.84rem;color:var(--text-muted);margin:0;line-height:1.55}
 .pertemuan-banner .time-chip{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--gold),var(--accent));
   color:#fff;font-size:.74rem;font-weight:700;padding:7px 15px;border-radius:30px;white-space:nowrap;box-shadow:0 6px 18px rgba(200,149,43,.32)}
+
+/* ============ ESSENTIAL QUESTIONS ============ */
+.essential-box{background:linear-gradient(135deg,rgba(44,127,184,.06),rgba(155,89,182,.04));
+  border-left:5px solid var(--sky);border-radius:var(--radius-sm);padding:18px 22px;margin-bottom:20px;box-shadow:0 8px 24px rgba(44,127,184,.06)}
+.essential-box .es-title{display:flex;align-items:center;gap:10px;color:var(--sky);font-size:.88rem;font-weight:800;
+  margin-bottom:10px;text-transform:uppercase;letter-spacing:1px}
+.essential-box .es-title i{background:linear-gradient(135deg,var(--sky),#4a9fd8);color:#fff;width:30px;height:30px;border-radius:50%;
+  display:inline-flex;align-items:center;justify-content:center;font-size:.82rem}
+.essential-box ul{list-style:none;padding:0;margin:0}
+.essential-box ul li{position:relative;padding:7px 0 7px 26px;color:var(--text-light);font-size:.9rem;line-height:1.7;font-style:italic}
+.essential-box ul li::before{content:'❓';position:absolute;left:0;top:7px;font-size:.85rem}
 
 /* ============ TUJUAN ============ */
 .tujuan-box{background:linear-gradient(135deg,rgba(200,149,43,.07),rgba(193,18,31,.035));
@@ -157,11 +189,26 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
   background:linear-gradient(135deg,var(--gold),var(--accent));color:#fff;border-radius:50%;
   display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.76rem;box-shadow:0 4px 12px rgba(200,149,43,.35)}
 
+/* ============ CAPAIAN / PROFIL ============ */
+.cp-box{background:linear-gradient(135deg,rgba(39,174,96,.055),rgba(122,22,38,.03));
+  border-left:5px solid var(--emerald);border-radius:var(--radius-sm);padding:20px 24px;margin-bottom:22px}
+.cp-box .cp-title{display:flex;align-items:center;gap:10px;color:var(--emerald);font-size:.92rem;font-weight:800;
+  margin-bottom:12px;text-transform:uppercase;letter-spacing:1px}
+.cp-box .cp-title i{background:var(--emerald);color:#fff;width:30px;height:30px;border-radius:50%;
+  display:inline-flex;align-items:center;justify-content:center;font-size:.82rem}
+.cp-box p{font-size:.9rem;color:var(--text-light);line-height:1.75;margin-bottom:8px}
+.pancasila-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-top:12px}
+.pancasila-item{background:var(--card-bg);border:1px solid rgba(39,174,96,.16);border-radius:12px;padding:12px 14px;text-align:center;transition:all var(--ease)}
+.pancasila-item:hover{transform:translateY(-3px);box-shadow:var(--shadow-sm)}
+.pancasila-item .pi-icon{font-size:1.5rem;display:block;margin-bottom:4px}
+.pancasila-item .pi-name{font-size:.76rem;font-weight:800;color:var(--emerald);letter-spacing:.2px;line-height:1.35}
+
 /* ============ PROSES ============ */
 .proses-box{background:linear-gradient(135deg,rgba(122,22,38,.045),rgba(122,22,38,.015));
   border-left:5px solid var(--primary);border-radius:var(--radius-sm);padding:20px 24px;margin-bottom:22px}
 .proses-box .proses-title{display:flex;align-items:center;gap:10px;color:var(--primary);font-size:.92rem;font-weight:800;
   margin-bottom:14px;text-transform:uppercase;letter-spacing:1px}
+html[data-theme="dark"] .proses-box .proses-title{color:var(--gold)}
 .proses-box .proses-title i{background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;width:30px;height:30px;
   border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.82rem}
 .proses-grid{display:grid;grid-template-columns:1fr;gap:10px}
@@ -187,6 +234,7 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
 .formatif-kuis .kuis-opsi{display:flex;flex-wrap:wrap;gap:7px}
 .formatif-kuis .kuis-opsi span{display:inline-block;background:rgba(122,22,38,.045);border:1.5px solid var(--line);
   border-radius:22px;padding:6px 16px;font-size:.79rem;color:var(--text-light);cursor:pointer;transition:all .28s ease;font-weight:600}
+html[data-theme="dark"] .formatif-kuis .kuis-opsi span{background:rgba(255,255,255,.04)}
 .formatif-kuis .kuis-opsi span:hover{background:rgba(122,22,38,.09);border-color:var(--primary-light);transform:translateY(-2px)}
 .formatif-kuis .kuis-opsi span.correct{background:rgba(39,174,96,.14);border-color:#27ae60;color:#1e8449;box-shadow:0 4px 14px rgba(39,174,96,.2)}
 .formatif-kuis .kuis-opsi span.wrong{background:rgba(231,76,60,.12);border-color:#e74c3c;color:#c0392b}
@@ -206,6 +254,7 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
   border:1px solid rgba(155,89,182,.14);transition:all var(--ease)}
 .pengayaan-item:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm)}
 .pengayaan-item h5{font-size:.89rem;font-weight:800;color:#7d3c98;margin-bottom:7px;display:flex;align-items:center;gap:8px}
+html[data-theme="dark"] .pengayaan-item h5{color:#c39bd3}
 .pengayaan-item h5 i{font-size:.92rem}
 .pengayaan-item p,.pengayaan-item li{font-size:.87rem;color:var(--text-light);line-height:1.72}
 .pengayaan-item ul,.pengayaan-item ol{padding-left:20px;margin-top:4px}
@@ -225,18 +274,38 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
 .pendalaman-item p,.pendalaman-item li{font-size:.87rem;color:var(--text-light);line-height:1.72}
 .pendalaman-item ul,.pendalaman-item ol{padding-left:20px;margin-top:4px}
 
+/* ============ DEEP LEARNING ============ */
+.deep-box{background:linear-gradient(135deg,rgba(122,22,38,.04),rgba(200,149,43,.03));
+  border:1px solid var(--line);border-radius:var(--radius-sm);padding:20px 22px;margin:22px 0;position:relative;overflow:hidden}
+.deep-box::before{content:'DEEP LEARNING';position:absolute;top:0;right:0;background:linear-gradient(135deg,var(--primary),var(--accent));
+  color:#fff;font-size:.58rem;font-weight:800;letter-spacing:1.4px;padding:5px 14px;border-radius:0 0 0 12px}
+.deep-box h4{font-size:.98rem;font-weight:800;color:var(--primary);margin-bottom:14px;display:flex;align-items:center;gap:9px}
+html[data-theme="dark"] .deep-box h4{color:var(--gold)}
+.deep-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.deep-item{background:var(--card-bg);border-radius:12px;padding:14px 16px;border-left:4px solid var(--primary);transition:all var(--ease)}
+.deep-item:hover{transform:translateY(-3px);box-shadow:var(--shadow-sm)}
+.deep-item .di-tag{font-size:.62rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--primary);display:block;margin-bottom:5px}
+html[data-theme="dark"] .deep-item .di-tag{color:var(--gold)}
+.deep-item .di-text{font-size:.84rem;color:var(--text-light);line-height:1.65}
+.deep-item:nth-child(1){border-left-color:var(--sky)} .deep-item:nth-child(1) .di-tag{color:var(--sky)}
+.deep-item:nth-child(2){border-left-color:var(--gold)} .deep-item:nth-child(2) .di-tag{color:var(--gold)}
+.deep-item:nth-child(3){border-left-color:var(--emerald)} .deep-item:nth-child(3) .di-tag{color:var(--emerald)}
+.deep-item:nth-child(4){border-left-color:var(--violet)} .deep-item:nth-child(4) .di-tag{color:var(--violet)}
+
 /* ============ MISKONSEPSI ============ */
 .miskonsepsi-card{background:linear-gradient(135deg,rgba(231,76,60,.05),rgba(200,149,43,.03));
   border:1px solid rgba(231,76,60,.16);border-radius:var(--radius-xs);padding:15px 18px;margin:12px 0}
 .miskonsepsi-card .miskon-label{display:inline-block;background:#e74c3c;color:#fff;font-size:.64rem;font-weight:800;
   padding:3px 11px;border-radius:20px;letter-spacing:.5px;margin-bottom:9px;text-transform:uppercase}
 .miskonsepsi-card .miskon-label.benar{background:#27ae60}
+.miskonsepsi-card .miskon-label.info{background:var(--sky)}
 .miskonsepsi-card p{font-size:.87rem;color:var(--text-light);line-height:1.72}
 
 /* ============ SUB HEADER ============ */
 .sub-header{display:flex;align-items:center;gap:11px;margin:26px 0 12px;padding:8px 0;
   font-family:'Plus Jakarta Sans',sans-serif;font-size:1.02rem;font-weight:800;color:var(--primary);
   border-bottom:1px dashed rgba(122,22,38,.20)}
+html[data-theme="dark"] .sub-header{color:var(--gold);border-bottom-color:rgba(200,149,43,.25)}
 .sub-header .tag-letter{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:10px;
   background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;font-size:.75rem;font-weight:900;flex-shrink:0;
   box-shadow:0 4px 12px rgba(122,22,38,.25)}
@@ -262,24 +331,29 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
 .hero-section .badge-row{display:flex;justify-content:center;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:20px}
 .hero-section .badge-row .tag{background:rgba(122,22,38,.07);color:var(--primary-light);font-size:.7rem;font-weight:700;
   padding:5px 18px;border-radius:40px;letter-spacing:.5px;border:1px solid var(--line)}
+html[data-theme="dark"] .hero-section .badge-row .tag{color:var(--gold)}
 .hero-section .badge-row .tag.gold{background:rgba(200,149,43,.12);color:var(--gold);border-color:rgba(200,149,43,.16)}
-.hero-section .badge-row .tag.green{background:rgba(193,18,31,.09);color:var(--accent);border-color:rgba(193,18,31,.12)}
+.hero-section .badge-row .tag.green{background:rgba(39,174,96,.09);color:var(--emerald);border-color:rgba(39,174,96,.14)}
+.hero-section .badge-row .tag.violet{background:rgba(155,89,182,.10);color:var(--violet);border-color:rgba(155,89,182,.16)}
 .hero-title{font-size:clamp(2.2rem,7.5vw,4.6rem);font-weight:900;letter-spacing:-2px;line-height:1.05;color:var(--text);margin:6px 0 12px}
 .hero-title .highlight{background:linear-gradient(135deg,var(--primary),var(--accent),var(--gold));-webkit-background-clip:text;
   -webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:shimmerText 5s ease-in-out infinite}
+html[data-theme="dark"] .hero-title .highlight{background:linear-gradient(135deg,var(--gold),var(--accent),#ffd97a);-webkit-background-clip:text;background-clip:text}
 .hero-sub{font-size:clamp(.95rem,1.5vw,1.15rem);color:var(--text-light);max-width:660px;margin:6px auto 0;font-weight:400;line-height:1.9}
 .hero-sub strong{color:var(--text);font-weight:700}
 .hero-school{margin-top:22px}
 .hero-school .name{display:inline-block;background:var(--card-bg);padding:11px 34px;border-radius:60px;
   font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:clamp(1.05rem,2.4vw,1.7rem);
   box-shadow:var(--shadow);border:1px solid var(--line-soft);color:var(--primary);letter-spacing:-.5px}
+html[data-theme="dark"] .hero-school .name{color:var(--gold)}
 .hero-school .name .gold{color:var(--gold)}
 .hero-school .teacher{margin-top:10px;font-size:1rem;font-weight:500;color:var(--text-light);
   background:rgba(122,22,38,.04);display:inline-block;padding:8px 24px;border-radius:40px;border:1px solid var(--line-soft);line-height:1.9}
 .hero-school .teacher strong{color:var(--primary);font-weight:800;font-size:1.05rem;letter-spacing:.3px}
+html[data-theme="dark"] .hero-school .teacher strong{color:var(--gold)}
 .hero-school .teacher .nip{color:var(--accent);font-weight:700;font-size:.95rem;background:rgba(193,18,31,.08);
   padding:3px 14px;border-radius:30px;letter-spacing:.5px}
-.hero-cta{margin:30px 0 16px}
+.hero-cta{margin:30px 0 16px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
 .hero-cta .btn-primary{display:inline-flex;align-items:center;gap:14px;
   background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;border:none;
   padding:clamp(14px,2vw,18px) clamp(30px,5vw,56px);border-radius:60px;font-family:inherit;font-weight:700;
@@ -288,63 +362,30 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
 .hero-cta .btn-primary:hover{transform:translateY(-4px) scale(1.03);box-shadow:0 18px 50px rgba(122,22,38,.42)}
 .hero-cta .btn-primary i{transition:transform .3s ease}
 .hero-cta .btn-primary:hover i{transform:translateX(5px)}
+.hero-cta .btn-ghost{display:inline-flex;align-items:center;gap:10px;background:transparent;color:var(--primary);
+  border:2px solid var(--line);padding:clamp(12px,1.8vw,16px) clamp(24px,4vw,38px);border-radius:60px;
+  font-family:inherit;font-weight:700;font-size:clamp(.88rem,1.2vw,1rem);cursor:pointer;transition:all var(--transition)}
+html[data-theme="dark"] .hero-cta .btn-ghost{color:var(--gold)}
+.hero-cta .btn-ghost:hover{background:rgba(122,22,38,.06);border-color:var(--primary);transform:translateY(-3px)}
 
-/* ============ QUICK NAV — BOLDER DESIGN ============ */
+/* ============ QUICK NAV ============ */
 .quick-nav{background:transparent;border-radius:var(--radius);padding:0;margin-top:26px;border:none}
 .quick-nav .nav-title{display:flex;align-items:center;gap:12px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;
   font-size:1.2rem;color:var(--text);padding-bottom:16px;margin-bottom:22px;justify-content:center;letter-spacing:-.4px}
 .quick-nav .nav-title i{color:var(--gold);font-size:1.7rem}
 .quick-nav .nav-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:18px 14px}
-
-.quick-nav .nav-item{
-  position:relative;overflow:hidden;cursor:pointer;
-  border-radius:20px;
-  padding:34px 14px 22px;
-  min-height:158px;
-  text-align:center;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
-  color:#fff;font-weight:800;
-  border:none;
+.quick-nav .nav-item{position:relative;overflow:hidden;cursor:pointer;border-radius:20px;padding:34px 14px 22px;min-height:158px;
+  text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:#fff;font-weight:800;border:none;
   box-shadow:0 14px 34px rgba(122,22,38,.22), 0 2px 0 rgba(255,255,255,.15) inset, 0 -3px 0 rgba(0,0,0,.12) inset;
-  transition:all .4s cubic-bezier(.34,1.56,.64,1);
-  isolation:isolate;
-}
-.quick-nav .nav-item::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(circle at 30% 0%, rgba(255,255,255,.35) 0%, transparent 55%);
-  pointer-events:none;z-index:1;
-}
-.quick-nav .nav-item::after{
-  content:'';position:absolute;bottom:-40px;right:-40px;width:130px;height:130px;
-  background:radial-gradient(circle, rgba(255,255,255,.14) 0%, transparent 70%);
-  border-radius:50%;pointer-events:none;z-index:1;
-  transition:all .6s ease;
-}
-.quick-nav .nav-item:hover::after{
-  bottom:-20px;right:-20px;width:160px;height:160px;
-}
-.quick-nav .nav-item .label{
-  position:relative;z-index:2;
-  font-weight:900;color:#fff;letter-spacing:.3px;
-  font-size:1.02rem;line-height:1.25;
-  text-shadow:0 2px 6px rgba(0,0,0,.22);
-}
-.quick-nav .nav-item .sub-label{
-  font-size:.72rem;font-weight:600;color:rgba(255,255,255,.88);
-  position:relative;z-index:2;letter-spacing:.4px;
-  text-shadow:0 1px 3px rgba(0,0,0,.18);
-}
-.quick-nav .nav-item .num{
-  position:absolute;top:12px;right:14px;
-  font-size:.68rem;font-weight:900;letter-spacing:1.2px;
-  color:#fff;
-  background:rgba(0,0,0,.22);
-  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
-  padding:4px 11px;border-radius:30px;
-  border:1px solid rgba(255,255,255,.22);
-  z-index:2;
-}
-
+  transition:all .4s cubic-bezier(.34,1.56,.64,1);isolation:isolate}
+.quick-nav .nav-item::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 0%, rgba(255,255,255,.35) 0%, transparent 55%);pointer-events:none;z-index:1}
+.quick-nav .nav-item::after{content:'';position:absolute;bottom:-40px;right:-40px;width:130px;height:130px;
+  background:radial-gradient(circle, rgba(255,255,255,.14) 0%, transparent 70%);border-radius:50%;pointer-events:none;z-index:1;transition:all .6s ease}
+.quick-nav .nav-item:hover::after{bottom:-20px;right:-20px;width:160px;height:160px}
+.quick-nav .nav-item .label{position:relative;z-index:2;font-weight:900;color:#fff;letter-spacing:.3px;font-size:1.02rem;line-height:1.25;text-shadow:0 2px 6px rgba(0,0,0,.22)}
+.quick-nav .nav-item .sub-label{font-size:.72rem;font-weight:600;color:rgba(255,255,255,.88);position:relative;z-index:2;letter-spacing:.4px;text-shadow:0 1px 3px rgba(0,0,0,.18)}
+.quick-nav .nav-item .num{position:absolute;top:12px;right:14px;font-size:.68rem;font-weight:900;letter-spacing:1.2px;color:#fff;
+  background:rgba(0,0,0,.22);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:4px 11px;border-radius:30px;border:1px solid rgba(255,255,255,.22);z-index:2}
 .quick-nav .nav-item:nth-child(1){background:linear-gradient(140deg,#7a1626 0%,#a52a3d 100%);}
 .quick-nav .nav-item:nth-child(2){background:linear-gradient(140deg,#8a1c2d 0%,#c1121f 100%);}
 .quick-nav .nav-item:nth-child(3){background:linear-gradient(140deg,#a52a3d 0%,#d94a2e 100%);}
@@ -352,16 +393,9 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
 .quick-nav .nav-item:nth-child(5){background:linear-gradient(140deg,#5c1a2b 0%,#a52a3d 100%);}
 .quick-nav .nav-item:nth-child(6){background:linear-gradient(140deg,#6e1420 0%,#c1121f 100%);}
 .quick-nav .nav-item:nth-child(7){background:linear-gradient(140deg,#3a0a12 0%,#7a1626 100%);}
-
-.quick-nav .nav-item:hover{
-  transform:translateY(-8px) scale(1.03);
-  box-shadow:0 24px 52px rgba(122,22,38,.38), 0 2px 0 rgba(255,255,255,.2) inset, 0 -3px 0 rgba(0,0,0,.15) inset;
-  filter:brightness(1.08);
-}
-.quick-nav .nav-item:active{
-  transform:translateY(-2px) scale(.97);
-  transition:all .1s ease;
-}
+.quick-nav .nav-item:nth-child(8){background:linear-gradient(140deg,#2c5f7a 0%,#2c7fb8 100%);}
+.quick-nav .nav-item:hover{transform:translateY(-8px) scale(1.03);box-shadow:0 24px 52px rgba(122,22,38,.38), 0 2px 0 rgba(255,255,255,.2) inset, 0 -3px 0 rgba(0,0,0,.15) inset;filter:brightness(1.08)}
+.quick-nav .nav-item:active{transform:translateY(-2px) scale(.97);transition:all .1s ease}
 
 /* ============ MATERI ACCORDION ============ */
 .materi-box{background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;
@@ -370,21 +404,24 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
 .materi-box .header{padding:17px 20px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;
   transition:background .3s ease;border-left:4px solid transparent;user-select:none}
 .materi-box .header:hover{background:rgba(122,22,38,.025)}
+html[data-theme="dark"] .materi-box .header:hover{background:rgba(255,255,255,.03)}
 .materi-box .header.active{border-left-color:var(--primary);background:linear-gradient(90deg,rgba(122,22,38,.055),transparent)}
 .materi-box .header h4{font-size:.94rem;font-weight:700;color:var(--text);margin:0;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .materi-box .header h4 .tag-sm{font-size:.6rem;font-weight:700;background:rgba(122,22,38,.08);color:var(--primary-light);
   padding:2px 12px;border-radius:20px;letter-spacing:.3px}
+html[data-theme="dark"] .materi-box .header h4 .tag-sm{color:var(--gold);background:rgba(200,149,43,.14)}
 .materi-box .header .icon{transition:transform .5s cubic-bezier(.34,1.56,.64,1);color:var(--text-muted);font-size:.85rem;flex-shrink:0;
   width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--bg-soft)}
 .materi-box .header.active .icon{transform:rotate(180deg);color:#fff;background:linear-gradient(135deg,var(--primary),var(--primary-light))}
 .materi-box .body{max-height:0;overflow:hidden;
   transition:max-height .6s cubic-bezier(.22,1,.36,1),padding .5s cubic-bezier(.22,1,.36,1),opacity .4s ease .05s;
   padding:0 20px;opacity:0;border-top:1px solid transparent}
-.materi-box .body.open{max-height:14000px;padding:18px 20px 22px;opacity:1;border-top-color:var(--line-soft)}
+.materi-box .body.open{max-height:18000px;padding:18px 20px 22px;opacity:1;border-top-color:var(--line-soft)}
 
 /* ============ HIGHLIGHT BOX ============ */
 .highlight-box{background:rgba(122,22,38,.035);border-radius:var(--radius-xs);padding:15px 18px;
   border-left:4px solid var(--primary);margin:8px 0 12px}
+html[data-theme="dark"] .highlight-box{background:rgba(255,255,255,.03)}
 .highlight-box p{font-size:.93rem;color:var(--text-light);line-height:1.8}
 .highlight-box strong{color:var(--text);font-weight:700}
 
@@ -393,6 +430,7 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
 .table-wrap table{width:100%;border-collapse:collapse;font-size:.87rem;background:var(--card-bg);min-width:420px}
 .table-wrap th,.table-wrap td{padding:11px 15px;border-bottom:1px solid var(--line-soft);text-align:left;vertical-align:top;line-height:1.65}
 .table-wrap th{background:rgba(122,22,38,.06);color:var(--primary);font-weight:700;white-space:nowrap}
+html[data-theme="dark"] .table-wrap th{color:var(--gold);background:rgba(200,149,43,.10)}
 .table-wrap td{color:var(--text-light)}
 .table-wrap tr:last-child td{border-bottom:none}
 .table-wrap tbody tr{transition:background .25s ease}
@@ -407,12 +445,11 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
 .interactive-card.open .back{display:block;animation:fadeUp .45s ease}
 .interactive-card .toggle-hint{font-size:.68rem;margin-top:9px;display:inline-flex;align-items:center;gap:5px;font-weight:700;
   letter-spacing:.4px;color:var(--primary-light);background:rgba(122,22,38,.07);padding:4px 12px;border-radius:20px}
+html[data-theme="dark"] .interactive-card .toggle-hint{color:var(--gold);background:rgba(200,149,43,.14)}
 .interactive-card .back p{color:var(--text-light);font-size:.88rem;line-height:1.72;margin-bottom:6px}
 .interactive-card .back ul{padding-left:18px;margin:6px 0}
 .interactive-card .back ul li{color:var(--text-light);font-size:.87rem;line-height:1.7;margin-bottom:3px}
 .interactive-card .back strong{color:var(--text)}
-.interactive-card .keterangan{font-size:.84rem;margin-top:6px;padding-top:6px;border-top:1px solid var(--line);color:var(--text-muted)}
-.interactive-card .keterangan i{color:var(--primary);margin-right:4px}
 .ahli-header{display:flex;align-items:center;gap:12px;margin-bottom:4px;flex-wrap:wrap}
 .ahli-header .icon-number{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.3rem;font-weight:800;color:#fff;width:38px;height:38px;
   border-radius:12px;text-align:center;flex-shrink:0;display:grid;place-items:center;
@@ -421,28 +458,123 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
 .ahli-header .sub{font-size:.76rem;font-weight:400;color:var(--text-muted);display:block}
 .pillar-icon{font-size:2.1rem;display:block;margin-bottom:6px}
 
+/* ============ TIMELINE ============ */
+.timeline{position:relative;padding:12px 0 12px 34px;margin:14px 0}
+.timeline::before{content:'';position:absolute;left:11px;top:0;bottom:0;width:3px;border-radius:3px;
+  background:linear-gradient(180deg,var(--primary),var(--accent),var(--gold))}
+.tl-item{position:relative;padding:0 0 20px 0}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{content:'';position:absolute;left:-30px;top:5px;width:17px;height:17px;border-radius:50%;
+  background:var(--card-bg);border:3px solid var(--primary);box-shadow:0 0 0 4px rgba(122,22,38,.10);transition:all .3s ease}
+.tl-item:hover::before{background:var(--accent);border-color:var(--accent);transform:scale(1.2)}
+.tl-year{display:inline-block;background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;
+  font-size:.7rem;font-weight:800;letter-spacing:.6px;padding:3px 12px;border-radius:20px;margin-bottom:5px}
+.tl-title{font-size:.94rem;font-weight:800;color:var(--text);margin-bottom:3px}
+.tl-desc{font-size:.85rem;color:var(--text-light);line-height:1.65}
+
+/* ============ PETA KONSEP ============ */
+.concept-map{background:linear-gradient(145deg,rgba(122,22,38,.04),rgba(200,149,43,.03));
+  border-radius:var(--radius);padding:22px;margin:18px 0;border:1px solid var(--line);overflow-x:auto}
+.cm-center{background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;text-align:center;
+  padding:14px 24px;border-radius:16px;font-weight:900;font-size:1.05rem;letter-spacing:.5px;max-width:320px;margin:0 auto;
+  box-shadow:0 12px 30px rgba(122,22,38,.30);position:relative}
+.cm-center::after{content:'';position:absolute;bottom:-18px;left:50%;transform:translateX(-50%);width:2px;height:18px;background:var(--line)}
+.cm-branches{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-top:32px}
+.cm-branch{background:var(--card-bg);border-radius:14px;padding:14px;border-top:4px solid var(--gold);text-align:center;
+  transition:all var(--ease);box-shadow:var(--shadow-sm)}
+.cm-branch:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.cm-branch h5{font-size:.86rem;font-weight:800;color:var(--primary);margin-bottom:5px}
+html[data-theme="dark"] .cm-branch h5{color:var(--gold)}
+.cm-branch p{font-size:.78rem;color:var(--text-muted);line-height:1.55}
+.cm-branch:nth-child(1){border-top-color:var(--primary)}
+.cm-branch:nth-child(2){border-top-color:var(--accent)}
+.cm-branch:nth-child(3){border-top-color:var(--gold)}
+.cm-branch:nth-child(4){border-top-color:var(--emerald)}
+.cm-branch:nth-child(5){border-top-color:var(--violet)}
+
+/* ============ GLOSARIUM ============ */
+.glossary-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:14px 0}
+.glossary-item{background:var(--card-bg);border-radius:12px;padding:13px 16px;border-left:4px solid var(--gold);
+  transition:all var(--ease);box-shadow:var(--shadow-sm)}
+.glossary-item:hover{transform:translateX(4px);box-shadow:var(--shadow)}
+.glossary-item .gl-term{font-size:.88rem;font-weight:800;color:var(--primary);margin-bottom:3px;display:flex;align-items:center;gap:6px}
+html[data-theme="dark"] .glossary-item .gl-term{color:var(--gold)}
+.glossary-item .gl-term i{font-size:.7rem;opacity:.65}
+.glossary-item .gl-def{font-size:.82rem;color:var(--text-light);line-height:1.6}
+
+/* ============ RUBRIK ============ */
+.rubric-table{width:100%;border-collapse:collapse;font-size:.82rem;background:var(--card-bg);min-width:560px}
+.rubric-table th{background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;padding:11px 13px;
+  text-align:left;font-weight:700;font-size:.76rem;letter-spacing:.4px}
+.rubric-table td{padding:10px 13px;border-bottom:1px solid var(--line-soft);color:var(--text-light);vertical-align:top;line-height:1.6}
+.rubric-table tbody tr:hover{background:rgba(122,22,38,.025)}
+.rubric-table td:first-child{font-weight:800;color:var(--primary)}
+html[data-theme="dark"] .rubric-table td:first-child{color:var(--gold)}
+.score-pill{display:inline-block;background:rgba(200,149,43,.14);color:var(--gold);font-weight:800;font-size:.7rem;
+  padding:2px 10px;border-radius:20px;letter-spacing:.3px}
+
+/* ============ LKPD ============ */
+.lkpd-box{background:linear-gradient(145deg,rgba(44,127,184,.05),rgba(155,89,182,.04));
+  border:2px solid rgba(44,127,184,.18);border-radius:var(--radius);padding:22px 24px;margin:18px 0}
+.lkpd-box .lkpd-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.lkpd-box .lkpd-head .lkpd-icon{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,var(--sky),#4a9fd8);
+  color:#fff;display:grid;place-items:center;font-size:1.1rem;box-shadow:0 8px 20px rgba(44,127,184,.28)}
+.lkpd-box .lkpd-head h4{font-size:1rem;font-weight:800;color:var(--sky);margin:0}
+.lkpd-box .lkpd-head span{font-size:.76rem;color:var(--text-muted);display:block;font-weight:400}
+.lkpd-box .lkpd-body{background:var(--card-bg);border-radius:12px;padding:16px 18px;border:1px dashed rgba(44,127,184,.25)}
+.lkpd-box .lkpd-body ol,.lkpd-box .lkpd-body ul{padding-left:20px;color:var(--text-light);font-size:.88rem;line-height:1.9}
+.lkpd-box .lkpd-body p{font-size:.87rem;color:var(--text-light);line-height:1.75;margin-bottom:6px}
+.lkpd-write{display:block;border:none;border-bottom:1.5px dashed rgba(44,127,184,.35);background:transparent;width:100%;
+  padding:8px 4px;margin:6px 0 14px;font-family:inherit;font-size:.88rem;color:var(--text);outline:none;transition:border-color .3s ease}
+.lkpd-write:focus{border-bottom-color:var(--sky);border-bottom-style:solid}
+.lkpd-write::placeholder{color:var(--text-muted);font-style:italic;font-size:.82rem}
+
 /* ============ SOAL ============ */
 .soal-pg{margin-bottom:12px;padding:15px 18px;background:rgba(122,22,38,.025);border-radius:var(--radius-xs);
   border-left:4px solid var(--primary);transition:all .3s ease}
+html[data-theme="dark"] .soal-pg{background:rgba(255,255,255,.025)}
 .soal-pg:hover{background:rgba(122,22,38,.05);transform:translateX(3px)}
 .soal-pg .nomor{color:var(--primary);font-weight:800;font-size:.85rem;margin-right:6px}
+html[data-theme="dark"] .soal-pg .nomor{color:var(--gold)}
 .soal-pg .pertanyaan{color:var(--text);font-weight:600;font-size:.93rem;margin-bottom:6px;line-height:1.65}
-.soal-pg .opsi{display:grid;grid-template-columns:1fr 1fr;gap:2px 20px;padding-left:20px}
-.soal-pg .opsi span{font-size:.87rem;color:var(--text-light);line-height:2}
+.soal-pg .opsi{display:grid;grid-template-columns:1fr 1fr;gap:2px 20px;padding-left:0}
+.soal-pg .opsi span{font-size:.87rem;color:var(--text-light);line-height:2;cursor:pointer;padding:2px 8px;border-radius:8px;
+  transition:all .25s ease;display:inline-block}
+.soal-pg .opsi span:hover{background:rgba(122,22,38,.06)}
+.soal-pg .opsi span.correct{background:rgba(39,174,96,.16);color:#1e8449;font-weight:700}
+.soal-pg .opsi span.wrong{background:rgba(231,76,60,.14);color:#c0392b;font-weight:700}
 .soal-tf{margin-bottom:12px;padding:15px 18px;background:rgba(155,89,182,.035);border-radius:var(--radius-xs);
   border-left:4px solid #9b59b6;transition:all .3s ease}
 .soal-tf:hover{background:rgba(155,89,182,.06);transform:translateX(3px)}
 .soal-tf .nomor{color:#9b59b6;font-weight:800;font-size:.85rem;margin-right:6px}
 .soal-tf .pertanyaan{color:var(--text);font-weight:600;font-size:.93rem;margin-bottom:5px;line-height:1.65}
-.soal-tf .opsi{padding-left:20px}
-.soal-tf .opsi span{font-size:.84rem;color:var(--text-light);margin-right:18px;font-weight:700;display:inline-block;
-  background:rgba(155,89,182,.09);padding:2px 14px;border-radius:20px}
+.soal-tf .opsi{padding-left:0}
+.soal-tf .opsi span{font-size:.84rem;color:var(--text-light);margin-right:8px;font-weight:700;display:inline-block;
+  background:rgba(155,89,182,.09);padding:4px 16px;border-radius:20px;cursor:pointer;transition:all .25s ease}
+.soal-tf .opsi span:hover{transform:translateY(-2px)}
+.soal-tf .opsi span.correct{background:rgba(39,174,96,.16);color:#1e8449}
+.soal-tf .opsi span.wrong{background:rgba(231,76,60,.14);color:#c0392b}
 .soal-essay{margin-bottom:12px;padding:15px 18px;background:rgba(200,149,43,.035);border-radius:var(--radius-xs);
   border-left:4px solid var(--gold);transition:all .3s ease}
 .soal-essay:hover{background:rgba(200,149,43,.07);transform:translateX(3px)}
 .soal-essay .nomor{color:var(--gold);font-weight:800;font-size:.85rem;margin-right:6px}
 .soal-essay .pertanyaan{color:var(--text);font-weight:600;font-size:.93rem;margin-bottom:5px;line-height:1.7}
 .soal-essay .petunjuk{color:var(--text-muted);font-size:.81rem;font-style:italic}
+
+/* ============ SCORE PANEL ============ */
+.score-panel{position:sticky;bottom:14px;z-index:50;background:linear-gradient(135deg,var(--card-bg),var(--card-alt));
+  border:2px solid var(--line);border-radius:var(--radius);padding:14px 20px;margin:20px 0;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;box-shadow:0 14px 40px rgba(122,22,38,.16)}
+.score-panel .sp-info{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.score-panel .sp-stat{text-align:center}
+.score-panel .sp-stat .sp-val{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.5rem;font-weight:900;color:var(--primary);line-height:1}
+html[data-theme="dark"] .score-panel .sp-stat .sp-val{color:var(--gold)}
+.score-panel .sp-stat .sp-lbl{font-size:.62rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px}
+.score-panel .sp-btn{background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;border:none;
+  padding:11px 24px;border-radius:40px;font-family:inherit;font-weight:700;font-size:.85rem;cursor:pointer;
+  display:inline-flex;align-items:center;gap:8px;transition:all var(--transition);box-shadow:0 8px 22px rgba(122,22,38,.28)}
+.score-panel .sp-btn:hover{transform:translateY(-3px);box-shadow:0 14px 32px rgba(122,22,38,.4)}
+.score-panel .sp-btn.reset{background:linear-gradient(135deg,var(--text-muted),#6b5258);box-shadow:none}
 
 /* ============ KUNCI ============ */
 .kunci-lock-box{background:linear-gradient(135deg,rgba(231,76,60,.06),rgba(200,149,43,.05));
@@ -469,7 +601,7 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
 .kunci-grid .kunci-item{background:var(--card-bg);border:1px solid rgba(39,174,96,.22);border-radius:10px;padding:9px 6px;
   text-align:center;font-weight:700;color:var(--text);font-size:.84rem}
 .kunci-grid .kunci-item .num{display:block;font-size:.64rem;color:var(--text-muted);font-weight:600;margin-bottom:2px}
-.kunci-grid .kunci-item .ans{color:#1e8449;font-weight:900;font-size:.98rem}
+.kunci-grid .kunci-item .ans{color:#1e8449;font-weight:900;font-size:.9rem}
 .kunci-essay-item{background:var(--card-bg);border-left:4px solid #27ae60;border-radius:10px;padding:14px 17px;margin-bottom:10px}
 .kunci-essay-item .essay-num{font-weight:800;color:#1e8449;font-size:.85rem;margin-bottom:5px}
 .kunci-essay-item p{font-size:.87rem;color:var(--text-light);line-height:1.75}
@@ -485,16 +617,19 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
 .celebration-box{background:linear-gradient(145deg,rgba(122,22,38,.05),rgba(193,18,31,.04));
   border:2px solid var(--line-soft);border-radius:var(--radius);padding:34px 26px;text-align:center;margin-top:16px}
 .celebration-box h3{font-size:1.7rem;font-weight:900;color:var(--primary);margin-bottom:8px}
+html[data-theme="dark"] .celebration-box h3{color:var(--gold)}
 .celebration-box p{font-size:1rem;color:var(--text-light);line-height:1.8}
 .celebration-box .next-btn{display:inline-block;background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;
-  padding:14px 40px;border-radius:60px;font-weight:700;font-size:.98rem;border:none;margin-top:16px;cursor:default;
+  padding:14px 40px;border-radius:60px;font-weight:700;font-size:.98rem;border:none;margin-top:16px;cursor:pointer;transition:all var(--transition);
   box-shadow:0 10px 28px rgba(122,22,38,.25)}
+.celebration-box .next-btn:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(122,22,38,.4)}
 
 /* ============ QUOTE ============ */
 .quote-block{background:linear-gradient(145deg,rgba(122,22,38,.045),rgba(193,18,31,.03));
   border-left:6px solid var(--primary);padding:18px 22px;border-radius:12px;margin:14px 0;font-style:italic;
   font-size:1.02rem;color:var(--text-light);line-height:1.8}
 .quote-block .author{display:block;margin-top:10px;font-style:normal;font-weight:700;color:var(--primary);text-align:right;font-size:.9rem}
+html[data-theme="dark"] .quote-block .author{color:var(--gold)}
 
 /* ============ NAV BUTTONS ============ */
 .nav-buttons{display:flex;justify-content:center;align-items:center;margin-top:34px;padding-top:22px;
@@ -542,63 +677,24 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
 .to-top:hover{transform:translateY(-4px) scale(1.06);box-shadow:0 16px 40px rgba(122,22,38,.45)}
 .to-top:active{transform:scale(.92)}
 
-/* ============ FLOATING NAVIGATION (Halaman 2-7) ============ */
-.float-nav{
-  position:fixed;
-  left:50%;
-  bottom:clamp(16px,2.5vw,26px);
-  transform:translateX(-50%) translateY(24px) scale(.9);
-  display:flex;align-items:center;gap:6px;
-  padding:8px;
-  background:rgba(255,255,255,.96);
-  backdrop-filter:blur(20px) saturate(180%);
-  -webkit-backdrop-filter:blur(20px) saturate(180%);
-  border-radius:60px;
-  box-shadow:0 14px 44px rgba(122,22,38,.24), 0 0 0 1px rgba(122,22,38,.08);
-  z-index:997;
-  opacity:0;visibility:hidden;pointer-events:none;
-  transition:all .5s cubic-bezier(.34,1.56,.64,1);
-}
-.float-nav.show{
-  opacity:1;visibility:visible;pointer-events:auto;
-  transform:translateX(-50%) translateY(0) scale(1);
-}
-.float-nav button{
-  display:inline-flex;align-items:center;justify-content:center;gap:7px;
-  border:none;font-family:inherit;font-weight:700;font-size:.83rem;
-  padding:11px 18px;border-radius:40px;cursor:pointer;
-  transition:all .3s ease;white-space:nowrap;
-  min-height:44px;
-}
-.float-nav .fn-prev,
-.float-nav .fn-next{
-  background:rgba(122,22,38,.07);
-  color:var(--primary);
-  border:1px solid rgba(122,22,38,.14);
-  min-width:48px;
-}
-.float-nav .fn-prev:hover:not(:disabled),
-.float-nav .fn-next:hover:not(:disabled){
-  background:var(--primary);color:#fff;border-color:var(--primary);
-  transform:translateY(-2px);
-  box-shadow:0 8px 20px rgba(122,22,38,.32);
-}
-.float-nav .fn-prev:active:not(:disabled),
-.float-nav .fn-next:active:not(:disabled){
-  transform:scale(.94);
-}
-.float-nav .fn-home{
-  background:linear-gradient(135deg,var(--primary),var(--primary-light));
-  color:#fff;
-  box-shadow:0 8px 22px rgba(122,22,38,.32);
-  padding:11px 22px;
-  letter-spacing:.2px;
-}
-.float-nav .fn-home:hover{
-  transform:translateY(-3px);
-  box-shadow:0 14px 30px rgba(122,22,38,.46);
-  filter:brightness(1.08);
-}
+/* ============ FLOATING NAV ============ */
+.float-nav{position:fixed;left:50%;bottom:clamp(16px,2.5vw,26px);transform:translateX(-50%) translateY(24px) scale(.9);
+  display:flex;align-items:center;gap:6px;padding:8px;background:rgba(255,255,255,.96);
+  backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);
+  border-radius:60px;box-shadow:0 14px 44px rgba(122,22,38,.24), 0 0 0 1px rgba(122,22,38,.08);
+  z-index:997;opacity:0;visibility:hidden;pointer-events:none;transition:all .5s cubic-bezier(.34,1.56,.64,1)}
+html[data-theme="dark"] .float-nav{background:rgba(33,16,21,.96);box-shadow:0 14px 44px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.08)}
+.float-nav.show{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0) scale(1)}
+.float-nav button{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:none;font-family:inherit;
+  font-weight:700;font-size:.83rem;padding:11px 18px;border-radius:40px;cursor:pointer;transition:all .3s ease;white-space:nowrap;min-height:44px}
+.float-nav .fn-prev,.float-nav .fn-next{background:rgba(122,22,38,.07);color:var(--primary);border:1px solid rgba(122,22,38,.14);min-width:48px}
+html[data-theme="dark"] .float-nav .fn-prev,html[data-theme="dark"] .float-nav .fn-next{color:var(--gold);background:rgba(200,149,43,.10)}
+.float-nav .fn-prev:hover:not(:disabled),.float-nav .fn-next:hover:not(:disabled){background:var(--primary);color:#fff;border-color:var(--primary);
+  transform:translateY(-2px);box-shadow:0 8px 20px rgba(122,22,38,.32)}
+.float-nav .fn-prev:active:not(:disabled),.float-nav .fn-next:active:not(:disabled){transform:scale(.94)}
+.float-nav .fn-home{background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;
+  box-shadow:0 8px 22px rgba(122,22,38,.32);padding:11px 22px;letter-spacing:.2px}
+.float-nav .fn-home:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(122,22,38,.46);filter:brightness(1.08)}
 .float-nav .fn-home:active{transform:scale(.95);}
 .float-nav button:disabled{opacity:.28;cursor:not-allowed;transform:none!important;box-shadow:none}
 
@@ -617,7 +713,7 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
   .section-header .num{width:56px;height:56px;font-size:1.2rem}
   .section-header h2{font-size:1.85rem}
 }
-@media (max-width:1000px){
+@media (max-width:1050px){
   .site-header .nav-links{display:none}
   .site-header .menu-toggle{display:flex}
 }
@@ -635,6 +731,8 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
   .float-nav{gap:4px;padding:6px}
   .float-nav button{padding:10px 13px;font-size:.78rem}
   .float-nav .fn-home{padding:10px 16px}
+  .score-panel{padding:12px 14px}
+  .score-panel .sp-stat .sp-val{font-size:1.2rem}
 }
 @media (max-width:480px){
   .section-header .num{width:42px;height:42px;font-size:.9rem;border-radius:12px}
@@ -647,7 +745,7 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
   .pertemuan-banner .time-chip{font-size:.68rem;padding:5px 11px}
   .tujuan-box{padding:16px 16px}
   .tujuan-box ol li{padding-left:38px;font-size:.86rem}
-  .proses-box,.formatif-box,.pengayaan-box,.pendalaman-box{padding:15px 16px}
+  .proses-box,.formatif-box,.pengayaan-box,.pendalaman-box,.cp-box,.essential-box{padding:15px 16px}
   .loader-title{font-size:2.1rem}
   .loader-sub{font-size:.82rem}
   .kunci-grid{grid-template-columns:repeat(auto-fill,minmax(58px,1fr));gap:6px}
@@ -657,10 +755,20 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
   .quick-nav .nav-item{min-height:130px;padding:28px 8px 18px;border-radius:16px}
   .quick-nav .nav-item .label{font-size:.9rem}
   .quick-nav .nav-item .sub-label{font-size:.66rem}
-  .float-nav .fn-prev,
-  .float-nav .fn-next{padding:10px 12px}
+  .float-nav .fn-prev,.float-nav .fn-next{padding:10px 12px}
+  .timeline{padding-left:28px}
 }
 @media (min-width:1400px){.main-wrap{max-width:1240px}}
+
+/* ============ PRINT ============ */
+@media print{
+  .site-header,.progress-rail,.float-nav,.to-top,.mobile-drawer,.drawer-overlay,
+  #loader,.geo-bg,.nav-buttons,.hero-cta,.kunci-lock-box{display:none!important}
+  body{background:#fff;color:#000}
+  .section{display:block!important;page-break-after:always}
+  .materi-box .body{max-height:none!important;opacity:1!important;padding:14px 18px!important}
+  .card,.materi-box{box-shadow:none;border:1px solid #ccc}
+}
 </style>
 </head>
 <body>
@@ -686,7 +794,7 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
         </svg>
     </div>
     <div class="loader-title">GeoExplorer</div>
-    <div class="loader-sub">Menjelajahi Bumi, Menemukan inspirasi</div>
+    <div class="loader-sub">Menjelajahi Bumi, Menemukan Inspirasi</div>
     <div class="loader-bar-track"><div class="loader-bar" id="loaderBar"></div></div>
     <div class="loader-percent" id="loaderPercent">0%</div>
 </div>
@@ -705,10 +813,19 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
         <a onclick="navigateTo('section5')">Refleksi</a>
         <a onclick="navigateTo('section6')">Asesmen</a>
         <a onclick="navigateTo('section7')">Referensi</a>
+        <a onclick="navigateTo('section8')">Glosarium</a>
     </nav>
-    <button class="menu-toggle" onclick="toggleDrawer()" aria-label="Menu">
-        <i class="fas fa-bars"></i>
-    </button>
+    <div class="header-actions">
+        <button class="icon-btn" onclick="toggleTheme()" id="themeBtn" aria-label="Ganti tema" title="Mode Gelap/Terang">
+            <i class="fas fa-moon"></i>
+        </button>
+        <button class="icon-btn" onclick="window.print()" aria-label="Cetak" title="Cetak / PDF">
+            <i class="fas fa-print"></i>
+        </button>
+        <button class="menu-toggle" onclick="toggleDrawer()" aria-label="Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
 </header>
 
 <div class="progress-rail"><div class="thumb" id="progressThumb"></div></div>
@@ -724,11 +841,14 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
     <a onclick="navigateTo('section5'); toggleDrawer();">💭 Refleksi</a>
     <a onclick="navigateTo('section6'); toggleDrawer();">📝 Asesmen Seluruh Bab</a>
     <a onclick="navigateTo('section7'); toggleDrawer();">📚 Referensi</a>
+    <a onclick="navigateTo('section8'); toggleDrawer();">🔖 Glosarium & LKPD</a>
 </div>
 
 <main class="main-wrap">
 
+<!-- ===================================================== -->
 <!-- SECTION 1 : BERANDA -->
+<!-- ===================================================== -->
 <section id="section1" class="section active hero-section">
     <div class="logo-row reveal">
         <img src="https://raw.githubusercontent.com/maedafarhansyah-pixel/e-geografi-sman3kasongan/main/images/Logo-Provinsi-Kalimantan-Tengah.png" alt="Logo Provinsi Kalimantan Tengah" onerror="this.style.display='none'" />
@@ -739,6 +859,7 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
         <span class="tag">KELAS X / FASE E</span>
         <span class="tag gold">Kurikulum Merdeka 2024</span>
         <span class="tag green">3 Pertemuan · 3 × 45 menit</span>
+        <span class="tag violet">Pembelajaran Mendalam</span>
     </div>
     <h1 class="hero-title reveal">
         <span class="highlight">LITOSFER</span><br />FENOMENA GEOSFER
@@ -758,10 +879,54 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
         <button class="btn-primary" onclick="navigateTo('section2')">
             <span>Mulai Belajar</span> <i class="fas fa-arrow-right"></i>
         </button>
+        <button class="btn-ghost" onclick="navigateTo('section6')">
+            <i class="fas fa-clipboard-check"></i> <span>Langsung ke Asesmen</span>
+        </button>
+    </div>
+
+    <!-- CAPAIAN PEMBELAJARAN -->
+    <div class="cp-box reveal" style="text-align:left;">
+        <div class="cp-title"><i class="fas fa-graduation-cap"></i> Capaian Pembelajaran Fase E</div>
+        <p><strong>Pada akhir Fase E, peserta didik mampu:</strong> memahami konsep dasar geografi, memahami fenomena geosfer (litosfer, atmosfer, hidrosfer, biosfer, antroposfer) melalui pendekatan keruangan, ekologis, dan kompleksitas wilayah, serta mampu menerapkan keterampilan proses (mengamati, menanya, merencanakan, memproses, mengevaluasi, dan mengomunikasikan) untuk menganalisis permasalahan geosfer di lingkungan sekitar.</p>
+        <p style="margin-bottom:14px;"><strong>Fokus Bab Litosfer:</strong> peserta didik menganalisis karakteristik lapisan batuan bumi, proses pembentukan batuan, dinamika lempeng tektonik, serta dampak dan mitigasi fenomena litosfer dalam konteks kehidupan nyata di Indonesia — khususnya Kalimantan Tengah.</p>
+        <div class="pancasila-grid">
+            <div class="pancasila-item">
+                <span class="pi-icon">🙏</span>
+                <span class="pi-name">Beriman &amp; Bertakwa kepada Tuhan YME</span>
+            </div>
+            <div class="pancasila-item">
+                <span class="pi-icon">🌍</span>
+                <span class="pi-name">Berkebinekaan Global</span>
+            </div>
+            <div class="pancasila-item">
+                <span class="pi-icon">🤝</span>
+                <span class="pi-name">Bergotong Royong</span>
+            </div>
+            <div class="pancasila-item">
+                <span class="pi-icon">💡</span>
+                <span class="pi-name">Mandiri &amp; Kreatif</span>
+            </div>
+            <div class="pancasila-item">
+                <span class="pi-icon">🧠</span>
+                <span class="pi-name">Bernalar Kritis</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- PETA KONSEP -->
+    <div class="concept-map reveal">
+        <div class="cm-center">LITOSFER<br /><small style="font-weight:600;font-size:.72rem;opacity:.9;">Lapisan Batuan Bumi</small></div>
+        <div class="cm-branches">
+            <div class="cm-branch"><h5>📖 Pengertian</h5><p>Etimologi, definisi para ahli, ruang lingkup</p></div>
+            <div class="cm-branch"><h5>🏔️ Struktur</h5><p>Kerak, mantel, inti; litosfer vs astenosfer</p></div>
+            <div class="cm-branch"><h5>🪨 Batuan</h5><p>Beku, sedimen, metamorf &amp; siklusnya</p></div>
+            <div class="cm-branch"><h5>🌍 Tektonik</h5><p>Divergen, konvergen, transform &amp; konveksi</p></div>
+            <div class="cm-branch"><h5>⚠️ Fenomena</h5><p>Gempa, gunung api, longsor, mitigasi</p></div>
+        </div>
     </div>
 
     <div class="quick-nav reveal">
-        <div class="nav-title"><i class="fas fa-compass"></i> Jelajahi 3 Pertemuan</div>
+        <div class="nav-title"><i class="fas fa-compass"></i> Jelajahi Modul Pembelajaran</div>
         <div class="nav-grid">
             <div class="nav-item" onclick="navigateTo('section1')">
                 <span class="label">Beranda</span><span class="sub-label">Cover</span><span class="num">01</span>
@@ -784,11 +949,16 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
             <div class="nav-item" onclick="navigateTo('section7')">
                 <span class="label">Referensi</span><span class="sub-label">Daftar Pustaka</span><span class="num">07</span>
             </div>
+            <div class="nav-item" onclick="navigateTo('section8')">
+                <span class="label">Glosarium</span><span class="sub-label">& LKPD</span><span class="num">08</span>
+            </div>
         </div>
     </div>
 </section>
 
+<!-- ===================================================== -->
 <!-- SECTION 2 : PERTEMUAN 1 -->
+<!-- ===================================================== -->
 <section id="section2" class="section">
     <div class="section-header">
         <div class="num">P1</div>
@@ -805,6 +975,16 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
         <span class="time-chip"><i class="fas fa-hourglass-half"></i> 135 menit</span>
     </div>
 
+    <!-- ESSENTIAL QUESTIONS -->
+    <div class="essential-box reveal">
+        <div class="es-title"><i class="fas fa-question-circle"></i> Pertanyaan Pemantik</div>
+        <ul>
+            <li>Mengapa Bumi disebut sebagai planet yang "hidup" dibandingkan planet lain di tata surya?</li>
+            <li>Apa yang akan terjadi pada kehidupan manusia jika litosfer tidak ada?</li>
+            <li>Bagaimana satu lapisan batuan yang kita pijak setiap hari bisa menyimpan cerita miliaran tahun?</li>
+        </ul>
+    </div>
+
     <div class="tujuan-box reveal">
         <div class="tujuan-title"><i class="fas fa-bullseye"></i> Tujuan Pembelajaran</div>
         <p class="tujuan-desc">Setelah mengikuti Pertemuan 1, peserta didik diharapkan mampu:</p>
@@ -815,6 +995,20 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
             <li><strong>Menyimpulkan karakteristik umum litosfer</strong> (padat, kaku, dinamis, dan menjadi fondasi kehidupan) dari berbagai sumber bacaan.</li>
             <li><strong>Mengomunikasikan pemahaman tentang litosfer</strong> secara lisan maupun tulisan dengan istilah geografi yang tepat.</li>
         </ol>
+    </div>
+
+    <!-- ASESMEN DIAGNOSTIK -->
+    <div class="formatif-box reveal">
+        <div class="formatif-title"><i class="fas fa-stethoscope"></i> Asesmen Diagnostik Awal</div>
+        <div class="formatif-kuis">
+            <div class="kuis-label">Pemetaan Pengetahuan Awal</div>
+            <div class="kuis-pertanyaan">Sebelum memulai, jawab pertanyaan berikut dengan jujur untuk mengukur pengetahuan awalmu:</div>
+            <ol style="color:var(--text-light);padding-left:22px;font-size:.87rem;line-height:1.9;margin-top:6px;">
+                <li>Apa yang kamu ketahui tentang lapisan batuan bumi?</li>
+                <li>Pernahkah kamu merasakan gempa bumi atau melihat gunung berapi? Ceritakan singkat!</li>
+                <li>Menurutmu, mengapa Kalimantan relatif jarang dilanda gempa dibanding Pulau Jawa atau Sumatra?</li>
+            </ol>
+        </div>
     </div>
 
     <div class="sub-header reveal"><span class="tag-letter">A</span> Pengertian Litosfer</div>
@@ -867,6 +1061,29 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
                 <li><strong>Mantel Bumi:</strong> Lapisan di bawah kerak (hingga 2.900 km), terdiri dari batuan padat yang bersifat plastis.</li>
                 <li><strong>Inti Bumi:</strong> Lapisan terdalam (2.900-6.370 km), terdiri dari inti luar (cair) dan inti dalam (padat).</li>
             </ul>
+        </div>
+    </div>
+
+    <!-- DEEP LEARNING -->
+    <div class="deep-box reveal">
+        <h4><i class="fas fa-brain"></i> Kerangka Pembelajaran Mendalam (Deep Learning)</h4>
+        <div class="deep-grid">
+            <div class="deep-item">
+                <span class="di-tag">Memahami</span>
+                <span class="di-text">Memahami makna litosfer secara etimologis dan konseptual dari berbagai sudut pandang ahli geologi.</span>
+            </div>
+            <div class="deep-item">
+                <span class="di-tag">Mengaplikasi</span>
+                <span class="di-text">Mengaitkan konsep litosfer dengan fenomena nyata di sekitar — misalnya tanah tempat berpijak, batuan sungai, dan gempa.</span>
+            </div>
+            <div class="deep-item">
+                <span class="di-tag">Merefleksi</span>
+                <span class="di-text">Merenungkan peran litosfer sebagai fondasi kehidupan dan tanggung jawab manusia menjaganya.</span>
+            </div>
+            <div class="deep-item">
+                <span class="di-tag">Transfer</span>
+                <span class="di-text">Menerapkan pemahaman litosfer pada konteks baru — seperti kebijakan tata ruang dan mitigasi bencana.</span>
+            </div>
         </div>
     </div>
 
@@ -1027,7 +1244,9 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
     </div>
 </section>
 
+<!-- ===================================================== -->
 <!-- SECTION 3 : PERTEMUAN 2 -->
+<!-- ===================================================== -->
 <section id="section3" class="section">
     <div class="section-header">
         <div class="num">P2</div>
@@ -1042,6 +1261,15 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
             <p>Fokus: struktur lapisan bumi, jenis batuan, siklus batuan, dan teori tektonik lempeng.</p>
         </div>
         <span class="time-chip"><i class="fas fa-hourglass-half"></i> 135 menit</span>
+    </div>
+
+    <div class="essential-box reveal">
+        <div class="es-title"><i class="fas fa-question-circle"></i> Pertanyaan Pemantik</div>
+        <ul>
+            <li>Bagaimana "gunung" bisa tumbuh dari dasar laut menjadi daratan tinggi?</li>
+            <li>Mengapa batu yang kita injak hari ini bisa berubah bentuknya jutaan tahun mendatang?</li>
+            <li>Jika lempeng bergerak hanya beberapa sentimeter per tahun, mengapa dampaknya bisa begitu dahsyat?</li>
+        </ul>
     </div>
 
     <div class="tujuan-box reveal">
@@ -1142,6 +1370,48 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
             <div class="miskonsepsi-card">
                 <span class="miskon-label benar"><i class="fas fa-check-circle"></i> Konsep Kunci</span>
                 <p>Lempeng tektonik <strong>bergerak sangat lambat</strong> — hanya beberapa sentimeter per tahun, sekitar 2–10 cm/tahun. Artinya, gerakan sejauh 1 meter membutuhkan waktu ± 10–50 tahun. Namun dalam skala jutaan tahun, gerakan ini mengubah wajah planet bumi secara dramatis.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- TIMELINE SEJARAH TEORI TEKTONIK -->
+    <div class="materi-box reveal">
+        <div class="header" onclick="toggleMateri(this)">
+            <h4>Timeline Sejarah Perkembangan Teori Tektonik Lempeng <span class="tag-sm">Kronologi</span></h4>
+            <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </div>
+        <div class="body">
+            <div class="timeline">
+                <div class="tl-item">
+                    <span class="tl-year">1596</span>
+                    <div class="tl-title">Abraham Ortelius</div>
+                    <div class="tl-desc">Mengamati bahwa benua-benua seolah pernah menyatu — mengusulkan gagasan awal "Pangaea" berdasarkan kesamaan garis pantai.</div>
+                </div>
+                <div class="tl-item">
+                    <span class="tl-year">1912</span>
+                    <div class="tl-title">Alfred Wegener — Teori Pergeseran Benua</div>
+                    <div class="tl-desc">Mengajukan teori bahwa dahulu ada satu benua raksasa <strong>Pangaea</strong> yang terpecah dan bergeser. Bukti: fosil dan batuan yang sama di benua berbeda. Namun teori ini ditolak karena tidak bisa menjelaskan mekanisme geraknya.</div>
+                </div>
+                <div class="tl-item">
+                    <span class="tl-year">1928</span>
+                    <div class="tl-title">Arthur Holmes — Konveksi Mantel</div>
+                    <div class="tl-desc">Mengajukan bahwa <strong>arus konveksi mantel</strong> adalah penggerak pergeseran benua. Inilah kunci yang hilang dari teori Wegener.</div>
+                </div>
+                <div class="tl-item">
+                    <span class="tl-year">1960-an</span>
+                    <div class="tl-title">Harry Hess — Pemekaran Dasar Samudra</div>
+                    <div class="tl-desc">Menemukan bukti <strong>sea-floor spreading</strong> di Mid-Atlantic Ridge: dasar samudra terus memekar dan membentuk kerak baru dari magma.</div>
+                </div>
+                <div class="tl-item">
+                    <span class="tl-year">1965</span>
+                    <div class="tl-title">J. Tuzo Wilson — Teori Tektonik Lempeng</div>
+                    <div class="tl-desc">Menyempurnakan teori menjadi <strong>tektonik lempeng global</strong> yang berlaku hingga kini.</div>
+                </div>
+                <div class="tl-item">
+                    <span class="tl-year">1968–kini</span>
+                    <div class="tl-title">Era Modern</div>
+                    <div class="tl-desc">Teknologi GPS memungkinkan pengukuran langsung pergerakan lempeng — mengonfirmasi teori dengan data nyata (misalnya Australia bergerak ± 7 cm/tahun ke utara).</div>
+                </div>
             </div>
         </div>
     </div>
@@ -1313,6 +1583,17 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
                 <li>Jika kamu tinggal di Kalimantan Tengah, mengapa wilayahmu relatif lebih aman dari gempa? Jelaskan berdasarkan teori tektonik lempeng.</li>
             </ol>
         </div>
+
+        <div class="pengayaan-item">
+            <h5><i class="fas fa-book-reader"></i> 4. Koneksi Lintas Mata Pelajaran</h5>
+            <p>Hubungkan materi tektonik lempeng dengan mata pelajaran lain:</p>
+            <ul>
+                <li><strong>Sejarah:</strong> Bagaimana letusan Krakatau 1883 memengaruhi politik kolonial dan komunikasi global?</li>
+                <li><strong>Fisika:</strong> Bagaimana energi gempa diukur dengan skala Richter dan momen magnitudo? Mengapa skala logaritmik?</li>
+                <li><strong>Ekonomi:</strong> Bagaimana aktivitas vulkanik di Indonesia memengaruhi sektor pertanian dan pariwisata?</li>
+                <li><strong>Bahasa Indonesia:</strong> Tulislah esai argumentatif 500 kata: "Apakah Indonesia Berkah atau Kutukan karena Berada di Ring of Fire?"</li>
+            </ul>
+        </div>
     </div>
 
     <div class="pendalaman-box reveal">
@@ -1361,12 +1642,13 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
 
         <div class="pendalaman-item">
             <h5><i class="fas fa-palette"></i> 4. Diferensiasi Produk — Pilih Salah Satu</h5>
-            <p>Pilih <strong>salah satu</strong> produk berikut untuk menunjukkan pemahamanmu tentang materi Pertemuan 2:</p>
+            <p>Pilih <strong>salah satu</strong> produk berikut sesuai gaya belajarmu:</p>
             <ul>
-                <li><strong>Infografis:</strong> Buat infografis tentang siklus batuan atau 3 jenis pergerakan lempeng.</li>
-                <li><strong>Video Pendek (2-3 menit):</strong> Rekam video penjelasan tentang jenis batuan dan pemanfaatannya.</li>
-                <li><strong>Laporan Analisis:</strong> Tulis laporan 2 halaman tentang fenomena geologi di Indonesia dan kaitannya dengan tektonik lempeng.</li>
-                <li><strong>Poster Ilmiah:</strong> Buat poster yang menjelaskan mengapa Indonesia rawan gempa bumi.</li>
+                <li>🎨 <strong>Gaya Visual:</strong> Buat infografis tentang siklus batuan atau 3 jenis pergerakan lempeng.</li>
+                <li>🎙️ <strong>Gaya Auditori:</strong> Rekam podcast/video 2-3 menit yang menjelaskan jenis batuan dan pemanfaatannya.</li>
+                <li>🎭 <strong>Gaya Kinestetik:</strong> Perankan proses subduksi lempeng dengan gerakan tubuh di depan kelas.</li>
+                <li>✍️ <strong>Gaya Verbal:</strong> Tulis laporan analisis 2 halaman tentang fenomena geologi di Indonesia dan kaitannya dengan tektonik lempeng.</li>
+                <li>📊 <strong>Gaya Logis-Matematis:</strong> Buat diagram statistik persebaran gunung api Indonesia dan analisis polanya.</li>
             </ul>
             <p style="margin-top:6px; font-size:0.85rem; color:var(--text-muted);"><em>Produk dikumpulkan pada pertemuan berikutnya dan akan dinilai sebagai bagian dari asesmen formatif.</em></p>
         </div>
@@ -1425,7 +1707,9 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
     </div>
 </section>
 
+<!-- ===================================================== -->
 <!-- SECTION 4 : PERTEMUAN 3 -->
+<!-- ===================================================== -->
 <section id="section4" class="section">
     <div class="section-header">
         <div class="num">P3</div>
@@ -1440,6 +1724,15 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
             <p>Fokus: dampak &amp; manfaat fenomena litosfer, mitigasi bencana, dan studi kasus lokal Kalimantan Tengah.</p>
         </div>
         <span class="time-chip"><i class="fas fa-hourglass-half"></i> 135 menit</span>
+    </div>
+
+    <div class="essential-box reveal">
+        <div class="es-title"><i class="fas fa-question-circle"></i> Pertanyaan Pemantik</div>
+        <ul>
+            <li>Mengapa dua wilayah dengan kekuatan gempa sama bisa mengalami kerusakan yang sangat berbeda?</li>
+            <li>Apa yang bisa kita lakukan sebagai pelajar untuk mengurangi risiko bencana litosfer?</li>
+            <li>Apakah tinggal di Kalimantan Tengah benar-benar bebas dari bencana litosfer? Mengapa?</li>
+        </ul>
     </div>
 
     <div class="tujuan-box reveal">
@@ -1779,7 +2072,9 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
     </div>
 </section>
 
+<!-- ===================================================== -->
 <!-- SECTION 5 : REFLEKSI -->
+<!-- ===================================================== -->
 <section id="section5" class="section">
     <div class="section-header">
         <div class="num">R</div>
@@ -1833,6 +2128,27 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
         </p>
     </div>
 
+    <!-- JURNAL REFLEKSI INTERAKTIF -->
+    <div class="lkpd-box reveal">
+        <div class="lkpd-head">
+            <div class="lkpd-icon"><i class="fas fa-book"></i></div>
+            <div>
+                <h4>Jurnal Refleksi Pribadi</h4>
+                <span>Isi langsung di kolom tersedia (bisa dicetak)</span>
+            </div>
+        </div>
+        <div class="lkpd-body">
+            <p><strong>1. Konsep paling menarik</strong> yang saya pelajari dari materi litosfer adalah:</p>
+            <input class="lkpd-write" placeholder="Tulis di sini..." />
+            <p><strong>2. Konsep yang masih sulit</strong> saya pahami adalah:</p>
+            <input class="lkpd-write" placeholder="Tulis di sini..." />
+            <p><strong>3. Satu tindakan nyata</strong> yang akan saya lakukan setelah belajar litosfer:</p>
+            <input class="lkpd-write" placeholder="Tulis di sini..." />
+            <p><strong>4. Nilai saya sendiri</strong> untuk pemahaman materi ini (1-10):</p>
+            <input class="lkpd-write" placeholder="1 - 10" />
+        </div>
+    </div>
+
     <div class="quote-block reveal">
         <i class="fas fa-mountain" style="color:var(--primary); margin-right:10px;"></i>
         ⛰️ Pesan Hari Ini
@@ -1847,7 +2163,7 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
         <p>Kamu telah menyelesaikan seluruh rangkaian pembelajaran <strong>Litosfer (Fenomena Geosfer)</strong> dalam <strong>3 pertemuan</strong>.</p>
         <p style="margin-top:8px;">Langkah selanjutnya, kerjakan <strong>Asesmen Seluruh Bab</strong> untuk mengukur pemahamanmu.</p>
         <div style="margin-top:16px;">
-            <span class="next-btn">➡️ Lanjutkan ke Asesmen Seluruh Bab</span>
+            <button class="next-btn" onclick="navigateTo('section6')">➡️ Lanjutkan ke Asesmen Seluruh Bab</button>
         </div>
         <p style="margin-top:12px; font-size:0.85rem; color:var(--text-muted);">
             <i class="fas fa-info-circle" style="color:var(--primary);"></i> 
@@ -1856,7 +2172,9 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
     </div>
 </section>
 
+<!-- ===================================================== -->
 <!-- SECTION 6 : ASESMEN -->
+<!-- ===================================================== -->
 <section id="section6" class="section">
     <div class="section-header">
         <div class="num">A</div>
@@ -1892,8 +2210,23 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
                 <div><span style="color:var(--text-muted); font-size:0.6rem; font-weight:600; text-transform:uppercase;">Nilai</span><div style="color:var(--text); font-size:1.2rem; font-weight:700;">100</div></div>
             </div>
         </div>
-        <div style="margin-top:12px; padding-top:10px; border-top:1px solid var(--line-soft);">
+        <div style="margin-top:12px; padding-top:10px; border-top:1px solid var(--line-soft); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
             <span style="color:var(--text-muted); font-size:0.85rem;">Total <strong style="color:var(--text);">50 soal</strong> · Kerjakan dengan jujur dan mandiri</span>
+            <span style="font-size:0.78rem; color:var(--primary); font-weight:700;"><i class="fas fa-hand-pointer"></i> Soal PG & B/S bisa diklik untuk latihan</span>
+        </div>
+    </div>
+
+    <!-- SCORE PANEL -->
+    <div class="score-panel reveal" id="scorePanel">
+        <div class="sp-info">
+            <div class="sp-stat"><div class="sp-val" id="spBenar">0</div><div class="sp-lbl">Benar</div></div>
+            <div class="sp-stat"><div class="sp-val" id="spSalah">0</div><div class="sp-lbl">Salah</div></div>
+            <div class="sp-stat"><div class="sp-val" id="spSkor">0</div><div class="sp-lbl">Skor</div></div>
+            <div class="sp-stat"><div class="sp-val" id="spPredikat" style="font-size:1rem;">-</div><div class="sp-lbl">Predikat</div></div>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button class="sp-btn" onclick="hitungSkor()"><i class="fas fa-calculator"></i> Hitung Skor</button>
+            <button class="sp-btn reset" onclick="resetSkor()"><i class="fas fa-redo"></i> Reset</button>
         </div>
     </div>
 
@@ -1904,36 +2237,36 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
         </h3>
         <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:12px;">Pilihlah satu jawaban yang paling tepat (A, B, C, D, atau E)!</p>
 
-        <div class="soal-pg"><div class="pertanyaan"><span class="nomor">1.</span> Kata "lithos" dalam bahasa Yunani berarti ...</div><div class="opsi"><span>A. Lapisan</span><span>B. Batu</span><span>C. Bumi</span><span>D. Kerak</span><span>E. Udara</span></div></div>
-        <div class="soal-pg"><div class="pertanyaan"><span class="nomor">2.</span> Litosfer berasal dari kata "lithos" dan "sphaira". Kata "sphaira" berarti ...</div><div class="opsi"><span>A. Batu</span><span>B. Api</span><span>C. Lapisan</span><span>D. Air</span><span>E. Udara</span></div></div>
-        <div class="soal-pg"><div class="pertanyaan"><span class="nomor">3.</span> Berikut yang BUKAN merupakan bagian dari litosfer adalah ...</div><div class="opsi"><span>A. Kerak benua</span><span>B. Kerak samudra</span><span>C. Mantel atas</span><span>D. Inti luar</span><span>E. Batuan penyusun kerak</span></div></div>
-        <div class="soal-pg"><div class="pertanyaan"><span class="nomor">4.</span> Menurut Arthur Holmes, litosfer adalah ...</div><div class="opsi"><span>A. Selubung luar bumi yang padat</span><span>B. Lapisan batuan pembentuk kulit bumi</span><span>C. Lapisan terluar bumi yang bersifat padat dan kaku</span><span>D. Sumber daya alam</span><span>E. Lapisan kerak bumi yang menjadi wadah interaksi</span></div></div>
-        <div class="soal-pg"><div class="pertanyaan"><span class="nomor">5.</span> Ketebalan litosfer di bawah benua menurut Holmes adalah ...</div><div class="opsi"><span>A. 5-10 km</span><span>B. 20-30 km</span><span>C. 50-100 km</span><span>D. 100-200 km</span><span>E. 500-600 km</span></div></div>
-        <div class="soal-pg"><div class="pertanyaan"><span class="nomor">6.</span> Ahli geologi Indonesia yang menyatakan litosfer Indonesia sangat dinamis karena berada di pertemuan tiga lempeng adalah ...</div><div class="opsi"><span>A. Daldjoeni</span><span>B. Muta'ali</span><span>C. Suharyono</span><span>D. J.A. Katili</span><span>E. Tarbuck</span></div></div>
-        <div class="soal-pg"><div class="pertanyaan"><span class="nomor">7.</span> Menurut Tarbuck &amp; Lutgens, ketebalan rata-rata litosfer adalah ...</div><div class="opsi"><span>A. 50 km</span><span>B. 100 km</span><span>C. 200 km</span><span>D. 500 km</span><span>E. 1.000 km</span></div></div>
-        <div class="soal-pg"><div class="pertanyaan"><span class="nomor">8.</span> Berikut ini yang termasuk ruang lingkup kajian litosfer adalah ...</div><div class="opsi"><span>A. Atmosfer</span><span>B. Kerak bumi</span><span>C. Hidrosfer</span><span>D. Biosfer</span><span>E. Ionosfer</span></div></div>
-        <div class="soal-pg"><div class="pertanyaan"><span class="nomor">9.</span> Lapisan bumi yang paling dalam adalah ...</div><div class="opsi"><span>A. Kerak</span><span>B. Mantel</span><span>C. Inti luar</span><span>D. Inti dalam</span><span>E. Astenosfer</span></div></div>
-        <div class="soal-pg"><div class="pertanyaan"><span class="nomor">10.</span> Lapisan yang bersifat plastis dan menjadi tempat lempeng bergerak adalah ...</div><div class="opsi"><span>A. Litosfer</span><span>B. Astenosfer</span><span>C. Mesosfer</span><span>D. Barisfer</span><span>E. Kerak</span></div></div>
-        <div class="soal-pg"><div class="pertanyaan"><span class="nomor">11.</span> Fungsi utama inti bumi adalah ...</div><div class="opsi"><span>A. Sebagai sumber magma</span><span>B. Sebagai tempat tinggal manusia</span><span>C. Menghasilkan medan magnet</span><span>D. Sebagai sumber air tanah</span><span>E. Menyimpan mineral</span></div></div>
-        <div class="soal-pg"><div class="pertanyaan"><span class="nomor">12.</span> Batuan yang terbentuk dari pembekuan magma disebut ...</div><div class="opsi"><span>A. Sedimen</span><span>B. Metamorf</span><span>C. Beku</span><span>D. Endapan</span><span>E. Klastik</span></div></div>
-        <div class="soal-pg"><div class="pertanyaan"><span class="nomor">13.</span> Contoh batuan beku dalam adalah ...</div><div class="opsi"><span>A. Basalt</span><span>B. Granit</span><span>C. Batu pasir</span><span>D. Marmer</span><span>E. Kuarsit</span></div></div>
-        <div class="soal-pg"><div class="pertanyaan"><span class="nomor">14.</span> Batuan yang terbentuk dari proses diagenesis adalah batuan ...</div><div class="opsi"><span>A. Beku</span><span>B. Metamorf</span><span>C. Sedimen</span><span>D. Vulkanik</span><span>E. Plutonik</span></div></div>
-        <div class="soal-pg"><div class="pertanyaan"><span class="nomor">15.</span> Contoh batuan metamorf adalah ...</div><div class="opsi"><span>A. Basalt</span><span>B. Granit</span><span>C. Marmer</span><span>D. Batu pasir</span><span>E. Batu kapur</span></div></div>
-        <div class="soal-pg"><div class="pertanyaan"><span class="nomor">16.</span> Proses perubahan batuan dari satu jenis ke jenis lain disebut ...</div><div class="opsi"><span>A. Siklus air</span><span>B. Siklus batuan</span><span>C. Siklus karbon</span><span>D. Siklus nitrogen</span><span>E. Siklus geologi</span></div></div>
-        <div class="soal-pg"><div class="pertanyaan"><span class="nomor">17.</span> Pergerakan lempeng yang saling menjauh disebut ...</div><div class="opsi"><span>A. Konvergen</span><span>B. Divergen</span><span>C. Transform</span><span>D. Subduksi</span><span>E. Kolisi</span></div></div>
-        <div class="soal-pg"><div class="pertanyaan"><span class="nomor">18.</span> Pergerakan lempeng yang saling mendekat disebut ...</div><div class="opsi"><span>A. Konvergen</span><span>B. Divergen</span><span>C. Transform</span><span>D. Sesar</span><span>E. Rifting</span></div></div>
-        <div class="soal-pg"><div class="pertanyaan"><span class="nomor">19.</span> Contoh pergerakan lempeng transform adalah ...</div><div class="opsi"><span>A. Mid-Atlantic Ridge</span><span>B. Pegunungan Himalaya</span><span>C. Sesar San Andreas</span><span>D. Palung Jawa</span><span>E. Ring of Fire</span></div></div>
-        <div class="soal-pg"><div class="pertanyaan"><span class="nomor">20.</span> Indonesia terletak di pertemuan tiga lempeng, yaitu ...</div><div class="opsi"><span>A. Pasifik, Atlantik, India</span><span>B. Eurasia, Pasifik, Indo-Australia</span><span>C. Nazca, Amerika, Afrika</span><span>D. Antartika, Australia, Pasifik</span><span>E. Eurasia, Afrika, India</span></div></div>
-        <div class="soal-pg"><div class="pertanyaan"><span class="nomor">21.</span> Berikut yang merupakan manfaat positif aktivitas gunung berapi adalah ...</div><div class="opsi"><span>A. Menyebabkan tsunami</span><span>B. Menyuburkan tanah</span><span>C. Menghancurkan bangunan</span><span>D. Mencemari udara</span><span>E. Menyebabkan longsor</span></div></div>
-        <div class="soal-pg"><div class="pertanyaan"><span class="nomor">22.</span> Gempa bumi yang terjadi akibat pergerakan lempeng disebut gempa ...</div><div class="opsi"><span>A. Vulkanik</span><span>B. Tektonik</span><span>C. Runtuhan</span><span>D. Buatan</span><span>E. Meteor</span></div></div>
-        <div class="soal-pg"><div class="pertanyaan"><span class="nomor">23.</span> Mitigasi yang dilakukan melalui pembangunan fisik seperti tanggul disebut mitigasi ...</div><div class="opsi"><span>A. Struktural</span><span>B. Non-struktural</span><span>C. Sosial</span><span>D. Budaya</span><span>E. Ekonomi</span></div></div>
-        <div class="soal-pg"><div class="pertanyaan"><span class="nomor">24.</span> Berikut yang termasuk mitigasi non-struktural adalah ...</div><div class="opsi"><span>A. Membangun tanggul</span><span>B. Memasang bronjong</span><span>C. Edukasi kebencanaan</span><span>D. Membuat dam</span><span>E. Membangun tembok penahan</span></div></div>
-        <div class="soal-pg"><div class="pertanyaan"><span class="nomor">25.</span> Tahapan manajemen bencana yang dilakukan SEBELUM bencana terjadi disebut tahap ...</div><div class="opsi"><span>A. Prabencana</span><span>B. Saat bencana</span><span>C. Pascabencana</span><span>D. Rehabilitasi</span><span>E. Rekonstruksi</span></div></div>
-        <div class="soal-pg"><div class="pertanyaan"><span class="nomor">26.</span> Kegiatan rehabilitasi dan rekonstruksi termasuk dalam tahap ...</div><div class="opsi"><span>A. Prabencana</span><span>B. Saat bencana</span><span>C. Pascabencana</span><span>D. Mitigasi</span><span>E. Kesiapsiagaan</span></div></div>
-        <div class="soal-pg"><div class="pertanyaan"><span class="nomor">27.</span> Rumus risiko bencana adalah ...</div><div class="opsi"><span>A. Risiko = Bahaya + Kerentanan + Kapasitas</span><span>B. Risiko = Bahaya × Kerentanan ÷ Kapasitas</span><span>C. Risiko = Bahaya ÷ Kerentanan</span><span>D. Risiko = Kapasitas - Bahaya</span><span>E. Risiko = Kerentanan × Kapasitas</span></div></div>
-        <div class="soal-pg"><div class="pertanyaan"><span class="nomor">28.</span> Struktur tanah labil di bantaran Sungai Kahayan menunjukkan material berupa ...</div><div class="opsi"><span>A. Batuan beku</span><span>B. Batuan metamorf</span><span>C. Sedimen belum terkompaksi</span><span>D. Batuan intrusi</span><span>E. Batuan plutonik</span></div></div>
-        <div class="soal-pg"><div class="pertanyaan"><span class="nomor">29.</span> Berikut yang merupakan dampak negatif dari penambangan emas ilegal adalah ...</div><div class="opsi"><span>A. Menambah devisa negara</span><span>B. Membuka lapangan kerja</span><span>C. Kerusakan lahan dan pencemaran merkuri</span><span>D. Meningkatkan kesejahteraan</span><span>E. Memperluas lahan pertanian</span></div></div>
-        <div class="soal-pg"><div class="pertanyaan"><span class="nomor">30.</span> Salah satu upaya mitigasi yang dapat dilakukan pelajar untuk mengurangi risiko bencana litosfer adalah ...</div><div class="opsi"><span>A. Menambang emas ilegal</span><span>B. Membuang sampah ke sungai</span><span>C. Membuat peta risiko sekolah</span><span>D. Menebang pohon di lereng</span><span>E. Membangun rumah di bantaran sungai</span></div></div>
+        <div class="soal-pg" data-soal="pg"><div class="pertanyaan"><span class="nomor">1.</span> Kata "lithos" dalam bahasa Yunani berarti ...</div><div class="opsi"><span data-answer="false">A. Lapisan</span><span data-answer="true">B. Batu</span><span data-answer="false">C. Bumi</span><span data-answer="false">D. Kerak</span><span data-answer="false">E. Udara</span></div></div>
+        <div class="soal-pg" data-soal="pg"><div class="pertanyaan"><span class="nomor">2.</span> Litosfer berasal dari kata "lithos" dan "sphaira". Kata "sphaira" berarti ...</div><div class="opsi"><span data-answer="false">A. Batu</span><span data-answer="false">B. Api</span><span data-answer="true">C. Lapisan</span><span data-answer="false">D. Air</span><span data-answer="false">E. Udara</span></div></div>
+        <div class="soal-pg" data-soal="pg"><div class="pertanyaan"><span class="nomor">3.</span> Berikut yang BUKAN merupakan bagian dari litosfer adalah ...</div><div class="opsi"><span data-answer="false">A. Kerak benua</span><span data-answer="false">B. Kerak samudra</span><span data-answer="false">C. Mantel atas</span><span data-answer="true">D. Inti luar</span><span data-answer="false">E. Batuan penyusun kerak</span></div></div>
+        <div class="soal-pg" data-soal="pg"><div class="pertanyaan"><span class="nomor">4.</span> Menurut Arthur Holmes, litosfer adalah ...</div><div class="opsi"><span data-answer="false">A. Selubung luar bumi yang padat</span><span data-answer="false">B. Lapisan batuan pembentuk kulit bumi</span><span data-answer="true">C. Lapisan terluar bumi yang bersifat padat dan kaku</span><span data-answer="false">D. Sumber daya alam</span><span data-answer="false">E. Lapisan kerak bumi yang menjadi wadah interaksi</span></div></div>
+        <div class="soal-pg" data-soal="pg"><div class="pertanyaan"><span class="nomor">5.</span> Ketebalan litosfer di bawah benua menurut Holmes adalah ...</div><div class="opsi"><span data-answer="false">A. 5-10 km</span><span data-answer="false">B. 20-30 km</span><span data-answer="false">C. 50-100 km</span><span data-answer="true">D. 100-200 km</span><span data-answer="false">E. 500-600 km</span></div></div>
+        <div class="soal-pg" data-soal="pg"><div class="pertanyaan"><span class="nomor">6.</span> Ahli geologi Indonesia yang menyatakan litosfer Indonesia sangat dinamis karena berada di pertemuan tiga lempeng adalah ...</div><div class="opsi"><span data-answer="false">A. Daldjoeni</span><span data-answer="false">B. Muta'ali</span><span data-answer="false">C. Suharyono</span><span data-answer="true">D. J.A. Katili</span><span data-answer="false">E. Tarbuck</span></div></div>
+        <div class="soal-pg" data-soal="pg"><div class="pertanyaan"><span class="nomor">7.</span> Menurut Tarbuck &amp; Lutgens, ketebalan rata-rata litosfer adalah ...</div><div class="opsi"><span data-answer="false">A. 50 km</span><span data-answer="true">B. 100 km</span><span data-answer="false">C. 200 km</span><span data-answer="false">D. 500 km</span><span data-answer="false">E. 1.000 km</span></div></div>
+        <div class="soal-pg" data-soal="pg"><div class="pertanyaan"><span class="nomor">8.</span> Berikut ini yang termasuk ruang lingkup kajian litosfer adalah ...</div><div class="opsi"><span data-answer="false">A. Atmosfer</span><span data-answer="true">B. Kerak bumi</span><span data-answer="false">C. Hidrosfer</span><span data-answer="false">D. Biosfer</span><span data-answer="false">E. Ionosfer</span></div></div>
+        <div class="soal-pg" data-soal="pg"><div class="pertanyaan"><span class="nomor">9.</span> Lapisan bumi yang paling dalam adalah ...</div><div class="opsi"><span data-answer="false">A. Kerak</span><span data-answer="false">B. Mantel</span><span data-answer="false">C. Inti luar</span><span data-answer="true">D. Inti dalam</span><span data-answer="false">E. Astenosfer</span></div></div>
+        <div class="soal-pg" data-soal="pg"><div class="pertanyaan"><span class="nomor">10.</span> Lapisan yang bersifat plastis dan menjadi tempat lempeng bergerak adalah ...</div><div class="opsi"><span data-answer="false">A. Litosfer</span><span data-answer="true">B. Astenosfer</span><span data-answer="false">C. Mesosfer</span><span data-answer="false">D. Barisfer</span><span data-answer="false">E. Kerak</span></div></div>
+        <div class="soal-pg" data-soal="pg"><div class="pertanyaan"><span class="nomor">11.</span> Fungsi utama inti bumi adalah ...</div><div class="opsi"><span data-answer="false">A. Sebagai sumber magma</span><span data-answer="false">B. Sebagai tempat tinggal manusia</span><span data-answer="true">C. Menghasilkan medan magnet</span><span data-answer="false">D. Sebagai sumber air tanah</span><span data-answer="false">E. Menyimpan mineral</span></div></div>
+        <div class="soal-pg" data-soal="pg"><div class="pertanyaan"><span class="nomor">12.</span> Batuan yang terbentuk dari pembekuan magma disebut ...</div><div class="opsi"><span data-answer="false">A. Sedimen</span><span data-answer="false">B. Metamorf</span><span data-answer="true">C. Beku</span><span data-answer="false">D. Endapan</span><span data-answer="false">E. Klastik</span></div></div>
+        <div class="soal-pg" data-soal="pg"><div class="pertanyaan"><span class="nomor">13.</span> Contoh batuan beku dalam adalah ...</div><div class="opsi"><span data-answer="false">A. Basalt</span><span data-answer="true">B. Granit</span><span data-answer="false">C. Batu pasir</span><span data-answer="false">D. Marmer</span><span data-answer="false">E. Kuarsit</span></div></div>
+        <div class="soal-pg" data-soal="pg"><div class="pertanyaan"><span class="nomor">14.</span> Batuan yang terbentuk dari proses diagenesis adalah batuan ...</div><div class="opsi"><span data-answer="false">A. Beku</span><span data-answer="false">B. Metamorf</span><span data-answer="true">C. Sedimen</span><span data-answer="false">D. Vulkanik</span><span data-answer="false">E. Plutonik</span></div></div>
+        <div class="soal-pg" data-soal="pg"><div class="pertanyaan"><span class="nomor">15.</span> Contoh batuan metamorf adalah ...</div><div class="opsi"><span data-answer="false">A. Basalt</span><span data-answer="false">B. Granit</span><span data-answer="true">C. Marmer</span><span data-answer="false">D. Batu pasir</span><span data-answer="false">E. Batu kapur</span></div></div>
+        <div class="soal-pg" data-soal="pg"><div class="pertanyaan"><span class="nomor">16.</span> Proses perubahan batuan dari satu jenis ke jenis lain disebut ...</div><div class="opsi"><span data-answer="false">A. Siklus air</span><span data-answer="true">B. Siklus batuan</span><span data-answer="false">C. Siklus karbon</span><span data-answer="false">D. Siklus nitrogen</span><span data-answer="false">E. Siklus geologi</span></div></div>
+        <div class="soal-pg" data-soal="pg"><div class="pertanyaan"><span class="nomor">17.</span> Pergerakan lempeng yang saling menjauh disebut ...</div><div class="opsi"><span data-answer="false">A. Konvergen</span><span data-answer="true">B. Divergen</span><span data-answer="false">C. Transform</span><span data-answer="false">D. Subduksi</span><span data-answer="false">E. Kolisi</span></div></div>
+        <div class="soal-pg" data-soal="pg"><div class="pertanyaan"><span class="nomor">18.</span> Pergerakan lempeng yang saling mendekat disebut ...</div><div class="opsi"><span data-answer="true">A. Konvergen</span><span data-answer="false">B. Divergen</span><span data-answer="false">C. Transform</span><span data-answer="false">D. Sesar</span><span data-answer="false">E. Rifting</span></div></div>
+        <div class="soal-pg" data-soal="pg"><div class="pertanyaan"><span class="nomor">19.</span> Contoh pergerakan lempeng transform adalah ...</div><div class="opsi"><span data-answer="false">A. Mid-Atlantic Ridge</span><span data-answer="false">B. Pegunungan Himalaya</span><span data-answer="true">C. Sesar San Andreas</span><span data-answer="false">D. Palung Jawa</span><span data-answer="false">E. Ring of Fire</span></div></div>
+        <div class="soal-pg" data-soal="pg"><div class="pertanyaan"><span class="nomor">20.</span> Indonesia terletak di pertemuan tiga lempeng, yaitu ...</div><div class="opsi"><span data-answer="false">A. Pasifik, Atlantik, India</span><span data-answer="true">B. Eurasia, Pasifik, Indo-Australia</span><span data-answer="false">C. Nazca, Amerika, Afrika</span><span data-answer="false">D. Antartika, Australia, Pasifik</span><span data-answer="false">E. Eurasia, Afrika, India</span></div></div>
+        <div class="soal-pg" data-soal="pg"><div class="pertanyaan"><span class="nomor">21.</span> Berikut yang merupakan manfaat positif aktivitas gunung berapi adalah ...</div><div class="opsi"><span data-answer="false">A. Menyebabkan tsunami</span><span data-answer="true">B. Menyuburkan tanah</span><span data-answer="false">C. Menghancurkan bangunan</span><span data-answer="false">D. Mencemari udara</span><span data-answer="false">E. Menyebabkan longsor</span></div></div>
+        <div class="soal-pg" data-soal="pg"><div class="pertanyaan"><span class="nomor">22.</span> Gempa bumi yang terjadi akibat pergerakan lempeng disebut gempa ...</div><div class="opsi"><span data-answer="false">A. Vulkanik</span><span data-answer="true">B. Tektonik</span><span data-answer="false">C. Runtuhan</span><span data-answer="false">D. Buatan</span><span data-answer="false">E. Meteor</span></div></div>
+        <div class="soal-pg" data-soal="pg"><div class="pertanyaan"><span class="nomor">23.</span> Mitigasi yang dilakukan melalui pembangunan fisik seperti tanggul disebut mitigasi ...</div><div class="opsi"><span data-answer="true">A. Struktural</span><span data-answer="false">B. Non-struktural</span><span data-answer="false">C. Sosial</span><span data-answer="false">D. Budaya</span><span data-answer="false">E. Ekonomi</span></div></div>
+        <div class="soal-pg" data-soal="pg"><div class="pertanyaan"><span class="nomor">24.</span> Berikut yang termasuk mitigasi non-struktural adalah ...</div><div class="opsi"><span data-answer="false">A. Membangun tanggul</span><span data-answer="false">B. Memasang bronjong</span><span data-answer="true">C. Edukasi kebencanaan</span><span data-answer="false">D. Membuat dam</span><span data-answer="false">E. Membangun tembok penahan</span></div></div>
+        <div class="soal-pg" data-soal="pg"><div class="pertanyaan"><span class="nomor">25.</span> Tahapan manajemen bencana yang dilakukan SEBELUM bencana terjadi disebut tahap ...</div><div class="opsi"><span data-answer="true">A. Prabencana</span><span data-answer="false">B. Saat bencana</span><span data-answer="false">C. Pascabencana</span><span data-answer="false">D. Rehabilitasi</span><span data-answer="false">E. Rekonstruksi</span></div></div>
+        <div class="soal-pg" data-soal="pg"><div class="pertanyaan"><span class="nomor">26.</span> Kegiatan rehabilitasi dan rekonstruksi termasuk dalam tahap ...</div><div class="opsi"><span data-answer="false">A. Prabencana</span><span data-answer="false">B. Saat bencana</span><span data-answer="true">C. Pascabencana</span><span data-answer="false">D. Mitigasi</span><span data-answer="false">E. Kesiapsiagaan</span></div></div>
+        <div class="soal-pg" data-soal="pg"><div class="pertanyaan"><span class="nomor">27.</span> Rumus risiko bencana adalah ...</div><div class="opsi"><span data-answer="false">A. Risiko = Bahaya + Kerentanan + Kapasitas</span><span data-answer="true">B. Risiko = Bahaya × Kerentanan ÷ Kapasitas</span><span data-answer="false">C. Risiko = Bahaya ÷ Kerentanan</span><span data-answer="false">D. Risiko = Kapasitas - Bahaya</span><span data-answer="false">E. Risiko = Kerentanan × Kapasitas</span></div></div>
+        <div class="soal-pg" data-soal="pg"><div class="pertanyaan"><span class="nomor">28.</span> Struktur tanah labil di bantaran Sungai Kahayan menunjukkan material berupa ...</div><div class="opsi"><span data-answer="false">A. Batuan beku</span><span data-answer="false">B. Batuan metamorf</span><span data-answer="true">C. Sedimen belum terkompaksi</span><span data-answer="false">D. Batuan intrusi</span><span data-answer="false">E. Batuan plutonik</span></div></div>
+        <div class="soal-pg" data-soal="pg"><div class="pertanyaan"><span class="nomor">29.</span> Berikut yang merupakan dampak negatif dari penambangan emas ilegal adalah ...</div><div class="opsi"><span data-answer="false">A. Menambah devisa negara</span><span data-answer="false">B. Membuka lapangan kerja</span><span data-answer="true">C. Kerusakan lahan dan pencemaran merkuri</span><span data-answer="false">D. Meningkatkan kesejahteraan</span><span data-answer="false">E. Memperluas lahan pertanian</span></div></div>
+        <div class="soal-pg" data-soal="pg"><div class="pertanyaan"><span class="nomor">30.</span> Salah satu upaya mitigasi yang dapat dilakukan pelajar untuk mengurangi risiko bencana litosfer adalah ...</div><div class="opsi"><span data-answer="false">A. Menambang emas ilegal</span><span data-answer="false">B. Membuang sampah ke sungai</span><span data-answer="true">C. Membuat peta risiko sekolah</span><span data-answer="false">D. Menebang pohon di lereng</span><span data-answer="false">E. Membangun rumah di bantaran sungai</span></div></div>
     </div>
 
     <div class="card reveal" style="margin-bottom:20px;">
@@ -1943,21 +2276,21 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
         </h3>
         <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:12px;">Tentukan pernyataan berikut <strong>BENAR</strong> atau <strong>SALAH</strong>!</p>
 
-        <div class="soal-tf"><div class="pertanyaan"><span class="nomor">1.</span> Litosfer terdiri dari kerak bumi dan bagian atas mantel.</div><div class="opsi"><span>BENAR</span><span>SALAH</span></div></div>
-        <div class="soal-tf"><div class="pertanyaan"><span class="nomor">2.</span> Astenosfer bersifat padat dan kaku.</div><div class="opsi"><span>BENAR</span><span>SALAH</span></div></div>
-        <div class="soal-tf"><div class="pertanyaan"><span class="nomor">3.</span> Ketebalan kerak samudra lebih tipis dibanding kerak benua.</div><div class="opsi"><span>BENAR</span><span>SALAH</span></div></div>
-        <div class="soal-tf"><div class="pertanyaan"><span class="nomor">4.</span> Batuan beku terbentuk dari endapan material yang terkompaksi.</div><div class="opsi"><span>BENAR</span><span>SALAH</span></div></div>
-        <div class="soal-tf"><div class="pertanyaan"><span class="nomor">5.</span> Marmer adalah contoh batuan metamorf yang berasal dari batu kapur.</div><div class="opsi"><span>BENAR</span><span>SALAH</span></div></div>
-        <div class="soal-tf"><div class="pertanyaan"><span class="nomor">6.</span> Siklus batuan selalu berurutan sempurna tanpa pengecualian.</div><div class="opsi"><span>BENAR</span><span>SALAH</span></div></div>
-        <div class="soal-tf"><div class="pertanyaan"><span class="nomor">7.</span> Lempeng tektonik bergerak sangat cepat, sekitar 1 meter per tahun.</div><div class="opsi"><span>BENAR</span><span>SALAH</span></div></div>
-        <div class="soal-tf"><div class="pertanyaan"><span class="nomor">8.</span> Konveksi mantel adalah penyebab pergerakan lempeng tektonik.</div><div class="opsi"><span>BENAR</span><span>SALAH</span></div></div>
-        <div class="soal-tf"><div class="pertanyaan"><span class="nomor">9.</span> Pergerakan divergen membentuk kerak samudra baru.</div><div class="opsi"><span>BENAR</span><span>SALAH</span></div></div>
-        <div class="soal-tf"><div class="pertanyaan"><span class="nomor">10.</span> Gempa bumi vulkanik terjadi akibat pergerakan lempeng tektonik.</div><div class="opsi"><span>BENAR</span><span>SALAH</span></div></div>
-        <div class="soal-tf"><div class="pertanyaan"><span class="nomor">11.</span> Ring of Fire adalah zona aktif gempa dan gunung api di Samudra Pasifik.</div><div class="opsi"><span>BENAR</span><span>SALAH</span></div></div>
-        <div class="soal-tf"><div class="pertanyaan"><span class="nomor">12.</span> Mitigasi struktural lebih murah dibanding mitigasi non-struktural.</div><div class="opsi"><span>BENAR</span><span>SALAH</span></div></div>
-        <div class="soal-tf"><div class="pertanyaan"><span class="nomor">13.</span> Rumus risiko bencana menunjukkan bahwa kapasitas yang tinggi mengurangi risiko.</div><div class="opsi"><span>BENAR</span><span>SALAH</span></div></div>
-        <div class="soal-tf"><div class="pertanyaan"><span class="nomor">14.</span> Permukiman padat di bantaran sungai mengurangi risiko longsor.</div><div class="opsi"><span>BENAR</span><span>SALAH</span></div></div>
-        <div class="soal-tf"><div class="pertanyaan"><span class="nomor">15.</span> Wawancara warga tentang pengalaman bencana adalah bagian dari keterampilan proses "mengumpulkan informasi".</div><div class="opsi"><span>BENAR</span><span>SALAH</span></div></div>
+        <div class="soal-tf" data-soal="tf"><div class="pertanyaan"><span class="nomor">1.</span> Litosfer terdiri dari kerak bumi dan bagian atas mantel.</div><div class="opsi"><span data-answer="true">BENAR</span><span data-answer="false">SALAH</span></div></div>
+        <div class="soal-tf" data-soal="tf"><div class="pertanyaan"><span class="nomor">2.</span> Astenosfer bersifat padat dan kaku.</div><div class="opsi"><span data-answer="false">BENAR</span><span data-answer="true">SALAH</span></div></div>
+        <div class="soal-tf" data-soal="tf"><div class="pertanyaan"><span class="nomor">3.</span> Ketebalan kerak samudra lebih tipis dibanding kerak benua.</div><div class="opsi"><span data-answer="true">BENAR</span><span data-answer="false">SALAH</span></div></div>
+        <div class="soal-tf" data-soal="tf"><div class="pertanyaan"><span class="nomor">4.</span> Batuan beku terbentuk dari endapan material yang terkompaksi.</div><div class="opsi"><span data-answer="false">BENAR</span><span data-answer="true">SALAH</span></div></div>
+        <div class="soal-tf" data-soal="tf"><div class="pertanyaan"><span class="nomor">5.</span> Marmer adalah contoh batuan metamorf yang berasal dari batu kapur.</div><div class="opsi"><span data-answer="true">BENAR</span><span data-answer="false">SALAH</span></div></div>
+        <div class="soal-tf" data-soal="tf"><div class="pertanyaan"><span class="nomor">6.</span> Siklus batuan selalu berurutan sempurna tanpa pengecualian.</div><div class="opsi"><span data-answer="false">BENAR</span><span data-answer="true">SALAH</span></div></div>
+        <div class="soal-tf" data-soal="tf"><div class="pertanyaan"><span class="nomor">7.</span> Lempeng tektonik bergerak sangat cepat, sekitar 1 meter per tahun.</div><div class="opsi"><span data-answer="false">BENAR</span><span data-answer="true">SALAH</span></div></div>
+        <div class="soal-tf" data-soal="tf"><div class="pertanyaan"><span class="nomor">8.</span> Konveksi mantel adalah penyebab pergerakan lempeng tektonik.</div><div class="opsi"><span data-answer="true">BENAR</span><span data-answer="false">SALAH</span></div></div>
+        <div class="soal-tf" data-soal="tf"><div class="pertanyaan"><span class="nomor">9.</span> Pergerakan divergen membentuk kerak samudra baru.</div><div class="opsi"><span data-answer="true">BENAR</span><span data-answer="false">SALAH</span></div></div>
+        <div class="soal-tf" data-soal="tf"><div class="pertanyaan"><span class="nomor">10.</span> Gempa bumi vulkanik terjadi akibat pergerakan lempeng tektonik.</div><div class="opsi"><span data-answer="false">BENAR</span><span data-answer="true">SALAH</span></div></div>
+        <div class="soal-tf" data-soal="tf"><div class="pertanyaan"><span class="nomor">11.</span> Ring of Fire adalah zona aktif gempa dan gunung api di Samudra Pasifik.</div><div class="opsi"><span data-answer="true">BENAR</span><span data-answer="false">SALAH</span></div></div>
+        <div class="soal-tf" data-soal="tf"><div class="pertanyaan"><span class="nomor">12.</span> Mitigasi struktural lebih murah dibanding mitigasi non-struktural.</div><div class="opsi"><span data-answer="false">BENAR</span><span data-answer="true">SALAH</span></div></div>
+        <div class="soal-tf" data-soal="tf"><div class="pertanyaan"><span class="nomor">13.</span> Rumus risiko bencana menunjukkan bahwa kapasitas yang tinggi mengurangi risiko.</div><div class="opsi"><span data-answer="true">BENAR</span><span data-answer="false">SALAH</span></div></div>
+        <div class="soal-tf" data-soal="tf"><div class="pertanyaan"><span class="nomor">14.</span> Permukiman padat di bantaran sungai mengurangi risiko longsor.</div><div class="opsi"><span data-answer="false">BENAR</span><span data-answer="true">SALAH</span></div></div>
+        <div class="soal-tf" data-soal="tf"><div class="pertanyaan"><span class="nomor">15.</span> Wawancara warga tentang pengalaman bencana adalah bagian dari keterampilan proses "mengumpulkan informasi".</div><div class="opsi"><span data-answer="true">BENAR</span><span data-answer="false">SALAH</span></div></div>
     </div>
 
     <div class="card reveal" style="margin-bottom:20px;">
@@ -1989,10 +2322,86 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
         </div>
     </div>
 
+    <!-- SOAL HOTS -->
+    <div class="card reveal" style="margin-bottom:20px;border-left:5px solid var(--accent);">
+        <h3 style="color:var(--accent); display:flex; align-items:center; gap:10px;">
+            <span style="background:linear-gradient(135deg,var(--accent),var(--gold)); color:#fff; padding:4px 12px; border-radius:30px; font-size:0.9rem;">D</span>
+            Soal HOTS — Berpikir Tingkat Tinggi (Bonus)
+        </h3>
+        <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:12px;">Soal-soal ini menuntut analisis, evaluasi, dan kreasi. Cocok untuk pengayaan atau diskusi kelompok.</p>
+
+        <div class="soal-essay" style="border-left-color:var(--accent);background:rgba(193,18,31,.04);">
+            <div class="pertanyaan"><span class="nomor" style="color:var(--accent);">1.</span> <strong>Analisis (C4):</strong> Perhatikan dua skenario gempa berkekuatan sama (M 6,5). Skenario A mengguncang wilayah dengan bangunan tahan gempa dan masyarakat teredukasi. Skenario B mengguncang wilayah dengan bangunan konvensional dan masyarakat tanpa edukasi bencana. Bandingkan tingkat risiko bencana kedua skenario tersebut menggunakan rumus risiko!</div>
+            <div class="petunjuk">(Petunjuk: Uraikan setiap komponen rumus risiko pada kedua skenario).</div>
+        </div>
+
+        <div class="soal-essay" style="border-left-color:var(--accent);background:rgba(193,18,31,.04);">
+            <div class="pertanyaan"><span class="nomor" style="color:var(--accent);">2.</span> <strong>Evaluasi (C5):</strong> Pemerintah daerah akan membangun kawasan permukiman baru di bantaran Sungai Kahayan. Sebagai ahli geologi muda, evaluasilah kelayakan lokasi tersebut berdasarkan konsep litosfer! Berikan rekomendasi tertulis dengan minimal 3 pertimbangan ilmiah.</div>
+            <div class="petunjuk">(Petunjuk: Pertimbangkan jenis batuan, siklus erosi, risiko longsor, dan aspek mitigasi).</div>
+        </div>
+
+        <div class="soal-essay" style="border-left-color:var(--accent);background:rgba(193,18,31,.04);">
+            <div class="pertanyaan"><span class="nomor" style="color:var(--accent);">3.</span> <strong>Kreasi (C6):</strong> Rancang sebuah poster kampanye kesiapsiagaan bencana longsor untuk sekolahmu. Jelaskan pesan utama, target audiens, dan alasan pemilihan gaya visual poster tersebut!</div>
+            <div class="petunjuk">(Petunjuk: Poster harus memuat informasi akurat berdasarkan konsep litosfer yang telah dipelajari).</div>
+        </div>
+    </div>
+
+    <!-- RUBRIK PENILAIAN -->
+    <div class="card reveal" style="margin-bottom:20px;">
+        <h3 style="color:var(--primary); display:flex; align-items:center; gap:10px;">
+            <i class="fas fa-clipboard-list" style="color:var(--primary);"></i> Rubrik Penilaian Uraian
+        </h3>
+        <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:10px;">Gunakan rubrik berikut untuk menilai jawaban uraian secara objektif dan konsisten.</p>
+        <div class="table-wrap">
+            <table class="rubric-table">
+                <thead>
+                    <tr>
+                        <th>Kriteria</th>
+                        <th>Sangat Baik <span class="score-pill">4</span></th>
+                        <th>Baik <span class="score-pill">3</span></th>
+                        <th>Cukup <span class="score-pill">2</span></th>
+                        <th>Perlu Bimbingan <span class="score-pill">1</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Ketepatan Konsep</td>
+                        <td>Seluruh konsep litosfer dijelaskan dengan tepat dan lengkap.</td>
+                        <td>Sebagian besar konsep tepat, ada 1-2 kesalahan kecil.</td>
+                        <td>Beberapa konsep kurang tepat, tetapi masih relevan.</td>
+                        <td>Banyak konsep salah atau tidak relevan.</td>
+                    </tr>
+                    <tr>
+                        <td>Kedalaman Analisis</td>
+                        <td>Analisis mendalam, menghubungkan berbagai konsep dan contoh nyata.</td>
+                        <td>Analisis cukup dalam, ada contoh nyata.</td>
+                        <td>Analisis dangkal, contoh terbatas.</td>
+                        <td>Tidak ada analisis, hanya menyebutkan fakta.</td>
+                    </tr>
+                    <tr>
+                        <td>Penggunaan Istilah Geografi</td>
+                        <td>Menggunakan istilah geografi dengan tepat dan konsisten.</td>
+                        <td>Istilah geografi sebagian besar tepat.</td>
+                        <td>Istilah geografi terbatas, beberapa tidak tepat.</td>
+                        <td>Tidak menggunakan istilah geografi yang tepat.</td>
+                    </tr>
+                    <tr>
+                        <td>Sistematika & Bahasa</td>
+                        <td>Uraian sistematis, bahasa baku, mudah dipahami.</td>
+                        <td>Uraian cukup sistematis, bahasa baku.</td>
+                        <td>Uraian kurang sistematis, ada kesalahan bahasa.</td>
+                        <td>Uraian tidak terstruktur dan sulit dipahami.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p style="font-size:0.82rem;color:var(--text-muted);margin-top:8px;font-style:italic;">Nilai akhir uraian = (total skor perolehan ÷ 20) × 100</p>
+    </div>
+
     <div class="highlight-box reveal" style="border-left-color:var(--primary);">
         <p style="display:flex; align-items:flex-start; gap:10px; color:var(--text-light); font-size:0.9rem;">
             <i class="fas fa-info-circle" style="color:var(--primary); font-size:1.2rem; margin-top:2px;"></i>
-            <span><strong style="color:var(--text);">Catatan:</strong> Kerjakan dengan jujur dan mandiri. Total 50 soal · Skor maksimal 100 · Alokasi waktu pengerjaan 90 menit. Selamat mengerjakan!</span>
+            <span><strong style="color:var(--text);">Catatan:</strong> Kerjakan dengan jujur dan mandiri. Total 50 soal · Skor maksimal 100 · Alokasi waktu pengerjaan 90 menit. Soal PG dan B/S dapat diklik untuk latihan mandiri, sedangkan soal uraian dikerjakan tertulis di buku tugas. Selamat mengerjakan!</span>
         </p>
     </div>
 
@@ -2087,13 +2496,30 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
             <div class="essay-num">5. Refleksi &amp; Tindakan Konkret</div>
             <p>Pemahaman litosfer membantuku memahami risiko bencana di sekitarku. Tiga tindakan konkret: <strong>(1)</strong> Ikut membuat <em>peta risiko sekolah</em> bersama kelompok untuk mengidentifikasi titik rawan dan jalur evakuasi; <strong>(2)</strong> Mengedukasi keluarga tentang pentingnya tidak membuang sampah ke sungai yang bisa memperparah erosi dan longsor; <strong>(3)</strong> Mengikuti simulasi tanggap darurat bencana agar siap ketika bencana benar-benar terjadi. Tindakan-tindakan ini menunjukkan bahwa pelajar dapat berkontribusi nyata dalam mengurangi risiko bencana.</p>
         </div>
+
+        <h4 style="color:var(--accent); font-size:0.95rem; margin: 18px 0 8px;">D. Kunci Soal HOTS (Bonus)</h4>
+
+        <div class="kunci-essay-item" style="border-left-color:var(--accent);">
+            <div class="essay-num" style="color:var(--accent);">1. Analisis Skenario Gempa</div>
+            <p><strong>Skenario A (Kapasitas Tinggi):</strong> Bahaya sama (M 6,5), Kerentanan rendah (bangunan tahan gempa), Kapasitas tinggi (masyarakat teredukasi) → Risiko rendah. <strong>Skenario B (Kapasitas Rendah):</strong> Bahaya sama, Kerentanan tinggi (bangunan konvensional), Kapasitas rendah (tanpa edukasi) → Risiko tinggi. Kesimpulan: Risiko bukan hanya soal besarnya bahaya, tetapi sangat bergantung pada kerentanan dan kapasitas masyarakat. Edukasi dan bangunan tahan gempa adalah kunci pengurangan risiko.</p>
+        </div>
+
+        <div class="kunci-essay-item" style="border-left-color:var(--accent);">
+            <div class="essay-num" style="color:var(--accent);">2. Evaluasi Lokasi Permukiman</div>
+            <p>Lokasi bantaran Sungai Kahayan <strong>kurang layak</strong> untuk permukiman padat karena: (1) Struktur tanah berupa sedimen belum terkompaksi sehingga labil dan rentan longsor; (2) Terjadi erosi aktif akibat arus Sungai Kahayan yang terus mengikis tebing; (3) Berada di zona rawan longsor berdasarkan peta bahaya. <strong>Rekomendasi:</strong> (a) Bangun dengan teknologi tahan erosi (bronjong/tanggul); (b) Terapkan tata ruang dengan sempadan sungai minimal 15-30 meter; (c) Sediakan sistem peringatan dini longsor dan edukasi warga.</p>
+        </div>
+
+        <div class="kunci-essay-item" style="border-left-color:var(--accent);">
+            <div class="essay-num" style="color:var(--accent);">3. Poster Kampanye</div>
+            <p><strong>Pesan utama:</strong> "Waspada Longsor — Kenali Tanda, Selamatkan Nyawa." <strong>Target audiens:</strong> siswa SMA dan warga sekolah. <strong>Isi poster:</strong> (a) Tanda-tanda longsor (retakan tanah, air keruh, pohon miring); (b) Tindakan saat longsor (jauhi lereng, lindungi kepala, evakuasi ke tempat tinggi); (c) Jalur evakuasi sekolah. <strong>Gaya visual:</strong> warna kontras (merah-kuning-hitam), ilustrasi jelas, teks singkat berpoin. Alasan: gaya ini menarik perhatian cepat dan mudah dipahami dalam situasi darurat.</p>
+        </div>
     </div>
 
     <div class="celebration-box reveal">
         <h3>🎉 Luar Biasa!</h3>
         <p>Kamu telah menyelesaikan <strong>3 Pertemuan</strong> materi Litosfer dan mengerjakan asesmen seluruh bab.</p>
         <div style="margin-top:16px;">
-            <span class="next-btn">➡️ Lanjutkan ke materi berikutnya: Atmosfer</span>
+            <button class="next-btn" onclick="navigateTo('section7')">➡️ Lanjut ke Referensi</button>
         </div>
         <p style="margin-top:12px; font-size:0.85rem; color:var(--text-muted);">
             <i class="fas fa-info-circle" style="color:var(--primary);"></i> 
@@ -2102,15 +2528,18 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
     </div>
 </section>
 
+<!-- ===================================================== -->
 <!-- SECTION 7 : REFERENSI -->
+<!-- ===================================================== -->
 <section id="section7" class="section">
     <div class="section-header">
         <div class="num">R</div>
         <h2>Referensi <small>Daftar Pustaka</small></h2>
-        <span class="badge">12 Sumber</span>
+        <span class="badge">15 Sumber</span>
     </div>
     <ul class="ref-list reveal">
         <li><i class="fas fa-file-pdf" style="color:var(--primary);"></i> <strong>Keputusan Kepala BSKAP No. 032/H/KR/2024</strong> tentang Capaian Pembelajaran pada PAUD, Pendidikan Dasar, dan Pendidikan Menengah.</li>
+        <li><i class="fas fa-file-pdf" style="color:var(--primary);"></i> <strong>Permendikbudristek No. 12 Tahun 2024</strong> tentang Kurikulum pada Pendidikan Anak Usia Dini, Jenjang Pendidikan Dasar, dan Jenjang Pendidikan Menengah.</li>
         <li><i class="fas fa-book" style="color:var(--primary);"></i> Suharyono & Amien, M. (2013). <em>Pengantar Filsafat Geografi</em>. Yogyakarta: Ombak.</li>
         <li><i class="fas fa-book" style="color:var(--primary);"></i> Tarbuck, E.J. & Lutgens, F.K. (2015). <em>Earth Science</em>. New Jersey: Pearson.</li>
         <li><i class="fas fa-book" style="color:var(--primary);"></i> Holmes, Arthur. (1965). <em>Principles of Physical Geology</em>. London: Nelson.</li>
@@ -2121,18 +2550,209 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
         <li><i class="fas fa-book" style="color:var(--primary);"></i> de Blij, H.J. & Muller, P.O. <em>Geography: Realms, Regions and Concepts</em>. New York: Wiley.</li>
         <li><i class="fas fa-book" style="color:var(--primary);"></i> Bintarto. <em>Metode Penelitian Geografi</em>. Yogyakarta: UGM Press.</li>
         <li><i class="fas fa-book" style="color:var(--primary);"></i> Sumaatmadja, Nursid. <em>Metodologi Pengajaran Geografi</em>. Jakarta: Bumi Aksara.</li>
-        <li><i class="fas fa-book" style="color:var(--primary);"></i> BNPB. (2023). <em>Data dan Informasi Bencana Indonesia (DIBI)</em>. Jakarta: BNPB.</li>
+        <li><i class="fas fa-book" style="color:var(--primary);"></i> Wegener, Alfred. (1915). <em>Die Entstehung der Kontinente und Ozeane</em> (The Origin of Continents and Oceans).</li>
+        <li><i class="fas fa-database" style="color:var(--primary);"></i> BNPB. (2023). <em>Data dan Informasi Bencana Indonesia (DIBI)</em>. Jakarta: BNPB.</li>
+        <li><i class="fas fa-database" style="color:var(--primary);"></i> BMKG & PVMBG. (2024). <em>Peta Rawan Gempa dan Persebaran Gunung Api Indonesia</em>. Jakarta: BMKG.</li>
     </ul>
+
+    <!-- RUBRIK PENILAIAN PORTOFOLIO -->
+    <div class="card reveal" style="margin-top:20px;">
+        <h3 style="color:var(--primary); display:flex; align-items:center; gap:10px;">
+            <i class="fas fa-folder-open" style="color:var(--primary);"></i> Rubrik Penilaian Portofolio
+        </h3>
+        <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:10px;">Digunakan untuk menilai kumpulan tugas, refleksi, dan produk pembelajaran selama 3 pertemuan.</p>
+        <div class="table-wrap">
+            <table class="rubric-table">
+                <thead>
+                    <tr>
+                        <th>Komponen</th>
+                        <th>Bobot</th>
+                        <th>Indikator</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Tugas Harian</td>
+                        <td><span class="score-pill">30%</span></td>
+                        <td>Kelengkapan, ketepatan konsep, dan kerapian penyajian tugas setiap pertemuan.</td>
+                    </tr>
+                    <tr>
+                        <td>Produk Diferensiasi</td>
+                        <td><span class="score-pill">25%</span></td>
+                        <td>Kreativitas, keakuratan isi, dan kesesuaian dengan gaya belajar yang dipilih.</td>
+                    </tr>
+                    <tr>
+                        <td>Refleksi Mendalam</td>
+                        <td><span class="score-pill">20%</span></td>
+                        <td>Kedalaman perenungan, keterkaitan dengan pengalaman pribadi, dan tindak lanjut.</td>
+                    </tr>
+                    <tr>
+                        <td>Asesmen Formatif</td>
+                        <td><span class="score-pill">15%</span></td>
+                        <td>Partisipasi kuis singkat dan ketepatan jawaban.</td>
+                    </tr>
+                    <tr>
+                        <td>Sikap & Kolaborasi</td>
+                        <td><span class="score-pill">10%</span></td>
+                        <td>Kerja sama kelompok, keaktifan diskusi, dan tanggung jawab.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
     <div class="footer-credit reveal">
         <span class="gold"><i class="fas fa-school"></i> SMAN 3 KASONGAN</span> &nbsp;·&nbsp;
         Guru Pengampu: <strong>SYAHRANI, S.Pd</strong> &nbsp;·&nbsp;
         <span style="color:var(--primary-light); font-weight:600;">NIP. 197512172005011016</span>
+        <br />
+        <span style="font-size:0.78rem;">Modul Premium · Kurikulum Merdeka 2024 · Fase E · Litosfer</span>
+    </div>
+</section>
+
+<!-- ===================================================== -->
+<!-- SECTION 8 : GLOSARIUM & LKPD -->
+<!-- ===================================================== -->
+<section id="section8" class="section">
+    <div class="section-header">
+        <div class="num">G</div>
+        <h2>Glosarium & LKPD <small>Kamus Istilah & Lembar Kerja Peserta Didik</small></h2>
+        <span class="badge"><i class="fas fa-book"></i>&nbsp;40 Istilah</span>
+    </div>
+
+    <div class="sub-header reveal"><span class="tag-letter">A</span> Glosarium Litosfer</div>
+    <div class="glossary-grid reveal">
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Litosfer</div><div class="gl-def">Lapisan batuan terluar bumi yang bersifat padat dan kaku, terdiri dari kerak dan mantel atas.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Astenosfer</div><div class="gl-def">Lapisan mantel atas yang bersifat plastis/setengah cair, tempat lempeng tektonik bergerak.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Kerak Bumi</div><div class="gl-def">Lapisan terluar bumi (5-70 km), terdiri dari kerak benua (sial) dan kerak samudra (sima).</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Mantel</div><div class="gl-def">Lapisan bumi terbesar (±2.900 km) di bawah kerak, sumber magma dan penggerak lempeng.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Inti Bumi</div><div class="gl-def">Lapisan terdalam bumi (2.900-6.370 km), terdiri dari logam besi dan nikel; menghasilkan medan magnet.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Batuan Beku</div><div class="gl-def">Batuan hasil pembekuan magma/lava; contoh: granit, basalt, andesit.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Batuan Sedimen</div><div class="gl-def">Batuan hasil pengendapan dan pengerasan material lepas; contoh: batu pasir, batu kapur.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Batuan Metamorf</div><div class="gl-def">Batuan hasil perubahan batuan asal akibat suhu dan tekanan tinggi; contoh: marmer, kuarsit.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Siklus Batuan</div><div class="gl-def">Proses perubahan batuan dari satu jenis ke jenis lain secara terus-menerus tanpa akhir.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Magma</div><div class="gl-def">Batuan cair pijar yang berada di bawah permukaan bumi; bila mencapai permukaan disebut lava.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Lava</div><div class="gl-def">Magma yang telah mencapai permukaan bumi melalui letusan gunung api.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Diagenesis</div><div class="gl-def">Proses perubahan sedimen menjadi batuan sedimen melalui kompaksi, sementasi, dan rekristalisasi.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Metamorfosis Kontak</div><div class="gl-def">Perubahan batuan karena suhu tinggi dari magma yang menerobos, tanpa tekanan besar.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Metamorfosis Regional</div><div class="gl-def">Perubahan batuan skala luas akibat tekanan dan suhu tinggi dari tumbukan lempeng.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Tektonik Lempeng</div><div class="gl-def">Teori yang menyatakan litosfer terpecah menjadi lempeng-lempeng yang bergerak.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Divergen</div><div class="gl-def">Pergerakan lempeng saling menjauh, membentuk kerak samudra baru.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Konvergen</div><div class="gl-def">Pergerakan lempeng saling mendekat, dapat mengakibatkan subduksi atau kolisi.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Transform</div><div class="gl-def">Pergerakan lempeng saling bergeser horizontal; contoh: Sesar San Andreas.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Subduksi</div><div class="gl-def">Proses penunjaman lempeng samudra ke bawah lempeng benua/samudra lain.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Kolisi</div><div class="gl-def">Tumbukan antar lempeng benua yang membentuk pegunungan tinggi.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Konveksi Mantel</div><div class="gl-def">Arus naik-turun material mantel akibat perbedaan suhu, penggerak lempeng tektonik.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Ring of Fire</div><div class="gl-def">Cincin Api Pasifik; zona aktif gempa dan gunung api sepanjang 40.000 km.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Gempa Tektonik</div><div class="gl-def">Gempa bumi yang terjadi akibat pergerakan lempeng tektonik.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Gempa Vulkanik</div><div class="gl-def">Gempa bumi yang terjadi akibat aktivitas gunung berapi.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Tsunami</div><div class="gl-def">Gelombang laut besar yang dipicu gempa bawah laut, letusan gunung, atau longsor laut.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Longsor</div><div class="gl-def">Pergerakan massa batuan/tanah menuruni lereng karena ketidakstabilan.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Erosi</div><div class="gl-def">Pengikisan permukaan tanah/batuan oleh air, angin, atau gletser.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Abrasi</div><div class="gl-def">Erosi oleh air laut atau air sungai terhadap tebing/pantai.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Mitigasi</div><div class="gl-def">Upaya mengurangi risiko bencana, baik struktural maupun non-struktural.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Mitigasi Struktural</div><div class="gl-def">Upaya mitigasi berbasis pembangunan fisik, seperti tanggul dan bronjong.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Mitigasi Non-Struktural</div><div class="gl-def">Upaya mitigasi berbasis kebijakan, edukasi, dan pemberdayaan masyarakat.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Bahaya (Hazard)</div><div class="gl-def">Peristiwa alam/non-alam yang berpotensi menimbulkan kerusakan.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Kerentanan</div><div class="gl-def">Kondisi yang membuat masyarakat/lingkungan mudah terkena dampak bahaya.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Kapasitas</div><div class="gl-def">Kemampuan masyarakat/lingkungan mencegah, mengurangi, atau mengatasi dampak bencana.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Risiko Bencana</div><div class="gl-def">Hasil interaksi bahaya × kerentanan ÷ kapasitas.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Sesar (Fault)</div><div class="gl-def">Rekahan pada kerak bumi tempat terjadi pergeseran batuan.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Palung Laut</div><div class="gl-def">Lembah sempit dan dalam di dasar laut, terbentuk di zona subduksi.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Sial</div><div class="gl-def">Lapisan kerak benua yang kaya silikon dan aluminium.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Sima</div><div class="gl-def">Lapisan kerak samudra yang kaya silikon dan magnesium.</div></div>
+        <div class="glossary-item"><div class="gl-term"><i class="fas fa-circle"></i> Geotermal</div><div class="gl-def">Energi panas bumi dari dalam bumi yang dapat dimanfaatkan sebagai listrik.</div></div>
+    </div>
+
+    <div class="sub-header reveal"><span class="tag-letter">B</span> LKPD — Lembar Kerja Peserta Didik</div>
+
+    <div class="lkpd-box reveal">
+        <div class="lkpd-head">
+            <div class="lkpd-icon"><i class="fas fa-flask"></i></div>
+            <div>
+                <h4>LKPD 1 · Mengamati Lapisan Bumi</h4>
+                <span>Pertemuan 1 · Kerja Kelompok</span>
+            </div>
+        </div>
+        <div class="lkpd-body">
+            <p><strong>Tujuan:</strong> Mengidentifikasi struktur lapisan bumi dan membandingkan definisi litosfer dari para ahli.</p>
+            <p><strong>Langkah Kegiatan:</strong></p>
+            <ol>
+                <li>Amati gambar lapisan bumi yang disediakan guru.</li>
+                <li>Identifikasi bagian kerak, mantel, dan inti — catat ketebalannya.</li>
+                <li>Bandingkan definisi litosfer dari minimal 3 ahli.</li>
+                <li>Simpulkan persamaan definisi tersebut.</li>
+            </ol>
+            <p style="margin-top:10px;"><strong>Hasil Pengamatan:</strong></p>
+            <input class="lkpd-write" placeholder="Struktur lapisan bumi menurut pengamatan kami..." />
+            <input class="lkpd-write" placeholder="Definisi litosfer menurut para ahli..." />
+            <input class="lkpd-write" placeholder="Kesimpulan kelompok kami..." />
+        </div>
+    </div>
+
+    <div class="lkpd-box reveal">
+        <div class="lkpd-head">
+            <div class="lkpd-icon"><i class="fas fa-gem"></i></div>
+            <div>
+                <h4>LKPD 2 · Klasifikasi Batuan</h4>
+                <span>Pertemuan 2 · Individu</span>
+            </div>
+        </div>
+        <div class="lkpd-body">
+            <p><strong>Tujuan:</strong> Membedakan tiga jenis batuan berdasarkan proses pembentukan dan ciri fisik.</p>
+            <p><strong>Langkah Kegiatan:</strong></p>
+            <ol>
+                <li>Amati contoh batuan/gambar yang disediakan.</li>
+                <li>Catat warna, tekstur, dan ciri fisik setiap batuan.</li>
+                <li>Klasifikasikan ke dalam batuan beku, sedimen, atau metamorf.</li>
+                <li>Tuliskan satu contoh pemanfaatan setiap batuan.</li>
+            </ol>
+            <p style="margin-top:10px;"><strong>Hasil Klasifikasi:</strong></p>
+            <input class="lkpd-write" placeholder="Batuan beku: ciri = ... , contoh = ..." />
+            <input class="lkpd-write" placeholder="Batuan sedimen: ciri = ... , contoh = ..." />
+            <input class="lkpd-write" placeholder="Batuan metamorf: ciri = ... , contoh = ..." />
+        </div>
+    </div>
+
+    <div class="lkpd-box reveal">
+        <div class="lkpd-head">
+            <div class="lkpd-icon"><i class="fas fa-map-marked-alt"></i></div>
+            <div>
+                <h4>LKPD 3 · Analisis Fenomena Litosfer Lokal</h4>
+                <span>Pertemuan 3 · Kelompok</span>
+            </div>
+        </div>
+        <div class="lkpd-body">
+            <p><strong>Tujuan:</strong> Menganalisis fenomena litosfer lokal (longsor di Kalimantan Tengah) dengan kerangka rumus risiko.</p>
+            <p><strong>Langkah Kegiatan:</strong></p>
+            <ol>
+                <li>Pilih salah satu kasus: Longsor Flamboyan atau Longsor Tambang Emas.</li>
+                <li>Identifikasi komponen Bahaya, Kerentanan, dan Kapasitas pada kasus tersebut.</li>
+                <li>Rumuskan rekomendasi mitigasi struktural dan non-struktural.</li>
+                <li>Presentasikan hasil analisis kelompok.</li>
+            </ol>
+            <p style="margin-top:10px;"><strong>Kerangka Analisis:</strong></p>
+            <input class="lkpd-write" placeholder="Kasus yang dipilih..." />
+            <input class="lkpd-write" placeholder="Bahaya: ..." />
+            <input class="lkpd-write" placeholder="Kerentanan: ..." />
+            <input class="lkpd-write" placeholder="Kapasitas: ..." />
+            <input class="lkpd-write" placeholder="Rekomendasi mitigasi struktural: ..." />
+            <input class="lkpd-write" placeholder="Rekomendasi mitigasi non-struktural: ..." />
+        </div>
+    </div>
+
+    <div class="celebration-box reveal">
+        <h3>📚 Selamat Belajar!</h3>
+        <p>Semoga modul premium ini memperkaya pemahamanmu tentang litosfer — fondasi kehidupan di planet Bumi.</p>
+        <div style="margin-top:16px;">
+            <button class="next-btn" onclick="navigateTo('section1')">🏠 Kembali ke Beranda</button>
+        </div>
     </div>
 </section>
 
 </main>
 
-<!-- FLOATING NAVIGATION (Halaman 2-7) -->
+<!-- FLOATING NAVIGATION -->
 <div class="float-nav" id="floatNav">
     <button class="fn-prev" onclick="navigateTo('prev')" aria-label="Sebelumnya">
         <i class="fas fa-arrow-left"></i>
@@ -2150,6 +2770,27 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
 </button>
 
 <script>
+/* ============ THEME TOGGLE ============ */
+function toggleTheme() {
+    var html = document.documentElement;
+    var current = html.getAttribute('data-theme');
+    var next = current === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    var btn = document.getElementById('themeBtn');
+    btn.innerHTML = next === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    try { localStorage.setItem('geo-theme', next); } catch(e) {}
+}
+(function initTheme(){
+    try {
+        var saved = localStorage.getItem('geo-theme');
+        if (saved === 'dark') {
+            document.documentElement.setAttribute('data-theme','dark');
+            var b = document.getElementById('themeBtn');
+            if (b) b.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+    } catch(e) {}
+})();
+
 /* ============ LOADER ============ */
 (function() {
     var loader = document.getElementById('loader');
@@ -2162,9 +2803,8 @@ h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.
         var progress = Math.min((elapsed / duration) * 100, 100);
         bar.style.width = progress + '%';
         percent.textContent = Math.round(progress) + '%';
-        if (progress < 100) {
-            requestAnimationFrame(update);
-        } else {
+        if (progress < 100) { requestAnimationFrame(update); }
+        else {
             setTimeout(function() {
                 loader.classList.add('hidden');
                 setTimeout(function() { loader.style.display = 'none'; }, 700);
@@ -2212,6 +2852,64 @@ function bukaKunci() {
     }
 }
 
+/* ============ INTERACTIVE SCORE (PG & B/S) ============ */
+(function() {
+    var answers = {};
+    document.querySelectorAll('.soal-pg, .soal-tf').forEach(function(q, idx) {
+        var type = q.getAttribute('data-soal');
+        var qid = type + '-' + idx;
+        var spans = q.querySelectorAll('.opsi span');
+        spans.forEach(function(s) {
+            s.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (answers[qid] !== undefined) return; // sudah dijawab
+                var isCorrect = s.getAttribute('data-answer') === 'true';
+                answers[qid] = isCorrect;
+                if (isCorrect) s.classList.add('correct');
+                else {
+                    s.classList.add('wrong');
+                    // Tampilkan jawaban benar
+                    spans.forEach(function(x) {
+                        if (x.getAttribute('data-answer') === 'true') x.classList.add('correct');
+                    });
+                }
+            });
+        });
+    });
+
+    window.hitungSkor = function() {
+        var pgTotal = document.querySelectorAll('.soal-pg').length;
+        var tfTotal = document.querySelectorAll('.soal-tf').length;
+        var total = pgTotal + tfTotal;
+        var answered = Object.keys(answers).length;
+        if (answered === 0) { alert('Klik terlebih dahulu pada opsi jawaban untuk menjawab soal!'); return; }
+        var benar = 0, salah = 0;
+        for (var k in answers) { if (answers[k]) benar++; else salah++; }
+        var skor = Math.round((benar / total) * 100);
+        var predikat = skor >= 90 ? 'A (Sangat Baik)' : skor >= 80 ? 'B (Baik)' : skor >= 70 ? 'C (Cukup)' : skor >= 60 ? 'D (Perlu Bimbingan)' : 'E (Remedial)';
+        document.getElementById('spBenar').textContent = benar;
+        document.getElementById('spSalah').textContent = salah;
+        document.getElementById('spSkor').textContent = skor;
+        document.getElementById('spPredikat').textContent = predikat;
+        if (answered < total) {
+            setTimeout(function() {
+                alert('Kamu baru menjawab ' + answered + ' dari ' + total + ' soal. Skor dihitung dari total soal.\nSkor sementara: ' + skor);
+            }, 100);
+        }
+    };
+
+    window.resetSkor = function() {
+        answers = {};
+        document.querySelectorAll('.soal-pg .opsi span, .soal-tf .opsi span').forEach(function(s) {
+            s.classList.remove('correct','wrong');
+        });
+        document.getElementById('spBenar').textContent = '0';
+        document.getElementById('spSalah').textContent = '0';
+        document.getElementById('spSkor').textContent = '0';
+        document.getElementById('spPredikat').textContent = '-';
+    };
+})();
+
 /* ============ INJECT NAV BUTTONS ============ */
 (function() {
     document.querySelectorAll('.section').forEach(function(sec) {
@@ -2220,7 +2918,7 @@ function bukaKunci() {
         nav.innerHTML =
             '<div class="group">' +
                 '<button type="button" class="nav-prev"><i class="fas fa-arrow-left"></i> Sebelumnya</button>' +
-                '<span class="counter">1 / 7</span>' +
+                '<span class="counter">1 / 8</span>' +
                 '<div class="page-numbers"></div>' +
                 '<button type="button" class="nav-next">Selanjutnya <i class="fas fa-arrow-right"></i></button>' +
             '</div>';
@@ -2275,7 +2973,6 @@ function bukaKunci() {
         if (thumb) thumb.style.width = ((idx + 1) / total * 100) + '%';
         document.querySelectorAll('.counter').forEach(function(el) { el.textContent = (idx+1) + ' / ' + total; });
 
-        /* Update tombol navigasi dalam halaman */
         document.querySelectorAll('.nav-buttons .group button.nav-next').forEach(function(btn) {
             if (idx === total - 1) { btn.disabled = true; btn.innerHTML = 'Terakhir'; }
             else { btn.disabled = false; btn.innerHTML = 'Selanjutnya <i class="fas fa-arrow-right"></i>'; }
@@ -2284,18 +2981,13 @@ function bukaKunci() {
             btn.disabled = idx === 0;
         });
 
-        /* ===== FLOATING NAV: tampil di halaman 2-7 (idx >= 1) ===== */
         var floatNav = document.getElementById('floatNav');
         if (floatNav) {
-            if (idx >= 1) {
-                floatNav.classList.add('show');
-            } else {
-                floatNav.classList.remove('show');
-            }
-            /* Update tombol prev/next floating */
+            if (idx >= 1) floatNav.classList.add('show');
+            else floatNav.classList.remove('show');
             var fPrev = floatNav.querySelector('.fn-prev');
             var fNext = floatNav.querySelector('.fn-next');
-            if (fPrev) fPrev.disabled = (idx === 1); /* Di section2, prev disable (Beranda pakai tombol Beranda) */
+            if (fPrev) fPrev.disabled = (idx === 1);
             if (fNext) fNext.disabled = (idx === total - 1);
         }
 
@@ -2397,7 +3089,7 @@ document.addEventListener('keydown', function(e) {
 
     main.addEventListener('touchstart', function(e) {
         if (e.touches.length !== 1) return;
-        if (e.target.closest('.table-wrap') || e.target.closest('.mobile-drawer') || e.target.closest('.float-nav')) {
+        if (e.target.closest('.table-wrap') || e.target.closest('.mobile-drawer') || e.target.closest('.float-nav') || e.target.closest('.lkpd-write')) {
             locked = true; return;
         }
         locked = false;
@@ -2417,11 +3109,9 @@ document.addEventListener('keydown', function(e) {
     }, { passive: true });
 })();
 
-/* ============ INIT SETELAH DOM SIAP ============ */
+/* ============ INIT ============ */
 function bootGeo() {
-    if (typeof window._geoInit === 'function') {
-        window._geoInit();
-    }
+    if (typeof window._geoInit === 'function') window._geoInit();
 }
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', bootGeo);
