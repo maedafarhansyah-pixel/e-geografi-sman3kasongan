@@ -9,30 +9,31 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-    --earth-900:#1a2e1a;
-    --earth-800:#1e3a2e;
-    --earth-700:#2d5a3d;
-    --green-600:#16a34a;
-    --green-500:#22c55e;
-    --green-400:#4ade80;
-    --green-300:#86efac;
-    --green-100:#dcfce7;
-    --green-50:#f0fdf4;
+    --navy-900:#071633;
+    --navy-800:#0a1f44;
+    --navy-700:#132a56;
+    --blue-600:#1e3a8a;
+    --blue-500:#2e4ba8;
+    --blue-400:#4a6bc7;
+    --blue-300:#7d9be0;
+    --blue-100:#dbe7f7;
+    --blue-50:#f0f5fc;
 
-    --teal:#0d9488;
-    --teal-light:#2dd4bf;
-    --blue:#2563eb;
-    --blue-light:#60a5fa;
-    --amber:#d97706;
-    --amber-light:#fbbf24;
-    --orange:#ea580c;
-    --purple:#7c3aed;
+    --sky:#0ea5e9;
+    --sky-light:#38bdf8;
+    --cyan:#06b6d4;
+    --cyan-light:#67e8f9;
+    --indigo:#6366f1;
+    --indigo-light:#a5b4fc;
+    --purple:#8b5cf6;
+    --teal:#0f766e;
+    --teal-light:#14b8a6;
 
-    --ink:#0f1a12;
-    --muted:#4b5e52;
-    --card:rgba(255,255,255,.80);
-    --stroke:rgba(255,255,255,.68);
-    --shadow:0 24px 60px -20px rgba(15,42,20,.35);
+    --ink:#0a1f44;
+    --muted:#4a5878;
+    --card:rgba(255,255,255,.82);
+    --stroke:rgba(255,255,255,.70);
+    --shadow:0 24px 60px -20px rgba(10,31,68,.35);
     --radius:24px;
 }
 
@@ -45,10 +46,10 @@ body{
     font-family:'Plus Jakarta Sans',system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
     color:var(--ink);
     background:
-        radial-gradient(900px 600px at 8% -5%, rgba(13,148,136,.25), transparent 60%),
-        radial-gradient(800px 600px at 95% 0%, rgba(217,119,6,.22), transparent 55%),
-        radial-gradient(900px 700px at 50% 110%, rgba(22,163,74,.28), transparent 60%),
-        linear-gradient(160deg,#eefaf3 0%,#f4fdf7 45%,#e8f5ee 100%);
+        radial-gradient(900px 600px at 8% -5%, rgba(14,165,233,.22), transparent 60%),
+        radial-gradient(800px 600px at 95% 0%, rgba(99,102,241,.20), transparent 55%),
+        radial-gradient(900px 700px at 50% 110%, rgba(30,58,138,.25), transparent 60%),
+        linear-gradient(160deg,#dce9f8 0%,#e4eefb 45%,#d2e2f5 100%);
     background-attachment:fixed;
     overflow-x:hidden;
     -webkit-font-smoothing:antialiased;
@@ -57,16 +58,16 @@ body{
 body.loading{overflow:hidden;}
 
 /* ============================================================
-   LOADING — tema hijau geografi
+   LOADING — tema biru geografi
    ============================================================ */
 #loader {
     position: fixed;
     inset: 0;
     background:
-        radial-gradient(circle at 50% 30%, rgba(34, 197, 94, 0.18), transparent 55%),
-        radial-gradient(circle at 80% 80%, rgba(13, 148, 136, 0.22), transparent 60%),
-        radial-gradient(circle at 20% 70%, rgba(74, 222, 128, 0.12), transparent 55%),
-        linear-gradient(160deg, #071a0e 0%, #0a2415 45%, #04120a 100%);
+        radial-gradient(circle at 50% 30%, rgba(14, 165, 233, 0.20), transparent 55%),
+        radial-gradient(circle at 80% 80%, rgba(30, 58, 138, 0.30), transparent 60%),
+        radial-gradient(circle at 20% 70%, rgba(99, 102, 241, 0.18), transparent 55%),
+        linear-gradient(160deg, #050e24 0%, #0a1f44 45%, #030a1c 100%);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     display: flex;
@@ -83,16 +84,16 @@ body.loading{overflow:hidden;}
     position: absolute;
     inset: 0;
     background-image:
-        radial-gradient(2px 2px at 10% 20%, rgba(134, 239, 172, 0.55), transparent),
-        radial-gradient(2px 2px at 25% 65%, rgba(74, 222, 128, 0.45), transparent),
-        radial-gradient(1.5px 1.5px at 40% 15%, rgba(187, 247, 208, 0.55), transparent),
-        radial-gradient(2px 2px at 60% 80%, rgba(45, 212, 191, 0.45), transparent),
-        radial-gradient(1.5px 1.5px at 75% 35%, rgba(134, 239, 172, 0.55), transparent),
-        radial-gradient(2px 2px at 88% 60%, rgba(74, 222, 128, 0.45), transparent),
-        radial-gradient(1.5px 1.5px at 15% 85%, rgba(187, 247, 208, 0.55), transparent),
-        radial-gradient(2px 2px at 50% 50%, rgba(45, 212, 191, 0.35), transparent),
-        radial-gradient(1.5px 1.5px at 95% 10%, rgba(134, 239, 172, 0.45), transparent),
-        radial-gradient(2px 2px at 5% 55%, rgba(74, 222, 128, 0.55), transparent);
+        radial-gradient(2px 2px at 10% 20%, rgba(125, 211, 252, 0.55), transparent),
+        radial-gradient(2px 2px at 25% 65%, rgba(56, 189, 248, 0.45), transparent),
+        radial-gradient(1.5px 1.5px at 40% 15%, rgba(186, 230, 253, 0.55), transparent),
+        radial-gradient(2px 2px at 60% 80%, rgba(103, 232, 249, 0.45), transparent),
+        radial-gradient(1.5px 1.5px at 75% 35%, rgba(125, 211, 252, 0.55), transparent),
+        radial-gradient(2px 2px at 88% 60%, rgba(56, 189, 248, 0.45), transparent),
+        radial-gradient(1.5px 1.5px at 15% 85%, rgba(186, 230, 253, 0.55), transparent),
+        radial-gradient(2px 2px at 50% 50%, rgba(103, 232, 249, 0.35), transparent),
+        radial-gradient(1.5px 1.5px at 95% 10%, rgba(125, 211, 252, 0.45), transparent),
+        radial-gradient(2px 2px at 5% 55%, rgba(56, 189, 248, 0.55), transparent);
     background-size: 200% 200%;
     animation: starDrift 30s linear infinite;
     pointer-events: none;
@@ -126,9 +127,9 @@ body.loading{overflow:hidden;}
     background: conic-gradient(
         from 0deg,
         transparent 0%,
-        rgba(34, 197, 94, 0.55) 25%,
+        rgba(14, 165, 233, 0.55) 25%,
         transparent 50%,
-        rgba(45, 212, 191, 0.55) 75%,
+        rgba(99, 102, 241, 0.55) 75%,
         transparent 100%
     );
     filter: blur(14px);
@@ -146,7 +147,7 @@ body.loading{overflow:hidden;}
     position: absolute;
     inset: -6px;
     border-radius: 50%;
-    border: 1.5px dashed rgba(134, 239, 172, 0.35);
+    border: 1.5px dashed rgba(125, 211, 252, 0.35);
     animation: spinRing 8s linear infinite reverse;
     z-index: 1;
 }
@@ -157,14 +158,14 @@ body.loading{overflow:hidden;}
     height: 120px;
     border-radius: 50%;
     border: 5px solid transparent;
-    border-top-color: #4ade80;
-    border-right-color: #2dd4bf;
-    border-bottom-color: #22c55e;
-    border-left-color: #86efac;
+    border-top-color: #38bdf8;
+    border-right-color: #6366f1;
+    border-bottom-color: #0ea5e9;
+    border-left-color: #7d9be0;
     box-shadow:
-        0 0 18px rgba(34, 197, 94, 0.65),
-        0 0 40px rgba(34, 197, 94, 0.35),
-        inset 0 0 22px rgba(34, 197, 94, 0.18);
+        0 0 18px rgba(14, 165, 233, 0.65),
+        0 0 40px rgba(14, 165, 233, 0.35),
+        inset 0 0 22px rgba(14, 165, 233, 0.18);
     animation: spinRing 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
     z-index: 2;
 }
@@ -175,9 +176,9 @@ body.loading{overflow:hidden;}
     inset: 16px;
     border-radius: 50%;
     border: 3px solid transparent;
-    border-bottom-color: #16a34a;
-    border-left-color: #0d9488;
-    box-shadow: 0 0 14px rgba(22, 163, 74, 0.55);
+    border-bottom-color: #1e3a8a;
+    border-left-color: #06b6d4;
+    box-shadow: 0 0 14px rgba(30, 58, 138, 0.55);
     animation: spinRing 0.8s linear infinite reverse;
 }
 
@@ -189,8 +190,8 @@ body.loading{overflow:hidden;}
     align-items: center;
     justify-content: center;
     font-size: 3.2rem;
-    filter: drop-shadow(0 0 22px rgba(34, 197, 94, 0.8))
-            drop-shadow(0 0 44px rgba(45, 212, 191, 0.45));
+    filter: drop-shadow(0 0 22px rgba(14, 165, 233, 0.8))
+            drop-shadow(0 0 44px rgba(99, 102, 241, 0.45));
     animation: pulseGlow 1.5s ease-in-out infinite alternate;
     z-index: 3;
 }
@@ -210,12 +211,12 @@ body.loading{overflow:hidden;}
     margin-top: 24px;
     background: linear-gradient(
         135deg,
-        #bbf7d0 0%,
-        #4ade80 20%,
-        #22c55e 40%,
-        #2dd4bf 60%,
-        #16a34a 80%,
-        #86efac 100%
+        #bae6fd 0%,
+        #38bdf8 20%,
+        #0ea5e9 40%,
+        #6366f1 60%,
+        #1e3a8a 80%,
+        #7d9be0 100%
     );
     background-size: 300% 300%;
     -webkit-background-clip: text;
@@ -225,8 +226,8 @@ body.loading{overflow:hidden;}
     animation: gradientMove 3s ease-in-out infinite;
     letter-spacing: 3px;
     filter:
-        drop-shadow(0 0 18px rgba(34, 197, 94, 0.55))
-        drop-shadow(0 0 36px rgba(45, 212, 191, 0.35));
+        drop-shadow(0 0 18px rgba(14, 165, 233, 0.55))
+        drop-shadow(0 0 36px rgba(99, 102, 241, 0.35));
     z-index: 2;
 }
 
@@ -236,26 +237,26 @@ body.loading{overflow:hidden;}
 }
 
 .loader-sub {
-    color: rgba(187, 247, 208, 0.55);
+    color: rgba(186, 230, 253, 0.55);
     font-size: 0.9rem;
     letter-spacing: 5px;
     font-weight: 400;
     margin-top: 6px;
-    text-shadow: 0 0 18px rgba(34, 197, 94, 0.35);
+    text-shadow: 0 0 18px rgba(14, 165, 233, 0.35);
     z-index: 2;
 }
 
 .loader-bar-track {
     width: clamp(200px, 40vw, 400px);
     height: 7px;
-    background: rgba(34, 197, 94, 0.10);
-    border: 1px solid rgba(34, 197, 94, 0.22);
+    background: rgba(14, 165, 233, 0.10);
+    border: 1px solid rgba(14, 165, 233, 0.22);
     border-radius: 12px;
     margin-top: 24px;
     overflow: hidden;
     position: relative;
     box-shadow:
-        0 0 18px rgba(34, 197, 94, 0.18),
+        0 0 18px rgba(14, 165, 233, 0.18),
         inset 0 0 12px rgba(0, 0, 0, 0.35);
     z-index: 2;
 }
@@ -266,19 +267,19 @@ body.loading{overflow:hidden;}
     border-radius: 12px;
     background: linear-gradient(
         90deg,
-        #22c55e,
-        #2dd4bf,
-        #4ade80,
-        #86efac,
-        #16a34a,
-        #22c55e
+        #0ea5e9,
+        #6366f1,
+        #38bdf8,
+        #7d9be0,
+        #1e3a8a,
+        #0ea5e9
     );
     background-size: 300% 100%;
     animation: barShine 2s linear infinite;
     transition: width 0.3s ease;
     box-shadow:
-        0 0 22px rgba(34, 197, 94, 0.75),
-        0 0 44px rgba(45, 212, 191, 0.45);
+        0 0 22px rgba(14, 165, 233, 0.75),
+        0 0 44px rgba(99, 102, 241, 0.45);
 }
 
 @keyframes barShine {
@@ -287,22 +288,22 @@ body.loading{overflow:hidden;}
 }
 
 .loader-percent {
-    color: rgba(187, 247, 208, 0.55);
+    color: rgba(186, 230, 253, 0.55);
     font-size: 0.72rem;
     margin-top: 8px;
     font-weight: 600;
     letter-spacing: 3px;
-    text-shadow: 0 0 14px rgba(34, 197, 94, 0.45);
+    text-shadow: 0 0 14px rgba(14, 165, 233, 0.45);
     z-index: 2;
 }
 
 .loader-percent span {
-    color: #4ade80;
+    color: #38bdf8;
     font-weight: 900;
     font-size: 0.85rem;
     text-shadow:
-        0 0 12px rgba(74, 222, 128, 0.9),
-        0 0 28px rgba(34, 197, 94, 0.6);
+        0 0 12px rgba(56, 189, 248, 0.9),
+        0 0 28px rgba(14, 165, 233, 0.6);
 }
 
 body.loading .header::before,
@@ -329,10 +330,10 @@ body.loading .bg-decor *{
     opacity:.50;
     animation:float 16s ease-in-out infinite;
 }
-.blob.b1{width:340px;height:340px;background:var(--green-500);top:-90px;left:-70px;}
-.blob.b2{width:280px;height:280px;background:var(--teal);top:35%;right:-90px;animation-delay:-4s;}
-.blob.b3{width:320px;height:320px;background:var(--amber);bottom:-110px;left:18%;animation-delay:-8s;}
-.blob.b4{width:200px;height:200px;background:var(--blue);top:12%;right:22%;opacity:.30;animation-delay:-6s;}
+.blob.b1{width:340px;height:340px;background:var(--sky);top:-90px;left:-70px;}
+.blob.b2{width:280px;height:280px;background:var(--indigo);top:35%;right:-90px;animation-delay:-4s;}
+.blob.b3{width:320px;height:320px;background:var(--blue-500);bottom:-110px;left:18%;animation-delay:-8s;}
+.blob.b4{width:200px;height:200px;background:var(--cyan);top:12%;right:22%;opacity:.30;animation-delay:-6s;}
 
 @keyframes float{
     0%,100%{transform:translate3d(0,0,0) scale(1);}
@@ -345,8 +346,8 @@ body.loading .bg-decor *{
     position:absolute;
     inset:0;
     background-image:
-        linear-gradient(rgba(22,163,74,.055) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(22,163,74,.055) 1px,transparent 1px);
+        linear-gradient(rgba(30,58,138,.055) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(30,58,138,.055) 1px,transparent 1px);
     background-size:56px 56px;
     mask-image:radial-gradient(circle at 50% 30%,#000 10%,transparent 78%);
     -webkit-mask-image:radial-gradient(circle at 50% 30%,#000 10%,transparent 78%);
@@ -360,12 +361,12 @@ body.loading .bg-decor *{
     text-align:center;
     color:#fff;
     background:
-        radial-gradient(700px 320px at 20% 0%, rgba(13,148,136,.45), transparent 60%),
-        radial-gradient(700px 340px at 85% 10%, rgba(217,119,6,.35), transparent 60%),
-        linear-gradient(135deg,var(--earth-900) 0%, var(--earth-800) 45%, var(--green-600) 100%);
+        radial-gradient(700px 320px at 20% 0%, rgba(99,102,241,.45), transparent 60%),
+        radial-gradient(700px 340px at 85% 10%, rgba(14,165,233,.35), transparent 60%),
+        linear-gradient(135deg,var(--navy-900) 0%, var(--navy-800) 45%, var(--blue-600) 100%);
     border-radius:0 0 44px 44px;
     overflow:hidden;
-    box-shadow:0 30px 70px -30px rgba(10,26,15,.75);
+    box-shadow:0 30px 70px -30px rgba(3,10,28,.75);
 }
 
 .header::before{
@@ -399,19 +400,19 @@ body.loading .bg-decor *{
     background:linear-gradient(
         100deg,
         #ffffff 0%,
-        #bbf7d0 20%,
-        #86efac 35%,
-        #5eead4 55%,
-        #fde68a 70%,
-        #fcd34d 85%,
+        #bae6fd 20%,
+        #7dd3fc 35%,
+        #a5b4fc 55%,
+        #c7d2fe 70%,
+        #7d9be0 85%,
         #ffffff 100%
     );
     background-size:250% 100%;
     -webkit-background-clip:text;
     background-clip:text;
     color:transparent;
-    filter:drop-shadow(0 4px 22px rgba(134,239,172,.55))
-           drop-shadow(0 0 30px rgba(94,234,212,.35));
+    filter:drop-shadow(0 4px 22px rgba(125,211,252,.55))
+           drop-shadow(0 0 30px rgba(165,180,252,.35));
     animation:gradientMove 6s linear infinite;
 }
 
@@ -422,19 +423,19 @@ body.loading .bg-decor *{
     font-size:.68em;
     font-weight:800;
     letter-spacing:.16em;
-    background:linear-gradient(100deg,#2dd4bf 0%,#5eead4 30%,#a7f3d0 50%,#5eead4 70%,#2dd4bf 100%);
+    background:linear-gradient(100deg,#38bdf8 0%,#7dd3fc 30%,#bae6fd 50%,#7dd3fc 70%,#38bdf8 100%);
     background-size:200% 100%;
     -webkit-background-clip:text;
     background-clip:text;
     color:transparent;
     -webkit-text-fill-color:transparent;
-    filter:drop-shadow(0 0 12px rgba(45,212,191,.75))
-           drop-shadow(0 0 26px rgba(13,148,136,.55));
+    filter:drop-shadow(0 0 12px rgba(56,189,248,.75))
+           drop-shadow(0 0 26px rgba(30,58,138,.55));
     animation:gradientMove 4s linear infinite, kelasPulse 3s ease-in-out infinite;
 }
 @keyframes kelasPulse{
-    0%,100%{filter:drop-shadow(0 0 12px rgba(45,212,191,.75)) drop-shadow(0 0 26px rgba(13,148,136,.55));}
-    50%{filter:drop-shadow(0 0 20px rgba(45,212,191,1)) drop-shadow(0 0 40px rgba(13,148,136,.85));}
+    0%,100%{filter:drop-shadow(0 0 12px rgba(56,189,248,.75)) drop-shadow(0 0 26px rgba(30,58,138,.55));}
+    50%{filter:drop-shadow(0 0 20px rgba(56,189,248,1)) drop-shadow(0 0 40px rgba(99,102,241,.85));}
 }
 
 .header h1 .sub::after{
@@ -444,23 +445,65 @@ body.loading .bg-decor *{
     height:3px;
     margin:12px auto 0;
     border-radius:999px;
-    background:linear-gradient(90deg,transparent,var(--teal-light),var(--green-500),var(--amber-light),transparent);
+    background:linear-gradient(90deg,transparent,var(--sky-light),var(--blue-400),var(--indigo-light),transparent);
     background-size:200% 100%;
     animation:lineSlide 3.5s linear infinite;
-    filter:drop-shadow(0 0 8px rgba(45,212,191,.8));
+    filter:drop-shadow(0 0 8px rgba(56,189,248,.8));
 }
 @keyframes lineSlide{
     0%{background-position:0% 0;}
     100%{background-position:200% 0;}
 }
 
+/* ==== GURU PENGAMPU — satu baris, tanpa kotak ==== */
+.header .guru{
+    position:relative;
+    display:block;
+    margin:16px auto 0;
+    max-width:min(94%,720px);
+    font-size:clamp(12.5px,1.7vw,14.5px);
+    font-weight:700;
+    letter-spacing:.03em;
+    line-height:1.6;
+    color:rgba(219,231,247,.95);
+    text-shadow:0 0 12px rgba(14,165,233,.45);
+    animation:fadeUp .8s .22s both;
+}
+.header .guru .label{
+    color:rgba(186,230,253,.85);
+    font-weight:700;
+    letter-spacing:.08em;
+}
+.header .guru .nama{
+    font-weight:800;
+    background:linear-gradient(100deg,#bae6fd 0%,#7dd3fc 35%,#ffffff 55%,#a5b4fc 80%,#bae6fd 100%);
+    background-size:200% 100%;
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+    color:transparent;
+    filter:drop-shadow(0 0 10px rgba(56,189,248,.55));
+    animation:gradientMove 5s linear infinite;
+}
+.header .guru .nip{
+    font-weight:600;
+    color:rgba(219,231,247,.88);
+    letter-spacing:.05em;
+    white-space:nowrap;
+}
+.header .guru .sep{
+    color:rgba(125,211,252,.65);
+    margin:0 6px;
+    font-weight:600;
+}
+
 .header p{
     position:relative;
-    margin:0 auto;
+    margin:22px auto 0;
     max-width:620px;
     font-size:clamp(13.5px,2vw,16px);
     line-height:1.7;
-    color:rgba(220,252,231,.92);
+    color:rgba(219,231,247,.92);
     animation:fadeUp .8s .25s both;
 }
 
@@ -479,7 +522,7 @@ body.loading .bg-decor *{
     font-weight:600;
     padding:7px 15px;
     border-radius:999px;
-    color:#ecfdf5;
+    color:#eff6ff;
     background:rgba(255,255,255,.10);
     border:1px solid rgba(255,255,255,.22);
     backdrop-filter:blur(8px);
@@ -487,9 +530,9 @@ body.loading .bg-decor *{
     transition:transform .3s, background .3s;
 }
 .header .chips i:hover{transform:translateY(-3px);background:rgba(255,255,255,.2);}
-.chips i:nth-child(1){border-color:rgba(45,212,191,.55);}
-.chips i:nth-child(2){border-color:rgba(251,191,36,.55);}
-.chips i:nth-child(3){border-color:rgba(96,165,250,.55);}
+.chips i:nth-child(1){border-color:rgba(56,189,248,.55);}
+.chips i:nth-child(2){border-color:rgba(165,180,252,.55);}
+.chips i:nth-child(3){border-color:rgba(103,232,249,.55);}
 
 @keyframes fadeUp{
     from{opacity:0;transform:translateY(24px);}
@@ -513,15 +556,15 @@ body.loading .bg-decor *{
     font-weight:800;
     letter-spacing:.12em;
     text-transform:uppercase;
-    color:var(--earth-700);
+    color:var(--navy-700);
 }
 .section-label:first-of-type{margin-top:0;}
 .section-label span{
     display:inline-block;
     padding:5px 15px;
     border-radius:999px;
-    background:rgba(22,163,74,.12);
-    border:1px solid rgba(22,163,74,.22);
+    background:rgba(30,58,138,.12);
+    border:1px solid rgba(30,58,138,.22);
 }
 
 .grid{
@@ -560,7 +603,7 @@ body.loading .bg-decor *{
     -webkit-tap-highlight-color:transparent;
 }
 .card-link:focus-visible{
-    outline:3px solid var(--green-500);
+    outline:3px solid var(--sky);
     outline-offset:4px;
 }
 .card-link::before{
@@ -568,7 +611,7 @@ body.loading .bg-decor *{
     position:absolute;
     inset:0;
     border-radius:var(--radius);
-    background:linear-gradient(135deg,rgba(22,163,74,.06),rgba(13,148,136,.06));
+    background:linear-gradient(135deg,rgba(14,165,233,.06),rgba(99,102,241,.06));
     opacity:0;
     transition:opacity .45s;
     pointer-events:none;
@@ -576,8 +619,8 @@ body.loading .bg-decor *{
 .card-link:hover::before{opacity:1;}
 .card-link:hover{
     transform:translateY(-8px);
-    border-color:rgba(22,163,74,.35);
-    box-shadow:0 38px 78px -26px rgba(15,42,20,.5);
+    border-color:rgba(30,58,138,.35);
+    box-shadow:0 38px 78px -26px rgba(10,31,68,.5);
 }
 .card-link:active{transform:translateY(-3px) scale(.995);}
 
@@ -586,7 +629,7 @@ body.loading .bg-decor *{
     position:absolute;
     top:0;left:0;right:0;
     height:5px;
-    background:linear-gradient(90deg,var(--teal-light),var(--green-500) 40%,var(--amber-light) 75%,var(--blue-light));
+    background:linear-gradient(90deg,var(--sky-light),var(--blue-500) 40%,var(--indigo-light) 75%,var(--cyan-light));
     opacity:.9;
 }
 
@@ -596,12 +639,12 @@ body.loading .bg-decor *{
     width:200px;height:200px;
     right:-85px;top:-85px;
     border-radius:50%;
-    background:radial-gradient(circle,rgba(22,163,74,.22),transparent 70%);
+    background:radial-gradient(circle,rgba(14,165,233,.22),transparent 70%);
     transition:transform .6s;
     pointer-events:none;
 }
-.card:nth-child(2n)::after{background:radial-gradient(circle,rgba(13,148,136,.22),transparent 70%);}
-.card:nth-child(3n)::after{background:radial-gradient(circle,rgba(217,119,6,.20),transparent 70%);}
+.card:nth-child(2n)::after{background:radial-gradient(circle,rgba(99,102,241,.22),transparent 70%);}
+.card:nth-child(3n)::after{background:radial-gradient(circle,rgba(30,58,138,.20),transparent 70%);}
 .card:hover::after{transform:scale(1.3);}
 
 /* badge bab */
@@ -616,9 +659,9 @@ body.loading .bg-decor *{
     text-transform:uppercase;
     padding:5px 11px;
     border-radius:999px;
-    color:#14532d;
-    background:rgba(22,163,74,.12);
-    border:1px solid rgba(22,163,74,.28);
+    color:#0a1f44;
+    background:rgba(14,165,233,.14);
+    border:1px solid rgba(14,165,233,.30);
 }
 
 /* ikon */
@@ -632,8 +675,8 @@ body.loading .bg-decor *{
     font-size:26px;
     border-radius:16px;
     margin-bottom:14px;
-    background:linear-gradient(135deg,var(--green-600),var(--teal));
-    box-shadow:0 12px 24px -10px rgba(22,163,74,.75);
+    background:linear-gradient(135deg,var(--blue-600),var(--sky));
+    box-shadow:0 12px 24px -10px rgba(30,58,138,.75);
     transition:transform .4s;
 }
 .card:hover .ico{transform:rotate(-8deg) scale(1.08);}
@@ -646,7 +689,7 @@ body.loading .bg-decor *{
     font-weight:800;
     line-height:1.32;
     letter-spacing:-.01em;
-    color:var(--earth-900);
+    color:var(--navy-900);
     padding-right:8px;
 }
 
@@ -658,13 +701,13 @@ body.loading .bg-decor *{
     line-height:1.62;
     color:var(--muted);
 }
-.card .desc b{color:var(--earth-800);font-weight:700;}
-.card .desc .hl-teal{color:#0f766e;font-weight:700;}
-.card .desc .hl-green{color:#15803d;font-weight:700;}
-.card .desc .hl-blue{color:#1d4ed8;font-weight:700;}
-.card .desc .hl-amber{color:#b45309;font-weight:700;}
+.card .desc b{color:var(--navy-800);font-weight:700;}
+.card .desc .hl-sky{color:#0284c7;font-weight:700;}
+.card .desc .hl-blue{color:#1e3a8a;font-weight:700;}
+.card .desc .hl-indigo{color:#4338ca;font-weight:700;}
+.card .desc .hl-cyan{color:#0e7490;font-weight:700;}
 .card .desc .hl-purple{color:#6d28d9;font-weight:700;}
-.card .desc .hl-orange{color:#c2410c;font-weight:700;}
+.card .desc .hl-teal{color:#0f766e;font-weight:700;}
 
 /* tombol ringkas */
 .mini-btn{
@@ -682,37 +725,37 @@ body.loading .bg-decor *{
     letter-spacing:.01em;
     color:#fff;
     border-radius:14px;
-    background:linear-gradient(120deg,var(--green-600),var(--green-500) 50%,var(--teal-light));
+    background:linear-gradient(120deg,var(--blue-600),var(--blue-500) 50%,var(--sky-light));
     background-size:200% 100%;
-    box-shadow:0 14px 28px -14px rgba(22,163,74,.9), inset 0 1px 0 rgba(255,255,255,.25);
+    box-shadow:0 14px 28px -14px rgba(30,58,138,.9), inset 0 1px 0 rgba(255,255,255,.25);
     overflow:hidden;
     transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s, background-position .6s;
 }
-.mini-btn.teal{
-    background:linear-gradient(120deg,var(--teal),var(--teal-light) 55%,var(--green-400));
-    box-shadow:0 14px 28px -14px rgba(13,148,136,.9), inset 0 1px 0 rgba(255,255,255,.25);
+.mini-btn.sky{
+    background:linear-gradient(120deg,var(--sky),var(--sky-light) 55%,var(--cyan-light));
+    box-shadow:0 14px 28px -14px rgba(14,165,233,.9), inset 0 1px 0 rgba(255,255,255,.25);
 }
-.mini-btn.amber{
-    background:linear-gradient(120deg,#b45309,var(--amber) 55%,var(--amber-light));
-    box-shadow:0 14px 28px -14px rgba(217,119,6,.9), inset 0 1px 0 rgba(255,255,255,.25);
+.mini-btn.indigo{
+    background:linear-gradient(120deg,#4338ca,var(--indigo) 55%,var(--indigo-light));
+    box-shadow:0 14px 28px -14px rgba(99,102,241,.9), inset 0 1px 0 rgba(255,255,255,.25);
 }
-.mini-btn.blue{
-    background:linear-gradient(120deg,#1d4ed8,var(--blue) 55%,var(--blue-light));
-    box-shadow:0 14px 28px -14px rgba(37,99,235,.9), inset 0 1px 0 rgba(255,255,255,.25);
+.mini-btn.cyan{
+    background:linear-gradient(120deg,#0e7490,var(--cyan) 55%,var(--cyan-light));
+    box-shadow:0 14px 28px -14px rgba(6,182,212,.9), inset 0 1px 0 rgba(255,255,255,.25);
 }
 .mini-btn.purple{
     background:linear-gradient(120deg,#6d28d9,var(--purple) 55%,#a78bfa);
-    box-shadow:0 14px 28px -14px rgba(124,58,237,.9), inset 0 1px 0 rgba(255,255,255,.25);
+    box-shadow:0 14px 28px -14px rgba(139,92,246,.9), inset 0 1px 0 rgba(255,255,255,.25);
 }
-.mini-btn.orange{
-    background:linear-gradient(120deg,#c2410c,var(--orange) 55%,#fb923c);
-    box-shadow:0 14px 28px -14px rgba(234,88,12,.9), inset 0 1px 0 rgba(255,255,255,.25);
+.mini-btn.teal{
+    background:linear-gradient(120deg,#0f766e,var(--teal-light) 55%,#5eead4);
+    box-shadow:0 14px 28px -14px rgba(15,118,110,.9), inset 0 1px 0 rgba(255,255,255,.25);
 }
 
 .card-link:hover .mini-btn{
     transform:translateY(-3px);
     background-position:100% 0;
-    box-shadow:0 20px 36px -14px rgba(13,148,136,.85), inset 0 1px 0 rgba(255,255,255,.3);
+    box-shadow:0 20px 36px -14px rgba(30,58,138,.85), inset 0 1px 0 rgba(255,255,255,.3);
 }
 
 .mini-btn::after{
@@ -754,9 +797,9 @@ body.loading .bg-decor *{
     min-height:0;
     padding:22px 24px;
     border-radius:22px;
-    background:linear-gradient(135deg,rgba(255,255,255,.94),rgba(240,253,244,.88));
-    border:1px solid rgba(22,163,74,.28);
-    box-shadow:0 24px 56px -26px rgba(15,42,20,.5);
+    background:linear-gradient(135deg,rgba(255,255,255,.94),rgba(224,237,251,.88));
+    border:1px solid rgba(30,58,138,.28);
+    box-shadow:0 24px 56px -26px rgba(10,31,68,.5);
     backdrop-filter:blur(16px);
     -webkit-backdrop-filter:blur(16px);
     position:relative;
@@ -769,7 +812,7 @@ body.loading .bg-decor *{
     position:absolute;
     top:0;left:0;right:0;
     height:5px;
-    background:linear-gradient(90deg,var(--green-500),var(--amber-light) 45%,var(--teal-light) 100%);
+    background:linear-gradient(90deg,var(--blue-500),var(--indigo-light) 45%,var(--sky-light) 100%);
     opacity:1;
 }
 .closing-card::after{
@@ -778,7 +821,7 @@ body.loading .bg-decor *{
     width:200px;height:200px;
     right:-80px;bottom:-100px;
     border-radius:50%;
-    background:radial-gradient(circle,rgba(217,119,6,.20),transparent 70%);
+    background:radial-gradient(circle,rgba(99,102,241,.20),transparent 70%);
     pointer-events:none;
 }
 .closing-card .ico{
@@ -789,8 +832,8 @@ body.loading .bg-decor *{
     flex:0 0 54px;
     font-size:26px;
     border-radius:16px;
-    background:linear-gradient(135deg,var(--green-600),var(--amber) 70%,var(--amber-light));
-    box-shadow:0 12px 24px -10px rgba(22,163,74,.8);
+    background:linear-gradient(135deg,var(--blue-600),var(--indigo) 70%,var(--indigo-light));
+    box-shadow:0 12px 24px -10px rgba(30,58,138,.8);
 }
 .closing-card .txt{
     flex:1 1 260px;
@@ -801,7 +844,7 @@ body.loading .bg-decor *{
     margin:0 0 5px;
     font-size:16.5px;
     font-weight:800;
-    color:var(--earth-900);
+    color:var(--navy-900);
 }
 .closing-card .txt p{
     margin:0 0 4px;
@@ -809,9 +852,10 @@ body.loading .bg-decor *{
     line-height:1.65;
     color:var(--muted);
 }
-.closing-card .txt p b{color:var(--earth-800);font-weight:700;}
-.closing-card .txt p .hl-teal{color:#0f766e;font-weight:700;}
-.closing-card .txt p .hl-green{color:#15803d;font-weight:700;}
+.closing-card .txt p b{color:var(--navy-800);font-weight:700;}
+.closing-card .txt p .hl-sky{color:#0284c7;font-weight:700;}
+.closing-card .txt p .hl-blue{color:#1e3a8a;font-weight:700;}
+.closing-card .txt p .hl-green{color:#1e3a8a;font-weight:700;}
 .closing-card .tag{
     display:inline-block;
     margin-top:8px;
@@ -819,9 +863,9 @@ body.loading .bg-decor *{
     font-size:11.5px;
     font-weight:700;
     border-radius:999px;
-    color:#14532d;
-    background:rgba(22,163,74,.16);
-    border:1px solid rgba(22,163,74,.40);
+    color:#0a1f44;
+    background:rgba(14,165,233,.16);
+    border:1px solid rgba(14,165,233,.40);
     white-space:nowrap;
     position:relative;
 }
@@ -834,13 +878,13 @@ body.loading .bg-decor *{
     padding:38px 20px 46px;
     font-size:13.5px;
     font-weight:500;
-    color:#526b5c;
+    color:#4a5878;
 }
 .footer .line{
     width:70px;height:4px;
     margin:0 auto 18px;
     border-radius:999px;
-    background:linear-gradient(90deg,var(--teal-light),var(--green-500),var(--amber-light),var(--blue-light));
+    background:linear-gradient(90deg,var(--sky-light),var(--blue-500),var(--indigo-light),var(--cyan-light));
     background-size:200% 100%;
     animation:slide 4s linear infinite;
 }
@@ -853,7 +897,19 @@ body.loading .bg-decor *{
     margin-bottom:6px;
     font-weight:800;
     letter-spacing:.02em;
-    color:var(--earth-800);
+    color:var(--navy-800);
+}
+.footer .guru-foot{
+    display:block;
+    margin-top:8px;
+    font-size:12.5px;
+    font-weight:600;
+    color:#3b4a68;
+    letter-spacing:.02em;
+}
+.footer .guru-foot b{
+    color:var(--navy-800);
+    font-weight:800;
 }
 
 /* ====== RESPONSIVE ====== */
@@ -870,6 +926,9 @@ body.loading .bg-decor *{
     .card .ico{width:48px;height:48px;flex:0 0 48px;font-size:23px;margin-bottom:12px;}
     .bg-decor .blob{filter:blur(55px);opacity:.4;}
     .header h1 .sub{letter-spacing:.10em;}
+    .header .guru{font-size:11.5px;line-height:1.7;}
+    .header .guru .nip{white-space:normal;}
+    .header .guru .sep{display:block;margin:0;height:0;overflow:hidden;}
     .section-label{margin:26px 0 12px;font-size:11.5px;}
     .closing-card{padding:20px;}
 }
@@ -913,6 +972,15 @@ body.loading .bg-decor *{
         <span class="grad">🌏 E-Geografi</span>
         <span class="sub">SMAN 3 Kasongan</span>
     </h1>
+
+    <!-- ==== GURU PENGAMPU — satu baris, tanpa kotak ==== -->
+    <div class="guru" aria-label="Guru Pengampu">
+        <span class="label">Guru Pengampu:</span>
+        <span class="nama">SYAHRANI, S.Pd</span>
+        <span class="sep">—</span>
+        <span class="nip">NIP. 197512172005011016</span>
+    </div>
+
     <p>
         Jelajahi ilmu geografi melalui materi interaktif — dari peta dan penelitian,
         penginderaan jauh hingga sistem informasi geografis, serta fenomena litosfer,
@@ -940,10 +1008,10 @@ body.loading .bg-decor *{
             <span class="ico">🌍</span>
             <h3>Pengetahuan Dasar Geografi</h3>
             <p class="desc">
-                Hakikat geografi: objek studi, <b class="hl-teal">konsep &amp; prinsip</b>,
+                Hakikat geografi: objek studi, <b class="hl-sky">konsep &amp; prinsip</b>,
                 serta interaksi manusia dengan lingkungan.
             </p>
-            <span class="mini-btn teal">
+            <span class="mini-btn sky">
                 <span class="play">▶</span> Buka Materi
                 <span class="newwin">↗</span>
             </span>
@@ -958,10 +1026,10 @@ body.loading .bg-decor *{
             <span class="ico">🗺️</span>
             <h3>Peta &amp; Pemetaan</h3>
             <p class="desc">
-                <b class="hl-blue">Bahasa universal geografi</b>: jenis peta,
+                <b class="hl-indigo">Bahasa universal geografi</b>: jenis peta,
                 komponen, skala, proyeksi, hingga membuat peta sederhana.
             </p>
-            <span class="mini-btn blue">
+            <span class="mini-btn indigo">
                 <span class="play">▶</span> Buka Materi
                 <span class="newwin">↗</span>
             </span>
@@ -982,10 +1050,10 @@ body.loading .bg-decor *{
             <span class="ico">🔬</span>
             <h3>Penelitian Geografi</h3>
             <p class="desc">
-                Langkah <b class="hl-amber">memecahkan masalah ruang</b>:
+                Langkah <b class="hl-cyan">memecahkan masalah ruang</b>:
                 rumuskan masalah, kumpulkan data, analisis, dan laporan.
             </p>
-            <span class="mini-btn amber">
+            <span class="mini-btn cyan">
                 <span class="play">▶</span> Buka Materi
                 <span class="newwin">↗</span>
             </span>
@@ -1018,7 +1086,7 @@ body.loading .bg-decor *{
             <span class="ico">💻</span>
             <h3>Sistem Informasi Geografis</h3>
             <p class="desc">
-                <b class="hl-green">Otak digital geografi</b>: komponen SIG,
+                <b class="hl-blue">Otak digital geografi</b>: komponen SIG,
                 data vektor &amp; raster, hingga pemanfaatan tata ruang.
             </p>
             <span class="mini-btn">
@@ -1042,10 +1110,10 @@ body.loading .bg-decor *{
             <span class="ico">🌋</span>
             <h3>Litosfer</h3>
             <p class="desc">
-                Lapisan batuan yang <b class="hl-orange">dinamis</b>: lempeng
+                Lapisan batuan yang <b class="hl-teal">dinamis</b>: lempeng
                 tektonik, gempa, gunung api, batuan, dan erosi.
             </p>
-            <span class="mini-btn orange">
+            <span class="mini-btn teal">
                 <span class="play">▶</span> Buka Materi
                 <span class="newwin">↗</span>
             </span>
@@ -1060,10 +1128,10 @@ body.loading .bg-decor *{
             <span class="ico">🌤️</span>
             <h3>Atmosfer</h3>
             <p class="desc">
-                Selimut udara yang <b class="hl-teal">melindungi Bumi</b>:
+                Selimut udara yang <b class="hl-sky">melindungi Bumi</b>:
                 lapisan atmosfer, cuaca-iklim, dan pemanasan global.
             </p>
-            <span class="mini-btn teal">
+            <span class="mini-btn sky">
                 <span class="play">▶</span> Buka Materi
                 <span class="newwin">↗</span>
             </span>
@@ -1078,10 +1146,10 @@ body.loading .bg-decor *{
             <span class="ico">🌊</span>
             <h3>Hidrosfer</h3>
             <p class="desc">
-                <b class="hl-blue">Sumber kehidupan</b>: siklus hidrologi,
+                <b class="hl-indigo">Sumber kehidupan</b>: siklus hidrologi,
                 perairan darat &amp; laut, serta konservasi air.
             </p>
-            <span class="mini-btn blue">
+            <span class="mini-btn indigo">
                 <span class="play">▶</span> Buka Materi
                 <span class="newwin">↗</span>
             </span>
@@ -1096,7 +1164,7 @@ body.loading .bg-decor *{
             <span class="ico">🌿</span>
             <h3>Biosfer</h3>
             <p class="desc">
-                Dunia kehidupan: <b class="hl-green">flora &amp; fauna</b>,
+                Dunia kehidupan: <b class="hl-blue">flora &amp; fauna</b>,
                 bioma dunia, dan pentingnya keanekaragaman hayati.
             </p>
             <span class="mini-btn">
@@ -1114,10 +1182,10 @@ body.loading .bg-decor *{
             <span class="ico">👥</span>
             <h3>Antroposfer</h3>
             <p class="desc">
-                Manusia <b class="hl-amber">penghuni &amp; pengubah ruang</b>:
+                Manusia <b class="hl-cyan">penghuni &amp; pengubah ruang</b>:
                 dinamika penduduk, mobilitas, dan kualitas hidup.
             </p>
-            <span class="mini-btn amber">
+            <span class="mini-btn cyan">
                 <span class="play">▶</span> Buka Materi
                 <span class="newwin">↗</span>
             </span>
@@ -1129,7 +1197,7 @@ body.loading .bg-decor *{
             <div class="txt">
                 <h3>Materi Kelas 10 Selesai</h3>
                 <p>
-                    Selamat! 🎉 Kamu telah menyelesaikan seluruh <b class="hl-green">materi
+                    Selamat! 🎉 Kamu telah menyelesaikan seluruh <b class="hl-blue">materi
                     geografi kelas 10</b> — dari pengetahuan dasar hingga fenomena geosfer.
                     Teruslah mengamati, bertanya, dan menjaga Bumi. 🌏✨
                 </p>
@@ -1145,6 +1213,7 @@ body.loading .bg-decor *{
     <div class="line"></div>
     <span class="brand">E-Geografi SMAN 3 Kasongan</span>
     Belajar geografi jadi lebih hidup 🌏✨
+    <span class="guru-foot">Guru Pengampu: <b>SYAHRANI, S.Pd</b> — NIP. 197512172005011016</span>
 </footer>
 
 <script>
