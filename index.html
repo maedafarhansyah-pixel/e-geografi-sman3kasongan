@@ -855,6 +855,86 @@ body.loading .bg-decor *{
 }
 .card-link:hover .mini-btn .newwin{transform:translate(3px,-3px);}
 
+/* ============================================================
+   KARTU LATIHAN SOAL TKA — FULL WIDTH
+   ============================================================ */
+.card.tka-full{
+    grid-column:1 / -1;
+    min-height:0;
+    flex-direction:row;
+    align-items:center;
+    gap:18px;
+    flex-wrap:wrap;
+    padding:24px 26px;
+    border-radius:22px;
+    background:linear-gradient(135deg,rgba(224,242,254,.95),rgba(186,230,253,.90) 50%,rgba(165,180,252,.92));
+    border:1px solid rgba(56,189,248,.55);
+    box-shadow:
+        0 24px 56px -22px rgba(10,31,68,.5),
+        0 0 0 1px rgba(125,211,252,.30),
+        inset 0 1px 0 rgba(255,255,255,.9);
+    margin-top:4px;
+}
+.card.tka-full::before{
+    background:linear-gradient(90deg,var(--sky-light),var(--cyan-light) 40%,var(--indigo-light) 75%,var(--sky-light));
+    height:5px;
+    opacity:1;
+}
+.card.tka-full::after{
+    width:260px;height:260px;
+    right:-90px;top:-110px;
+    background:radial-gradient(circle,rgba(14,165,233,.45),transparent 70%);
+}
+.card.tka-full:hover::after{transform:scale(1.3);}
+
+.card.tka-full .ico{
+    margin-bottom:0;
+    flex:0 0 58px;
+    width:58px;height:58px;
+    font-size:28px;
+    background:linear-gradient(135deg,var(--sky),var(--cyan) 60%,var(--cyan-light));
+    box-shadow:
+        0 14px 28px -10px rgba(14,165,233,.85),
+        0 0 0 1px rgba(255,255,255,.65) inset,
+        0 0 26px -4px rgba(56,189,248,.75);
+}
+.card.tka-full:hover .ico{
+    transform:rotate(8deg) scale(1.10);
+}
+
+.card.tka-full .tka-txt{
+    flex:1 1 280px;
+    min-width:0;
+    position:relative;
+    z-index:1;
+}
+.card.tka-full .badge{
+    position:static;
+    display:inline-block;
+    margin-bottom:8px;
+    background:linear-gradient(135deg,#38bdf8,#0ea5e9);
+    color:#fff;
+    border-color:rgba(255,255,255,.55);
+}
+.card.tka-full h3{
+    margin:0 0 6px;
+    font-size:17.5px;
+    padding-right:0;
+}
+.card.tka-full .desc{
+    margin:0;
+    font-size:13.4px;
+    line-height:1.62;
+}
+.card.tka-full .mini-btn{
+    width:auto;
+    margin-top:0;
+    padding:13px 24px;
+    flex:0 0 auto;
+    white-space:nowrap;
+    font-size:13.8px;
+}
+
 /* ====== KARTU PENUTUP (FULL WIDTH) ====== */
 .closing-card{
     grid-column:1 / -1;
@@ -1001,6 +1081,16 @@ body.loading .bg-decor *{
     .header .guru .sep{display:block;margin:0;height:0;overflow:hidden;}
     .section-label{margin:26px 0 12px;font-size:11.5px;}
     .closing-card{padding:20px;}
+
+    /* TKA full-width jadi vertikal di HP */
+    .card.tka-full{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:14px;
+        padding:22px 20px;
+    }
+    .card.tka-full .ico{width:50px;height:50px;flex:0 0 50px;font-size:24px;}
+    .card.tka-full .mini-btn{width:100%;}
 }
 
 @media (prefers-reduced-motion:reduce){
@@ -1267,6 +1357,27 @@ body.loading .bg-decor *{
             </p>
             <span class="mini-btn cyan">
                 <span class="play">▶</span> Buka Materi
+                <span class="newwin">↗</span>
+            </span>
+        </a>
+
+        <!-- ===== LATIHAN SOAL LITERASI TKA GEOGRAFI (FULL WIDTH) ===== -->
+        <a class="card card-link tka-full"
+           href="https://maedafarhansyah-pixel.github.io/e-geografi-sman3kasongan/tkageografi.html"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Buka Latihan Soal Literasi TKA Geografi (tab baru)">
+            <span class="shine"></span>
+            <span class="ico">📝</span>
+            <div class="tka-txt">
+                <span class="badge">Latihan TKA</span>
+                <h3>Latihan Soal Literasi TKA Geografi</h3>
+                <p class="desc">
+                    Uji pemahamanmu dengan <b class="hl-sky">soal literasi TKA</b>
+                    bergaya asesmen — membaca data, peta, dan fenomena geosfer.
+                </p>
+            </div>
+            <span class="mini-btn sky">
+                <span class="play">▶</span> Buka Latihan
                 <span class="newwin">↗</span>
             </span>
         </a>
