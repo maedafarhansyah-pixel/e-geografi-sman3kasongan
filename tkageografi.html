@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+<meta name="theme-color" content="#1e3a8a" />
+<meta name="description" content="Kartu Tema TKA Literasi Geografi SMA — 10 kartu tema. Tema 1, 2 & 3 aktif dengan 22 soal. Kunci di akhir tiap tema." />
+<title>Kartu Tema TKA Literasi Geografi SMA</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+  --primary:#1e3a8a;--primary-light:#3b82f6;--primary-dark:#0f1e4a;
+  --accent:#0891b2;--gold:#b45309;--emerald:#047857;--violet:#6d28d9;--sky:#0284c7;--rose:#be123c;
+  --bg:#f4f6fb;--bg-soft:#e5eaf5;--card-bg:#ffffff;--card-alt:#fbfcff;
+  --text:#0f1e3d;--text-light:#1e2f5a;--text-muted:#4a5a80;
+  --line:rgba(30,58,138,.14);--line-soft:rgba(30,58,138,.07);
+  --shadow:0 10px 34px rgba(30,58,138,.07);--shadow-hover:0 20px 56px rgba(30,58,138,.15);--shadow-sm:0 4px 16px rgba(30,58,138,.06);
+  --radius:22px;--radius-sm:14px;--radius-xs:10px;
+  --transition:.38s cubic-bezier(.34,1.56,.64,1);--ease:.35s cubic-bezier(.22,1,.36,1);
+  --header-h:64px;
+}
+html[data-theme="dark"]{
+  --bg:#060b1c;--bg-soft:#0e1830;--card-bg:#111c3a;--card-alt:#0a1428;
+  --text:#e6eeff;--text-light:#c0cdf0;--text-muted:#98a7cf;
+  --line:rgba(255,255,255,.14);--line-soft:rgba(255,255,255,.07);
+  --shadow:0 10px 34px rgba(0,0,0,.45);--shadow-hover:0 20px 56px rgba(0,0,0,.6);--shadow-sm:0 4px 16px rgba(0,0,0,.4);
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.75;overflow-x:hidden;min-height:100vh;transition:background .4s ease,color .4s ease;font-size:16px}
+h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans','Inter',sans-serif;line-height:1.25}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+button:focus-visible,a:focus-visible,[role="radio"]:focus-visible,[role="checkbox"]:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
+
+.geo-bg{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.55;
+  background-image:radial-gradient(circle at 15% 12%,rgba(59,130,246,.14) 0%,transparent 55%),radial-gradient(circle at 85% 80%,rgba(8,145,178,.10) 0%,transparent 52%),radial-gradient(circle at 50% 50%,rgba(180,83,9,.05) 0%,transparent 60%)}
+.geo-bg::after{content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,transparent,transparent 46px,rgba(30,58,138,.028) 46px,rgba(30,58,138,.028) 47px),repeating-linear-gradient(-45deg,transparent,transparent 46px,rgba(30,58,138,.028) 46px,rgba(30,58,138,.028) 47px);background-size:92px 92px,92px 92px}
+
+.site-header{position:fixed;top:0;left:0;right:0;height:var(--header-h);background:rgba(255,255,255,.94);backdrop-filter:blur(22px) saturate(160%);border-bottom:1px solid var(--line-soft);z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(12px,2.4vw,28px);gap:10px;transition:box-shadow .3s ease,background .4s ease}
+html[data-theme="dark"] .site-header{background:rgba(17,28,58,.94)}
+.site-header.scrolled{box-shadow:0 6px 30px rgba(30,58,138,.10)}
+.site-header .brand{display:flex;align-items:center;gap:10px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:clamp(1rem,2.2vw,1.2rem);color:var(--primary);text-decoration:none;letter-spacing:-.4px;flex-shrink:0;cursor:pointer;background:none;border:none}
+html[data-theme="dark"] .site-header .brand{color:var(--accent)}
+.site-header .brand .logo-dot{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;font-size:1rem;box-shadow:0 6px 18px rgba(30,58,138,.28);transition:transform var(--transition)}
+.site-header .brand:hover .logo-dot{transform:rotate(-10deg) scale(1.08)}
+.site-header .brand > span:last-child{font-size:clamp(.95rem,1.9vw,1.1rem);letter-spacing:-.3px}
+.site-header .header-actions{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.site-header .icon-btn{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--card-bg);color:var(--primary);cursor:pointer;display:grid;place-items:center;font-size:.95rem;transition:all var(--ease)}
+.site-header .icon-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary);transform:translateY(-2px)}
+
+.progress-rail{position:fixed;top:var(--header-h);left:0;right:0;height:3px;background:rgba(59,130,246,.07);z-index:999}
+.progress-rail .thumb{height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--accent),var(--gold));transition:width .6s cubic-bezier(.34,1.56,.64,1)}
+
+.main-wrap{position:relative;z-index:1;padding-top:calc(var(--header-h) + 26px);max-width:1120px;margin:0 auto;padding-left:clamp(14px,3.5vw,48px);padding-right:clamp(14px,3.5vw,48px);padding-bottom:90px}
+
+.hero{text-align:center;padding:12px 0 8px}
+.hero .badge-row{display:flex;justify-content:center;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:20px}
+.hero .badge-row .tag{background:rgba(30,58,138,.07);color:var(--primary);font-size:.72rem;font-weight:700;padding:5px 18px;border-radius:40px;border:1px solid var(--line)}
+.hero .badge-row .tag.gold{background:rgba(180,83,9,.12);color:var(--gold);border-color:rgba(180,83,9,.16)}
+.hero .badge-row .tag.green{background:rgba(16,185,129,.09);color:var(--emerald);border-color:rgba(16,185,129,.14)}
+.hero-title{font-size:clamp(1.9rem,5.2vw,3.2rem);font-weight:900;letter-spacing:-1.6px;line-height:1.08;color:var(--text);margin:6px 0 12px}
+.hero-title .highlight{background:linear-gradient(135deg,var(--primary),var(--accent),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:shimmerText 5s ease-in-out infinite}
+@keyframes shimmerText{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.hero-sub{font-size:clamp(.92rem,1.4vw,1.08rem);color:var(--text-light);max-width:720px;margin:6px auto 0;line-height:1.9}
+.hero-sub strong{color:var(--text);font-weight:700}
+
+.section-header{display:flex;align-items:flex-start;gap:14px;margin:30px 0 20px;padding-bottom:16px;border-bottom:2px solid var(--line-soft);flex-wrap:wrap;position:relative}
+.section-header::after{content:'';position:absolute;bottom:-2px;left:0;width:96px;height:2px;background:linear-gradient(90deg,var(--primary),var(--accent),var(--gold));border-radius:2px}
+.section-header .num{display:flex;align-items:center;justify-content:center;width:50px;height:50px;border-radius:16px;background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1.05rem;flex-shrink:0;box-shadow:0 10px 26px rgba(30,58,138,.28);transform:rotate(-4deg)}
+.section-header h2{font-size:clamp(1.2rem,2.9vw,1.7rem);font-weight:800;color:var(--text);letter-spacing:-.5px;flex:1;min-width:180px}
+.section-header h2 small{display:block;font-weight:400;font-size:.85rem;color:var(--text-muted);margin-top:3px;letter-spacing:0}
+.section-header .badge{background:rgba(30,58,138,.07);color:var(--primary);padding:5px 16px;border-radius:40px;font-size:.72rem;font-weight:700;letter-spacing:.5px;border:1px solid var(--line);white-space:nowrap;align-self:center}
+
+.kartu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px;margin:18px 0 8px}
+.kartu-tema{position:relative;background:linear-gradient(145deg,var(--card-bg),var(--card-alt));border:1px solid var(--line-soft);border-radius:var(--radius);padding:22px 20px 18px;box-shadow:var(--shadow);cursor:pointer;transition:all .4s cubic-bezier(.34,1.56,.64,1);overflow:hidden;min-height:180px;display:flex;flex-direction:column;justify-content:space-between}
+.kartu-tema::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--primary),var(--accent))}
+.kartu-tema:hover{transform:translateY(-6px);box-shadow:var(--shadow-hover);border-color:var(--accent)}
+.kartu-tema .kt-num{font-size:.66rem;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--accent);background:rgba(8,145,178,.09);padding:3px 11px;border-radius:20px;display:inline-block;margin-bottom:8px;width:fit-content}
+.kartu-tema .kt-title{font-size:1.02rem;font-weight:800;color:var(--text);line-height:1.35;margin-bottom:5px}
+.kartu-tema .kt-desc{font-size:.82rem;color:var(--text-muted);line-height:1.6;margin-bottom:10px}
+.kartu-tema .kt-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:.74rem;color:var(--text-muted);border-top:1px dashed var(--line-soft);padding-top:9px}
+.kartu-tema .kt-meta .kt-arrow{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;display:grid;place-items:center;font-size:.75rem}
+.kartu-tema.locked{opacity:.65;cursor:not-allowed;filter:grayscale(.15)}
+.kartu-tema.locked::before{background:linear-gradient(90deg,#94a3b8,#cbd5e1)}
+.kartu-tema.locked:hover{transform:none;box-shadow:var(--shadow);border-color:var(--line-soft)}
+.kartu-tema .kt-lock{position:absolute;top:16px;right:16px;color:var(--text-muted);font-size:.9rem}
+.kartu-tema .kt-status{font-size:.7rem;font-weight:700;color:var(--emerald);display:none}
+.kartu-tema.done .kt-status{display:inline}
+.kartu-tema .kt-badge-done{display:none;position:absolute;top:14px;right:14px;width:26px;height:26px;border-radius:50%;background:var(--emerald);color:#fff;font-size:.7rem;place-items:center}
+.kartu-tema.done .kt-badge-done{display:grid}
+.kartu-tema.done{border-color:rgba(16,185,129,.4)}
+.kartu-tema .kt-score{font-size:.72rem;font-weight:800;color:var(--emerald);background:rgba(16,185,129,.10);padding:2px 10px;border-radius:20px;display:none}
+.kartu-tema.done .kt-score{display:inline}
+
+.identitas-box{background:linear-gradient(135deg,rgba(30,58,138,.055),rgba(59,130,246,.035));border-left:5px solid var(--primary);border-radius:var(--radius-sm);padding:18px 22px;margin-bottom:20px}
+.identitas-box .id-title{display:flex;align-items:center;gap:10px;color:var(--primary);font-size:.94rem;font-weight:800;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px}
+.identitas-box .id-title i{background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;width:30px;height:30px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.82rem}
+.id-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.id-field label{display:block;font-size:.72rem;font-weight:800;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.id-field input{width:100%;padding:11px 15px;border:1.5px solid var(--line);border-radius:12px;background:var(--card-bg);color:var(--text);font-family:inherit;font-size:.9rem;outline:none;transition:border-color .2s ease}
+.id-field input:focus{border-color:var(--accent)}
+
+.stimulus{background:linear-gradient(145deg,var(--card-bg),var(--card-alt));border:1px solid var(--line-soft);border-radius:var(--radius-sm);padding:18px 22px;margin:12px 0 16px;box-shadow:var(--shadow-sm)}
+.stimulus .stim-label{display:inline-flex;align-items:center;gap:7px;font-size:.66rem;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--accent);background:rgba(8,145,178,.09);padding:4px 13px;border-radius:30px;margin-bottom:10px}
+.stimulus p{font-size:.92rem;color:var(--text-light);line-height:1.8;margin-bottom:8px}
+.stimulus p:last-child{margin-bottom:0}
+.stimulus table{width:100%;border-collapse:collapse;font-size:.85rem;margin:10px 0;background:var(--card-bg);border-radius:8px;overflow:hidden}
+.stimulus th{background:rgba(30,58,138,.07);color:var(--primary);padding:9px 12px;text-align:left;font-weight:700;border-bottom:1px solid var(--line-soft)}
+.stimulus td{padding:8px 12px;border-bottom:1px solid var(--line-soft);color:var(--text-light);vertical-align:top}
+.stimulus tr:last-child td{border-bottom:none}
+.stimulus .src{display:block;font-size:.76rem;color:var(--text-muted);font-style:italic;margin-top:8px}
+
+.soal-card{background:var(--card-bg);border-radius:var(--radius);padding:22px 24px;box-shadow:var(--shadow);border:1px solid var(--line-soft);margin-bottom:16px;transition:box-shadow var(--ease)}
+.soal-card:hover{box-shadow:var(--shadow-hover)}
+.soal-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.soal-head .nomor{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.88rem;flex-shrink:0}
+.soal-head .tipe{font-size:.64rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:3px 11px;border-radius:20px}
+.tipe.pg{background:rgba(30,58,138,.09);color:var(--primary)}
+.tipe.mcma{background:rgba(139,92,246,.10);color:var(--violet)}
+.tipe.kat{background:rgba(180,83,9,.12);color:var(--gold)}
+.soal-head .level{font-size:.64rem;font-weight:700;letter-spacing:.5px;padding:3px 10px;border-radius:20px;background:rgba(8,145,178,.08);color:var(--accent)}
+.soal-head .sulit{font-size:.64rem;font-weight:700;padding:3px 10px;border-radius:20px}
+.sulit.mudah{background:rgba(16,185,129,.10);color:var(--emerald)}
+.sulit.sedang{background:rgba(180,83,9,.12);color:var(--gold)}
+.sulit.sulit{background:rgba(220,38,38,.10);color:#dc2626}
+.soal-question{font-size:.97rem;font-weight:600;color:var(--text);line-height:1.7;margin-bottom:12px}
+.opsi-list{display:flex;flex-direction:column;gap:8px}
+.opsi-item{display:flex;align-items:flex-start;gap:11px;padding:11px 15px;border-radius:12px;border:1.5px solid var(--line-soft);background:var(--card-alt);cursor:pointer;transition:all .25s ease;font-size:.9rem;color:var(--text-light);line-height:1.6}
+.opsi-item:hover{border-color:var(--accent);background:rgba(8,145,178,.04)}
+.opsi-item .kode{font-weight:800;color:var(--primary);flex-shrink:0;min-width:18px}
+.opsi-item.selected{border-color:var(--primary);background:rgba(30,58,138,.06)}
+.opsi-item.correct{border-color:#047857;background:rgba(16,185,129,.10)}
+.opsi-item.correct .kode{color:#047857}
+.opsi-item.wrong{border-color:#dc2626;background:rgba(220,38,38,.08)}
+.opsi-item.wrong .kode{color:#dc2626}
+.opsi-item .cekbox{width:18px;height:18px;border:2px solid var(--line);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.6rem;color:#fff;flex-shrink:0;margin-top:2px;transition:all .2s ease}
+.opsi-item.selected .cekbox{background:var(--primary);border-color:var(--primary)}
+.opsi-item.correct .cekbox{background:#047857;border-color:#047857}
+.opsi-item.wrong .cekbox{background:#dc2626;border-color:#dc2626}
+
+.kat-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-top:4px}
+.kat-table th{background:rgba(30,58,138,.06);color:var(--primary);padding:9px 11px;text-align:left;font-weight:700;font-size:.8rem;border-bottom:1px solid var(--line-soft)}
+.kat-table td{padding:9px 11px;border-bottom:1px solid var(--line-soft);color:var(--text-light);vertical-align:top;font-size:.85rem;line-height:1.55}
+.kat-table td:first-child{font-weight:600;color:var(--text)}
+.kat-opsi{display:flex;gap:6px;flex-wrap:wrap}
+.kat-opsi button{font-family:inherit;font-size:.72rem;font-weight:700;padding:5px 13px;border-radius:20px;border:1.5px solid var(--line);background:var(--card-bg);color:var(--text-muted);cursor:pointer;transition:all .2s ease}
+.kat-opsi button:hover{border-color:var(--accent)}
+.kat-opsi button.picked{background:var(--primary);color:#fff;border-color:var(--primary)}
+.kat-opsi button.picked.benar{background:#047857;border-color:#047857}
+.kat-opsi button.picked.salah{background:#dc2626;border-color:#dc2626}
+
+.pembahasan{display:none;margin-top:14px;padding:14px 17px;border-radius:12px;background:linear-gradient(135deg,rgba(8,145,178,.05),rgba(30,58,138,.03));border-left:4px solid var(--accent);font-size:.87rem;color:var(--text-light);line-height:1.75}
+.pembahasan.show{display:block}
+.pembahasan .pb-title{font-weight:800;color:var(--accent);font-size:.8rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;display:flex;align-items:center;gap:7px}
+.pembahasan .pb-kunci{font-weight:800;color:var(--emerald);margin-bottom:4px}
+.pembahasan .pb-meta{font-size:.76rem;color:var(--text-muted);margin-top:7px;font-style:italic}
+
+.soal-actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.btn-kecil{font-family:inherit;font-size:.78rem;font-weight:700;padding:7px 16px;border-radius:30px;border:1.5px solid var(--line);background:var(--card-bg);color:var(--primary);cursor:pointer;transition:all .22s ease;display:inline-flex;align-items:center;gap:6px}
+.btn-kecil:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+
+.hasil-box{background:linear-gradient(135deg,rgba(16,185,129,.07),rgba(59,130,246,.04));border:2px solid rgba(16,185,129,.28);border-radius:var(--radius);padding:24px 26px;margin:20px 0;text-align:center}
+.hasil-box h3{font-size:1.3rem;font-weight:900;color:var(--emerald);margin-bottom:8px;display:flex;align-items:center;justify-content:center;gap:10px}
+.hasil-box .hasil-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:14px;margin:16px 0;max-width:640px;margin-left:auto;margin-right:auto}
+.hasil-box .hasil-stat{background:var(--card-bg);border-radius:14px;padding:14px 10px;border:1px solid var(--line-soft)}
+.hasil-box .hasil-stat .hs-val{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.6rem;font-weight:900;color:var(--primary);line-height:1}
+.hasil-box .hasil-stat .hs-lbl{font-size:.64rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-top:3px}
+.hasil-box .hasil-ident{background:var(--card-bg);border-radius:12px;padding:12px 18px;border:1px dashed var(--line);display:inline-block;margin-top:6px;font-size:.86rem;color:var(--text-light);line-height:1.8}
+.hasil-box .hasil-ident strong{color:var(--text)}
+.hasil-box .hasil-predikat{font-size:1.6rem;font-weight:900;color:var(--emerald);margin:8px 0}
+.hasil-box .btn-ulang{margin-top:14px;background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;border:none;padding:11px 26px;border-radius:40px;font-family:inherit;font-weight:700;font-size:.86rem;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+
+.modal-overlay{position:fixed;inset:0;background:rgba(10,20,45,.55);backdrop-filter:blur(4px);z-index:2000;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.open{display:flex}
+.modal-card{background:var(--card-bg);border-radius:var(--radius);max-width:440px;width:100%;padding:28px 26px;box-shadow:0 30px 80px rgba(0,0,0,.3);position:relative;animation:modalIn .4s cubic-bezier(.34,1.56,.64,1)}
+@keyframes modalIn{0%{opacity:0;transform:scale(.92) translateY(20px)}100%{opacity:1;transform:scale(1) translateY(0)}}
+.modal-card .mc-close{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:10px;border:1px solid var(--line);background:var(--bg-soft);color:var(--text);cursor:pointer;display:grid;place-items:center;font-size:.9rem}
+.modal-card .mc-icon{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;font-size:1.4rem;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.modal-card h3{font-size:1.2rem;font-weight:800;color:var(--text);margin-bottom:4px}
+.modal-card .mc-sub{font-size:.86rem;color:var(--text-muted);margin-bottom:16px;line-height:1.7}
+.modal-card .mc-field{margin-bottom:12px}
+.modal-card .mc-field label{display:block;font-size:.72rem;font-weight:800;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.modal-card .mc-field input{width:100%;padding:12px 16px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg-soft);color:var(--text);font-family:inherit;font-size:.92rem;outline:none}
+.modal-card .mc-field input:focus{border-color:var(--accent);background:var(--card-bg)}
+.modal-card .mc-btn{width:100%;background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;border:none;padding:14px;border-radius:40px;font-family:inherit;font-weight:700;font-size:.95rem;cursor:pointer;margin-top:6px;box-shadow:0 8px 24px rgba(30,58,138,.3)}
+.modal-card .mc-error{color:#dc2626;font-size:.8rem;font-weight:600;margin-top:6px;display:none}
+
+.tema-view{display:none}
+.tema-view.active{display:block;animation:fadeUp .5s cubic-bezier(.34,1.56,.64,1)}
+@keyframes fadeUp{0%{opacity:0;transform:translateY(24px)}100%{opacity:1;transform:translateY(0)}}
+.tema-back{display:inline-flex;align-items:center;gap:8px;font-size:.84rem;font-weight:700;color:var(--primary);background:var(--card-bg);border:1.5px solid var(--line);padding:9px 18px;border-radius:30px;cursor:pointer;margin-bottom:18px;transition:all .2s ease}
+.tema-back:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+
+.kunci-lock-box{background:linear-gradient(135deg,rgba(220,38,38,.06),rgba(180,83,9,.05));border:2px dashed rgba(220,38,38,.30);border-radius:var(--radius-sm);padding:26px 24px;text-align:center;margin:22px 0}
+.kunci-lock-box .lock-icon{width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#dc2626,var(--gold));color:#fff;font-size:1.4rem;display:inline-flex;align-items:center;justify-content:center;margin-bottom:12px}
+.kunci-lock-box h4{font-size:1.06rem;font-weight:800;color:var(--text);margin-bottom:5px}
+.kunci-lock-box p{font-size:.88rem;color:var(--text-muted);margin-bottom:15px;max-width:560px;margin-left:auto;margin-right:auto}
+.kunci-input-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:12px}
+.kunci-input{padding:12px 20px;border:2px solid var(--line);border-radius:40px;font-family:inherit;font-size:.9rem;background:var(--card-bg);color:var(--text);outline:none;min-width:230px}
+.kunci-input:focus{border-color:var(--accent)}
+.kunci-btn{display:inline-flex;align-items:center;gap:9px;background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;border:none;padding:13px 30px;border-radius:40px;font-family:inherit;font-weight:700;font-size:.9rem;cursor:pointer;box-shadow:0 8px 24px rgba(30,58,138,.28)}
+.kunci-box{display:none;background:linear-gradient(135deg,rgba(16,185,129,.05),rgba(30,58,138,.03));border:1px solid rgba(16,185,129,.22);border-radius:var(--radius-sm);padding:24px 26px;margin:20px 0}
+.kunci-box.revealed{display:block}
+.kunci-box .kunci-title{display:flex;align-items:center;gap:10px;color:#047857;font-size:1.02rem;font-weight:800;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px}
+.kunci-box .kunci-title i{background:#047857;color:#fff;width:32px;height:32px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.9rem}
+.kunci-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(78px,1fr));gap:8px;margin-bottom:18px}
+.kunci-item{background:var(--card-bg);border:1px solid rgba(16,185,129,.22);border-radius:10px;padding:9px 6px;text-align:center;font-weight:700;color:var(--text);font-size:.85rem}
+.kunci-item .num{display:block;font-size:.64rem;color:var(--text-muted);font-weight:600;margin-bottom:2px}
+.kunci-item .ans{color:#047857;font-weight:900;font-size:.9rem;display:block}
+
+.rekap-card{background:linear-gradient(145deg,var(--card-bg),var(--card-alt));border:1px solid var(--line-soft);border-radius:var(--radius);padding:24px 26px;margin:24px 0;box-shadow:var(--shadow)}
+.rekap-card h3{font-size:1.08rem;font-weight:800;color:var(--text);margin-bottom:14px;display:flex;align-items:center;gap:9px}
+.rekap-card h3 i{color:var(--primary)}
+.rekap-table{width:100%;border-collapse:collapse;font-size:.86rem}
+.rekap-table th{background:rgba(30,58,138,.06);color:var(--primary);padding:10px 13px;text-align:left;font-weight:700;border-bottom:1px solid var(--line-soft)}
+.rekap-table td{padding:9px 13px;border-bottom:1px solid var(--line-soft);color:var(--text-light);vertical-align:top}
+.rekap-table tr:last-child td{border-bottom:none}
+.rekap-table td:first-child{font-weight:600;color:var(--text)}
+.pill{display:inline-block;background:rgba(8,145,178,.10);color:var(--accent);font-weight:800;font-size:.72rem;padding:2px 11px;border-radius:20px}
+
+.footer-credit{text-align:center;margin-top:28px;padding-top:18px;border-top:1px solid var(--line-soft);font-size:.84rem;color:var(--text-muted);line-height:2}
+.footer-credit strong{color:var(--text);font-weight:700}
+.footer-credit .gold{color:var(--gold);font-weight:700}
+
+.to-top{position:fixed;right:clamp(14px,2.5vw,28px);bottom:clamp(16px,3vw,32px);width:48px;height:48px;border-radius:16px;border:none;background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;font-size:1rem;cursor:pointer;z-index:998;display:grid;place-items:center;box-shadow:0 10px 30px rgba(30,58,138,.35);opacity:0;visibility:hidden;transform:translateY(20px) scale(.85);transition:all .4s cubic-bezier(.34,1.56,.64,1)}
+.to-top.show{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
+
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(120px);background:linear-gradient(135deg,var(--gold),var(--accent));color:#fff;padding:13px 24px;border-radius:50px;font-weight:700;font-size:.86rem;box-shadow:0 14px 40px rgba(180,83,9,.35);z-index:10000;display:flex;align-items:center;gap:9px;opacity:0;transition:all .5s cubic-bezier(.34,1.56,.64,1);max-width:90vw;text-align:center}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+
+@media (max-width:600px){
+  .soal-card{padding:17px 15px}
+  .stimulus{padding:14px 15px}
+  .kat-table th,.kat-table td{font-size:.78rem;padding:7px 8px}
+  .kartu-grid{grid-template-columns:1fr}
+  .kunci-grid{grid-template-columns:repeat(auto-fill,minmax(64px,1fr))}
+}
+@media print{
+  .site-header,.progress-rail,.to-top,.soal-actions,.toast,.modal-overlay,.tema-back,.kunci-lock-box{display:none!important}
+  body{background:#fff;color:#000}
+  .soal-card,.stimulus{box-shadow:none;border:1px solid #ccc;page-break-inside:avoid}
+  .pembahasan{display:block!important}
+}
+</style>
+</head>
+<body>
+
+<div class="geo-bg"></div>
+
+<header class="site-header" id="siteHeader">
+  <button type="button" class="brand" onclick="kembaliKeDaftar()" aria-label="Kembali ke daftar tema">
+    <span class="logo-dot"><i class="fas fa-globe-asia" aria-hidden="true"></i></span>
+    <span>TKA GEOGRAFI</span>
+  </button>
+  <div class="header-actions">
+    <button type="button" class="icon-btn" onclick="toggleTheme()" id="themeBtn" aria-label="Ganti tema" title="Mode Gelap/Terang"><i class="fas fa-moon" aria-hidden="true"></i></button>
+    <button type="button" class="icon-btn" onclick="window.print()" aria-label="Cetak" title="Cetak / PDF"><i class="fas fa-print" aria-hidden="true"></i></button>
+  </div>
+</header>
+
+<div class="progress-rail" aria-hidden="true"><div class="thumb" id="progressThumb"></div></div>
+
+<main class="main-wrap">
+
+  <div id="daftarTema">
+    <section class="hero" aria-label="Identitas latihan">
+      <div class="badge-row">
+        <span class="tag">SMA · FASE E/F</span>
+        <span class="tag gold">Bergaya TKA</span>
+        <span class="tag green">10 Kartu Tema</span>
+      </div>
+      <h1 class="hero-title"><span class="highlight">KARTU TEMA</span><br />TKA LITERASI GEOGRAFI</h1>
+      <p class="hero-sub">
+        Pilih kartu tema untuk mulai mengerjakan. Setiap kartu berisi soal bergaya TKA dengan stimulus kaya.<br />
+        <strong>Tema 1, 2 &amp; 3</strong> aktif dengan 22 soal; <strong>Tema 4–10</strong> disiapkan sebagai kartu tema berikutnya.
+      </p>
+    </section>
+
+    <div class="section-header">
+      <div class="num">10</div>
+      <h2>Pilih Kartu Tema <small>Klik kartu untuk melihat identitas &amp; mulai mengerjakan</small></h2>
+      <span class="badge">Tema</span>
+    </div>
+
+    <div class="kartu-grid" id="kartuGrid"></div>
+
+    <div class="rekap-card">
+      <h3><i class="fas fa-chart-pie" aria-hidden="true"></i> Rekapitulasi Latihan</h3>
+      <table class="rekap-table">
+        <tr><th>Bentuk Soal (Tema 1–3)</th><th>Jumlah per Tema</th><th>Nomor</th></tr>
+        <tr><td>Pilihan Ganda (PG)</td><td><span class="pill">12</span></td><td>1–12</td></tr>
+        <tr><td>Pilihan Ganda Kompleks (MCMA)</td><td><span class="pill">6</span></td><td>13–18</td></tr>
+        <tr><td>PG Kompleks Kategori</td><td><span class="pill">4</span></td><td>19–22</td></tr>
+        <tr><td><strong>Total per Tema</strong></td><td><span class="pill" style="background:rgba(180,83,9,.14);color:var(--gold);">22</span></td><td>—</td></tr>
+      </table>
+      <p style="font-size:.8rem;color:var(--text-muted);margin-top:12px;font-style:italic;">Tema 4–10 disiapkan sebagai kartu tema berikutnya; soal dapat ditambahkan dengan pola yang sama.</p>
+    </div>
+
+    <div class="footer-credit">
+      <span class="gold"><i class="fas fa-school" aria-hidden="true"></i> SMAN 3 KASONGAN</span> · Latihan TKA Literasi Geografi<br />
+      <span style="font-size:.78rem;">Bukan soal resmi TKA</span>
+    </div>
+  </div>
+
+  <div id="temaView" class="tema-view" aria-label="Pengerjaan tema">
+    <button type="button" class="tema-back" onclick="kembaliKeDaftar()"><i class="fas fa-arrow-left" aria-hidden="true"></i> Kembali ke daftar tema</button>
+    <div id="temaContent"></div>
+  </div>
+
+</main>
+
+<button type="button" class="to-top" id="toTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Kembali ke atas">
+  <i class="fas fa-arrow-up" aria-hidden="true"></i>
+</button>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<div class="modal-overlay" id="modalIdentitas" aria-hidden="true">
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button type="button" class="mc-close" onclick="tutupModal()" aria-label="Tutup"><i class="fas fa-times" aria-hidden="true"></i></button>
+    <div class="mc-icon"><i class="fas fa-id-card" aria-hidden="true"></i></div>
+    <h3 id="modalTitle">Identitas Peserta</h3>
+    <p class="mc-sub" id="modalSub">Isi identitasmu sebelum memulai tema ini. Identitas akan ditampilkan pada hasil pekerjaan.</p>
+    <div class="mc-field">
+      <label for="inpNama">Nama Lengkap</label>
+      <input type="text" id="inpNama" placeholder="Contoh: Ahmad Fauzi" autocomplete="name" />
+    </div>
+    <div class="mc-field">
+      <label for="inpKelas">Kelas</label>
+      <input type="text" id="inpKelas" placeholder="Contoh: X-1" autocomplete="off" />
+    </div>
+    <div class="mc-field">
+      <label for="inpSekolah">Asal Sekolah</label>
+      <input type="text" id="inpSekolah" placeholder="Contoh: SMAN 3 Kasongan" autocomplete="organization" />
+    </div>
+    <div class="mc-error" id="mcError">Semua kolom wajib diisi.</div>
+    <button type="button" class="mc-btn" onclick="simpanIdentitas()"><i class="fas fa-play" aria-hidden="true"></i> Mulai Mengerjakan</button>
+  </div>
+</div>
+
+<script>
+(function(){'use strict';
+
+/* ========== DATA TEMA ========== */
+const TEMA=[
+  {id:1, judul:'Pengertian & Hakikat Geografi', desc:'Definisi para ahli, hakikat kelingkungan & kewilayahan, perbandingan ilmu.', aktif:true, soal:22},
+  {id:2, judul:'Penelitian Geografi', desc:'Pengertian, jenis, populasi & sampel, instrumen, analisis, dan laporan penelitian.', aktif:true, soal:22},
+  {id:3, judul:'Peta & Pemetaan', desc:'Pengertian, komponen, jenis peta, proyeksi, skala, simbol, dan manfaat peta.', aktif:true, soal:22},
+  {id:4, judul:'Aspek & Pendekatan Geografi', desc:'Aspek fisik & nonfisik; pendekatan keruangan, kelingkungan, kompleks wilayah.', aktif:false, soal:22},
+  {id:5, judul:'Keterampilan & Manfaat Geografi', desc:'Observasi, interpretasi, pemetaan, pelaporan; manfaat & profesi geografi.', aktif:false, soal:22},
+  {id:6, judul:'Geosfer: Litosfer & Atmosfer', desc:'Batuan, tanah, cuaca, iklim, dan interaksinya dengan kehidupan.', aktif:false, soal:22},
+  {id:7, judul:'Geosfer: Hidrosfer & Biosfer', desc:'Siklus air, DAS, persebaran flora-fauna, dan ekosistem.', aktif:false, soal:22},
+  {id:8, judul:'Antroposfer & Interaksi Manusia-Lingkungan', desc:'Penduduk, migrasi, permukiman, dan hubungan manusia dengan alam.', aktif:false, soal:22},
+  {id:9, judul:'SIG & Penginderaan Jauh', desc:'SIG, GPS, citra satelit, dan interpretasi data spasial digital.', aktif:false, soal:22},
+  {id:10, judul:'Mitigasi Bencana & Pembangunan Berkelanjutan', desc:'Risiko bencana, adaptasi, mitigasi, dan SDGs dalam konteks geografi.', aktif:false, soal:22}
+];
+
+/* ========== STATE ========== */
+const state={answers:{}, identitas:null, selesai:{}, skor:{}};
+try{const s=JSON.parse(localStorage.getItem('tka-kartu-state')||'{}');if(s.answers)state.answers=s.answers;if(s.identitas)state.identitas=s.identitas;if(s.selesai)state.selesai=s.selesai;if(s.skor)state.skor=s.skor}catch(e){}
+function simpan(){try{localStorage.setItem('tka-kartu-state',JSON.stringify(state))}catch(e){}}
+
+/* ========== THEME ========== */
+window.toggleTheme=function(){
+  const h=document.documentElement;
+  const n=h.getAttribute('data-theme')==='dark'?'light':'dark';
+  h.setAttribute('data-theme',n);
+  document.getElementById('themeBtn').innerHTML=n==='dark'?'<i class="fas fa-sun" aria-hidden="true"></i>':'<i class="fas fa-moon" aria-hidden="true"></i>';
+  try{localStorage.setItem('tka-geo-theme',n)}catch(e){}
+};
+(function(){try{const s=localStorage.getItem('tka-geo-theme');if(s==='dark'){document.documentElement.setAttribute('data-theme','dark');const b=document.getElementById('themeBtn');if(b)b.innerHTML='<i class="fas fa-sun" aria-hidden="true"></i>'}}catch(e){}})();
+
+/* ========== HEADER + PROGRESS ========== */
+(function(){
+  const h=document.getElementById('siteHeader'),t=document.getElementById('toTop'),p=document.getElementById('progressThumb');
+  let tk=false;
+  function s(){
+    const y=window.scrollY;
+    const dh=document.documentElement.scrollHeight-window.innerHeight;
+    h.classList.toggle('scrolled',y>20);
+    t.classList.toggle('show',y>480);
+    if(p&&dh>0)p.style.width=Math.min(y/dh*100,100)+'%';
+    tk=false;
+  }
+  window.addEventListener('scroll',()=>{if(!tk){requestAnimationFrame(s);tk=true}},{passive:true});
+  s();
+})();
+
+/* ========== TOAST ========== */
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.classList.add('show');
+  clearTimeout(t._t);
+  t._t=setTimeout(()=>t.classList.remove('show'),3200);
+}
+
+/* ========== RENDER KARTU ========== */
+function renderKartu(){
+  const grid=document.getElementById('kartuGrid');
+  if(!grid)return;
+  grid.innerHTML='';
+  TEMA.forEach(t=>{
+    const done=state.selesai[t.id]===true;
+    const skor=state.skor&&state.skor[t.id]!==undefined?state.skor[t.id]:null;
+    const div=document.createElement('div');
+    div.className='kartu-tema'+(t.aktif?'':' locked')+(done?' done':'');
+    div.setAttribute('role','button');
+    div.setAttribute('tabindex',t.aktif?'0':'-1');
+    div.innerHTML=`
+      <div class="kt-num">Tema ${t.id}</div>
+      <div class="kt-title">${t.judul}</div>
+      <div class="kt-desc">${t.desc}</div>
+      <div class="kt-meta">
+        <span>${t.aktif?t.soal+' soal':'Segera hadir'}</span>
+        <span class="kt-status"><i class="fas fa-check-circle"></i> Selesai</span>
+        ${done&&skor!==null?'<span class="kt-score">'+skor+'</span>':''}
+        ${t.aktif?'<span class="kt-arrow"><i class="fas fa-arrow-right"></i></span>':'<span class="kt-lock"><i class="fas fa-lock"></i></span>'}
+      </div>
+      <div class="kt-badge-done"><i class="fas fa-check"></i></div>
+    `;
+    if(t.aktif){
+      div.addEventListener('click',()=>bukaTema(t.id));
+      div.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();bukaTema(t.id)}});
+    }else{
+      div.addEventListener('click',()=>toast('Tema '+t.id+' disiapkan sebagai kartu tema berikutnya.'));
+    }
+    grid.appendChild(div);
+  });
+}
+
+/* ========== MODAL IDENTITAS ========== */
+let pendingTemaId=null;
+window.bukaTema=function(id){
+  if(!state.identitas){
+    pendingTemaId=id;
+    document.getElementById('inpNama').value='';
+    document.getElementById('inpKelas').value='';
+    document.getElementById('inpSekolah').value='';
+    document.getElementById('mcError').style.display='none';
+    document.getElementById('modalIdentitas').classList.add('open');
+    document.getElementById('modalIdentitas').setAttribute('aria-hidden','false');
+    setTimeout(()=>document.getElementById('inpNama').focus(),100);
+    return;
+  }
+  tampilkanTema(id);
+};
+
+window.tutupModal=function(){
+  document.getElementById('modalIdentitas').classList.remove('open');
+  document.getElementById('modalIdentitas').setAttribute('aria-hidden','true');
+};
+
+window.simpanIdentitas=function(){
+  const nama=document.getElementById('inpNama').value.trim();
+  const kelas=document.getElementById('inpKelas').value.trim();
+  const sekolah=document.getElementById('inpSekolah').value.trim();
+  if(!nama||!kelas||!sekolah){
+    document.getElementById('mcError').style.display='block';
+    return;
+  }
+  state.identitas={nama,kelas,sekolah};
+  simpan();
+  tutupModal();
+  if(pendingTemaId)tampilkanTema(pendingTemaId);
+};
+
+window.kembaliKeDaftar=function(){
+  document.getElementById('temaView').classList.remove('active');
+  document.getElementById('temaView').innerHTML='';
+  document.getElementById('daftarTema').style.display='block';
+  renderKartu();
+  window.scrollTo({top:0,behavior:'smooth'});
+};
+
+/* ========== SOAL TEMA 1 ========== */
+const PG_Q_1=[
+  {q:'Kata "geografi" berasal dari bahasa Yunani "geo" yang berarti ...',o:['Air','Bumi','Langit','Batu','Udara'],a:1},
+  {q:'Kata "graphien" dalam istilah geografi berarti ...',o:['Mengukur','Menulis/melukis','Menggambar peta','Menghitung','Mengamati'],a:1},
+  {q:'Ahli yang dijuluki "Bapak Geografi" karena pertama kali menciptakan istilah geografi adalah ...',o:['Eratosthenes','Herodotus','Ptolemaeus','Aristoteles','Plato'],a:0},
+  {q:'Menurut Bintarto, geografi mempelajari ...',o:['Batuan dan mineral','Hubungan kausal fenomena geosfer dengan kehidupan manusia','Kondisi cuaca dan iklim','Budaya masyarakat','Struktur bumi'],a:1},
+  {q:'Objek material geografi adalah ...',o:['Cara mempelajari geografi','Seluruh fenomena geosfer','Metode penelitian','Peta dan citra satelit','Alat pengukuran'],a:1},
+  {q:'Objek formal geografi adalah ...',o:['Seluruh fenomena geosfer','Cara pandang/pendekatan dalam mempelajari geografi','Batuan penyusun bumi','Peta tematik','Data statistik'],a:1},
+  {q:'Lapisan geosfer yang terdiri dari batuan dan tanah adalah ...',o:['Litosfer','Atmosfer','Hidrosfer','Biosfer','Antroposfer'],a:0},
+  {q:'Lapisan udara yang menyelimuti bumi disebut ...',o:['Litosfer','Atmosfer','Hidrosfer','Biosfer','Antroposfer'],a:1},
+  {q:'Lapisan kehidupan yang mencakup seluruh makhluk hidup disebut ...',o:['Litosfer','Atmosfer','Hidrosfer','Biosfer','Antroposfer'],a:3},
+  {q:'Lapisan manusia beserta aktivitas dan budayanya disebut ...',o:['Litosfer','Atmosfer','Hidrosfer','Biosfer','Antroposfer'],a:4},
+  {q:'Prinsip geografi yang menekankan bahwa fenomena tidak merata di permukaan bumi adalah ...',o:['Distribusi','Interelasi','Deskripsi','Korologi','Komparasi'],a:0},
+  {q:'Prinsip geografi yang menekankan fenomena saling memengaruhi adalah ...',o:['Distribusi','Interelasi','Deskripsi','Korologi','Komparasi'],a:1}
+];
+const MCMA_Q_1=[
+  {q:'Pernyataan yang tepat mengenai keterkaitan karhutla dengan lapisan geosfer adalah ...',o:['Kebakaran gambut melepaskan karbon ke atmosfer sehingga memperburuk kualitas udara.','Kerusakan biosfer akibat kebakaran dapat mengurangi keanekaragaman hayati.','Karhutla hanya berdampak pada litosfer dan tidak memengaruhi atmosfer.','Asap karhutla dapat mengganggu aktivitas antroposfer seperti sekolah dan transportasi.','Restorasi gambut tidak berkaitan dengan upaya mitigasi perubahan iklim.'],a:[0,1,3]},
+  {q:'Berdasarkan data perubahan penggunaan lahan (hutan 50%→35%, perkebunan 20%→30%, permukiman 10%→20%, pertanian 15%→12%), pernyataan yang tepat adalah ...',o:['Luas hutan menurun 15 poin persen dalam lima tahun.','Perkebunan dan permukiman mengalami peningkatan luas.','Pertanian meningkat seiring dengan penurunan hutan.','Alih fungsi hutan kemungkinan menjadi salah satu penyebab berkurangnya luas hutan.','Tidak ada perubahan signifikan pada seluruh jenis lahan.'],a:[0,1,3]},
+  {q:'Berdasarkan informasi wilayah pesisir (mangrove beralih jadi tambak, permukiman di garis pantai, abrasi parah), kesimpulan yang tepat adalah ...',o:['Berkurangnya mangrove berpotensi meningkatkan abrasi karena fungsi penahan gelombang melemah.','Permukiman nelayan di garis pantai rentan terhadap risiko abrasi dan gelombang tinggi.','Alih fungsi mangrove menjadi tambak meningkatkan perlindungan alami terhadap abrasi.','Mitigasi berbasis ekosistem (penanaman kembali mangrove) relevan untuk mengurangi abrasi.','Abrasi tidak dipengaruhi oleh aktivitas manusia.'],a:[0,1,3]},
+  {q:'Cabang geografi yang termasuk dalam geografi fisik adalah ...',o:['Geomorfologi','Klimatologi','Geografi penduduk','Hidrologi','Geografi ekonomi'],a:[0,1,3]},
+  {q:'Tindakan yang tepat untuk rencana mitigasi sekolah di daerah rawan gempa adalah ...',o:['Memetakan jalur evakuasi dan titik kumpul yang aman.','Melakukan simulasi evakuasi secara berkala.','Membangun gedung baru tanpa memperhatikan struktur tahan gempa.','Memasang rambu evakuasi dan memberikan edukasi kebencanaan.','Mengabaikan informasi dari BMKG karena dianggap tidak penting.'],a:[0,1,3]},
+  {q:'Pertimbangan geografis yang tepat dalam memilih lokasi pusat pertumbuhan baru adalah ...',o:['Memilih lokasi dengan risiko bencana yang dapat dimitigasi.','Mempertimbangkan aksesibilitas dan ketersediaan sumber daya air.','Memilih lokasi yang paling murah tanpa memperhatikan risiko.','Melakukan analisis kelayakan lahan dan mitigasi risiko sebelum memutuskan.','Mengabaikan kondisi fisik karena pertumbuhan ekonomi hanya ditentukan oleh kebijakan.'],a:[0,1,3]}
+];
+const KAT_Q_1=[
+  {
+    q:'Tentukan kategori yang tepat untuk setiap pernyataan: Distribusi, Interelasi, Deskripsi, atau Korologi.',
+    rows:[
+      {t:'Persebaran permukiman di sepanjang sungai membentuk pola memanjang.', a:'Distribusi', opts:['Distribusi','Interelasi','Deskripsi','Korologi']},
+      {t:'Hujan lebat di hulu menyebabkan banjir di hilir.', a:'Interelasi', opts:['Distribusi','Interelasi','Deskripsi','Korologi']},
+      {t:'Danau Toba memiliki panjang 100 km, lebar 30 km, dan kedalaman 505 m.', a:'Deskripsi', opts:['Distribusi','Interelasi','Deskripsi','Korologi']},
+      {t:'Analisis menyeluruh tentang banjir Jakarta: titik banjir, penyebab, dan deskripsi wilayah.', a:'Korologi', opts:['Distribusi','Interelasi','Deskripsi','Korologi']}
+    ]
+  },
+  {
+    q:'Tentukan kategori yang tepat: Objek Material atau Objek Formal.',
+    rows:[
+      {t:'Erupsi gunung berapi dan aliran lava.', a:'Objek Material', opts:['Objek Material','Objek Formal']},
+      {t:'Analisis persebaran permukiman berdasarkan jarak dari pusat kota.', a:'Objek Formal', opts:['Objek Material','Objek Formal']},
+      {t:'Pola curah hujan dan suhu udara di suatu wilayah.', a:'Objek Material', opts:['Objek Material','Objek Formal']},
+      {t:'Kajian interaksi manusia-lingkungan di kawasan pesisir.', a:'Objek Formal', opts:['Objek Material','Objek Formal']}
+    ]
+  },
+  {
+    q:'Tentukan pendekatan geografi yang paling tepat: Keruangan, Kelingkungan, atau Kompleks Wilayah.',
+    rows:[
+      {t:'Memetakan titik-titik rawan banjir di suatu kota.', a:'Keruangan', opts:['Keruangan','Kelingkungan','Kompleks Wilayah']},
+      {t:'Mengkaji dampak limbah pabrik terhadap kualitas air sungai dan kesehatan warga.', a:'Kelingkungan', opts:['Keruangan','Kelingkungan','Kompleks Wilayah']},
+      {t:'Menyusun profil lengkap kabupaten: kondisi fisik, sosial, ekonomi, dan lingkungan.', a:'Kompleks Wilayah', opts:['Keruangan','Kelingkungan','Kompleks Wilayah']},
+      {t:'Menganalisis pola persebaran pasar berdasarkan jarak dari pusat kota.', a:'Keruangan', opts:['Keruangan','Kelingkungan','Kompleks Wilayah']}
+    ]
+  },
+  {
+    q:'Tentukan keterampilan geografi yang paling dominan: Observasi, Interpretasi Data, Pemetaan, atau Pelaporan.',
+    rows:[
+      {t:'Mengamati jenis tanah dan aliran air di halaman sekolah.', a:'Observasi', opts:['Observasi','Interpretasi Data','Pemetaan','Pelaporan']},
+      {t:'Membaca grafik curah hujan untuk menentukan musim tanam.', a:'Interpretasi Data', opts:['Observasi','Interpretasi Data','Pemetaan','Pelaporan']},
+      {t:'Menggambar denah sekolah dengan legenda dan skala.', a:'Pemetaan', opts:['Observasi','Interpretasi Data','Pemetaan','Pelaporan']},
+      {t:'Menyusun laporan hasil pengamatan fenomena geosfer di lingkungan sekitar.', a:'Pelaporan', opts:['Observasi','Interpretasi Data','Pemetaan','Pelaporan']}
+    ]
+  }
+];
+
+/* ========== SOAL TEMA 2 : PENELITIAN GEOGRAFI ========== */
+const PG_Q_2=[
+  {q:'Penelitian geografi pada hakikatnya bertujuan untuk ...',o:['Mengembangkan teori saja','Memahami fenomena geosfer','Memecahkan masalah sosial','Semua salah','A dan B benar'],a:1},
+  {q:'Ciri khas penelitian geografi yang membedakannya dengan sosiologi adalah ...',o:['Fokus pada manusia','Fokus pada interaksi sosial','Fokus pada aspek keruangan dan lingkungan','Fokus pada sejarah','Fokus pada politik'],a:2},
+  {q:'Penelitian yang bertujuan menggali informasi awal tentang fenomena geografi yang belum banyak diketahui disebut ...',o:['Deskriptif','Eksplanatif','Eksploratif','Eksperimen','Survei'],a:2},
+  {q:'Peneliti ingin mengetahui penyebab tingginya angka kemacetan di Jakarta. Penelitian ini termasuk jenis ...',o:['Eksploratif','Deskriptif','Eksplanatif','Studi Kasus','Eksperimen'],a:2},
+  {q:'Penelitian yang menggunakan data berupa angka dan analisis statistik disebut penelitian ...',o:['Kualitatif','Kuantitatif','Eksploratif','Deskriptif','Historis'],a:1},
+  {q:'Dalam penelitian "Pengaruh Curah Hujan terhadap Intensitas Banjir di Jakarta", variabel bebasnya adalah ...',o:['Intensitas banjir','Curah hujan','Kondisi tanah','Topografi','Tata guna lahan'],a:1},
+  {q:'Variabel yang sengaja dijaga tetap agar tidak mempengaruhi hasil penelitian disebut ...',o:['Variabel bebas','Variabel terikat','Variabel kontrol','Variabel moderasi','Variabel intervening'],a:2},
+  {q:'Peneliti mewawancarai 50 kepala keluarga di sebuah desa. Bagian dari populasi yang diteliti ini disebut ...',o:['Populasi','Sampel','Data','Variabel','Hipotesis'],a:1},
+  {q:'Teknik pengambilan sampel di mana setiap anggota populasi memiliki kesempatan yang sama untuk dipilih disebut ...',o:['Purposive sampling','Stratified sampling','Random sampling','Cluster sampling','Snowball sampling'],a:2},
+  {q:'Kelebihan teknik wawancara dibandingkan kuesioner adalah ...',o:['Lebih efisien','Menjangkau banyak responden','Mendapatkan informasi yang lebih mendalam','Lebih murah','Data lebih objektif'],a:2},
+  {q:'Instrumen yang paling tepat untuk mengumpulkan data tentang persebaran lahan pertanian adalah ...',o:['Kuesioner','Lembar observasi','Peta dan citra satelit','Alat ukur GPS','Wawancara'],a:2},
+  {q:'Tahap pengolahan data yang bertujuan untuk memeriksa kelengkapan data adalah ...',o:['Pembuatan kode','Tabulasi','Pemetaan','Penyuntingan','Analisis'],a:3}
+];
+const MCMA_Q_2=[
+  {q:'Pernyataan yang tepat mengenai ciri khas penelitian geografi adalah ...',o:['Memperhatikan aspek keruangan (di mana fenomena terjadi).','Memperhatikan interaksi manusia dengan lingkungan.','Mengabaikan karakteristik wilayah.','Memperhatikan karakteristik khas wilayah (kewilayahan).','Hanya fokus pada data statistik tanpa konteks ruang.'],a:[0,1,3]},
+  {q:'Pernyataan yang tepat mengenai jenis penelitian berdasarkan tujuan adalah ...',o:['Penelitian eksploratif menggali informasi awal fenomena yang belum banyak diketahui.','Penelitian deskriptif menggambarkan fenomena secara sistematis.','Penelitian eksplanatif hanya mendeskripsikan tanpa mencari sebab.','Penelitian eksplanatif menemukan penyebab fenomena berdasarkan hipotesis.','Penelitian deskriptif selalu menguji hipotesis sebab-akibat.'],a:[0,1,3]},
+  {q:'Pernyataan yang tepat mengenai variabel penelitian adalah ...',o:['Variabel bebas adalah faktor yang mempengaruhi/menjadi penyebab.','Variabel terikat adalah faktor yang dipengaruhi/menjadi akibat.','Variabel kontrol sengaja diubah-ubah agar hasil berubah.','Variabel kontrol dijaga tetap agar tidak mengganggu hasil.','Variabel bebas selalu berupa data kualitatif.'],a:[0,1,3]},
+  {q:'Pernyataan yang tepat mengenai populasi dan sampel adalah ...',o:['Populasi adalah keseluruhan subjek penelitian.','Sampel adalah bagian dari populasi yang diteliti.','Random sampling memberi peluang sama bagi setiap anggota populasi.','Purposive sampling dipilih berdasarkan kriteria tertentu.','Sampel yang baik tidak perlu mewakili populasi.'],a:[0,1,2,3]},
+  {q:'Pernyataan yang tepat mengenai teknik pengumpulan data adalah ...',o:['Observasi dilakukan melalui pengamatan langsung di lapangan.','Wawancara memberikan informasi yang lebih mendalam.','Kuesioner efisien untuk menjangkau banyak responden.','Pemetaan dan penginderaan jauh adalah teknik khas geografi.','Kuesioner selalu memberikan data yang lebih akurat daripada observasi.'],a:[0,1,2,3]},
+  {q:'Pernyataan yang tepat mengenai pengolahan dan analisis data adalah ...',o:['Penyuntingan memeriksa kelengkapan dan keseragaman data.','Tabulasi menyajikan data dalam tabel/grafik.','Pemetaan mengubah data menjadi informasi keruangan.','Analisis deskriptif menggambarkan fenomena secara naratif.','Analisis statistik tidak pernah digunakan dalam penelitian geografi.'],a:[0,1,2,3]}
+];
+const KAT_Q_2=[
+  {
+    q:'Tentukan kategori yang tepat untuk setiap pernyataan: Eksploratif, Deskriptif, atau Eksplanatif.',
+    rows:[
+      {t:'Menemukan pola persebaran flora langka di suatu wilayah yang belum banyak diteliti.', a:'Eksploratif', opts:['Eksploratif','Deskriptif','Eksplanatif']},
+      {t:'Mendeskripsikan karakteristik fisik dan sosial suatu desa.', a:'Deskriptif', opts:['Eksploratif','Deskriptif','Eksplanatif']},
+      {t:'Mencari hubungan antara tutupan lahan dan intensitas banjir.', a:'Eksplanatif', opts:['Eksploratif','Deskriptif','Eksplanatif']},
+      {t:'Menjelaskan pola persebaran permukiman di sepanjang sungai.', a:'Deskriptif', opts:['Eksploratif','Deskriptif','Eksplanatif']}
+    ]
+  },
+  {
+    q:'Tentukan kategori yang tepat: Variabel Bebas, Variabel Terikat, atau Variabel Kontrol.',
+    rows:[
+      {t:'Curah hujan dalam penelitian pengaruh curah hujan terhadap banjir.', a:'Variabel Bebas', opts:['Variabel Bebas','Variabel Terikat','Variabel Kontrol']},
+      {t:'Intensitas banjir dalam penelitian pengaruh curah hujan terhadap banjir.', a:'Variabel Terikat', opts:['Variabel Bebas','Variabel Terikat','Variabel Kontrol']},
+      {t:'Jenis tanah yang dijaga tetap agar tidak mengganggu hasil.', a:'Variabel Kontrol', opts:['Variabel Bebas','Variabel Terikat','Variabel Kontrol']},
+      {t:'Kepadatan penduduk dalam penelitian pengaruh kepadatan penduduk terhadap kualitas air.', a:'Variabel Bebas', opts:['Variabel Bebas','Variabel Terikat','Variabel Kontrol']}
+    ]
+  },
+  {
+    q:'Tentukan kategori yang tepat: Random, Purposive, atau Stratified.',
+    rows:[
+      {t:'Mengundi nomor absen siswa untuk memilih sampel.', a:'Random', opts:['Random','Purposive','Stratified']},
+      {t:'Hanya memilih siswa yang tinggal di daerah rawan banjir.', a:'Purposive', opts:['Random','Purposive','Stratified']},
+      {t:'Mengambil sampel dari setiap kelas secara proporsional.', a:'Stratified', opts:['Random','Purposive','Stratified']},
+      {t:'Memilih sampel dari setiap strata/kelompok populasi.', a:'Stratified', opts:['Random','Purposive','Stratified']}
+    ]
+  },
+  {
+    q:'Tentukan kategori yang tepat: Observasi, Wawancara, Kuesioner, atau Pemetaan.',
+    rows:[
+      {t:'Mengamati langsung kondisi kebersihan selokan di sekolah.', a:'Observasi', opts:['Observasi','Wawancara','Kuesioner','Pemetaan']},
+      {t:'Tanya jawab mendalam dengan petani tentang dampak banjir.', a:'Wawancara', opts:['Observasi','Wawancara','Kuesioner','Pemetaan']},
+      {t:'Menyebar angket tertulis kepada 100 siswa.', a:'Kuesioner', opts:['Observasi','Wawancara','Kuesioner','Pemetaan']},
+      {t:'Menggunakan peta untuk mengetahui persebaran lahan pertanian.', a:'Pemetaan', opts:['Observasi','Wawancara','Kuesioner','Pemetaan']}
+    ]
+  }
+];
+
+/* ========== SOAL TEMA 3 : PETA & PEMETAAN ========== */
+const PG_Q_3=[
+  {q:'Peta adalah representasi permukaan bumi pada bidang datar yang diperkecil dengan skala tertentu. Pengertian ini paling sesuai dengan definisi ...',o:['Erwin Raisz','Bintarto','ICA (International Cartographic Association)','Suharyono & Amien','Ptolemaeus'],a:2},
+  {q:'Komponen peta yang berfungsi menunjukkan perbandingan jarak di peta dengan jarak sebenarnya adalah ...',o:['Legenda','Inset','Skala','Orientasi','Sumber'],a:2},
+  {q:'Peta yang menggambarkan tema tertentu, seperti kepadatan penduduk atau persebaran iklim, disebut ...',o:['Peta umum','Peta topografi','Peta tematik','Peta kadaster','Peta chorografi'],a:2},
+  {q:'Proyeksi peta yang menggunakan bidang proyeksi berupa tabung dan cocok untuk wilayah ekuator adalah ...',o:['Proyeksi kerucut','Proyeksi azimuthal','Proyeksi silinder','Proyeksi planar','Proyeksi gnomonic'],a:2},
+  {q:'Skala 1:250.000 termasuk ke dalam jenis skala ...',o:['Kadaster','Besar','Sedang','Kecil','Geografis'],a:1},
+  {q:'Simbol peta yang digunakan untuk mewakili objek memanjang seperti jalan dan sungai adalah simbol ...',o:['Titik','Garis','Area','Warna','Tipografi'],a:1},
+  {q:'Manfaat inset pada peta adalah ...',o:['Menampilkan legenda simbol','Menunjukkan skala peta','Menunjukkan lokasi peta utama dalam konteks lebih luas','Menampilkan tahun pembuatan peta','Menampilkan sumber peta'],a:2},
+  {q:'Warna biru pada peta umum biasanya digunakan untuk menggambarkan ...',o:['Dataran tinggi','Hutan','Perairan','Jalan raya','Permukiman'],a:2},
+  {q:'Sistem koordinat yang menggunakan garis lintang dan garis bujur untuk menentukan posisi absolut disebut ...',o:['Sistem proyeksi','Sistem koordinat geografis','Sistem kartografi','Sistem topografi','Sistem azimuthal'],a:1},
+  {q:'Lembaga pemerintah Indonesia yang bertugas mengatur standar dan informasi geospasial adalah ...',o:['BMKG','BIG','BPS','LAPAN','Kementerian PUPR'],a:1},
+  {q:'Perbedaan utama antara peta dan globe adalah ...',o:['Peta berbentuk datar, globe berbentuk bulat','Peta lebih akurat bentuknya','Globe menggunakan skala lebih besar','Peta tidak memiliki skala','Globe hanya menampilkan satu negara'],a:0},
+  {q:'Peta Rupa Bumi Indonesia (RBI) tersedia dalam berbagai skala. Skala 1:25.000 termasuk jenis peta ...',o:['Skala kadaster','Skala besar','Skala sedang','Skala kecil','Skala geografis'],a:1}
+];
+const MCMA_Q_3=[
+  {q:'Pernyataan yang tepat mengenai komponen peta adalah ...',o:['Judul memberikan informasi tentang isi atau tema peta.','Skala menunjukkan perbandingan jarak di peta dengan jarak sebenarnya.','Legenda berisi keterangan simbol-simbol yang digunakan.','Inset menunjukkan arah utara pada peta.','Sumber menunjukkan lembaga atau penulis pembuat peta.'],a:[0,1,2,4]},
+  {q:'Pernyataan yang tepat mengenai jenis peta berdasarkan isinya adalah ...',o:['Peta umum menggambarkan kenampakan umum permukaan bumi.','Peta tematik menggambarkan tema tertentu.','Peta topografi termasuk peta tematik.','Peta kadaster termasuk peta umum.','Peta chorografi termasuk peta tematik.'],a:[0,1,3]},
+  {q:'Pernyataan yang tepat mengenai proyeksi peta adalah ...',o:['Proyeksi silinder cocok untuk wilayah ekuator.','Proyeksi kerucut cocok untuk wilayah lintang sedang.','Proyeksi azimuthal cocok untuk wilayah kutub.','Proyeksi Mercator adalah contoh proyeksi silinder.','Semua proyeksi peta memiliki distorsi yang sama.'],a:[0,1,2,3]},
+  {q:'Pernyataan yang tepat mengenai skala peta adalah ...',o:['Skala 1:10.000 lebih detail daripada skala 1:100.000.','Skala 1:1.000.000 termasuk skala kecil.','Semakin kecil angka penyebut, semakin detail peta.','Skala 1:5.000 termasuk skala kadaster.','Skala garis tetap berlaku meskipun peta diperbesar.'],a:[0,1,2,3,4]},
+  {q:'Pernyataan yang tepat mengenai simbol peta adalah ...',o:['Simbol titik digunakan untuk objek yang memiliki lokasi spesifik.','Simbol garis digunakan untuk objek memanjang.','Simbol area digunakan untuk objek yang memiliki luasan.','Contoh simbol titik adalah gunung, kota, dan bandara.','Contoh simbol garis adalah hutan, danau, dan permukiman.'],a:[0,1,2,3]},
+  {q:'Pernyataan yang tepat mengenai manfaat peta adalah ...',o:['Peta membantu navigasi dan penentuan rute perjalanan.','Peta digunakan untuk perencanaan tata ruang wilayah.','Peta membantu mitigasi bencana dengan memetakan zona rawan.','Peta digunakan dalam penelitian dan pendidikan.','Peta tidak memiliki manfaat dalam bidang kesehatan.'],a:[0,1,2,3]}
+];
+const KAT_Q_3=[
+  {
+    q:'Tentukan kategori yang tepat untuk setiap pernyataan: Peta Umum, Peta Tematik, atau Peta Kadaster.',
+    rows:[
+      {t:'Peta yang menggambarkan relief dan kontur permukaan bumi.', a:'Peta Umum', opts:['Peta Umum','Peta Tematik','Peta Kadaster']},
+      {t:'Peta yang menggambarkan kepadatan penduduk suatu wilayah.', a:'Peta Tematik', opts:['Peta Umum','Peta Tematik','Peta Kadaster']},
+      {t:'Peta yang menggambarkan kepemilikan tanah dengan skala besar.', a:'Peta Kadaster', opts:['Peta Umum','Peta Tematik','Peta Kadaster']},
+      {t:'Peta yang menggambarkan persebaran iklim di suatu negara.', a:'Peta Tematik', opts:['Peta Umum','Peta Tematik','Peta Kadaster']}
+    ]
+  },
+  {
+    q:'Tentukan kategori proyeksi yang tepat: Silinder, Kerucut, atau Azimuthal.',
+    rows:[
+      {t:'Proyeksi yang menggunakan bidang proyeksi berupa tabung.', a:'Silinder', opts:['Silinder','Kerucut','Azimuthal']},
+      {t:'Proyeksi yang cocok untuk wilayah kutub.', a:'Azimuthal', opts:['Silinder','Kerucut','Azimuthal']},
+      {t:'Proyeksi yang cocok untuk wilayah lintang sedang (30°–60°).', a:'Kerucut', opts:['Silinder','Kerucut','Azimuthal']},
+      {t:'Proyeksi Mercator termasuk jenis proyeksi ini.', a:'Silinder', opts:['Silinder','Kerucut','Azimuthal']}
+    ]
+  },
+  {
+    q:'Tentukan kategori skala peta yang tepat: Kadaster, Besar, Sedang, atau Kecil.',
+    rows:[
+      {t:'Skala 1:2.000.', a:'Kadaster', opts:['Kadaster','Besar','Sedang','Kecil']},
+      {t:'Skala 1:50.000.', a:'Besar', opts:['Kadaster','Besar','Sedang','Kecil']},
+      {t:'Skala 1:300.000.', a:'Sedang', opts:['Kadaster','Besar','Sedang','Kecil']},
+      {t:'Skala 1:800.000.', a:'Kecil', opts:['Kadaster','Besar','Sedang','Kecil']}
+    ]
+  },
+  {
+    q:'Tentukan kategori simbol peta yang tepat: Titik, Garis, atau Area.',
+    rows:[
+      {t:'Simbol untuk gunung berapi dan bandara.', a:'Titik', opts:['Titik','Garis','Area']},
+      {t:'Simbol untuk sungai dan jalan raya.', a:'Garis', opts:['Titik','Garis','Area']},
+      {t:'Simbol untuk hutan dan danau.', a:'Area', opts:['Titik','Garis','Area']},
+      {t:'Simbol untuk permukiman penduduk.', a:'Area', opts:['Titik','Garis','Area']}
+    ]
+  }
+];
+
+const SOAL={
+  1:{pg:PG_Q_1, mcma:MCMA_Q_1, kat:KAT_Q_1},
+  2:{pg:PG_Q_2, mcma:MCMA_Q_2, kat:KAT_Q_2},
+  3:{pg:PG_Q_3, mcma:MCMA_Q_3, kat:KAT_Q_3}
+};
+
+/* ========== RENDER SOAL TEMA ========== */
+function tampilkanTema(id){
+  if(!state.identitas){toast('Isi identitas terlebih dahulu.');return}
+  const t=TEMA.find(x=>x.id===id);
+  if(!t||!t.aktif){toast('Tema ini disiapkan sebagai kartu tema berikutnya.');return}
+  document.getElementById('daftarTema').style.display='none';
+  const view=document.getElementById('temaView');
+  view.classList.add('active');
+  view.innerHTML=renderTemaHTML(t);
+  restoreAnswers(id);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function renderTemaHTML(t){
+  const data=SOAL[t.id];
+  let html=`
+  <div class="section-header">
+    <div class="num">${t.id}</div>
+    <h2>Tema ${t.id} <small>${t.judul}</small></h2>
+    <span class="badge">${t.soal} Soal</span>
+  </div>
+  <div class="identitas-box">
+    <div class="id-title"><i class="fas fa-user-graduate" aria-hidden="true"></i> Identitas Peserta</div>
+    <div class="id-grid">
+      <div class="id-field"><label>Nama</label><input type="text" value="${esc(state.identitas.nama)}" readonly /></div>
+      <div class="id-field"><label>Kelas</label><input type="text" value="${esc(state.identitas.kelas)}" readonly /></div>
+      <div class="id-field"><label>Asal Sekolah</label><input type="text" value="${esc(state.identitas.sekolah)}" readonly /></div>
+    </div>
+  </div>
+  <div class="soal-question" style="background:rgba(30,58,138,.04);padding:12px 16px;border-radius:12px;margin-bottom:18px;font-weight:500;font-size:.9rem;">
+    <i class="fas fa-info-circle" style="color:var(--primary);" aria-hidden="true"></i> Petunjuk: PG pilih satu jawaban; MCMA pilih lebih dari satu; Kategori tentukan setiap baris. Klik <strong>"Lihat Pembahasan"</strong> untuk memeriksa. Kunci lengkap ada di akhir halaman.
+  </div>
+  `;
+
+  html+=`<div class="section-header" style="margin-top:24px;"><div class="num" style="background:linear-gradient(135deg,var(--primary),var(--primary-light));">A</div><h2>Pilihan Ganda <small>12 Soal</small></h2><span class="badge">PG</span></div>`;
+  data.pg.forEach((it,i)=>{
+    const L=['A','B','C','D','E'];
+    const opsi=it.o.map((x,j)=>`<div class="opsi-item" role="radio" tabindex="0" aria-checked="false" data-benar="${j===it.a}"><span class="cekbox"></span><span class="kode">${L[j]}.</span> ${x}</div>`).join('');
+    html+=`
+    <div class="soal-card" data-soal="pg" data-idx="${i}">
+      <div class="soal-head">
+        <span class="nomor">${i+1}</span><span class="tipe pg">PG</span>
+        <span class="level">Tema ${t.id}</span>
+      </div>
+      <div class="soal-question">${it.q}</div>
+      <div class="opsi-list" role="radiogroup" aria-label="Pilihan jawaban soal ${i+1}">${opsi}</div>
+      <div class="soal-actions"><button type="button" class="btn-kecil" onclick="togglePembahasan(this)"><i class="fas fa-eye"></i> Lihat Pembahasan</button></div>
+      <div class="pembahasan">
+        <div class="pb-title"><i class="fas fa-lightbulb"></i> Pembahasan</div>
+        <div class="pb-kunci">Kunci: ${L[it.a]}</div>
+        <p>Jawaban yang tepat adalah <strong>${L[it.a]}. ${it.o[it.a]}</strong>. Pilihan lain tidak sesuai dengan konsep yang ditanyakan.</p>
+        <div class="pb-meta">Level: Pemahaman/Penerapan · Indikator: Memahami konsep peta dan pemetaan.</div>
+      </div>
+    </div>`;
+  });
+
+  html+=`<div class="section-header" style="margin-top:24px;"><div class="num" style="background:linear-gradient(135deg,var(--violet),#a78bfa);">B</div><h2>Pilihan Ganda Kompleks <small>6 Soal</small></h2><span class="badge">MCMA</span></div>`;
+  data.mcma.forEach((it,i)=>{
+    const L=['A','B','C','D','E'];
+    const opsi=it.o.map((x,j)=>`<div class="opsi-item" role="checkbox" tabindex="0" aria-checked="false" data-benar="${it.a.includes(j)}"><span class="cekbox"></span><span class="kode">${L[j]}.</span> ${x}</div>`).join('');
+    const kunci=it.a.map(j=>L[j]).join(', ');
+    html+=`
+    <div class="soal-card" data-soal="mcma" data-idx="${i}">
+      <div class="soal-head">
+        <span class="nomor">${i+13}</span><span class="tipe mcma">MCMA</span>
+        <span class="level">Tema ${t.id}</span>
+      </div>
+      <div class="soal-question">${it.q} <em>(Pilih lebih dari satu)</em></div>
+      <div class="opsi-list" role="group" aria-label="Pilihan jawaban soal ${i+13}">${opsi}</div>
+      <div class="soal-actions"><button type="button" class="btn-kecil" onclick="togglePembahasan(this)"><i class="fas fa-eye"></i> Lihat Pembahasan</button></div>
+      <div class="pembahasan">
+        <div class="pb-title"><i class="fas fa-lightbulb"></i> Pembahasan</div>
+        <div class="pb-kunci">Kunci: ${kunci}</div>
+        <p>Pilihan yang benar adalah ${kunci}. Pilihan lain tidak sesuai dengan stimulus/konsep.</p>
+        <div class="pb-meta">Level: Penalaran · Indikator: Menganalisis keterkaitan fenomena peta dan pemetaan.</div>
+      </div>
+    </div>`;
+  });
+
+  html+=`<div class="section-header" style="margin-top:24px;"><div class="num" style="background:linear-gradient(135deg,var(--gold),var(--accent));">C</div><h2>PG Kompleks Kategori <small>4 Soal</small></h2><span class="badge">Kategori</span></div>`;
+  data.kat.forEach((it,i)=>{
+    const rows=it.rows.map((r,ri)=>{
+      const btns=r.opts.map(o=>`<button type="button" onclick="pilihKat(this)">${o}</button>`).join('');
+      return `<tr><td>${r.t}</td><td><div class="kat-opsi" data-benar="${r.a}">${btns}</div></td></tr>`;
+    }).join('');
+    const kunci=it.rows.map(r=>r.a).join(' · ');
+    html+=`
+    <div class="soal-card" data-soal="kat" data-idx="${i}">
+      <div class="soal-head">
+        <span class="nomor">${i+19}</span><span class="tipe kat">Kategori</span>
+        <span class="level">Tema ${t.id}</span>
+      </div>
+      <div class="soal-question">${it.q}</div>
+      <table class="kat-table"><tr><th>Pernyataan</th><th>Kategori</th></tr>${rows}</table>
+      <div class="soal-actions"><button type="button" class="btn-kecil" onclick="togglePembahasan(this)"><i class="fas fa-eye"></i> Lihat Pembahasan</button></div>
+      <div class="pembahasan">
+        <div class="pb-title"><i class="fas fa-lightbulb"></i> Pembahasan</div>
+        <div class="pb-kunci">Kunci: ${kunci}</div>
+        <p>Setiap baris harus dikategorikan dengan tepat sesuai konsep yang ditanyakan.</p>
+        <div class="pb-meta">Level: Pemahaman/Penerapan · Indikator: Mengklasifikasikan pernyataan tentang peta dan pemetaan.</div>
+      </div>
+    </div>`;
+  });
+
+  html+=`
+  <div style="text-align:center;margin:26px 0;">
+    <button type="button" class="mc-btn" style="max-width:360px;margin:0 auto;" onclick="selesaikanTema(${t.id})">
+      <i class="fas fa-check-circle"></i> Selesai &amp; Lihat Hasil
+    </button>
+  </div>
+  <div id="hasilTema"></div>
+  `;
+
+  html+=`
+  <div class="section-header" style="margin-top:30px;"><div class="num" style="background:linear-gradient(135deg,#dc2626,var(--gold));"><i class="fas fa-key"></i></div><h2>Kunci Jawaban <small>Tema ${t.id}</small></h2><span class="badge">Guru</span></div>
+  <div class="kunci-lock-box" id="kunciLockBox">
+    <div class="lock-icon"><i class="fas fa-lock"></i></div>
+    <h4>Kunci Jawaban Terkunci</h4>
+    <p>Kunci dan pembahasan lengkap dapat dibuka oleh guru. Verifikasi menggunakan hash SHA-256 — kata sandi tidak tersimpan dalam file.</p>
+    <div class="kunci-input-row">
+      <label for="kunciInput" class="sr-only">Kata sandi guru</label>
+      <input type="password" id="kunciInput" class="kunci-input" placeholder="Masukkan kata sandi guru" autocomplete="off" />
+      <button type="button" class="kunci-btn" onclick="bukaKunci()"><i class="fas fa-key"></i> Buka Kunci</button>
+    </div>
+    <p id="kunciStatus" style="font-size:.84rem;color:var(--text-muted);" role="status" aria-live="polite"></p>
+  </div>
+  <div class="kunci-box" id="kunciJawaban" aria-live="polite"></div>
+  `;
+
+  return html;
+}
+
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
+/* ========== INTERAKSI JAWABAN ========== */
+window.pilihPG=function(el){
+  const card=el.closest('.soal-card');
+  const idx=card.dataset.idx;
+  const tema=parseInt(document.querySelector('#temaContent .section-header .num').textContent);
+  const key='t'+tema+'-pg-'+idx;
+  if(state.answers[key]!==undefined)return;
+  const benar=el.dataset.benar==='true';
+  const semua=card.querySelectorAll('.opsi-item');
+  semua.forEach(x=>{x.classList.remove('correct','wrong');x.setAttribute('aria-checked','false')});
+  el.classList.add(benar?'correct':'wrong');
+  el.setAttribute('aria-checked','true');
+  if(!benar)semua.forEach(x=>{if(x.dataset.benar==='true')x.classList.add('correct')});
+  state.answers[key]=benar;
+  simpan();
+};
+
+window.pilihMCMA=function(el){
+  const card=el.closest('.soal-card');
+  const idx=card.dataset.idx;
+  const tema=parseInt(document.querySelector('#temaContent .section-header .num').textContent);
+  const key='t'+tema+'-mcma-'+idx;
+  if(state.answers[key]!==undefined)return;
+  el.classList.toggle('selected');
+  el.setAttribute('aria-checked',el.classList.contains('selected'));
+};
+
+window.pilihKat=function(btn){
+  const row=btn.closest('.kat-opsi');
+  const card=btn.closest('.soal-card');
+  const idx=card.dataset.idx;
+  const tema=parseInt(document.querySelector('#temaContent .section-header .num').textContent);
+  const key='t'+tema+'-kat-'+idx;
+  if(state.answers[key]!==undefined)return;
+  row.querySelectorAll('button').forEach(b=>b.classList.remove('picked'));
+  btn.classList.add('picked');
+};
+
+window.togglePembahasan=function(btn){
+  const card=btn.closest('.soal-card');
+  const tipe=card.dataset.soal;
+  const idx=card.dataset.idx;
+  const tema=parseInt(document.querySelector('#temaContent .section-header .num').textContent);
+  if(tipe==='mcma'&&state.answers['t'+tema+'-mcma-'+idx]===undefined)nilaiMCMA(card,tema);
+  if(tipe==='kat'&&state.answers['t'+tema+'-kat-'+idx]===undefined)nilaiKAT(card,tema);
+  const pb=card.querySelector('.pembahasan');
+  if(pb)pb.classList.toggle('show');
+};
+
+function nilaiMCMA(card,tema){
+  const idx=card.dataset.idx;
+  const key='t'+tema+'-mcma-'+idx;
+  if(state.answers[key]!==undefined)return;
+  const semua=card.querySelectorAll('.opsi-item');
+  const benarSet=[...semua].filter(x=>x.dataset.benar==='true');
+  const dipilih=[...semua].filter(x=>x.classList.contains('selected'));
+  const benar=dipilih.length===benarSet.length && dipilih.every(x=>x.dataset.benar==='true');
+  semua.forEach(x=>{
+    if(x.dataset.benar==='true')x.classList.add('correct');
+    else if(x.classList.contains('selected'))x.classList.add('wrong');
+  });
+  state.answers[key]=benar;
+  simpan();
+}
+
+function nilaiKAT(card,tema){
+  const idx=card.dataset.idx;
+  const key='t'+tema+'-kat-'+idx;
+  if(state.answers[key]!==undefined)return;
+  let semuaBenar=true;
+  card.querySelectorAll('.kat-opsi').forEach(row=>{
+    const benar=row.dataset.benar;
+    const dipilih=row.querySelector('button.picked');
+    if(!dipilih){semuaBenar=false;return}
+    const cocok=dipilih.textContent.trim()===benar;
+    if(cocok)dipilih.classList.add('benar');
+    else{dipilih.classList.add('salah');semuaBenar=false}
+  });
+  state.answers[key]=semuaBenar;
+  simpan();
+}
+
+function restoreAnswers(tema){
+  Object.keys(state.answers).forEach(k=>{
+    if(!k.startsWith('t'+tema+'-'))return;
+    const parts=k.split('-');
+    const tp=parts[1], ix=parts[2];
+    const card=document.querySelector('.soal-card[data-soal="'+tp+'"][data-idx="'+ix+'"]');
+    if(!card)return;
+    const benar=state.answers[k];
+    if(tp==='pg'){
+      const semua=card.querySelectorAll('.opsi-item');
+      if(benar)semua.forEach(x=>{if(x.dataset.benar==='true'){x.classList.add('correct');x.setAttribute('aria-checked','true')}});
+      else{semua.forEach(x=>{if(x.dataset.benar==='true')x.classList.add('correct')});const w=semua[0];if(w)w.classList.add('wrong')}
+    }else if(tp==='mcma'){
+      const semua=card.querySelectorAll('.opsi-item');
+      semua.forEach(x=>{if(x.dataset.benar==='true')x.classList.add('correct')});
+      if(!benar){const w=semua[0];if(w)w.classList.add('wrong')}
+    }
+  });
+}
+
+window.selesaikanTema=function(id){
+  document.querySelectorAll('.soal-card[data-soal="mcma"]').forEach(c=>{if(state.answers['t'+id+'-mcma-'+c.dataset.idx]===undefined)nilaiMCMA(c,id)});
+  document.querySelectorAll('.soal-card[data-soal="kat"]').forEach(c=>{if(state.answers['t'+id+'-kat-'+c.dataset.idx]===undefined)nilaiKAT(c,id)});
+
+  const keys=Object.keys(state.answers).filter(k=>k.startsWith('t'+id+'-'));
+  let b=0,s=0;
+  keys.forEach(k=>{if(state.answers[k])b++;else s++});
+  const total=22;
+  const belum=total-keys.length;
+  if(belum>0){
+    if(!confirm('Masih ada '+belum+' soal yang belum dijawab. Tetap lihat hasil?'))return;
+  }
+  const skor=Math.round(b/total*100);
+  const pred=skor>=90?'A (Sangat Baik)':skor>=80?'B (Baik)':skor>=70?'C (Cukup)':skor>=60?'D (Perlu Bimbingan)':'E (Remedial)';
+  state.selesai[id]=true;
+  if(!state.skor)state.skor={};
+  state.skor[id]=skor;
+  simpan();
+  const hasil=document.getElementById('hasilTema');
+  if(hasil){
+    hasil.innerHTML=`
+    <div class="hasil-box">
+      <h3><i class="fas fa-trophy"></i> Hasil Pekerjaan Tema ${id}</h3>
+      <div class="hasil-ident">
+        <strong>${esc(state.identitas.nama)}</strong><br/>
+        Kelas ${esc(state.identitas.kelas)} · ${esc(state.identitas.sekolah)}
+      </div>
+      <div class="hasil-grid">
+        <div class="hasil-stat"><div class="hs-val">${b}</div><div class="hs-lbl">Benar</div></div>
+        <div class="hasil-stat"><div class="hs-val">${s}</div><div class="hs-lbl">Salah</div></div>
+        <div class="hasil-stat"><div class="hs-val">${keys.length}</div><div class="hs-lbl">Dijawab</div></div>
+        <div class="hasil-stat"><div class="hs-val">${skor}</div><div class="hs-lbl">Skor</div></div>
+      </div>
+      <div class="hasil-predikat">Predikat: ${pred}</div>
+      <p style="font-size:.84rem;color:var(--text-muted);">${belum>0?'Masih ada '+belum+' soal belum dijawab.':'Semua soal telah dijawab.'}</p>
+      <button type="button" class="btn-ulang" onclick="kembaliKeDaftar()"><i class="fas fa-arrow-left"></i> Kembali ke Daftar Tema</button>
+    </div>`;
+    hasil.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  toast('Tema '+id+' selesai! Skor: '+skor+' ('+pred+')');
+};
+
+/* ========== KUNCI ========== */
+async function sha256(t){
+  const b=new TextEncoder().encode(t);
+  const h=await crypto.subtle.digest('SHA-256',b);
+  return Array.from(new Uint8Array(h)).map(x=>x.toString(16).padStart(2,'0')).join('');
+}
+const KUNCI_HASH='c775e7b757ede630cd0aa1113bd102661ab38829ca52a6422ab782862f268646'; // guru123
+
+const KUNCI_DATA={
+  1:{
+    pg:['B','B','A','B','B','B','A','B','D','E','A','B'],
+    mcma:['A·B·D','A·B·D','A·B·D','A·B·D','A·B·D','A·B·D'],
+    kat:[
+      'Distribusi · Interelasi · Deskripsi · Korologi',
+      'Objek Material · Objek Formal · Objek Material · Objek Formal',
+      'Keruangan · Kelingkungan · Kompleks Wilayah · Keruangan',
+      'Observasi · Interpretasi Data · Pemetaan · Pelaporan'
+    ]
+  },
+  2:{
+    pg:['B','C','C','C','B','B','C','B','C','C','C','D'],
+    mcma:['A·B·D','A·B·D','A·B·D','A·B·C·D','A·B·C·D','A·B·C·D'],
+    kat:[
+      'Eksploratif · Deskriptif · Eksplanatif · Deskriptif',
+      'Variabel Bebas · Variabel Terikat · Variabel Kontrol · Variabel Bebas',
+      'Random · Purposive · Stratified · Stratified',
+      'Observasi · Wawancara · Kuesioner · Pemetaan'
+    ]
+  },
+  3:{
+    pg:['C','C','C','C','B','B','C','C','B','B','A','B'],
+    mcma:['A·B·C·E','A·B·D','A·B·C·D','A·B·C·D·E','A·B·C·D','A·B·C·D'],
+    kat:[
+      'Peta Umum · Peta Tematik · Peta Kadaster · Peta Tematik',
+      'Silinder · Azimuthal · Kerucut · Silinder',
+      'Kadaster · Besar · Sedang · Kecil',
+      'Titik · Garis · Area · Area'
+    ]
+  }
+};
+
+window.bukaKunci=async function(){
+  const i=document.getElementById('kunciInput');
+  const s=document.getElementById('kunciStatus');
+  if(!i||!s)return;
+  const v=(i.value||'').trim();
+  if(!v){s.textContent='⚠️ Masukkan kata sandi.';s.style.color='#dc2626';return}
+  s.textContent='Memverifikasi...';s.style.color='var(--text-muted)';
+  const h=await sha256(v);
+  if(h!==KUNCI_HASH){s.textContent='❌ Kata sandi salah.';s.style.color='#dc2626';return}
+  s.textContent='✅ Membuka kunci...';s.style.color='#047857';
+  const tema=parseInt(document.querySelector('#temaContent .section-header .num').textContent);
+  const data=KUNCI_DATA[tema];
+  const box=document.getElementById('kunciJawaban');
+  if(box&&data){
+    const pg=data.pg.map((a,i)=>`<div class="kunci-item"><span class="num">${i+1}</span><span class="ans">${a}</span></div>`).join('');
+    const mc=data.mcma.map((a,i)=>`<div class="kunci-item"><span class="num">${i+13}</span><span class="ans">${a}</span></div>`).join('');
+    const kt=data.kat.map((a,i)=>`<div class="kunci-item" style="grid-column:1/-1;text-align:left;"><span class="num">${i+19}</span><span class="ans">${a}</span></div>`).join('');
+    box.innerHTML=`
+      <div class="kunci-title"><i class="fas fa-key"></i> Kunci Jawaban Tema ${tema}</div>
+      <h4 style="color:var(--primary);font-size:.95rem;margin:8px 0;">A. Pilihan Ganda (1–12)</h4>
+      <div class="kunci-grid">${pg}</div>
+      <h4 style="color:var(--violet);font-size:.95rem;margin:18px 0 8px;">B. MCMA (13–18)</h4>
+      <div class="kunci-grid">${mc}</div>
+      <h4 style="color:var(--gold);font-size:.95rem;margin:18px 0 8px;">C. Kategori (19–22)</h4>
+      <div style="display:grid;gap:8px;">${kt}</div>
+    `;
+    box.classList.add('revealed');
+  }
+  const lock=document.getElementById('kunciLockBox');
+  if(lock)lock.style.display='none';
+  i.value='';
+};
+
+/* ========== EVENT BINDING ========== */
+document.addEventListener('click',function(e){
+  const pg=e.target.closest('.soal-card[data-soal="pg"] .opsi-item');
+  if(pg){pilihPG(pg);return}
+  const mc=e.target.closest('.soal-card[data-soal="mcma"] .opsi-item');
+  if(mc){pilihMCMA(mc);return}
+});
+document.addEventListener('keydown',function(e){
+  if(e.key!=='Enter'&&e.key!==' ')return;
+  const pg=e.target.closest('.soal-card[data-soal="pg"] .opsi-item');
+  if(pg){e.preventDefault();pilihPG(pg);return}
+  const mc=e.target.closest('.soal-card[data-soal="mcma"] .opsi-item');
+  if(mc){e.preventDefault();pilihMCMA(mc);return}
+});
+
+renderKartu();
+
+})();
+</script>
+</body>
+</html>
