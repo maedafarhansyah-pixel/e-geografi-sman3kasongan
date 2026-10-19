@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
 <meta name="theme-color" content="#1e3a8a" />
-<meta name="description" content="Kartu Tema TKA Literasi Geografi SMA — 10 kartu tema. Tema 1, 2 & 3 aktif dengan 22 soal. Kunci di akhir tiap tema." />
+<meta name="description" content="Kartu Tema TKA Literasi Geografi SMA — 10 kartu tema. Tema 1, 2, 3 & 4 aktif dengan 22 soal. Kunci di akhir tiap tema." />
 <title>Kartu Tema TKA Literasi Geografi SMA</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
@@ -253,7 +253,7 @@ html[data-theme="dark"] .site-header .brand{color:var(--accent)}
 <header class="site-header" id="siteHeader">
   <button type="button" class="brand" onclick="kembaliKeDaftar()" aria-label="Kembali ke daftar tema">
     <span class="logo-dot"><i class="fas fa-globe-asia" aria-hidden="true"></i></span>
-    <span>TKA GEOGRAFI</span>
+    <span>GEOGRAFI</span>
   </button>
   <div class="header-actions">
     <button type="button" class="icon-btn" onclick="toggleTheme()" id="themeBtn" aria-label="Ganti tema" title="Mode Gelap/Terang"><i class="fas fa-moon" aria-hidden="true"></i></button>
@@ -269,13 +269,13 @@ html[data-theme="dark"] .site-header .brand{color:var(--accent)}
     <section class="hero" aria-label="Identitas latihan">
       <div class="badge-row">
         <span class="tag">SMA · FASE E/F</span>
-        <span class="tag gold">Bergaya TKA</span>
+        <span class="tag gold">Sesuai Kompetensi</span>
         <span class="tag green">10 Kartu Tema</span>
       </div>
-      <h1 class="hero-title"><span class="highlight">KARTU TEMA</span><br />TKA LITERASI GEOGRAFI</h1>
+      <h1 class="hero-title"><span class="highlight">Tes Kemampuan Akademik</span><br />LITERASI GEOGRAFI</h1>
       <p class="hero-sub">
         Pilih kartu tema untuk mulai mengerjakan. Setiap kartu berisi soal bergaya TKA dengan stimulus kaya.<br />
-        <strong>Tema 1, 2 &amp; 3</strong> aktif dengan 22 soal; <strong>Tema 4–10</strong> disiapkan sebagai kartu tema berikutnya.
+        <strong>Tema 1, 2, 3 &amp; 4</strong> aktif dengan 22 soal; <strong>Tema 5–10</strong> disiapkan sebagai kartu tema berikutnya.
       </p>
     </section>
 
@@ -290,13 +290,13 @@ html[data-theme="dark"] .site-header .brand{color:var(--accent)}
     <div class="rekap-card">
       <h3><i class="fas fa-chart-pie" aria-hidden="true"></i> Rekapitulasi Latihan</h3>
       <table class="rekap-table">
-        <tr><th>Bentuk Soal (Tema 1–3)</th><th>Jumlah per Tema</th><th>Nomor</th></tr>
+        <tr><th>Bentuk Soal (Tema 1–4)</th><th>Jumlah per Tema</th><th>Nomor</th></tr>
         <tr><td>Pilihan Ganda (PG)</td><td><span class="pill">12</span></td><td>1–12</td></tr>
         <tr><td>Pilihan Ganda Kompleks (MCMA)</td><td><span class="pill">6</span></td><td>13–18</td></tr>
         <tr><td>PG Kompleks Kategori</td><td><span class="pill">4</span></td><td>19–22</td></tr>
         <tr><td><strong>Total per Tema</strong></td><td><span class="pill" style="background:rgba(180,83,9,.14);color:var(--gold);">22</span></td><td>—</td></tr>
       </table>
-      <p style="font-size:.8rem;color:var(--text-muted);margin-top:12px;font-style:italic;">Tema 4–10 disiapkan sebagai kartu tema berikutnya; soal dapat ditambahkan dengan pola yang sama.</p>
+      <p style="font-size:.8rem;color:var(--text-muted);margin-top:12px;font-style:italic;">Tema 5–10 disiapkan sebagai kartu tema berikutnya; soal dapat ditambahkan dengan pola yang sama.</p>
     </div>
 
     <div class="footer-credit">
@@ -349,7 +349,7 @@ const TEMA=[
   {id:1, judul:'Pengertian & Hakikat Geografi', desc:'Definisi para ahli, hakikat kelingkungan & kewilayahan, perbandingan ilmu.', aktif:true, soal:22},
   {id:2, judul:'Penelitian Geografi', desc:'Pengertian, jenis, populasi & sampel, instrumen, analisis, dan laporan penelitian.', aktif:true, soal:22},
   {id:3, judul:'Peta & Pemetaan', desc:'Pengertian, komponen, jenis peta, proyeksi, skala, simbol, dan manfaat peta.', aktif:true, soal:22},
-  {id:4, judul:'Aspek & Pendekatan Geografi', desc:'Aspek fisik & nonfisik; pendekatan keruangan, kelingkungan, kompleks wilayah.', aktif:false, soal:22},
+  {id:4, judul:'Penginderaan Jauh', desc:'Pengertian, prinsip, komponen, jenis citra, resolusi, interpretasi, dan pemanfaatan.', aktif:true, soal:22},
   {id:5, judul:'Keterampilan & Manfaat Geografi', desc:'Observasi, interpretasi, pemetaan, pelaporan; manfaat & profesi geografi.', aktif:false, soal:22},
   {id:6, judul:'Geosfer: Litosfer & Atmosfer', desc:'Batuan, tanah, cuaca, iklim, dan interaksinya dengan kehidupan.', aktif:false, soal:22},
   {id:7, judul:'Geosfer: Hidrosfer & Biosfer', desc:'Siklus air, DAS, persebaran flora-fauna, dan ekosistem.', aktif:false, soal:22},
@@ -470,7 +470,8 @@ window.simpanIdentitas=function(){
 
 window.kembaliKeDaftar=function(){
   document.getElementById('temaView').classList.remove('active');
-  document.getElementById('temaView').innerHTML='';
+  const tc=document.getElementById('temaContent');
+  if(tc)tc.innerHTML='';
   document.getElementById('daftarTema').style.display='block';
   renderKartu();
   window.scrollTo({top:0,behavior:'smooth'});
@@ -662,10 +663,81 @@ const KAT_Q_3=[
   }
 ];
 
+/* ========== SOAL TEMA 4 : PENGINDERAAN JAUH ========== */
+const PG_Q_4=[
+  {q:'Istilah "remote sensing" dalam bahasa Indonesia dikenal dengan ...',o:['Penginderaan jauh','Penginderaan dekat','Observasi lapangan','Pemetaan digital','Analisis spasial'],a:0},
+  {q:'Menurut Lillesand & Kiefer, penginderaan jauh adalah ilmu dan seni untuk memperoleh informasi tentang objek, area, atau fenomena melalui analisis data yang diperoleh dengan menggunakan alat ...',o:['Dengan kontak langsung','Tanpa kontak langsung','Melalui wawancara','Dengan pengukuran manual','Melalui observasi lapangan'],a:1},
+  {q:'Komponen penginderaan jauh yang berfungsi sebagai sumber energi pada sistem pasif adalah ...',o:['Radar','Matahari','Sensor aktif','LIDAR','Sonar'],a:1},
+  {q:'Contoh citra yang dihasilkan oleh sensor aktif adalah ...',o:['Foto udara','Citra Landsat','Citra Sentinel-2','Citra Radar (SAR)','Citra MODIS'],a:3},
+  {q:'Resolusi spasial citra Landsat 8 adalah ...',o:['0,5 meter','10 meter','30 meter','100 meter','250 meter'],a:2},
+  {q:'Sensor yang memancarkan energinya sendiri untuk merekam objek disebut sensor ...',o:['Pasif','Aktif','Termal','Optik','Multispektral'],a:1},
+  {q:'Unsur interpretasi citra yang menunjukkan tingkat kecerahan/gelapnya objek pada citra adalah ...',o:['Bentuk','Tekstur','Pola','Rona','Situs'],a:3},
+  {q:'Wahana penginderaan jauh yang berada pada ketinggian lebih dari 100 km di atas permukaan bumi adalah ...',o:['Drone','Pesawat','Balon udara','Satelit','Helikopter'],a:3},
+  {q:'Resolusi temporal satelit Landsat adalah ...',o:['1 hari','5 hari','16 hari','30 hari','1 tahun'],a:2},
+  {q:'Pemanfaatan penginderaan jauh dalam bidang mitigasi bencana adalah ...',o:['Pemetaan daerah rawan banjir','Pemantauan harga pasar','Penentuan lokasi wisata','Perencanaan kurikulum','Pengaturan lalu lintas'],a:0},
+  {q:'Komponen penginderaan jauh yang berfungsi sebagai media perambatan gelombang elektromagnetik dari sumber energi menuju objek adalah ...',o:['Sensor','Wahana','Atmosfer','Data','Interaksi objek'],a:2},
+  {q:'Satelit yang digunakan untuk mendeteksi titik api (hotspot) kebakaran hutan adalah ...',o:['Landsat','Sentinel-2','MODIS','WorldView','IKONOS'],a:2}
+];
+const MCMA_Q_4=[
+  {q:'Pernyataan yang tepat mengenai prinsip dasar penginderaan jauh adalah ...',o:['Sumber energi dapat berasal dari matahari atau sumber buatan.','Atmosfer tidak memengaruhi kualitas data penginderaan jauh.','Setiap objek memiliki karakteristik spektral yang berbeda.','Sensor merekam energi yang dipantulkan atau dipancarkan objek.','Data penginderaan jauh tidak perlu diinterpretasi.'],a:[0,2,3]},
+  {q:'Pernyataan yang tepat mengenai sensor pasif dan sensor aktif adalah ...',o:['Sensor pasif merekam energi matahari yang dipantulkan objek.','Sensor aktif memancarkan energinya sendiri.','Citra radar (SAR) merupakan contoh sensor aktif.','Sensor pasif dapat digunakan pada malam hari tanpa sumber energi buatan.','Sensor aktif tidak dapat menembus awan.'],a:[0,1,2]},
+  {q:'Pernyataan yang tepat mengenai jenis resolusi dalam penginderaan jauh adalah ...',o:['Resolusi spasial menunjukkan ukuran piksel di permukaan bumi.','Resolusi spektral menunjukkan jumlah saluran gelombang yang direkam.','Resolusi temporal menunjukkan frekuensi perekaman ulang.','Resolusi radiometrik menunjukkan kedalaman bit data.','Resolusi spasial 1 meter lebih rendah dari resolusi 30 meter.'],a:[0,1,2,3]},
+  {q:'Unsur interpretasi citra yang digunakan untuk mengidentifikasi objek adalah ...',o:['Rona dan warna untuk membedakan kecerahan objek.','Bentuk untuk melihat geometri objek.','Tekstur untuk merasakan kekasaran permukaan objek.','Pola untuk melihat susunan spasial objek.','Tinggi bangunan untuk melihat jumlah lantai.'],a:[0,1,2,3]},
+  {q:'Pernyataan yang tepat mengenai pemanfaatan penginderaan jauh adalah ...',o:['Digunakan untuk inventarisasi sumber daya alam.','Digunakan untuk pemantauan cuaca dan iklim.','Digunakan untuk mitigasi bencana.','Digunakan untuk perencanaan tata ruang wilayah.','Tidak dapat digunakan untuk pemantauan lingkungan.'],a:[0,1,2,3]},
+  {q:'Perbandingan yang tepat antara penginderaan jauh dan observasi lapangan adalah ...',o:['Penginderaan jauh dapat menjangkau area yang luas dalam waktu singkat.','Observasi lapangan memberikan data yang lebih detail untuk area kecil.','Penginderaan jauh tidak memerlukan kontak langsung dengan objek.','Observasi lapangan tidak memerlukan akses fisik ke lokasi.','Penginderaan jauh dan observasi lapangan dapat saling melengkapi.'],a:[0,1,2,4]}
+];
+const KAT_Q_4=[
+  {
+    q:'Tentukan kategori sensor yang tepat: Pasif atau Aktif.',
+    rows:[
+      {t:'Kamera foto udara yang merekam pantulan cahaya matahari.', a:'Pasif', opts:['Pasif','Aktif']},
+      {t:'Radar (SAR) yang memancarkan gelombang mikro sendiri.', a:'Aktif', opts:['Pasif','Aktif']},
+      {t:'Sensor OLI pada satelit Landsat 8.', a:'Pasif', opts:['Pasif','Aktif']},
+      {t:'LIDAR yang memancarkan laser untuk mengukur jarak.', a:'Aktif', opts:['Pasif','Aktif']}
+    ]
+  },
+  {
+    q:'Tentukan kategori resolusi yang tepat: Spasial, Spektral, Temporal, atau Radiometrik.',
+    rows:[
+      {t:'Ukuran piksel 30 meter di permukaan bumi.', a:'Spasial', opts:['Spasial','Spektral','Temporal','Radiometrik']},
+      {t:'Data 8-bit dengan nilai 0–255.', a:'Radiometrik', opts:['Spasial','Spektral','Temporal','Radiometrik']},
+      {t:'Perekaman ulang setiap 16 hari.', a:'Temporal', opts:['Spasial','Spektral','Temporal','Radiometrik']},
+      {t:'4–10 saluran gelombang yang direkam sensor.', a:'Spektral', opts:['Spasial','Spektral','Temporal','Radiometrik']}
+    ]
+  },
+  {
+    q:'Tentukan unsur interpretasi citra yang tepat: Rona, Bentuk, Tekstur, atau Pola.',
+    rows:[
+      {t:'Perbedaan kecerahan antara hutan dan sawah pada citra.', a:'Rona', opts:['Rona','Bentuk','Tekstur','Pola']},
+      {t:'Lapangan sepak bola yang tampak persegi panjang.', a:'Bentuk', opts:['Rona','Bentuk','Tekstur','Pola']},
+      {t:'Hutan terlihat kasar, sawah terlihat halus.', a:'Tekstur', opts:['Rona','Bentuk','Tekstur','Pola']},
+      {t:'Permukiman tersusun teratur mengikuti jalan.', a:'Pola', opts:['Rona','Bentuk','Tekstur','Pola']}
+    ]
+  },
+  {
+    q:'Tentukan kategori pemanfaatan penginderaan jauh yang tepat: Inventarisasi SDA, Mitigasi Bencana, atau Perencanaan Wilayah.',
+    rows:[
+      {t:'Pemetaan sebaran hutan dan lahan pertanian.', a:'Inventarisasi SDA', opts:['Inventarisasi SDA','Mitigasi Bencana','Perencanaan Wilayah']},
+      {t:'Pemetaan daerah rawan banjir dan longsor.', a:'Mitigasi Bencana', opts:['Inventarisasi SDA','Mitigasi Bencana','Perencanaan Wilayah']},
+      {t:'Penentuan lokasi pembangunan jalan baru.', a:'Perencanaan Wilayah', opts:['Inventarisasi SDA','Mitigasi Bencana','Perencanaan Wilayah']},
+      {t:'Pemantauan titik api (hotspot) karhutla.', a:'Mitigasi Bencana', opts:['Inventarisasi SDA','Mitigasi Bencana','Perencanaan Wilayah']}
+    ]
+  }
+];
+
 const SOAL={
   1:{pg:PG_Q_1, mcma:MCMA_Q_1, kat:KAT_Q_1},
   2:{pg:PG_Q_2, mcma:MCMA_Q_2, kat:KAT_Q_2},
-  3:{pg:PG_Q_3, mcma:MCMA_Q_3, kat:KAT_Q_3}
+  3:{pg:PG_Q_3, mcma:MCMA_Q_3, kat:KAT_Q_3},
+  4:{pg:PG_Q_4, mcma:MCMA_Q_4, kat:KAT_Q_4}
+};
+
+/* ========== INDIKATOR PEMBAHASAN PER TEMA ========== */
+const INDIKATOR={
+  1:{pg:'Memahami konsep dasar geografi',mcma:'Menganalisis keterkaitan fenomena geosfer',kat:'Mengklasifikasikan pernyataan tentang geografi'},
+  2:{pg:'Memahami konsep penelitian geografi',mcma:'Menganalisis keterkaitan fenomena penelitian geografi',kat:'Mengklasifikasikan pernyataan tentang penelitian geografi'},
+  3:{pg:'Memahami konsep peta dan pemetaan',mcma:'Menganalisis keterkaitan fenomena peta dan pemetaan',kat:'Mengklasifikasikan pernyataan tentang peta dan pemetaan'},
+  4:{pg:'Memahami konsep penginderaan jauh',mcma:'Menganalisis keterkaitan fenomena penginderaan jauh',kat:'Mengklasifikasikan pernyataan tentang penginderaan jauh'}
 };
 
 /* ========== RENDER SOAL TEMA ========== */
@@ -676,13 +748,14 @@ function tampilkanTema(id){
   document.getElementById('daftarTema').style.display='none';
   const view=document.getElementById('temaView');
   view.classList.add('active');
-  view.innerHTML=renderTemaHTML(t);
+  document.getElementById('temaContent').innerHTML=renderTemaHTML(t);
   restoreAnswers(id);
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
 function renderTemaHTML(t){
   const data=SOAL[t.id];
+  const ind=INDIKATOR[t.id];
   let html=`
   <div class="section-header">
     <div class="num">${t.id}</div>
@@ -719,7 +792,7 @@ function renderTemaHTML(t){
         <div class="pb-title"><i class="fas fa-lightbulb"></i> Pembahasan</div>
         <div class="pb-kunci">Kunci: ${L[it.a]}</div>
         <p>Jawaban yang tepat adalah <strong>${L[it.a]}. ${it.o[it.a]}</strong>. Pilihan lain tidak sesuai dengan konsep yang ditanyakan.</p>
-        <div class="pb-meta">Level: Pemahaman/Penerapan · Indikator: Memahami konsep peta dan pemetaan.</div>
+        <div class="pb-meta">Level: Pemahaman/Penerapan · Indikator: ${ind.pg}.</div>
       </div>
     </div>`;
   });
@@ -742,7 +815,7 @@ function renderTemaHTML(t){
         <div class="pb-title"><i class="fas fa-lightbulb"></i> Pembahasan</div>
         <div class="pb-kunci">Kunci: ${kunci}</div>
         <p>Pilihan yang benar adalah ${kunci}. Pilihan lain tidak sesuai dengan stimulus/konsep.</p>
-        <div class="pb-meta">Level: Penalaran · Indikator: Menganalisis keterkaitan fenomena peta dan pemetaan.</div>
+        <div class="pb-meta">Level: Penalaran · Indikator: ${ind.mcma}.</div>
       </div>
     </div>`;
   });
@@ -767,7 +840,7 @@ function renderTemaHTML(t){
         <div class="pb-title"><i class="fas fa-lightbulb"></i> Pembahasan</div>
         <div class="pb-kunci">Kunci: ${kunci}</div>
         <p>Setiap baris harus dikategorikan dengan tepat sesuai konsep yang ditanyakan.</p>
-        <div class="pb-meta">Level: Pemahaman/Penerapan · Indikator: Mengklasifikasikan pernyataan tentang peta dan pemetaan.</div>
+        <div class="pb-meta">Level: Pemahaman/Penerapan · Indikator: ${ind.kat}.</div>
       </div>
     </div>`;
   });
@@ -983,6 +1056,16 @@ const KUNCI_DATA={
       'Silinder · Azimuthal · Kerucut · Silinder',
       'Kadaster · Besar · Sedang · Kecil',
       'Titik · Garis · Area · Area'
+    ]
+  },
+  4:{
+    pg:['A','B','B','D','C','B','D','D','C','A','C','C'],
+    mcma:['A·C·D','A·B·C','A·B·C·D','A·B·C·D','A·B·C·D','A·B·C·E'],
+    kat:[
+      'Pasif · Aktif · Pasif · Aktif',
+      'Spasial · Radiometrik · Temporal · Spektral',
+      'Rona · Bentuk · Tekstur · Pola',
+      'Inventarisasi SDA · Mitigasi Bencana · Perencanaan Wilayah · Mitigasi Bencana'
     ]
   }
 };
