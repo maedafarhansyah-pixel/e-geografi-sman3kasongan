@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TKA · Asesmen Literasi Geografi</title>
+<style>
+:root{
+  --primary:#1a56db;--primary-dark:#1e429f;--primary-light:#e1effe;
+  --bg:#f3f4f6;--card:#fff;--text:#111827;--muted:#6b7280;
+  --border:#e5e7eb;--green:#057a55;--green-light:#def7ec;
+  --red:#c81e1e;--red-light:#fde8e8;--yellow:#d97706;--yellow-light:#fef3c7;
+  --shadow:0 1px 3px rgba(0,0,0,.08);--shadow-md:0 4px 12px rgba(0,0,0,.08);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+:focus-visible{outline:3px solid #93c5fd;outline-offset:2px;border-radius:6px}
+.screen{display:none;min-height:100vh}
+.screen.active{display:block}
+.container{max-width:1080px;margin:0 auto;padding:0 20px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 24px;border-radius:10px;font-weight:600;font-size:14px;transition:.2s}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{background:var(--primary-dark)}
+.btn-gray{background:#fff;color:#374151;border:1.5px solid var(--border)}
+.btn-gray:hover{background:#f9fafb}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+
+/* ========== GLOBE LOGO ========== */
+.globe-logo{width:44px;height:44px;border-radius:50%;position:relative;overflow:hidden;flex-shrink:0;
+  background:radial-gradient(circle at 32% 28%,#93c5fd 0%,#38bdf8 22%,#0284c7 55%,#1e40af 85%,#1e3a8a 100%);
+  box-shadow:0 0 14px rgba(56,189,248,.65),0 0 24px rgba(59,130,246,.35),inset -6px -6px 12px rgba(0,0,0,.45),inset 3px 3px 8px rgba(147,197,253,.35);
+  animation:globeGlow 3s ease-in-out infinite;}
+.globe-logo .continents{position:absolute;top:0;left:0;width:200%;height:100%;
+  background-image:
+    radial-gradient(ellipse 11px 8px at 10% 40%, #22c55e 55%, #16a34a 60%, transparent 66%),
+    radial-gradient(ellipse 8px 13px at 22% 62%, #22c55e 55%, #16a34a 60%, transparent 66%),
+    radial-gradient(ellipse 13px 9px at 35% 32%, #22c55e 55%, #16a34a 60%, transparent 66%),
+    radial-gradient(ellipse 9px 12px at 48% 68%, #22c55e 55%, #16a34a 60%, transparent 66%),
+    radial-gradient(ellipse 11px 8px at 60% 40%, #22c55e 55%, #16a34a 60%, transparent 66%),
+    radial-gradient(ellipse 8px 13px at 72% 62%, #22c55e 55%, #16a34a 60%, transparent 66%),
+    radial-gradient(ellipse 13px 9px at 85% 32%, #22c55e 55%, #16a34a 60%, transparent 66%),
+    radial-gradient(ellipse 9px 12px at 98% 68%, #22c55e 55%, #16a34a 60%, transparent 66%);
+  animation:globeRotate 11s linear infinite;}
+.globe-logo .shine{position:absolute;inset:0;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle at 30% 25%, rgba(255,255,255,.55) 0%, rgba(255,255,255,.15) 20%, transparent 40%),
+    radial-gradient(circle at 100% 100%, rgba(0,0,0,.55) 0%, transparent 55%);}
+@keyframes globeRotate{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes globeGlow{
+  0%,100%{box-shadow:0 0 14px rgba(56,189,248,.65),0 0 24px rgba(59,130,246,.35),inset -6px -6px 12px rgba(0,0,0,.45),inset 3px 3px 8px rgba(147,197,253,.35)}
+  50%{box-shadow:0 0 22px rgba(56,189,248,.9),0 0 36px rgba(59,130,246,.55),inset -6px -6px 12px rgba(0,0,0,.45),inset 3px 3px 8px rgba(147,197,253,.45)}
+}
+@media (prefers-reduced-motion: reduce){.globe-logo,.globe-logo .continents{animation:none}}
+
+/* ========== TOPBAR ========== */
+.topbar{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;padding:14px 0}
+.topbar .container{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:15px}
+.brand .brand-text{line-height:1.15}
+.brand .brand-text small{opacity:.85;font-weight:400;font-size:11.5px;display:block;margin-top:2px}
+.school-badge{display:flex;flex-direction:column;align-items:flex-end;text-align:right;line-height:1.15;white-space:nowrap}
+.school-badge .sb-main{font-size:21px;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:#fff}
+.school-badge .sb-sub{font-size:11px;font-weight:600;color:#e5e7eb;margin-top:3px;letter-spacing:.4px}
+.exam-header .school-badge .sb-main{font-size:15px;color:#374151}
+.exam-header .school-badge .sb-sub{font-size:9.5px;color:#6b7280;margin-top:1px}
+
+/* ========== SCREEN 1 ========== */
+.start-hero{padding:50px 0 40px;text-align:center}
+.start-hero .tag{display:inline-block;background:var(--primary-light);color:var(--primary-dark);font-size:12px;font-weight:700;padding:6px 16px;border-radius:30px;letter-spacing:1px;text-transform:uppercase;margin-bottom:16px}
+.start-hero h1{font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-.5px;line-height:1.2;margin-bottom:10px}
+.start-hero p{color:var(--muted);max-width:620px;margin:0 auto;font-size:15px}
+.form-wrap{max-width:640px;margin:30px auto 0;display:flex;flex-direction:column;gap:14px}
+.field-group{text-align:left}
+.field-group label{font-size:13px;font-weight:700;color:#374151;display:block;margin-bottom:6px}
+.field-group label .req{color:var(--red);margin-left:2px}
+.name-input{width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:10px;font-size:14.5px;outline:none;transition:.2s;font-family:inherit;background:#fff}
+.name-input:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(26,86,219,.12)}
+select.name-input{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:44px}
+.exam-info-card{background:linear-gradient(135deg,#f8fbff,#f0f7ff);border:1.5px solid #bfdbfe;border-radius:14px;padding:20px 22px;margin-top:8px;text-align:left}
+.exam-info-card h3{font-size:14.5px;font-weight:800;color:var(--primary-dark);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px}
+.info-cell{background:#fff;border:1px solid #dbeafe;border-radius:10px;padding:10px 12px}
+.info-cell .lbl{font-size:10.5px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.5px;display:block}
+.info-cell .val{font-size:15px;font-weight:800;color:var(--primary-dark);margin-top:2px;display:block}
+.info-cell .sub{font-size:11px;color:#6b7280;margin-top:2px;display:block}
+
+/* ========== SCREEN 2 ========== */
+.inst-wrap{max-width:780px;margin:40px auto;padding:0 20px 60px}
+.inst-card{padding:32px}
+.inst-card h2{font-size:22px;font-weight:800;margin-bottom:4px}
+.inst-card .sub{color:var(--muted);font-size:14px;margin-bottom:22px}
+.inst-info{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:22px}
+.inst-info .cell{background:#f9fafb;border:1px solid var(--border);border-radius:10px;padding:14px}
+.inst-info .cell .lbl{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.inst-info .cell .val{font-size:16px;font-weight:800;margin-top:2px}
+.inst-card h4{font-size:15px;font-weight:800;margin:18px 0 8px}
+.inst-card ol{padding-left:22px;font-size:14.5px}
+.inst-card ol li{margin-bottom:6px}
+.inst-note{background:var(--yellow-light);border-left:4px solid var(--yellow);padding:12px 16px;border-radius:8px;margin-top:18px;font-size:13.5px;color:#78350f}
+.inst-note.blue{background:var(--primary-light);border-left-color:var(--primary);color:var(--primary-dark)}
+.inst-note code{background:#fff;padding:2px 6px;border-radius:4px;font-family:ui-monospace,monospace;font-size:12.5px;color:var(--primary-dark);font-weight:700}
+
+/* ========== SCREEN 3: EXAM ========== */
+.exam-header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.exam-header .container{display:flex;align-items:center;justify-content:space-between;gap:12px;height:66px;flex-wrap:wrap}
+.exam-header .left{display:flex;align-items:center;gap:12px;min-width:0}
+.exam-header .exam-title{font-weight:800;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.exam-header .exam-sub{font-size:11.5px;color:var(--muted)}
+.exam-header .right{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.timer{display:flex;align-items:center;gap:8px;background:#f9fafb;border:1.5px solid var(--border);border-radius:10px;padding:7px 14px;font-weight:800;font-size:16px;font-variant-numeric:tabular-nums;font-family:ui-monospace,monospace}
+.timer.warning{border-color:var(--red);color:var(--red);background:var(--red-light);animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.65}}
+.user-chip{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:#374151;background:#f9fafb;border:1px solid var(--border);border-radius:30px;padding:5px 14px 5px 5px}
+.user-chip .av{width:26px;height:26px;border-radius:50%;background:var(--primary);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:800}
+.exam-layout{display:grid;grid-template-columns:260px 1fr;min-height:calc(100vh - 66px)}
+.sidebar{border-right:1px solid var(--border);background:#fff;padding:20px 16px;position:sticky;top:66px;height:calc(100vh - 66px);overflow-y:auto}
+.sidebar h3{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:10px}
+.progress-info{background:#f9fafb;border:1px solid var(--border);border-radius:10px;padding:10px 12px;margin-bottom:16px;font-size:12.5px}
+.progress-info .row{display:flex;justify-content:space-between;margin-bottom:6px}
+.progress-info .row:last-child{margin-bottom:0}
+.progress-info strong{color:var(--primary);font-weight:800}
+.nav-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:16px}
+.nav-grid button{aspect-ratio:1;border:1.5px solid var(--border);background:#fff;border-radius:8px;font-weight:700;font-size:12.5px;color:#374151;transition:.15s;display:grid;place-items:center}
+.nav-grid button.answered{background:var(--primary);border-color:var(--primary);color:#fff}
+.nav-grid button.current{box-shadow:0 0 0 3px rgba(26,86,219,.25)}
+.nav-grid button.all-done{background:var(--green);border-color:var(--green);animation:doneGlow 2s ease-in-out infinite}
+@keyframes doneGlow{0%,100%{box-shadow:0 0 0 0 rgba(5,122,85,.5)}50%{box-shadow:0 0 0 5px rgba(5,122,85,0)}}
+.legend{display:flex;flex-direction:column;gap:6px;font-size:11.5px;color:#4b5563}
+.legend .li{display:flex;align-items:center;gap:8px}
+.legend .sw{width:14px;height:14px;border-radius:4px;border:1.5px solid var(--border);background:#fff}
+.legend .sw.answered{background:var(--primary);border-color:var(--primary)}
+.legend .sw.all-done{background:var(--green);border-color:var(--green)}
+.exam-main{padding:24px 20px 130px;max-width:820px;margin:0 auto;width:100%}
+.q-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.q-number{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;background:var(--primary);color:#fff;font-weight:800;font-size:15px}
+.q-cat{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;padding:4px 10px;border-radius:20px;background:var(--primary-light);color:var(--primary-dark)}
+.q-cat.sig{background:#ede9fe;color:#5b21b6}
+.q-type{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;padding:4px 10px;border-radius:20px;background:var(--yellow-light);color:#92400e}
+.q-type.ceklis{background:var(--green-light);color:var(--green)}
+.q-of{font-size:13px;color:var(--muted);font-weight:600;margin-left:auto}
+.stimulus{background:#f9fafb;border:1px solid var(--border);border-radius:12px;padding:16px 18px;margin-bottom:18px;font-size:14.5px;line-height:1.75;color:#1f2937}
+.stimulus p{margin-bottom:8px}
+.stimulus p:last-child{margin-bottom:0}
+.stimulus strong{color:var(--text)}
+.stimulus ul,.stimulus ol{padding-left:20px;margin:6px 0 8px}
+.stimulus li{margin-bottom:4px}
+.stimulus .stim-label{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.5px;color:var(--primary);background:var(--primary-light);padding:3px 8px;border-radius:4px;margin-bottom:8px;text-transform:uppercase}
+.stimulus table{width:100%;border-collapse:collapse;margin:8px 0;font-size:13px}
+.stimulus table th,.stimulus table td{border:1px solid var(--border);padding:8px 10px;text-align:left;vertical-align:top}
+.stimulus table th{background:#f3f4f6;font-weight:700;font-size:12px}
+.question-text{font-size:16px;font-weight:600;line-height:1.6;margin-bottom:18px}
+.options{display:flex;flex-direction:column;gap:10px}
+.option{display:flex;align-items:flex-start;gap:12px;padding:13px 16px;border:1.5px solid var(--border);background:#fff;border-radius:10px;text-align:left;font-size:14.5px;line-height:1.55;transition:.15s;width:100%}
+.option:hover{border-color:#93c5fd;background:#f8fbff}
+.option.selected{border-color:var(--primary);background:var(--primary-light);font-weight:600}
+.option .letter{flex-shrink:0;width:26px;height:26px;border-radius:50%;border:1.5px solid var(--border);display:grid;place-items:center;font-weight:800;font-size:12.5px;color:#6b7280;background:#fff}
+.option.selected .letter{background:var(--primary);border-color:var(--primary);color:#fff}
+.sts-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:14px}
+.sts-table th{background:#f3f4f6;padding:10px 12px;text-align:left;font-size:12px;font-weight:700;color:#374151;border:1px solid var(--border)}
+.sts-table th.center{text-align:center;width:110px}
+.sts-table td{padding:12px;border:1px solid var(--border);vertical-align:middle}
+.sts-table td.center{text-align:center}
+.sts-btn{display:inline-block;padding:6px 14px;border:1.5px solid var(--border);border-radius:6px;font-size:12.5px;font-weight:700;background:#fff;color:#4b5563;transition:.15s;min-width:70px}
+.sts-btn:hover{border-color:var(--primary)}
+.sts-btn.selected-S{background:var(--green);border-color:var(--green);color:#fff}
+.sts-btn.selected-TS{background:var(--red);border-color:var(--red);color:#fff}
+.ceklis-hint{font-size:13px;color:#92400e;background:var(--yellow-light);padding:8px 12px;border-radius:6px;margin-bottom:12px;font-weight:600}
+.ceklis-options{display:flex;flex-direction:column;gap:8px}
+.ceklis-option{display:flex;align-items:flex-start;gap:12px;padding:12px 16px;border:1.5px solid var(--border);background:#fff;border-radius:10px;cursor:pointer;transition:.15s;font-size:14.5px;line-height:1.55}
+.ceklis-option:hover{border-color:#93c5fd;background:#f8fbff}
+.ceklis-option.checked{border-color:var(--primary);background:var(--primary-light)}
+.ceklis-option .box{flex-shrink:0;width:22px;height:22px;border:2px solid var(--border);border-radius:5px;display:grid;place-items:center;font-weight:800;font-size:13px;color:transparent;background:#fff;margin-top:1px}
+.ceklis-option.checked .box{background:var(--primary);border-color:var(--primary);color:#fff}
+.exam-footer{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--border);box-shadow:0 -2px 8px rgba(0,0,0,.04);z-index:40}
+.exam-footer .container{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 20px;max-width:1140px;margin:0 auto;flex-wrap:wrap}
+.footer-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.mobile-nav-toggle{display:none;background:var(--primary-light);color:var(--primary-dark);padding:10px 14px;border-radius:9px;font-weight:700;font-size:13px}
+.btn-selesai{background:linear-gradient(135deg,#dc2626,#b91c1c);color:#fff;border:none;box-shadow:0 2px 8px rgba(220,38,38,.3)}
+.btn-selesai:hover{background:linear-gradient(135deg,#b91c1c,#991b1b)}
+.btn-selesai.ready{background:linear-gradient(135deg,#059669,#047857);box-shadow:0 4px 14px rgba(5,150,105,.4);animation:pulseReady 1.8s ease-in-out infinite}
+@keyframes pulseReady{0%,100%{box-shadow:0 4px 14px rgba(5,150,105,.4)}50%{box-shadow:0 4px 20px rgba(5,150,105,.7)}}
+
+/* ========== SCREEN 4 — KONFIRMASI AKHIR (1 TOMBOL) ========== */
+.confirm-wrap{max-width:600px;margin:30px auto;padding:0 20px 60px}
+.success-card{padding:0;overflow:hidden;border:1.5px solid #86efac;background:linear-gradient(180deg,#f0fdf4 0%,#ffffff 60%)}
+.success-hero{padding:32px 24px 20px;text-align:center;position:relative;overflow:hidden}
+.success-hero::before{content:"";position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:220px;height:220px;background:radial-gradient(circle,rgba(34,197,94,.12) 0%,transparent 70%);border-radius:50%;pointer-events:none}
+.success-icon{font-size:64px;line-height:1;margin-bottom:12px;display:inline-block;animation:celebrateFloat 2.5s ease-in-out infinite}
+@keyframes celebrateFloat{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-8px) rotate(3deg)}}
+.success-hero h2{font-size:23px;font-weight:900;color:var(--green);margin-bottom:8px;line-height:1.25}
+.success-hero p{font-size:14px;color:#4b5563;max-width:400px;margin:0 auto;line-height:1.6}
+.success-hero p strong{color:var(--primary-dark)}
+.success-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 24px 22px}
+.success-stat{background:#fff;border:1.5px solid #bbf7d0;border-radius:12px;padding:16px;text-align:center;box-shadow:0 2px 8px rgba(5,122,85,.06)}
+.success-stat .ss-num{font-size:30px;font-weight:900;color:var(--green);line-height:1}
+.success-stat .ss-lbl{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#059669;margin-top:6px}
+.final-action-box{padding:0 24px;display:flex;flex-direction:column;gap:12px}
+.final-action-btn{display:flex;align-items:center;gap:16px;padding:20px 22px;border-radius:14px;text-align:left;transition:.2s;border:2px solid transparent;width:100%}
+.final-action-btn .fab-icon{font-size:30px;flex-shrink:0;line-height:1;filter:drop-shadow(0 2px 4px rgba(0,0,0,.15))}
+.final-action-btn .fab-text{flex:1;display:flex;flex-direction:column;gap:3px}
+.final-action-btn .fab-title{font-size:16px;font-weight:800;line-height:1.2}
+.final-action-btn .fab-sub{font-size:12px;font-weight:500;opacity:.88;line-height:1.35}
+.final-action-btn .fab-arrow{font-size:20px;font-weight:800;flex-shrink:0;opacity:.7}
+.final-action-btn.primary-action{background:linear-gradient(135deg,#1a56db,#1e429f);color:#fff;box-shadow:0 6px 20px rgba(26,86,219,.4)}
+.final-action-btn.primary-action:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(26,86,219,.55)}
+.confirm-bottom{padding:20px 24px 26px;text-align:center}
+.confirm-bottom .btn{font-size:12.5px;padding:10px 18px}
+
+/* ========== SCREEN 5 ========== */
+.result-wrap{max-width:900px;margin:30px auto;padding:0 20px 60px}
+.result-hero{padding:32px;text-align:center;margin-bottom:22px}
+.result-hero.pass{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-color:#86efac}
+.result-hero.fail{background:linear-gradient(135deg,#fef2f2,#fee2e2);border-color:#fca5a5}
+.score-circle{width:150px;height:150px;border-radius:50%;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:0 8px 24px rgba(0,0,0,.15)}
+.result-hero.pass .score-circle{background:linear-gradient(135deg,#059669,#047857)}
+.result-hero.fail .score-circle{background:linear-gradient(135deg,#dc2626,#b91c1c)}
+.score-circle .num{font-size:48px;font-weight:900;line-height:1}
+.score-circle .lbl{font-size:11px;font-weight:700;opacity:.9;letter-spacing:1px;margin-top:4px}
+.result-hero h2{font-size:24px;font-weight:800;margin-bottom:4px}
+.result-hero .pred{display:inline-block;padding:7px 20px;border-radius:30px;font-weight:800;font-size:14px;margin-top:8px}
+.pred.pass{background:var(--green-light);color:var(--green)}
+.pred.fail{background:var(--red-light);color:var(--red)}
+.result-hero .meta{color:var(--muted);font-size:13.5px;margin-top:10px}
+.result-hero .meta strong{color:var(--primary-dark)}
+.retry-box{background:#fff;border:2px solid var(--yellow);border-radius:12px;padding:16px 20px;margin-top:18px;text-align:left}
+.retry-box.warning{border-color:var(--red)}
+.retry-box .rb-title{font-weight:800;font-size:15px;margin-bottom:6px;color:#92400e}
+.retry-box.warning .rb-title{color:var(--red)}
+.retry-box .rb-desc{font-size:13.5px;color:#4b5563;line-height:1.6}
+.result-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin:22px 0}
+.result-card{padding:24px;margin-bottom:18px}
+.result-card h3{font-size:16px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.filter-bar{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.filter-bar button{padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700;border:1.5px solid var(--border);background:#fff;color:#4b5563}
+.filter-bar button.active{background:var(--primary);border-color:var(--primary);color:#fff}
+.review-item{border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-bottom:10px;background:#fff}
+.review-item.full{border-left:4px solid var(--green)}
+.review-item.partial{border-left:4px solid var(--yellow)}
+.review-item.zero{border-left:4px solid var(--red)}
+.review-item .ri-head{display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap}
+.review-item .ri-num{font-weight:800;font-size:13px;background:#f3f4f6;padding:2px 9px;border-radius:6px}
+.review-item .ri-status{font-size:11px;font-weight:800;padding:2px 9px;border-radius:20px}
+.ri-status.full{background:var(--green-light);color:var(--green)}
+.ri-status.partial{background:var(--yellow-light);color:#92400e}
+.ri-status.zero{background:var(--red-light);color:var(--red)}
+.review-item .ri-score{margin-left:auto;font-size:12px;font-weight:800;color:var(--primary-dark);background:var(--primary-light);padding:2px 10px;border-radius:20px}
+.review-item .ri-q{font-size:13.5px;font-weight:600;margin-bottom:8px;color:#1f2937}
+.review-item .ri-ans{font-size:13px;margin-bottom:3px}
+.review-item .ri-ans .lbl{font-weight:700;color:var(--muted);display:inline-block;min-width:110px}
+.review-item .ri-ans.correct .val{color:var(--green);font-weight:700}
+.review-item .ri-ans.wrong .val{color:var(--red);font-weight:700}
+.review-item .ri-explain{font-size:12.5px;color:#4b5563;background:#f9fafb;border-radius:8px;padding:8px 12px;margin-top:8px;line-height:1.6}
+.review-item .ri-explain strong{color:var(--primary-dark)}
+.review-item .ri-sts{display:flex;flex-direction:column;gap:4px;font-size:12.5px;margin:6px 0}
+.review-item .ri-sts .row{display:flex;align-items:flex-start;gap:8px}
+.review-item .ri-sts .row .mark{font-weight:800;width:22px;text-align:center;flex-shrink:0}
+.review-item .ri-sts .row.ok .mark{color:var(--green)}
+.review-item .ri-sts .row.bad .mark{color:var(--red)}
+.review-item .ri-sts .row .txt{flex:1;color:#4b5563}
+.action-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+
+/* ========== MODAL WARNING BIRU ========== */
+.modal-overlay{position:fixed;inset:0;z-index:200;background:rgba(17,24,39,.55);display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(3px)}
+.modal-box{background:#fff;border-radius:14px;width:100%;max-width:480px;padding:26px 24px 20px;box-shadow:0 20px 50px rgba(0,0,0,.25);border-top:5px solid var(--primary);text-align:center;animation:modalIn .22s ease}
+@keyframes modalIn{from{transform:scale(.94);opacity:0}to{transform:scale(1);opacity:1}}
+.modal-box .modal-icon{width:54px;height:54px;border-radius:50%;background:var(--primary-light);color:var(--primary-dark);display:grid;place-items:center;font-size:26px;font-weight:900;margin:0 auto 14px}
+.modal-box h3{font-size:16px;font-weight:800;color:var(--primary-dark);line-height:1.4;margin-bottom:10px}
+.modal-box p{font-size:13.5px;color:#374151;line-height:1.6;margin-bottom:18px}
+.modal-box p strong{color:var(--primary-dark)}
+.modal-box .modal-actions{display:flex;justify-content:center}
+.modal-box .btn-primary{background:var(--primary);color:#fff;padding:11px 34px;font-size:14px;min-width:140px}
+.modal-box .btn-primary:hover{background:var(--primary-dark)}
+
+/* ========== MODAL KONFIRMASI HIJAU ========== */
+.confirm-modal-box{background:#fff;border-radius:16px;width:100%;max-width:500px;padding:0;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.3);animation:modalIn .22s ease}
+.confirm-modal-box .cm-header{padding:26px 24px 18px;background:linear-gradient(135deg,#ecfdf5,#d1fae5);text-align:center;border-bottom:1px solid #86efac}
+.confirm-modal-box .cm-icon{width:64px;height:64px;border-radius:50%;background:#fff;color:var(--green);display:grid;place-items:center;font-size:32px;font-weight:900;margin:0 auto 12px;box-shadow:0 4px 14px rgba(5,122,85,.25);animation:celebrateFloat 2.5s ease-in-out infinite}
+.confirm-modal-box h3{font-size:19px;font-weight:900;color:var(--green);margin-bottom:8px;line-height:1.25}
+.confirm-modal-box .cm-sub{font-size:13.5px;color:#065f46;line-height:1.55;max-width:360px;margin:0 auto}
+.confirm-modal-box .cm-sub strong{color:var(--primary-dark);font-weight:800}
+.confirm-modal-box .cm-body{padding:22px 24px 20px}
+.confirm-modal-box .cm-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.confirm-modal-box .cm-stat{background:#f9fafb;border:1.5px solid var(--border);border-radius:10px;padding:12px;text-align:center}
+.confirm-modal-box .cm-stat .n{font-size:22px;font-weight:900;color:var(--green);line-height:1}
+.confirm-modal-box .cm-stat .l{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:#6b7280;margin-top:4px}
+.confirm-modal-box .cm-actions{display:flex;gap:10px;flex-wrap:wrap}
+.confirm-modal-box .cm-actions button{flex:1;min-width:130px;padding:13px 18px;font-size:14px;font-weight:800;border-radius:10px}
+.confirm-modal-box .cm-btn-cancel{background:#fff;color:#4b5563;border:1.5px solid var(--border)}
+.confirm-modal-box .cm-btn-cancel:hover{background:#f3f4f6}
+.confirm-modal-box .cm-btn-yakin{background:linear-gradient(135deg,#059669,#047857);color:#fff;box-shadow:0 3px 10px rgba(5,122,85,.3)}
+.confirm-modal-box .cm-btn-yakin:hover{transform:translateY(-1px);box-shadow:0 5px 14px rgba(5,122,85,.4)}
+.confirm-modal-box .cm-warn{background:#fef3c7;border-left:3px solid var(--yellow);padding:10px 12px;border-radius:8px;font-size:12px;color:#78350f;margin-top:14px;line-height:1.5;text-align:left}
+
+/* ========== TOAST ========== */
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(120px);background:#1e293b;color:#fff;padding:14px 18px;border-radius:12px;font-size:13.5px;font-weight:600;box-shadow:0 10px 30px rgba(0,0,0,.35);z-index:300;opacity:0;transition:.35s cubic-bezier(.4,0,.2,1);display:flex;align-items:center;gap:12px;max-width:92%;text-align:left;line-height:1.5}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast .toast-icon{font-size:22px;flex-shrink:0;line-height:1}
+.toast .toast-text{flex:1;font-size:13px}
+.toast .toast-close{background:rgba(255,255,255,.18);color:#fff;border-radius:6px;padding:6px 12px;font-size:11px;font-weight:800;flex-shrink:0;letter-spacing:.3px}
+.toast .toast-close:hover{background:rgba(255,255,255,.3)}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width:900px){
+  .exam-layout{grid-template-columns:1fr}
+  .sidebar{display:none;position:fixed;top:66px;left:0;right:0;bottom:0;z-index:45;height:auto;border-right:none;box-shadow:0 4px 20px rgba(0,0,0,.15);padding:18px 16px}
+  .sidebar.open{display:block}
+  .mobile-nav-toggle{display:inline-flex}
+  .nav-grid{grid-template-columns:repeat(6,1fr);gap:8px}
+  .nav-grid button{min-height:42px;font-size:13px}
+}
+@media (max-width:600px){
+  .topbar{padding:10px 0}
+  .topbar .container{padding:0 14px;gap:8px}
+  .brand{font-size:13.5px;gap:10px}
+  .brand .brand-text small{font-size:10.5px}
+  .globe-logo{width:38px;height:38px}
+  .school-badge .sb-main{font-size:16px;letter-spacing:.5px}
+  .school-badge .sb-sub{font-size:9.5px;margin-top:2px}
+  .exam-header .school-badge{display:none}
+  .start-hero{padding:30px 0 24px}
+  .start-hero h1{font-size:24px}
+  .start-hero p{font-size:14px}
+  .form-wrap{margin-top:22px;gap:12px}
+  .name-input{padding:13px 14px;font-size:15px}
+  .exam-info-card{padding:16px}
+  .info-grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .info-cell{padding:9px 10px}
+  .info-cell .val{font-size:14px}
+  .inst-wrap{margin:20px auto;padding:0 14px 40px}
+  .inst-card{padding:22px 18px}
+  .inst-card h2{font-size:19px}
+  .inst-info{grid-template-columns:repeat(2,1fr);gap:8px}
+  .inst-info .cell{padding:11px}
+  .inst-info .cell .val{font-size:14px}
+  .inst-card h4{font-size:14px;margin:16px 0 8px}
+  .inst-card ol{font-size:13.5px;padding-left:20px}
+  .exam-header .container{padding:8px 14px;height:auto;min-height:60px;gap:8px}
+  .exam-header .left{gap:8px}
+  .exam-header .exam-title{font-size:12.5px}
+  .exam-header .exam-sub{font-size:10.5px}
+  .exam-header .right{gap:8px}
+  .timer{padding:6px 10px;font-size:14px}
+  .user-chip{font-size:11.5px;padding:3px 10px 3px 3px}
+  .user-chip .av{width:22px;height:22px;font-size:11px}
+  .exam-main{padding:16px 14px 150px}
+  .q-head{gap:8px;margin-bottom:12px}
+  .q-number{width:32px;height:32px;font-size:14px}
+  .q-cat{font-size:10px;padding:3px 8px}
+  .q-type{font-size:9.5px;padding:3px 8px}
+  .q-of{font-size:11.5px}
+  .stimulus{padding:14px;font-size:13.5px;line-height:1.7;margin-bottom:16px}
+  .stimulus table{font-size:12px}
+  .stimulus table th,.stimulus table td{padding:6px 8px}
+  .question-text{font-size:14.5px;margin-bottom:14px}
+  .option{padding:13px 14px;font-size:14px;gap:10px;min-height:48px}
+  .option .letter{width:24px;height:24px;font-size:11.5px}
+  .ceklis-option{padding:13px 14px;font-size:14px;min-height:48px}
+  .ceklis-hint{font-size:12px;padding:7px 10px}
+  .sts-table,.sts-table thead,.sts-table tbody,.sts-table tr,.sts-table th,.sts-table td{display:block;width:100%}
+  .sts-table thead{display:none}
+  .sts-table tr{border:1px solid var(--border);border-radius:10px;margin-bottom:10px;padding:12px;background:#f9fafb}
+  .sts-table td{border:none;padding:4px 0}
+  .sts-table td:first-child{font-size:13.5px;font-weight:600;margin-bottom:8px;padding-bottom:8px;border-bottom:1px dashed var(--border)}
+  .sts-table td.center{display:inline-block;width:auto;margin-right:6px}
+  .sts-table td.center .sts-btn{min-width:76px;padding:9px 12px;font-size:12px;min-height:38px}
+  .exam-footer .container{padding:10px 14px;gap:8px}
+  .exam-footer .btn{padding:10px 14px;font-size:12.5px;min-height:42px;flex:1;min-width:calc(50% - 4px)}
+  .footer-actions{flex:1;display:flex;gap:8px;flex-wrap:wrap}
+  .footer-actions .btn{padding:10px 12px;font-size:12px;flex:1;min-width:calc(50% - 4px)}
+  .mobile-nav-toggle{padding:9px 12px;font-size:12.5px}
+  .confirm-wrap{margin:20px auto;padding:0 14px 40px}
+  .success-hero{padding:26px 18px 16px}
+  .success-icon{font-size:52px}
+  .success-hero h2{font-size:19px}
+  .success-hero p{font-size:13px}
+  .success-stats{padding:0 18px 18px}
+  .success-stat{padding:12px}
+  .success-stat .ss-num{font-size:24px}
+  .final-action-box{padding:0 18px;gap:10px}
+  .final-action-btn{padding:18px 18px;gap:14px}
+  .final-action-btn .fab-icon{font-size:26px}
+  .final-action-btn .fab-title{font-size:15px}
+  .final-action-btn .fab-sub{font-size:11.5px}
+  .confirm-bottom{padding:18px 18px 22px}
+  .result-wrap{padding:16px 14px 40px}
+  .result-hero{padding:22px 16px}
+  .score-circle{width:120px;height:120px}
+  .score-circle .num{font-size:38px}
+  .result-hero h2{font-size:20px}
+  .pred{font-size:12.5px;padding:6px 16px}
+  .result-stats{grid-template-columns:repeat(2,1fr);gap:8px}
+  .result-card{padding:18px 16px}
+  .filter-bar button{padding:5px 10px;font-size:11px}
+  .review-item{padding:12px 14px}
+  .review-item .ri-q{font-size:13px}
+  .review-item .ri-ans{font-size:12.5px}
+  .review-item .ri-ans .lbl{min-width:90px}
+  .review-item .ri-explain{font-size:12px;padding:7px 10px}
+  .action-row .btn{width:100%;justify-content:center}
+  .modal-box{padding:22px 18px 18px}
+  .modal-box h3{font-size:15px}
+  .modal-box p{font-size:13px}
+  .confirm-modal-box .cm-header{padding:22px 18px 16px}
+  .confirm-modal-box h3{font-size:17px}
+  .confirm-modal-box .cm-sub{font-size:12.5px}
+  .confirm-modal-box .cm-body{padding:18px 18px 16px}
+  .confirm-modal-box .cm-actions button{flex:1 1 100%;min-width:0;padding:12px 16px}
+  .toast{bottom:16px;padding:12px 14px;font-size:12px;gap:10px}
+  .toast .toast-icon{font-size:18px}
+  .toast .toast-text{font-size:12px}
+  .toast .toast-close{padding:5px 10px;font-size:10.5px}
+}
+@media (max-width:380px){
+  .exam-header .school-badge{display:none}
+  .school-badge .sb-main{font-size:14px}
+  .school-badge .sb-sub{font-size:8.5px}
+  .confirm-modal-box .cm-stats{grid-template-columns:1fr}
+  .exam-footer .btn{font-size:11.5px;padding:10px 8px}
+  .footer-actions .btn{font-size:11px;padding:10px 8px}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= SCREEN 1 ================= -->
+<div id="screen-start" class="screen active">
+  <div class="topbar"><div class="container">
+    <div class="brand">
+      <div class="globe-logo" aria-hidden="true"><div class="continents"></div><div class="shine"></div></div>
+      <div class="brand-text">Tes Kemampuan Akademik<small>Asesmen Literasi Geografi · Fase E</small></div>
+    </div>
+    <div class="school-badge">
+      <span class="sb-main">SMAN 3 KASONGAN</span>
+      <span class="sb-sub">Guru Pengampu : SYAHRANI, S.Pd</span>
+    </div>
+  </div></div>
+  <div class="container start-hero">
+    <div class="tag">Selamat Datang, Peserta</div>
+    <h1>Asesmen Literasi Geografi</h1>
+    <p>Uji pemahamanmu tentang <strong>Penginderaan Jauh</strong> dan <strong>Sistem Informasi Geografi (SIG)</strong> melalui 22 soal berbasis stimulus dengan tiga tipe soal.</p>
+    <div class="form-wrap">
+      <div class="field-group">
+        <label for="inputNama">Nama Lengkap<span class="req">*</span></label>
+        <input type="text" id="inputNama" class="name-input" placeholder="Tuliskan nama lengkapmu..." maxlength="60" autocomplete="off" />
+      </div>
+      <div class="field-group">
+        <label for="inputKelas">Kelas<span class="req">*</span></label>
+        <select id="inputKelas" class="name-input">
+          <option value="">-- Pilih Kelas --</option>
+          <option value="X-A">X-A</option>
+          <option value="X-B">X-B</option>
+          <option value="X-C">X-C</option>
+          <option value="X-D">X-D</option>
+        </select>
+      </div>
+
+      <div class="exam-info-card">
+        <h3>📋 Informasi Asesmen</h3>
+        <div class="info-grid">
+          <div class="info-cell"><span class="lbl">Total Soal</span><span class="val">22</span></div>
+          <div class="info-cell"><span class="lbl">Waktu</span><span class="val">45 Menit</span></div>
+          <div class="info-cell"><span class="lbl">Nilai Lulus</span><span class="val">≥ 76</span><span class="sub">dari 100</span></div>
+          <div class="info-cell"><span class="lbl">Mengulang</span><span class="val">2×</span><span class="sub">(maks. 3 percobaan)</span></div>
+          <div class="info-cell"><span class="lbl">Pilihan Ganda</span><span class="val">15 Soal</span><span class="sub">68%</span></div>
+          <div class="info-cell"><span class="lbl">Sesuai/Tdk Sesuai</span><span class="val">4 Soal</span><span class="sub">18%</span></div>
+          <div class="info-cell"><span class="lbl">Ceklis (&gt;1)</span><span class="val">3 Soal</span><span class="sub">14%</span></div>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" style="width:100%;padding:15px;margin-top:8px" onclick="masukUjian()">Masuk &amp; Lihat Petunjuk →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= SCREEN 2 ================= -->
+<div id="screen-instructions" class="screen">
+  <div class="topbar"><div class="container">
+    <div class="brand">
+      <div class="globe-logo" aria-hidden="true"><div class="continents"></div><div class="shine"></div></div>
+      <div class="brand-text">Petunjuk Ujian<small>Asesmen Literasi Geografi</small></div>
+    </div>
+    <div class="school-badge">
+      <span class="sb-main">SMAN 3 KASONGAN</span>
+      <span class="sb-sub">Guru Pengampu : SYAHRANI, S.Pd</span>
+    </div>
+  </div></div>
+  <div class="inst-wrap"><div class="card inst-card">
+    <h2>📋 Petunjuk Pengerjaan</h2>
+    <p class="sub">Bacalah petunjuk berikut dengan saksama sebelum memulai ujian.</p>
+    <div class="inst-info">
+      <div class="cell"><div class="lbl">Nama Peserta</div><div class="val" id="instUser" style="font-size:13px">—</div></div>
+      <div class="cell"><div class="lbl">Jumlah Soal</div><div class="val">22</div></div>
+      <div class="cell"><div class="lbl">Waktu</div><div class="val">45 Menit</div></div>
+      <div class="cell"><div class="lbl">Bentuk Soal</div><div class="val">3 Tipe</div></div>
+      <div class="cell"><div class="lbl">Nilai Lulus</div><div class="val">≥ 76</div></div>
+      <div class="cell"><div class="lbl">Batas Mengulang</div><div class="val">2×</div></div>
+    </div>
+    <h4>Tiga Tipe Soal</h4>
+    <ol>
+      <li><strong>Pilihan Ganda (15 soal)</strong> — Pilih <em>satu</em> jawaban paling tepat (A–E). Nilai 4 poin per soal benar.</li>
+      <li><strong>Sesuai / Tidak Sesuai (4 soal)</strong> — Setiap soal berisi 3 pernyataan. Tandai tiap pernyataan dengan <em>Sesuai</em> atau <em>Tidak Sesuai</em>. Nilai parsial: setiap pernyataan benar = <strong>4/3 poin</strong>.</li>
+      <li><strong>Ceklis (&gt;1 jawaban) (3 soal)</strong> — Centang <em>lebih dari satu</em> jawaban yang benar. Nilai parsial: setiap jawaban benar <strong>+4/n</strong>, setiap jawaban salah <strong>−4/n</strong> (minimal 0 per soal).</li>
+    </ol>
+    <h4>Ketentuan Umum</h4>
+    <ol>
+      <li>Waktu pengerjaan <strong>45 menit</strong>. Timer berjalan otomatis saat ujian dimulai.</li>
+      <li><strong>Nilai akhir maksimal 100</strong> (jika semua soal benar). Jika ada yang salah, nilai dipersentasekan proporsional: <code>Nilai = (Skor Mentah / 88) × 100</code>.</li>
+      <li>Nilai minimal <strong>LULUS = 76</strong>.</li>
+      <li>Jika nilai &lt; 76, peserta dapat <strong>mengulang maksimal 2 kali</strong> (total maks. 3 percobaan).</li>
+      <li>Jika waktu habis, jawaban otomatis dikumpulkan.</li>
+      <li><strong>Tombol "Selesai" hanya aktif setelah SEMUA soal dijawab.</strong></li>
+      <li>Setelah menekan "Selesai", muncul konfirmasi <strong>"Periksa Lagi / Yakin"</strong>.</li>
+      <li>Setelah klik <strong>"Yakin"</strong>, kamu akan langsung melihat halaman nilai. Di sana bisa <strong>screenshot / kirim ke guru</strong> atau <strong>ulangi</strong>.</li>
+    </ol>
+    <div class="inst-note blue">💡 <strong>Tips:</strong> Gunakan tombol <strong>← Sebelumnya</strong> dan <strong>Selanjutnya →</strong> (keduanya berwarna biru) atau panel navigasi untuk berpindah soal. Soal terjawab berwarna <span style="color:var(--primary);font-weight:800">biru</span>, dan saat semua terjawab berubah <span style="color:var(--green);font-weight:800">hijau</span>.</div>
+    <div class="inst-note">⚠️ <strong>Perhatian:</strong> Jika batas mengulang (3 percobaan) habis dan nilai masih &lt; 76, maka dinyatakan <strong>TIDAK LULUS</strong>.</div>
+    <div style="display:flex;gap:10px;margin-top:24px;justify-content:space-between;flex-wrap:wrap">
+      <button class="btn btn-gray" onclick="showScreen('start')">← Kembali</button>
+      <button class="btn btn-primary" onclick="mulaiUjian()" style="padding:13px 30px">🚀 Mulai Ujian</button>
+    </div>
+  </div></div>
+</div>
+
+<!-- ================= SCREEN 3 ================= -->
+<div id="screen-exam" class="screen">
+  <header class="exam-header"><div class="container">
+    <div class="left">
+      <button class="mobile-nav-toggle" onclick="toggleSidebar()">☰ Soal</button>
+      <div class="globe-logo" aria-hidden="true"><div class="continents"></div><div class="shine"></div></div>
+      <div>
+        <div class="exam-title">Asesmen Literasi Geografi</div>
+        <div class="exam-sub" id="attemptLabel">Percobaan 1 dari 3</div>
+      </div>
+    </div>
+    <div class="right">
+      <div class="timer" id="timerBox"><span>⏱</span><span id="timerDisplay">45:00</span></div>
+      <div class="user-chip"><div class="av" id="avatar">P</div><span id="headerUser">Peserta</span></div>
+      <div class="school-badge">
+        <span class="sb-main">SMAN 3 KASONGAN</span>
+        <span class="sb-sub">Guru Pengampu : SYAHRANI, S.Pd</span>
+      </div>
+    </div>
+  </div></header>
+  <div class="exam-layout">
+    <aside class="sidebar" id="sidebar">
+      <h3>Navigasi Soal</h3>
+      <div class="progress-info"><div class="row"><span>Terjawab</span><strong id="navAnswered">0 / 22</strong></div></div>
+      <div class="nav-grid" id="navGrid"></div>
+      <div class="legend">
+        <div class="li"><span class="sw"></span> Belum dijawab</div>
+        <div class="li"><span class="sw answered"></span> Sudah dijawab</div>
+        <div class="li"><span class="sw all-done"></span> Semua terjawab</div>
+      </div>
+    </aside>
+    <main class="exam-main"><div id="questionArea"></div></main>
+  </div>
+  <footer class="exam-footer"><div class="container">
+    <button class="btn btn-primary" onclick="prevQ()" id="btnPrev">← Sebelumnya</button>
+    <div class="footer-actions">
+      <button class="btn btn-primary" onclick="nextQ()" id="btnNext">Selanjutnya →</button>
+      <button class="btn btn-selesai" onclick="clickSelesai()" id="btnSelesai">✓ Selesai</button>
+    </div>
+  </div></footer>
+</div>
+
+<!-- ================= SCREEN 4 — KONFIRMASI AKHIR (1 TOMBOL) ================= -->
+<div id="screen-confirm" class="screen">
+  <div class="topbar"><div class="container">
+    <div class="brand">
+      <div class="globe-logo" aria-hidden="true"><div class="continents"></div><div class="shine"></div></div>
+      <div class="brand-text">Konfirmasi Akhir<small>Siap melihat hasil?</small></div>
+    </div>
+    <div class="school-badge">
+      <span class="sb-main">SMAN 3 KASONGAN</span>
+      <span class="sb-sub">Guru Pengampu : SYAHRANI, S.Pd</span>
+    </div>
+  </div></div>
+  <div class="confirm-wrap">
+    <div class="card success-card">
+      <div class="success-hero">
+        <div class="success-icon">🎉</div>
+        <h2>Semua Soal Sudah Dijawab!</h2>
+        <p>Kamu telah menyelesaikan seluruh <strong>22 soal</strong>. Klik tombol di bawah untuk melihat nilai.</p>
+      </div>
+      <div class="success-stats">
+        <div class="success-stat"><div class="ss-num">22</div><div class="ss-lbl">Soal Terjawab</div></div>
+        <div class="success-stat"><div class="ss-num">100%</div><div class="ss-lbl">Kelengkapan</div></div>
+      </div>
+      <div class="final-action-box">
+        <button class="final-action-btn primary-action" onclick="submitExam(false, 'view')">
+          <span class="fab-icon">🎯</span>
+          <span class="fab-text">
+            <span class="fab-title">Lihat Nilai Sekarang</span>
+            <span class="fab-sub">Hasil akan ditampilkan. Setelah itu bisa screenshot / kirim ke guru atau ulangi.</span>
+          </span>
+          <span class="fab-arrow">→</span>
+        </button>
+      </div>
+      <div class="confirm-bottom">
+        <button class="btn btn-gray" onclick="showScreen('exam')">← Kembali Periksa Soal</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= SCREEN 5 ================= -->
+<div id="screen-result" class="screen">
+  <div class="topbar"><div class="container">
+    <div class="brand">
+      <div class="globe-logo" aria-hidden="true"><div class="continents"></div><div class="shine"></div></div>
+      <div class="brand-text">Hasil Ujian<small>Asesmen Literasi Geografi</small></div>
+    </div>
+    <div class="school-badge">
+      <span class="sb-main">SMAN 3 KASONGAN</span>
+      <span class="sb-sub">Guru Pengampu : SYAHRANI, S.Pd</span>
+    </div>
+  </div></div>
+  <div class="result-wrap">
+    <div class="card result-hero" id="resultHero">
+      <div class="score-circle"><div class="num" id="scoreNum">0</div><div class="lbl">NILAI / 100</div></div>
+      <h2 id="resultTitle">Hasil Asesmen</h2>
+      <div class="pred" id="predikat">—</div>
+      <p class="meta" id="resultUser" style="font-weight:700;color:var(--primary-dark);font-size:14px;margin-top:6px">—</p>
+      <p class="meta" id="resultMeta">—</p>
+      <div id="retryArea"></div>
+    </div>
+    <div class="result-stats">
+      <div class="card stat-box green"><div class="n" id="rBenar">0</div><div class="l">Soal Benar Penuh</div></div>
+      <div class="card stat-box gray"><div class="n" id="rPartial">0</div><div class="l">Sebagian</div></div>
+      <div class="card stat-box red"><div class="n" id="rSalah">0</div><div class="l">Salah / Kosong</div></div>
+      <div class="card stat-box blue"><div class="n" id="rWaktu">0:00</div><div class="l">Waktu</div></div>
+    </div>
+    <div class="card result-card">
+      <h3>🔍 Pembahasan Jawaban</h3>
+      <div class="filter-bar">
+        <button class="active" data-filter="all" onclick="filterReview('all',this)">Semua</button>
+        <button data-filter="full" onclick="filterReview('full',this)">Benar Penuh</button>
+        <button data-filter="partial" onclick="filterReview('partial',this)">Sebagian</button>
+        <button data-filter="zero" onclick="filterReview('zero',this)">Salah/Kosong</button>
+      </div>
+      <div id="reviewList"></div>
+    </div>
+    <div class="action-row" id="actionRow"></div>
+  </div>
+</div>
+
+<!-- ================= MODAL WARNING BIRU ================= -->
+<div id="warningModal" class="modal-overlay">
+  <div class="modal-box">
+    <div class="modal-icon">!</div>
+    <h3 id="modalTitle">Kamu belum menyelesaikan semua pertanyaan, periksa kembali.</h3>
+    <p id="modalMessage"></p>
+    <div class="modal-actions">
+      <button class="btn btn-primary" onclick="closeWarningModal()">Mengerti</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= MODAL KONFIRMASI HIJAU ================= -->
+<div id="confirmModal" class="modal-overlay">
+  <div class="confirm-modal-box">
+    <div class="cm-header">
+      <div class="cm-icon">✓</div>
+      <h3>Periksa Kembali Jawabanmu</h3>
+      <p class="cm-sub">Semua <strong>22 soal</strong> sudah kamu jawab. Apakah kamu <strong>yakin</strong> ingin melihat hasil sekarang?</p>
+    </div>
+    <div class="cm-body">
+      <div class="cm-stats">
+        <div class="cm-stat"><div class="n">22</div><div class="l">Soal Terjawab</div></div>
+        <div class="cm-stat"><div class="n">100%</div><div class="l">Kelengkapan</div></div>
+      </div>
+      <div class="cm-actions">
+        <button class="cm-btn-cancel" onclick="closeConfirmModal()">← Periksa Lagi</button>
+        <button class="cm-btn-yakin" onclick="yakinKumpulkan()">Yakin ✓</button>
+      </div>
+      <div class="cm-warn">⚠️ Setelah klik <strong>"Yakin"</strong>, jawaban <strong>tidak dapat diubah</strong> dan kamu akan langsung melihat <strong>halaman nilai</strong>.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= TOAST ================= -->
+<div id="toast" class="toast">
+  <span class="toast-icon" id="toastIcon">📸</span>
+  <span class="toast-text" id="toastText"></span>
+  <button class="toast-close" onclick="hideToast()">Tutup</button>
+</div>
+
+<script>
+/* ============================================================
+   22 SOAL: 15 PG · 4 STS · 3 CEKLIS
+   ============================================================ */
+const QUESTIONS = [
+
+/* ---------- SOAL 1 (PG) ---------- */
+{type:'pg',cat:'PJ',
+stimulus:`<span class="stim-label">Stimulus</span>
+<p>Penginderaan jauh (<em>remote sensing</em>) merupakan ilmu dan seni untuk memperoleh informasi tentang objek, area, atau fenomena di permukaan bumi melalui analisis data yang diperoleh dengan menggunakan alat <strong>tanpa melakukan kontak langsung</strong> dengan objek, area, atau fenomena tersebut. Informasi diperoleh melalui perekaman energi elektromagnetik yang dipantulkan atau dipancarkan oleh objek.</p>
+<p>Contoh penerapannya meliputi pemotretan udara, citra satelit, dan penginderaan dengan radar. Berbeda dengan survei lapangan yang memerlukan pengukuran langsung, penginderaan jauh memungkinkan pengumpulan data dari jarak jauh dalam cakupan yang luas dan waktu yang relatif singkat.</p>
+<p>Berdasarkan definisi tersebut, terdapat dua kata kunci utama, yaitu <strong>tanpa kontak langsung</strong> dan <strong>analisis data</strong>. Inilah yang membedakan penginderaan jauh dari metode pengukuran konvensional di lapangan.</p>`,
+question:"Berdasarkan stimulus, ciri utama penginderaan jauh adalah…",
+options:["Memperoleh informasi tanpa kontak langsung dengan objek","Melakukan pengukuran langsung di lapangan","Mengandalkan wawancara dengan warga","Membutuhkan pemetaan manual di atas kertas","Melakukan observasi visual secara langsung"],
+answer:0,
+explain:"Teks menyebutkan penginderaan jauh memperoleh informasi <strong>tanpa kontak langsung</strong> dengan objek yang dikaji."},
+
+/* ---------- SOAL 2 (PG) ---------- */
+{type:'pg',cat:'PJ',
+stimulus:`<span class="stim-label">Stimulus</span>
+<p>Berdasarkan sumber energinya, sensor penginderaan jauh dibedakan menjadi dua jenis. Sensor <strong>pasif</strong> merekam energi pantulan objek yang berasal dari sumber alami, terutama <strong>matahari</strong>. Sensor pasif tidak memancarkan energi sendiri, sehingga bergantung pada pencahayaan alami dan tidak dapat digunakan pada malam hari atau saat tertutup awan tebal. Contoh sensor pasif adalah Landsat dan Sentinel-2.</p>
+<p>Sensor <strong>aktif</strong>, sebaliknya, memancarkan energi elektromagnetiknya sendiri kemudian merekam energi yang dipantulkan kembali oleh objek. Karena memiliki sumber energi sendiri, sensor aktif dapat beroperasi pada malam hari dan mampu menembus awan. Contoh sensor aktif adalah <strong>Sentinel-1</strong> yang menggunakan gelombang mikro (radar), serta LIDAR.</p>`,
+question:"Satelit Sentinel-1 yang menggunakan gelombang mikro yang dipancarkannya sendiri termasuk jenis sensor…",
+options:["Pasif","Optik","Termal","Aktif","Multispektral"],
+answer:3,
+explain:"Sensor aktif memancarkan energinya sendiri, seperti Sentinel-1 yang menggunakan gelombang mikro (radar)."},
+
+/* ---------- SOAL 3 (PG) ---------- */
+{type:'pg',cat:'PJ',
+stimulus:`<span class="stim-label">Stimulus</span>
+<p>Resolusi spasial menunjukkan ukuran objek terkecil yang dapat dibedakan oleh sensor pada citra. Semakin <strong>kecil</strong> nilai resolusi spasial (dalam meter), semakin <strong>detail</strong> objek yang dapat direkam, karena satu piksel mewakili area yang lebih kecil di permukaan bumi. Sebaliknya, resolusi spasial besar berarti satu piksel mewakili area yang lebih luas sehingga detail objek lebih kasar.</p>
+<table><tr><th>Satelit</th><th>Resolusi Spasial</th><th>Keterangan</th></tr><tr><td>WorldView-3</td><td>0,3 meter</td><td>Sangat detail</td></tr><tr><td>Sentinel-2</td><td>10 meter</td><td>Menengah</td></tr><tr><td>Landsat</td><td>30 meter</td><td>Kasar</td></tr></table>
+<p>Dengan demikian, citra WorldView-3 mampu menampilkan objek sekecil 30 cm, sedangkan Landsat hanya mampu menampilkan objek berukuran 30 m atau lebih.</p>`,
+question:"Berdasarkan tabel, pernyataan yang paling tepat adalah…",
+options:["Ketiganya memiliki resolusi yang sama","WorldView-3 memiliki detail paling tinggi karena pikselnya paling kecil","Landsat memiliki resolusi spasial paling tinggi","Sentinel-2 lebih tinggi dari WorldView-3","Resolusi spasial tidak memengaruhi detail objek"],
+answer:1,
+explain:"Semakin kecil nilai resolusi spasial (0,3 m), semakin detail objek yang dapat dibedakan."},
+
+/* ---------- SOAL 4 (PG) ---------- */
+{type:'pg',cat:'SIG',
+stimulus:`<span class="stim-label">Stimulus</span>
+<p>Sistem Informasi Geografi (SIG) merupakan sistem komputer yang digunakan untuk mengelola, menganalisis, dan menyajikan data spasial. SIG terdiri atas tiga komponen utama yang saling terkait dan harus berjalan seimbang:</p>
+<ol><li><strong>Sistem komputer</strong>, meliputi perangkat keras (<em>hardware</em>) seperti CPU, monitor, dan printer, serta perangkat lunak (<em>software</em>) seperti QGIS dan ArcGIS.</li><li><strong>Pelaksana/SDM</strong>, yaitu manusia yang mengoperasikan SIG, melakukan digitasi, analisis, dan interpretasi data.</li><li><strong>Data</strong>, baik data spasial (posisi objek) maupun data atribut (informasi deskriptif objek).</li></ol>
+<p>Tanpa salah satu komponen tersebut, SIG tidak dapat berjalan dengan baik.</p>`,
+question:"Berdasarkan stimulus, yang termasuk komponen utama SIG adalah…",
+options:["Hardware, software, internet","CPU, monitor, printer","Sistem komputer, pelaksana/SDM, data","Peta, citra, tabel","Titik, garis, poligon"],
+answer:2,
+explain:"Tiga komponen utama SIG: sistem komputer, pelaksana/SDM, dan data."},
+
+/* ---------- SOAL 5 (PG) ---------- */
+{type:'pg',cat:'SIG',
+stimulus:`<span class="stim-label">Stimulus</span>
+<p>Data spasial dalam SIG dapat direpresentasikan dalam dua model, yaitu <strong>vektor</strong> dan <strong>raster</strong>.</p>
+<p>Model <strong>vektor</strong> menggunakan titik (<em>point</em>), garis (<em>line</em>), dan poligon (<em>polygon</em>) untuk merepresentasikan objek. Titik digunakan untuk objek berukuran kecil seperti sumur atau sekolah; garis untuk objek memanjang seperti jalan atau sungai; dan poligon untuk objek area seperti sawah, danau, atau hutan.</p>
+<p>Model <strong>raster</strong> tersusun atas grid sel (piksel) yang masing-masing memiliki nilai tertentu, cocok untuk data kontinu seperti ketinggian tanah atau suhu permukaan.</p>`,
+question:"Sawah yang memiliki area luas dan batas jelas paling tepat direpresentasikan sebagai…",
+options:["Titik","Garis","Pixel","Raster","Poligon"],
+answer:4,
+explain:"Sawah adalah objek area, sehingga direpresentasikan sebagai poligon dalam model vektor."},
+
+/* ---------- SOAL 6 (PG) ---------- */
+{type:'pg',cat:'SIG',
+stimulus:`<span class="stim-label">Stimulus</span>
+<p>Pengolahan data dalam SIG melalui empat tahapan utama:</p>
+<ol><li><strong>Input data</strong>, yaitu memasukkan data ke dalam sistem, misalnya digitasi peta kertas, <em>scanning</em>, atau impor citra satelit.</li><li><strong>Manajemen data</strong>, yaitu penyimpanan dan pengorganisasian data dalam database.</li><li><strong>Manipulasi &amp; analisis data</strong>, yaitu pengolahan data untuk menghasilkan informasi baru, misalnya <em>overlay</em> (menumpang susun dua layer atau lebih), <em>buffer</em> (membuat zona penyangga di sekitar objek), dan klasifikasi.</li><li><strong>Output data</strong>, yaitu menyajikan hasil dalam bentuk peta, grafik, atau laporan.</li></ol>`,
+question:"Kegiatan overlay dan buffer dalam SIG termasuk tahap…",
+options:["Input data","Manajemen data","Manipulasi & analisis data","Output data","Evaluasi data"],
+answer:2,
+explain:"Overlay dan buffer adalah teknik analisis spasial, termasuk tahap manipulasi & analisis data."},
+
+/* ---------- SOAL 7 (PG) ---------- */
+{type:'pg',cat:'PJ',
+stimulus:`<span class="stim-label">Stimulus</span>
+<p>NDVI (<em>Normalized Difference Vegetation Index</em>) adalah indeks vegetasi yang dihitung menggunakan rumus:</p>
+<p style="text-align:center"><strong>NDVI = (NIR − Red) / (NIR + Red)</strong></p>
+<p>NIR adalah saluran inframerah dekat (<em>near-infrared</em>) dan Red adalah saluran merah. Nilai NDVI berkisar antara −1 hingga +1. Nilai yang <strong>mendekati +1</strong> menunjukkan vegetasi yang <strong>sangat sehat dan rapat</strong>, karena daun sehat memantulkan banyak NIR dan menyerap banyak cahaya merah. Nilai <strong>mendekati 0</strong> menunjukkan permukaan non-vegetasi seperti lahan terbangun atau tanah kosong. Nilai <strong>negatif</strong> menunjukkan badan air atau salju.</p>`,
+question:"Jika suatu area memiliki nilai NDVI 0,85, interpretasi paling tepat adalah…",
+options:["Area tersebut adalah badan air","Vegetasi di area tersebut sangat sehat","Area tersebut adalah lahan terbangun","Vegetasi di area tersebut mengalami kekeringan","Area tersebut tertutup awan tebal"],
+answer:1,
+explain:"NDVI mendekati +1 menunjukkan vegetasi sangat sehat. Nilai 0,85 termasuk tinggi."},
+
+/* ---------- SOAL 8 (PG) ---------- */
+{type:'pg',cat:'PJ',
+stimulus:`<span class="stim-label">Stimulus</span>
+<p>Citra radar (SAR — <em>Synthetic Aperture Radar</em>) merupakan jenis citra penginderaan jauh yang menggunakan gelombang mikro. Berbeda dengan citra optik yang bergantung pada cahaya matahari, radar merupakan sensor <strong>aktif</strong> yang memancarkan gelombang mikronya sendiri dan merekam pantulan kembali dari objek.</p>
+<p>Karena memiliki sumber energi sendiri dan panjang gelombang mikro yang lebih besar dari awan, citra radar memiliki keunggulan:</p>
+<ul><li>Dapat digunakan pada <strong>malam hari</strong> karena tidak bergantung cahaya matahari.</li><li>Dapat <strong>menembus awan</strong> dan hujan, sehingga cocok untuk daerah tropis.</li><li>Dapat menembus vegetasi sampai batas tertentu.</li></ul>
+<p>Contoh satelit radar adalah Sentinel-1 dan ALOS PALSAR.</p>`,
+question:"Alasan utama citra radar dapat digunakan pada malam hari dan saat berawan adalah…",
+options:["Karena resolusinya paling tinggi","Karena gratis dan mudah diakses","Karena menggunakan sinar matahari","Karena memancarkan gelombang mikronya sendiri","Karena membutuhkan waktu perekaman singkat"],
+answer:3,
+explain:"Radar memancarkan gelombang mikro sendiri sehingga tidak bergantung pada cahaya matahari dan mampu menembus awan."},
+
+/* ---------- SOAL 9 (PG) ---------- */
+{type:'pg',cat:'SIG',
+stimulus:`<span class="stim-label">Stimulus</span>
+<p>SIG dapat dikelompokkan menjadi dua berdasarkan cara pengolahannya. <strong>SIG konvensional</strong> dilakukan secara manual, menggunakan alat seperti plastik transparan, rapido (pena gambar teknis), dan meja gambar. Setiap layer peta digambar pada plastik transparan terpisah, kemudian ditumpang susun secara manual.</p>
+<p><strong>SIG digital</strong> menggunakan sistem komputer dan perangkat lunak seperti QGIS, ArcGIS, atau MapInfo. Proses digitasi, penyimpanan, analisis, dan penyajian data dilakukan secara digital. SIG digital jauh lebih cepat, akurat, mudah diperbarui, dan dapat menangani data dalam jumlah besar dibandingkan SIG konvensional.</p>`,
+question:"Alat yang digunakan dalam SIG konvensional adalah…",
+options:["QGIS dan ArcGIS","Plastik transparan dan rapido","GPS dan drone","Komputer dan server","Satelit dan sensor"],
+answer:1,
+explain:"SIG konvensional menggunakan plastik transparan (overlay manual) dan rapido (menggambar peta)."},
+
+/* ---------- SOAL 10 (PG) ---------- */
+{type:'pg',cat:'PJ',
+stimulus:`<span class="stim-label">Stimulus</span>
+<p>Interpretasi citra adalah kegiatan mengidentifikasi objek pada citra berdasarkan unsur-unsur interpretasi. Unsur-unsur tersebut meliputi:</p>
+<ul><li><strong>Rona</strong>: tingkat kecerahan objek pada citra.</li><li><strong>Bentuk</strong>: geometri atau kontur objek.</li><li><strong>Ukuran</strong>: dimensi objek (panjang, lebar, luas).</li><li><strong>Tekstur</strong>: kekasaran atau kehalusan permukaan objek.</li><li><strong>Pola</strong>: susunan spasial objek.</li><li><strong>Situs/asosiasi</strong>: hubungan objek dengan objek lain di sekitarnya.</li></ul>
+<p>Sebagai contoh, hutan pada citra umumnya memiliki <strong>tekstur kasar</strong> karena tajuk pohon yang tidak seragam, sedangkan sawah memiliki <strong>tekstur halus</strong> karena permukaannya relatif rata.</p>`,
+question:"Untuk membedakan hutan (permukaan kasar) dengan sawah (permukaan halus), unsur interpretasi yang paling tepat adalah…",
+options:["Rona","Bentuk","Ukuran","Pola","Tekstur"],
+answer:4,
+explain:"Tekstur menggambarkan kekasaran permukaan objek pada citra."},
+
+/* ---------- SOAL 11 (PG) ---------- */
+{type:'pg',cat:'SIG',
+stimulus:`<span class="stim-label">Stimulus</span>
+<p>Dalam SIG, data disusun berlapis dalam <strong>layer</strong> (lapisan). Setiap layer mewakili satu tema, misalnya layer jalan, layer sungai, layer batas administrasi, dan layer penggunaan lahan.</p>
+<p>Agar semua layer dapat <strong>ditumpang susun (overlay)</strong> dengan tepat, setiap layer harus memiliki <strong>georeferensi</strong> yang sama, yaitu sistem koordinat dan proyeksi yang konsisten. Jika georeferensi berbeda, layer tidak akan berada pada posisi yang tepat satu sama lain, sehingga hasil analisis spasial menjadi tidak valid. Georeferensi memastikan setiap objek pada layer berada pada posisi geografis yang benar di permukaan bumi.</p>`,
+question:"Mengapa semua layer dalam SIG harus memiliki georeferensi yang sama?",
+options:["Agar ukuran file lebih kecil","Agar data bisa disimpan di cloud","Agar layer dapat ditumpang susun dengan tepat","Agar data dapat dicetak berwarna","Agar tidak perlu validasi data"],
+answer:2,
+explain:"Georeferensi yang sama memastikan semua layer berada pada sistem koordinat yang konsisten, sehingga bisa ditumpang susun dengan tepat."},
+
+/* ---------- SOAL 12 (PG) ---------- */
+{type:'pg',cat:'PJ',
+stimulus:`<span class="stim-label">Stimulus</span>
+<p>Resolusi temporal menunjukkan interval waktu antara dua perekaman berturut-turut pada area yang sama. Semakin <strong>kecil</strong> nilai resolusi temporal (dalam hari), semakin <strong>sering</strong> satelit merekam area tersebut.</p>
+<table><tr><th>Satelit</th><th>Resolusi Temporal</th><th>Keterangan</th></tr><tr><td>MODIS</td><td>1–2 hari</td><td>Sangat sering</td></tr><tr><td>Sentinel-2</td><td>5 hari</td><td>Sering</td></tr><tr><td>Landsat</td><td>16 hari</td><td>Jarang</td></tr></table>
+<p>Satelit dengan resolusi temporal kecil sangat cocok untuk pemantauan fenomena dinamis seperti kebakaran hutan, banjir, dan perubahan tutupan lahan.</p>`,
+question:"Berdasarkan tabel, satelit dengan frekuensi perekaman paling sering adalah…",
+options:["Landsat","MODIS","Sentinel-2","WorldView","IKONOS"],
+answer:1,
+explain:"MODIS merekam setiap 1–2 hari, paling sering dibanding Landsat (16 hari) dan Sentinel-2 (5 hari)."},
+
+/* ---------- SOAL 13 (PG) ---------- */
+{type:'pg',cat:'SIG',
+stimulus:`<span class="stim-label">Stimulus</span>
+<p>Data dalam SIG terdiri atas dua jenis. <strong>Data spasial</strong> menunjukkan <strong>posisi</strong> objek di permukaan bumi, misalnya koordinat titik, garis jalan, atau poligon sawah. <strong>Data atribut</strong> berisi informasi <strong>deskriptif</strong> tentang objek, misalnya nama jalan, jumlah penduduk suatu desa, kategori penggunaan lahan, atau luas wilayah.</p>
+<p>Kedua jenis data ini saling melengkapi. Sebuah poligon desa (data spasial) dapat memiliki atribut berupa nama desa, jumlah penduduk, dan luas wilayah (data atribut).</p>`,
+question:"Manakah yang termasuk data atribut?",
+options:["Koordinat x,y suatu titik","Bentuk poligon sawah","Garis jalan pada peta","Jumlah penduduk suatu desa","Warna piksel citra"],
+answer:3,
+explain:"Jumlah penduduk adalah informasi deskriptif (atribut), bukan data posisi/geometri."},
+
+/* ---------- SOAL 14 (PG) ---------- */
+{type:'pg',cat:'PJ',
+stimulus:`<span class="stim-label">Stimulus</span>
+<p>Penginderaan jauh dimanfaatkan secara luas dalam mitigasi bencana. Citra satelit dapat digunakan untuk memetakan daerah rawan banjir, longsor, gempa, dan tsunami. Informasi ini digunakan untuk perencanaan evakuasi, penentuan lokasi posko bencana, dan perencanaan tata ruang berbasis risiko bencana.</p>
+<p>Selain itu, penginderaan jauh juga dimanfaatkan untuk pemantauan perubahan tutupan lahan, pemantauan kebakaran hutan (deteksi titik panas), pemantauan kualitas air, serta pemetaan sumber daya alam.</p>`,
+question:"Manfaat utama penginderaan jauh dalam mitigasi bencana adalah…",
+options:["Memetakan daerah rawan banjir untuk perencanaan evakuasi","Memetakan persebaran penduduk","Memprediksi harga komoditas","Menentukan lokasi sekolah","Menghitung pajak warga"],
+answer:0,
+explain:"PJ memetakan daerah rawan bencana (banjir, longsor, gempa, tsunami) untuk perencanaan evakuasi dan mitigasi."},
+
+/* ---------- SOAL 15 (PG) ---------- */
+{type:'pg',cat:'SIG',
+stimulus:`<span class="stim-label">Stimulus</span>
+<p>LAPAN (Lembaga Penerbangan dan Antariksa Nasional), yang kini bergabung ke dalam BRIN (Badan Riset dan Inovasi Nasional), memanfaatkan SIG dan penginderaan jauh untuk berbagai keperluan, antara lain:</p>
+<ul><li>Deteksi deforestasi (pengurangan luas hutan).</li><li>Pemantauan hotspot kebakaran hutan dan lahan.</li><li>Pemetaan lahan gambut.</li><li>Pemantauan Daerah Aliran Sungai (DAS).</li></ul>
+<p>Data citra satelit yang dikelola LAPAN/BRIN dapat diakses publik melalui portal resmi, sehingga dapat dimanfaatkan untuk penelitian, perencanaan pembangunan, dan pendidikan.</p>`,
+question:"Manfaat utama SIG di LAPAN adalah…",
+options:["Pemilihan umum","Perdagangan internasional","Industri otomotif","Pendidikan dasar","Pemantauan sumber daya alam dan lingkungan"],
+answer:4,
+explain:"Teks secara jelas menyebutkan LAPAN memanfaatkan SIG untuk pemantauan sumber daya alam dan lingkungan."},
+
+/* ---------- SOAL 16 (STS) ---------- */
+{type:'sts',cat:'PJ',
+stimulus:`<span class="stim-label">Stimulus</span>
+<p>Penginderaan jauh memperoleh informasi tentang objek di permukaan bumi tanpa melakukan kontak langsung. Berdasarkan sumber energinya, sensor dibedakan menjadi dua. <strong>Sensor pasif</strong> merekam energi pantulan objek yang berasal dari matahari, sehingga bergantung pada pencahayaan alami. Sensor pasif tidak memancarkan energi sendiri. Contohnya adalah satelit Landsat yang memiliki resolusi spasial 30 meter.</p>
+<p><strong>Sensor aktif</strong>, sebaliknya, memancarkan energi elektromagnetiknya sendiri, kemudian merekam energi yang dipantulkan kembali oleh objek. Contohnya adalah Sentinel-1 (radar) dan LIDAR.</p>`,
+statements:[
+  {text:"Penginderaan jauh dilakukan tanpa kontak langsung dengan objek.",answer:"S"},
+  {text:"Sensor pasif memancarkan energinya sendiri.",answer:"TS"},
+  {text:"Satelit Landsat adalah sensor pasif dengan resolusi 30 meter.",answer:"S"}
+],
+explain:"Sensor pasif TIDAK memancarkan energi sendiri — ia bergantung pada energi matahari. Sensor aktif yang memancarkan sendiri."},
+
+/* ---------- SOAL 17 (STS) ---------- */
+{type:'sts',cat:'PJ',
+stimulus:`<span class="stim-label">Stimulus</span>
+<p>Citra optik dan citra radar memiliki karakteristik berbeda. <strong>Citra optik</strong> (seperti Landsat dan Sentinel-2) merekam energi pantulan matahari pada spektrum tampak dan inframerah. Kelemahannya, citra optik <strong>tidak dapat menembus awan tebal</strong>, sehingga perekaman di daerah tropis sering terhalang.</p>
+<p><strong>Citra radar</strong> (seperti Sentinel-1) merupakan sensor aktif yang memancarkan gelombang mikronya sendiri. Gelombang mikro memiliki panjang gelombang lebih besar dari awan, sehingga <strong>dapat menembus awan</strong> dan hujan. Karena memancarkan energinya sendiri, citra radar <strong>dapat digunakan pada malam hari</strong>.</p>`,
+statements:[
+  {text:"Sensor optik dapat menembus awan tebal.",answer:"TS"},
+  {text:"Sensor radar memancarkan gelombang mikro sendiri.",answer:"S"},
+  {text:"Citra radar dapat digunakan pada malam hari.",answer:"S"}
+],
+explain:"Sensor optik TIDAK dapat menembus awan tebal — itu kelemahan citra optik. Radar (aktif) memancarkan sendiri dan bekerja malam hari."},
+
+/* ---------- SOAL 18 (STS) ---------- */
+{type:'sts',cat:'SIG',
+stimulus:`<span class="stim-label">Stimulus</span>
+<p>SIG adalah sistem komputer yang digunakan untuk mengelola, menganalisis, dan menyajikan data spasial dan data atribut. <strong>Data spasial</strong> menunjukkan posisi objek di permukaan bumi, sedangkan <strong>data atribut</strong> berisi informasi deskriptif tentang objek tersebut.</p>
+<p>Data spasial dalam SIG dapat direpresentasikan dalam dua model, yaitu <strong>vektor</strong> (titik, garis, poligon) dan <strong>raster</strong> (grid piksel). Keduanya merupakan model data spasial yang sah dan penggunaannya disesuaikan dengan kebutuhan analisis.</p>`,
+statements:[
+  {text:"SIG mengelola data spasial dan atribut.",answer:"S"},
+  {text:"Data atribut berisi informasi deskriptif.",answer:"S"},
+  {text:"Data spasial hanya bisa berupa vektor, tidak bisa berupa raster.",answer:"TS"}
+],
+explain:"Data spasial dapat berupa vektor MAUPUN raster — keduanya sah digunakan dalam SIG."},
+
+/* ---------- SOAL 19 (STS) ---------- */
+{type:'sts',cat:'PJ',
+stimulus:`<span class="stim-label">Stimulus</span>
+<p>NDVI (<em>Normalized Difference Vegetation Index</em>) adalah indeks vegetasi yang dihitung dari kombinasi saluran inframerah dekat (NIR) dan saluran merah (Red) dengan rumus:</p>
+<p style="text-align:center"><strong>NDVI = (NIR − Red) / (NIR + Red)</strong></p>
+<p>Nilai NDVI berkisar antara −1 hingga +1. Nilai <strong>+1</strong> menunjukkan vegetasi yang sangat sehat dan rapat. Nilai <strong>mendekati 0</strong> menunjukkan permukaan non-vegetasi. Nilai <strong>negatif</strong> menunjukkan badan air atau salju. NDVI <strong>tidak mengukur suhu permukaan</strong>, melainkan kerapatan dan kesehatan vegetasi.</p>`,
+statements:[
+  {text:"NDVI mengukur suhu permukaan bumi.",answer:"TS"},
+  {text:"NDVI dihitung dari saluran NIR dan Red.",answer:"S"},
+  {text:"Nilai NDVI +1 menunjukkan vegetasi sangat sehat.",answer:"S"}
+],
+explain:"NDVI mengukur vegetasi (bukan suhu). Nilai +1 = vegetasi sangat sehat."},
+
+/* ---------- SOAL 20 (CEKLIS) ---------- */
+{type:'ceklis',cat:'PJ',
+stimulus:`<span class="stim-label">Stimulus</span>
+<p>Penginderaan jauh memiliki beberapa keunggulan dibandingkan survei lapangan konvensional, antara lain:</p>
+<ol><li><strong>Jangkauan area luas</strong>: satu citra satelit dapat mencakup wilayah ribuan kilometer persegi dalam satu waktu.</li><li><strong>Pengulangan perekaman periodik</strong>: satelit merekam area yang sama secara berkala, sehingga perubahan dapat dipantau dari waktu ke waktu.</li><li><strong>Akses ke daerah terpencil</strong>: daerah yang sulit dijangkau secara fisik (hutan lebat, pegunungan, rawa) dapat direkam dari udara.</li><li><strong>Data multispektral</strong>: sensor dapat merekam spektrum di luar kemampuan mata manusia, seperti inframerah dan gelombang mikro.</li></ol>
+<p>Namun, penginderaan jauh juga memiliki keterbatasan, misalnya biaya akuisisi data yang bisa mahal, resolusi spasial yang terbatas, dan kebutuhan validasi lapangan.</p>`,
+question:"Pilih SEMUA pernyataan yang benar tentang kelebihan penginderaan jauh:",
+options:["Dapat menjangkau area luas dalam satu waktu","Biaya akuisisi data selalu murah","Dapat mengulang perekaman secara periodik","Terbatas pada area yang dapat diakses fisik","Hanya dapat mendeteksi objek yang tampak mata"],
+correct:[0,2],
+explain:"Kelebihan PJ: area luas dan pengulangan periodik. Biaya bisa tinggi, dan PJ justru dapat mengakses daerah terpencil serta mendeteksi objek tak tampak mata (multispektral)."},
+
+/* ---------- SOAL 21 (CEKLIS) ---------- */
+{type:'ceklis',cat:'SIG',
+stimulus:`<span class="stim-label">Stimulus</span>
+<p>Pengolahan data SIG melalui empat tahapan utama:</p>
+<ol><li><strong>Input data</strong>: memasukkan data ke dalam sistem, misalnya digitasi peta kertas, <em>scanning</em>, atau impor citra satelit.</li><li><strong>Manajemen data</strong>: penyimpanan dan pengorganisasian data dalam database.</li><li><strong>Manipulasi &amp; analisis data</strong>: pengolahan data untuk menghasilkan informasi baru, misalnya <em>overlay</em>, <em>buffer</em>, dan klasifikasi.</li><li><strong>Output data</strong>: menyajikan hasil dalam bentuk peta, grafik, atau laporan.</li></ol>`,
+question:"Pilih SEMUA kegiatan yang termasuk tahap input data atau analisis data dalam SIG:",
+options:["Digitasi peta kertas menjadi digital","Overlay dua layer peta","Mencetak peta ke printer","Buffer 500 meter dari sungai","Menyimpan data di database"],
+correct:[0,1,3],
+explain:"Digitasi = input; overlay & buffer = analisis. Mencetak = output; menyimpan = manajemen data."},
+
+/* ---------- SOAL 22 (CEKLIS) ---------- */
+{type:'ceklis',cat:'SIG',
+stimulus:`<span class="stim-label">Stimulus</span>
+<p>LAPAN (kini bergabung ke BRIN) memanfaatkan SIG dan penginderaan jauh untuk:</p>
+<ul><li>Deteksi deforestasi (pengurangan luas hutan).</li><li>Pemantauan hotspot kebakaran hutan dan lahan.</li><li>Pemetaan lahan gambut.</li><li>Pemantauan Daerah Aliran Sungai (DAS).</li></ul>
+<p>Data citra satelit yang dikelola dapat diakses publik melalui portal resmi, sehingga dapat dimanfaatkan untuk penelitian, perencanaan pembangunan, dan pendidikan.</p>`,
+question:"Pilih SEMUA pernyataan yang benar tentang manfaat LAPAN/SIG:",
+options:["LAPAN hanya bekerja di bidang militer","LAPAN memanfaatkan SIG untuk deteksi deforestasi","LAPAN tidak terkait dengan penginderaan jauh","Pemantauan hotspot kebakaran adalah salah satu manfaatnya","Data citra satelit LAPAN dapat diakses publik"],
+correct:[1,3,4],
+explain:"LAPAN memanfaatkan PJ & SIG untuk pemantauan SDA (deforestasi, hotspot). Datanya dapat diakses publik."}
+];
+
+/* ============================================================
+   STATE
+   ============================================================ */
+const MAX_ATTEMPTS = 3;
+const PASSING_SCORE = 76;
+const MAX_RAW_SCORE = QUESTIONS.length * 4; // 22 × 4 = 88
+
+const state = {
+  name:"", kelas:"", attempt:1,
+  answers:{}, current:0,
+  timeLeft:45*60, timerId:null,
+  startTime:null, endTime:null,
+  submitted:false, screen:"start"
+};
+
+function showScreen(name){
+  document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
+  const el = document.getElementById("screen-"+name);
+  if(el) el.classList.add("active");
+  state.screen = name;
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function masukUjian(){
+  const nama = (document.getElementById("inputNama").value||"").trim();
+  const kelas = document.getElementById("inputKelas").value;
+  if(nama.length < 2){ alert("Silakan tuliskan nama lengkapmu (minimal 2 karakter)."); document.getElementById("inputNama").focus(); return; }
+  if(!kelas){ alert("Silakan pilih kelas terlebih dahulu."); document.getElementById("inputKelas").focus(); return; }
+  state.name = nama; state.kelas = kelas;
+  document.getElementById("instUser").textContent = `${nama} · ${kelas}`;
+  showScreen("instructions");
+}
+
+function mulaiUjian(){
+  state.answers = {};
+  state.current = 0;
+  state.timeLeft = 45*60;
+  state.submitted = false;
+  state.startTime = Date.now();
+  document.getElementById("headerUser").textContent = `${state.name} · ${state.kelas}`;
+  document.getElementById("avatar").textContent = state.name.charAt(0).toUpperCase();
+  document.getElementById("attemptLabel").textContent = `Percobaan ${state.attempt} dari ${MAX_ATTEMPTS}`;
+  showScreen("exam");
+  renderQuestion();
+  renderNav();
+  startTimer();
+}
+
+function startTimer(){
+  if(state.timerId) clearInterval(state.timerId);
+  updateTimerDisplay();
+  state.timerId = setInterval(()=>{
+    state.timeLeft--;
+    updateTimerDisplay();
+    if(state.timeLeft <= 0){ clearInterval(state.timerId); state.timerId = null; submitExam(true); }
+  },1000);
+}
+function updateTimerDisplay(){
+  const m = Math.floor(state.timeLeft/60).toString().padStart(2,"0");
+  const s = (state.timeLeft%60).toString().padStart(2,"0");
+  document.getElementById("timerDisplay").textContent = m+":"+s;
+  document.getElementById("timerBox").classList.toggle("warning", state.timeLeft<=300);
+}
+
+function renderQuestion(){
+  const i = state.current;
+  const q = QUESTIONS[i];
+  const area = document.getElementById("questionArea");
+  const catLabel = q.cat==='PJ' ? 'Penginderaan Jauh' : 'SIG';
+  const catClass = q.cat==='SIG' ? 'sig' : '';
+  let typeLabel = '', typeClass = '', body = '';
+
+  if(q.type === 'pg'){
+    typeLabel = 'Pilihan Ganda';
+    const letters = ["A","B","C","D","E"];
+    body = `<div class="question-text">${q.question}</div>
+      <div class="options">${q.options.map((opt,idx)=>{
+        const sel = state.answers[i] === idx ? 'selected' : '';
+        return `<button class="option ${sel}" onclick="selectPG(${idx})"><span class="letter">${letters[idx]}</span><span>${opt}</span></button>`;
+      }).join('')}</div>`;
+  }
+  else if(q.type === 'sts'){
+    typeLabel = 'Sesuai / Tidak Sesuai';
+    const cur = state.answers[i] || {};
+    const rows = q.statements.map((st,si)=>{
+      const val = cur[si] || '';
+      return `<tr>
+        <td>${String.fromCharCode(97+si)}. ${st.text}</td>
+        <td class="center"><button class="sts-btn ${val==='S'?'selected-S':''}" onclick="selectSTS(${si},'S')">Sesuai</button></td>
+        <td class="center"><button class="sts-btn ${val==='TS'?'selected-TS':''}" onclick="selectSTS(${si},'TS')">Tidak Sesuai</button></td>
+      </tr>`;
+    }).join('');
+    body = `<table class="sts-table"><thead><tr><th>Pernyataan</th><th class="center">Sesuai</th><th class="center">Tidak Sesuai</th></tr></thead><tbody>${rows}</tbody></table>`;
+  }
+  else if(q.type === 'ceklis'){
+    typeLabel = 'Ceklis (>1 Jawaban)'; typeClass = 'ceklis';
+    const cur = state.answers[i] || [];
+    const letters = ["A","B","C","D","E"];
+    body = `<div class="ceklis-hint">⚠️ Pilih SEMUA jawaban yang benar (bisa lebih dari satu).</div>
+      <div class="question-text">${q.question}</div>
+      <div class="ceklis-options">${q.options.map((opt,idx)=>{
+        const chk = cur.includes(idx);
+        return `<label class="ceklis-option ${chk?'checked':''}" onclick="event.preventDefault(); toggleCeklis(${idx});">
+          <span class="box">${chk?'✓':''}</span><span>${letters[idx]}. ${opt}</span></label>`;
+      }).join('')}</div>`;
+  }
+
+  area.innerHTML = `
+    <div class="q-head">
+      <div class="q-number">${i+1}</div>
+      <span class="q-cat ${catClass}">${catLabel}</span>
+      <span class="q-type ${typeClass}">${typeLabel}</span>
+      <span class="q-of">Soal ${i+1} dari ${QUESTIONS.length}</span>
+    </div>
+    <div class="stimulus">${q.stimulus}</div>
+    ${body}`;
+
+  document.getElementById("btnPrev").disabled = i===0;
+  document.getElementById("btnNext").disabled = i===QUESTIONS.length-1;
+}
+
+function selectPG(idx){ state.answers[state.current] = idx; renderQuestion(); renderNav(); }
+function selectSTS(stmtIdx, val){
+  const i = state.current;
+  if(!state.answers[i]) state.answers[i] = {};
+  if(state.answers[i][stmtIdx] === val) delete state.answers[i][stmtIdx];
+  else state.answers[i][stmtIdx] = val;
+  renderQuestion(); renderNav();
+}
+function toggleCeklis(optIdx){
+  const i = state.current;
+  if(!state.answers[i]) state.answers[i] = [];
+  const arr = state.answers[i];
+  const pos = arr.indexOf(optIdx);
+  if(pos === -1) arr.push(optIdx); else arr.splice(pos,1);
+  if(arr.length === 0) delete state.answers[i];
+  renderQuestion(); renderNav();
+}
+
+function nextQ(){ if(state.current<QUESTIONS.length-1){state.current++; renderQuestion(); renderNav(); window.scrollTo({top:0,behavior:"smooth"});} }
+function prevQ(){ if(state.current>0){state.current--; renderQuestion(); renderNav(); window.scrollTo({top:0,behavior:"smooth"});} }
+
+function isAnswered(i){
+  const q = QUESTIONS[i], a = state.answers[i];
+  if(a === undefined) return false;
+  if(q.type === 'pg') return typeof a === 'number';
+  if(q.type === 'sts') return Object.keys(a).length === q.statements.length;
+  if(q.type === 'ceklis') return Array.isArray(a) && a.length > 0;
+  return false;
+}
+
+function renderNav(){
+  const grid = document.getElementById("navGrid");
+  const totalAnswered = QUESTIONS.filter((_,i)=>isAnswered(i)).length;
+  const allDone = totalAnswered === QUESTIONS.length;
+  let html = "";
+  for(let i=0;i<QUESTIONS.length;i++){
+    const ans = isAnswered(i);
+    let cls = ans ? "answered" : "";
+    if(i === state.current) cls += " current";
+    if(allDone && ans) cls += " all-done";
+    html += `<button class="${cls}" onclick="gotoQ(${i})">${i+1}</button>`;
+  }
+  grid.innerHTML = html;
+  document.getElementById("navAnswered").textContent = totalAnswered + " / " + QUESTIONS.length;
+  const btnSelesai = document.getElementById("btnSelesai");
+  if(allDone){
+    btnSelesai.classList.add("ready");
+    btnSelesai.textContent = "✓ Selesai — Siap!";
+  } else {
+    btnSelesai.classList.remove("ready");
+    btnSelesai.textContent = "✓ Selesai";
+  }
+}
+function gotoQ(i){ state.current = i; renderQuestion(); renderNav(); window.scrollTo({top:0,behavior:"smooth"}); }
+function toggleSidebar(){ document.getElementById("sidebar").classList.toggle("open"); }
+
+/* ============================================================
+   TOAST
+   ============================================================ */
+let toastTimeout = null;
+function showToast(msg, duration, icon){
+  const t = document.getElementById("toast");
+  document.getElementById("toastIcon").textContent = icon || "📸";
+  document.getElementById("toastText").innerHTML = msg;
+  t.classList.add("show");
+  if(toastTimeout) clearTimeout(toastTimeout);
+  if(duration){ toastTimeout = setTimeout(hideToast, duration); }
+}
+function hideToast(){ document.getElementById("toast").classList.remove("show"); }
+
+/* ============================================================
+   MODAL WARNING BIRU
+   ============================================================ */
+function showWarningModal(unansweredNumbers){
+  const list = unansweredNumbers.slice(0, 12).join(', ') + (unansweredNumbers.length > 12 ? ', ...' : '');
+  document.getElementById("modalTitle").textContent = "Kamu belum menyelesaikan semua pertanyaan, periksa kembali.";
+  document.getElementById("modalMessage").innerHTML =
+    `Masih ada <strong>${unansweredNumbers.length} soal</strong> yang belum dijawab lengkap:<br>` +
+    `<span style="color:#1e429f;font-weight:700">Soal: ${list}</span><br><br>` +
+    `Silakan jawab <strong>SEMUA</strong> soal terlebih dahulu sebelum mengumpulkan.`;
+  document.getElementById("warningModal").style.display = "flex";
+}
+function closeWarningModal(){ document.getElementById("warningModal").style.display = "none"; }
+
+/* ============================================================
+   MODAL KONFIRMASI HIJAU
+   ============================================================ */
+function showConfirmModal(){ document.getElementById("confirmModal").style.display = "flex"; }
+function closeConfirmModal(){ document.getElementById("confirmModal").style.display = "none"; }
+
+function clickSelesai(){
+  const unanswered = [];
+  for(let i=0;i<QUESTIONS.length;i++){ if(!isAnswered(i)) unanswered.push(i+1); }
+  if(unanswered.length > 0){ showWarningModal(unanswered); return; }
+  showConfirmModal();
+}
+
+function yakinKumpulkan(){
+  closeConfirmModal();
+  showScreen("confirm");
+}
+
+/* ============================================================
+   SCORING — dikonversi ke skala 100
+   ============================================================ */
+function scoreQuestion(q, ans){
+  if(q.type === 'pg') return ans === q.answer ? 4 : 0;
+  if(q.type === 'sts'){
+    if(!ans || Object.keys(ans).length === 0) return 0;
+    const n = q.statements.length;
+    let benar = 0;
+    q.statements.forEach((st,si)=>{ if(ans[si] === st.answer) benar++; });
+    return (benar / n) * 4;
+  }
+  if(q.type === 'ceklis'){
+    if(!Array.isArray(ans) || ans.length === 0) return 0;
+    const nCorrect = q.correct.length;
+    const correctSet = new Set(q.correct);
+    let correctChecked = 0, wrongChecked = 0;
+    ans.forEach(idx=>{ if(correctSet.has(idx)) correctChecked++; else wrongChecked++; });
+    return Math.max(0, (correctChecked - wrongChecked) / nCorrect * 4);
+  }
+  return 0;
+}
+function questionStatus(score){
+  if(score >= 3.99) return 'full';
+  if(score > 0) return 'partial';
+  return 'zero';
+}
+
+/* ============================================================
+   SUBMIT EXAM — konversi skor mentah (maks 88) ke 100
+   ============================================================ */
+function submitExam(auto, mode){
+  if(state.submitted) return;
+
+  if(!auto && !mode){
+    const unanswered = [];
+    for(let i=0;i<QUESTIONS.length;i++){ if(!isAnswered(i)) unanswered.push(i+1); }
+    if(unanswered.length > 0){ showWarningModal(unanswered); return; }
+    if(!confirm("Yakin ingin mengumpulkan jawaban?")) return;
+  }
+
+  state.submitted = true;
+  state.endTime = Date.now();
+  if(state.timerId){ clearInterval(state.timerId); state.timerId = null; }
+
+  let totalScore = 0, full = 0, partial = 0, zero = 0;
+  QUESTIONS.forEach((q,i)=>{
+    const s = scoreQuestion(q, state.answers[i]);
+    totalScore += s;
+    const st = questionStatus(s);
+    if(st==='full') full++;
+    else if(st==='partial') partial++;
+    else zero++;
+  });
+  // Konversi skor mentah ke skala 100 (semua benar = 100)
+  const finalScore = Math.round((totalScore / MAX_RAW_SCORE) * 100);
+  const rawScore = Math.round(totalScore * 100) / 100;
+  const passed = finalScore >= PASSING_SCORE;
+
+  const usedSec = Math.max(0, Math.round((state.endTime - state.startTime)/1000));
+  const usedM = Math.floor(usedSec/60), usedS = usedSec%60;
+
+  document.getElementById("resultUser").textContent = `${state.name} · ${state.kelas}`;
+  document.getElementById("scoreNum").textContent = finalScore;
+  document.getElementById("rBenar").textContent = full;
+  document.getElementById("rPartial").textContent = partial;
+  document.getElementById("rSalah").textContent = zero;
+  document.getElementById("rWaktu").textContent = usedM+":"+String(usedS).padStart(2,"0");
+
+  const hero = document.getElementById("resultHero");
+  hero.classList.toggle("pass", passed);
+  hero.classList.toggle("fail", !passed);
+
+  const predEl = document.getElementById("predikat");
+  let predText = '';
+  if(finalScore >= 90) predText = 'Predikat A — Sangat Baik';
+  else if(finalScore >= 80) predText = 'Predikat B — Baik';
+  else if(finalScore >= 76) predText = 'Predikat C — Lulus';
+  else if(finalScore >= 60) predText = 'Predikat D — Belum Lulus';
+  else predText = 'Predikat E — Perlu Bimbingan';
+  predEl.textContent = predText;
+  predEl.className = 'pred ' + (passed ? 'pass' : 'fail');
+
+  document.getElementById("resultTitle").textContent = auto
+    ? (passed ? '⏰ Waktu Habis — LULUS' : '⏰ Waktu Habis — BELUM LULUS')
+    : (passed ? '🎉 SELAMAT, KAMU LULUS!' : '😔 BELUM LULUS');
+  document.getElementById("resultMeta").innerHTML =
+    `Percobaan ${state.attempt} dari ${MAX_ATTEMPTS} · ` +
+    `<strong>Skor Mentah: ${rawScore}/88</strong> → ` +
+    `<strong>Nilai Akhir: ${finalScore}/100</strong> · ` +
+    `Minimal ${PASSING_SCORE}`;
+
+  const retryArea = document.getElementById("retryArea");
+  const actionRow = document.getElementById("actionRow");
+  retryArea.innerHTML = ''; actionRow.innerHTML = '';
+
+  const screenshotBtn = `<button class="btn btn-primary" onclick="window.print()">📸 Screenshot / Cetak Hasil</button>`;
+
+  if(passed){
+    retryArea.innerHTML = `<div class="retry-box" style="border-color:var(--green);background:#f0fdf4">
+      <div class="rb-title" style="color:var(--green)">✅ Nilai kamu memenuhi batas minimal ${PASSING_SCORE}.</div>
+      <div class="rb-desc">Selamat! Silakan <strong>screenshot</strong> halaman ini untuk dikirim ke guru, atau cetak sebagai PDF.</div></div>`;
+    actionRow.innerHTML = `
+      ${screenshotBtn}
+      <button class="btn btn-gray" onclick="ulangiUjian(true)">🔄 Ulangi (Latihan)</button>`;
+  } else {
+    const sisa = MAX_ATTEMPTS - state.attempt;
+    if(sisa > 0){
+      retryArea.innerHTML = `<div class="retry-box">
+        <div class="rb-title">⚠️ Nilai kamu ${finalScore}, di bawah batas minimal ${PASSING_SCORE}.</div>
+        <div class="rb-desc">Kamu masih punya <strong>${sisa} kesempatan mengulang</strong>. Silakan screenshot hasil ini untuk guru, lalu pelajari pembahasan sebelum mencoba lagi.</div></div>`;
+      actionRow.innerHTML = `
+        ${screenshotBtn}
+        <button class="btn btn-gray" onclick="ulangiUjian()" style="background:#fef3c7;color:#92400e;border-color:#fcd34d;font-weight:700">🔄 Coba Lagi (Sisa ${sisa}×)</button>`;
+    } else {
+      retryArea.innerHTML = `<div class="retry-box warning">
+        <div class="rb-title">❌ Batas percobaan telah habis.</div>
+        <div class="rb-desc">Kamu sudah menggunakan kesempatan mengulang 2×. Nilai akhir <strong>${finalScore}</strong>. Silakan <strong>screenshot & kirim ke guru</strong> untuk tindak lanjut.</div></div>`;
+      actionRow.innerHTML = screenshotBtn;
+    }
+  }
+
+  renderReview('all');
+  showScreen("result");
+
+  setTimeout(()=>{
+    showToast(
+      '📸 <strong>Screenshot</strong> halaman ini untuk dikirim ke guru. Atau klik tombol <strong>Cetak Hasil</strong> untuk simpan sebagai PDF.',
+      9000, '📸'
+    );
+  }, 800);
+}
+
+let currentFilter = 'all';
+function filterReview(filter, btn){
+  currentFilter = filter;
+  document.querySelectorAll(".filter-bar button").forEach(b=>b.classList.remove("active"));
+  if(btn) btn.classList.add("active");
+  renderReview(filter);
+}
+
+function renderReview(filter){
+  const letters = ["A","B","C","D","E"];
+  const list = document.getElementById("reviewList");
+  let html = '';
+  QUESTIONS.forEach((q,i)=>{
+    const ans = state.answers[i];
+    const score = scoreQuestion(q, ans);
+    const status = questionStatus(score);
+    if(filter !== 'all' && filter !== status) return;
+    const scoreLabel = Math.round(score*100)/100;
+    const statusLabel = status==='full'?'Benar':(status==='partial'?'Sebagian':'Salah/Kosong');
+
+    let answerBlock = '';
+    if(q.type === 'pg'){
+      const userAns = (typeof ans === 'number') ? `${letters[ans]}. ${q.options[ans]}` : '—';
+      const correct = `${letters[q.answer]}. ${q.options[q.answer]}`;
+      answerBlock = `
+        <div class="ri-ans ${ans===q.answer?'correct':'wrong'}"><span class="lbl">Jawabanmu:</span> <span class="val">${userAns}</span></div>
+        <div class="ri-ans correct"><span class="lbl">Kunci Jawaban:</span> <span class="val">${correct}</span></div>`;
+    }
+    else if(q.type === 'sts'){
+      const cur = ans || {};
+      answerBlock = `<div class="ri-sts">${q.statements.map((st,si)=>{
+        const userVal = cur[si] || '—';
+        const ok = userVal === st.answer;
+        return `<div class="row ${ok?'ok':'bad'}">
+          <span class="mark">${ok?'✓':'✗'}</span>
+          <span class="txt">${st.text} <em>(kunci: ${st.answer==='S'?'Sesuai':'Tidak Sesuai'}, jawabanmu: ${userVal==='S'?'Sesuai':userVal==='TS'?'Tidak Sesuai':'—'})</em></span></div>`;
+      }).join('')}</div>`;
+    }
+    else if(q.type === 'ceklis'){
+      const cur = Array.isArray(ans) ? ans : [];
+      answerBlock = `<div class="ri-sts">${q.options.map((opt,idx)=>{
+        const isCorrect = q.correct.includes(idx);
+        const checked = cur.includes(idx);
+        let mark='', cls='';
+        if(isCorrect && checked){mark='✓';cls='ok';}
+        else if(!isCorrect && checked){mark='✗';cls='bad';}
+        else if(isCorrect && !checked){mark='○';cls='bad';}
+        else {mark='·';cls='';}
+        return `<div class="row ${cls}">
+          <span class="mark">${mark}</span>
+          <span class="txt"><strong>${letters[idx]}.</strong> ${opt} ${isCorrect?'<em style="color:var(--green)">(kunci)</em>':''}</span></div>`;
+      }).join('')}</div>`;
+    }
+
+    html += `
+      <div class="review-item ${status}">
+        <div class="ri-head">
+          <span class="ri-num">Soal ${i+1}</span>
+          <span class="ri-status ${status}">${statusLabel}</span>
+          <span class="q-cat ${q.cat==='SIG'?'sig':''}" style="margin-left:auto">${q.cat==='PJ'?'Penginderaan Jauh':'SIG'}</span>
+          <span class="ri-score">${scoreLabel} / 4</span>
+        </div>
+        <div class="ri-q">${q.question || 'Pernyataan Sesuai/Tidak Sesuai'}</div>
+        ${answerBlock}
+        <div class="ri-explain"><strong>Pembahasan:</strong> ${q.explain}</div>
+      </div>`;
+  });
+  list.innerHTML = html || `<div style="text-align:center;color:var(--muted);padding:20px">Tidak ada soal pada filter ini.</div>`;
+}
+
+function ulangiUjian(isLatihan){
+  if(state.timerId){ clearInterval(state.timerId); state.timerId = null; }
+  if(isLatihan){
+    state.answers = {};
+    state.current = 0;
+    state.timeLeft = 45*60;
+    state.submitted = false;
+    document.getElementById("inputNama").value = state.name;
+    document.getElementById("inputKelas").value = state.kelas;
+    showScreen("start");
+    return;
+  }
+  if(state.attempt >= MAX_ATTEMPTS){ alert("Batas mengulang sudah habis."); return; }
+  state.attempt++;
+  state.answers = {};
+  state.current = 0;
+  state.timeLeft = 45*60;
+  state.submitted = false;
+  document.getElementById("instUser").textContent = `${state.name} · ${state.kelas}`;
+  showScreen("instructions");
+}
+
+document.getElementById("inputNama").addEventListener("keydown", e=>{ if(e.key === "Enter") masukUjian(); });
+window.addEventListener("beforeunload", e=>{
+  if(state.screen === "exam" && !state.submitted){ e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body>
+</html>
