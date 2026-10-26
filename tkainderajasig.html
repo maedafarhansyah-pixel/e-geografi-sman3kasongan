@@ -105,8 +105,10 @@ select.name-input{cursor:pointer;appearance:none;background-image:url("data:imag
 .exam-header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.04)}
 .exam-header .container{display:flex;align-items:center;justify-content:space-between;gap:12px;height:66px;flex-wrap:wrap}
 .exam-header .left{display:flex;align-items:center;gap:12px;min-width:0}
+.exam-header .exam-title-block{min-width:0;overflow:hidden}
 .exam-header .exam-title{font-weight:800;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .exam-header .exam-sub{font-size:11.5px;color:var(--muted)}
+.exam-header .exam-sub-school{display:none}
 .exam-header .right{display:flex;align-items:center;gap:12px;flex-shrink:0}
 .timer{display:flex;align-items:center;gap:8px;background:#f9fafb;border:1.5px solid var(--border);border-radius:10px;padding:7px 14px;font-weight:800;font-size:16px;font-variant-numeric:tabular-nums;font-family:ui-monospace,monospace}
 .timer.warning{border-color:var(--red);color:var(--red);background:var(--red-light);animation:pulse 1s infinite}
@@ -181,7 +183,7 @@ select.name-input{cursor:pointer;appearance:none;background-image:url("data:imag
 .btn-selesai.ready{background:linear-gradient(135deg,#059669,#047857);box-shadow:0 4px 14px rgba(5,150,105,.4);animation:pulseReady 1.8s ease-in-out infinite}
 @keyframes pulseReady{0%,100%{box-shadow:0 4px 14px rgba(5,150,105,.4)}50%{box-shadow:0 4px 20px rgba(5,150,105,.7)}}
 
-/* ========== SCREEN 4 — KONFIRMASI AKHIR (1 TOMBOL) ========== */
+/* ========== SCREEN 4 — KONFIRMASI AKHIR ========== */
 .confirm-wrap{max-width:600px;margin:30px auto;padding:0 20px 60px}
 .success-card{padding:0;overflow:hidden;border:1.5px solid #86efac;background:linear-gradient(180deg,#f0fdf4 0%,#ffffff 60%)}
 .success-hero{padding:32px 24px 20px;text-align:center;position:relative;overflow:hidden}
@@ -339,6 +341,9 @@ select.name-input{cursor:pointer;appearance:none;background-image:url("data:imag
   .exam-header .left{gap:8px}
   .exam-header .exam-title{font-size:12.5px}
   .exam-header .exam-sub{font-size:10.5px}
+  .exam-header .exam-sub-school{display:block;margin-top:3px;line-height:1.2}
+  .exam-header .exam-sub-school .es-main{display:block;font-size:10px;font-weight:900;color:#1f2937;letter-spacing:.4px;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .exam-header .exam-sub-school .es-sub{display:block;font-size:9px;font-weight:600;color:#6b7280;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .exam-header .right{gap:8px}
   .timer{padding:6px 10px;font-size:14px}
   .user-chip{font-size:11.5px;padding:3px 10px 3px 3px}
@@ -415,6 +420,8 @@ select.name-input{cursor:pointer;appearance:none;background-image:url("data:imag
   .exam-header .school-badge{display:none}
   .school-badge .sb-main{font-size:14px}
   .school-badge .sb-sub{font-size:8.5px}
+  .exam-header .exam-sub-school .es-main{font-size:9px}
+  .exam-header .exam-sub-school .es-sub{font-size:8.5px}
   .confirm-modal-box .cm-stats{grid-template-columns:1fr}
   .exam-footer .btn{font-size:11.5px;padding:10px 8px}
   .footer-actions .btn{font-size:11px;padding:10px 8px}
@@ -460,7 +467,7 @@ select.name-input{cursor:pointer;appearance:none;background-image:url("data:imag
         <div class="info-grid">
           <div class="info-cell"><span class="lbl">Total Soal</span><span class="val">22</span></div>
           <div class="info-cell"><span class="lbl">Waktu</span><span class="val">45 Menit</span></div>
-          <div class="info-cell"><span class="lbl">Nilai Lulus</span><span class="val">≥ 76</span><span class="sub">dari 100</span></div>
+          <div class="info-cell"><span class="lbl">Nilai Lulus</span><span class="val">≥ 70</span><span class="sub">dari 100</span></div>
           <div class="info-cell"><span class="lbl">Mengulang</span><span class="val">2×</span><span class="sub">(maks. 3 percobaan)</span></div>
           <div class="info-cell"><span class="lbl">Pilihan Ganda</span><span class="val">15 Soal</span><span class="sub">68%</span></div>
           <div class="info-cell"><span class="lbl">Sesuai/Tdk Sesuai</span><span class="val">4 Soal</span><span class="sub">18%</span></div>
@@ -493,7 +500,7 @@ select.name-input{cursor:pointer;appearance:none;background-image:url("data:imag
       <div class="cell"><div class="lbl">Jumlah Soal</div><div class="val">22</div></div>
       <div class="cell"><div class="lbl">Waktu</div><div class="val">45 Menit</div></div>
       <div class="cell"><div class="lbl">Bentuk Soal</div><div class="val">3 Tipe</div></div>
-      <div class="cell"><div class="lbl">Nilai Lulus</div><div class="val">≥ 76</div></div>
+      <div class="cell"><div class="lbl">Nilai Lulus</div><div class="val">≥ 70</div></div>
       <div class="cell"><div class="lbl">Batas Mengulang</div><div class="val">2×</div></div>
     </div>
     <h4>Tiga Tipe Soal</h4>
@@ -506,15 +513,15 @@ select.name-input{cursor:pointer;appearance:none;background-image:url("data:imag
     <ol>
       <li>Waktu pengerjaan <strong>45 menit</strong>. Timer berjalan otomatis saat ujian dimulai.</li>
       <li><strong>Nilai akhir maksimal 100</strong> (jika semua soal benar). Jika ada yang salah, nilai dipersentasekan proporsional: <code>Nilai = (Skor Mentah / 88) × 100</code>.</li>
-      <li>Nilai minimal <strong>LULUS = 76</strong>.</li>
-      <li>Jika nilai &lt; 76, peserta dapat <strong>mengulang maksimal 2 kali</strong> (total maks. 3 percobaan).</li>
+      <li>Nilai minimal <strong>LULUS = 70</strong>.</li>
+      <li>Jika nilai &lt; 70, peserta dapat <strong>mengulang maksimal 2 kali</strong> (total maks. 3 percobaan).</li>
       <li>Jika waktu habis, jawaban otomatis dikumpulkan.</li>
       <li><strong>Tombol "Selesai" hanya aktif setelah SEMUA soal dijawab.</strong></li>
       <li>Setelah menekan "Selesai", muncul konfirmasi <strong>"Periksa Lagi / Yakin"</strong>.</li>
       <li>Setelah klik <strong>"Yakin"</strong>, kamu akan langsung melihat halaman nilai. Di sana bisa <strong>screenshot / kirim ke guru</strong> atau <strong>ulangi</strong>.</li>
     </ol>
     <div class="inst-note blue">💡 <strong>Tips:</strong> Gunakan tombol <strong>← Sebelumnya</strong> dan <strong>Selanjutnya →</strong> (keduanya berwarna biru) atau panel navigasi untuk berpindah soal. Soal terjawab berwarna <span style="color:var(--primary);font-weight:800">biru</span>, dan saat semua terjawab berubah <span style="color:var(--green);font-weight:800">hijau</span>.</div>
-    <div class="inst-note">⚠️ <strong>Perhatian:</strong> Jika batas mengulang (3 percobaan) habis dan nilai masih &lt; 76, maka dinyatakan <strong>TIDAK LULUS</strong>.</div>
+    <div class="inst-note">⚠️ <strong>Perhatian:</strong> Jika batas mengulang (3 percobaan) habis dan nilai masih &lt; 70, maka dinyatakan <strong>TIDAK LULUS</strong>.</div>
     <div style="display:flex;gap:10px;margin-top:24px;justify-content:space-between;flex-wrap:wrap">
       <button class="btn btn-gray" onclick="showScreen('start')">← Kembali</button>
       <button class="btn btn-primary" onclick="mulaiUjian()" style="padding:13px 30px">🚀 Mulai Ujian</button>
@@ -528,9 +535,13 @@ select.name-input{cursor:pointer;appearance:none;background-image:url("data:imag
     <div class="left">
       <button class="mobile-nav-toggle" onclick="toggleSidebar()">☰ Soal</button>
       <div class="globe-logo" aria-hidden="true"><div class="continents"></div><div class="shine"></div></div>
-      <div>
+      <div class="exam-title-block">
         <div class="exam-title">Asesmen Literasi Geografi</div>
         <div class="exam-sub" id="attemptLabel">Percobaan 1 dari 3</div>
+        <div class="exam-sub-school" aria-label="Informasi sekolah">
+          <span class="es-main">SMAN 3 KASONGAN</span>
+          <span class="es-sub">Guru Pengampu : SYAHRANI, S.Pd</span>
+        </div>
       </div>
     </div>
     <div class="right">
@@ -564,7 +575,7 @@ select.name-input{cursor:pointer;appearance:none;background-image:url("data:imag
   </div></footer>
 </div>
 
-<!-- ================= SCREEN 4 — KONFIRMASI AKHIR (1 TOMBOL) ================= -->
+<!-- ================= SCREEN 4 — KONFIRMASI AKHIR ================= -->
 <div id="screen-confirm" class="screen">
   <div class="topbar"><div class="container">
     <div class="brand">
@@ -938,7 +949,7 @@ explain:"LAPAN memanfaatkan PJ & SIG untuk pemantauan SDA (deforestasi, hotspot)
    STATE
    ============================================================ */
 const MAX_ATTEMPTS = 3;
-const PASSING_SCORE = 76;
+const PASSING_SCORE = 70;
 const MAX_RAW_SCORE = QUESTIONS.length * 4; // 22 × 4 = 88
 
 const state = {
@@ -955,6 +966,7 @@ function showScreen(name){
   if(el) el.classList.add("active");
   state.screen = name;
   window.scrollTo({top:0,behavior:"smooth"});
+  if(name === "exam") setTimeout(updateExamHeaderHeight, 50);
 }
 
 function masukUjian(){
@@ -980,6 +992,15 @@ function mulaiUjian(){
   renderQuestion();
   renderNav();
   startTimer();
+  updateExamHeaderHeight();
+}
+
+function updateExamHeaderHeight(){
+  const header = document.querySelector('.exam-header');
+  const sidebar = document.getElementById('sidebar');
+  if(!header || !sidebar) return;
+  const h = Math.ceil(header.getBoundingClientRect().height);
+  if(h > 0) sidebar.style.top = h + 'px';
 }
 
 function startTimer(){
@@ -1234,7 +1255,7 @@ function submitExam(auto, mode){
   let predText = '';
   if(finalScore >= 90) predText = 'Predikat A — Sangat Baik';
   else if(finalScore >= 80) predText = 'Predikat B — Baik';
-  else if(finalScore >= 76) predText = 'Predikat C — Lulus';
+  else if(finalScore >= 70) predText = 'Predikat C — Lulus';
   else if(finalScore >= 60) predText = 'Predikat D — Belum Lulus';
   else predText = 'Predikat E — Perlu Bimbingan';
   predEl.textContent = predText;
@@ -1385,6 +1406,12 @@ function ulangiUjian(isLatihan){
 document.getElementById("inputNama").addEventListener("keydown", e=>{ if(e.key === "Enter") masukUjian(); });
 window.addEventListener("beforeunload", e=>{
   if(state.screen === "exam" && !state.submitted){ e.preventDefault(); e.returnValue = ""; }
+});
+window.addEventListener("resize", ()=>{
+  if(state.screen === "exam") updateExamHeaderHeight();
+});
+window.addEventListener("load", ()=>{
+  if(state.screen === "exam") updateExamHeaderHeight();
 });
 </script>
 </body>
