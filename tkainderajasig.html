@@ -519,6 +519,7 @@ select.name-input{cursor:pointer;appearance:none;background-image:url("data:imag
       <li><strong>Tombol "Selesai" hanya aktif setelah SEMUA soal dijawab.</strong></li>
       <li>Setelah menekan "Selesai", muncul konfirmasi <strong>"Periksa Lagi / Yakin"</strong>.</li>
       <li>Setelah klik <strong>"Yakin"</strong>, kamu akan langsung melihat halaman nilai. Di sana bisa <strong>screenshot / kirim ke guru</strong> atau <strong>ulangi</strong>.</li>
+      <li><strong>Setiap percobaan (1, 2, 3) diacak ulang:</strong> urutan soal, urutan pilihan jawaban, dan kunci jawaban akan berbeda. Jadi nomor soal &amp; posisi jawaban antar percobaan tidak sama.</li>
     </ol>
     <div class="inst-note blue">💡 <strong>Tips:</strong> Gunakan tombol <strong>← Sebelumnya</strong> dan <strong>Selanjutnya →</strong> (keduanya berwarna biru) atau panel navigasi untuk berpindah soal. Soal terjawab berwarna <span style="color:var(--primary);font-weight:800">biru</span>, dan saat semua terjawab berubah <span style="color:var(--green);font-weight:800">hijau</span>.</div>
     <div class="inst-note">⚠️ <strong>Perhatian:</strong> Jika batas mengulang (3 percobaan) habis dan nilai masih &lt; 70, maka dinyatakan <strong>TIDAK LULUS</strong>.</div>
@@ -699,7 +700,8 @@ select.name-input{cursor:pointer;appearance:none;background-image:url("data:imag
 
 <script>
 /* ============================================================
-   22 SOAL: 15 PG · 4 STS · 3 CEKLIS
+   22 SOAL ASLI: 15 PG · 4 STS · 3 CEKLIS
+   Setiap percobaan akan diacak ulang (soal, opsi, kunci)
    ============================================================ */
 const QUESTIONS = [
 
@@ -946,18 +948,78 @@ explain:"LAPAN memanfaatkan PJ & SIG untuk pemantauan SDA (deforestasi, hotspot)
 ];
 
 /* ============================================================
+   SHUFFLE HELPERS (PRNG berbasis seed)
+   ============================================================ */
+function seededRandom(seed){
+  let s = seed % 2147483647;
+  if(s <= 0) s += 2147483646;
+  return function(){
+    s = (s * 16807) % 2147483647;
+    return (s - 1) / 2147483646;
+  };
+}
+function shuffleArray(arr, rng){
+  const a = arr.slice();
+  for(let i = a.length - 1; i > 0; i--){
+    const j = Math.floor(rng() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+/**
+ * Membangun set soal baru yang sudah diacak untuk satu percobaan.
+ * - Urutan soal diacak (posisi nomor soal berubah)
+ * - Urutan opsi PG diacak (posisi kunci berubah)
+ * - Urutan opsi Ceklis diacak (posisi kunci berubah)
+ * - Urutan pernyataan STS diacak (kunci mengikuti pernyataan)
+ */
+function buildAttemptQuestions(){
+  const rng = seededRandom(Math.floor(Math.random() * 1e9) + 1);
+
+  // 1) Acak urutan soal
+  const order = QUESTIONS.map((_, i) => i);
+  const shuffledOrder = shuffleArray(order, rng);
+
+  return shuffledOrder.map(origIdx => {
+    const q = JSON.parse(JSON.stringify(QUESTIONS[origIdx]));
+
+    if(q.type === 'pg'){
+      const idxs = q.options.map((_, i) => i);
+      const optOrder = shuffleArray(idxs, rng);
+      q.options = optOrder.map(i => q.options[i]);
+      q.answer = optOrder.indexOf(q.answer);
+    }
+    else if(q.type === 'ceklis'){
+      const idxs = q.options.map((_, i) => i);
+      const optOrder = shuffleArray(idxs, rng);
+      q.options = optOrder.map(i => q.options[i]);
+      q.correct = q.correct
+        .map(c => optOrder.indexOf(c))
+        .sort((a, b) => a - b);
+    }
+    else if(q.type === 'sts'){
+      const idxs = q.statements.map((_, i) => i);
+      const stmtOrder = shuffleArray(idxs, rng);
+      q.statements = stmtOrder.map(i => q.statements[i]);
+    }
+    return q;
+  });
+}
+
+/* ============================================================
    STATE
    ============================================================ */
 const MAX_ATTEMPTS = 3;
 const PASSING_SCORE = 70;
-const MAX_RAW_SCORE = QUESTIONS.length * 4; // 22 × 4 = 88
 
 const state = {
   name:"", kelas:"", attempt:1,
   answers:{}, current:0,
   timeLeft:45*60, timerId:null,
   startTime:null, endTime:null,
-  submitted:false, screen:"start"
+  submitted:false, screen:"start",
+  questions: []   // set soal teracak untuk percobaan saat ini
 };
 
 function showScreen(name){
@@ -985,6 +1047,8 @@ function mulaiUjian(){
   state.timeLeft = 45*60;
   state.submitted = false;
   state.startTime = Date.now();
+  // Bangun set soal teracak BARU untuk percobaan ini
+  state.questions = buildAttemptQuestions();
   document.getElementById("headerUser").textContent = `${state.name} · ${state.kelas}`;
   document.getElementById("avatar").textContent = state.name.charAt(0).toUpperCase();
   document.getElementById("attemptLabel").textContent = `Percobaan ${state.attempt} dari ${MAX_ATTEMPTS}`;
@@ -1021,7 +1085,8 @@ function updateTimerDisplay(){
 
 function renderQuestion(){
   const i = state.current;
-  const q = QUESTIONS[i];
+  const q = state.questions[i];
+  if(!q) return;
   const area = document.getElementById("questionArea");
   const catLabel = q.cat==='PJ' ? 'Penginderaan Jauh' : 'SIG';
   const catClass = q.cat==='SIG' ? 'sig' : '';
@@ -1067,13 +1132,13 @@ function renderQuestion(){
       <div class="q-number">${i+1}</div>
       <span class="q-cat ${catClass}">${catLabel}</span>
       <span class="q-type ${typeClass}">${typeLabel}</span>
-      <span class="q-of">Soal ${i+1} dari ${QUESTIONS.length}</span>
+      <span class="q-of">Soal ${i+1} dari ${state.questions.length}</span>
     </div>
     <div class="stimulus">${q.stimulus}</div>
     ${body}`;
 
   document.getElementById("btnPrev").disabled = i===0;
-  document.getElementById("btnNext").disabled = i===QUESTIONS.length-1;
+  document.getElementById("btnNext").disabled = i===state.questions.length-1;
 }
 
 function selectPG(idx){ state.answers[state.current] = idx; renderQuestion(); renderNav(); }
@@ -1094,12 +1159,12 @@ function toggleCeklis(optIdx){
   renderQuestion(); renderNav();
 }
 
-function nextQ(){ if(state.current<QUESTIONS.length-1){state.current++; renderQuestion(); renderNav(); window.scrollTo({top:0,behavior:"smooth"});} }
+function nextQ(){ if(state.current<state.questions.length-1){state.current++; renderQuestion(); renderNav(); window.scrollTo({top:0,behavior:"smooth"});} }
 function prevQ(){ if(state.current>0){state.current--; renderQuestion(); renderNav(); window.scrollTo({top:0,behavior:"smooth"});} }
 
 function isAnswered(i){
-  const q = QUESTIONS[i], a = state.answers[i];
-  if(a === undefined) return false;
+  const q = state.questions[i], a = state.answers[i];
+  if(!q || a === undefined) return false;
   if(q.type === 'pg') return typeof a === 'number';
   if(q.type === 'sts') return Object.keys(a).length === q.statements.length;
   if(q.type === 'ceklis') return Array.isArray(a) && a.length > 0;
@@ -1108,10 +1173,12 @@ function isAnswered(i){
 
 function renderNav(){
   const grid = document.getElementById("navGrid");
-  const totalAnswered = QUESTIONS.filter((_,i)=>isAnswered(i)).length;
-  const allDone = totalAnswered === QUESTIONS.length;
+  if(!grid) return;
+  const total = state.questions.length;
+  const totalAnswered = state.questions.filter((_,i)=>isAnswered(i)).length;
+  const allDone = total > 0 && totalAnswered === total;
   let html = "";
-  for(let i=0;i<QUESTIONS.length;i++){
+  for(let i=0;i<total;i++){
     const ans = isAnswered(i);
     let cls = ans ? "answered" : "";
     if(i === state.current) cls += " current";
@@ -1119,7 +1186,7 @@ function renderNav(){
     html += `<button class="${cls}" onclick="gotoQ(${i})">${i+1}</button>`;
   }
   grid.innerHTML = html;
-  document.getElementById("navAnswered").textContent = totalAnswered + " / " + QUESTIONS.length;
+  document.getElementById("navAnswered").textContent = totalAnswered + " / " + total;
   const btnSelesai = document.getElementById("btnSelesai");
   if(allDone){
     btnSelesai.classList.add("ready");
@@ -1168,7 +1235,7 @@ function closeConfirmModal(){ document.getElementById("confirmModal").style.disp
 
 function clickSelesai(){
   const unanswered = [];
-  for(let i=0;i<QUESTIONS.length;i++){ if(!isAnswered(i)) unanswered.push(i+1); }
+  for(let i=0;i<state.questions.length;i++){ if(!isAnswered(i)) unanswered.push(i+1); }
   if(unanswered.length > 0){ showWarningModal(unanswered); return; }
   showConfirmModal();
 }
@@ -1179,7 +1246,7 @@ function yakinKumpulkan(){
 }
 
 /* ============================================================
-   SCORING — dikonversi ke skala 100
+   SCORING
    ============================================================ */
 function scoreQuestion(q, ans){
   if(q.type === 'pg') return ans === q.answer ? 4 : 0;
@@ -1214,7 +1281,7 @@ function submitExam(auto, mode){
 
   if(!auto && !mode){
     const unanswered = [];
-    for(let i=0;i<QUESTIONS.length;i++){ if(!isAnswered(i)) unanswered.push(i+1); }
+    for(let i=0;i<state.questions.length;i++){ if(!isAnswered(i)) unanswered.push(i+1); }
     if(unanswered.length > 0){ showWarningModal(unanswered); return; }
     if(!confirm("Yakin ingin mengumpulkan jawaban?")) return;
   }
@@ -1223,8 +1290,9 @@ function submitExam(auto, mode){
   state.endTime = Date.now();
   if(state.timerId){ clearInterval(state.timerId); state.timerId = null; }
 
+  const maxRaw = state.questions.length * 4;
   let totalScore = 0, full = 0, partial = 0, zero = 0;
-  QUESTIONS.forEach((q,i)=>{
+  state.questions.forEach((q,i)=>{
     const s = scoreQuestion(q, state.answers[i]);
     totalScore += s;
     const st = questionStatus(s);
@@ -1232,8 +1300,8 @@ function submitExam(auto, mode){
     else if(st==='partial') partial++;
     else zero++;
   });
-  // Konversi skor mentah ke skala 100 (semua benar = 100)
-  const finalScore = Math.round((totalScore / MAX_RAW_SCORE) * 100);
+
+  const finalScore = Math.round((totalScore / maxRaw) * 100);
   const rawScore = Math.round(totalScore * 100) / 100;
   const passed = finalScore >= PASSING_SCORE;
 
@@ -1266,7 +1334,7 @@ function submitExam(auto, mode){
     : (passed ? '🎉 SELAMAT, KAMU LULUS!' : '😔 BELUM LULUS');
   document.getElementById("resultMeta").innerHTML =
     `Percobaan ${state.attempt} dari ${MAX_ATTEMPTS} · ` +
-    `<strong>Skor Mentah: ${rawScore}/88</strong> → ` +
+    `<strong>Skor Mentah: ${rawScore}/${maxRaw}</strong> → ` +
     `<strong>Nilai Akhir: ${finalScore}/100</strong> · ` +
     `Minimal ${PASSING_SCORE}`;
 
@@ -1323,7 +1391,7 @@ function renderReview(filter){
   const letters = ["A","B","C","D","E"];
   const list = document.getElementById("reviewList");
   let html = '';
-  QUESTIONS.forEach((q,i)=>{
+  state.questions.forEach((q,i)=>{
     const ans = state.answers[i];
     const score = scoreQuestion(q, ans);
     const status = questionStatus(score);
@@ -1384,10 +1452,12 @@ function renderReview(filter){
 function ulangiUjian(isLatihan){
   if(state.timerId){ clearInterval(state.timerId); state.timerId = null; }
   if(isLatihan){
+    state.attempt = 1;
     state.answers = {};
     state.current = 0;
     state.timeLeft = 45*60;
     state.submitted = false;
+    state.questions = [];
     document.getElementById("inputNama").value = state.name;
     document.getElementById("inputKelas").value = state.kelas;
     showScreen("start");
@@ -1399,6 +1469,7 @@ function ulangiUjian(isLatihan){
   state.current = 0;
   state.timeLeft = 45*60;
   state.submitted = false;
+  state.questions = []; // set baru akan di-generate saat "Mulai Ujian"
   document.getElementById("instUser").textContent = `${state.name} · ${state.kelas}`;
   showScreen("instructions");
 }
